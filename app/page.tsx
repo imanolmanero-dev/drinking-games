@@ -1,65 +1,166 @@
-import Image from "next/image";
+import Link from "next/link";
+import {
+  Wine,
+  Users,
+  Sparkles,
+  ArrowRight,
+  PartyPopper,
+} from "lucide-react";
+
+const juegos = [
+  {
+    id: "yo-nunca",
+    nombre: "Yo Nunca",
+    descripcion:
+      "Di algo que nunca hayas hecho. Los que sí lo hayan hecho… ¡beben!",
+    icono: Wine,
+    color: "from-purple-500 to-pink-500",
+    shadowColor: "shadow-purple-500/20",
+    jugadores: "2+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "verdad-o-reto",
+    nombre: "Verdad o Reto",
+    descripcion:
+      "Elige verdad o reto. Si no cumples… ¡fondo blanco!",
+    icono: Sparkles,
+    color: "from-amber-500 to-orange-500",
+    shadowColor: "shadow-amber-500/20",
+    jugadores: "3+",
+    estado: "proximamente" as const,
+  },
+  {
+    id: "la-ruleta",
+    nombre: "La Ruleta",
+    descripcion:
+      "Gira la ruleta y cumple el castigo que te toque. Sin excusas.",
+    icono: PartyPopper,
+    color: "from-emerald-500 to-teal-500",
+    shadowColor: "shadow-emerald-500/20",
+    jugadores: "2+",
+    estado: "proximamente" as const,
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="flex flex-1 flex-col">
+      {/* Hero Section */}
+      <section className="relative flex flex-col items-center justify-center px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
+        {/* Gradient orb background */}
+        <div className="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-gradient-to-br from-accent/20 to-accent-secondary/10 blur-[120px]" />
+
+        <div className="relative z-10 flex flex-col items-center gap-6">
+          {/* Badge */}
+          <div className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-1.5 text-sm text-muted">
+            <PartyPopper className="h-4 w-4 text-accent" />
+            La fiesta empieza aquí
+          </div>
+
+          {/* Title */}
+          <h1 className="max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl">
+            Juegos para{" "}
+            <span className="bg-gradient-to-r from-accent to-accent-secondary bg-clip-text text-transparent">
+              beber
+            </span>{" "}
+            con amigos
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          {/* Subtitle */}
+          <p className="max-w-lg text-base leading-relaxed text-muted sm:text-lg">
+            Elige un juego, reúne a tus amigos y prepara las copas.
+            Diversión y risas garantizadas. 🍻
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+          {/* CTA */}
+          <Link
+            href="#juegos"
+            className="mt-2 flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-secondary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-105 hover:shadow-xl hover:shadow-accent-glow"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+            Explorar juegos
+            <ArrowRight className="h-4 w-4" />
+          </Link>
         </div>
-      </main>
+      </section>
+
+      {/* Games Grid */}
+      <section id="juegos" className="mx-auto w-full max-w-5xl px-4 pb-20 sm:px-6">
+        <div className="mb-8 flex items-center gap-3">
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+          <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted">
+            <Users className="h-4 w-4" />
+            Juegos disponibles
+          </h2>
+          <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
+        </div>
+
+        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {juegos.map((juego) => {
+            const Icon = juego.icono;
+            const disponible = juego.estado === "disponible";
+
+            const cardContent = (
+              <div
+                className={`group relative flex flex-col gap-4 rounded-2xl border border-border bg-surface p-6 transition-all duration-300 ${
+                  disponible
+                    ? "cursor-pointer hover:border-accent/30 hover:bg-surface-hover hover:shadow-xl hover:-translate-y-1 " +
+                      juego.shadowColor
+                    : "opacity-60 cursor-not-allowed"
+                }`}
+              >
+                {/* Icon */}
+                <div
+                  className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br ${juego.color} shadow-lg ${juego.shadowColor}`}
+                >
+                  <Icon className="h-6 w-6 text-white" />
+                </div>
+
+                {/* Text */}
+                <div className="flex flex-col gap-1.5">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-bold">{juego.nombre}</h3>
+                    {!disponible && (
+                      <span className="rounded-full bg-accent/10 px-2.5 py-0.5 text-xs font-medium text-accent">
+                        Próximamente
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-sm leading-relaxed text-muted">
+                    {juego.descripcion}
+                  </p>
+                </div>
+
+                {/* Footer */}
+                <div className="mt-auto flex items-center justify-between pt-2 border-t border-border">
+                  <span className="flex items-center gap-1.5 text-xs text-muted">
+                    <Users className="h-3.5 w-3.5" />
+                    {juego.jugadores} jugadores
+                  </span>
+                  {disponible && (
+                    <span className="flex items-center gap-1 text-xs font-medium text-accent transition-transform group-hover:translate-x-1">
+                      Jugar
+                      <ArrowRight className="h-3.5 w-3.5" />
+                    </span>
+                  )}
+                </div>
+              </div>
+            );
+
+            return disponible ? (
+              <Link
+                key={juego.id}
+                href={`/juegos/${juego.id}`}
+                className="outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background rounded-2xl"
+              >
+                {cardContent}
+              </Link>
+            ) : (
+              <div key={juego.id}>{cardContent}</div>
+            );
+          })}
+        </div>
+      </section>
     </div>
   );
 }
