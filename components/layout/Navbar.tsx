@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Wine, ArrowLeft, Gamepad2, Volume2, VolumeX } from "lucide-react";
+import { Wine, ArrowLeft, Gamepad2, Volume2, VolumeX, BookOpen } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 
 export default function Navbar() {
@@ -64,6 +64,15 @@ export default function Navbar() {
               <VolumeX className="h-4 w-4" />
             )}
           </button>
+
+          {/* Blog Link */}
+          <Link
+            href="/blog"
+            className="flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+          >
+            <BookOpen className="h-4 w-4" />
+            <span className="hidden sm:inline">Blog</span>
+          </Link>
 
           {/* Navigation action */}
           {!isHome ? (

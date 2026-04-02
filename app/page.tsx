@@ -9,8 +9,10 @@ import {
   PartyPopper,
   Hand,
   Flame,
-  LayoutGrid
+  LayoutGrid,
+  BookOpen
 } from "lucide-react";
+import { getAllPosts } from "@/lib/blog";
 
 const juegos = [
   {
@@ -256,6 +258,39 @@ export default function Home() {
                 <p className="text-xs text-muted">Para dejar al azar</p>
               </div>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Latest Blog Posts */}
+      <section className="bg-background w-full py-16 pb-24">
+        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+          <div className="mb-8 flex items-center justify-between">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted">
+              <BookOpen className="h-4 w-4" />
+              Últimos artículos
+            </h2>
+            <Link href="/blog" className="text-xs font-semibold text-accent hover:text-accent/80 transition-colors">
+              Ver todos &rarr;
+            </Link>
+          </div>
+          <div className="grid gap-6 sm:grid-cols-3">
+            {getAllPosts().slice(0, 3).map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group flex flex-col gap-3 rounded-2xl border border-border bg-surface p-5 transition-all duration-300 hover:border-accent/40 hover:bg-surface-hover hover:shadow-xl hover:-translate-y-1"
+              >
+                <div className="flex flex-col gap-1.5 flex-1">
+                  <h3 className="text-base font-bold group-hover:text-accent transition-colors line-clamp-2">
+                    {post.metadata.title}
+                  </h3>
+                  <p className="text-xs text-muted line-clamp-2">
+                    {post.metadata.excerpt}
+                  </p>
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
