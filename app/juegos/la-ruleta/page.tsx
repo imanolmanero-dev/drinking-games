@@ -11,7 +11,9 @@ import {
   Shuffle,
   Beer,
   PartyPopper,
+  Clock,
 } from "lucide-react";
+import { useApp } from "@/lib/AppContext";
 
 // ───── Castigos de la ruleta ─────
 const CASTIGOS = [
@@ -158,6 +160,8 @@ function RouletteWheel({
 type Phase = "setup" | "playing" | "result";
 
 export default function LaRuletaPage() {
+  const { playSound, vibrateDevice, recentPlayers, savePlayersToRecent } = useApp();
+
   const [phase, setPhase] = useState<Phase>("setup");
   const [players, setPlayers] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
@@ -180,8 +184,16 @@ export default function LaRuletaPage() {
     if (name && !players.includes(name)) {
       setPlayers((p) => [...p, name]);
       setInputValue("");
+      playSound("click");
     }
-  }, [inputValue, players]);
+  }, [inputValue, players, playSound]);
+
+  const addRecentPlayer = useCallback((name: string) => {
+    if (!players.includes(name)) {
+      setPlayers((prev) => [...prev, name]);
+      playSound("click");
+    }
+  }, [players, playSound]);
 
   const removePlayer = useCallback((name: string) => {
     setPlayers((p) => p.filter((n) => n !== name));
@@ -193,7 +205,9 @@ export default function LaRuletaPage() {
     setRoundCount(0);
     setSelectedCastigo(null);
     setPhase("playing");
-  }, []);
+    savePlayersToRecent(players);
+    playSound("success");
+  }, [players, savePlayersToRecent, playSound]);
 
   // ── Spin the wheel ──
   const spinWheel = useCallback(() => {
@@ -201,29 +215,27 @@ export default function LaRuletaPage() {
 
     setSpinning(true);
     setSelectedCastigo(null);
+    playSound("spin");
+    vibrateDevice("dice");
 
     const segAngle = 360 / CASTIGOS.length;
-    // Pick a random segment
     const segIndex = Math.floor(Math.random() * CASTIGOS.length);
-    // Calculate target angle (3-5 full rotations + segment offset)
     const fullRotations = (3 + Math.floor(Math.random() * 3)) * 360;
-    // The pointer is at the top (0°/360°). We need the segment's midpoint to align with the top.
-    // Segment i starts at i * segAngle. Its midpoint is at i * segAngle + segAngle/2.
-    // We need to rotate so that midpoint aligns with 0° (top), so rotate by -(midpoint).
     const segMid = segIndex * segAngle + segAngle / 2;
     const targetRotation = rotation + fullRotations + (360 - segMid);
 
     setRotation(targetRotation);
 
-    // Wait for animation to finish
     const duration = 4000 + Math.random() * 2000;
     setTimeout(() => {
       setSpinning(false);
       setSelectedCastigo(CASTIGOS[segIndex]);
       setRoundCount((r) => r + 1);
       setPhase("result");
+      playSound("drink");
+      vibrateDevice("result");
     }, duration);
-  }, [spinning, rotation]);
+  }, [spinning, rotation, playSound, vibrateDevice]);
 
   // ── Next turn ──
   const nextTurn = useCallback(() => {
@@ -338,6 +350,31 @@ export default function LaRuletaPage() {
               </div>
             )}
           </div>
+
+          {/* Recent players */}
+          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                <Clock className="h-3.5 w-3.5" />
+                Jugadores recientes
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {recentPlayers
+                  .filter((n) => !players.includes(n))
+                  .slice(0, 8)
+                  .map((name) => (
+                    <button
+                      key={name}
+                      onClick={() => addRecentPlayer(name)}
+                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-rose-500/40 hover:text-foreground hover:bg-surface-hover"
+                    >
+                      <Plus className="h-3 w-3" />
+                      {name}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          )}
 
           {/* Start */}
           <button

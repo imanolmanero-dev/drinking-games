@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Navbar from "@/components/layout/Navbar";
+import { AppProvider } from "@/lib/AppContext";
+import InstallPWA from "@/components/ui/InstallPWA";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -39,6 +41,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "BeberGames" }],
   creator: "BeberGames",
+  manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "es_ES",
@@ -64,6 +67,11 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "BeberGames",
+  },
 };
 
 export default function RootLayout({
@@ -78,10 +86,15 @@ export default function RootLayout({
     >
       <head>
         <meta name="theme-color" content="#0a0a0f" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <link rel="apple-touch-icon" href="/icons/icon-192.png" />
       </head>
       <body className="min-h-full flex flex-col">
-        <Navbar />
-        <main className="flex-1 flex flex-col">{children}</main>
+        <AppProvider>
+          <Navbar />
+          <main className="flex-1 flex flex-col">{children}</main>
+          <InstallPWA />
+        </AppProvider>
       </body>
     </html>
   );

@@ -13,7 +13,10 @@ import {
   ShieldQuestion,
   Flame,
   Check,
+  Clock,
 } from "lucide-react";
+import { useApp } from "@/lib/AppContext";
+import Confetti from "@/components/ui/Confetti";
 
 // ───── 30 Verdades ─────
 const VERDADES: string[] = [
@@ -96,10 +99,13 @@ function shuffleArray<T>(arr: T[]): T[] {
 type Phase = "setup" | "choosing" | "reveal" | "gameover";
 
 export default function VerdadORetoPage() {
+  const { playSound, vibrateDevice, recentPlayers, savePlayersToRecent } = useApp();
+
   // Setup
   const [phase, setPhase] = useState<Phase>("setup");
   const [players, setPlayers] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [showConfetti, setShowConfetti] = useState(false);
 
   // Game
   const [verdades, setVerdades] = useState<string[]>([]);
@@ -121,8 +127,16 @@ export default function VerdadORetoPage() {
     if (name && !players.includes(name)) {
       setPlayers((p) => [...p, name]);
       setInputValue("");
+      playSound("click");
     }
-  }, [inputValue, players]);
+  }, [inputValue, players, playSound]);
+
+  const addRecentPlayer = useCallback((name: string) => {
+    if (!players.includes(name)) {
+      setPlayers((prev) => [...prev, name]);
+      playSound("click");
+    }
+  }, [players, playSound]);
 
   const removePlayer = useCallback((name: string) => {
     setPlayers((p) => p.filter((n) => n !== name));
@@ -136,8 +150,11 @@ export default function VerdadORetoPage() {
     setTurnIdx(0);
     setRoundCount(0);
     setCurrentType(null);
+    setShowConfetti(false);
     setPhase("choosing");
-  }, []);
+    savePlayersToRecent(players);
+    playSound("success");
+  }, [players, savePlayersToRecent, playSound]);
 
   // ── Game actions ──
   const chooseVerdad = useCallback(() => {
@@ -155,6 +172,8 @@ export default function VerdadORetoPage() {
     setVerdadIdx((i) => i + 1);
     setRoundCount((r) => r + 1);
     setPhase("reveal");
+    playSound("flip");
+    vibrateDevice("flip");
   }, [verdadIdx, verdades, retoIdx, retos.length]);
 
   const chooseReto = useCallback(() => {
@@ -172,6 +191,8 @@ export default function VerdadORetoPage() {
     setRetoIdx((i) => i + 1);
     setRoundCount((r) => r + 1);
     setPhase("reveal");
+    playSound("flip");
+    vibrateDevice("flip");
   }, [retoIdx, retos, verdadIdx, verdades.length]);
 
   const nextTurn = useCallback(() => {
@@ -275,6 +296,31 @@ export default function VerdadORetoPage() {
             )}
           </div>
 
+          {/* Recent players */}
+          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                <Clock className="h-3.5 w-3.5" />
+                Jugadores recientes
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {recentPlayers
+                  .filter((n) => !players.includes(n))
+                  .slice(0, 8)
+                  .map((name) => (
+                    <button
+                      key={name}
+                      onClick={() => addRecentPlayer(name)}
+                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-amber-500/40 hover:text-foreground hover:bg-surface-hover"
+                    >
+                      <Plus className="h-3 w-3" />
+                      {name}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          )}
+
           {/* Start */}
           <button
             onClick={startGame}
@@ -293,8 +339,14 @@ export default function VerdadORetoPage() {
   // GAME OVER
   // ═══════════════════════════════════
   if (phase === "gameover") {
+    if (!showConfetti) {
+      setShowConfetti(true);
+      playSound("success");
+      vibrateDevice("everyone");
+    }
     return (
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+        <Confetti active={showConfetti} />
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}

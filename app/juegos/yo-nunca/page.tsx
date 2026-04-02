@@ -10,7 +10,10 @@ import {
   ChevronRight,
   RotateCcw,
   Shuffle,
+  Clock,
 } from "lucide-react";
+import { useApp } from "@/lib/AppContext";
+import Confetti from "@/components/ui/Confetti";
 
 // ───── 40 preguntas "Yo Nunca" ─────
 const PREGUNTAS: string[] = [
@@ -68,8 +71,11 @@ function shuffleArray<T>(arr: T[]): T[] {
 
 // ───── Component ─────
 export default function YoNuncaPage() {
+  const { playSound, vibrateDevice, recentPlayers, savePlayersToRecent } = useApp();
+
   // Phase: "setup" or "playing"
   const [phase, setPhase] = useState<"setup" | "playing">("setup");
+  const [showConfetti, setShowConfetti] = useState(false);
 
   // Setup state
   const [players, setPlayers] = useState<string[]>([]);
@@ -86,8 +92,16 @@ export default function YoNuncaPage() {
     if (name && !players.includes(name)) {
       setPlayers((prev) => [...prev, name]);
       setInputValue("");
+      playSound("click");
     }
-  }, [inputValue, players]);
+  }, [inputValue, players, playSound]);
+
+  const addRecentPlayer = useCallback((name: string) => {
+    if (!players.includes(name)) {
+      setPlayers((prev) => [...prev, name]);
+      playSound("click");
+    }
+  }, [players, playSound]);
 
   const removePlayer = useCallback((name: string) => {
     setPlayers((prev) => prev.filter((p) => p !== name));
@@ -97,18 +111,23 @@ export default function YoNuncaPage() {
     setQuestions(shuffleArray(PREGUNTAS));
     setCurrentIndex(0);
     setPhase("playing");
-  }, []);
+    savePlayersToRecent(players);
+    playSound("success");
+    vibrateDevice("click");
+  }, [players, savePlayersToRecent, playSound, vibrateDevice]);
 
   // ── Game handlers ──
   const nextQuestion = useCallback(() => {
     if (isFlipping) return;
     setIsFlipping(true);
+    playSound("flip");
+    vibrateDevice("flip");
     // Small delay for flip-out, then flip-in with new question
     setTimeout(() => {
       setCurrentIndex((prev) => prev + 1);
       setIsFlipping(false);
     }, 300);
-  }, [isFlipping]);
+  }, [isFlipping, playSound, vibrateDevice]);
 
   const restartGame = useCallback(() => {
     setPhase("setup");
@@ -208,6 +227,31 @@ export default function YoNuncaPage() {
             )}
           </div>
 
+          {/* Recent players */}
+          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                <Clock className="h-3.5 w-3.5" />
+                Jugadores recientes
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {recentPlayers
+                  .filter((n) => !players.includes(n))
+                  .slice(0, 8)
+                  .map((name) => (
+                    <button
+                      key={name}
+                      onClick={() => addRecentPlayer(name)}
+                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover"
+                    >
+                      <Plus className="h-3 w-3" />
+                      {name}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          )}
+
           {/* Start button */}
           <button
             onClick={startGame}
@@ -226,8 +270,15 @@ export default function YoNuncaPage() {
   // GAME OVER SCREEN
   // ═══════════════════════════════════
   if (isGameOver) {
+    // Trigger confetti once
+    if (!showConfetti) {
+      setShowConfetti(true);
+      playSound("success");
+      vibrateDevice("everyone");
+    }
     return (
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+        <Confetti active={showConfetti} />
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -242,14 +293,14 @@ export default function YoNuncaPage() {
           </p>
           <div className="flex gap-3">
             <button
-              onClick={reshuffleAndRestart}
+              onClick={() => { reshuffleAndRestart(); setShowConfetti(false); }}
               className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-secondary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-105"
             >
               <Shuffle className="h-4 w-4" />
               Jugar otra vez
             </button>
             <button
-              onClick={restartGame}
+              onClick={() => { restartGame(); setShowConfetti(false); }}
               className="flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-medium transition-all hover:bg-surface-hover"
             >
               <RotateCcw className="h-4 w-4" />

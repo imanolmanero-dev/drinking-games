@@ -16,7 +16,9 @@ import {
   RotateCcw,
   Crown,
   Beer,
+  Clock,
 } from "lucide-react";
+import { useApp } from "@/lib/AppContext";
 
 // ───── Dice faces ─────
 const DICE_ICONS = [Dice1, Dice2, Dice3, Dice4, Dice5, Dice6];
@@ -135,6 +137,8 @@ function getRuleText(
 type Phase = "setup" | "findTriman" | "playing" | "choosing" | "result";
 
 export default function TrimanPage() {
+  const { playSound, vibrateDevice, recentPlayers, savePlayersToRecent } = useApp();
+
   // Setup
   const [phase, setPhase] = useState<Phase>("setup");
   const [players, setPlayers] = useState<string[]>([]);
@@ -164,8 +168,16 @@ export default function TrimanPage() {
     if (name && !players.includes(name)) {
       setPlayers((p) => [...p, name]);
       setInputValue("");
+      playSound("click");
     }
-  }, [inputValue, players]);
+  }, [inputValue, players, playSound]);
+
+  const addRecentPlayer = useCallback((name: string) => {
+    if (!players.includes(name)) {
+      setPlayers((prev) => [...prev, name]);
+      playSound("click");
+    }
+  }, [players, playSound]);
 
   const removePlayer = useCallback((name: string) => {
     setPlayers((p) => p.filter((n) => n !== name));
@@ -176,13 +188,16 @@ export default function TrimanPage() {
     setSearchDice(null);
     setTrimanName("");
     setPhase("findTriman");
-  }, []);
+    savePlayersToRecent(players);
+    playSound("success");
+  }, [players, savePlayersToRecent, playSound]);
 
   // ── Roll dice (animated) ──
   const rollDice = useCallback((): Promise<number> => {
     return new Promise((resolve) => {
       setIsRolling(true);
-      // Quick animation: cycle through random numbers
+      playSound("dice");
+      vibrateDevice("dice");
       let count = 0;
       const max = 10 + Math.floor(Math.random() * 6);
       const interval = setInterval(() => {
@@ -210,6 +225,8 @@ export default function TrimanPage() {
     if (result === 3) {
       // Found the Triman!
       setTrimanName(searchPlayer);
+      playSound("success");
+      vibrateDevice("everyone");
       setTimeout(() => {
         setTurnIdx(0);
         setDiceValue(null);
@@ -387,6 +404,31 @@ export default function TrimanPage() {
               </div>
             )}
           </div>
+
+          {/* Recent players */}
+          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            <div className="flex flex-col gap-2">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                <Clock className="h-3.5 w-3.5" />
+                Jugadores recientes
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {recentPlayers
+                  .filter((n) => !players.includes(n))
+                  .slice(0, 8)
+                  .map((name) => (
+                    <button
+                      key={name}
+                      onClick={() => addRecentPlayer(name)}
+                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-emerald-500/40 hover:text-foreground hover:bg-surface-hover"
+                    >
+                      <Plus className="h-3 w-3" />
+                      {name}
+                    </button>
+                  ))}
+              </div>
+            </div>
+          )}
 
           {/* Start */}
           <button
