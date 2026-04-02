@@ -14,50 +14,8 @@ import {
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
-
-// ───── 40 preguntas "Yo Nunca" ─────
-const PREGUNTAS: string[] = [
-  "Yo nunca he besado a alguien en la primera cita",
-  "Yo nunca he enviado un mensaje al grupo equivocado",
-  "Yo nunca me he colado en una fiesta",
-  "Yo nunca he fingido estar enfermo para no ir a trabajar",
-  "Yo nunca he llorado con una película de Disney",
-  "Yo nunca he stalkeado a mi ex en redes sociales",
-  "Yo nunca he bebido tanto que no recuerde nada",
-  "Yo nunca he mentido sobre mi edad",
-  "Yo nunca me he enamorado de alguien que no debía",
-  "Yo nunca he cantado en la ducha a todo volumen",
-  "Yo nunca he hecho ghosting a alguien",
-  "Yo nunca he roto algo en casa ajena y no dicho nada",
-  "Yo nunca he bailado solo/a frente al espejo",
-  "Yo nunca me he despertado en un lugar sin saber cómo llegué",
-  "Yo nunca he enviado una foto comprometedora",
-  "Yo nunca he comido algo del suelo",
-  "Yo nunca he fingido que me gustaba un regalo",
-  "Yo nunca he copiado en un examen",
-  "Yo nunca he besado a más de una persona en la misma noche",
-  "Yo nunca me he quedado dormido/a en clase o en el trabajo",
-  "Yo nunca he dicho 'te quiero' sin sentirlo",
-  "Yo nunca he hecho algo ilegal estando borracho/a",
-  "Yo nunca he mentido en una entrevista de trabajo",
-  "Yo nunca he tenido una fantasía con alguien de este grupo",
-  "Yo nunca he ligado con alguien solo por aburrimiento",
-  "Yo nunca he llorado por una canción",
-  "Yo nunca me he arrepentido de un tatuaje",
-  "Yo nunca he mandado un audio largo llorando",
-  "Yo nunca he salido de casa sin ropa interior",
-  "Yo nunca he fingido un orgasmo",
-  "Yo nunca he robado algo de un supermercado",
-  "Yo nunca me he escapado de un bar sin pagar",
-  "Yo nunca he vuelto con un/una ex",
-  "Yo nunca he mantenido una relación en secreto",
-  "Yo nunca he llamado borracho/a a mi ex",
-  "Yo nunca he hecho algo por un reto que me arrepiento",
-  "Yo nunca he dicho que estaba bien cuando no lo estaba",
-  "Yo nunca he tenido una resaca de más de un día",
-  "Yo nunca he mandado un mensaje borracho/a del que me arrepentí",
-  "Yo nunca he besado a alguien del mismo sexo",
-];
+import IntensitySelector from "@/components/ui/IntensitySelector";
+import { type Intensidad, filtrarPorIntensidad } from "@/lib/data/yo-nunca";
 
 // ───── Shuffle helper ─────
 function shuffleArray<T>(arr: T[]): T[] {
@@ -80,6 +38,7 @@ export default function YoNuncaPage() {
   // Setup state
   const [players, setPlayers] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
+  const [niveles, setNiveles] = useState<Intensidad[]>(["normal"]);
 
   // Game state
   const [questions, setQuestions] = useState<string[]>([]);
@@ -108,13 +67,14 @@ export default function YoNuncaPage() {
   }, []);
 
   const startGame = useCallback(() => {
-    setQuestions(shuffleArray(PREGUNTAS));
+    const preguntasFiltradas = filtrarPorIntensidad(niveles).map((p) => p.texto);
+    setQuestions(shuffleArray(preguntasFiltradas));
     setCurrentIndex(0);
     setPhase("playing");
     savePlayersToRecent(players);
     playSound("success");
     vibrateDevice("click");
-  }, [players, savePlayersToRecent, playSound, vibrateDevice]);
+  }, [players, niveles, savePlayersToRecent, playSound, vibrateDevice]);
 
   // ── Game handlers ──
   const nextQuestion = useCallback(() => {
@@ -136,9 +96,10 @@ export default function YoNuncaPage() {
   }, []);
 
   const reshuffleAndRestart = useCallback(() => {
-    setQuestions(shuffleArray(PREGUNTAS));
+    const preguntasFiltradas = filtrarPorIntensidad(niveles).map((p) => p.texto);
+    setQuestions(shuffleArray(preguntasFiltradas));
     setCurrentIndex(0);
-  }, []);
+  }, [niveles]);
 
   const isGameOver = currentIndex >= questions.length;
   const progress = questions.length
@@ -170,6 +131,8 @@ export default function YoNuncaPage() {
               barajarán automáticamente.
             </p>
           </div>
+
+          <IntensitySelector selected={niveles} onChange={setNiveles} />
 
           {/* Input */}
           <div className="flex gap-2">

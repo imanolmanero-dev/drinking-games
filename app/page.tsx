@@ -7,6 +7,9 @@ import {
   Dice3,
   ArrowRight,
   PartyPopper,
+  Hand,
+  Flame,
+  LayoutGrid
 } from "lucide-react";
 
 const juegos = [
@@ -51,6 +54,28 @@ const juegos = [
     icono: PartyPopper,
     color: "from-rose-500 to-pink-500",
     shadowColor: "shadow-rose-500/20",
+    jugadores: "2+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "quien-es-mas-probable",
+    nombre: "Quién Es Más Probable",
+    descripcion:
+      "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¡El más votado bebe!",
+    icono: Hand,
+    color: "from-cyan-500 to-blue-500",
+    shadowColor: "shadow-cyan-500/20",
+    jugadores: "3+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "ring-of-fire",
+    nombre: "Ring of Fire",
+    descripcion:
+      "Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!",
+    icono: Flame,
+    color: "from-red-500 to-rose-600",
+    shadowColor: "shadow-red-500/20",
     jugadores: "2+",
     estado: "disponible" as const,
   },
@@ -181,6 +206,57 @@ export default function Home() {
               <div key={juego.id}>{cardContent}</div>
             );
           })}
+        </div>
+      </section>
+
+      {/* Categories SEO Grid */}
+      <section className="bg-surface border-t border-border mt-auto w-full py-16">
+        <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
+          <div className="mb-8 flex items-center gap-3">
+            <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted">
+              <LayoutGrid className="h-4 w-4" />
+              Explorar por categorías
+            </h2>
+            <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
+          </div>
+          <div className="grid gap-4 sm:grid-cols-3">
+            <Link
+              href="/juegos/categorias/preguntas"
+              className="flex items-center gap-4 rounded-xl border border-border bg-background p-4 transition-all hover:border-purple-500/30 hover:bg-surface-hover"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-purple-500/10 text-purple-400">
+                <Sparkles className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-sm">Juegos de Preguntas</h3>
+                <p className="text-xs text-muted">Secretos y verdades</p>
+              </div>
+            </Link>
+            <Link
+              href="/juegos/categorias/cartas"
+              className="flex items-center gap-4 rounded-xl border border-border bg-background p-4 transition-all hover:border-red-500/30 hover:bg-surface-hover"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-red-500/10 text-red-500">
+                <Flame className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-sm">Juegos de Cartas</h3>
+                <p className="text-xs text-muted">Con baraja de póker</p>
+              </div>
+            </Link>
+            <Link
+              href="/juegos/categorias/dados"
+              className="flex items-center gap-4 rounded-xl border border-border bg-background p-4 transition-all hover:border-emerald-500/30 hover:bg-surface-hover"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
+                <Dice3 className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-sm">Juegos de Dados</h3>
+                <p className="text-xs text-muted">Para dejar al azar</p>
+              </div>
+            </Link>
+          </div>
         </div>
       </section>
     </div>

@@ -1,0 +1,225 @@
+"use client";
+
+import { useState, useCallback } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import {
+  Users,
+  ChevronRight,
+  RotateCcw,
+  Hand,
+  Beer,
+} from "lucide-react";
+import { useApp } from "@/lib/AppContext";
+import Confetti from "@/components/ui/Confetti";
+import IntensitySelector from "@/components/ui/IntensitySelector";
+import { type Intensidad } from "@/lib/data/yo-nunca";
+import { filtrarQEMP } from "@/lib/data/quien-es-mas-probable";
+
+// ───── Shuffle helper ─────
+function shuffleArray<T>(arr: T[]): T[] {
+  const shuffled = [...arr];
+  for (let i = shuffled.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+  }
+  return shuffled;
+}
+
+type Phase = "setup" | "playing" | "gameover";
+
+export default function QuienEsMasProbablePage() {
+  const { playSound, vibrateDevice } = useApp();
+
+  const [phase, setPhase] = useState<Phase>("setup");
+  const [showConfetti, setShowConfetti] = useState(false);
+  const [niveles, setNiveles] = useState<Intensidad[]>(["normal"]);
+
+  // Game state
+  const [questions, setQuestions] = useState<string[]>([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isFlipping, setIsFlipping] = useState(false);
+
+  const startGame = useCallback(() => {
+    const qs = filtrarQEMP(niveles).map(p => p.texto);
+    setQuestions(shuffleArray(qs));
+    setCurrentIndex(0);
+    setPhase("playing");
+    setShowConfetti(false);
+    playSound("success");
+    vibrateDevice("click");
+  }, [niveles, playSound, vibrateDevice]);
+
+  // ── Game handlers ──
+  const nextQuestion = useCallback(() => {
+    if (isFlipping) return;
+    
+    if (currentIndex >= questions.length - 1) {
+      setPhase("gameover");
+      return;
+    }
+
+    setIsFlipping(true);
+    playSound("flip");
+    vibrateDevice("flip");
+    setTimeout(() => {
+      setCurrentIndex((prev) => prev + 1);
+      setIsFlipping(false);
+    }, 300);
+  }, [isFlipping, currentIndex, questions.length, playSound, vibrateDevice]);
+
+  const restartGame = useCallback(() => {
+    setPhase("setup");
+  }, []);
+
+  const isGameOver = currentIndex >= questions.length;
+  const progress = questions.length
+    ? Math.round(((currentIndex + 1) / questions.length) * 100)
+    : 0;
+
+  // ═══════════════════════════════════
+  // SETUP SCREEN
+  // ═══════════════════════════════════
+  if (phase === "setup") {
+    return (
+      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full max-w-md flex flex-col gap-8"
+        >
+          {/* Header */}
+          <div className="flex flex-col items-center gap-3 text-center">
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/25">
+              <Hand className="h-7 w-7 text-white" />
+            </div>
+            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+              Quién Es Más Probable
+            </h1>
+            <p className="text-sm text-muted max-w-xs">
+              Lee la tarjeta, cuenta hasta 3 y señalad todos a la vez. ¡El que tenga más dedos apuntándole, bebe!
+            </p>
+          </div>
+
+          <IntensitySelector selected={niveles} onChange={setNiveles} />
+
+          {/* Start */}
+          <button
+            onClick={startGame}
+            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-xl"
+          >
+            Empezar el juego
+            <ChevronRight className="h-4 w-4" />
+          </button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // ═══════════════════════════════════
+  // GAME OVER
+  // ═══════════════════════════════════
+  if (phase === "gameover" || isGameOver) {
+    if (!showConfetti) {
+      setShowConfetti(true);
+      playSound("success");
+      vibrateDevice("everyone");
+    }
+    return (
+      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+        <Confetti active={showConfetti} />
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="flex flex-col items-center gap-6 text-center"
+        >
+          <div className="text-6xl">🤕</div>
+          <h2 className="text-2xl font-extrabold sm:text-3xl">
+            ¡Se acabaron las preguntas!
+          </h2>
+          <p className="text-muted max-w-xs text-sm">
+            Creo que ya ha quedado claro qué opina el grupo de cada uno.
+          </p>
+          <button
+            onClick={restartGame}
+            className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-105"
+          >
+            <RotateCcw className="h-4 w-4" />
+            Volver a jugar
+          </button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  // ═══════════════════════════════════
+  // PLAYING SCREEN
+  // ═══════════════════════════════════
+  return (
+    <div className="flex flex-1 flex-col items-center px-4 py-8 sm:py-12">
+      {/* Progress */}
+      <div className="w-full max-w-md mb-8">
+        <div className="flex items-center justify-between mb-2">
+          <span className="text-xs font-medium text-muted">
+            Pregunta {currentIndex + 1} de {questions.length}
+          </span>
+          <span className="text-xs font-semibold text-cyan-400">{progress}%</span>
+        </div>
+        <div className="h-1.5 w-full rounded-full bg-surface overflow-hidden">
+          <motion.div
+            className="h-full rounded-full bg-gradient-to-r from-cyan-500 to-blue-500"
+            initial={{ width: 0 }}
+            animate={{ width: `${progress}%` }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+          />
+        </div>
+      </div>
+
+      {/* Card */}
+      <div className="perspective-1000 w-full max-w-md flex-1 flex items-center justify-center mb-8">
+        <AnimatePresence mode="wait">
+          {!isFlipping && (
+            <motion.div
+              key={currentIndex}
+              initial={{ rotateY: 90, opacity: 0 }}
+              animate={{ rotateY: 0, opacity: 1 }}
+              exit={{ rotateY: -90, opacity: 0 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className="preserve-3d w-full"
+            >
+              <div className="relative flex min-h-[300px] sm:min-h-[360px] flex-col items-center justify-center gap-8 rounded-3xl border border-cyan-500/30 bg-gradient-to-br from-surface to-surface-hover p-8 shadow-2xl shadow-cyan-500/15">
+                {/* Top accent bar */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 h-1 w-24 rounded-b-full bg-gradient-to-r from-cyan-500 to-blue-500" />
+
+                {/* Badge */}
+                <div className="flex items-center gap-2 rounded-full border border-cyan-500/30 bg-gradient-to-r from-cyan-500/20 to-blue-500/20 px-4 py-1.5 text-xs font-semibold text-cyan-400">
+                  <Hand className="h-4 w-4" />
+                  SEÑALEN A LA DE 3
+                </div>
+
+                {/* Question */}
+                <h2 className="text-center text-2xl font-bold leading-snug sm:text-3xl">
+                  {questions[currentIndex]}
+                </h2>
+
+                <p className="text-sm text-muted">
+                  El más votado bebe 🍻
+                </p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Next button */}
+      <button
+        onClick={nextQuestion}
+        disabled={isFlipping}
+        className="w-full max-w-md flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-xl"
+      >
+        Siguiente pregunta
+        <ChevronRight className="h-4 w-4" />
+      </button>
+    </div>
+  );
+}

@@ -17,74 +17,9 @@ import {
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
-
-// ───── 30 Verdades ─────
-const VERDADES: string[] = [
-  "¿Cuál es la mentira más grande que has dicho a tus padres?",
-  "¿Alguna vez has fingido estar borracho/a? ¿Por qué?",
-  "¿Quién es la persona más atractiva de este grupo?",
-  "¿Cuál es tu mayor secreto que nadie aquí sabe?",
-  "¿Has besado a alguien de este grupo?",
-  "¿Cuál es la cosa más vergonzosa que has hecho estando borracho/a?",
-  "¿Alguna vez te has enamorado de alguien prohibido?",
-  "¿Cuál es tu fantasía más loca?",
-  "¿Has enviado un mensaje de texto del que te arrepientas?",
-  "¿Qué es lo peor que has hecho en el trabajo o en clase?",
-  "¿Has stalkeado a alguien en redes sociales? ¿A quién?",
-  "¿Cuál es la cosa más ilegal que has hecho?",
-  "¿Alguna vez has mentido en una cita?",
-  "¿Cuál es tu peor hábito que intentas esconder?",
-  "¿Has copiado en un examen importante?",
-  "¿Quién fue tu primer amor y qué pasó?",
-  "¿Alguna vez has dicho 'te quiero' sin sentirlo?",
-  "¿Cuál es la peor cita que has tenido?",
-  "¿Has hecho algo solo para impresionar a alguien?",
-  "¿Cuál es el apodo más vergonzoso que te han puesto?",
-  "¿Alguna vez has llorado viendo una peli o serie? ¿Cuál?",
-  "¿Qué es lo más raro que has buscado en Google?",
-  "¿Has tenido un crush con algún profesor/a?",
-  "¿Cuál es la mayor tontería que has hecho por amor?",
-  "¿Alguna vez has roto algo y culpado a otro?",
-  "¿Cuál es tu mayor inseguridad?",
-  "¿Has vuelto con un/una ex? ¿cuántas veces?",
-  "Si pudieras besar a alguien de este grupo, ¿a quién?",
-  "¿Cuál es tu mayor arrepentimiento en la vida?",
-  "¿Qué es lo más loco que has hecho por un reto?",
-];
-
-// ───── 30 Retos ─────
-const RETOS: string[] = [
-  "Imita a alguien del grupo hasta que adivinen quién es",
-  "Deja que el grupo revise tus últimos 5 chats de WhatsApp",
-  "Haz 10 flexiones ahora mismo",
-  "Canta el estribillo de tu canción favorita",
-  "Llama a tu último contacto y dile algo bonito",
-  "Baila sin música durante 30 segundos",
-  "Deja que alguien del grupo publique una story en tu Instagram",
-  "Imita el sonido de 3 animales diferentes",
-  "Envía un audio vergonzoso al grupo de tu familia",
-  "Habla con acento francés durante las próximas 3 rondas",
-  "Haz tu mejor cara seductora y mantenla 10 segundos",
-  "Deja que te dibujen algo en la cara con un boli",
-  "Come algo que elija el grupo (de lo que haya disponible)",
-  "Cuenta un chiste malo y no puedes reírte",
-  "Haz un rap improvisado sobre la persona de tu derecha",
-  "Ponte la camiseta del revés el resto de la partida",
-  "Déjate poner un peinado ridículo",
-  "Haz una declaración de amor dramática a alguien del grupo",
-  "Intenta hacer el pino o la rueda",
-  "Deja que el grupo vea tu historial de búsqueda",
-  "Manda un mensaje a tu ex diciendo 'te echo de menos'",
-  "Haz tu mejor imitación de un famoso",
-  "Bebe un shot de lo que elija el grupo",
-  "Deja que alguien te maquille (o te pinte la cara)",
-  "Haz 20 sentadillas sin parar",
-  "Canta una canción a capella con sentimiento",
-  "Habla susurrando durante las próximas 2 rondas",
-  "Intercambia una prenda con alguien del grupo",
-  "Haz un TikTok / Reel ahora mismo",
-  "Deja que el grupo elija tu foto de perfil durante 24 horas",
-];
+import IntensitySelector from "@/components/ui/IntensitySelector";
+import { type Intensidad } from "@/lib/data/yo-nunca";
+import { filtrarVerdades, filtrarRetos } from "@/lib/data/verdad-o-reto";
 
 // ───── Shuffle helper ─────
 function shuffleArray<T>(arr: T[]): T[] {
@@ -106,6 +41,7 @@ export default function VerdadORetoPage() {
   const [players, setPlayers] = useState<string[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [showConfetti, setShowConfetti] = useState(false);
+  const [niveles, setNiveles] = useState<Intensidad[]>(["normal"]);
 
   // Game
   const [verdades, setVerdades] = useState<string[]>([]);
@@ -143,8 +79,8 @@ export default function VerdadORetoPage() {
   }, []);
 
   const startGame = useCallback(() => {
-    setVerdades(shuffleArray(VERDADES));
-    setRetos(shuffleArray(RETOS));
+    setVerdades(shuffleArray(filtrarVerdades(niveles).map(v => v.texto)));
+    setRetos(shuffleArray(filtrarRetos(niveles).map(r => r.texto)));
     setVerdadIdx(0);
     setRetoIdx(0);
     setTurnIdx(0);
@@ -154,7 +90,7 @@ export default function VerdadORetoPage() {
     setPhase("choosing");
     savePlayersToRecent(players);
     playSound("success");
-  }, [players, savePlayersToRecent, playSound]);
+  }, [players, niveles, savePlayersToRecent, playSound]);
 
   // ── Game actions ──
   const chooseVerdad = useCallback(() => {
@@ -239,6 +175,8 @@ export default function VerdadORetoPage() {
               Añade al menos 3 jugadores. Cada uno elegirá verdad o reto en su turno.
             </p>
           </div>
+
+          <IntensitySelector selected={niveles} onChange={setNiveles} />
 
           {/* Input */}
           <div className="flex gap-2">
