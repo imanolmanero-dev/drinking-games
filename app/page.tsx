@@ -28,7 +28,7 @@ const juegos = [
     color: "from-amber-500 to-orange-500",
     shadowColor: "shadow-amber-500/20",
     jugadores: "3+",
-    estado: "proximamente" as const,
+    estado: "disponible" as const,
   },
   {
     id: "la-ruleta",
