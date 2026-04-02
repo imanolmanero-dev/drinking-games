@@ -3,6 +3,7 @@ import {
   Wine,
   Users,
   Sparkles,
+  Dice3,
   ArrowRight,
   PartyPopper,
 } from "lucide-react";
@@ -31,15 +32,26 @@ const juegos = [
     estado: "disponible" as const,
   },
   {
+    id: "triman",
+    nombre: "Triman",
+    descripcion:
+      "El Señor del 3. Lanza el dado y descubre quién bebe según las reglas.",
+    icono: Dice3,
+    color: "from-emerald-500 to-teal-500",
+    shadowColor: "shadow-emerald-500/20",
+    jugadores: "3+",
+    estado: "disponible" as const,
+  },
+  {
     id: "la-ruleta",
     nombre: "La Ruleta",
     descripcion:
       "Gira la ruleta y cumple el castigo que te toque. Sin excusas.",
     icono: PartyPopper,
-    color: "from-emerald-500 to-teal-500",
-    shadowColor: "shadow-emerald-500/20",
+    color: "from-rose-500 to-pink-500",
+    shadowColor: "shadow-rose-500/20",
     jugadores: "2+",
-    estado: "proximamente" as const,
+    estado: "disponible" as const,
   },
 ];
 
