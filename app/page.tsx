@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { WebSiteJsonLd, GameJsonLd } from "@/components/seo/JsonLd";
 import {
   Wine,
   Users,
@@ -58,6 +59,15 @@ const juegos = [
 export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
+      <WebSiteJsonLd />
+      {juegos.map((juego) => (
+        <GameJsonLd
+          key={juego.id}
+          name={juego.nombre}
+          description={juego.descripcion}
+          url={`https://drinking-games-lemon.vercel.app/juegos/${juego.id}`}
+        />
+      ))}
       {/* Hero Section */}
       <section className="relative flex flex-col items-center justify-center px-4 pt-16 pb-12 text-center sm:pt-24 sm:pb-16">
         {/* Gradient orb background */}

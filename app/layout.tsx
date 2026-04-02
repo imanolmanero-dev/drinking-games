@@ -14,9 +14,56 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "BeberGames — Juegos para beber con amigos",
+  metadataBase: new URL("https://drinking-games-lemon.vercel.app"),
+  title: {
+    default: "BeberGames — Juegos para beber con amigos",
+    template: "%s | BeberGames",
+  },
   description:
-    "La mejor colección de juegos para beber en grupo. Diversión garantizada con tus amigos. ¡Elige un juego y a beber!",
+    "La mejor colección de juegos para beber en grupo. Yo Nunca, Verdad o Reto, Triman, La Ruleta y más. Diversión garantizada con tus amigos. ¡Elige un juego y a beber!",
+  keywords: [
+    "juegos para beber",
+    "drinking games",
+    "yo nunca",
+    "never have i ever",
+    "verdad o reto",
+    "truth or dare",
+    "triman",
+    "juego del dado",
+    "ruleta para beber",
+    "juegos para fiestas",
+    "juegos en grupo",
+    "juegos de beber online",
+    "juegos para previas",
+    "juegos borrachos",
+  ],
+  authors: [{ name: "BeberGames" }],
+  creator: "BeberGames",
+  openGraph: {
+    type: "website",
+    locale: "es_ES",
+    siteName: "BeberGames",
+    title: "BeberGames — Juegos para beber con amigos",
+    description:
+      "La mejor colección de juegos para beber en grupo. ¡Elige un juego y a beber! 🍻",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "BeberGames — Juegos para beber con amigos",
+    description:
+      "La mejor colección de juegos para beber en grupo. ¡Elige un juego y a beber! 🍻",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
 };
 
 export default function RootLayout({
@@ -29,6 +76,9 @@ export default function RootLayout({
       lang="es"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
+      <head>
+        <meta name="theme-color" content="#0a0a0f" />
+      </head>
       <body className="min-h-full flex flex-col">
         <Navbar />
         <main className="flex-1 flex flex-col">{children}</main>
