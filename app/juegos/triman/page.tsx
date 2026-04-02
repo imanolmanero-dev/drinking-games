@@ -66,14 +66,13 @@ function DiceFace({ value }: { value: number }) {
       {dots.map(([cx, cy], i) => (
         <motion.div
           key={i}
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
+          initial={{ scale: 0, x: "-50%", y: "-50%" }}
+          animate={{ scale: 1, x: "-50%", y: "-50%" }}
           transition={{ delay: i * 0.05, duration: 0.2 }}
           className="absolute h-5 w-5 rounded-full bg-emerald-400 shadow-lg shadow-emerald-400/50 sm:h-6 sm:w-6"
           style={{
             left: `${cx}%`,
             top: `${cy}%`,
-            transform: "translate(-50%, -50%)",
           }}
         />
       ))}
