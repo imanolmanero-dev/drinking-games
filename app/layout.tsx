@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/layout/Navbar";
 import { AppProvider } from "@/lib/AppContext";
 import InstallPWA from "@/components/ui/InstallPWA";
@@ -97,6 +98,7 @@ export default function RootLayout({
           <InstallPWA />
         </AppProvider>
         <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );
