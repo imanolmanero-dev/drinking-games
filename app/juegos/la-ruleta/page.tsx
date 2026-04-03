@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Plus,
@@ -9,9 +10,10 @@ import {
   ChevronRight,
   RotateCcw,
   Shuffle,
-  Beer,
   PartyPopper,
+  Beer,
   Clock,
+  BookOpen,
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 
@@ -273,6 +275,10 @@ export default function LaRuletaPage() {
             <p className="text-sm text-muted max-w-xs">
               Gira la ruleta y cumple el castigo que te toque. Sin excusas. 🎡
             </p>
+            <Link href="/juegos/la-ruleta/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
+              <BookOpen className="h-3.5 w-3.5" />
+              Ver cómo se juega
+            </Link>
           </div>
 
           {/* Input */}

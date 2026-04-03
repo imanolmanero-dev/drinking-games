@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Wine,
@@ -11,6 +12,7 @@ import {
   RotateCcw,
   Shuffle,
   Clock,
+  BookOpen,
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
@@ -144,6 +146,10 @@ export default function YoNuncaPage() {
               Añade al menos 2 jugadores para empezar. Las preguntas se
               barajarán automáticamente.
             </p>
+            <Link href="/juegos/yo-nunca/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
+              <BookOpen className="h-3.5 w-3.5" />
+              Ver cómo se juega
+            </Link>
           </div>
 
           <IntensitySelector selected={niveles} onChange={setNiveles} />

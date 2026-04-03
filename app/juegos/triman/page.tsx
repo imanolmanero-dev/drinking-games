@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Dice1,
@@ -14,9 +15,10 @@ import {
   Users,
   ChevronRight,
   RotateCcw,
-  Crown,
   Beer,
+  Crown,
   Clock,
+  BookOpen,
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 
@@ -324,6 +326,10 @@ export default function TrimanPage() {
               Añade al menos 3 jugadores. Necesitaréis un dado (nosotros lo
               tiramos por vosotros 🎲).
             </p>
+            <Link href="/juegos/triman/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/10">
+              <BookOpen className="h-3.5 w-3.5" />
+              Ver cómo se juega
+            </Link>
           </div>
 
           {/* Input */}

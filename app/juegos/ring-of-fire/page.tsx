@@ -1,16 +1,18 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Users,
   ChevronRight,
   RotateCcw,
   Plus,
-  X,
   Flame,
+  X,
   Clock,
-  Shuffle
+  Shuffle,
+  BookOpen,
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
@@ -162,6 +164,10 @@ export default function RingOfFirePage() {
             <p className="text-sm text-muted max-w-xs">
               Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!
             </p>
+            <Link href="/juegos/ring-of-fire/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
+              <BookOpen className="h-3.5 w-3.5" />
+              Ver cómo se juega
+            </Link>
           </div>
 
           {/* Input */}

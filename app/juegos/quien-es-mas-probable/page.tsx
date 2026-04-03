@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Users,
@@ -8,6 +9,7 @@ import {
   RotateCcw,
   Hand,
   Beer,
+  BookOpen,
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
@@ -107,6 +109,10 @@ export default function QuienEsMasProbablePage() {
             <p className="text-sm text-muted max-w-xs">
               Lee la tarjeta, cuenta hasta 3 y señalad todos a la vez. ¡El que tenga más dedos apuntándole, bebe!
             </p>
+            <Link href="/juegos/quien-es-mas-probable/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-cyan-400 transition-colors hover:bg-cyan-500/10">
+              <BookOpen className="h-3.5 w-3.5" />
+              Ver cómo se juega
+            </Link>
           </div>
 
           <IntensitySelector selected={niveles} onChange={setNiveles} />

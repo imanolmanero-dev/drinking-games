@@ -3,8 +3,10 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
 import { AppProvider } from "@/lib/AppContext";
 import InstallPWA from "@/components/ui/InstallPWA";
+import CookieBanner from "@/components/ui/CookieBanner";
 import Script from "next/script";
 import "./globals.css";
 
@@ -110,6 +112,7 @@ export default function RootLayout({
         <AppProvider>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>
+          <Footer />
           <InstallPWA />
         </AppProvider>
         <SpeedInsights />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Sparkles,
@@ -14,6 +15,7 @@ import {
   Flame,
   Check,
   Clock,
+  BookOpen,
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
@@ -181,6 +183,10 @@ export default function VerdadORetoPage() {
             <p className="text-sm text-muted max-w-xs">
               Añade al menos 3 jugadores. Cada uno elegirá verdad o reto en su turno.
             </p>
+            <Link href="/juegos/verdad-o-reto/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-amber-500 transition-colors hover:bg-amber-500/10">
+              <BookOpen className="h-3.5 w-3.5" />
+              Ver cómo se juega
+            </Link>
           </div>
 
           <IntensitySelector selected={niveles} onChange={setNiveles} />
