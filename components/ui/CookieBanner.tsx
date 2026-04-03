@@ -23,6 +23,11 @@ export default function CookieBanner() {
     setVisibleState(false);
   };
 
+  const rejectCookies = () => {
+    localStorage.setItem("cookie_consent", "rejected");
+    setVisibleState(false);
+  };
+
   if (!hasMounted) return null;
 
   return (
@@ -51,19 +56,18 @@ export default function CookieBanner() {
                 </p>
               </div>
             </div>
-            <div className="flex items-center gap-3 shrink-0">
+            <div className="flex flex-col sm:flex-row flex-wrap items-center gap-3 shrink-0 mt-4 sm:mt-0 w-full sm:w-auto">
+              <button
+                onClick={rejectCookies}
+                className="flex items-center justify-center rounded-lg bg-background hover:bg-surface-hover border border-border px-5 py-2.5 text-xs font-semibold text-muted hover:text-foreground transition-all whitespace-nowrap w-full sm:w-auto"
+              >
+                Solo Esenciales
+              </button>
               <button
                 onClick={acceptCookies}
                 className="flex items-center justify-center rounded-lg bg-gradient-to-r from-accent to-accent-secondary px-5 py-2.5 text-xs font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-105 whitespace-nowrap w-full sm:w-auto"
               >
                 ¡Acepto todo! 🍻
-              </button>
-              <button
-                onClick={acceptCookies}
-                className="flex items-center justify-center w-10 h-10 shrink-0 rounded-lg border border-border bg-background text-muted hover:bg-surface-hover hover:text-foreground transition-all sm:hidden"
-                aria-label="Cerrar"
-              >
-                <X className="w-5 h-5" />
               </button>
             </div>
           </div>
