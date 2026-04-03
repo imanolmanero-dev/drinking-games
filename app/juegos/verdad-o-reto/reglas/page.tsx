@@ -23,22 +23,34 @@ export default function VerdadORetoReglasPage() {
       </div>
 
       <div className="prose prose-invert prose-p:text-muted prose-li:text-muted max-w-none prose-headings:text-foreground">
-        <h2>Lo que necesitas</h2>
+        <h2>Un clásico de campamentos llevado al límite de la fiesta</h2>
+        <p>Cualquiera conoce el <em>"Verdad o Atrevimiento"</em> de cuando éramos niños. Sin embargo, en el mundo de las previas y las fiestas de adultos, este juego cobra una dimensión completamente nueva. Sustituimos las confesiones ingenuas por verdades oscuras, y las penitencias infantiles por retos físicos, ridículos o muy calientes. Y por supuesto, todo se penaliza con alcohol.</p>
+
+        <h2>Lo que necesitas para jugar</h2>
         <ul>
-          <li>3 o más jugadores.</li>
-          <li>Bebida para los castigos.</li>
-          <li>Ganas de pasarlo bien.</li>
+          <li><strong>Jugadores:</strong> A partir de 3 personas sirve, pero los grupos mixtos de 5 o 6 son ideales.</li>
+          <li><strong>Mente abierta:</strong> Especialmente si elegís el modo 'Picante', se os realizarán preguntas y peticiones sin ningún tipo de filtro moral.</li>
+          <li><strong>Alcohol:</strong> Actuará como moneda de cambio y penalización de los cobardes.</li>
         </ul>
 
         <h2>Dinámica del juego</h2>
-        <p>Un clásico infalible. En cada turno, el jugador elegido debe enfrentarse a una difícil decisión:</p>
+        <p>No cambian las reglas básicas, solo aumentan las consecuencias:</p>
         <ol>
-          <li><strong>Verdad:</strong> Deberá responder a una pregunta íntima, incómoda o secreta. Si se niega a responder, debe beber un castigo (ej: un vaso entero).</li>
-          <li><strong>Reto:</strong> Deberá cumplir un desafío físico o social frente a todos. Si no lo hace o no lo completa, deberá beber el doble.</li>
+          <li>Registrad vuestros nombres en la ruleta de jugadores. La app seleccionará un nombre aleatorio.</li>
+          <li>Esa persona debe decir en voz alta (antes de ver qué le toca) su elección: <strong>"¡Verdad o Reto!"</strong></li>
+          <li><strong>Si es Verdad:</strong> Pulsad sobre "Verdad" y leed la pregunta íntima. El jugador debe contestar con total y absoluta sinceridad mirando a los ojos del resto.</li>
+          <li><strong>Si es Reto:</strong> Pulsad sobre "Reto" y leed el desafío. El jugador debe levantarse y ejecutar la acción, por muy ridícula que sea.</li>
         </ol>
 
-        <h2>Castigos con Alcohol</h2>
-        <p>No cumplir un reto o no contestar a una verdad tiene consecuencias. Normalmente el grupo decide cuánto debe beber el cobarde, pero la regla general es: <strong>1 vaso por una verdad no contestada, y 2 por no cumplir un reto.</strong></p>
+        <h2>El Sistema de Castigos y Cobardía</h2>
+        <p>Aquí no se obliga a nadie a hacer algo con lo que se sienta verdaderamente incómodo, pero el coste es alto:</p>
+        <ul>
+          <li><strong>Negarse a una Verdad:</strong> Si alguien prefiere guardar su secreto en lugar de responder, el equipo debe penalizarle. La regla estándar es beber <strong>una copa entera o 5 tragos largos</strong>.</li>
+          <li><strong>Negarse a un Reto:</strong> Los retos requieren valor físico. Si un jugador no se atreve a cumplir su reto, el grupo suele imponerle un castigo mucho más duro, como <strong>beber el doble que una verdad</strong> o tener que beber un chupito de una mezcla desagradable.</li>
+        </ul>
+
+        <h2>Opciones de Juego Frecuentes</h2>
+        <p>Normalmente la gente elige Verdad al principio porque es "más fácil", así que recomendamos jugar con la regla del <strong>"Tope de 2"</strong>: No puedes elegir "Verdad" más de dos turnos consecutivos. ¡Al tercero tienes que atreverte a la acción sí o sí!</p>
       </div>
 
       <div className="mt-12 flex justify-center">

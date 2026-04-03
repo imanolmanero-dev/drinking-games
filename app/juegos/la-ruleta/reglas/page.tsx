@@ -23,24 +23,28 @@ export default function LaRuletaReglasPage() {
       </div>
 
       <div className="prose prose-invert prose-p:text-muted prose-li:text-muted max-w-none prose-headings:text-foreground">
-        <h2>Lo que necesitas</h2>
+        <h2>El clásico juego de casino, versión Fiestas</h2>
+        <p>Inspirado en la famosa ruleta rusa, <em>La Ruleta para Beber</em> es la forma más rápida y directa de encender cualquier reunión. Aquí no hay estrategia que valga; todo depende del puro azar y de tu suerte. En BeberGames hemos diseñado una ruleta virtual con decenas de castigos y situaciones inesperadas para que cada giro sea una sorpresa.</p>
+
+        <h2>Lo que necesitas para jugar</h2>
         <ul>
-          <li>2 o más jugadores.</li>
-          <li>Nuestra Ruleta Virtual.</li>
-          <li>Bebida abundante.</li>
+          <li><strong>Jugadores:</strong> Desde 2 personas hasta todos los que queráis.</li>
+          <li><strong>Dispositivo:</strong> Un móvil o tablet en el centro de la mesa con <em>BeberGames</em> abierto.</li>
+          <li><strong>Bebestibles:</strong> Tened vuestras copas llenas y a mano.</li>
         </ul>
 
-        <h2>Dinámica del juego</h2>
-        <p>No hay juego más fácil y directo que este. Simplemente nos basamos en el puro azar para emborrachar a tus amigos o a ti mismo.</p>
+        <h2>Dinámica del juego paso a paso</h2>
+        <p>No hay juego más fácil de explicar a tus amigos cuando ya llevan unas copas de más:</p>
         <ol>
-          <li>Añade los nombres de los jugadores antes de empezar.</li>
-          <li>En tu turno, dale a girar la ruleta.</li>
-          <li>Espera a que se detenga y lee en voz alta el castigo.</li>
-          <li>¡Cúmplelo! Si no lo haces, fondo blanco.</li>
+          <li>Añade los nombres de todos los jugadores en la configuración antes de empezar.</li>
+          <li>Por defecto, la ruleta seleccionará a un jugador al azar como el primero.</li>
+          <li>En tu turno, dale con decisión al botón de girar la ruleta.</li>
+          <li>Espera con tensión a que se detenga y lee en voz alta la sentencia que te ha tocado.</li>
+          <li><strong>¡Cúmplelo!</strong> Si la ruleta dice que bebas 3 tragos, bebes 3. Si dice que tú te salvas y bebe el resto, ¡celebra tu suerte!</li>
         </ol>
 
-        <h2>Consejo de Oro</h2>
-        <p>La ruleta incluye una variada gama de retos y "trampas" donde a veces te salvas y otras te toca beber el doble. No te lo tomes como algo personal, ¡es la voluntad de la ruleta!</p>
+        <h2>Regla de Oro (Penalización por Cobardía)</h2>
+        <p>La ruleta incluye una variada gama de retos y "trampas" donde a veces te salvas y otras te toca beber el doble. La regla fundamental es que <strong>la ruleta manda</strong>. No te lo tomes como algo personal. Si algún jugador se niega a cumplir el dictamen de la ruleta, el castigo automático es hacer "fondo blanco" (beberse la copa entera del tirón).</p>
       </div>
 
       <div className="mt-12 flex justify-center">

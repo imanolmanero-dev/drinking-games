@@ -23,24 +23,32 @@ export default function QuienEsMasProbableReglasPage() {
       </div>
 
       <div className="prose prose-invert prose-p:text-muted prose-li:text-muted max-w-none prose-headings:text-foreground">
-        <h2>Lo que necesitas</h2>
+        <h2>Un juego que destruirá confianzas (o las fortalecerá)</h2>
+        <p><em>"Quién Es Más Probable"</em> (conocido en inglés como <em>Most Likely To</em>) es probablemente el mejor juego para descubrir qué piensan realmente tus amigos de ti. Prepárate para juicios apresurados, risas incómodas y mucho salseo. Es ideal para grupos que ya se conocen un poco o que quieren romper el hielo de forma contundente.</p>
+
+        <h2>Lo que necesitas para jugar</h2>
         <ul>
-          <li>3 o más jugadores (recomendado 4+).</li>
-          <li>Bebida.</li>
-          <li>Estar listos para el salseo.</li>
+          <li><strong>Jugadores:</strong> Recomendamos un mínimo de 4 personas para que haya suficiente variedad y debate.</li>
+          <li><strong>Mentalidad abierta:</strong> Estar listos para aguantar bromas y no tomarse las preguntas a pecho.</li>
+          <li><strong>Bebida:</strong> Un vaso en la mano de cada persona en todo momento.</li>
         </ul>
 
         <h2>Dinámica del juego</h2>
-        <p>¿Crees que conoces a tus amigos? Este juego os pondrá a prueba a todos.</p>
+        <p>La mecánica es vibrante y muy participativa, garantizando que todos estén atentos:</p>
         <ol>
-          <li>Una persona lee la pregunta en voz alta. Ejemplo: <em>"¿Quién es más probable que termine en la cárcel?"</em></li>
-          <li>Todo el mundo se toma unos segundos para pensar su respuesta.</li>
-          <li>A la cuenta de tres ("¡Un, dos, tres!"), todos señalan con el dedo a la persona que creen que es la más probable.</li>
-          <li><strong>Cada voto es un trago.</strong> Si tres personas te están apuntando, bebes tres tragos. ¡Así de fácil!</li>
+          <li>Sentaros en círculo para que todos os podáis ver las caras claramente.</li>
+          <li>Una persona se encarga de leer la pregunta de la pantalla en voz alta. Por ejemplo: <em>"¿Quién es más probable que termine en la cárcel después de una gran fiesta?"</em></li>
+          <li>Todo el mundo se toma unos segundos (en silencio) para mirar al resto y pensar su respuesta.</li>
+          <li>Alguien (o la propia persona que lee) hace una cuenta atrás: <strong>"¡Un, dos, tres!"</strong></li>
+          <li>En ese exacto instante, todos extienden el brazo y <strong>señalan con el dedo</strong> a la persona que creen que mejor encaja en la descripción.</li>
         </ol>
 
-        <h2>Empates y discusiones</h2>
-        <p>Es muy probable que después de cada ronda alguien empiece a justificarse diciendo "¡Yo no haría eso!". El juego es ideal no solo para beber, sino para escuchar grandes anécdotas y debates.</p>
+        <h2>Sistema de Castigos y Debates</h2>
+        <p>A diferencia de otros juegos, aquí el castigo es cuantitativo:</p>
+        <ul>
+          <li><strong>Cada dedo que te apunta, es un trago.</strong> Si tienes a cuatro personas señalándote, tendrás que beber cuatro sorbos de tu copa.</li>
+          <li><strong>Justificaciones:</strong> Es una regla no escrita que la persona más votada pida explicaciones. ¡Las excusas y justificaciones que dan tus amigos son siempre la mejor parte de la noche!</li>
+        </ul>
       </div>
 
       <div className="mt-12 flex justify-center">

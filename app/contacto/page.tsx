@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import { Mail } from 'lucide-react';
+import ContactForm from '@/components/ui/ContactForm';
 
 export const metadata: Metadata = {
   title: 'Contacto | BeberGames',
@@ -21,18 +22,7 @@ export default function ContactoPage() {
           ¿O tal vez una idea descabellada para una carta de Ring of Fire?
         </p>
 
-        <div className="mt-8 rounded-2xl border border-border bg-surface p-8 w-full">
-          <h2 className="text-xl font-bold mb-2">Escríbenos a:</h2>
-          <a
-            href="mailto:info@bebergames.com"
-            className="text-2xl font-black text-accent hover:text-accent-secondary transition-colors break-all"
-          >
-            info@bebergames.com
-          </a>
-          <p className="mt-4 text-sm text-muted">
-            Intentaremos responderte lo antes posible (si no estamos en mitad de una partida).
-          </p>
-        </div>
+        <ContactForm />
       </div>
     </div>
   );

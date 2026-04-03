@@ -23,27 +23,35 @@ export default function TrimanReglasPage() {
       </div>
 
       <div className="prose prose-invert prose-p:text-muted prose-li:text-muted max-w-none prose-headings:text-foreground">
-        <h2>Lo que necesitas</h2>
+        <h2>El mejor juego táctico y veloz de dados para fiestas</h2>
+        <p><em>Triman</em> (también conocido como <em>Three Man</em> en los países anglosajones) no es tan conocido como otros juegos comerciales, pero quienes lo prueban afirman que no hay otro juego que emborrache de forma tan rápida e impredecible. ¿Por qué? Porque al usar dos dados, las reglas saltan a la velocidad de la luz y cualquiera puede verse envuelto en un castigo en cuestión de segundos.</p>
+
+        <h2>Lo que necesitas para jugar</h2>
         <ul>
-          <li>3 o más jugadores.</li>
-          <li>Nuestra aplicación (que actúa como los 2 dados virtuales).</li>
-          <li>Bebida.</li>
+          <li><strong>Jugadores:</strong> De 3 a 8 jugadores aguantan bien el ritmo sin aburrirse.</li>
+          <li><strong>Nuestra aplicación:</strong> Que te servirá como "dados perfectos" que nunca se caen debajo del sofá o se pierden, además de que te indicará la regla a seguir.</li>
+          <li><strong>Bebida abundante:</strong> Ten cerca una botella porque los turnos son muy ágiles.</li>
         </ul>
 
-        <h2>El Triman</h2>
-        <p>Al empezar la partida, se debe elegir a un "Triman" (Señor del 3). Normalmente el primer Triman se decide porque saca un 3 tirando los dados, o se asigna a dedo si usáis la app. <strong>Cada vez que el resultado de los dados sume 3 o haya un 3 en uno de ellos, el Triman debe beber.</strong></p>
+        <h2>El Rol del Triman (Señor del 3)</h2>
+        <p>Antes de comenzar el verdadero juego, hay que elegir a la víctima principal: el <strong>Triman</strong> o "Señor del número 3". Podéis elegirlo tirando los dados de forma aleatoria (el primero que saque algo que sume/contenga 3, se convierte en el Triman) o votando democráticamente. <br/>
+        <strong>¿Su maldición?:</strong> Cada vez que, en TODA la partida posterior, cualquier tirada de dados contenga un "3" o sumen juntos "3", el Triman está obligado legalmente a beber.</p>
 
-        <h2>Reglas por resultados</h2>
-        <p>En cada turno, el jugador tira ambos dados y aplica la regla correspondiente a la suma:</p>
+        <h2>Reglas Fundamentales de Tirada</h2>
+        <p>Una vez nombrado al Triman, el juego empieza por el jugador con los dados. En tu turno, tiras los dados y ocurre lo siguiente según sus resultados:</p>
         <ul>
-          <li><strong>7:</strong> El jugador de la derecha bebe.</li>
-          <li><strong>9:</strong> El jugador de la izquierda bebe.</li>
-          <li><strong>11:</strong> Todos beben.</li>
-          <li><strong>Dobles:</strong> El que tira reparte el número de tragos (ej: si saca 4 y 4, reparte 8 tragos).</li>
-          <li><strong>Tres:</strong> Si la suma es 3, o alguno de los dados es un 3, ¡El Triman bebe!</li>
+          <li><strong>Si suman 7:</strong> Sorpresa, el jugador sentado a tu derecha debe beber en ese instante.</li>
+          <li><strong>Si suman 9:</strong> Al revés, el jugador colocado a tu izquierda bebe.</li>
+          <li><strong>Si suman 11:</strong> Fuego cruzado, "Fondo Blanco Social". Toda la mesa al completo tiene que parar de hablar y beber al unísono.</li>
+          <li><strong>Si sacas Dobles (1-1, 2-2, 4-4...):</strong> Si sacas números iguales, adquieres poderes totales. Tienes que repartir esa cantidad de número de tragos entre quien quieras. Ejemplo: sacas 5-5. Son 10 tragos que puedes hacer que una sola persona se los beba, o puedes repartir 5 al Triman y 5 al de tu derecha.</li>
+          <li><strong>La presencia del Tres:</strong> Recuerda, si sale un [3] y un [1], o si salen [1] y [2], el maldito Triman bebe siempre.</li>
         </ul>
 
-        <p>Si sacas dobles, sigues tirando. El juego fluye rápido y requiere de atención para no confundirse.</p>
+        <h2>La regla de "La Racha"</h2>
+        <p>A diferencia de la mayoría de los juegos, aquí <strong>tu turno no termina después de tirar</strong>. Te mantienes tirando los dados continuamente MIENTRAS saques resultados que produzcan una regla/penalización. Solamente cuando saques una combinación "vacía" (sin efectos, por ejemplo un 4 y un 1, que suman 5), pasas los dados al jugador de tu izquierda.</p>
+        
+        <h2>¿Cómo se libra el Triman?</h2>
+        <p>Ser Triman es agotador. Para pasar el cargo y salvar tu hígado, solo hay una forma de escapar: Tienes que conseguir que llegue tu turno de lanzar, y <strong>al tirar tú mismo los dados, sacar un número 3</strong>. Solo de esta forma te libras del título y se lo pasas a quien tú decidas o a la persona a tu izquierda.</p>
       </div>
 
       <div className="mt-12 flex justify-center">

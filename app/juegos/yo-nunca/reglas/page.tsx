@@ -23,28 +23,41 @@ export default function YoNuncaReglasPage() {
       </div>
 
       <div className="prose prose-invert prose-p:text-muted prose-li:text-muted max-w-none prose-headings:text-foreground">
-        <h2>Lo que necesitas</h2>
+        <h2>El Origen del "Yo Nunca"</h2>
+        <p>
+          Conocido internacionalmente como <em>"Never Have I Ever"</em>, este es sin duda el rey indiscutible de los juegos para romper el hielo. Su popularidad radica en su capacidad para sacar a la luz verdades ocultas de forma divertida y sin presiones directas. En BeberGames hemos digitalizado la experiencia con cientos de frases para que nunca te quedes en blanco.
+        </p>
+
+        <h2>Lo que necesitas para jugar</h2>
         <ul>
-          <li>2 o más jugadores (¡cuantos más, mejor!).</li>
-          <li>Alcohol o tu bebida favorita.</li>
+          <li><strong>Jugadores:</strong> Mínimo 2 personas (el punto ideal está entre 4 y 10).</li>
+          <li><strong>Bebida:</strong> Vuestras copas llenas en todo momento.</li>
+          <li><strong>Sinceridad:</strong> La regla de oro. Si mientes y te pillan... ¡toca beber el doble!</li>
         </ul>
 
-        <h2>Dinámica del juego</h2>
+        <h2>Dinámica paso a paso</h2>
         <p>
-          "Yo Nunca" es el clásico juego para descubrir los secretos más profundos y vergonzosos de tus amigos. El funcionamiento es el siguiente:
+          La mecánica es extremadamente sencilla, pero las situaciones que genera son inolvidables:
         </p>
         <ol>
-          <li>Añade a todos los jugadores y seleccionad la intensidad (Soft, Normal o Picante).</li>
-          <li>Os aparecerá una afirmación en pantalla que empieza por "Yo nunca...".</li>
-          <li><strong>Si has hecho lo que dice la tarjeta</strong>, tienes que beber.</li>
-          <li><strong>Si no lo has hecho</strong>, te salvas.</li>
+          <li><strong>Preparación:</strong> Todos los jugadores deben estar sentados en círculo con su vaso.</li>
+          <li><strong>Configuración:</strong> Añadid todos los nombres en la aplicación y elegid el nivel de intensidad.</li>
+          <li><strong>La confesión:</strong> La pantalla mostrará una afirmación que empieza por <em>"Yo nunca he..."</em>.</li>
+          <li><strong>El momento de la verdad:</strong> Todos los que <em>sí</em> hayan hecho lo que dice la tarjeta alguna vez en su vida, deben dar un trago a su bebida. (Los que nunca lo hayan hecho se salvan).</li>
         </ol>
 
-        <h2>Niveles de Intensidad</h2>
+        <h2>Reglas caseras para darle picante (Modo Hardcore)</h2>
+        <p>Si la partida está tranquila, aplicad estas variaciones obligatorias:</p>
         <ul>
-          <li><strong>Soft:</strong> Situaciones cotidianas y graciosas.</li>
-          <li><strong>Normal:</strong> Mentiras y un poco de salseo.</li>
-          <li><strong>Picante:</strong> Solo para grupos sin tabúes. Mucho sexo y situaciones límite.</li>
+          <li><strong>La historia completa:</strong> Si eres la única persona de la mesa que bebe, estás moralmente obligado a explicar detalladamente la historia de qué pasó.</li>
+          <li><strong>Solidaridad (o castigo):</strong> Si absolutamente nadie bebe tras una frase, todos deben beber un trago simbólico por aburridos.</li>
+        </ul>
+
+        <h2>Explicación de Nuestras Intensidades</h2>
+        <ul>
+          <li><strong>🟢 Soft (Suave):</strong> Situaciones cotidianas y graciosas. Ideal para calentar motores o jugar con gente que acabas de conocer.</li>
+          <li><strong>🟡 Normal (Salseo):</strong> Mentirijillas, situaciones algo vergonzosas y exparejas. El nivel clásico perfecto para amigos.</li>
+          <li><strong>🔴 Picante (Hot):</strong> Solo para grupos sin tabúes morales. Mucho sexo, secretos inconfesables y límites cruzados.</li>
         </ul>
       </div>
 
