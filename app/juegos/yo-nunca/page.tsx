@@ -15,7 +15,8 @@ import {
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
-import { type Intensidad, filtrarPorIntensidad } from "@/lib/data/yo-nunca";
+import type { Intensidad } from "@/lib/data/yo-nunca";
+import AdBanner from "@/components/ui/AdBanner";
 
 // ───── Shuffle helper ─────
 function shuffleArray<T>(arr: T[]): T[] {
@@ -34,6 +35,7 @@ export default function YoNuncaPage() {
   // Phase: "setup" or "playing"
   const [phase, setPhase] = useState<"setup" | "playing">("setup");
   const [showConfetti, setShowConfetti] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Setup state
   const [players, setPlayers] = useState<string[]>([]);
@@ -66,14 +68,20 @@ export default function YoNuncaPage() {
     setPlayers((prev) => prev.filter((p) => p !== name));
   }, []);
 
-  const startGame = useCallback(() => {
-    const preguntasFiltradas = filtrarPorIntensidad(niveles).map((p) => p.texto);
-    setQuestions(shuffleArray(preguntasFiltradas));
-    setCurrentIndex(0);
-    setPhase("playing");
-    savePlayersToRecent(players);
-    playSound("success");
-    vibrateDevice("click");
+  const startGame = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const { filtrarPorIntensidad } = await import("@/lib/data/yo-nunca");
+      const preguntasFiltradas = filtrarPorIntensidad(niveles).map((p) => p.texto);
+      setQuestions(shuffleArray(preguntasFiltradas));
+      setCurrentIndex(0);
+      setPhase("playing");
+      savePlayersToRecent(players);
+      playSound("success");
+      vibrateDevice("click");
+    } finally {
+      setIsLoading(false);
+    }
   }, [players, niveles, savePlayersToRecent, playSound, vibrateDevice]);
 
   // ── Game handlers ──
@@ -95,10 +103,16 @@ export default function YoNuncaPage() {
     setCurrentIndex(0);
   }, []);
 
-  const reshuffleAndRestart = useCallback(() => {
-    const preguntasFiltradas = filtrarPorIntensidad(niveles).map((p) => p.texto);
-    setQuestions(shuffleArray(preguntasFiltradas));
-    setCurrentIndex(0);
+  const reshuffleAndRestart = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const { filtrarPorIntensidad } = await import("@/lib/data/yo-nunca");
+      const preguntasFiltradas = filtrarPorIntensidad(niveles).map((p) => p.texto);
+      setQuestions(shuffleArray(preguntasFiltradas));
+      setCurrentIndex(0);
+    } finally {
+      setIsLoading(false);
+    }
   }, [niveles]);
 
   const isGameOver = currentIndex >= questions.length;
@@ -218,11 +232,11 @@ export default function YoNuncaPage() {
           {/* Start button */}
           <button
             onClick={startGame}
-            disabled={players.length < 2}
+            disabled={players.length < 2 || isLoading}
             className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
           >
-            Empezar a jugar
-            <ChevronRight className="h-4 w-4" />
+            {isLoading ? "Cargando..." : "Empezar a jugar"}
+            {!isLoading && <ChevronRight className="h-4 w-4" />}
           </button>
         </motion.div>
       </div>
@@ -256,11 +270,14 @@ export default function YoNuncaPage() {
           </p>
           <div className="flex gap-3">
             <button
-              onClick={() => { reshuffleAndRestart(); setShowConfetti(false); }}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-secondary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-105"
+              onClick={() => {
+                reshuffleAndRestart().then(() => setShowConfetti(false));
+              }}
+              disabled={isLoading}
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-secondary px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-105 disabled:opacity-50"
             >
               <Shuffle className="h-4 w-4" />
-              Jugar otra vez
+              {isLoading ? "Cargando..." : "Jugar otra vez"}
             </button>
             <button
               onClick={() => { restartGame(); setShowConfetti(false); }}
@@ -269,6 +286,10 @@ export default function YoNuncaPage() {
               <RotateCcw className="h-4 w-4" />
               Cambiar jugadores
             </button>
+          </div>
+          
+          <div className="mt-8 w-full">
+            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
           </div>
         </motion.div>
       </div>
@@ -345,6 +366,13 @@ export default function YoNuncaPage() {
           ))}
         </div>
       </div>
+
+      {/* AdSense Banner every 6 questions */}
+      {currentIndex > 0 && currentIndex % 6 === 0 && (
+        <div className="w-full max-w-md mb-6">
+          <AdBanner dataAdSlot="IN_GAME_SLOT_ID" />
+        </div>
+      )}
 
       {/* Next button */}
       <button

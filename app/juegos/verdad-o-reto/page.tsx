@@ -19,7 +19,7 @@ import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
 import { type Intensidad } from "@/lib/data/yo-nunca";
-import { filtrarVerdades, filtrarRetos } from "@/lib/data/verdad-o-reto";
+import AdBanner from "@/components/ui/AdBanner";
 
 // ───── Shuffle helper ─────
 function shuffleArray<T>(arr: T[]): T[] {
@@ -42,6 +42,7 @@ export default function VerdadORetoPage() {
   const [inputValue, setInputValue] = useState("");
   const [showConfetti, setShowConfetti] = useState(false);
   const [niveles, setNiveles] = useState<Intensidad[]>(["normal"]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Game
   const [verdades, setVerdades] = useState<string[]>([]);
@@ -78,18 +79,24 @@ export default function VerdadORetoPage() {
     setPlayers((p) => p.filter((n) => n !== name));
   }, []);
 
-  const startGame = useCallback(() => {
-    setVerdades(shuffleArray(filtrarVerdades(niveles).map(v => v.texto)));
-    setRetos(shuffleArray(filtrarRetos(niveles).map(r => r.texto)));
-    setVerdadIdx(0);
-    setRetoIdx(0);
-    setTurnIdx(0);
-    setRoundCount(0);
-    setCurrentType(null);
-    setShowConfetti(false);
-    setPhase("choosing");
-    savePlayersToRecent(players);
-    playSound("success");
+  const startGame = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const { filtrarVerdades, filtrarRetos } = await import("@/lib/data/verdad-o-reto");
+      setVerdades(shuffleArray(filtrarVerdades(niveles).map(v => v.texto)));
+      setRetos(shuffleArray(filtrarRetos(niveles).map(r => r.texto)));
+      setVerdadIdx(0);
+      setRetoIdx(0);
+      setTurnIdx(0);
+      setRoundCount(0);
+      setCurrentType(null);
+      setShowConfetti(false);
+      setPhase("choosing");
+      savePlayersToRecent(players);
+      playSound("success");
+    } finally {
+      setIsLoading(false);
+    }
   }, [players, niveles, savePlayersToRecent, playSound]);
 
   // ── Game actions ──
@@ -262,11 +269,11 @@ export default function VerdadORetoPage() {
           {/* Start */}
           <button
             onClick={startGame}
-            disabled={players.length < 3}
+            disabled={players.length < 3 || isLoading}
             className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
           >
-            Empezar a jugar
-            <ChevronRight className="h-4 w-4" />
+            {isLoading ? "Cargando..." : "Empezar a jugar"}
+            {!isLoading && <ChevronRight className="h-4 w-4" />}
           </button>
         </motion.div>
       </div>
@@ -300,10 +307,11 @@ export default function VerdadORetoPage() {
           <div className="flex gap-3">
             <button
               onClick={reshuffleAndRestart}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-105"
+              disabled={isLoading}
+              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-105 disabled:opacity-50"
             >
               <Shuffle className="h-4 w-4" />
-              Jugar otra vez
+              {isLoading ? "Cargando..." : "Jugar otra vez"}
             </button>
             <button
               onClick={restartGame}
@@ -312,6 +320,10 @@ export default function VerdadORetoPage() {
               <RotateCcw className="h-4 w-4" />
               Cambiar jugadores
             </button>
+          </div>
+          
+          <div className="mt-8 w-full">
+            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
           </div>
         </motion.div>
       </div>
@@ -400,6 +412,13 @@ export default function VerdadORetoPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* AdSense Banner every 6 rounds */}
+        {roundCount > 0 && roundCount % 6 === 0 && (
+          <div className="w-full max-w-md mt-6">
+            <AdBanner dataAdSlot="IN_GAME_SLOT_ID" />
+          </div>
+        )}
 
         {/* Players row */}
         <div className="w-full max-w-md mt-8 overflow-x-auto">

@@ -13,7 +13,8 @@ import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
 import { type Intensidad } from "@/lib/data/yo-nunca";
-import { filtrarQEMP } from "@/lib/data/quien-es-mas-probable";
+import AdBanner from "@/components/ui/AdBanner";
+
 
 // ───── Shuffle helper ─────
 function shuffleArray<T>(arr: T[]): T[] {
@@ -33,20 +34,27 @@ export default function QuienEsMasProbablePage() {
   const [phase, setPhase] = useState<Phase>("setup");
   const [showConfetti, setShowConfetti] = useState(false);
   const [niveles, setNiveles] = useState<Intensidad[]>(["normal"]);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Game state
   const [questions, setQuestions] = useState<string[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isFlipping, setIsFlipping] = useState(false);
 
-  const startGame = useCallback(() => {
-    const qs = filtrarQEMP(niveles).map(p => p.texto);
-    setQuestions(shuffleArray(qs));
-    setCurrentIndex(0);
-    setPhase("playing");
-    setShowConfetti(false);
-    playSound("success");
-    vibrateDevice("click");
+  const startGame = useCallback(async () => {
+    setIsLoading(true);
+    try {
+      const { filtrarQEMP } = await import("@/lib/data/quien-es-mas-probable");
+      const qs = filtrarQEMP(niveles).map(p => p.texto);
+      setQuestions(shuffleArray(qs));
+      setCurrentIndex(0);
+      setPhase("playing");
+      setShowConfetti(false);
+      playSound("success");
+      vibrateDevice("click");
+    } finally {
+      setIsLoading(false);
+    }
   }, [niveles, playSound, vibrateDevice]);
 
   // ── Game handlers ──
@@ -106,10 +114,11 @@ export default function QuienEsMasProbablePage() {
           {/* Start */}
           <button
             onClick={startGame}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-xl"
+            disabled={isLoading}
+            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-50"
           >
-            Empezar el juego
-            <ChevronRight className="h-4 w-4" />
+            {isLoading ? "Cargando..." : "Empezar el juego"}
+            {!isLoading && <ChevronRight className="h-4 w-4" />}
           </button>
         </motion.div>
       </div>
@@ -147,6 +156,10 @@ export default function QuienEsMasProbablePage() {
             <RotateCcw className="h-4 w-4" />
             Volver a jugar
           </button>
+          
+          <div className="mt-8 w-full">
+            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
+          </div>
         </motion.div>
       </div>
     );
@@ -210,6 +223,13 @@ export default function QuienEsMasProbablePage() {
           )}
         </AnimatePresence>
       </div>
+
+      {/* AdSense Banner every 6 questions */}
+      {currentIndex > 0 && currentIndex % 6 === 0 && (
+        <div className="w-full max-w-md mb-6">
+          <AdBanner dataAdSlot="IN_GAME_SLOT_ID" />
+        </div>
+      )}
 
       {/* Next button */}
       <button

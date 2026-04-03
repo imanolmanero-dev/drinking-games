@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/layout/Navbar";
 import { AppProvider } from "@/lib/AppContext";
 import InstallPWA from "@/components/ui/InstallPWA";
+import Script from "next/script";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -40,6 +41,11 @@ export const metadata: Metadata = {
     "juegos de beber online",
     "juegos para previas",
     "juegos borrachos",
+    "ring of fire",
+    "anillo de fuego juego",
+    "quien es mas probable",
+    "juegos de cartas para beber",
+    "preguntas picantes",
   ],
   authors: [{ name: "BeberGames" }],
   creator: "BeberGames",
@@ -74,6 +80,9 @@ export const metadata: Metadata = {
     statusBarStyle: "black-translucent",
     title: "BeberGames",
   },
+  verification: {
+    google: "b7WOha_G_dYj4VC6hIn0q144UuG3aXSuW92viVIVYgw",
+  },
 };
 
 export default function RootLayout({
@@ -90,6 +99,12 @@ export default function RootLayout({
         <meta name="theme-color" content="#0a0a0f" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXX"
+          crossOrigin="anonymous"
+          strategy="lazyOnload"
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <AppProvider>
