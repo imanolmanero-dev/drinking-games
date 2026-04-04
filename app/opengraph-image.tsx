@@ -116,7 +116,7 @@ export default async function Image() {
             color: "#a855f7",
           }}
         >
-          🍻 drinking-games-lemon.vercel.app
+          🍻 bebergames.com
         </div>
       </div>
     ),

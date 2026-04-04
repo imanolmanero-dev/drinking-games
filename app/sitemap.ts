@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://drinking-games-lemon.vercel.app";
+  const baseUrl = "https://bebergames.com";
 
   const juegos = [
     "yo-nunca",

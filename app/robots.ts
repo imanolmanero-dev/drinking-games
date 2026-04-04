@@ -6,6 +6,6 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: "*",
       allow: "/",
     },
-    sitemap: "https://drinking-games-lemon.vercel.app/sitemap.xml",
+    sitemap: "https://bebergames.com/sitemap.xml",
   };
 }

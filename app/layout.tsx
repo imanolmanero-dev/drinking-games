@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://drinking-games-lemon.vercel.app"),
+  metadataBase: new URL("https://bebergames.com"),
   title: {
     default: "BeberGames — Juegos para beber con amigos",
     template: "%s | BeberGames",
