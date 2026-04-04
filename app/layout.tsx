@@ -105,6 +105,7 @@ export default function RootLayout({
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2015657577739632" 
           crossOrigin="anonymous"
         ></script>
+        <meta name="google-adsense-account" content="ca-pub-2015657577739632" />
       </head>
       <body className="min-h-full flex flex-col">
         <AppProvider>
