@@ -92,7 +92,7 @@ export default function Home() {
           key={juego.id}
           name={juego.nombre}
           description={juego.descripcion}
-          url={`https://drinking-games-lemon.vercel.app/juegos/${juego.id}`}
+          url={`https://bebergames.com/juegos/${juego.id}`}
         />
       ))}
       {/* Hero Section */}
