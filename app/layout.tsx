@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     title: "BeberGames",
   },
   verification: {
-    google: "b7WOha_G_dYj4VC6hIn0q144UuG3aXSuW92viVIVYgw",
+    google: "u-Uwc22BnlD9rUJxvPXr2uMFwnBjb4vDvRRt2FshYR4",
   },
 };
 
