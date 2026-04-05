@@ -29,6 +29,9 @@ export default function CookiesPage() {
 
         <h2>¿Cómo desactivar cookies?</h2>
         <p>Puedes restringir, bloquear o borrar las cookies de cualquier página web usando tu navegador. En cada navegador la operativa es diferente, la función de "Ayuda" web te mostrará cómo hacerlo.</p>
+
+        <hr />
+        <p className="text-xs text-muted"><strong>Última actualización:</strong> Abril de 2026</p>
       </div>
     </div>
   );

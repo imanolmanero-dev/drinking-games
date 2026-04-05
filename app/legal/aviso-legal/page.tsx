@@ -27,6 +27,9 @@ export default function AvisoLegalPage() {
 
         <h2>Derecho de Propiedad y Contenido</h2>
         <p>Todos los conceptos de software y presentación pertenecen a BeberGames. La dinámica de los juegos se basa en la cultura popular, estando los textos creados originariamente para esta plataforma y sujetos a derechos de autor.</p>
+
+        <hr />
+        <p className="text-xs text-muted"><strong>Última actualización:</strong> Abril de 2026</p>
       </div>
     </div>
   );

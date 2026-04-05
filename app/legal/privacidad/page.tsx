@@ -33,6 +33,9 @@ export default function PrivacidadPage() {
 
         <h2>6. Contacto sobre Protección de Datos</h2>
         <p>Para ejercer tu derecho de acceso, rectificación, cancelación u oposición respecto a tus datos o cookies (según la normativa vigente RGPD de la UE), no dudes en contactarnos directamente escribiendo a <a href="mailto:info@bebergames.com" className="text-accent underline font-semibold">info@bebergames.com</a>. Trataremos de resolver tu solicitud de inmediato.</p>
+
+        <hr />
+        <p className="text-xs text-muted"><strong>Última actualización:</strong> Abril de 2026</p>
       </div>
     </div>
   );
