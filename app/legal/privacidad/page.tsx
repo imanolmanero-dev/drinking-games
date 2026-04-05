@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Política de Privacidad | BeberGames',
   description: 'Política de Privacidad de BeberGames.',
-  robots: { index: false, follow: true }
+  robots: { index: true, follow: true }
 }
 
 export default function PrivacidadPage() {
