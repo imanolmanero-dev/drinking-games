@@ -3,7 +3,7 @@ export function WebSiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "BeberGames",
-    url: "https://drinking-games-lemon.vercel.app",
+    url: "https://bebergames.com",
     description:
       "La mejor colección de juegos para beber en grupo. Yo Nunca, Verdad o Reto, Triman, La Ruleta y más.",
     inLanguage: "es",

@@ -31,7 +31,7 @@ export default function AdBanner({
       <ins
         className="adsbygoogle"
         style={{ display: "block", minWidth: "250px", minHeight: "50px", textAlign: "center" }}
-        data-ad-client="ca-pub-XXXXXXXXXXXXXXXX" // TODO: Actualizar cuando aprueben Adsense
+        data-ad-client="ca-pub-2015657577739632"
         data-ad-slot={dataAdSlot}
         data-ad-format={dataAdFormat}
         data-full-width-responsive={dataFullWidthResponsive.toString()}
