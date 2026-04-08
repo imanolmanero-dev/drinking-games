@@ -151,3 +151,40 @@ body {
   color: #d1d5db;
   font-style: italic;
 }
+
+/* Table styling for blog posts */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.5em 0;
+  font-size: 0.9em;
+  overflow-x: auto;
+  display: block;
+}
+
+.prose thead {
+  border-bottom: 2px solid rgba(168, 85, 247, 0.3);
+}
+
+.prose th {
+  color: #f0f0f5;
+  font-weight: 700;
+  text-align: left;
+  padding: 0.75em 1em;
+  background: rgba(168, 85, 247, 0.08);
+  white-space: nowrap;
+}
+
+.prose td {
+  padding: 0.75em 1em;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  color: #d1d5db;
+}
+
+.prose tbody tr:hover {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.prose tbody tr:nth-child(even) {
+  background: rgba(255, 255, 255, 0.02);
+}

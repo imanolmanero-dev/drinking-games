@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import { getPostBySlug, getPostSlugs } from "@/lib/blog";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import type { Metadata } from "next";
@@ -95,7 +96,7 @@ export default async function BlogPostPage({ params }: Params) {
 
         {/* The typography plugin handles styling natively via prose */}
         <div className="prose prose-invert prose-amber max-w-none prose-headings:font-bold prose-a:font-medium prose-a:text-amber-500">
-          <MDXRemote source={post.content} components={customComponents} />
+          <MDXRemote source={post.content} components={customComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </div>
       </div>
     </article>
