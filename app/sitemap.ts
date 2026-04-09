@@ -11,6 +11,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "la-ruleta",
     "quien-es-mas-probable",
     "ring-of-fire",
+    "yo-prefiero",
+    "medusa",
   ];
 
   const categorias = ["preguntas", "cartas", "dados"];

@@ -10,7 +10,9 @@ import {
   Hand,
   Flame,
   LayoutGrid,
-  BookOpen
+  BookOpen,
+  Scale,
+  Eye,
 } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 
@@ -79,6 +81,28 @@ const juegos = [
     color: "from-red-500 to-rose-600",
     shadowColor: "shadow-red-500/20",
     jugadores: "2+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "yo-prefiero",
+    nombre: "Yo Prefiero",
+    descripcion:
+      "A o B, sin excusas. El grupo elige su opción y la minoría bebe. ¡Más de 60 dilemas!",
+    icono: Scale,
+    color: "from-violet-500 to-fuchsia-500",
+    shadowColor: "shadow-violet-500/20",
+    jugadores: "3+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "medusa",
+    nombre: "Medusa",
+    descripcion:
+      "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",
+    icono: Eye,
+    color: "from-lime-500 to-green-600",
+    shadowColor: "shadow-lime-500/20",
+    jugadores: "4+",
     estado: "disponible" as const,
   },
 ];
