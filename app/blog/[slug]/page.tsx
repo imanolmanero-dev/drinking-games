@@ -5,6 +5,14 @@ import remarkGfm from "remark-gfm";
 import Link from "next/link";
 import { ArrowLeft, CalendarDays } from "lucide-react";
 import type { Metadata } from "next";
+import {
+  FAQJsonLd,
+  ArticleJsonLd,
+  BreadcrumbJsonLd,
+} from "@/components/seo/JsonLd";
+import { blogFAQs } from "@/lib/data/blog-faqs";
+
+const BASE_URL = "https://bebergames.com";
 
 interface Params {
   params: Promise<{
@@ -30,6 +38,10 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
       type: "article",
       publishedTime: post.metadata.date,
       authors: [post.metadata.author],
+      url: `${BASE_URL}/blog/${resolvedParams.slug}`,
+    },
+    alternates: {
+      canonical: `${BASE_URL}/blog/${resolvedParams.slug}`,
     },
   };
 }
@@ -49,11 +61,14 @@ export default async function BlogPostPage({ params }: Params) {
     return notFound();
   }
 
+  const faqs = blogFAQs[resolvedParams.slug] ?? [];
+  const articleUrl = `${BASE_URL}/blog/${resolvedParams.slug}`;
+
   const customComponents = {
     // Custom components can be passed here to map standard MDX to our UI
-    a: (props: any) => (
+    a: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => (
       <Link
-        href={props.href}
+        href={props.href ?? "/"}
         className="text-amber-500 hover:text-amber-400 no-underline hover:underline transition-colors font-medium relative z-10"
       >
         {props.children}
@@ -63,6 +78,23 @@ export default async function BlogPostPage({ params }: Params) {
 
   return (
     <article className="flex flex-col items-center px-4 py-12 sm:py-20 w-full">
+      {/* Structured Data */}
+      <ArticleJsonLd
+        title={post.metadata.title}
+        description={post.metadata.excerpt}
+        url={articleUrl}
+        datePublished={post.metadata.date}
+        author={post.metadata.author}
+      />
+      <BreadcrumbJsonLd
+        items={[
+          { name: "Inicio", url: BASE_URL },
+          { name: "Blog", url: `${BASE_URL}/blog` },
+          { name: post.metadata.title, url: articleUrl },
+        ]}
+      />
+      {faqs.length > 0 && <FAQJsonLd faqs={faqs} />}
+
       <div className="w-full max-w-3xl">
         <Link
           href="/blog"
@@ -98,7 +130,28 @@ export default async function BlogPostPage({ params }: Params) {
         <div className="prose prose-invert prose-amber max-w-none prose-headings:font-bold prose-a:font-medium prose-a:text-amber-500">
           <MDXRemote source={post.content} components={customComponents} options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }} />
         </div>
+
+        {/* FAQ section visible on page if post has FAQs */}
+        {faqs.length > 0 && (
+          <div className="mt-16 flex flex-col gap-6">
+            <h2 className="text-xl font-bold border-t border-border pt-8">
+              Preguntas frecuentes
+            </h2>
+            <div className="flex flex-col gap-4">
+              {faqs.map(({ q, a }, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border border-border bg-surface p-5 flex flex-col gap-2"
+                >
+                  <h3 className="text-sm font-bold text-foreground">{q}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );
 }
+
