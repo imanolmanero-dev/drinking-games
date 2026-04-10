@@ -15,6 +15,8 @@ import {
   Eye,
   Crown,
   Zap,
+  MessageSquare,
+  Trophy,
 } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 
@@ -127,6 +129,28 @@ const juegos = [
     color: "from-orange-500 to-red-500",
     shadowColor: "shadow-orange-500/20",
     jugadores: "3+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "tabu",
+    nombre: "Tabú Borracho",
+    descripcion:
+      "Describe la palabra sin decir las prohibidas. Si dices una tabú… ¡todo tu equipo bebe!",
+    icono: MessageSquare,
+    color: "from-violet-500 to-purple-600",
+    shadowColor: "shadow-violet-500/20",
+    jugadores: "4+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "beer-pong",
+    nombre: "Beer Pong",
+    descripcion:
+      "El árbitro digital para tu partida. Marca los vasos hundidos, gestiona turnos y reglas especiales desde el móvil.",
+    icono: Trophy,
+    color: "from-amber-400 to-orange-500",
+    shadowColor: "shadow-amber-400/20",
+    jugadores: "4+",
     estado: "disponible" as const,
   },
 ];
