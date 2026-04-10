@@ -17,7 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "la-bomba",
   ];
 
-  const categorias = ["preguntas", "cartas", "dados"];
+  const categorias = ["preguntas", "cartas", "dados", "sin-materiales"];
 
   const blogPosts = getAllPosts();
 

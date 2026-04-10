@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Flame, Users, ArrowRight } from "lucide-react";
+import { Flame, Crown, Users, ArrowRight } from "lucide-react";
 
 const juegos = [
   {
@@ -10,6 +10,15 @@ const juegos = [
     color: "from-red-500 to-rose-600",
     shadowColor: "shadow-red-500/20",
     jugadores: "2+",
+  },
+  {
+    id: "rey-de-la-copa",
+    nombre: "El Rey de la Copa",
+    descripcion: "Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la copa entera. ¡El clásico!",
+    icono: Crown,
+    color: "from-amber-400 to-yellow-500",
+    shadowColor: "shadow-amber-400/20",
+    jugadores: "3+",
   },
 ];
 

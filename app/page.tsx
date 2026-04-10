@@ -269,7 +269,7 @@ export default function Home() {
             </h2>
             <div className="h-px flex-1 bg-gradient-to-r from-border to-transparent" />
           </div>
-          <div className="grid gap-4 sm:grid-cols-3">
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <Link
               href="/juegos/categorias/preguntas"
               className="flex items-center gap-4 rounded-xl border border-border bg-background p-4 transition-all hover:border-purple-500/30 hover:bg-surface-hover"
@@ -304,6 +304,18 @@ export default function Home() {
               <div>
                 <h3 className="font-bold text-sm">Juegos de Dados</h3>
                 <p className="text-xs text-muted">Para dejar al azar</p>
+              </div>
+            </Link>
+            <Link
+              href="/juegos/categorias/sin-materiales"
+              className="flex items-center gap-4 rounded-xl border border-border bg-background p-4 transition-all hover:border-lime-500/30 hover:bg-surface-hover"
+            >
+              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-lime-500/10 text-lime-400">
+                <Eye className="h-5 w-5" />
+              </div>
+              <div>
+                <h3 className="font-bold text-sm">Sin Materiales</h3>
+                <p className="text-xs text-muted">Solo gente y bebidas</p>
               </div>
             </Link>
           </div>

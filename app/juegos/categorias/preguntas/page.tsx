@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Wine, Sparkles, Hand, Users, ArrowRight } from "lucide-react";
+import { Wine, Sparkles, Hand, Scale, Users, ArrowRight } from "lucide-react";
 
 const juegos = [
   {
@@ -27,6 +27,15 @@ const juegos = [
     icono: Hand,
     color: "from-cyan-500 to-blue-500",
     shadowColor: "shadow-cyan-500/20",
+    jugadores: "3+",
+  },
+  {
+    id: "yo-prefiero",
+    nombre: "Yo Prefiero",
+    descripcion: "A o B, sin excusas. El grupo elige y la minoría bebe. ¡Más de 60 dilemas!",
+    icono: Scale,
+    color: "from-violet-500 to-fuchsia-500",
+    shadowColor: "shadow-violet-500/20",
     jugadores: "3+",
   },
 ];
