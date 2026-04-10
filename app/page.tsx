@@ -13,6 +13,8 @@ import {
   BookOpen,
   Scale,
   Eye,
+  Crown,
+  Zap,
 } from "lucide-react";
 import { getAllPosts } from "@/lib/blog";
 
@@ -103,6 +105,28 @@ const juegos = [
     color: "from-lime-500 to-green-600",
     shadowColor: "shadow-lime-500/20",
     jugadores: "4+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "rey-de-la-copa",
+    nombre: "El Rey de la Copa",
+    descripcion:
+      "Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la copa entera. ¡El clásico!",
+    icono: Crown,
+    color: "from-amber-400 to-yellow-500",
+    shadowColor: "shadow-amber-400/20",
+    jugadores: "3+",
+    estado: "disponible" as const,
+  },
+  {
+    id: "la-bomba",
+    nombre: "La Bomba",
+    descripcion:
+      "Temporizador secreto. Pasa el móvil antes de que explote. ¡El que la tenga cuando explote bebe!",
+    icono: Zap,
+    color: "from-orange-500 to-red-500",
+    shadowColor: "shadow-orange-500/20",
+    jugadores: "3+",
     estado: "disponible" as const,
   },
 ];

@@ -13,6 +13,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "ring-of-fire",
     "yo-prefiero",
     "medusa",
+    "rey-de-la-copa",
+    "la-bomba",
   ];
 
   const categorias = ["preguntas", "cartas", "dados"];
