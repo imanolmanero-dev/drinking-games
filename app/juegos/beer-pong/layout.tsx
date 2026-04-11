@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "Beer Pong Virtual — Juego para Beber Online",
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function BeerPongLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <GameLayout gameId="beer-pong">{children}</GameLayout>;
 }

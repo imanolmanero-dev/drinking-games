@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BookOpen } from "lucide-react";
+import { BookOpen, LayoutGrid } from "lucide-react";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -17,21 +17,37 @@ function TikTokIcon({ className }: { className?: string }) {
   );
 }
 
+const juegosPopulares = [
+  { href: "/juegos/yo-nunca", label: "Yo Nunca" },
+  { href: "/juegos/verdad-o-reto", label: "Verdad o Reto" },
+  { href: "/juegos/medusa", label: "Medusa" },
+  { href: "/juegos/la-bomba", label: "La Bomba" },
+  { href: "/juegos/ring-of-fire", label: "Ring of Fire" },
+  { href: "/juegos/rey-de-la-copa", label: "El Rey de la Copa" },
+  { href: "/juegos/yo-prefiero", label: "Yo Prefiero" },
+  { href: "/juegos/tabu", label: "Tabú Borracho" },
+  { href: "/juegos/beer-pong", label: "Beer Pong" },
+  { href: "/juegos/quien-es-mas-probable", label: "Quién Es Más Probable" },
+  { href: "/juegos/la-ruleta", label: "La Ruleta" },
+  { href: "/juegos/triman", label: "Triman" },
+];
+
 export default function Footer() {
   return (
-    <footer className="w-full border-t border-border bg-surface py-8 mt-auto">
-      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">
-        <div className="flex flex-col items-center justify-between gap-6 sm:flex-row">
+    <footer className="w-full border-t border-border bg-surface mt-auto">
+      {/* ── Main footer grid ── */}
+      <div className="mx-auto w-full max-w-5xl px-4 sm:px-6 py-10">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
 
-          <div className="flex flex-col items-center gap-2 sm:items-start">
-            <Link href="/" className="flex items-center gap-2 font-bold text-lg text-foreground hover:text-accent transition-colors">
+          {/* Brand */}
+          <div className="col-span-2 sm:col-span-1 flex flex-col gap-3">
+            <Link href="/" className="flex items-center gap-2 font-bold text-base text-foreground hover:text-accent transition-colors">
               <span className="text-xl">🍻</span> BeberGames
             </Link>
-            <p className="text-xs text-muted max-w-xs text-center sm:text-left">
-              La mayor colección de juegos para beber con amigos. Bebe con moderación, tu responsabilidad.
+            <p className="text-xs text-muted leading-relaxed">
+              La mayor colección de juegos para beber en español. Gratis, sin registro, sin descargas.
             </p>
-            {/* Redes sociales */}
-            <div className="flex items-center gap-2 mt-1">
+            <div className="flex items-center gap-2">
               <a
                 href="https://www.instagram.com/bebergames"
                 target="_blank"
@@ -53,30 +69,87 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-xs font-medium text-muted">
-            <Link href="/blog" className="hover:text-accent transition-colors flex items-center gap-1.5">
-              <BookOpen className="h-3.5 w-3.5" /> Blog
+          {/* Juegos populares */}
+          <div className="col-span-2 sm:col-span-1 flex flex-col gap-3">
+            <Link
+              href="/juegos"
+              className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-accent hover:text-accent/80 transition-colors"
+            >
+              <LayoutGrid className="h-3.5 w-3.5" />
+              Juegos para beber
             </Link>
-            <Link href="/legal/privacidad" className="hover:text-foreground transition-colors">
-              Privacidad
-            </Link>
-            <Link href="/legal/cookies" className="hover:text-foreground transition-colors">
-              Cookies
-            </Link>
-            <Link href="/legal/aviso-legal" className="hover:text-foreground transition-colors">
-              Aviso Legal
-            </Link>
-            <Link href="/contacto" className="hover:text-foreground transition-colors">
-              Contacto
-            </Link>
+            <nav aria-label="Juegos populares" className="grid grid-cols-1 gap-1">
+              {juegosPopulares.slice(0, 6).map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="text-xs text-muted hover:text-foreground transition-colors py-0.5"
+                >
+                  {label}
+                </Link>
+              ))}
+            </nav>
+          </div>
+
+          {/* Más juegos */}
+          <div className="col-span-1 flex flex-col gap-3">
+            <p className="text-xs font-bold uppercase tracking-wider text-muted">
+              Más juegos
+            </p>
+            <nav aria-label="Más juegos" className="flex flex-col gap-1">
+              {juegosPopulares.slice(6).map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className="text-xs text-muted hover:text-foreground transition-colors py-0.5"
+                >
+                  {label}
+                </Link>
+              ))}
+              <Link
+                href="/juegos/categorias/sin-materiales"
+                className="text-xs text-muted hover:text-foreground transition-colors py-0.5"
+              >
+                Sin materiales →
+              </Link>
+            </nav>
+          </div>
+
+          {/* Info */}
+          <div className="col-span-1 flex flex-col gap-3">
+            <p className="text-xs font-bold uppercase tracking-wider text-muted">
+              Información
+            </p>
+            <nav aria-label="Páginas de información" className="flex flex-col gap-1">
+              <Link href="/blog" className="text-xs text-muted hover:text-foreground transition-colors py-0.5 flex items-center gap-1">
+                <BookOpen className="h-3 w-3" /> Blog
+              </Link>
+              <Link href="/contacto" className="text-xs text-muted hover:text-foreground transition-colors py-0.5">
+                Contacto
+              </Link>
+              <Link href="/legal/privacidad" className="text-xs text-muted hover:text-foreground transition-colors py-0.5">
+                Privacidad
+              </Link>
+              <Link href="/legal/cookies" className="text-xs text-muted hover:text-foreground transition-colors py-0.5">
+                Cookies
+              </Link>
+              <Link href="/legal/aviso-legal" className="text-xs text-muted hover:text-foreground transition-colors py-0.5">
+                Aviso Legal
+              </Link>
+            </nav>
           </div>
 
         </div>
+      </div>
 
-        <div className="mt-8 flex items-center justify-center border-t border-border/50 pt-4 text-center text-[10px] text-muted">
-          <p>© {new Date().getFullYear()} BeberGames. Todos los derechos reservados.</p>
-        </div>
+      {/* ── Bottom bar ── */}
+      <div className="border-t border-border/50 py-4 text-center">
+        <p className="text-[10px] text-muted">
+          © {new Date().getFullYear()} BeberGames · Juegos para beber online gratis.{" "}
+          <span className="hidden sm:inline">Contenido para mayores de 18 años. Bebe con responsabilidad.</span>
+        </p>
       </div>
     </footer>
   );
 }
+

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Wine, ArrowLeft, Gamepad2, Volume2, VolumeX, BookOpen } from "lucide-react";
+import { Wine, ArrowLeft, Gamepad2, Volume2, VolumeX, BookOpen, LayoutGrid } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 
 export default function Navbar() {
@@ -50,7 +50,7 @@ export default function Navbar() {
         </Link>
 
         {/* Right side */}
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1 sm:gap-2">
           {/* Sound toggle */}
           <button
             onClick={handleSoundToggle}
@@ -65,32 +65,41 @@ export default function Navbar() {
             )}
           </button>
 
+          {/* Juegos Link */}
+          <Link
+            href="/juegos"
+            className={`flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium transition-colors hover:bg-surface-hover hover:text-foreground ${
+              pathname.startsWith("/juegos") ? "text-accent" : "text-muted"
+            }`}
+          >
+            <LayoutGrid className="h-4 w-4" />
+            <span className="hidden sm:inline">Juegos</span>
+          </Link>
+
           {/* Blog Link */}
           <Link
             href="/blog"
-            className="flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium text-muted transition-colors hover:bg-surface-hover hover:text-foreground"
+            className={`flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium transition-colors hover:bg-surface-hover hover:text-foreground ${
+              pathname.startsWith("/blog") ? "text-accent" : "text-muted"
+            }`}
           >
             <BookOpen className="h-4 w-4" />
             <span className="hidden sm:inline">Blog</span>
           </Link>
 
-          {/* Navigation action */}
-          {!isHome ? (
+          {/* Navigation action — only show on home */}
+          {isHome && (
             <Link
-              href="/"
-              className="flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-accent/40 hover:bg-surface-hover hover:shadow-lg hover:shadow-accent-glow"
+              href="/juegos"
+              className="ml-1 flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-accent/40 hover:bg-surface-hover hover:shadow-lg hover:shadow-accent-glow"
             >
-              <ArrowLeft className="h-4 w-4" />
-              Ver juegos
-            </Link>
-          ) : (
-            <div className="flex items-center gap-2 text-sm text-muted">
               <Gamepad2 className="h-4 w-4" />
-              <span className="hidden sm:inline">Juegos para beber</span>
-            </div>
+              <span className="hidden sm:inline">Ver todos</span>
+            </Link>
           )}
         </div>
       </div>
     </nav>
   );
 }
+

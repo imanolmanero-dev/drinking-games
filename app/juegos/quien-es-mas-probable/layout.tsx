@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "Quién Es Más Probable",
@@ -11,5 +12,5 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return <GameLayout gameId="quien-es-mas-probable">{children}</GameLayout>;
 }

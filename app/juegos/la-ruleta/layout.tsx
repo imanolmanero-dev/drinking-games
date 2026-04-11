@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "La Ruleta — Juego para beber online",
@@ -16,5 +17,5 @@ export default function LaRuletaLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <GameLayout gameId="la-ruleta">{children}</GameLayout>;
 }

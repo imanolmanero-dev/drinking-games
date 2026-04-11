@@ -30,6 +30,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    // Hub de juegos — página de alto valor SEO
+    {
+      url: `${baseUrl}/juegos`,
+      lastModified: new Date(),
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
     // Páginas de juego principales
     ...juegos.map((juego) => ({
       url: `${baseUrl}/juegos/${juego}`,

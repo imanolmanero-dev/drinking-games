@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "Ring of Fire / Anillo de Fuego",
@@ -11,5 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return children;
+  return <GameLayout gameId="ring-of-fire">{children}</GameLayout>;
 }
+

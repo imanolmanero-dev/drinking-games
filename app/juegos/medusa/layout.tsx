@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "Medusa — Juego para beber con miradas",
@@ -12,5 +13,6 @@ export const metadata: Metadata = {
 };
 
 export default function MedusaLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <GameLayout gameId="medusa">{children}</GameLayout>;
 }
+

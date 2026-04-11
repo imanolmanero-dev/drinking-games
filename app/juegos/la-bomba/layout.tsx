@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "La Bomba — Juego de Beber con Countdown",
@@ -11,10 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function LaBombaLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function LaBombaLayout({ children }: { children: React.ReactNode }) {
+  return <GameLayout gameId="la-bomba">{children}</GameLayout>;
 }
+

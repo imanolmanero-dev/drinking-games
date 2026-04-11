@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "Tabú Borracho — Juego de Palabras para Beber",
@@ -12,5 +13,5 @@ export const metadata: Metadata = {
 };
 
 export default function TabuLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  return <GameLayout gameId="tabu">{children}</GameLayout>;
 }

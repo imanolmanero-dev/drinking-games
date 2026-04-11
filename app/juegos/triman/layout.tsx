@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "Triman — El Señor del 3",
@@ -16,5 +17,5 @@ export default function TrimanLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <GameLayout gameId="triman">{children}</GameLayout>;
 }

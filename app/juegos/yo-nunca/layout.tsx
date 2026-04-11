@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "Yo Nunca — Juego para beber online",
@@ -11,10 +12,6 @@ export const metadata: Metadata = {
   },
 };
 
-export default function YoNuncaLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return <>{children}</>;
+export default function YoNuncaLayout({ children }: { children: React.ReactNode }) {
+  return <GameLayout gameId="yo-nunca">{children}</GameLayout>;
 }

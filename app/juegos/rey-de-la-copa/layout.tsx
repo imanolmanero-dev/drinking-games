@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import GameLayout from "@/components/layout/GameLayout";
 
 export const metadata: Metadata = {
   title: "El Rey de la Copa — Juego de Cartas para Beber",
@@ -16,5 +17,5 @@ export default function ReyDeLaCopaLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return <>{children}</>;
+  return <GameLayout gameId="rey-de-la-copa">{children}</GameLayout>;
 }
