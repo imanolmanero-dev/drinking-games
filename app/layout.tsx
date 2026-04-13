@@ -65,7 +65,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_ES",
-    siteName: "BeberGames",
+    siteName: "Beber Games",
     title: "BeberGames — Juegos para beber con amigos",
     description:
       "La mejor colección de juegos para beber en grupo. ¡Elige un juego y a beber! 🍻",
