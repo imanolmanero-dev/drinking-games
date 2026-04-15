@@ -304,147 +304,171 @@ export default function TrimanPage() {
   // ═══════════════════════════════════
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          {/* Header */}
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25">
-              <Dice3 className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              Triman
-            </h1>
-            <p className="text-xs font-medium uppercase tracking-widest text-emerald-400">
-              El Señor del 3
-            </p>
-            <p className="text-sm text-muted max-w-xs mt-1">
-              Añade al menos 3 jugadores. Necesitaréis un dado (nosotros lo
-              tiramos por vosotros 🎲).
-            </p>
-            <Link href="/juegos/triman/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          {/* Input */}
-          <div className="flex gap-2">
-            <input
-              id="player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador…"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Rules preview */}
-          <div className="rounded-xl border border-border bg-surface p-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-3">
-              Reglas del dado
-            </h3>
-            <div className="grid grid-cols-2 gap-2 text-xs text-muted">
-              {[
-                { n: 1, icon: Dice1, text: "Bebe quien lanzó" },
-                { n: 2, icon: Dice2, text: "Bebe el de la derecha" },
-                { n: 3, icon: Dice3, text: "Bebe el Triman 👑" },
-                { n: 4, icon: Dice4, text: "Bebe el de la izquierda" },
-                { n: 5, icon: Dice5, text: "Elige quién bebe" },
-                { n: 6, icon: Dice6, text: "¡Beben TODOS!" },
-              ].map(({ n, icon: Icon, text }) => (
-                <div key={n} className="flex items-center gap-2 rounded-lg bg-background/50 px-3 py-2">
-                  <Icon className="h-4 w-4 text-emerald-400 shrink-0" />
-                  <span>{text}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Player list */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length})
-            </div>
-
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button
-                    onClick={() => removePlayer(name)}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {players.length === 0 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
-                Aún no hay jugadores
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            {/* Header */}
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 shadow-lg shadow-emerald-500/25">
+                <Dice3 className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                Triman
+              </h1>
+              <p className="text-xs font-medium uppercase tracking-widest text-emerald-400">
+                El Señor del 3
+              </p>
+              <p className="text-sm text-muted max-w-xs mt-1">
+                Añade al menos 3 jugadores. Necesitaréis un dado (nosotros lo
+                tiramos por vosotros 🎲).
+              </p>
+              <Link href="/juegos/triman/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {/* Recent players */}
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            {/* Input */}
+            <div className="flex gap-2">
+              <input
+                id="player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador…"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-emerald-500/50 focus:ring-2 focus:ring-emerald-500/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-lg shadow-emerald-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Rules preview */}
+            <div className="rounded-xl border border-border bg-surface p-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-3">
+                Reglas del dado
+              </h3>
+              <div className="grid grid-cols-2 gap-2 text-xs text-muted">
+                {[
+                  { n: 1, icon: Dice1, text: "Bebe quien lanzó" },
+                  { n: 2, icon: Dice2, text: "Bebe el de la derecha" },
+                  { n: 3, icon: Dice3, text: "Bebe el Triman 👑" },
+                  { n: 4, icon: Dice4, text: "Bebe el de la izquierda" },
+                  { n: 5, icon: Dice5, text: "Elige quién bebe" },
+                  { n: 6, icon: Dice6, text: "¡Beben TODOS!" },
+                ].map(({ n, icon: Icon, text }) => (
+                  <div key={n} className="flex items-center gap-2 rounded-lg bg-background/50 px-3 py-2">
+                    <Icon className="h-4 w-4 text-emerald-400 shrink-0" />
+                    <span>{text}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Player list */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                <Clock className="h-3.5 w-3.5" />
-                Jugadores recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length})
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers
-                  .filter((n) => !players.includes(n))
-                  .slice(0, 8)
-                  .map((name) => (
-                    <button
-                      key={name}
-                      onClick={() => addRecentPlayer(name)}
-                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-emerald-500/40 hover:text-foreground hover:bg-surface-hover"
-                    >
-                      <Plus className="h-3 w-3" />
-                      {name}
-                    </button>
-                  ))}
-              </div>
-            </div>
-          )}
 
-          {/* Start */}
-          <button
-            onClick={startGame}
-            disabled={players.length < 3}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-          >
-            Buscar al Triman
-            <Dice3 className="h-4 w-4" />
-          </button>
-        </motion.div>
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
+                    <button
+                      onClick={() => removePlayer(name)}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {players.length === 0 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
+                  Aún no hay jugadores
+                </div>
+              )}
+            </div>
+
+            {/* Recent players */}
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  <Clock className="h-3.5 w-3.5" />
+                  Jugadores recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers
+                    .filter((n) => !players.includes(n))
+                    .slice(0, 8)
+                    .map((name) => (
+                      <button
+                        key={name}
+                        onClick={() => addRecentPlayer(name)}
+                        className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-emerald-500/40 hover:text-foreground hover:bg-surface-hover"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Start */}
+            <button
+              onClick={startGame}
+              disabled={players.length < 3}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            >
+              Buscar al Triman
+              <Dice3 className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>Triman (El Señor del 3): El Juego de Dados Definitivo</h2>
+            <p>
+              Bienvenido a <strong>Triman (Three Man)</strong>. Este antiguo juego para beber requiere muchísima atención o un hígado de acero. La mecánica original exige un dado físico, pero en esta era digital moderna, nuestra app lanza el dado virtual por ti con hermosas animaciones, y lo más importante: lleva la cuenta de todos los resultados automáticamente para que no haya disputas.
+            </p>
+            <h3>Objetivo Principal: Encontrar al Triman</h3>
+            <p>
+              El juego consta de dos fases increíblemente hostiles. Primero debéis rodar el mazo hasta encontrar a la temida víctima: El Triman. El primer jugador que en la tirada introductoria saque un <strong>3 dorado</strong>, se convertirá instantáneamente en el Triman. A partir de esa coronación indeseada, empieza la verdadera acción mortal.
+            </p>
+            <p>
+              En la fase de juego continuo, los turnos fluyen. Un 6 obligará a todos a brindar. Un 4 obligará a beber a tu amigo de la izquierda. Pero cuidado: <strong>El Triman tiene que mantenerse alerta todo el rato, porque cada vez que CUALQUIER OTRA PERSONA saque un 3 en el dado, él deberá beber su castigo.</strong> Sí, puedes castigar al mismo Triman repetidas veces seguidas si los dioses del azar están de tu lado.
+            </p>
+            <h3>Líbrate de la Corona</h3>
+            <ul>
+              <li><strong>La única salida:</strong> Para dejar de ser el Triman, tú mismo (y solo tú) deberás sacar un 3 en tu propio turno. Si consigues esa hazaña, podrás cederle el triste título a la persona que elijas.</li>
+              <li>Asegúrate de visitar nuestra <Link href="/juegos/triman/reglas" className="text-emerald-500 underline">guía y normas completas de Triman</Link> para conocer qué hace el famoso resultado del 5 y cuándo ocurre la temible tirada múltiple secreta.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

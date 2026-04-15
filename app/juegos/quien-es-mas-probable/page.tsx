@@ -91,42 +91,67 @@ export default function QuienEsMasProbablePage() {
   // ═══════════════════════════════════
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          {/* Header */}
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/25">
-              <Hand className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              Quién Es Más Probable
-            </h1>
-            <p className="text-sm text-muted max-w-xs">
-              Lee la tarjeta, cuenta hasta 3 y señalad todos a la vez. ¡El que tenga más dedos apuntándole, bebe!
-            </p>
-            <Link href="/juegos/quien-es-mas-probable/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-cyan-400 transition-colors hover:bg-cyan-500/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          <IntensitySelector selected={niveles} onChange={setNiveles} />
-
-          {/* Start */}
-          <button
-            onClick={startGame}
-            disabled={isLoading}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-50"
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
           >
-            {isLoading ? "Cargando..." : "Empezar el juego"}
-            {!isLoading && <ChevronRight className="h-4 w-4" />}
-          </button>
-        </motion.div>
+            {/* Header */}
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-500 to-blue-500 shadow-lg shadow-cyan-500/25">
+                <Hand className="h-7 w-7 text-white" />
+              </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                Quién Es Más Probable
+              </h1>
+              <p className="text-sm text-muted max-w-xs">
+                Lee la tarjeta, cuenta hasta 3 y señalad todos a la vez. ¡El que tenga más dedos apuntándole, bebe!
+              </p>
+              <Link href="/juegos/quien-es-mas-probable/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-cyan-400 transition-colors hover:bg-cyan-500/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
+
+            <IntensitySelector selected={niveles} onChange={setNiveles} />
+
+            {/* Start */}
+            <button
+              onClick={startGame}
+              disabled={isLoading}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-cyan-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-50"
+            >
+              {isLoading ? "Cargando..." : "Empezar el juego"}
+              {!isLoading && <ChevronRight className="h-4 w-4" />}
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>Quién es más probable a... (El Juego de los Señalamientos)</h2>
+            <p>
+              También mundialmente conocido en fiestas anglosajonas como <em>"Most Likely To"</em> o el <em>Juego del Dedo</em>, esta dinámica nació con un único y perturbador objetivo: descubrir exactamente qué prejuicios tienen tus amigos sobre ti. Olvídate de los cumplidos, aquí se viene a juzgar y a ser juzgado sin ningún tipo de piedad.
+            </p>
+            <h3>El Funcionamiento de las Votaciones</h3>
+            <p>
+              La mecánica es ridículamente sencilla, por eso es el juego perfecto para jugar cuando la noche ya está avanzada y no apetece pensar en reglas complejas. La pantalla dictará una premisa escandalosa o muy específica (por ejemplo, <em>"¿Quién es más probable que termine uniéndose a una secta?"</em>). El grupo entero deberá meditar en silencio rotundo.
+            </p>
+            <p>
+              Tras tres o cinco segundos de tensión mirando las caras de los demás, deberéis exclamar: <strong>¡Uno, dos y tres!</strong>. En ese preciso milisegundo, toda la mesa debe extender su brazo y apuntar con el dedo a la persona que consideran más probable de llevar a cabo lo narrado en la tarjeta.
+            </p>
+            <h3>Matemáticas Básicas del Castigo</h3>
+            <ul>
+              <li><strong>Castigo directo:</strong> Cada dedo que te esté apuntando equivale, de forma irrevocable, a un trago de tu bebida. Si sois un grupo de 8 personas y hay 7 dedos apuntando a tu cara, tendrás que dar 7 largos tragos.</li>
+              <li><strong>Diferentes Intensidades:</strong> Al igual que muchos de nuestros otros títulos en BeberGames, este juego dispone de varios selectores de intensidad. Te sugerimos empezar en <em>Suave</em> o <em>Normal</em> para evitar herir sensibilidades demasiado pronto.</li>
+              <li>Tienes todas las mecánicas, consejos y un modo "Supervivencia Extrema" explicados en las <Link href="/juegos/quien-es-mas-probable/reglas" className="text-cyan-500 underline">Reglas de Quién Es Más Probable</Link>.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

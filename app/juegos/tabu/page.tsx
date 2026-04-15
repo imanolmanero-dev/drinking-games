@@ -194,102 +194,127 @@ export default function TabuPage() {
   // ── SETUP ──
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/25">
-              <MessageSquare className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Tabú Borracho</h1>
-            <p className="text-sm text-muted max-w-xs">
-              Describe la palabra sin decir las prohibidas. Si dices una palabra tabú… ¡tu equipo bebe!
-            </p>
-            <Link href="/juegos/tabu/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          {/* Player input */}
-          <div className="flex gap-2">
-            <input
-              id="tabu-player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador…"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length}) — mínimo 4
-            </div>
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button onClick={() => removePlayer(name)} className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400">
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-            {players.length < 4 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-6 text-sm text-muted">
-                {players.length === 0
-                  ? "Añade al menos 4 jugadores para hacer 2 equipos"
-                  : `Faltan ${4 - players.length} jugadores más`}
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-violet-500 to-purple-600 shadow-lg shadow-violet-500/25">
+                <MessageSquare className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Tabú Borracho</h1>
+              <p className="text-sm text-muted max-w-xs">
+                Describe la palabra sin decir las prohibidas. Si dices una palabra tabú… ¡tu equipo bebe!
+              </p>
+              <Link href="/juegos/tabu/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            {/* Player input */}
+            <div className="flex gap-2">
+              <input
+                id="tabu-player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador…"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-violet-500 to-purple-600 text-white shadow-lg shadow-violet-500/25 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                Recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length}) — mínimo 4
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers.filter((n) => !players.includes(n)).slice(0, 8).map((name) => (
-                  <button key={name} onClick={() => addRecentPlayer(name)} className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover">
-                    <Plus className="h-3 w-3" />{name}
-                  </button>
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
+                    <button onClick={() => removePlayer(name)} className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </motion.div>
                 ))}
-              </div>
+              </AnimatePresence>
+              {players.length < 4 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-6 text-sm text-muted">
+                  {players.length === 0
+                    ? "Añade al menos 4 jugadores para hacer 2 equipos"
+                    : `Faltan ${4 - players.length} jugadores más`}
+                </div>
+              )}
             </div>
-          )}
 
-          <button
-            onClick={startGame}
-            disabled={players.length < 4}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
-          >
-            Crear equipos y empezar <ChevronRight className="h-4 w-4" />
-          </button>
-        </motion.div>
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  Recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers.filter((n) => !players.includes(n)).slice(0, 8).map((name) => (
+                    <button key={name} onClick={() => addRecentPlayer(name)} className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover">
+                      <Plus className="h-3 w-3" />{name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <button
+              onClick={startGame}
+              disabled={players.length < 4}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-violet-500 to-purple-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-violet-500/25 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:scale-100"
+            >
+              Crear equipos y empezar <ChevronRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>Tabú Borracho: Adivina la Palabra sin decir las Prohibidas</h2>
+            <p>
+              El clásico juego de mesa de deducción se transforma en <strong>Tabú Borracho</strong>, una competición brutal por equipos donde la falta de vocabulario se paga con alcohol. Necesitáis ser al menos 4 personas en la fiesta para poder formar dos equipos equilibrados.
+            </p>
+            <h3>Dinámica del Juego</h3>
+            <p>
+              Durante cada turno, un miembro del equipo se convierte en el "Descriptor". A lo largo de los 60 segundos implacables del temporizador, el Descriptor debe intentar que sus compañeros adivinen la palabra principal gigante que aparece en la tarjeta.
+            </p>
+            <p>
+              <strong>La Trampa:</strong> Debajo de la palabra principal hay un listado de palabras clave prohibidas. El Descriptor no puede mencionar bajo ninguna circunstancia ninguna de esas palabras tabú, ni derivados, ni traducciones. Para asegurar que no hace trampas, <em>alguien del equipo contrario debe estar apoyado en su hombro vigilando la pantalla</em>.
+            </p>
+            <h3>Sistema de Puntuación y Castigos</h3>
+            <ul>
+              <li><strong>Acierto (+1 punto):</strong> Si los compañeros adivinan la palabra, se suma un punto y se pasa a la siguiente.</li>
+              <li><strong>Infracción Tabú (Castigo):</strong> Si el Descriptor dice una palabra prohibida por los nervios, el juez del equipo contrario pulsará el botón de error. ¡El Descriptor y todo su equipo deben beber inmediatamente! Luego se salta esa tarjeta.</li>
+              <li>¿Dudas sobre palabras compuestas o derivaciones? Visita las <Link href="/juegos/tabu/reglas" className="text-violet-500 underline">reglas completas de Tabú Borracho</Link> para dejar claro qué está permitido antes de jugar.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

@@ -104,99 +104,124 @@ export default function MedusaPage() {
   // ── SETUP ──
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-lime-500 to-green-600 shadow-lg shadow-lime-500/25">
-              <Eye className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Medusa</h1>
-            <p className="text-sm text-muted max-w-xs">
-              Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.
-            </p>
-            <Link href="/juegos/medusa/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          {/* Player input */}
-          <div className="flex gap-2">
-            <input
-              id="medusa-player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador… (opcional)"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-500 to-green-600 text-white shadow-lg shadow-lime-500/25 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length})
-            </div>
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button onClick={() => removePlayer(name)} className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400">
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-            {players.length === 0 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-6 text-sm text-muted">
-                Sin jugadores — el juego funciona igual 😄
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-lime-500 to-green-600 shadow-lg shadow-lime-500/25">
+                <Eye className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Medusa</h1>
+              <p className="text-sm text-muted max-w-xs">
+                Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.
+              </p>
+              <Link href="/juegos/medusa/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            {/* Player input */}
+            <div className="flex gap-2">
+              <input
+                id="medusa-player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador… (opcional)"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-lime-500 to-green-600 text-white shadow-lg shadow-lime-500/25 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                Recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length})
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers.filter((n) => !players.includes(n)).slice(0, 8).map((name) => (
-                  <button key={name} onClick={() => addRecentPlayer(name)} className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover">
-                    <Plus className="h-3 w-3" />{name}
-                  </button>
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
+                    <button onClick={() => removePlayer(name)} className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400">
+                      <X className="h-4 w-4" />
+                    </button>
+                  </motion.div>
                 ))}
-              </div>
+              </AnimatePresence>
+              {players.length === 0 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-6 text-sm text-muted">
+                  Sin jugadores — el juego funciona igual 😄
+                </div>
+              )}
             </div>
-          )}
 
-          <button
-            onClick={startGame}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-green-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-lime-500/25 transition-all hover:scale-[1.02] hover:shadow-xl"
-          >
-            Empezar {TOTAL_ROUNDS} rondas <ChevronRight className="h-4 w-4" />
-          </button>
-        </motion.div>
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  Recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers.filter((n) => !players.includes(n)).slice(0, 8).map((name) => (
+                    <button key={name} onClick={() => addRecentPlayer(name)} className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover">
+                      <Plus className="h-3 w-3" />{name}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            <button
+              onClick={startGame}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-green-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-lime-500/25 transition-all hover:scale-[1.02] hover:shadow-xl"
+            >
+              Empezar {TOTAL_ROUNDS} rondas <ChevronRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>Medusa: El Juego de las Miradas Asesinas</h2>
+            <p>
+              Adéntrate en la mitología y comprueba qué amigos son los más predecibles con el juego de beber <strong>Medusa</strong>. Este es un juego perfecto para calentar el ambiente antes de salir, no requiere cartas ni dados, y las únicas armas que necesitas son tus ojos y reflejos felinos.
+            </p>
+            <h3>Fase 1: El Descenso a los Infiernos</h3>
+            <p>
+              El juego transcurre en rondas. Al inicio, toda la mesa, sin excepciones, debe agachar la cabeza y mantener la vista fijada en sus zapatos (o en la pantalla de su teléfono si lo usan para llevar el control). Con nuestra aplicación, simplemente tendréis que escuchar la inquietante cuenta atrás y mantener los nervios a raya.
+            </p>
+            <h3>Fase 2: El Contacto Letal</h3>
+            <p>
+              A la cuenta de la máquina ("tres, dos, uno, <strong>¡MEDUSA!</strong>"), todos los participantes deben levantar bruscamente la cabeza y clavar la mirada fijamente en los ojos de otro jugador. Y aquí es donde ocurre la masacre:
+            </p>
+            <ul>
+              <li><strong>Castigo directo:</strong> Si miras a un amigo y él está observando a otra persona (es decir, sus ojos no se cruzan contigo), te salvas. <em>Estás libre de petrificación.</em></li>
+              <li><strong>Grito de castigo:</strong> Pero si levantas la vista y, por puro azar fatídico, ese amigo también decidió clavar la mirada en ti... se produce el temido Contacto Medusa. Ambos debéis gritar rápidamente <strong>¡MEDUSA!</strong> y tragar un shot o un buen trago de vuestra bebida.</li>
+              <li>Si queréis añadir la regla del "Grito Tardío", revisa los detalles en el <Link href="/juegos/medusa/reglas" className="text-lime-500 underline">manual oficial de Medusa</Link>.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

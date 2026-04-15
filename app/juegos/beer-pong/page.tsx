@@ -177,78 +177,103 @@ export default function BeerPongPage() {
   // ── SETUP ──
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-amber-400/25">
-              <Trophy className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Beer Pong Virtual</h1>
-            <p className="text-sm text-muted max-w-xs">
-              El árbitro digital para tu partida. Gestiona vasos, turnos y reglas especiales desde el móvil.
-            </p>
-            <Link href="/juegos/beer-pong/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          {/* Team names */}
-          <div className="flex flex-col gap-4">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Settings className="h-3.5 w-3.5" /> Configuración
-            </div>
-            <div className="flex flex-col gap-3">
-              <input
-                id="bp-team1"
-                type="text"
-                value={team1Name}
-                onChange={(e) => setTeam1Name(e.target.value)}
-                placeholder="Nombre Equipo 1"
-                className="rounded-xl border border-blue-500/30 bg-blue-500/5 px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
-              />
-              <input
-                id="bp-team2"
-                type="text"
-                value={team2Name}
-                onChange={(e) => setTeam2Name(e.target.value)}
-                placeholder="Nombre Equipo 2"
-                className="rounded-xl border border-rose-500/30 bg-rose-500/5 px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none focus:border-rose-500/50 focus:ring-2 focus:ring-rose-500/20"
-              />
-            </div>
-          </div>
-
-          {/* Cup mode */}
-          <div className="flex flex-col gap-3">
-            <p className="text-xs font-medium uppercase tracking-wider text-muted">Número de vasos</p>
-            <div className="grid grid-cols-2 gap-3">
-              {([10, 6] as CupMode[]).map((n) => (
-                <button
-                  key={n}
-                  onClick={() => setCupMode(n)}
-                  className={`rounded-xl border py-3 text-sm font-bold transition-all ${
-                    cupMode === n
-                      ? "border-amber-400/50 bg-amber-400/10 text-amber-400"
-                      : "border-border bg-surface text-muted hover:bg-surface-hover"
-                  }`}
-                >
-                  {n} vasos {n === 10 ? "(Clásico)" : "(Rápido)"}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          <button
-            onClick={startGame}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-[1.02] hover:shadow-xl"
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="w-full max-w-md flex flex-col gap-8"
           >
-            ¡Empezar partida! <ChevronRight className="h-4 w-4" />
-          </button>
-        </motion.div>
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-orange-500 shadow-lg shadow-amber-400/25">
+                <Trophy className="h-7 w-7 text-white" />
+              </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Beer Pong Virtual</h1>
+              <p className="text-sm text-muted max-w-xs">
+                El árbitro digital para tu partida. Gestiona vasos, turnos y reglas especiales desde el móvil.
+              </p>
+              <Link href="/juegos/beer-pong/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
+
+            {/* Team names */}
+            <div className="flex flex-col gap-4">
+              <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                <Settings className="h-3.5 w-3.5" /> Configuración
+              </div>
+              <div className="flex flex-col gap-3">
+                <input
+                  id="bp-team1"
+                  type="text"
+                  value={team1Name}
+                  onChange={(e) => setTeam1Name(e.target.value)}
+                  placeholder="Nombre Equipo 1"
+                  className="rounded-xl border border-blue-500/30 bg-blue-500/5 px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none focus:border-blue-500/50 focus:ring-2 focus:ring-blue-500/20"
+                />
+                <input
+                  id="bp-team2"
+                  type="text"
+                  value={team2Name}
+                  onChange={(e) => setTeam2Name(e.target.value)}
+                  placeholder="Nombre Equipo 2"
+                  className="rounded-xl border border-rose-500/30 bg-rose-500/5 px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none focus:border-rose-500/50 focus:ring-2 focus:ring-rose-500/20"
+                />
+              </div>
+            </div>
+
+            {/* Cup mode */}
+            <div className="flex flex-col gap-3">
+              <p className="text-xs font-medium uppercase tracking-wider text-muted">Número de vasos</p>
+              <div className="grid grid-cols-2 gap-3">
+                {([10, 6] as CupMode[]).map((n) => (
+                  <button
+                    key={n}
+                    onClick={() => setCupMode(n)}
+                    className={`rounded-xl border py-3 text-sm font-bold transition-all ${
+                      cupMode === n
+                        ? "border-amber-400/50 bg-amber-400/10 text-amber-400"
+                        : "border-border bg-surface text-muted hover:bg-surface-hover"
+                    }`}
+                  >
+                    {n} vasos {n === 10 ? "(Clásico)" : "(Rápido)"}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <button
+              onClick={startGame}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-[1.02] hover:shadow-xl"
+            >
+              ¡Empezar partida! <ChevronRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>Beer Pong Árbitro Virtual: Ayudante para Tus Partidas Físicas</h2>
+            <p>
+              El <strong>Beer Pong</strong> es el rey indiscutible de las fiestas en cualquier país del mundo. En nuestra plataforma no lanzas pelotas digitales; hemos diseñado esta web app para que actúe como un árbitro en el medio de la mesa mientras juegas con vasos y pelotas de ping-pong reales.
+            </p>
+            <h3>Funciones de la App de BeerPong</h3>
+            <p>
+              Muchos jugadores terminan discutiendo sobre de quién es el turno o si alguien ya pidió un "Re-rack". Nuestra app elimina esas disputas y agiliza el juego de mesa mediante:
+            </p>
+            <ul>
+              <li><strong>Rastreador de Vasos (Cup Tracker):</strong> Marca en la pantalla qué vaso ha sido hundido para que todo el mundo vea el estado de la partida, útil si usáis mesas opacas o queréis concentraros en divertiros.</li>
+              <li><strong>Gestión de Turnos y Re-rack:</strong> Sigue de forma automática a qué equipo le toca lanzar y controla que solo se pueda pedir "Re-rack" (reagrupación de vasos) una vez por partida de forma lícita.</li>
+              <li><strong>"On Fire":</strong> El sistema detecta cuando un jugador acierta dos pelotas seguidas, encendiéndole el indicador de <em>On Fire</em>, para que tenga un tercer tiro de regalo (y la gloria que ello conlleva).</li>
+            </ul>
+            <h3>¿No te sabes la normativa oficial?</h3>
+            <p>
+              Si vuestro grupo está discutiendo sobre reglas internacionales de rebotes, codos en la mesa o soplidos de la bola, échale un vistazo inmediato a las <Link href="/juegos/beer-pong/reglas" className="text-amber-500 underline">reglas y normas del Beer Pong</Link> en nuestra guía completa.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

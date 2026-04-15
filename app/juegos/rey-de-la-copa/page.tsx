@@ -122,118 +122,142 @@ export default function ReyDeLaCopaPage() {
 
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 shadow-lg shadow-amber-400/25">
-              <Crown className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              El Rey de la Copa
-            </h1>
-            <p className="text-sm text-muted max-w-xs">
-              Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la
-              copa entera. ¡Que empiece el reinado!
-            </p>
-            <Link
-              href="/juegos/rey-de-la-copa/reglas"
-              className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10"
-            >
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          <div className="flex gap-2">
-            <input
-              id="rey-player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador…"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length})
-            </div>
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button
-                    onClick={() => removePlayer(name)}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-            {players.length === 0 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
-                Aún no hay jugadores
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-yellow-500 shadow-lg shadow-amber-400/25">
+                <Crown className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                El Rey de la Copa
+              </h1>
+              <p className="text-sm text-muted max-w-xs">
+                Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la
+                copa entera. ¡Que empiece el reinado!
+              </p>
+              <Link
+                href="/juegos/rey-de-la-copa/reglas"
+                className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10"
+              >
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            <div className="flex gap-2">
+              <input
+                id="rey-player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador…"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-yellow-500 text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                <Clock className="h-3.5 w-3.5" />
-                Jugadores recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length})
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers
-                  .filter((n) => !players.includes(n))
-                  .slice(0, 8)
-                  .map((name) => (
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
                     <button
-                      key={name}
-                      onClick={() => addRecentPlayer(name)}
-                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover"
+                      onClick={() => removePlayer(name)}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
                     >
-                      <Plus className="h-3 w-3" />
-                      {name}
+                      <X className="h-4 w-4" />
                     </button>
-                  ))}
-              </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+              {players.length === 0 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
+                  Aún no hay jugadores
+                </div>
+              )}
             </div>
-          )}
 
-          <button
-            onClick={startGame}
-            disabled={players.length < 2}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-          >
-            Empezar a jugar
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </motion.div>
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  <Clock className="h-3.5 w-3.5" />
+                  Jugadores recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers
+                    .filter((n) => !players.includes(n))
+                    .slice(0, 8)
+                    .map((name) => (
+                      <button
+                        key={name}
+                        onClick={() => addRecentPlayer(name)}
+                        className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            <button
+              onClick={startGame}
+              disabled={players.length < 2}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            >
+              Empezar a jugar
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>El Rey de la Copa (Kings Cup): Reglas y Cartas</h2>
+            <p>
+              El <strong>Rey de la Copa (Kings Cup)</strong>, también conocido como "Círculo de la Muerte", es probablemente el juego de beber con cartas más famoso del mundo. Nuestra versión digital genera la baraja por ti, para que podáis jugar en cualquier bar sin necesidad de manchar naipes de cartón.
+            </p>
+            <h3>¿Cómo se Juega a Kings Cup?</h3>
+            <p>
+              En la mesa (o en el centro) debe colocarse una copa grande y vacía: La Copa del Rey. Los jugadores se turnan pulsando para "robar" una carta de la baraja virtual. Cada carta, del As a la K, tiene asociada una mini-prueba, un castigo o una categoría que debes cumplir al instante.
+            </p>
+            <ul>
+              <li><strong>Cartas Rojas vs Negras:</strong> Algunas variantes dan o quitan tragos dependiendo del color de la carta. En nuestra app, te lo escribimos claro en pantalla para que no tengas que memorizarlo.</li>
+              <li><strong>Los Reyes (K):</strong> Esta es la parte más importante. La persona que saque el 1º, 2º y 3º Rey debe verter un poco de su propia bebida en la Copa del Rey del centro.</li>
+              <li><strong>El 4º Rey:</strong> El desafortunado que saque el último Rey finaliza el juego abruptamente y <strong>debe beberse la Copa del Rey entera</strong> con la asquerosa mezcla que se haya creado.</li>
+            </ul>
+            <p>
+              Si necesitas refrescar tu memoria sobre qué hace el '7' (Cielo), la 'Q' (Preguntas) de forma precisa, te recomendamos encarecidamente consultar las <Link href="/juegos/rey-de-la-copa/reglas" className="text-amber-500 underline">normas oficiales del Rey de la Copa</Link>.
+            </p>
+          </div>
+        </div>
       </div>
     );
   }

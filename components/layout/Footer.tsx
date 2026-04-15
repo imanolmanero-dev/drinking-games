@@ -124,6 +124,9 @@ export default function Footer() {
               <Link href="/blog" className="text-xs text-muted hover:text-foreground transition-colors py-0.5 flex items-center gap-1">
                 <BookOpen className="h-3 w-3" /> Blog
               </Link>
+              <Link href="/sobre-nosotros" className="text-xs text-muted hover:text-foreground transition-colors py-0.5">
+                Sobre Nosotros
+              </Link>
               <Link href="/contacto" className="text-xs text-muted hover:text-foreground transition-colors py-0.5">
                 Contacto
               </Link>

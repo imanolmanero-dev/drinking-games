@@ -257,141 +257,165 @@ export default function LaRuletaPage() {
   // ═══════════════════════════════════
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          {/* Header */}
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 shadow-lg shadow-rose-500/25">
-              <PartyPopper className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              La Ruleta
-            </h1>
-            <p className="text-sm text-muted max-w-xs">
-              Gira la ruleta y cumple el castigo que te toque. Sin excusas. 🎡
-            </p>
-            <Link href="/juegos/la-ruleta/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          {/* Input */}
-          <div className="flex gap-2">
-            <input
-              id="player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador…"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-rose-500/50 focus:ring-2 focus:ring-rose-500/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-lg shadow-rose-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Preview of some castigos */}
-          <div className="rounded-xl border border-border bg-surface p-4">
-            <h3 className="text-xs font-semibold uppercase tracking-wider text-rose-400 mb-3">
-              Algunos castigos posibles
-            </h3>
-            <div className="flex flex-wrap gap-2">
-              {CASTIGOS.slice(0, 8).map((c, i) => (
-                <span
-                  key={i}
-                  className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs text-muted"
-                >
-                  {c.emoji} {c.texto}
-                </span>
-              ))}
-              <span className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs text-muted">
-                …y más
-              </span>
-            </div>
-          </div>
-
-          {/* Player list */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length})
-            </div>
-
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button
-                    onClick={() => removePlayer(name)}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {players.length === 0 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
-                Aún no hay jugadores
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            {/* Header */}
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-rose-500 to-pink-500 shadow-lg shadow-rose-500/25">
+                <PartyPopper className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                La Ruleta
+              </h1>
+              <p className="text-sm text-muted max-w-xs">
+                Gira la ruleta y cumple el castigo que te toque. Sin excusas. 🎡
+              </p>
+              <Link href="/juegos/la-ruleta/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {/* Recent players */}
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            {/* Input */}
+            <div className="flex gap-2">
+              <input
+                id="player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador…"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-rose-500/50 focus:ring-2 focus:ring-rose-500/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-rose-500 to-pink-500 text-white shadow-lg shadow-rose-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Preview of some castigos */}
+            <div className="rounded-xl border border-border bg-surface p-4">
+              <h3 className="text-xs font-semibold uppercase tracking-wider text-rose-400 mb-3">
+                Algunos castigos posibles
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {CASTIGOS.slice(0, 8).map((c, i) => (
+                  <span
+                    key={i}
+                    className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs text-muted"
+                  >
+                    {c.emoji} {c.texto}
+                  </span>
+                ))}
+                <span className="rounded-full border border-border bg-background/50 px-3 py-1 text-xs text-muted">
+                  …y más
+                </span>
+              </div>
+            </div>
+
+            {/* Player list */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                <Clock className="h-3.5 w-3.5" />
-                Jugadores recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length})
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers
-                  .filter((n) => !players.includes(n))
-                  .slice(0, 8)
-                  .map((name) => (
-                    <button
-                      key={name}
-                      onClick={() => addRecentPlayer(name)}
-                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-rose-500/40 hover:text-foreground hover:bg-surface-hover"
-                    >
-                      <Plus className="h-3 w-3" />
-                      {name}
-                    </button>
-                  ))}
-              </div>
-            </div>
-          )}
 
-          {/* Start */}
-          <button
-            onClick={startGame}
-            disabled={players.length < 2}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-rose-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-          >
-            Empezar a girar
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </motion.div>
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
+                    <button
+                      onClick={() => removePlayer(name)}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {players.length === 0 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
+                  Aún no hay jugadores
+                </div>
+              )}
+            </div>
+
+            {/* Recent players */}
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  <Clock className="h-3.5 w-3.5" />
+                  Jugadores recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers
+                    .filter((n) => !players.includes(n))
+                    .slice(0, 8)
+                    .map((name) => (
+                      <button
+                        key={name}
+                        onClick={() => addRecentPlayer(name)}
+                        className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-rose-500/40 hover:text-foreground hover:bg-surface-hover"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Start */}
+            <button
+              onClick={startGame}
+              disabled={players.length < 2}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-rose-500 to-pink-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-rose-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            >
+              Empezar a girar
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>La Ruleta (Roulette): Dejando el Castigo al Azar</h2>
+            <p>
+              Todos conocemos la <strong>Ruleta Rusa</strong> y la tensión que genera, o el típico juego televisivo de girar el panel. Esta es la versión para adultos diseñada específicamente para destruir el aburrimiento al principio de cualquier fiesta usando tu smartphone.
+            </p>
+            <h3>¿Qué ocultan los Paneles de la Ruleta?</h3>
+            <p>
+              Tanto si juegas con amigos cercanos o con desconocidos en una discoteca que acabas de conocer, girar este disco virtual genera pánico (pero del bueno). Nuestra ruleta de beber está programada con decenas de <strong>castigos únicos</strong>, que incluyen desde tragos básicos, chupitos dobles, o retos físicos como "Fondo Blanco" hasta interacciones sociales como "Elige quién bebe". El algoritmo asegura que los resultados sean totalmente aleatorios en cada giro.
+            </p>
+            <p>
+              Cada jugador tiene que someterse al dictamen de la máquina. Gira la ruleta cuando llegue tu turno, observa la animación hipnótica y prepárate mental y gástricamente para realizar lo que dicte el puntero cuando deje de girar. Nadie puede escapar de su destino.
+            </p>
+            <h3>Consejos antes de Jugar</h3>
+            <ul>
+              <li><strong>Castigos en equipo:</strong> Casillas como la infame <em>Cascada (Waterfall)</em> obligan al grupo a beber de forma continua; asegúrate de que todos están prestando atención al jugador activo.</li>
+              <li>Jugar es muy intuitivo, pero si quieres leer un análisis detallado sobre cómo aprovechar este formato interactivo, revisa las <Link href="/juegos/la-ruleta/reglas" className="text-rose-500 underline">Reglas de La Ruleta para beber</Link>.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

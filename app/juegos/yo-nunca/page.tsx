@@ -127,124 +127,149 @@ export default function YoNuncaPage() {
   // ═══════════════════════════════════
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          {/* Header */}
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg shadow-purple-500/25">
-              <Wine className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              Yo Nunca
-            </h1>
-            <p className="text-sm text-muted max-w-xs">
-              Añade al menos 2 jugadores para empezar. Las preguntas se
-              barajarán automáticamente.
-            </p>
-            <Link href="/juegos/yo-nunca/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          <IntensitySelector selected={niveles} onChange={setNiveles} />
-
-          {/* Input */}
-          <div className="flex gap-2">
-            <input
-              id="player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador…"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-secondary text-white shadow-lg shadow-accent-glow transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Player list */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length})
-            </div>
-
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button
-                    onClick={() => removePlayer(name)}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {players.length === 0 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
-                Aún no hay jugadores
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            {/* Header */}
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 shadow-lg shadow-purple-500/25">
+                <Wine className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                Yo Nunca
+              </h1>
+              <p className="text-sm text-muted max-w-xs">
+                Añade al menos 2 jugadores para empezar. Las preguntas se
+                barajarán automáticamente.
+              </p>
+              <Link href="/juegos/yo-nunca/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {/* Recent players */}
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            <IntensitySelector selected={niveles} onChange={setNiveles} />
+
+            {/* Input */}
+            <div className="flex gap-2">
+              <input
+                id="player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador…"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-accent/50 focus:ring-2 focus:ring-accent/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-accent to-accent-secondary text-white shadow-lg shadow-accent-glow transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Player list */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                <Clock className="h-3.5 w-3.5" />
-                Jugadores recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length})
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers
-                  .filter((n) => !players.includes(n))
-                  .slice(0, 8)
-                  .map((name) => (
-                    <button
-                      key={name}
-                      onClick={() => addRecentPlayer(name)}
-                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover"
-                    >
-                      <Plus className="h-3 w-3" />
-                      {name}
-                    </button>
-                  ))}
-              </div>
-            </div>
-          )}
 
-          {/* Start button */}
-          <button
-            onClick={startGame}
-            disabled={players.length < 2 || isLoading}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-          >
-            {isLoading ? "Cargando..." : "Empezar a jugar"}
-            {!isLoading && <ChevronRight className="h-4 w-4" />}
-          </button>
-        </motion.div>
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
+                    <button
+                      onClick={() => removePlayer(name)}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {players.length === 0 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
+                  Aún no hay jugadores
+                </div>
+              )}
+            </div>
+
+            {/* Recent players */}
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  <Clock className="h-3.5 w-3.5" />
+                  Jugadores recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers
+                    .filter((n) => !players.includes(n))
+                    .slice(0, 8)
+                    .map((name) => (
+                      <button
+                        key={name}
+                        onClick={() => addRecentPlayer(name)}
+                        className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-accent/40 hover:text-foreground hover:bg-surface-hover"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Start button */}
+            <button
+              onClick={startGame}
+              disabled={players.length < 2 || isLoading}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-secondary px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            >
+              {isLoading ? "Cargando..." : "Empezar a jugar"}
+              {!isLoading && <ChevronRight className="h-4 w-4" />}
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>El Juego del Yo Nunca: Confesiones y Amigos</h2>
+            <p>
+              El <strong>Yo Nunca</strong> (conocido habitualmente en el mundo anglosajón como <em>Never Have I Ever</em>) es sin la menor duda uno de los juegos conversacionales para fiestas más populares a nivel mundial. Es la manera perfecta de romper el hielo, descubrir los secretos mejor guardados de tus amigos y generar anécdotas inolvidables.
+            </p>
+            <h3>¿Qué encontrarás en nuestra aplicación de Yo Nunca?</h3>
+            <p>
+              A diferencia de usar listas genéricas o intentar pensar en preguntas sobre la marcha, con nuestra plataforma móvil obtienes acceso a <strong>cientos de frases curadas a mano</strong> y divididas perfectamente en niveles de intensidad. Simplemente introduces los nombres de tus amigos al principio de la partida, y nuestro motor aleatorio se encargará de hacer la vida imposible al grupo sacando las peores confesiones posibles. 
+            </p>
+            <p>
+              Todos los jugadores empiezan el juego con una copa llena. Tan pronto como la pantalla revele una afirmación que comienza por "Yo nunca he...", tendréis un segundo para pensar. Aquellas personas del grupo que SÍ hayan cometido la acción descrita alguna vez en sus vidas corporales, estarán obligados a tomar un trago o "sorbo" de su bebida. Aquellos inocentes que jamás hayan hecho semejante acto impuro, se salvan.
+            </p>
+            <h3>Modos de Juego Destacados</h3>
+            <ul>
+              <li><strong>El Modo Picante (+18):</strong> Hemos redactado preguntas exclusivas, atrevidas y diseñadas especialmente para adultos con la mente muy abierta. Las risas nerviosas están completamente aseguradas.</li>
+              <li><strong>Solidaridad Absoluta:</strong> Si nadie del grupo bebe, todos beben por aburridos.</li>
+              <li><strong>¿Más información?</strong> Asegúrate de revisar detenidamente la <Link href="/juegos/yo-nunca/reglas" className="text-accent underline">Guía Completa de Reglas del Yo Nunca</Link> para conocer las estrategias de los mejores jugadores.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

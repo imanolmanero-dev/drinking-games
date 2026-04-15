@@ -146,121 +146,145 @@ export default function RingOfFirePage() {
   // ═══════════════════════════════════
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          {/* Header */}
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 shadow-lg shadow-red-500/25">
-              <Flame className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              Ring of Fire
-            </h1>
-            <p className="text-sm text-muted max-w-xs">
-              Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!
-            </p>
-            <Link href="/juegos/ring-of-fire/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          {/* Input */}
-          <div className="flex gap-2">
-            <input
-              id="player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador…"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-red-500/50 focus:ring-2 focus:ring-red-500/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-lg shadow-red-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Player list */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length})
-            </div>
-
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button
-                    onClick={() => removePlayer(name)}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {players.length === 0 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
-                Aún no hay jugadores
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            {/* Header */}
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-red-500 to-rose-600 shadow-lg shadow-red-500/25">
+                <Flame className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                Ring of Fire
+              </h1>
+              <p className="text-sm text-muted max-w-xs">
+                Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!
+              </p>
+              <Link href="/juegos/ring-of-fire/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {/* Recent players */}
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            {/* Input */}
+            <div className="flex gap-2">
+              <input
+                id="player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador…"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-red-500/50 focus:ring-2 focus:ring-red-500/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-red-500 to-rose-600 text-white shadow-lg shadow-red-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Player list */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                <Clock className="h-3.5 w-3.5" />
-                Jugadores recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length})
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers
-                  .filter((n) => !players.includes(n))
-                  .slice(0, 8)
-                  .map((name) => (
-                    <button
-                      key={name}
-                      onClick={() => addRecentPlayer(name)}
-                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-red-500/40 hover:text-foreground hover:bg-surface-hover"
-                    >
-                      <Plus className="h-3 w-3" />
-                      {name}
-                    </button>
-                  ))}
-              </div>
-            </div>
-          )}
 
-          {/* Start */}
-          <button
-            onClick={startGame}
-            disabled={players.length < 2}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-500 to-rose-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-          >
-            Empezar el juego
-            <ChevronRight className="h-4 w-4" />
-          </button>
-        </motion.div>
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
+                    <button
+                      onClick={() => removePlayer(name)}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {players.length === 0 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
+                  Aún no hay jugadores
+                </div>
+              )}
+            </div>
+
+            {/* Recent players */}
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  <Clock className="h-3.5 w-3.5" />
+                  Jugadores recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers
+                    .filter((n) => !players.includes(n))
+                    .slice(0, 8)
+                    .map((name) => (
+                      <button
+                        key={name}
+                        onClick={() => addRecentPlayer(name)}
+                        className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-red-500/40 hover:text-foreground hover:bg-surface-hover"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Start */}
+            <button
+              onClick={startGame}
+              disabled={players.length < 2}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-red-500 to-rose-600 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-red-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            >
+              Empezar el juego
+              <ChevronRight className="h-4 w-4" />
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>Ring of Fire (La Copa del Rey): El Rey de la Baraja</h2>
+            <p>
+              Bienvenido al legendario <strong>Ring of Fire</strong> (conocido en español como La Copa del Rey o simplemente "Cascada"). Si has estado en alguna convención universitaria, viaje de fin de curso o residencia de estudiantes de intercambio, este es el juego de cartas definitivo que une culturas y destroza hígados.
+            </p>
+            <h3>¿Qué es y por qué jugar online?</h3>
+            <p>
+              El principal problema de jugar al Ring of Fire en la vida real es que a los 30 minutos de partida, las cartas físicas terminan pegajosas por la cerveza, o inevitablemente descubres que te faltan varias cartas clave de la baraja que se perdieron en la última fiesta. <strong>Nuestra aplicación soluciona esto simulando una baraja virtual infinita de 52 cartas.</strong> Simplemente debes tocar el mazo para revelar una carta completamente al azar. No hay dados, no hay suciedad y no hay trampas posibles. Además, te indica en pantalla exactamente qué castigo debes hacer para que no haya que memorizar aburridas tablas de valores.
+            </p>
+            <p>
+              Colocad un vaso grande o "Copa Central" en el medio de los teléfonos. En estricto orden rotatorio, se irá destapando la carta. Si sale una J (El Dictador), puedes crear una ley ridícula para el resto de la noche. Si sale un 5 (Hombre Pulgar), tú serás el amo del terror silencioso. Y si sale una temible y sombría K (El Rey)... deberás contribuir vertiendo tu bebida en la Copa Central.
+            </p>
+            <h3>El Desenlace Final</h3>
+            <ul>
+              <li><strong>Cuarto Rey Mortal:</strong> La partida sigue rodando ágil y fiera hasta que por azar absoluto una persona descubre el cuarto (y último) Rey. Inmediatamente, la partida se clausura y esa persona debe beber hasta la última gota del oscuro contenido de la Copa del Centro.</li>
+              <li>Si no lo has probado nunca, recomendamos encarecidamente que leas todas las equivalencias en nuestro <Link href="/juegos/ring-of-fire/reglas" className="text-rose-500 underline">manual de reglas completo</Link> antes del primer trago.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }

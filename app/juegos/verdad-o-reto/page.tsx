@@ -165,123 +165,148 @@ export default function VerdadORetoPage() {
   // ═══════════════════════════════════
   if (phase === "setup") {
     return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="w-full max-w-md flex flex-col gap-8"
-        >
-          {/* Header */}
-          <div className="flex flex-col items-center gap-3 text-center">
-            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-amber-500/25">
-              <Sparkles className="h-7 w-7 text-white" />
-            </div>
-            <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
-              Verdad o Reto
-            </h1>
-            <p className="text-sm text-muted max-w-xs">
-              Añade al menos 3 jugadores. Cada uno elegirá verdad o reto en su turno.
-            </p>
-            <Link href="/juegos/verdad-o-reto/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-amber-500 transition-colors hover:bg-amber-500/10">
-              <BookOpen className="h-3.5 w-3.5" />
-              Ver cómo se juega
-            </Link>
-          </div>
-
-          <IntensitySelector selected={niveles} onChange={setNiveles} />
-
-          {/* Input */}
-          <div className="flex gap-2">
-            <input
-              id="player-input"
-              type="text"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === "Enter" && addPlayer()}
-              placeholder="Nombre del jugador…"
-              className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"
-              autoComplete="off"
-            />
-            <button
-              onClick={addPlayer}
-              disabled={!inputValue.trim()}
-              className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-            >
-              <Plus className="h-5 w-5" />
-            </button>
-          </div>
-
-          {/* Player list */}
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-              <Users className="h-3.5 w-3.5" />
-              Jugadores ({players.length})
-            </div>
-
-            <AnimatePresence mode="popLayout">
-              {players.map((name) => (
-                <motion.div
-                  key={name}
-                  initial={{ opacity: 0, x: -20, height: 0 }}
-                  animate={{ opacity: 1, x: 0, height: "auto" }}
-                  exit={{ opacity: 0, x: 20, height: 0 }}
-                  transition={{ duration: 0.25 }}
-                  className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
-                >
-                  <span className="text-sm font-medium">{name}</span>
-                  <button
-                    onClick={() => removePlayer(name)}
-                    className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
-                  >
-                    <X className="h-4 w-4" />
-                  </button>
-                </motion.div>
-              ))}
-            </AnimatePresence>
-
-            {players.length === 0 && (
-              <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
-                Aún no hay jugadores
+      <div className="flex flex-1 flex-col w-full">
+        <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="w-full max-w-md flex flex-col gap-8"
+          >
+            {/* Header */}
+            <div className="flex flex-col items-center gap-3 text-center">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-500 to-orange-500 shadow-lg shadow-amber-500/25">
+                <Sparkles className="h-7 w-7 text-white" />
               </div>
-            )}
-          </div>
+              <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">
+                Verdad o Reto
+              </h1>
+              <p className="text-sm text-muted max-w-xs">
+                Añade al menos 3 jugadores. Cada uno elegirá verdad o reto en su turno.
+              </p>
+              <Link href="/juegos/verdad-o-reto/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-amber-500 transition-colors hover:bg-amber-500/10">
+                <BookOpen className="h-3.5 w-3.5" />
+                Ver cómo se juega
+              </Link>
+            </div>
 
-          {/* Recent players */}
-          {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+            <IntensitySelector selected={niveles} onChange={setNiveles} />
+
+            {/* Input */}
+            <div className="flex gap-2">
+              <input
+                id="player-input"
+                type="text"
+                value={inputValue}
+                onChange={(e) => setInputValue(e.target.value)}
+                onKeyDown={(e) => e.key === "Enter" && addPlayer()}
+                placeholder="Nombre del jugador…"
+                className="flex-1 rounded-xl border border-border bg-surface px-4 py-3 text-sm text-foreground placeholder:text-muted outline-none transition-colors focus:border-amber-500/50 focus:ring-2 focus:ring-amber-500/20"
+                autoComplete="off"
+              />
+              <button
+                onClick={addPlayer}
+                disabled={!inputValue.trim()}
+                className="flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-orange-500 text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-105 disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+              >
+                <Plus className="h-5 w-5" />
+              </button>
+            </div>
+
+            {/* Player list */}
             <div className="flex flex-col gap-2">
               <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
-                <Clock className="h-3.5 w-3.5" />
-                Jugadores recientes
+                <Users className="h-3.5 w-3.5" />
+                Jugadores ({players.length})
               </div>
-              <div className="flex flex-wrap gap-2">
-                {recentPlayers
-                  .filter((n) => !players.includes(n))
-                  .slice(0, 8)
-                  .map((name) => (
-                    <button
-                      key={name}
-                      onClick={() => addRecentPlayer(name)}
-                      className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-amber-500/40 hover:text-foreground hover:bg-surface-hover"
-                    >
-                      <Plus className="h-3 w-3" />
-                      {name}
-                    </button>
-                  ))}
-              </div>
-            </div>
-          )}
 
-          {/* Start */}
-          <button
-            onClick={startGame}
-            disabled={players.length < 3 || isLoading}
-            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
-          >
-            {isLoading ? "Cargando..." : "Empezar a jugar"}
-            {!isLoading && <ChevronRight className="h-4 w-4" />}
-          </button>
-        </motion.div>
+              <AnimatePresence mode="popLayout">
+                {players.map((name) => (
+                  <motion.div
+                    key={name}
+                    initial={{ opacity: 0, x: -20, height: 0 }}
+                    animate={{ opacity: 1, x: 0, height: "auto" }}
+                    exit={{ opacity: 0, x: 20, height: 0 }}
+                    transition={{ duration: 0.25 }}
+                    className="flex items-center justify-between rounded-xl border border-border bg-surface px-4 py-3"
+                  >
+                    <span className="text-sm font-medium">{name}</span>
+                    <button
+                      onClick={() => removePlayer(name)}
+                      className="flex h-7 w-7 items-center justify-center rounded-lg text-muted transition-colors hover:bg-red-500/10 hover:text-red-400"
+                    >
+                      <X className="h-4 w-4" />
+                    </button>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {players.length === 0 && (
+                <div className="flex items-center justify-center rounded-xl border border-dashed border-border py-8 text-sm text-muted">
+                  Aún no hay jugadores
+                </div>
+              )}
+            </div>
+
+            {/* Recent players */}
+            {recentPlayers.filter((n) => !players.includes(n)).length > 0 && (
+              <div className="flex flex-col gap-2">
+                <div className="flex items-center gap-2 text-xs font-medium uppercase tracking-wider text-muted">
+                  <Clock className="h-3.5 w-3.5" />
+                  Jugadores recientes
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {recentPlayers
+                    .filter((n) => !players.includes(n))
+                    .slice(0, 8)
+                    .map((name) => (
+                      <button
+                        key={name}
+                        onClick={() => addRecentPlayer(name)}
+                        className="flex items-center gap-1.5 rounded-full border border-border bg-surface px-3 py-1.5 text-xs font-medium text-muted transition-all hover:border-amber-500/40 hover:text-foreground hover:bg-surface-hover"
+                      >
+                        <Plus className="h-3 w-3" />
+                        {name}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {/* Start */}
+            <button
+              onClick={startGame}
+              disabled={players.length < 3 || isLoading}
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-40 disabled:hover:scale-100 disabled:cursor-not-allowed"
+            >
+              {isLoading ? "Cargando..." : "Empezar a jugar"}
+              {!isLoading && <ChevronRight className="h-4 w-4" />}
+            </button>
+          </motion.div>
+        </div>
+
+        {/* SEO Static Content Block for crawlers */}
+        <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
+          <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
+            <h2>El Clásico Verdad o Reto, Ahora en tu Móvil</h2>
+            <p>
+              El mitiquísimo juego de <strong>Verdad o Reto</strong> ha evolucionado. Olvídate de quedarte sin ideas o de repetir siempre las mismas preguntas aburridas sobre a quién le gusta quién en la clase. Con nuestra aplicación de Verdad o Reto online, nosotros ponemos la imaginación y vosotros la cara de vergüenza.
+            </p>
+            <h3>¿Cómo funciona esta versión online interactiva?</h3>
+            <p>
+              Simplemente reunid al grupo (recomendamos jugar a partir de 3 personas para que haya la suficiente diversidad de salseo) e introducid los nombres en el cajón de arriba. Nuestro motor inteligente mezclará las decenas de preguntas y retos en base a los <strong>tres niveles de calentamiento disponibles</strong>.
+            </p>
+            <p>
+              A medida que giren los turnos, si eliges Verdad, tendrás que confesar de forma brutalmente honesta un evento de tu pasado, una opinión conflictiva o una intimidad. Si prefieres la Acción (Reto), prepárate para sudar. Como se trata de un <em>drinking game</em> (juego para beber), la regla fundamental dice que aquel gallina que se acobarde frente a su desafío deberá consumir alcohol a modo de dolorosa penalización.
+            </p>
+            <h3>Consejos de Supervivencia</h3>
+            <ul>
+              <li><strong>Prohibido acampar en la Verdad:</strong> Nadie respeta al jugador que escoge 5 verdades seguidas. Estableced el estricto límite de que solo se pueden contestar 2 verdades consecutivas. Después, ¡hay que pasar a la acción obligatoriamente!</li>
+              <li><strong>Castigos Severos:</strong> Negarse a contestar o actuar debe salir caro. Recomendamos medio vaso o varios tragos contados en voz alta por el grupo.</li>
+              <li>Explora nuestro artículo oficial con las <Link href="/juegos/verdad-o-reto/reglas" className="text-amber-500 underline">Reglas y Trucos del Verdad o Reto</Link>.</li>
+            </ul>
+          </div>
+        </div>
       </div>
     );
   }
