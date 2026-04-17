@@ -12,24 +12,9 @@ export default function Navbar() {
 
   const handleSoundToggle = () => {
     toggleSound();
-    // If enabling, play a click to confirm
+    // If enabling, play a confirmation click after state updates
     if (!soundEnabled) {
-      setTimeout(() => {
-        // Play after state update
-        const ctx = new (window.AudioContext ||
-          (window as unknown as { webkitAudioContext: typeof AudioContext })
-            .webkitAudioContext)();
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = "sine";
-        osc.frequency.setValueAtTime(800, ctx.currentTime);
-        gain.gain.setValueAtTime(0.08, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.06);
-      }, 50);
+      setTimeout(() => playSound("click"), 50);
     }
   };
 

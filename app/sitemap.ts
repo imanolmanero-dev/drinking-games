@@ -71,6 +71,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.6,
     })),
+    // Sobre nosotros (E-E-A-T)
+    {
+      url: `${baseUrl}/sobre-nosotros`,
+      lastModified: new Date(),
+      changeFrequency: "yearly",
+      priority: 0.5,
+    },
     // Páginas de contacto y legales
     {
       url: `${baseUrl}/contacto`,

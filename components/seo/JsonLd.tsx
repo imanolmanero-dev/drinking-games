@@ -2,8 +2,8 @@ export function WebSiteJsonLd() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Beber Games",
-    alternateName: ["BeberGames", "Beber games"],
+    name: "BeberGames",
+    alternateName: ["Beber Games", "Beber games"],
     url: "https://bebergames.com",
     description:
       "La mejor colección de juegos para beber en grupo. Yo Nunca, Verdad o Reto, Triman, La Ruleta y más.",
