@@ -181,4 +181,306 @@ export const blogFAQs: Record<string, FAQ[]> = {
       a: "Si un jugador encesta 2 tiros consecutivos, puede declarar 'Heating Up'. Si encesta un tercero seguido, está 'On Fire' y puede seguir lanzando hasta que falle. El árbitro virtual de BeberGames detecta esto automáticamente.",
     },
   ],
+
+  "100-preguntas-yo-nunca": [
+    {
+      q: "¿Cuántas preguntas tiene el juego Yo Nunca de BeberGames?",
+      a: "BeberGames tiene más de 100 preguntas de Yo Nunca organizadas por niveles de intensidad: suave, normal y picante. Puedes elegir el nivel antes de empezar para adaptarlo a tu grupo.",
+    },
+    {
+      q: "¿Cómo se juega al Yo Nunca?",
+      a: "En el Yo Nunca un jugador dice 'Yo nunca he...' seguido de algo que nunca haya hecho. Todos los que sí lo hayan hecho beben. Si nadie bebe, el que dijo la frase bebe por haberla elegido. El turno pasa hasta completar las rondas acordadas.",
+    },
+    {
+      q: "¿Cuál es la mejor pregunta para empezar el Yo Nunca?",
+      a: "Las mejores preguntas para empezar son las suaves y divertidas, como 'Yo nunca he dormido en clase' o 'Yo nunca me he caído en público'. Guardar las preguntas comprometidas para cuando el grupo esté más cómodo hace la noche mucho más divertida.",
+    },
+    {
+      q: "¿Se puede jugar al Yo Nunca en pareja?",
+      a: "Sí, el Yo Nunca funciona muy bien en pareja. Adapta las reglas: si ambos lo habéis hecho, brindáis los dos; si ninguno, el que propuso la frase bebe. Es una forma divertida de conocerse mejor y descubrir experiencias pasadas.",
+    },
+  ],
+
+  "como-organizar-fiesta-juegos-beber": [
+    {
+      q: "¿Qué juegos de beber son mejores para organizar una fiesta en casa?",
+      a: "Para una fiesta en casa los mejores son Yo Nunca (para romper el hielo), Verdad o Reto (cuando el grupo ya tiene confianza) y Beer Pong o Ring of Fire si tenéis espacio y mesa disponible. Con BeberGames los tienes todos desde el móvil sin descargar nada.",
+    },
+    {
+      q: "¿En qué orden debo poner los juegos en una fiesta?",
+      a: "El orden ideal es: empezar con Yo Prefiero o Medusa (fáciles y sin presión), pasar a Yo Nunca cuando el grupo esté suelto, y cerrar con Verdad o Reto o Ring of Fire en la parte más animada. Cambiar de juego cada 30-40 minutos mantiene la energía alta.",
+    },
+    {
+      q: "¿Cuántos juegos necesito preparar para una fiesta con juegos de beber?",
+      a: "Con 3 juegos bien escogidos tienes suficiente para una fiesta de 2-3 horas. Tener 5-6 de reserva está bien por si alguno no engancha. En BeberGames tienes 12 juegos disponibles para rotar sin necesidad de preparar nada con antelación.",
+    },
+  ],
+
+  "drinking-games-reglas": [
+    {
+      q: "¿Cuáles son las reglas generales de los drinking games?",
+      a: "Las reglas comunes a casi todos los drinking games son: el que pierde o no cumple una condición bebe, se puede decir 'paso' pero entonces bebes doble, y todo lo que ocurre en el juego se queda en el juego. BeberGames explica las reglas concretas de cada juego en pantalla antes de empezar.",
+    },
+    {
+      q: "¿Cuáles son los drinking games más populares en España?",
+      a: "Los drinking games más populares en España son Yo Nunca, Verdad o Reto, El Rey de la Copa, Medusa, La Bomba y Quién Es Más Probable. Todos tienen versión digital gratuita en BeberGames, perfecta para tenerlos siempre a mano desde el móvil.",
+    },
+    {
+      q: "¿Cómo se dice 'Never Have I Ever' en español?",
+      a: "'Never Have I Ever' se llama 'Yo Nunca' en español. La mecánica es idéntica: dices algo que nunca hayas hecho y los que sí lo hayan hecho beben. Es uno de los juegos de presentación más populares del mundo y funciona en cualquier idioma.",
+    },
+    {
+      q: "¿Qué drinking game es más fácil de aprender?",
+      a: "Medusa es el drinking game más fácil de aprender: solo hay que mirar a otro jugador cuando se da la señal. La Bomba también es muy sencillo: te pasas el móvil y rezas para que no explote en tus manos. Ambos están en BeberGames con instrucciones en pantalla.",
+    },
+  ],
+
+  "juegos-beber-baraja-espanola": [
+    {
+      q: "¿Qué juegos de beber se pueden hacer con una baraja española?",
+      a: "Con una baraja española puedes jugar a la variante española de Ring of Fire, al Escoba Borracha, a la Guerra (el que saca carta más baja bebe) y a múltiples variantes de reparto de tragos según el palo o el número. Son clásicos perfectos para cuando no tienes el móvil a mano.",
+    },
+    {
+      q: "¿Se puede jugar al Ring of Fire con baraja española?",
+      a: "Sí, el Ring of Fire se puede jugar con baraja española adaptando las reglas a los 4 palos: oros, copas, espadas y bastos. Cada palo puede tener una regla diferente. En BeberGames tienes la versión digital que no require baraja física.",
+    },
+    {
+      q: "¿Cuántas cartas tiene una baraja española?",
+      a: "La baraja española completa tiene 48 cartas: 12 numéricas (del 1 al 12) en 4 palos (oros, copas, espadas, bastos). La baraja corta que se usa habitualmente tiene 40 cartas (del 1 al 7 y del 10 al 12). Ambas sirven para jugar a juegos de beber.",
+    },
+  ],
+
+  "juegos-de-mesa-para-beber": [
+    {
+      q: "¿Cuáles son los mejores juegos de mesa para convertir en juegos de beber?",
+      a: "Los juegos de mesa que mejor se adaptan para beber son el Jenga (el que hace caer la torre bebe), el UNO (por cada carta que coges bebes un trago), el Parchís (al comer una ficha, el comido bebe) y cualquier juego de trivia donde el equipo perdedor bebe.",
+    },
+    {
+      q: "¿Se puede añadir una regla de beber a cualquier juego de mesa?",
+      a: "Sí. La regla más universal es: el jugador que pierde la ronda o comete un error bebe. También puedes añadir reglas a eventos específicos del juego (sacar un 6 en los dados, robar una carta negra en UNO, etc.). Lo importante es que todos acuerden las reglas antes de empezar.",
+    },
+    {
+      q: "¿Necesito comprar juegos especiales para jugar a juegos de mesa de beber?",
+      a: "No. Cualquier juego de mesa que ya tengas en casa se puede convertir en juego de beber añadiendo reglas simples. Para juegos completamente digitales sin necesidad de material físico, BeberGames ofrece 12 juegos gratuitos que funcionan desde cualquier móvil.",
+    },
+  ],
+
+  "juegos-para-beber-con-dados": [
+    {
+      q: "¿Qué juegos de beber usan dados?",
+      a: "El juego de dados para beber más popular es Triman (el Señor del 3), donde el jugador que saca un 3 se convierte en esclavo y bebe en cada ronda hasta que otro saque un 3. También existe el 7-11-doubles, donde sacar ciertos números obliga a beber al dueño del vaso central.",
+    },
+    {
+      q: "¿Cómo se juega al Triman?",
+      a: "En Triman cada jugador lanza el dado por turnos. El primero en sacar un 3 se convierte en el Señor del 3: beberá un trago cada vez que salga un 3 durante el resto de la partida. Se libera cuando otro jugador saca un 3 y hereda la maldición. Disponible digitalmente en BeberGames.",
+    },
+    {
+      q: "¿Cuántos dados necesito para jugar a juegos de beber?",
+      a: "Con un solo dado ya puedes jugar a Triman y a la mayoría de juegos de dados para beber. Algunos juegos usan 2 dados para generar más combinaciones. En BeberGames el dado es digital: la app lo lanza automáticamente y gestiona todas las reglas.",
+    },
+  ],
+
+  "juegos-para-beber-en-pareja": [
+    {
+      q: "¿Cuáles son los mejores juegos para beber en pareja?",
+      a: "Los mejores juegos para beber en pareja son Yo Nunca (para conocerse mejor), Verdad o Reto (para subir la tensión) y Yo Prefiero (para descubrir los límites del otro). BeberGames los tiene todos disponibles con versión para 2 jugadores.",
+    },
+    {
+      q: "¿Es el Yo Nunca un buen juego para una primera cita?",
+      a: "Sí, el Yo Nunca en su versión suave es perfecto para una primera cita: genera conversación de forma natural, añade un punto de complicidad y permite conocerse sin presión. Empieza siempre por preguntas inocentes antes de subir el nivel.",
+    },
+    {
+      q: "¿Cómo se adaptan las reglas del Verdad o Reto para dos personas?",
+      a: "En pareja, el Verdad o Reto funciona igual pero la dinámica cambia: cada pregunta se vuelve más personal y directa. Si el otro no quiere responder o cumplir el reto, bebe. Recomendamos turnarse para proponer preguntas en lugar de usar solo la app para mayor personalización.",
+    },
+  ],
+
+  "la-bomba-juego-beber": [
+    {
+      q: "¿Cómo se juega a La Bomba?",
+      a: "En La Bomba el móvil actúa como una bomba con un temporizador secreto. Los jugadores se pasan el móvil de mano en mano lo más rápido posible. Cuando el temporizador llega a cero, el jugador que tenga el móvil en ese momento bebe. Cada ronda tiene un tiempo aleatorio entre 12 y 40 segundos.",
+    },
+    {
+      q: "¿Cuántas personas se necesitan para jugar a La Bomba?",
+      a: "La Bomba funciona desde 3 personas, pero es más divertido con 5 o más. Cuantos más jugadores haya, más tensión genera el paso del móvil. Para grupos muy grandes de más de 12, se puede jugar en dos círculos simultáneos.",
+    },
+    {
+      q: "¿Cuánto dura el temporizador de La Bomba?",
+      a: "El temporizador de La Bomba en BeberGames es completamente aleatorio: puede durar entre 12 y 40 segundos por ronda. Nadie sabe cuándo va a explotar, lo que genera una tensión constante desde el primer momento.",
+    },
+    {
+      q: "¿Se puede jugar a La Bomba sin alcohol?",
+      a: "Sí. La Bomba funciona perfectamente con cualquier penalización: el que pierde puede beber agua, hacer sentadillas, contar un secreto o asumir cualquier castigo que el grupo decida. BeberGames promueve el juego responsable y la diversión sin presión.",
+    },
+  ],
+
+  "medusa-juego-beber": [
+    {
+      q: "¿Cómo se juega al Medusa?",
+      a: "En Medusa todos los jugadores miran hacia abajo con los ojos cerrados. El móvil hace la cuenta atrás. A la señal, todos levantan la cabeza y miran fijamente a otro jugador. Si dos personas se cruzan la mirada, ambas gritan '¡MEDUSA!' y beben. El último en gritar bebe el doble.",
+    },
+    {
+      q: "¿Por qué se llama Medusa este juego?",
+      a: "El nombre viene del mito griego de Medusa, el monstruo cuya mirada convertía a las personas en piedra. En el juego, cruzar la mirada con otro jugador tiene consecuencias: ambos quedan 'petrificados' y tienen que beber.",
+    },
+    {
+      q: "¿Cuántas personas se necesitan para jugar al Medusa?",
+      a: "Medusa funciona mejor con 4 o más jugadores. Con 3 personas hay pocas combinaciones de miradas. Lo ideal son grupos de 5 a 12 personas donde la tensión de a quién mirar sea máxima y los cruces de mirada más inesperados.",
+    },
+    {
+      q: "¿Cuánto dura una partida de Medusa?",
+      a: "Cada ronda de Medusa dura solo 3 segundos: la cuenta atrás y el momento del cruce de miradas. Una partida completa de 10 rondas no llega a los 5 minutos. Es el juego perfecto para romper el hielo al principio de la noche o entre partidas más largas.",
+    },
+  ],
+
+  "preguntas-picantes-verdad-o-reto": [
+    {
+      q: "¿Cuáles son las preguntas más picantes del Verdad o Reto?",
+      a: "Las preguntas picantes más populares del Verdad o Reto son del tipo: '¿Cuál ha sido tu experiencia más bochornosa en la cama?', '¿Has tenido un sueño subido de tono con alguien del grupo?', o '¿Cuál es tu fantasía que nunca te has atrevido a realizar?'. En BeberGames están organizadas por nivel de intensidad.",
+    },
+    {
+      q: "¿Se puede jugar al Verdad o Reto picante en pareja?",
+      a: "Sí, el Verdad o Reto picante es ideal para parejas con confianza. En pareja las preguntas se vuelven más personales y directas, lo que puede generar conversaciones muy reveladoras. Recomendamos empezar siempre por preguntas más suaves antes de pasar al nivel +18.",
+    },
+    {
+      q: "¿Cómo saber qué nivel de preguntas elegir en el Verdad o Reto?",
+      a: "La regla es leer al grupo: si es la primera vez que jugáis juntos o hay gente que no se conoce bien, empieza con el nivel verde (suave). Si todos se conocen de hace tiempo y están cómodos, podéis saltar directamente al nivel amarillo. El nivel rojo (+18) es solo para grupos de máxima confianza.",
+    },
+  ],
+
+  "preguntas-yo-nunca-parejas": [
+    {
+      q: "¿Cuáles son las mejores preguntas de Yo Nunca para parejas?",
+      a: "Las mejores preguntas de Yo Nunca para parejas combinan romanticismo y complicidad: desde 'Yo nunca he pensado en ti nada más despertarme' hasta confesiones más íntimas como 'Yo nunca he fingido placer para no herir tus sentimientos'. La clave es ir escalando gradualmente de suave a picante.",
+    },
+    {
+      q: "¿Cómo se juega al Yo Nunca solo dos personas?",
+      a: "En pareja las reglas cambian ligeramente: si ambos lo habéis hecho, brindáis y bebéis los dos; si ninguno lo ha hecho, quien propuso la frase bebe como castigo. El bonus más divertido es obligar al otro a contar la historia completa detrás de cada trago.",
+    },
+    {
+      q: "¿El Yo Nunca ayuda a conocerse mejor en pareja?",
+      a: "Sí, es una de las herramientas más efectivas para conocerse mejor de forma divertida. Las confesiones surgen de forma natural sin la presión de una conversación directa. Especialmente valioso para parejas nuevas que quieren hablar de su pasado sin que resulte forzado.",
+    },
+  ],
+
+  "reglas-del-yo-nunca": [
+    {
+      q: "¿Cuáles son las reglas del Yo Nunca?",
+      a: "Las reglas del Yo Nunca son: por turnos, cada jugador dice 'Yo nunca he...' seguido de algo que no haya hecho. Todos los que sí lo hayan hecho beben. Si nadie bebe, el que propuso la frase bebe como penalización. Opcional: el que bebe puede contar la historia si quiere.",
+    },
+    {
+      q: "¿Cuántos jugadores se necesitan para el Yo Nunca?",
+      a: "El Yo Nunca funciona desde 2 jugadores, aunque es más divertido con 4 o más. Con más jugadores hay más posibilidades de que alguien beba y las revelaciones son más variadas. BeberGames tiene una versión digital con preguntas automáticas adaptada a cualquier tamaño de grupo.",
+    },
+    {
+      q: "¿Qué pasa si nadie bebe en el Yo Nunca?",
+      a: "Si nadie bebe cuando alguien dice su frase, esa persona bebe como penalización por haber elegido algo demasiado específico o raro. Esto incentiva a elegir frases donde al menos algún jugador haya vivido esa experiencia.",
+    },
+    {
+      q: "¿Se puede jugar al Yo Nunca sin alcohol?",
+      a: "Sí. El Yo Nunca funciona igual con cualquier bebida: agua, refrescos o zumos. La mecánica y la diversión son exactamente iguales. BeberGames promueve el juego responsable y ninguno de sus juegos requiere consumir alcohol para disfrutarse.",
+    },
+  ],
+
+  "rey-de-la-copa-reglas": [
+    {
+      q: "¿Cuáles son las reglas de El Rey de la Copa?",
+      a: "En El Rey de la Copa las cartas se colocan boca abajo en círculo alrededor de un vaso central. Por turnos, cada jugador roba una carta y ejecuta su regla (As = waterfall, 2 = elige quién bebe, 7 = todos señalan al cielo y el último bebe, Rey = añade al vaso central). El que saca el 4º Rey bebe el vaso entero.",
+    },
+    {
+      q: "¿En qué se diferencia El Rey de la Copa del Ring of Fire?",
+      a: "El Rey de la Copa es la variante española del Ring of Fire. Comparten la mecánica general (cartas en círculo, vaso central) pero tienen reglas distintas para algunas cartas, adaptadas al contexto español. Ambos están disponibles en BeberGames.",
+    },
+    {
+      q: "¿Cuántos jugadores se necesitan para El Rey de la Copa?",
+      a: "El Rey de la Copa funciona con 3 o más jugadores. Lo ideal son de 4 a 8 personas. Con menos de 3 hay pocas cartas robadas antes de llegar a los Reyes. Con más de 10 las rondas se alargan mucho.",
+    },
+    {
+      q: "¿Qué se pone en el vaso central de El Rey de la Copa?",
+      a: "En el vaso central cada jugador que roba un Rey vierte parte de su bebida. La mezcla puede ser cualquier cosa: cerveza, vino, refrescos o lo que haya en la mesa. El desgraciado que saca el cuarto Rey tiene que beberse toda esa mezcla de golpe.",
+    },
+  ],
+
+  "verdad-o-reto-preguntas-buenas": [
+    {
+      q: "¿Cuántas preguntas tiene el Verdad o Reto de BeberGames?",
+      a: "El Verdad o Reto de BeberGames incluye más de 80 preguntas y retos organizados en 3 niveles de intensidad: verde (suave), amarillo (normal) y rojo (picante +18). La app las genera automáticamente según el nivel que elijas.",
+    },
+    {
+      q: "¿Es mejor elegir Verdad o Reto?",
+      a: "Depende del jugador y el momento. La Verdad es mejor cuando quieres descubrir algo real sobre alguien. El Reto es mejor cuando el ambiente ya está animado y el grupo busca acción. Los jugadores más valientes suelen preferir Verdad porque las preguntas buenas son más comprometidas que cualquier reto.",
+    },
+    {
+      q: "¿Se puede jugar al Verdad o Reto sin reglas de beber?",
+      a: "Sí. El Verdad o Reto funciona perfectamente sin alcohol: el que no quiere responder o cumplir el reto puede asumir cualquier penalización que el grupo acuerde (hacer 10 sentadillas, contar un secreto, etc.). La diversión está en las revelaciones, no en la bebida.",
+    },
+  ],
+
+  "yo-nunca-preguntas-picantes-18": [
+    {
+      q: "¿Qué es el Yo Nunca +18?",
+      a: "El Yo Nunca +18 es la versión adulta del clásico Yo Nunca, con preguntas íntimas y subidas de tono diseñadas exclusivamente para mayores de edad. Las confesiones que salen son mucho más reveladoras que en la versión estándar. Solo apto para grupos con confianza plena y mente abierta.",
+    },
+    {
+      q: "¿Hay alguna regla especial en el Yo Nunca +18?",
+      a: "La regla más importante del Yo Nunca +18 es el pacto de silencio: todo lo que se confiese durante el juego se queda entre los jugadores. Nadie puede usar las confesiones fuera del juego. También se respeta el derecho a pasar: nadie está obligado a beber ni a explicar nada.",
+    },
+    {
+      q: "¿Cómo se lleva bien el ambiente en el Yo Nunca picante?",
+      a: "La clave es escalar gradualmente: empezar siempre por preguntas del Bloque 1 (ligues y pasiones) antes de pasar a los bloques más intensos. Si notas que alguien está incómodo, baja el nivel o cambia de juego. La diversión tiene que ser mutua para que funcione.",
+    },
+  ],
+
+  "yo-prefiero-preguntas": [
+    {
+      q: "¿Cómo se juega al Yo Prefiero?",
+      a: "En el Yo Prefiero se presenta un dilema con dos opciones (A o B). Todos los jugadores votan simultáneamente levantando la mano. La minoría (los que votaron la opción menos popular) bebe un trago. Si hay empate, todos beben. Luego viene el debate de por qué cada uno eligió lo que eligió.",
+    },
+    {
+      q: "¿Cuántas preguntas tiene el Yo Prefiero de BeberGames?",
+      a: "BeberGames tiene más de 60 dilemas de Yo Prefiero organizados por intensidad. Incluyen dilemas cotidianos, preguntas incómodas y opciones absurdas que generan debate. Las preguntas se van renovando para que puedas jugar varias sesiones sin repetir.",
+    },
+    {
+      q: "¿Cuál es la gracia del Yo Prefiero como juego de beber?",
+      a: "La gracia del Yo Prefiero es que fuerza a tomar decisiones en dilemas donde no hay respuesta correcta. Luego el debate sobre por qué cada uno eligió una opción genera conversaciones muy reveladoras sobre los valores, límites y personalidad de cada jugador. Es el rompe-hielos más efectivo que existe.",
+    },
+    {
+      q: "¿Se puede jugar al Yo Prefiero sin beber?",
+      a: "Sí. Sin bebida el Yo Prefiero sigue siendo divertido: la penalización puede ser contar por qué elegiste esa opción, hacer un reto o simplemente 'el pringado de la ronda'. Con o sin alcohol, las revelaciones y el debate son igual de entretenidos.",
+    },
+  ],
+
+  "preguntas-quien-es-mas-probable": [
+    {
+      q: "¿Cómo se juega al Quién Es Más Probable?",
+      a: "Se lee una pregunta del tipo '¿Quién es más probable que acabe en la cárcel?'. A la cuenta de 3, todos señalan simultáneamente a alguien. El jugador con más dedos apuntándole bebe. En caso de empate, todos los empatados beben.",
+    },
+    {
+      q: "¿Cuántas personas se necesitan para jugar al Quién Es Más Probable?",
+      a: "Se necesitan mínimo 3 personas, pero el juego es mucho más divertido a partir de 5 o 6. Con más jugadores las votaciones son más variadas y las discusiones post-señalada más épicas.",
+    },
+    {
+      q: "¿Se puede personalizar el Quién Es Más Probable para un cumpleaños?",
+      a: "Sí, es uno de los mejores juegos para personalizar en un cumpleaños. El grupo puede preparar preguntas específicas sobre el festejado antes de la fiesta. Por ejemplo: '¿Quién es más probable que sea el primero en casarse de este grupo?' o '¿Quién es más probable que olvide el cumpleaños del homenajeado el año que viene?'",
+    },
+    {
+      q: "¿Qué pasa si hay empate en el Quién Es Más Probable?",
+      a: "Cuando hay empate (dos o más personas con el mismo número de votos), todas las empatadas beben. En BeberGames la app gestiona los empates automáticamente y puede hacer una segunda votación de desempate si el grupo lo desea.",
+    },
+  ],
+
+  "juegos-para-cumpleanos-adultos": [
+    {
+      q: "¿Cuáles son los mejores juegos para un cumpleaños de adultos?",
+      a: "Los mejores juegos para un cumpleaños de adultos son Quién Es Más Probable (personalizable con preguntas sobre el festejado), Verdad o Reto, Yo Nunca, Ring of Fire y Beer Pong. Todos están disponibles gratis en BeberGames sin necesidad de descargar nada.",
+    },
+    {
+      q: "¿Cómo organizo los juegos en una fiesta de cumpleaños?",
+      a: "El orden ideal es: empezar con un rompehielos (Medusa o La Bomba), pasar a juegos de grupo cuando todos hayan llegado (Yo Prefiero o Quién Es Más Probable), y cerrar con los juegos más intensos cuando la noche ya está lanzada (Ring of Fire o Beer Pong).",
+    },
+    {
+      q: "¿Qué juego de cumpleaños funciona mejor para grupos grandes?",
+      a: "Para grupos de más de 10 personas funcionan mejor Medusa (todos participan a la vez), Quién Es Más Probable (todos votan) y Beer Pong (por equipos con espectadores). Para grupos más pequeños de 4-8 personas, Ring of Fire o Verdad o Reto son perfectos.",
+    },
+  ],
 };

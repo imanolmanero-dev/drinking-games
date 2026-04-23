@@ -68,3 +68,9 @@ export function getAllPosts(): BlogPost[] {
     .sort((post1, post2) => (post1.metadata.date > post2.metadata.date ? -1 : 1));
   return posts;
 }
+
+/** Returns estimated reading time in minutes (200 wpm average). */
+export function readingTime(content: string): number {
+  const words = content.trim().split(/\s+/).length;
+  return Math.max(1, Math.round(words / 200));
+}

@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { ArrowRight, CalendarDays, ScrollText } from "lucide-react";
-import { getAllPosts } from "@/lib/blog";
+import { ArrowRight, CalendarDays, ScrollText, Clock } from "lucide-react";
+import { getAllPosts, readingTime } from "@/lib/blog";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -54,12 +54,18 @@ export default function BlogIndexPage() {
               </p>
             </div>
             <div className="mt-4 flex items-center justify-between pt-4 border-t border-border">
-              <span className="flex items-center gap-1.5 text-xs text-muted">
-                <CalendarDays className="h-3.5 w-3.5" />
-                {new Date(post.metadata.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
-              </span>
+              <div className="flex items-center gap-3">
+                <span className="flex items-center gap-1.5 text-xs text-muted">
+                  <CalendarDays className="h-3.5 w-3.5" />
+                  {new Date(post.metadata.date).toLocaleDateString('es-ES', { year: 'numeric', month: 'short', day: 'numeric' })}
+                </span>
+                <span className="flex items-center gap-1 text-xs text-muted">
+                  <Clock className="h-3.5 w-3.5" />
+                  {readingTime(post.content)} min
+                </span>
+              </div>
               <span className="flex items-center gap-1 text-xs font-medium text-indigo-400 transition-transform group-hover:translate-x-1">
-                Leer artículo <ArrowRight className="h-3.5 w-3.5" />
+                Leer <ArrowRight className="h-3.5 w-3.5" />
               </span>
             </div>
           </Link>

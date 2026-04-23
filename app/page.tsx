@@ -17,8 +17,10 @@ import {
   Zap,
   MessageSquare,
   Trophy,
+  Clock,
+  CalendarDays,
 } from "lucide-react";
-import { getAllPosts } from "@/lib/blog";
+import { getAllPosts, readingTime } from "@/lib/blog";
 
 const juegos = [
   {
@@ -372,6 +374,16 @@ export default function Home() {
                   <p className="text-xs text-muted line-clamp-2">
                     {post.metadata.excerpt}
                   </p>
+                </div>
+                <div className="flex items-center gap-3 pt-2 border-t border-border">
+                  <span className="flex items-center gap-1 text-[11px] text-muted">
+                    <CalendarDays className="h-3 w-3" />
+                    {new Date(post.metadata.date).toLocaleDateString('es-ES', { day: 'numeric', month: 'short', year: 'numeric' })}
+                  </span>
+                  <span className="flex items-center gap-1 text-[11px] text-muted">
+                    <Clock className="h-3 w-3" />
+                    {readingTime(post.content)} min
+                  </span>
                 </div>
               </Link>
             ))}
