@@ -1,5 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Dice3, Users, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Juegos de Dados para Beber — Triman y Más",
+  description:
+    "Los mejores juegos de dados para beber. Juega al Triman desde el móvil con dado digital. Sin necesidad de dados físicos, gratis y sin descargas.",
+};
 
 const juegos = [
   {
@@ -53,6 +60,26 @@ export default function DadosCategoryPage() {
             </Link>
           );
         })}
+      </div>
+
+      {/* SEO content */}
+      <div className="w-full max-w-4xl mt-16">
+        <div className="rounded-2xl border border-border bg-surface p-8">
+          <h2 className="text-xl font-bold mb-4">
+            Juegos de dados para beber: que el azar decida tu destino
+          </h2>
+          <div className="text-sm text-muted space-y-3 leading-relaxed">
+            <p>
+              Los juegos de dados para beber llevan décadas siendo los favoritos de las fiestas universitarias y las previas en casa. La razón es simple: no hay que pensar demasiado, no hay que recordar reglas complejas y el dado siempre tiene la última palabra. Tiras, obedeces, bebes o te salvas.
+            </p>
+            <p>
+              El <Link href="/juegos/triman" className="text-accent hover:underline">Triman</Link> (también conocido como El Señor del 3) es el rey de los juegos de dados para beber. Su mecánica es adictiva: el jugador que saca un 3 se convierte en el Triman y queda maldito hasta que otro jugador lo libere sacando otro 3. Mientras tanto, cada ronda que pasa le toca beber.
+            </p>
+            <p>
+              En BeberGames tienes el dado digital integrado: la app lanza el dado por ti, aplica las reglas automáticamente y lleva el control de quién es el Triman en cada momento. Sin dados físicos que se pierdan debajo del sofá ni discusiones sobre si el dado estaba torcido. Si quieres conocer todos los juegos de dados que existen, echa un vistazo a nuestra <Link href="/blog/juegos-para-beber-con-dados" className="text-accent hover:underline">guía completa de juegos de dados para beber</Link>.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

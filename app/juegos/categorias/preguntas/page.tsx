@@ -1,5 +1,12 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import { Wine, Sparkles, Hand, Scale, Users, ArrowRight } from "lucide-react";
+
+export const metadata: Metadata = {
+  title: "Juegos de Preguntas para Beber — Yo Nunca, Verdad o Reto y Más",
+  description:
+    "Los mejores juegos de preguntas para beber en grupo. Yo Nunca, Verdad o Reto, Quién Es Más Probable y Yo Prefiero. Gratis, sin descargas y desde el móvil.",
+};
 
 const juegos = [
   {
@@ -73,13 +80,33 @@ export default function PreguntasCategoryPage() {
                   <Users className="h-3.5 w-3.5" />
                   {juego.jugadores} jugadores
                 </span>
-                <span className="flex items-center gap-1 text-xs font-medium transition-transform group-hover:translate-x-1" style={{ color: `var(--${juego.id}-accent)` }}>
+                <span className="flex items-center gap-1 text-xs font-medium text-purple-400 transition-transform group-hover:translate-x-1">
                   Jugar <ArrowRight className="h-3.5 w-3.5" />
                 </span>
               </div>
             </Link>
           );
         })}
+      </div>
+
+      {/* SEO content */}
+      <div className="w-full max-w-4xl mt-16">
+        <div className="rounded-2xl border border-border bg-surface p-8">
+          <h2 className="text-xl font-bold mb-4">
+            Juegos de preguntas para beber: confesiones, debates y señalamientos
+          </h2>
+          <div className="text-sm text-muted space-y-3 leading-relaxed">
+            <p>
+              Los juegos de preguntas son el alma de cualquier previa porque van directos al grano: obligan a confesar, a debatir y a señalar al culpable del grupo. No necesitas cartas, dados ni ningún material físico — solo un móvil con BeberGames y ganas de descubrir los secretos de tus amigos.
+            </p>
+            <p>
+              <Link href="/juegos/yo-nunca" className="text-accent hover:underline">Yo Nunca</Link> es el clásico de las confesiones: lees una frase y los que la hayan hecho beben. <Link href="/juegos/verdad-o-reto" className="text-accent hover:underline">Verdad o Reto</Link> sube la apuesta con preguntas comprometidas y retos físicos. <Link href="/juegos/quien-es-mas-probable" className="text-accent hover:underline">Quién Es Más Probable</Link> convierte al grupo en un jurado: todos señalan a la vez y el más votado bebe. Y <Link href="/juegos/yo-prefiero" className="text-accent hover:underline">Yo Prefiero</Link> plantea dilemas imposibles donde la minoría siempre pierde.
+            </p>
+            <p>
+              Todos tienen niveles de intensidad (suave, normal y picante), así que puedes adaptarlos al momento de la noche. Ideal para romper el hielo al principio con modo suave y subir a picante cuando la fiesta ya esté caliente. Consulta nuestras <Link href="/blog/100-preguntas-yo-nunca" className="text-accent hover:underline">100 preguntas de Yo Nunca</Link> o las <Link href="/blog/preguntas-picantes-verdad-o-reto" className="text-accent hover:underline">preguntas picantes de Verdad o Reto</Link> para ver ejemplos.
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   );

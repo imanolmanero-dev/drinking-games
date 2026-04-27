@@ -22,7 +22,7 @@ import {
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Juegos para Beber Online — 12 Juegos Gratis Sin Descargas | BeberGames",
+  title: "Juegos para Beber Online — 12 Juegos Gratis Sin Descargas",
   description:
     "Los mejores juegos para beber online, gratis y sin descargas. Yo Nunca, Verdad o Reto, Ring of Fire, Medusa, La Bomba, Tabú Borracho y más. Perfectos para previas, botellones y fiestas.",
   keywords: [

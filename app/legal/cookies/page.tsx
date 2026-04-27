@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Política de Cookies | BeberGames',
+  title: 'Política de Cookies',
   description: 'Política de Cookies de BeberGames.',
   robots: { index: true, follow: true }
 }

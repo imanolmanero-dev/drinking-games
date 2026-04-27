@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Aviso Legal | BeberGames',
+  title: 'Aviso Legal',
   description: 'Aviso legal y condiciones de uso de BeberGames.',
   robots: { index: true, follow: true }
 }

@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Info, ShieldAlert, Heart, Smartphone } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Sobre Nosotros | BeberGames',
+  title: 'Sobre Nosotros — Quiénes Somos',
   description: 'Conoce la historia detrás de BeberGames, nuestra misión, valores y el compromiso rotundo con el consumo responsable y la seguridad.',
 };
 

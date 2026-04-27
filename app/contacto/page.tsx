@@ -3,7 +3,7 @@ import { Mail } from 'lucide-react';
 import ContactForm from '@/components/ui/ContactForm';
 
 export const metadata: Metadata = {
-  title: 'Contacto | BeberGames',
+  title: 'Contacto — Escríbenos',
   description: 'Ponte en contacto con el equipo de BeberGames.',
 }
 
