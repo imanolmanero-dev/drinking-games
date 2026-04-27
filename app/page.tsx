@@ -196,14 +196,40 @@ export default function Home() {
             Diversión y risas garantizadas. 🍻
           </p>
 
-          {/* CTA */}
-          <Link
-            href="#juegos"
-            className="mt-2 flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-secondary px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-105 hover:shadow-xl hover:shadow-accent-glow"
-          >
-            Explorar juegos
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+          {/* CTAs */}
+          <div className="mt-2 flex flex-col items-center gap-3 sm:flex-row">
+            <Link
+              href="#juegos"
+              className="flex items-center gap-2 rounded-full bg-gradient-to-r from-accent to-accent-secondary px-7 py-3 text-sm font-semibold text-white shadow-lg shadow-accent-glow transition-all hover:scale-105 hover:shadow-xl hover:shadow-accent-glow"
+            >
+              Jugar ahora
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/juegos"
+              className="flex items-center gap-2 rounded-full border border-border bg-surface px-6 py-3 text-sm font-medium text-muted transition-all hover:border-accent/30 hover:text-foreground"
+            >
+              Ver todos los juegos
+            </Link>
+          </div>
+
+          {/* Trust signals */}
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-xs text-muted">
+            <span className="flex items-center gap-1.5">
+              <Trophy className="h-3.5 w-3.5 text-accent" />
+              12 juegos disponibles
+            </span>
+            <span className="h-3 w-px bg-border" />
+            <span className="flex items-center gap-1.5">
+              <BookOpen className="h-3.5 w-3.5 text-accent" />
+              28 guías y artículos
+            </span>
+            <span className="h-3 w-px bg-border" />
+            <span className="flex items-center gap-1.5">
+              <MessageSquare className="h-3.5 w-3.5 text-accent" />
+              +500 preguntas y retos
+            </span>
+          </div>
         </div>
       </section>
 
@@ -213,7 +239,7 @@ export default function Home() {
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
           <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-widest text-muted">
             <Users className="h-4 w-4" />
-            Juegos disponibles
+            Más jugados
           </h2>
           <div className="h-px flex-1 bg-gradient-to-r from-transparent via-border to-transparent" />
         </div>
