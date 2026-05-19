@@ -7,7 +7,7 @@ import { MessageSquare, Plus, X, Users, RotateCcw, BookOpen, ChevronRight, Check
 import { useApp } from "@/lib/AppContext";
 import { tabuCards, shuffleCards, type TabuCard } from "@/lib/data/tabu";
 import Confetti from "@/components/ui/Confetti";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 const ROUND_TIME = 60; // seconds per turn
 
@@ -296,23 +296,46 @@ export default function TabuPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>Tabú Borracho: Adivina la Palabra sin decir las Prohibidas</h2>
+            <h2>Tabú Borracho: Describe la Palabra sin Decirlo</h2>
             <p>
-              El clásico juego de mesa de deducción se transforma en <strong>Tabú Borracho</strong>, una competición brutal por equipos donde la falta de vocabulario se paga con alcohol. Necesitáis ser al menos 4 personas en la fiesta para poder formar dos equipos equilibrados.
-            </p>
-            <h3>Dinámica del Juego</h3>
-            <p>
-              Durante cada turno, un miembro del equipo se convierte en el "Descriptor". A lo largo de los 60 segundos implacables del temporizador, el Descriptor debe intentar que sus compañeros adivinen la palabra principal gigante que aparece en la tarjeta.
+              El <strong>Tabú Borracho</strong> toma el clásico juego de mesa y le añade el mejor incentivo para pensar rápido: si dices una palabra prohibida, tu equipo bebe. La presión del temporizador, el rival vigilándote el hombro y tus compañeros mirándote sin entender nada... es la caos perfecto para una noche de previas.
             </p>
             <p>
-              <strong>La Trampa:</strong> Debajo de la palabra principal hay un listado de palabras clave prohibidas. El Descriptor no puede mencionar bajo ninguna circunstancia ninguna de esas palabras tabú, ni derivados, ni traducciones. Para asegurar que no hace trampas, <em>alguien del equipo contrario debe estar apoyado en su hombro vigilando la pantalla</em>.
+              Necesitáis al menos 4 personas para formar dos equipos. Cuanta más gente, mejor: los equipos más grandes generan más tensión, más errores y más tragos. Con 8 personas es donde el juego alcanza su nivel máximo de locura.
             </p>
-            <h3>Sistema de Puntuación y Castigos</h3>
+
+            <h3>Cómo funciona cada turno</h3>
+            <p>
+              En cada turno, un jugador actúa como <strong>Descriptor</strong>. La pantalla muestra una palabra principal grande arriba, y debajo, una lista de palabras tabú que están completamente prohibidas. El Descriptor tiene 60 segundos para conseguir que su equipo diga la palabra principal.
+            </p>
             <ul>
-              <li><strong>Acierto (+1 punto):</strong> Si los compañeros adivinan la palabra, se suma un punto y se pasa a la siguiente.</li>
-              <li><strong>Infracción Tabú (Castigo):</strong> Si el Descriptor dice una palabra prohibida por los nervios, el juez del equipo contrario pulsará el botón de error. ¡El Descriptor y todo su equipo deben beber inmediatamente! Luego se salta esa tarjeta.</li>
-              <li>¿Dudas sobre palabras compuestas o derivaciones? Visita las <Link href="/juegos/tabu/reglas" className="text-violet-500 underline">reglas completas de Tabú Borracho</Link> para dejar claro qué está permitido antes de jugar.</li>
+              <li><strong>El truco:</strong> El equipo contrario vigila la pantalla. Si el Descriptor dice cualquier palabra prohibida — o un derivado, sinónimo, o traducción — el árbitro rival pulsa el botón de ¡Tabú! y todo el equipo del Descriptor bebe.</li>
+              <li><strong>Acierto:</strong> Cada palabra adivinada suma un punto al equipo. Se pasa automáticamente a la siguiente tarjeta.</li>
+              <li><strong>Pasar:</strong> Si la palabra es imposible, el Descriptor puede pasar. No se penaliza, pero tampoco suma puntos.</li>
+              <li><strong>Sin gestos:</strong> El Descriptor solo puede hablar. Nada de mímica, nada de señalar objetos, nada de deletrear.</li>
             </ul>
+
+            <h3>Sistema de puntuación y bebida</h3>
+            <p>
+              Cada partida se juega en <strong>6 rondas</strong> (3 por equipo). Al final, gana el equipo con más puntos. El equipo perdedor bebe el doble en la ronda de honor. Si hay empate, se juega una ronda de muerte súbita: una sola tarjeta decide el resultado.
+            </p>
+            <ul>
+              <li><strong>Infracción Tabú:</strong> El Descriptor y todo su equipo beben un trago al instante.</li>
+              <li><strong>Ronda perfecta (sin infracciones):</strong> El equipo contrario bebe un trago de penalti por no haber pillado nada.</li>
+            </ul>
+
+            <h3>Preguntas frecuentes sobre Tabú Borracho</h3>
+            <p><strong>¿Cuántos jugadores se necesitan?</strong> Mínimo 4 (2 por equipo). El máximo recomendado es 10 personas. Con más gente puede ser difícil escuchar al Descriptor.</p>
+            <p><strong>¿Pueden usar idiomas diferentes?</strong> No. Todo en el mismo idioma que aparece en la tarjeta. Traducir una palabra tabú para evitarla sigue contando como infracción.</p>
+            <p><strong>¿Y si nadie conoce la palabra?</strong> El Descriptor puede pedir "pase" sin penalización. No hay puntos, pero tampoco tragos para nadie.</p>
+
+            <h3>Otros juegos por equipos que te gustarán</h3>
+            <ul>
+              <li><Link href="/juegos/rey-de-la-copa" className="text-violet-500 underline">Rey de la Copa</Link> — Cartas con reglas para cada número. El 4º Rey paga el precio máximo.</li>
+              <li><Link href="/juegos/beer-pong" className="text-violet-500 underline">Beer Pong</Link> — Dos equipos, diez vasos y una pelota de ping-pong. El clásico universitario.</li>
+              <li><Link href="/juegos/triman" className="text-violet-500 underline">Triman</Link> — El dado manda. Simple, rápido y brutal para cualquier número de jugadores.</li>
+            </ul>
+            <p>Consulta todas las variantes y reglas detalladas en las <Link href="/juegos/tabu/reglas" className="text-violet-500 underline">reglas completas del Tabú Borracho</Link>.</p>
           </div>
         </div>
       </div>
@@ -355,7 +378,7 @@ export default function TabuPage() {
               <RotateCcw className="h-4 w-4" />Nuevos
             </button>
           </div>
-          <div className="mt-8 w-full"><AdBanner dataAdSlot="GAMEOVER_SLOT_ID" /></div>
+
         </motion.div>
       </div>
     );

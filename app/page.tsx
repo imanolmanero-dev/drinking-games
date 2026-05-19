@@ -19,6 +19,7 @@ import {
   Trophy,
   Clock,
   CalendarDays,
+  Triangle,
 } from "lucide-react";
 import { getAllPosts, readingTime } from "@/lib/blog";
 
@@ -155,6 +156,17 @@ const juegos = [
     jugadores: "4+",
     estado: "disponible" as const,
   },
+  {
+    id: "la-piramide",
+    nombre: "La Pirámide",
+    descripcion:
+      "Memoriza tus cartas, farolea y asigna tragos. ¡Cada fila sube la apuesta!",
+    icono: Triangle,
+    color: "from-indigo-500 to-purple-600",
+    shadowColor: "shadow-indigo-500/20",
+    jugadores: "2+",
+    estado: "disponible" as const,
+  },
 ];
 
 export default function Home() {
@@ -217,12 +229,12 @@ export default function Home() {
           <div className="mt-4 flex flex-wrap items-center justify-center gap-6 text-xs text-muted">
             <span className="flex items-center gap-1.5">
               <Trophy className="h-3.5 w-3.5 text-accent" />
-              12 juegos disponibles
+              13 juegos disponibles
             </span>
             <span className="h-3 w-px bg-border" />
             <span className="flex items-center gap-1.5">
               <BookOpen className="h-3.5 w-3.5 text-accent" />
-              28 guías y artículos
+              32 guías y artículos
             </span>
             <span className="h-3 w-px bg-border" />
             <span className="flex items-center gap-1.5">
@@ -413,6 +425,26 @@ export default function Home() {
                 </div>
               </Link>
             ))}
+          </div>
+        </div>
+      </section>
+      {/* Editorial SEO Block */}
+      <section className="w-full bg-surface border-t border-border py-16">
+        <div className="mx-auto w-full max-w-3xl px-4 sm:px-6">
+          <div className="prose prose-invert prose-p:text-muted prose-a:text-accent max-w-none">
+            <h2>La App de Juegos para Beber más Completa en Español</h2>
+            <p>
+              BeberGames nació con un objetivo claro: crear la plataforma de juegos para beber definitiva para hispanohablantes. Sin descargas, sin anuncios que interrumpan cada 30 segundos, sin traducciones automáticas sin sentido. Todo el contenido está escrito a mano en español para que funcione de verdad con un grupo de amigos en una previa, una fiesta o una cena.
+            </p>
+            <p>
+              Tenemos <strong>13 juegos interactivos gratuitos</strong>: desde los clásicos conversacionales como <Link href="/juegos/yo-nunca">Yo Nunca</Link> y <Link href="/juegos/verdad-o-reto">Verdad o Reto</Link>, hasta los juegos de cartas digitales como <Link href="/juegos/rey-de-la-copa">Rey de la Copa</Link> y los de habilidad como <Link href="/juegos/beer-pong">Beer Pong</Link>. Cada juego tiene varios niveles de intensidad para adaptarse a cualquier grupo: desde los más tranquilos hasta los más atrevidos.
+            </p>
+            <p>
+              Además del juego en sí, cada página incluye las reglas completas, variantes y estrategias avanzadas para sacarle todo el partido. Y en el <Link href="/blog">blog de BeberGames</Link> encontrarás más de 30 artículos con guías, listas y consejos sobre cómo organizar la mejor noche de juegos. Todo gratis, todo en español, todo sin registro.
+            </p>
+            <p>
+              Si quieres saber más sobre el proyecto, visita la página <Link href="/sobre-nosotros">Sobre Nosotros</Link>. Y si tienes alguna sugerencia o has encontrado un error, escríbenos desde la <Link href="/contacto">página de contacto</Link>.
+            </p>
           </div>
         </div>
       </section>

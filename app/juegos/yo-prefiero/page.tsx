@@ -9,7 +9,7 @@ import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
 import type { Intensidad } from "@/lib/data/yo-nunca";
 import type { PreguntaYoPrefiero } from "@/lib/data/yo-prefiero";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 function shuffleArray<T>(arr: T[]): T[] {
   const shuffled = [...arr];
@@ -210,23 +210,42 @@ export default function YoPrefieroPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>Yo Prefiero (Would You Rather): Versión para Beber</h2>
+            <h2>Yo Prefiero: Dilemas para Beber con Tus Amigos</h2>
             <p>
-              Bienvenido al juego de los dilemas morales e incómodos. <strong>Yo Prefiero (Would You Rather en inglés)</strong> te obligará a elegir entre dos opciones igualmente terribles o absurdas. Es el juego de beber definitivo para descubrir cómo funcionan las mentes retorcidas de tus amigos.
-            </p>
-            <h3>Cómo Funciona la Mayoría Manda</h3>
-            <p>
-              La dinámica es súper sencilla: La pantalla mostrará dos opciones, A y B. A la cuenta de tres, todos los jugadores deben señalar qué opción prefieren, levantar la mano izquierda o derecha, o simplemente gritar "A" o "B".
+              El <strong>Yo Prefiero</strong> — conocido en inglés como <em>Would You Rather</em> — es el juego de los dilemas imposibles. La pantalla muestra dos opciones igualmente locas o incómodas, y todo el mundo tiene que elegir. La minoría bebe. Sin excusas, sin votaciones secretas.
             </p>
             <p>
-              <strong>La regla de oro:</strong> Una vez contados los votos, el grupo que haya quedado en minoria (es decir, la opción menos votada) recibe un castigo implacable y debe beber su vaso. En caso de empate técnico, los dioses del alcohol deciden que absolutamente todos beben.
+              No hay respuestas correctas ni incorrectas. Lo que importa es lo que revela tu elección sobre cómo funciona tu cabeza. ¿Preferirías tener alas pero no poder usarlas en público, o ser invisible pero solo en espacios abiertos? Prepárate para conocer una versión nueva de tus amigos.
             </p>
-            <h3>Escoge tu Nivel de Intensidad</h3>
+
+            <h3>Cómo funciona la regla de la minoría</h3>
+            <p>
+              La dinámica es simple. Cuando aparece la pregunta, todos votan a la vez — levantando la mano, señalando o gritando A o B. Una vez contados los votos:
+            </p>
             <ul>
-              <li><strong>Modo Tranquilo:</strong> Dilemas genéricos sobre viajes, poderes mágicos o comidas extrañas. Perfecto para jugar con compañeros de trabajo o familiares.</li>
-              <li><strong>Modo Picante (+18):</strong> Aquí entramos en terreno peligroso. Preguntas personales, situaciones íntimas asquerosas o dilemas éticos oscuros reservados solo para los amigos más cercanos (¡o para romper el hielo a lo bestia en Tinder!).</li>
-              <li>Lee en detalle los mejores <Link href="/juegos/yo-prefiero/reglas" className="text-violet-500 underline">castigos y versiones de Yo Prefiero (Would You Rather)</Link> para sacarle todo el jugo al modo Picante.</li>
+              <li><strong>Minoría bebe:</strong> El grupo más pequeño toma tantos tragos como personas hay en la mayoría. En un grupo de 6, si solo 2 votan la opción A, esos 2 beben 4 tragos cada uno.</li>
+              <li><strong>Empate:</strong> Si hay empate exacto, todos beben. Nadie se salva cuando la democracia falla.</li>
+              <li><strong>Sin abstenciones:</strong> No se puede pasar. Hay que elegir sí o sí. La incertidumbre es parte del juego.</li>
             </ul>
+
+            <h3>Niveles de intensidad</h3>
+            <ul>
+              <li><strong>Modo Normal:</strong> Dilemas divertidos y absurdos. Poderes mágicos, situaciones imposibles, elecciones ridículas. Para cualquier grupo, incluidos los más conservadores.</li>
+              <li><strong>Modo Picante (+18):</strong> Preguntas personales, situaciones íntimas y dilemas que nadie quiere responder en voz alta. Solo para grupos de confianza o para romper el hielo a lo bestia.</li>
+            </ul>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores se necesitan?</strong> Con 3 ya hay drama suficiente. Con más de 6 el juego es más entretenido porque las minorías son más notorias.</p>
+            <p><strong>¿Hay que beber obligatoriamente?</strong> No. Puedes jugar con cualquier castigo alternativo — hacer algo, pagar una prenda o simplemente pasar el mal rato de que todos te señalen.</p>
+            <p><strong>¿Qué pasa si alguien cambia el voto al ver el de los demás?</strong> No se puede. Los votos son simultáneos. Si alguien hace trampa, bebe el doble.</p>
+
+            <h3>Juegos de preguntas que también te gustarán</h3>
+            <ul>
+              <li><Link href="/juegos/quien-es-mas-probable" className="text-violet-500 underline">Quién Es Más Probable</Link> — El grupo señala a alguien. El más votado bebe tantos tragos como dedos le apunten.</li>
+              <li><Link href="/juegos/verdad-o-reto" className="text-violet-500 underline">Verdad o Reto</Link> — Elige entre confesar o cumplir. El cobarde que no quiera hacer ninguna de las dos, bebe.</li>
+              <li><Link href="/juegos/yo-nunca" className="text-violet-500 underline">Yo Nunca</Link> — Confiesa lo que has hecho. El que lo haya hecho, bebe.</li>
+            </ul>
+            <p>Consulta las <Link href="/juegos/yo-prefiero/reglas" className="text-violet-500 underline">reglas completas del Yo Prefiero</Link> con estrategias para maximizar el caos en cada partida.</p>
           </div>
         </div>
       </div>
@@ -256,7 +275,7 @@ export default function YoPrefieroPage() {
               <RotateCcw className="h-4 w-4" />Cambiar jugadores
             </button>
           </div>
-          <div className="mt-8 w-full"><AdBanner dataAdSlot="GAMEOVER_SLOT_ID" /></div>
+
         </motion.div>
       </div>
     );
@@ -314,9 +333,7 @@ export default function YoPrefieroPage() {
         </div>
       </div>
 
-      {currentIndex > 0 && currentIndex % 6 === 0 && (
-        <div className="w-full max-w-md mb-6"><AdBanner dataAdSlot="IN_GAME_SLOT_ID" /></div>
-      )}
+
 
       <button
         onClick={nextQuestion}

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Juego para beber de 'Quién Es Más Probable'. Lee la pregunta, cuenta hasta tres, y señalad todos a la vez. ¡El más votado bebe!",
   openGraph: {
-    title: "Quién Es Más Probable | BeberGames",
+    title: "Quién Es Más Probable",
     description: "El más señalado, bebe. Descubre qué piensan tus amigos de ti.",
   },
 };

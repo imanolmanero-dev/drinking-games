@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
-import AdBanner from "@/components/ui/AdBanner";
+
 import {
   buildDeck,
   shuffleDeck,
@@ -240,22 +240,43 @@ export default function ReyDeLaCopaPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>El Rey de la Copa (Kings Cup): Reglas y Cartas</h2>
+            <h2>Rey de la Copa (Kings Cup): El Juego de Cartas para Beber</h2>
             <p>
-              El <strong>Rey de la Copa (Kings Cup)</strong>, también conocido como "Círculo de la Muerte", es probablemente el juego de beber con cartas más famoso del mundo. Nuestra versión digital genera la baraja por ti, para que podáis jugar en cualquier bar sin necesidad de manchar naipes de cartón.
+              El <strong>Rey de la Copa</strong> — también conocido como Kings Cup o Círculo de la Muerte — es el juego de beber con cartas más famoso del mundo. Nuestra versión digital genera la baraja y hace de árbitro para que podáis jugar en cualquier sitio sin necesidad de cartas físicas.
             </p>
-            <h3>¿Cómo se Juega a Kings Cup?</h3>
             <p>
-              En la mesa (o en el centro) debe colocarse una copa grande y vacía: La Copa del Rey. Los jugadores se turnan pulsando para "robar" una carta de la baraja virtual. Cada carta, del As a la K, tiene asociada una mini-prueba, un castigo o una categoría que debes cumplir al instante.
+              El concepto es simple: cada carta tiene una regla. Robar una carta activa esa regla al instante. El jugador que saque el cuarto Rey tiene que beberse la Copa del Rey entera, con todo lo que el grupo haya vertido en ella durante la partida.
             </p>
+
+            <h3>Las cartas y sus reglas</h3>
             <ul>
-              <li><strong>Cartas Rojas vs Negras:</strong> Algunas variantes dan o quitan tragos dependiendo del color de la carta. En nuestra app, te lo escribimos claro en pantalla para que no tengas que memorizarlo.</li>
-              <li><strong>Los Reyes (K):</strong> Esta es la parte más importante. La persona que saque el 1º, 2º y 3º Rey debe verter un poco de su propia bebida en la Copa del Rey del centro.</li>
-              <li><strong>El 4º Rey:</strong> El desafortunado que saque el último Rey finaliza el juego abruptamente y <strong>debe beberse la Copa del Rey entera</strong> con la asquerosa mezcla que se haya creado.</li>
+              <li><strong>As — Cascada:</strong> Todos beben a la vez. El jugador a tu derecha no puede parar hasta que tú pares, y así sucesivamente.</li>
+              <li><strong>2 — Dar:</strong> Das dos tragos a quien quieras.</li>
+              <li><strong>3 — Tomar:</strong> Bebes tú tres tragos.</li>
+              <li><strong>4 — Suelo:</strong> El último en tocar el suelo bebe.</li>
+              <li><strong>5 — Chicos:</strong> Todos los chicos beben.</li>
+              <li><strong>6 — Chicas:</strong> Todas las chicas beben.</li>
+              <li><strong>7 — Cielo:</strong> Último en señalar al techo bebe.</li>
+              <li><strong>8 — Pareja:</strong> Eliges a alguien. Cada vez que uno bebe, el otro también.</li>
+              <li><strong>9 — Rima:</strong> Dices una palabra y el grupo rima en cadena. El que falla, bebe.</li>
+              <li><strong>10 — Categorías:</strong> Eliges una categoría (marcas de coches, países...) y el grupo va nombrando. El que falla, bebe.</li>
+              <li><strong>J — Norma:</strong> Creas una regla que dura toda la partida. El que la incumple, bebe.</li>
+              <li><strong>Q — Pregunta:</strong> Solo puedes hablar en preguntas. El que afirme algo, bebe.</li>
+              <li><strong>K — Rey:</strong> Vierte parte de tu bebida en la Copa del Rey. El 4º Rey se la bebe entera.</li>
             </ul>
-            <p>
-              Si necesitas refrescar tu memoria sobre qué hace el '7' (Cielo), la 'Q' (Preguntas) de forma precisa, te recomendamos encarecidamente consultar las <Link href="/juegos/rey-de-la-copa/reglas" className="text-amber-500 underline">normas oficiales del Rey de la Copa</Link>.
-            </p>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Funciona mejor con 4 a 8 personas. Con más gente, las normas del Jack se acumulan y el juego se vuelve caótico (en el buen sentido).</p>
+            <p><strong>¿Qué se pone en la Copa del Rey?</strong> Cada jugador que saca un Rey vierte un poco de lo que esté bebiendo. La mezcla resultante es generalmente horrible, lo que añade tensión extra al juego.</p>
+            <p><strong>¿Se puede jugar sin alcohol?</strong> Sí. La Copa del Rey puede ser de refresco, y los tragos pueden ser sorbos de cualquier bebida.</p>
+
+            <h3>Otros juegos de cartas que te gustarán</h3>
+            <ul>
+              <li><Link href="/juegos/tabu" className="text-amber-500 underline">Tabú Borracho</Link> — Adivina la palabra sin decir las prohibidas. Ideal para grupos grandes.</li>
+              <li><Link href="/juegos/beer-pong" className="text-amber-500 underline">Beer Pong</Link> — El clásico de las fiestas universitarias. Apunta bien.</li>
+              <li><Link href="/juegos/triman" className="text-amber-500 underline">Triman</Link> — Dados y el poder del 3. Simple, rápido y brutal.</li>
+            </ul>
+            <p>Consulta todas las variantes y reglas avanzadas en la <Link href="/juegos/rey-de-la-copa/reglas" className="text-amber-500 underline">guía oficial del Rey de la Copa</Link>.</p>
           </div>
         </div>
       </div>
@@ -331,9 +352,7 @@ export default function ReyDeLaCopaPage() {
               Cambiar jugadores
             </button>
           </div>
-          <div className="mt-8 w-full">
-            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
-          </div>
+
         </motion.div>
       </div>
     );
@@ -445,11 +464,7 @@ export default function ReyDeLaCopaPage() {
         </div>
       </div>
 
-      {currentIndex > 0 && currentIndex % 8 === 0 && (
-        <div className="w-full max-w-md mb-6">
-          <AdBanner dataAdSlot="IN_GAME_SLOT_ID" />
-        </div>
-      )}
+
 
       <button
         onClick={drawCard}

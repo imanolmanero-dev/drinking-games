@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Juega al Triman, el juego del dado para beber. Lanza el dado, descubre quién bebe según las 6 reglas. ¡El Señor del 3 siempre bebe!",
   openGraph: {
-    title: "Triman — El Señor del 3 | BeberGames",
+    title: "Triman — El Señor del 3",
     description:
       "El juego del dado para beber. Lanza el dado y descubre quién bebe según las reglas.",
   },

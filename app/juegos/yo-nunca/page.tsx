@@ -18,7 +18,7 @@ import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
 import type { Intensidad } from "@/lib/data/yo-nunca";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 // ───── Shuffle helper ─────
 function shuffleArray<T>(arr: T[]): T[] {
@@ -251,25 +251,40 @@ export default function YoNuncaPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>El Juego del Yo Nunca: Confesiones y Amigos</h2>
+            <h2>El Juego del Yo Nunca: Confesiones, Amigos y Mucha Bebida</h2>
             <p>
-              El <strong>Yo Nunca</strong> (conocido habitualmente en el mundo anglosajón como <em>Never Have I Ever</em>) es sin la menor duda uno de los juegos conversacionales para fiestas más populares a nivel mundial. Es la manera perfecta de romper el hielo, descubrir los secretos mejor guardados de tus amigos y generar anécdotas inolvidables.
-            </p>
-            <h3>¿Qué encontrarás en nuestra aplicación de Yo Nunca?</h3>
-            <p>
-              A diferencia de usar listas genéricas o intentar pensar en preguntas sobre la marcha, con nuestra plataforma móvil obtienes acceso a <strong>cientos de frases curadas a mano</strong> y divididas perfectamente en niveles de intensidad. Simplemente introduces los nombres de tus amigos al principio de la partida, y nuestro motor aleatorio se encargará de hacer la vida imposible al grupo sacando las peores confesiones posibles. 
+              El <strong>Yo Nunca</strong> (conocido en el mundo anglosajón como <em>Never Have I Ever</em>) es uno de los juegos conversacionales para fiestas más populares del planeta. La premisa es simple: un jugador dice algo que nunca ha hecho, y todos los que sí lo han hecho deben beber. Lo que parece inocente acaba revelando secretos que nadie esperaba.
             </p>
             <p>
-              Todos los jugadores empiezan el juego con una copa llena. Tan pronto como la pantalla revele una afirmación que comienza por "Yo nunca he...", tendréis un segundo para pensar. Aquellas personas del grupo que SÍ hayan cometido la acción descrita alguna vez en sus vidas corporales, estarán obligados a tomar un trago o "sorbo" de su bebida. Aquellos inocentes que jamás hayan hecho semejante acto impuro, se salvan.
+              Con nuestra aplicación móvil gratuita, tienes acceso a cientos de frases curadas y organizadas por nivel de intensidad. Nada de quedarse en blanco ni repetir siempre las mismas preguntas aburridas. El motor aleatorio se encarga de sacar las confesiones más comprometidas en el momento menos esperado.
             </p>
-            <h3>Modos de Juego Destacados</h3>
+
+            <h3>¿Cómo se juega al Yo Nunca?</h3>
+            <p>
+              Todos los jugadores empiezan con una copa llena. Cuando aparece una frase en pantalla —por ejemplo, &ldquo;Yo nunca he mentido en una entrevista de trabajo&rdquo;— cualquiera que sí lo haya hecho debe beber. Así de sencillo, así de brutal.
+            </p>
             <ul>
-              <li><strong>El Modo Picante (+18):</strong> Hemos redactado preguntas exclusivas, atrevidas y diseñadas especialmente para adultos con la mente muy abierta. Las risas nerviosas están completamente aseguradas.</li>
-              <li><strong>Solidaridad Absoluta:</strong> Si nadie del grupo bebe, todos beben por aburridos.</li>
-              <li><strong>¿Más información?</strong> Asegúrate de revisar detenidamente la <Link href="/juegos/yo-nunca/reglas" className="text-accent underline">Guía Completa de Reglas del Yo Nunca</Link> para conocer las estrategias de los mejores jugadores.</li>
+              <li><strong>Modo Normal:</strong> Frases divertidas y sociales, perfectas para cualquier grupo.</li>
+              <li><strong>Modo Picante (+18):</strong> Preguntas exclusivamente para adultos con la mente abierta. Las risas nerviosas están garantizadas.</li>
+              <li><strong>Regla de Solidaridad:</strong> Si nadie bebe, todos beben por aburridos. El grupo no puede escapar.</li>
             </ul>
+
+            <h3>Preguntas frecuentes sobre el Yo Nunca</h3>
+            <p><strong>¿Cuántos jugadores se necesitan?</strong> Con 2 ya se puede jugar, aunque la gracia aumenta a partir de 4 personas. Cuanta más gente, más secretos salen a la luz.</p>
+            <p><strong>¿Se puede jugar sin alcohol?</strong> Por supuesto. Sustituye la bebida por agua, refrescos o cualquier otra cosa. El juego funciona igual de bien —y los secretos siguen siendo igual de comprometedores.</p>
+            <p><strong>¿Cuánto dura una partida?</strong> Depende del número de jugadores y del nivel elegido. Una sesión típica de modo Normal dura entre 20 y 40 minutos.</p>
+
+            <h3>Juegos relacionados que te pueden gustar</h3>
+            <p>Si el Yo Nunca os ha gustado, prueba también:</p>
+            <ul>
+              <li><Link href="/juegos/verdad-o-reto" className="text-accent underline">Verdad o Reto</Link> — Elige entre confesar una verdad o cumplir un reto. El gallina que se acobarde, bebe.</li>
+              <li><Link href="/juegos/quien-es-mas-probable" className="text-accent underline">Quién Es Más Probable</Link> — El grupo vota quién es más probable que haya hecho algo. La mayoría señala y el más votado bebe.</li>
+              <li><Link href="/juegos/yo-prefiero" className="text-accent underline">Yo Prefiero</Link> — Dilemas A o B donde la minoría siempre paga.</li>
+            </ul>
+            <p>Consulta también nuestra <Link href="/juegos/yo-nunca/reglas" className="text-accent underline">guía completa de reglas del Yo Nunca</Link> con variantes avanzadas y estrategias para sacarle todo el partido.</p>
           </div>
         </div>
+
       </div>
     );
   }
@@ -317,10 +332,6 @@ export default function YoNuncaPage() {
               <RotateCcw className="h-4 w-4" />
               Cambiar jugadores
             </button>
-          </div>
-          
-          <div className="mt-8 w-full">
-            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
           </div>
         </motion.div>
       </div>
@@ -398,12 +409,7 @@ export default function YoNuncaPage() {
         </div>
       </div>
 
-      {/* AdSense Banner every 6 questions */}
-      {currentIndex > 0 && currentIndex % 6 === 0 && (
-        <div className="w-full max-w-md mb-6">
-          <AdBanner dataAdSlot="IN_GAME_SLOT_ID" />
-        </div>
-      )}
+
 
       {/* Next button */}
       <button

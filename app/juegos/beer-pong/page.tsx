@@ -15,7 +15,7 @@ import {
 import { useApp } from "@/lib/AppContext";
 import { CUP_LAYOUT_10, CUP_LAYOUT_6, getRandomChallenge } from "@/lib/data/beer-pong";
 import Confetti from "@/components/ui/Confetti";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 type Phase = "setup" | "playing" | "gameover";
 type CupMode = 10 | 6;
@@ -255,23 +255,35 @@ export default function BeerPongPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>Beer Pong Árbitro Virtual: Ayudante para Tus Partidas Físicas</h2>
+            <h2>Beer Pong: El Rey de las Fiestas, Ahora con Árbitro Digital</h2>
             <p>
-              El <strong>Beer Pong</strong> es el rey indiscutible de las fiestas en cualquier país del mundo. En nuestra plataforma no lanzas pelotas digitales; hemos diseñado esta web app para que actúe como un árbitro en el medio de la mesa mientras juegas con vasos y pelotas de ping-pong reales.
+              El <strong>Beer Pong</strong> es el juego de fiesta más icónico del mundo. Dos equipos, diez vasos cada uno en formación triangular, una pelota de ping-pong y un objetivo claro: meter la pelota en los vasos del rival. El equipo que se quede sin vasos, bebe lo que queda en la copa del perdedor.
             </p>
-            <h3>Funciones de la App de BeerPong</h3>
             <p>
-              Muchos jugadores terminan discutiendo sobre de quién es el turno o si alguien ya pidió un "Re-rack". Nuestra app elimina esas disputas y agiliza el juego de mesa mediante:
+              Nuestra app no reemplaza la experiencia física — la mejora. Funciona como árbitro digital en medio de la mesa mientras jugáis con vasos y pelota reales. Nada de discutir sobre turnos, re-racks o el contador de &ldquo;On Fire&rdquo;.
             </p>
+
+            <h3>Qué hace la app por vosotros</h3>
             <ul>
-              <li><strong>Rastreador de Vasos (Cup Tracker):</strong> Marca en la pantalla qué vaso ha sido hundido para que todo el mundo vea el estado de la partida, útil si usáis mesas opacas o queréis concentraros en divertiros.</li>
-              <li><strong>Gestión de Turnos y Re-rack:</strong> Sigue de forma automática a qué equipo le toca lanzar y controla que solo se pueda pedir "Re-rack" (reagrupación de vasos) una vez por partida de forma lícita.</li>
-              <li><strong>"On Fire":</strong> El sistema detecta cuando un jugador acierta dos pelotas seguidas, encendiéndole el indicador de <em>On Fire</em>, para que tenga un tercer tiro de regalo (y la gloria que ello conlleva).</li>
+              <li><strong>Rastreador de vasos:</strong> Marca en pantalla qué vasos han caído. Todo el mundo ve el estado real de la partida sin confusiones.</li>
+              <li><strong>Gestión de turnos:</strong> La app controla automáticamente de quién es el turno. Sin debates, sin trampas.</li>
+              <li><strong>Re-rack controlado:</strong> Solo se puede pedir reorganización de vasos una vez por equipo y en momentos concretos. La app lo gestiona.</li>
+              <li><strong>On Fire:</strong> Dos aciertos seguidos = tercer tiro de regalo. La app lo detecta y lo anuncia. El jugador en racha lo merece todo.</li>
+              <li><strong>Modos 10 y 6 vasos:</strong> Elige el formato clásico de torneo (10 vasos) o el modo rápido de 6 vasos para partidas más cortas.</li>
             </ul>
-            <h3>¿No te sabes la normativa oficial?</h3>
-            <p>
-              Si vuestro grupo está discutiendo sobre reglas internacionales de rebotes, codos en la mesa o soplidos de la bola, échale un vistazo inmediato a las <Link href="/juegos/beer-pong/reglas" className="text-amber-500 underline">reglas y normas del Beer Pong</Link> en nuestra guía completa.
-            </p>
+
+            <h3>Preguntas frecuentes sobre Beer Pong</h3>
+            <p><strong>¿Cuánta distancia debe haber entre las mesas?</strong> La distancia oficial de torneo es 2,44 metros (8 pies). En casa podéis ajustarla al espacio disponible.</p>
+            <p><strong>¿Se pueden limpiar las pelotas?</strong> Sí. La regla estándar permite remojar la pelota en agua entre tiros. Si la pelota toca el suelo, el rival puede pedirte que no la limpies.</p>
+            <p><strong>¿Qué pasa si la pelota rebota en el vaso?</strong> Si la pelota rebota fuera de los vasos y el equipo defensor la coge antes de que toque la mesa por segunda vez, pueden devolver el tiro. Si entra en un vaso con rebote, cuenta como dos vasos eliminados.</p>
+
+            <h3>Otros juegos con material que te gustarán</h3>
+            <ul>
+              <li><Link href="/juegos/rey-de-la-copa" className="text-amber-500 underline">Rey de la Copa</Link> — Baraja de cartas, una copa en el centro y reglas para cada número. El que saca el 4º Rey bebe todo.</li>
+              <li><Link href="/juegos/tabu" className="text-amber-500 underline">Tabú Borracho</Link> — Descríbela sin decir las palabras prohibidas. El equipo que falla, bebe.</li>
+              <li><Link href="/juegos/triman" className="text-amber-500 underline">Triman</Link> — Dados y reglas caóticas. El que saque un 3 tiene el control de la mesa.</li>
+            </ul>
+            <p>Consulta todas las normas oficiales y variantes en las <Link href="/juegos/beer-pong/reglas" className="text-amber-500 underline">reglas completas del Beer Pong</Link>.</p>
           </div>
         </div>
       </div>
@@ -326,7 +338,7 @@ export default function BeerPongPage() {
               <RotateCcw className="h-4 w-4" />Nuevo
             </button>
           </div>
-          <div className="mt-4 w-full"><AdBanner dataAdSlot="GAMEOVER_SLOT_ID" /></div>
+
         </motion.div>
       </div>
     );

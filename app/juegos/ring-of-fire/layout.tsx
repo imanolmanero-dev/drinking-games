@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "El clásico juego de cartas Ring of Fire para beber. Roba una carta y cumple la regla. De 2 a Rey, ¿quién se beberá la Copa del Rey?",
   openGraph: {
-    title: "Ring of Fire | BeberGames",
+    title: "Ring of Fire",
     description: "Roba una carta de la baraja y cumple la regla. El clásico juego para previas.",
   },
 };

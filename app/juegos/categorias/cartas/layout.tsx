@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Colección de juegos de cartas de póker para beber en grupo. Saca la baraja y descubre juegos clásicos como Ring of Fire o El Mentiroso.",
   openGraph: {
-    title: "Juegos de Cartas para Beber | BeberGames",
+    title: "Juegos de Cartas para Beber",
     description: "Cartas, reglas y mucho alcohol. Los mejores juegos con cartas para tus previas.",
   },
 };

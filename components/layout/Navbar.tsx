@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Wine, ArrowLeft, Gamepad2, Volume2, VolumeX, BookOpen, LayoutGrid } from "lucide-react";
+import { Wine, ArrowLeft, Gamepad2, Volume2, VolumeX, BookOpen, LayoutGrid, Info } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 
 export default function Navbar() {
@@ -70,6 +70,17 @@ export default function Navbar() {
           >
             <BookOpen className="h-4 w-4" />
             <span className="hidden sm:inline">Blog</span>
+          </Link>
+
+          {/* Sobre Nosotros Link */}
+          <Link
+            href="/sobre-nosotros"
+            className={`flex items-center gap-1.5 rounded-lg border border-transparent px-3 py-1.5 text-sm font-medium transition-colors hover:bg-surface-hover hover:text-foreground ${
+              pathname === "/sobre-nosotros" ? "text-accent" : "text-muted"
+            }`}
+          >
+            <Info className="h-4 w-4" />
+            <span className="hidden sm:inline">Nosotros</span>
           </Link>
 
           {/* Navigation action — only show on home */}

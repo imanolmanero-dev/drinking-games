@@ -1,11 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Flame, Crown, Users, ArrowRight } from "lucide-react";
+import { Flame, Crown, Users, ArrowRight, Triangle } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Juegos de Cartas para Beber — Ring of Fire y El Rey de la Copa",
+  title: "Juegos de Cartas para Beber — Ring of Fire, El Rey de la Copa y La Pirámide",
   description:
-    "Los mejores juegos de cartas para beber online. Juega al Ring of Fire y al Rey de la Copa desde el móvil sin necesidad de una baraja física.",
+    "Los mejores juegos de cartas para beber online. Juega al Ring of Fire, al Rey de la Copa y a La Pirámide desde el móvil sin necesidad de una baraja física.",
 };
 
 const juegos = [
@@ -26,6 +26,15 @@ const juegos = [
     color: "from-amber-400 to-yellow-500",
     shadowColor: "shadow-amber-400/20",
     jugadores: "3+",
+  },
+  {
+    id: "la-piramide",
+    nombre: "La Pirámide",
+    descripcion: "Memoriza tus cartas, farolea y asigna tragos. ¡Cada fila sube la apuesta!",
+    icono: Triangle,
+    color: "from-indigo-500 to-purple-600",
+    shadowColor: "shadow-indigo-500/20",
+    jugadores: "2+",
   },
 ];
 
@@ -82,7 +91,7 @@ export default function CartasCategoryPage() {
               Los juegos de cartas para beber son los grandes clásicos de las previas y fiestas en casa. La mecánica es simple: cada carta del mazo tiene una regla asociada, y el azar decide quién bebe, quién manda y quién sufre. Son juegos que funcionan con cualquier tamaño de grupo y que mantienen la tensión ronda tras ronda.
             </p>
             <p>
-              En BeberGames tienes dos variantes digitales disponibles: el <Link href="/juegos/ring-of-fire" className="text-accent hover:underline">Ring of Fire</Link> (también conocido como Anillo de Fuego o Kings), el juego de cartas para beber más famoso del mundo con 13 reglas diferentes; y <Link href="/juegos/rey-de-la-copa" className="text-accent hover:underline">El Rey de la Copa</Link>, la adaptación española con sus propias reglas por carta y la temida Copa del Rey en el centro.
+              En BeberGames tienes tres variantes digitales disponibles: el <Link href="/juegos/ring-of-fire" className="text-accent hover:underline">Ring of Fire</Link> (también conocido como Anillo de Fuego o Kings), el juego de cartas para beber más famoso del mundo con 13 reglas diferentes; <Link href="/juegos/rey-de-la-copa" className="text-accent hover:underline">El Rey de la Copa</Link>, la adaptación española con sus propias reglas por carta; y <Link href="/juegos/la-piramide" className="text-accent hover:underline">La Pirámide</Link>, donde memorizas tus cartas y faroleas para asignar tragos a los demás.
             </p>
             <p>
               La versión digital tiene una ventaja clara: no necesitas una baraja física, no se mojan las cartas con cerveza y la app recuerda las reglas por ti. Solo abre el móvil, elige tu juego y empieza. Si quieres conocer todas las reglas carta por carta, consulta nuestra <Link href="/blog/ring-of-fire-reglas-cartas" className="text-accent hover:underline">guía completa del Ring of Fire</Link> o la <Link href="/blog/rey-de-la-copa-reglas" className="text-accent hover:underline">guía del Rey de la Copa</Link>.

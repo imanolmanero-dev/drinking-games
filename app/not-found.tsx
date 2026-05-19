@@ -3,7 +3,7 @@ import { BeerOff, Home } from 'lucide-react';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Página no encontrada | BeberGames',
+  title: 'Página no encontrada',
   description: 'Parece que has bebido demasiado, esta página no existe.',
 }
 

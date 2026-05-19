@@ -267,22 +267,37 @@ export default function RingOfFirePage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>Ring of Fire (La Copa del Rey): El Rey de la Baraja</h2>
+            <h2>Ring of Fire: El Juego de Cartas para Beber más Famoso</h2>
             <p>
-              Bienvenido al legendario <strong>Ring of Fire</strong> (conocido en español como La Copa del Rey o simplemente "Cascada"). Si has estado en alguna convención universitaria, viaje de fin de curso o residencia de estudiantes de intercambio, este es el juego de cartas definitivo que une culturas y destroza hígados.
-            </p>
-            <h3>¿Qué es y por qué jugar online?</h3>
-            <p>
-              El principal problema de jugar al Ring of Fire en la vida real es que a los 30 minutos de partida, las cartas físicas terminan pegajosas por la cerveza, o inevitablemente descubres que te faltan varias cartas clave de la baraja que se perdieron en la última fiesta. <strong>Nuestra aplicación soluciona esto simulando una baraja virtual infinita de 52 cartas.</strong> Simplemente debes tocar el mazo para revelar una carta completamente al azar. No hay dados, no hay suciedad y no hay trampas posibles. Además, te indica en pantalla exactamente qué castigo debes hacer para que no haya que memorizar aburridas tablas de valores.
+              El <strong>Ring of Fire</strong> — también llamado Círculo de Fuego o Cascada — es el juego de beber con baraja más popular del mundo. Cada carta tiene una regla diferente. Nuestra versión digital simula la baraja completa de 52 cartas para que juguéis donde sea sin necesidad de naipes físicos.
             </p>
             <p>
-              Colocad un vaso grande o "Copa Central" en el medio de los teléfonos. En estricto orden rotatorio, se irá destapando la carta. Si sale una J (El Dictador), puedes crear una ley ridícula para el resto de la noche. Si sale un 5 (Hombre Pulgar), tú serás el amo del terror silencioso. Y si sale una temible y sombría K (El Rey)... deberás contribuir vertiendo tu bebida en la Copa Central.
+              La mecánica es simple: colocad una copa grande vacía en el centro (la Copa del Rey). Por turnos, cada jugador roba una carta virtual y cumple la regla asociada. El juego acaba cuando alguien saca el cuarto Rey — esa persona se bebe toda la Copa del Rey.
             </p>
-            <h3>El Desenlace Final</h3>
+
+            <h3>Las reglas por carta</h3>
             <ul>
-              <li><strong>Cuarto Rey Mortal:</strong> La partida sigue rodando ágil y fiera hasta que por azar absoluto una persona descubre el cuarto (y último) Rey. Inmediatamente, la partida se clausura y esa persona debe beber hasta la última gota del oscuro contenido de la Copa del Centro.</li>
-              <li>Si no lo has probado nunca, recomendamos encarecidamente que leas todas las equivalencias en nuestro <Link href="/juegos/ring-of-fire/reglas" className="text-rose-500 underline">manual de reglas completo</Link> antes del primer trago.</li>
+              <li><strong>As — Cascada:</strong> Todos beben en cadena. Nadie puede parar hasta que pare el jugador que tiene a su izquierda.</li>
+              <li><strong>2 a 4 — Dar/Tomar:</strong> Reparte tragos o bebe tú, según la carta.</li>
+              <li><strong>5 — Pulgar:</strong> El jugador pone el pulgar en la mesa cuando quiera. El último en hacerlo bebe.</li>
+              <li><strong>7 — Cielo:</strong> Último en levantar la mano al techo bebe.</li>
+              <li><strong>J — El Dictador:</strong> Crea una norma que dura toda la partida. El que la incumple, bebe.</li>
+              <li><strong>Q — Preguntas:</strong> Solo se habla en preguntas hasta que alguien falle.</li>
+              <li><strong>K — Rey:</strong> Vierte parte de tu bebida en la Copa del Rey. El 4º Rey se la bebe entera.</li>
             </ul>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Mínimo 3, pero funciona mejor con 4-8 personas. Con más gente las normas del Jack se acumulan y el caos se dispara.</p>
+            <p><strong>¿Por qué jugar con la app?</strong> Las cartas físicas acaban pegajosas, mojadas o incompletas. La app genera una baraja perfecta cada vez y muestra la regla en pantalla para que nadie tenga que memorizar nada.</p>
+            <p><strong>¿Cuánto dura una partida?</strong> Depende de cuándo salga el cuarto Rey. Normalmente entre 20 y 40 minutos.</p>
+
+            <h3>Otros juegos de cartas que te gustarán</h3>
+            <ul>
+              <li><Link href="/juegos/rey-de-la-copa" className="text-rose-500 underline">Rey de la Copa</Link> — La versión española con reglas ligeramente diferentes para cada número.</li>
+              <li><Link href="/juegos/la-piramide" className="text-rose-500 underline">La Pirámide</Link> — Apuesta, farolea y reparte tragos. Memoria y mentira al servicio del alcohol.</li>
+              <li><Link href="/juegos/triman" className="text-rose-500 underline">Triman</Link> — Un dado decide quién bebe. El que saque el 3 tiene un problema gordo.</li>
+            </ul>
+            <p>Consulta todas las equivalencias de cartas y variantes en el <Link href="/juegos/ring-of-fire/reglas" className="text-rose-500 underline">manual completo de Ring of Fire</Link>.</p>
           </div>
         </div>
       </div>

@@ -18,11 +18,12 @@ import {
   LayoutGrid,
   Zap as ZapIcon,
   BookOpen,
+  Triangle,
 } from "lucide-react";
 import { BreadcrumbJsonLd, FAQJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
-  title: "Juegos para Beber Online — 12 Juegos Gratis Sin Descargas",
+  title: "Juegos para Beber Online — 13 Juegos Gratis Sin Descargas",
   description:
     "Los mejores juegos para beber online, gratis y sin descargas. Yo Nunca, Verdad o Reto, Ring of Fire, Medusa, La Bomba, Tabú Borracho y más. Perfectos para previas, botellones y fiestas.",
   keywords: [
@@ -234,6 +235,21 @@ const juegos = [
     intensidad: "🟡 Normal",
     sinMaterial: false,
   },
+  {
+    id: "la-piramide",
+    nombre: "La Pirámide",
+    descripcion: "Memoriza tus cartas, farolea y asigna tragos. ¡Cada fila sube la apuesta!",
+    detalle: "Construye una pirámide de 21 cartas, memoriza las tuyas en 10 segundos y asigna tragos cuando coincidan. ¿Lo mejor? Puedes farolear. Si te pillan, bebes el doble.",
+    icono: Triangle,
+    color: "from-indigo-500 to-purple-600",
+    shadowColor: "shadow-indigo-500/20",
+    accentColor: "text-indigo-400",
+    borderColor: "border-indigo-500/30",
+    bgColor: "bg-indigo-500/10",
+    jugadores: "2+",
+    intensidad: "🟡 Normal a 🔴 Picante",
+    sinMaterial: false,
+  },
 ];
 
 const categorias = [
@@ -278,7 +294,7 @@ const categorias = [
 const faqs = [
   {
     q: "¿Qué juegos para beber hay disponibles en BeberGames?",
-    a: "BeberGames tiene 12 juegos para beber gratuitos: Yo Nunca, Verdad o Reto, Quién Es Más Probable, Ring of Fire, La Ruleta, Yo Prefiero, Medusa, El Rey de la Copa, La Bomba, Triman, Tabú Borracho y Beer Pong Virtual. Todos funcionan desde el móvil sin descargar nada.",
+    a: "BeberGames tiene 13 juegos para beber gratuitos: Yo Nunca, Verdad o Reto, Quién Es Más Probable, Ring of Fire, La Ruleta, Yo Prefiero, Medusa, El Rey de la Copa, La Bomba, Triman, Tabú Borracho, Beer Pong Virtual y La Pirámide. Todos funcionan desde el móvil sin descargar nada.",
   },
   {
     q: "¿Son gratis los juegos para beber de BeberGames?",
@@ -315,7 +331,7 @@ export default function JuegosPage() {
         <div className="mx-auto max-w-3xl flex flex-col items-center gap-5">
           <span className="inline-flex items-center gap-2 rounded-full border border-border bg-surface px-3 py-1 text-xs font-semibold text-muted">
             <ZapIcon className="h-3.5 w-3.5 text-accent" />
-            12 juegos · Gratis · Sin descargas
+            13 juegos · Gratis · Sin descargas
           </span>
           <h1 className="text-4xl font-extrabold tracking-tight sm:text-5xl md:text-6xl">
             Juegos para{" "}
@@ -439,7 +455,7 @@ export default function JuegosPage() {
             <div className="text-sm text-muted space-y-3 leading-relaxed">
               <p>
                 BeberGames es la plataforma de juegos para beber más completa en
-                español. Con <strong className="text-foreground">12 juegos interactivos</strong> que
+                español. Con <strong className="text-foreground">13 juegos interactivos</strong> que
                 funcionan directamente desde el navegador del móvil, sin
                 necesidad de descargar ninguna aplicación ni crear una cuenta.
               </p>

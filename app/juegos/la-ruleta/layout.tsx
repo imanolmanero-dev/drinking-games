@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos para tu grupo. ¡Sin excusas!",
   openGraph: {
-    title: "La Ruleta — Juego para beber online | BeberGames",
+    title: "La Ruleta — Juego para beber online",
     description:
       "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos. ¡Sin excusas!",
   },

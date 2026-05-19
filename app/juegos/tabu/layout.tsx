@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Juega al Tabú Borracho con amigos. Describe la palabra sin decir las prohibidas. Si usas una palabra tabú… ¡bebes! Más de 65 tarjetas para fiestas y previas.",
   openGraph: {
-    title: "Tabú Borracho — Juego de Palabras para Beber | BeberGames",
+    title: "Tabú Borracho — Juego de Palabras para Beber",
     description:
       "Describe la palabra sin decir las prohibidas. Si fallas… ¡bebes! El juego perfecto para fiestas.",
   },

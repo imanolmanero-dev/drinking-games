@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Juega a Verdad o Reto para beber con amigos. 30 verdades y 30 retos en español. Si no cumples… ¡fondo blanco!",
   openGraph: {
-    title: "Verdad o Reto — Juego para beber online | BeberGames",
+    title: "Verdad o Reto — Juego para beber online",
     description:
       "30 verdades y 30 retos en español. Elige verdad o reto. Si no cumples… ¡fondo blanco!",
   },

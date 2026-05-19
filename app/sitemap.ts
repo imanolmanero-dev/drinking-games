@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "la-bomba",
     "tabu",
     "beer-pong",
+    "la-piramide",
   ];
 
   const categorias = ["preguntas", "cartas", "dados", "sin-materiales"];

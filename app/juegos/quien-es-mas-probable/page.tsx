@@ -15,7 +15,7 @@ import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
 import { type Intensidad } from "@/lib/data/yo-nunca";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 
 // ───── Shuffle helper ─────
@@ -133,23 +133,34 @@ export default function QuienEsMasProbablePage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>Quién es más probable a... (El Juego de los Señalamientos)</h2>
+            <h2>Quién Es Más Probable: El Juego del Señalamiento</h2>
             <p>
-              También mundialmente conocido en fiestas anglosajonas como <em>"Most Likely To"</em> o el <em>Juego del Dedo</em>, esta dinámica nació con un único y perturbador objetivo: descubrir exactamente qué prejuicios tienen tus amigos sobre ti. Olvídate de los cumplidos, aquí se viene a juzgar y a ser juzgado sin ningún tipo de piedad.
-            </p>
-            <h3>El Funcionamiento de las Votaciones</h3>
-            <p>
-              La mecánica es ridículamente sencilla, por eso es el juego perfecto para jugar cuando la noche ya está avanzada y no apetece pensar en reglas complejas. La pantalla dictará una premisa escandalosa o muy específica (por ejemplo, <em>"¿Quién es más probable que termine uniéndose a una secta?"</em>). El grupo entero deberá meditar en silencio rotundo.
+              También conocido como <em>Most Likely To</em> en inglés, el juego de <strong>Quién Es Más Probable</strong> tiene un objetivo claro y perverso: descubrir exactamente qué piensa el grupo de cada persona. Sin filtros, sin diplomacia, con el dedo apuntando directamente.
             </p>
             <p>
-              Tras tres o cinco segundos de tensión mirando las caras de los demás, deberéis exclamar: <strong>¡Uno, dos y tres!</strong>. En ese preciso milisegundo, toda la mesa debe extender su brazo y apuntar con el dedo a la persona que consideran más probable de llevar a cabo lo narrado en la tarjeta.
+              La app muestra una pregunta del tipo &ldquo;¿Quién es más probable que acabe viviendo en otro país?&rdquo; o &ldquo;¿Quién es más probable que llore en una película de acción?&rdquo;. A la cuenta de tres, todos señalan a la vez. El más votado bebe tantos tragos como dedos le apunten.
             </p>
-            <h3>Matemáticas Básicas del Castigo</h3>
+
+            <h3>Las reglas básicas</h3>
             <ul>
-              <li><strong>Castigo directo:</strong> Cada dedo que te esté apuntando equivale, de forma irrevocable, a un trago de tu bebida. Si sois un grupo de 8 personas y hay 7 dedos apuntando a tu cara, tendrás que dar 7 largos tragos.</li>
-              <li><strong>Diferentes Intensidades:</strong> Al igual que muchos de nuestros otros títulos en BeberGames, este juego dispone de varios selectores de intensidad. Te sugerimos empezar en <em>Suave</em> o <em>Normal</em> para evitar herir sensibilidades demasiado pronto.</li>
-              <li>Tienes todas las mecánicas, consejos y un modo "Supervivencia Extrema" explicados en las <Link href="/juegos/quien-es-mas-probable/reglas" className="text-cyan-500 underline">Reglas de Quién Es Más Probable</Link>.</li>
+              <li><strong>Votación simultánea:</strong> Nadie puede copiar el voto del otro. Cuando alguien diga &ldquo;¡Uno, dos, tres!&rdquo;, todos señalan al mismo tiempo sin mirar a los lados.</li>
+              <li><strong>Tragos por dedo:</strong> Cada dedo que te apunte = un trago. En un grupo de 8 personas, si 7 te señalan, tienes trabajo por delante.</li>
+              <li><strong>Empate:</strong> Si hay empate entre dos personas, las dos beben. La democracia es justa.</li>
+              <li><strong>Auto-señalamiento:</strong> Sí, puedes señalarte a ti mismo. No tiene por qué ser vergonzoso. A veces es estratégico.</li>
             </ul>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Mínimo 3, pero con 5 o más es mucho mejor. Con más gente, los señalamientos son más reveladores y las reacciones más divertidas.</p>
+            <p><strong>¿Las preguntas son siempre comprometidas?</strong> Tenemos varios niveles de intensidad. El modo Normal tiene preguntas divertidas sin drama. El modo Picante puede ponerse más personal.</p>
+            <p><strong>¿Se puede jugar sin beber?</strong> Claro. El castigo puede ser cualquier cosa: hacer una tarea, pagar una prenda, o simplemente pasar el mal rato de que todos te señalen.</p>
+
+            <h3>Otros juegos de preguntas</h3>
+            <ul>
+              <li><Link href="/juegos/yo-nunca" className="text-cyan-500 underline">Yo Nunca</Link> — Confiesa o bebe. Descubre los secretos del grupo.</li>
+              <li><Link href="/juegos/verdad-o-reto" className="text-cyan-500 underline">Verdad o Reto</Link> — El clásico con cientos de preguntas y retos en varios niveles.</li>
+              <li><Link href="/juegos/yo-prefiero" className="text-cyan-500 underline">Yo Prefiero</Link> — A o B, sin excusas. La minoría bebe.</li>
+            </ul>
+            <p>Lee todas las mecánicas avanzadas en las <Link href="/juegos/quien-es-mas-probable/reglas" className="text-cyan-500 underline">reglas de Quién Es Más Probable</Link>.</p>
           </div>
         </div>
       </div>
@@ -187,10 +198,7 @@ export default function QuienEsMasProbablePage() {
             <RotateCcw className="h-4 w-4" />
             Volver a jugar
           </button>
-          
-          <div className="mt-8 w-full">
-            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
-          </div>
+
         </motion.div>
       </div>
     );
@@ -255,12 +263,7 @@ export default function QuienEsMasProbablePage() {
         </AnimatePresence>
       </div>
 
-      {/* AdSense Banner every 6 questions */}
-      {currentIndex > 0 && currentIndex % 6 === 0 && (
-        <div className="w-full max-w-md mb-6">
-          <AdBanner dataAdSlot="IN_GAME_SLOT_ID" />
-        </div>
-      )}
+
 
       {/* Next button */}
       <button

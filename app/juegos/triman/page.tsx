@@ -451,22 +451,41 @@ export default function TrimanPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>Triman (El Señor del 3): El Juego de Dados Definitivo</h2>
+            <h2>Triman: El Juego de Dados con un Señor del 3</h2>
             <p>
-              Bienvenido a <strong>Triman (Three Man)</strong>. Este antiguo juego para beber requiere muchísima atención o un hígado de acero. La mecánica original exige un dado físico, pero en esta era digital moderna, nuestra app lanza el dado virtual por ti con hermosas animaciones, y lo más importante: lleva la cuenta de todos los resultados automáticamente para que no haya disputas.
-            </p>
-            <h3>Objetivo Principal: Encontrar al Triman</h3>
-            <p>
-              El juego consta de dos fases increíblemente hostiles. Primero debéis rodar el mazo hasta encontrar a la temida víctima: El Triman. El primer jugador que en la tirada introductoria saque un <strong>3 dorado</strong>, se convertirá instantáneamente en el Triman. A partir de esa coronación indeseada, empieza la verdadera acción mortal.
+              <strong>Triman</strong> (también conocido como Three Man) es un juego de beber con dados donde un jugador desafortunado carga con el título de &ldquo;Señor del 3&rdquo;. Cada vez que alguien saca un 3 en el dado, el Triman bebe. Sin excusas, sin escapatoria.
             </p>
             <p>
-              En la fase de juego continuo, los turnos fluyen. Un 6 obligará a todos a brindar. Un 4 obligará a beber a tu amigo de la izquierda. Pero cuidado: <strong>El Triman tiene que mantenerse alerta todo el rato, porque cada vez que CUALQUIER OTRA PERSONA saque un 3 en el dado, él deberá beber su castigo.</strong> Sí, puedes castigar al mismo Triman repetidas veces seguidas si los dioses del azar están de tu lado.
+              Nuestra app lanza el dado virtual con animaciones realistas y lleva la cuenta automáticamente de quién es el Triman, de quién tiene el turno y qué castigo corresponde a cada número. Sin discusiones.
             </p>
-            <h3>Líbrate de la Corona</h3>
+
+            <h3>Las reglas del dado</h3>
             <ul>
-              <li><strong>La única salida:</strong> Para dejar de ser el Triman, tú mismo (y solo tú) deberás sacar un 3 en tu propio turno. Si consigues esa hazaña, podrás cederle el triste título a la persona que elijas.</li>
-              <li>Asegúrate de visitar nuestra <Link href="/juegos/triman/reglas" className="text-emerald-500 underline">guía y normas completas de Triman</Link> para conocer qué hace el famoso resultado del 5 y cuándo ocurre la temible tirada múltiple secreta.</li>
+              <li><strong>1 — Bebe quien lanzó:</strong> Te tocó. Bebe un trago.</li>
+              <li><strong>2 — Derecha:</strong> Bebe el jugador a tu derecha.</li>
+              <li><strong>3 — El Triman bebe:</strong> Da igual quién haya tirado. El Señor del 3 siempre bebe cuando sale un 3.</li>
+              <li><strong>4 — Izquierda:</strong> Bebe el jugador a tu izquierda.</li>
+              <li><strong>5 — Elige:</strong> Tú decides quién bebe del grupo. Poder absoluto.</li>
+              <li><strong>6 — Todos beben:</strong> Nadie se salva. Brindad y bebed.</li>
             </ul>
+
+            <h3>Cómo se elige al Triman</h3>
+            <p>
+              Al principio del juego, todos lanzan el dado por turnos. El primero en sacar un 3 se convierte en el Triman. A partir de ahí, el juego fluye con rondas normales. La única forma de dejar de ser Triman es sacar un 3 en tu propio turno — entonces eliges a quién le pasas la corona maldita.
+            </p>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores se necesitan?</strong> Mínimo 3. Con 5-7 es donde más brilla. Más de 8 puede hacer los turnos largos.</p>
+            <p><strong>¿El Triman siempre bebe cuando sale un 3?</strong> Sí, siempre. Da igual quién tire el dado. Si sale 3, el Triman bebe. Puede acabar bebiendo muchas veces seguidas si hay mala suerte.</p>
+            <p><strong>¿Se puede jugar con dados físicos?</strong> Sí, pero la app es más cómoda porque lleva la cuenta del Triman actual, los turnos y las reglas automáticamente.</p>
+
+            <h3>Más juegos de dados y azar</h3>
+            <ul>
+              <li><Link href="/juegos/la-bomba" className="text-emerald-500 underline">La Bomba</Link> — Pasa el móvil antes de que explote el temporizador secreto.</li>
+              <li><Link href="/juegos/la-ruleta" className="text-emerald-500 underline">La Ruleta</Link> — Gira la ruleta y cumple el castigo que te toque.</li>
+              <li><Link href="/juegos/ring-of-fire" className="text-emerald-500 underline">Ring of Fire</Link> — Cada carta de la baraja tiene una regla diferente.</li>
+            </ul>
+            <p>Consulta todas las variantes y la regla secreta del 5 en la <Link href="/juegos/triman/reglas" className="text-emerald-500 underline">guía completa de Triman</Link>.</p>
           </div>
         </div>
       </div>

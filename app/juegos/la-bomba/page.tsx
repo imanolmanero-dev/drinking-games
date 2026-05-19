@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 const TOTAL_RONDAS = 12;
 const MIN_MS = 12000;
@@ -252,20 +252,31 @@ export default function LaBombaPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>La Bomba: El Juego de Beber de la Patata Caliente</h2>
             <p>
-              Basado en el clásico juego infantil de la patata caliente (Hot Potato), <strong>La Bomba</strong> aumenta la tensión al máximo nivel en cualquier previa o fiesta aportando un elemento muy sencillo pero devastador: un temporizador secreto.
-            </p>
-            <h3>Pásala o Bebe (Tic, Tac...)</h3>
-            <p>
-              El concepto de nuestra bomba virtual es extremadamente intuitivo. Una vez encendida la mecha, la bomba empezará a latir rápidamente. El algoritmo generará un tiempo de detonación completamente aleatorio: a veces explotará en 12 segundos, a veces aguantará hasta los dolorosos 40 segundos.
+              Basado en el clásico juego infantil de la patata caliente, <strong>La Bomba</strong> añade un elemento devastador: nadie sabe cuándo va a explotar. El temporizador es completamente secreto, lo que convierte cada segundo en tensión pura.
             </p>
             <p>
-              Tu objetivo es pasársela al siguiente jugador lo más rápido posible pulsando el botón (o pasando físicamente el dispositivo). Nadie en la habitación sabrá cuándo va a estallar, lo que genera una oleada de gritos y pánico muy divertida. El desafortunado que tenga la bomba en sus manos (o en su turno) cuando suene la explosión, tendrá que castigarse.
+              Una vez encendida la mecha, la bomba empieza a latir. El algoritmo elige un tiempo de detonación aleatorio: puede explotar a los 12 segundos o aguantar hasta los 40. Tu trabajo es pasársela al siguiente jugador lo más rápido posible.
             </p>
-            <h3>Añade Retos a la Bomba (Modo Difícil)</h3>
+
+            <h3>Modos de juego</h3>
             <ul>
-              <li><strong>Categoría Explosiva:</strong> Para aumentar la dificultad, el grupo debe elegir una categoría (ej. <em>Marcas de coches</em>). Antes de pasar la bomba al compañero, cada uno debe decir una palabra de la categoría válida y sin repetir. Si te quedas en blanco, la bomba te acabará reventando en la cara.</li>
-              <li>Descubre las reglas avanzadas para jugar por equipos y cómo configurar penalizaciones en el <Link href="/juegos/la-bomba/reglas" className="text-orange-500 underline">manual de La Bomba</Link>.</li>
+              <li><strong>Modo libre:</strong> Pasad el móvil físicamente de mano en mano. Sin botones, sin trampa. El pánico es real.</li>
+              <li><strong>Modo con nombres:</strong> Introduce los jugadores y la app controla los turnos automáticamente. Pulsa el botón para pasar la bomba al siguiente.</li>
+              <li><strong>Categoría Explosiva:</strong> Antes de pasar, cada uno debe decir una palabra de una categoría elegida (ej. marcas de coches, países, nombres). Si te quedas en blanco, la bomba te explota en la cara.</li>
             </ul>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Con 3 ya funciona, pero con 5 o más el caos se dispara. Cuanta más gente, más incertidumbre sobre quién va a tener la bomba cuando explote.</p>
+            <p><strong>¿La bomba siempre explota en el mismo tiempo?</strong> No. Cada ronda tiene un tiempo diferente y completamente aleatorio entre 12 y 40 segundos. Nadie puede predecirlo.</p>
+            <p><strong>¿Qué pasa si la bomba explota en el traspaso?</strong> Si explota justo cuando la estás pasando, el que la envía bebe. En caso de duda, el que la tenía en la mano pierde.</p>
+
+            <h3>Juegos de tensión que también te gustarán</h3>
+            <ul>
+              <li><Link href="/juegos/medusa" className="text-orange-500 underline">Medusa</Link> — Miradas cruzadas = beber. Sin temporizador, pero igual de tenso.</li>
+              <li><Link href="/juegos/ring-of-fire" className="text-orange-500 underline">Ring of Fire</Link> — Roba cartas y cumple sus reglas. El 4º Rey paga el precio máximo.</li>
+              <li><Link href="/juegos/triman" className="text-orange-500 underline">Triman</Link> — El dado manda. El Señor del 3 reparte castigos sin piedad.</li>
+            </ul>
+            <p>Consulta el <Link href="/juegos/la-bomba/reglas" className="text-orange-500 underline">manual de La Bomba</Link> para todas las reglas y variantes avanzadas.</p>
           </div>
         </div>
       </div>
@@ -349,9 +360,7 @@ export default function LaBombaPage() {
               Cambiar jugadores
             </button>
           </div>
-          <div className="mt-8 w-full">
-            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
-          </div>
+
         </motion.div>
       </div>
     );

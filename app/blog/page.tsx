@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: "Blog",
   description: "Artículos, reglas, trucos y consejos sobre los mejores juegos de mesa y juegos picantes para beber en previas y fiestas.",
   openGraph: {
-    title: "Blog | BeberGames",
+    title: "Blog",
     description: "Los mejores artículos de juegos con alcohol, verdad o reto, ring of fire y más.",
   },
 };

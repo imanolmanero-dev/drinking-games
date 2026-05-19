@@ -231,3 +231,4 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-04-27 | H1 duplicado en 18 posts del blog | 18 archivos `.mdx` | Eliminada línea `# H1` del MDX; el template `[slug]/page.tsx` ya renderiza el H1 |
 | 2026-04-27 | Prosa corrupta/ininteligible en 3 posts del blog | `ring-of-fire-reglas-cartas`, `juegos-para-beber-sin-cartas`, `juegos-de-mesa-para-beber` | Reescritura completa de secciones corruptas con prosa natural |
 | 2026-04-27 | 4 categorías con "thin content" (~30 palabras) | cartas, dados, preguntas, sin-materiales | Añadido metadata + bloque SEO (~250 palabras) con links internos |
+| 2026-05-19 | Falso positivo de corrección: Títulos duplicados `"\| BeberGames"` persistían en 18 archivos `layout.tsx` | `app/juegos/*/layout.tsx`, `app/not-found.tsx`, `app/blog/page.tsx` | Eliminado de todos los archivos afectados; la regla original solo se aplicó a "6 páginas" en lugar de buscar globalmente. |

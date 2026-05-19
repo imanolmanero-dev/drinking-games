@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Juega a Yo Prefiero con amigos. ¿A o B? El grupo elige y la minoría bebe. Más de 60 dilemas en 3 niveles de intensidad. ¡Sin excusas!",
   openGraph: {
-    title: "Yo Prefiero — Juego para beber online | BeberGames",
+    title: "Yo Prefiero — Juego para beber online",
     description:
       "¿A o B? El grupo elige y la minoría bebe. Más de 60 dilemas para beber en grupo.",
   },

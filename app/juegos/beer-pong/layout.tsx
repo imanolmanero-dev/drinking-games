@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Lleva el marcador de tu partida de Beer Pong desde el móvil. Gestiona los vasos, rondas y desafíos especiales. ¡El árbitro digital definitivo para vuestro Beer Pong!",
   openGraph: {
-    title: "Beer Pong Virtual — Árbitro Digital | BeberGames",
+    title: "Beer Pong Virtual — Árbitro Digital",
     description:
       "Controla tu partida de Beer Pong desde el móvil. Vasos, turnos, reglas especiales y desafíos automáticos.",
   },

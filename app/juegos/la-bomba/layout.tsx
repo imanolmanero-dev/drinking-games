@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description:
     "Juega a La Bomba online. Pasa el móvil antes de que explote el temporizador secreto. El que tenga la bomba cuando explote... ¡bebe! El juego de beber más tenso.",
   openGraph: {
-    title: "La Bomba — Juego de Beber | BeberGames",
+    title: "La Bomba — Juego de Beber",
     description:
       "Pasa el móvil antes de que explote. El que tenga la bomba cuando explote bebe. ¡Tensión pura!",
   },

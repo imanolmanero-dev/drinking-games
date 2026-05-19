@@ -16,6 +16,7 @@ const GAME_NAMES: Record<string, string> = {
   "la-bomba": "La Bomba",
   "tabu": "Tabú Borracho",
   "beer-pong": "Beer Pong",
+  "la-piramide": "La Pirámide",
 };
 
 const GAME_DESCRIPTIONS: Record<string, string> = {
@@ -31,6 +32,7 @@ const GAME_DESCRIPTIONS: Record<string, string> = {
   "la-bomba": "Temporizador secreto. Pasa el móvil antes de que explote. El que la tenga cuando explote bebe.",
   "tabu": "Describe la palabra sin decir las prohibidas. Si dices una tabú, todo tu equipo bebe.",
   "beer-pong": "El árbitro digital para tu partida de Beer Pong. Marca vasos, gestiona turnos y reglas especiales.",
+  "la-piramide": "Memoriza tus cartas, farolea y asigna tragos. El juego de cartas para beber donde el farol es la clave.",
 };
 
 interface Props {

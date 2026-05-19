@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   description:
     "Colección de juegos de dados para beber en grupo. Lanza los dados y que la suerte decida quién bebe esta ronda.",
   openGraph: {
-    title: "Juegos de Dados para Beber | BeberGames",
+    title: "Juegos de Dados para Beber",
     description: "Juegos de dados clásicos para previas como el Señor del 3 (Triman).",
   },
 };

@@ -6,7 +6,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Eye, Plus, X, Users, RotateCcw, BookOpen, ChevronRight } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 const TOTAL_ROUNDS = 15;
 
@@ -203,25 +203,40 @@ export default function MedusaPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>Medusa: El Juego de las Miradas Asesinas</h2>
+            <h2>Medusa: El Juego de Beber de las Miradas Asesinas</h2>
             <p>
-              Adéntrate en la mitología y comprueba qué amigos son los más predecibles con el juego de beber <strong>Medusa</strong>. Este es un juego perfecto para calentar el ambiente antes de salir, no requiere cartas ni dados, y las únicas armas que necesitas son tus ojos y reflejos felinos.
+              Inspirado en la mitología griega, el juego de beber <strong>Medusa</strong> convierte una mirada inocente en un castigo instantáneo. Sin cartas, sin dados, sin aplicaciones complicadas. Solo necesitas ojos y nervios de acero.
             </p>
-            <h3>Fase 1: El Descenso a los Infiernos</h3>
             <p>
-              El juego transcurre en rondas. Al inicio, toda la mesa, sin excepciones, debe agachar la cabeza y mantener la vista fijada en sus zapatos (o en la pantalla de su teléfono si lo usan para llevar el control). Con nuestra aplicación, simplemente tendréis que escuchar la inquietante cuenta atrás y mantener los nervios a raya.
+              La mecánica es tan sencilla que se puede explicar en 10 segundos: todos miran hacia abajo, se cuenta hasta tres y, al levantar la cabeza, quien se cruce la mirada con alguien grita &ldquo;¡MEDUSA!&rdquo; y ambos beben. Es uno de esos juegos que genera tensión pura antes de que empiece la diversión.
             </p>
-            <h3>Fase 2: El Contacto Letal</h3>
+
+            <h3>Cómo funciona la cuenta atrás</h3>
             <p>
-              A la cuenta de la máquina ("tres, dos, uno, <strong>¡MEDUSA!</strong>"), todos los participantes deben levantar bruscamente la cabeza y clavar la mirada fijamente en los ojos de otro jugador. Y aquí es donde ocurre la masacre:
+              Nuestra app hace de árbitro imparcial. Pulsa el botón, todos miran abajo, y la cuenta atrás comienza. A la señal, todos levantan la cabeza al mismo tiempo y miran fijamente a otro jugador.
             </p>
             <ul>
-              <li><strong>Castigo directo:</strong> Si miras a un amigo y él está observando a otra persona (es decir, sus ojos no se cruzan contigo), te salvas. <em>Estás libre de petrificación.</em></li>
-              <li><strong>Grito de castigo:</strong> Pero si levantas la vista y, por puro azar fatídico, ese amigo también decidió clavar la mirada en ti... se produce el temido Contacto Medusa. Ambos debéis gritar rápidamente <strong>¡MEDUSA!</strong> y tragar un shot o un buen trago de vuestra bebida.</li>
-              <li>Si queréis añadir la regla del "Grito Tardío", revisa los detalles en el <Link href="/juegos/medusa/reglas" className="text-lime-500 underline">manual oficial de Medusa</Link>.</li>
+              <li><strong>Sin contacto visual:</strong> Si la persona a la que miras está mirando a otra persona, te salvas. Sigues seco.</li>
+              <li><strong>Contacto Medusa:</strong> Si la persona que has elegido también te está mirando a ti... los dos gritáis ¡MEDUSA! y bebéis.</li>
+              <li><strong>Último en gritar:</strong> Añade la regla del &ldquo;grito tardío&rdquo; — el que grite Medusa después que el otro bebe el doble.</li>
             </ul>
+
+            <h3>Preguntas frecuentes sobre Medusa</h3>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Mínimo 4 para que tenga gracia. Con más de 6 personas la probabilidad de cruzar miradas sube mucho y el juego se vuelve mucho más caótico.</p>
+            <p><strong>¿Se puede jugar de pie?</strong> Sí, perfectamente. El juego funciona igual sentados en un sofá, alrededor de una mesa o de pie en una fiesta. Solo necesitáis que todos puedan verse entre sí.</p>
+            <p><strong>¿Qué pasa si hay empate?</strong> Si tres personas se miran al mismo tiempo en un triángulo, las tres beben. No hay escapatoria del triángulo maldito.</p>
+
+            <h3>Juegos sin materiales que también te gustarán</h3>
+            <p>Medusa forma parte de nuestra colección de <Link href="/juegos/categorias/sin-materiales" className="text-lime-500 underline">juegos sin materiales</Link>. Si te ha gustado, prueba también:</p>
+            <ul>
+              <li><Link href="/juegos/yo-nunca" className="text-lime-500 underline">Yo Nunca</Link> — Confiesa o bebe. Perfecto para conocer los secretos del grupo.</li>
+              <li><Link href="/juegos/la-bomba" className="text-lime-500 underline">La Bomba</Link> — Pasa el móvil antes de que explote el temporizador secreto.</li>
+              <li><Link href="/juegos/quien-es-mas-probable" className="text-lime-500 underline">Quién Es Más Probable</Link> — El grupo señala y la mayoría decide quién bebe.</li>
+            </ul>
+            <p>Consulta todas las reglas y variantes en el <Link href="/juegos/medusa/reglas" className="text-lime-500 underline">manual oficial de Medusa</Link>.</p>
           </div>
         </div>
+
       </div>
     );
   }
@@ -243,7 +258,7 @@ export default function MedusaPage() {
               <RotateCcw className="h-4 w-4" />Cambiar jugadores
             </button>
           </div>
-          <div className="mt-8 w-full"><AdBanner dataAdSlot="GAMEOVER_SLOT_ID" /></div>
+
         </motion.div>
       </div>
     );

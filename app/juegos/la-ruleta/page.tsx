@@ -398,22 +398,37 @@ export default function LaRuletaPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>La Ruleta (Roulette): Dejando el Castigo al Azar</h2>
+            <h2>La Ruleta: Gira el Disco y Cumple el Castigo</h2>
             <p>
-              Todos conocemos la <strong>Ruleta Rusa</strong> y la tensión que genera, o el típico juego televisivo de girar el panel. Esta es la versión para adultos diseñada específicamente para destruir el aburrimiento al principio de cualquier fiesta usando tu smartphone.
-            </p>
-            <h3>¿Qué ocultan los Paneles de la Ruleta?</h3>
-            <p>
-              Tanto si juegas con amigos cercanos o con desconocidos en una discoteca que acabas de conocer, girar este disco virtual genera pánico (pero del bueno). Nuestra ruleta de beber está programada con decenas de <strong>castigos únicos</strong>, que incluyen desde tragos básicos, chupitos dobles, o retos físicos como "Fondo Blanco" hasta interacciones sociales como "Elige quién bebe". El algoritmo asegura que los resultados sean totalmente aleatorios en cada giro.
+              <strong>La Ruleta</strong> es la versión para fiestas del clásico juego de azar. Gira el disco virtual, espera a que se detenga y cumple el castigo que te toque. Sin negociación, sin excusas. El algoritmo decide tu destino.
             </p>
             <p>
-              Cada jugador tiene que someterse al dictamen de la máquina. Gira la ruleta cuando llegue tu turno, observa la animación hipnótica y prepárate mental y gástricamente para realizar lo que dicte el puntero cuando deje de girar. Nadie puede escapar de su destino.
+              La app incluye 16 castigos diferentes que van desde tragos simples hasta retos físicos y sociales. Cada giro es completamente aleatorio, así que nadie puede predecir qué le va a tocar. La animación hipnótica del disco añade tensión extra mientras el puntero se acerca al resultado.
             </p>
-            <h3>Consejos antes de Jugar</h3>
+
+            <h3>Tipos de castigos</h3>
             <ul>
-              <li><strong>Castigos en equipo:</strong> Casillas como la infame <em>Cascada (Waterfall)</em> obligan al grupo a beber de forma continua; asegúrate de que todos están prestando atención al jugador activo.</li>
-              <li>Jugar es muy intuitivo, pero si quieres leer un análisis detallado sobre cómo aprovechar este formato interactivo, revisa las <Link href="/juegos/la-ruleta/reglas" className="text-rose-500 underline">Reglas de La Ruleta para beber</Link>.</li>
+              <li><strong>Tragos básicos:</strong> Bebe 1, 2 o 3 tragos. El clásico que nunca falla.</li>
+              <li><strong>Fondo blanco:</strong> Vacía la copa entera. El castigo máximo de la ruleta.</li>
+              <li><strong>Cascada (Waterfall):</strong> Todos beben en cadena. Nadie puede parar hasta que pare el de su izquierda.</li>
+              <li><strong>Elige quién bebe:</strong> El poder de señalar. Tú decides quién paga.</li>
+              <li><strong>Retos físicos:</strong> 10 flexiones, bailar 15 segundos o cantar una canción. El que se niegue, bebe el doble.</li>
+              <li><strong>Sociales:</strong> Imitar a alguien del grupo, contar un secreto o piropear al de tu derecha.</li>
+              <li><strong>Te salvas:</strong> A veces la ruleta es generosa. Disfrútalo, no durará.</li>
             </ul>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Con 2 ya se puede jugar, pero con 4 o más es mucho más divertido porque los castigos sociales tienen más sentido.</p>
+            <p><strong>¿Se puede personalizar la ruleta?</strong> De momento los 16 castigos están predefinidos. La variedad es suficiente para horas de juego sin repetirse.</p>
+            <p><strong>¿Qué pasa si alguien no quiere cumplir el castigo?</strong> Bebe el doble. Nadie se escapa de la ruleta impunemente.</p>
+
+            <h3>Más juegos de azar que te gustarán</h3>
+            <ul>
+              <li><Link href="/juegos/triman" className="text-rose-500 underline">Triman</Link> — Un dado decide quién bebe. El Señor del 3 no tiene escapatoria.</li>
+              <li><Link href="/juegos/la-bomba" className="text-rose-500 underline">La Bomba</Link> — Pasa el móvil antes de que explote. Tensión en estado puro.</li>
+              <li><Link href="/juegos/ring-of-fire" className="text-rose-500 underline">Ring of Fire</Link> — Cada carta de la baraja tiene una regla diferente. El 4º Rey lo paga todo.</li>
+            </ul>
+            <p>Consulta todas las reglas y consejos en la <Link href="/juegos/la-ruleta/reglas" className="text-rose-500 underline">guía completa de La Ruleta</Link>.</p>
           </div>
         </div>
       </div>

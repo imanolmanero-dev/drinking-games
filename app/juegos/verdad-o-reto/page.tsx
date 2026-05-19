@@ -21,7 +21,7 @@ import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
 import { type Intensidad } from "@/lib/data/yo-nunca";
-import AdBanner from "@/components/ui/AdBanner";
+
 
 // ───── Shuffle helper ─────
 function shuffleArray<T>(arr: T[]): T[] {
@@ -288,23 +288,39 @@ export default function VerdadORetoPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>El Clásico Verdad o Reto, Ahora en tu Móvil</h2>
+            <h2>Verdad o Reto Online: El Clásico en tu Móvil</h2>
             <p>
-              El mitiquísimo juego de <strong>Verdad o Reto</strong> ha evolucionado. Olvídate de quedarte sin ideas o de repetir siempre las mismas preguntas aburridas sobre a quién le gusta quién en la clase. Con nuestra aplicación de Verdad o Reto online, nosotros ponemos la imaginación y vosotros la cara de vergüenza.
-            </p>
-            <h3>¿Cómo funciona esta versión online interactiva?</h3>
-            <p>
-              Simplemente reunid al grupo (recomendamos jugar a partir de 3 personas para que haya la suficiente diversidad de salseo) e introducid los nombres en el cajón de arriba. Nuestro motor inteligente mezclará las decenas de preguntas y retos en base a los <strong>tres niveles de calentamiento disponibles</strong>.
+              El <strong>Verdad o Reto</strong> es quizás el juego de fiestas más universal de la historia. Todas las generaciones lo han jugado, en todos los países, con todas las variaciones posibles. Nuestra versión digital lo lleva al siguiente nivel con cientos de preguntas y retos organizados por intensidad.
             </p>
             <p>
-              A medida que giren los turnos, si eliges Verdad, tendrás que confesar de forma brutalmente honesta un evento de tu pasado, una opinión conflictiva o una intimidad. Si prefieres la Acción (Reto), prepárate para sudar. Como se trata de un <em>drinking game</em> (juego para beber), la regla fundamental dice que aquel gallina que se acobarde frente a su desafío deberá consumir alcohol a modo de dolorosa penalización.
+              Olvídate de quedarte en blanco intentando inventar preguntas en tiempo real. Con BeberGames, el juego fluye solo: introduces los nombres, eliges el nivel y la app se encarga de todo. Vosotros solo tenéis que sobrevivir a lo que salga en pantalla.
             </p>
-            <h3>Consejos de Supervivencia</h3>
+
+            <h3>¿Cómo funciona la versión para beber?</h3>
+            <p>
+              En cada turno, el jugador activo elige entre <strong>Verdad</strong> o <strong>Reto</strong>. Si elige Verdad, debe responder honestamente una pregunta comprometida. Si elige Reto, tiene que cumplir una acción.
+            </p>
+            <p>
+              La regla de beber es clara: el que se acobarda y no quiere responder ni cumplir el reto, bebe. Fondo blanco sin excusas. Esto mantiene la tensión alta durante toda la partida y garantiza que nadie se quede mirando sin participar.
+            </p>
             <ul>
-              <li><strong>Prohibido acampar en la Verdad:</strong> Nadie respeta al jugador que escoge 5 verdades seguidas. Estableced el estricto límite de que solo se pueden contestar 2 verdades consecutivas. Después, ¡hay que pasar a la acción obligatoriamente!</li>
-              <li><strong>Castigos Severos:</strong> Negarse a contestar o actuar debe salir caro. Recomendamos medio vaso o varios tragos contados en voz alta por el grupo.</li>
-              <li>Explora nuestro artículo oficial con las <Link href="/juegos/verdad-o-reto/reglas" className="text-amber-500 underline">Reglas y Trucos del Verdad o Reto</Link>.</li>
+              <li><strong>Nivel Normal:</strong> Preguntas divertidas y retos sociales para cualquier grupo.</li>
+              <li><strong>Nivel Picante (+18):</strong> Preguntas más personales y retos que requieren valor. Solo para grupos de confianza.</li>
+              <li><strong>Prohibido acampar en Verdad:</strong> Estableced la regla de máximo 2 verdades seguidas para que nadie se escaquee de los retos.</li>
             </ul>
+
+            <h3>Preguntas frecuentes</h3>
+            <p><strong>¿Cuántos jugadores necesito?</strong> Mínimo 3 para que funcione bien, aunque con 4-6 es donde más brilla.</p>
+            <p><strong>¿Cuánto dura una partida?</strong> El juego termina cuando se agotan todas las tarjetas del nivel elegido. Normalmente entre 30 y 60 minutos.</p>
+            <p><strong>¿Puedo mezclar niveles?</strong> Sí. Puedes seleccionar Normal y Picante a la vez para una experiencia variada.</p>
+
+            <h3>Otros juegos de preguntas que te encantarán</h3>
+            <ul>
+              <li><Link href="/juegos/yo-nunca" className="text-amber-500 underline">Yo Nunca</Link> — Confesiones grupales donde el que lo haya hecho bebe.</li>
+              <li><Link href="/juegos/quien-es-mas-probable" className="text-amber-500 underline">Quién Es Más Probable</Link> — El grupo señala y el más votado bebe.</li>
+              <li><Link href="/juegos/yo-prefiero" className="text-amber-500 underline">Yo Prefiero</Link> — Dilemas A o B donde la minoría carga con el castigo.</li>
+            </ul>
+            <p>Consulta también las <Link href="/juegos/verdad-o-reto/reglas" className="text-amber-500 underline">reglas completas del Verdad o Reto</Link> con estrategias y variantes avanzadas.</p>
           </div>
         </div>
       </div>
@@ -352,10 +368,7 @@ export default function VerdadORetoPage() {
               Cambiar jugadores
             </button>
           </div>
-          
-          <div className="mt-8 w-full">
-            <AdBanner dataAdSlot="GAMEOVER_SLOT_ID" />
-          </div>
+
         </motion.div>
       </div>
     );
@@ -444,12 +457,7 @@ export default function VerdadORetoPage() {
           </motion.div>
         </div>
 
-        {/* AdSense Banner every 6 rounds */}
-        {roundCount > 0 && roundCount % 6 === 0 && (
-          <div className="w-full max-w-md mt-6">
-            <AdBanner dataAdSlot="IN_GAME_SLOT_ID" />
-          </div>
-        )}
+
 
         {/* Players row */}
         <div className="w-full max-w-md mt-8 overflow-x-auto">
