@@ -144,6 +144,10 @@ lib/
   - La página de reglas debe cubrir: cómo jugar paso a paso (resumen rápido)
   - El post del blog DEBE incluir un banner al inicio: `> 🎴 **¿Buscas las reglas rápidas?** → [Ver reglas paso a paso](/juegos/X/reglas)`
 
+### 🔴 Alerta "Rastreada, actualmente sin indexar" en Search Console:
+- Si Search Console marca páginas con este error, suele ser consecuencia directa de incumplir las **Reglas #1 (Stuttering)**, **#6 (Prosa Inflada)** o por tener "thin content". 
+- La solución obligatoria es reescribir el contenido manteniendo un tono conversacional natural y directo, eliminando repeticiones algorítmicas y asegurando suficiente longitud de texto (~300 palabras mínimo).
+
 ### Prohibiciones:
 - ❌ NO eliminar páginas existentes sin aprobación (afecta indexación)
 - ❌ NO cambiar URLs/slugs de posts ya indexados
@@ -170,7 +174,7 @@ Antes de considerar una tarea como completada, verificar TODOS estos puntos:
 
 ## ✍️ REGLA #6: Calidad de Prosa (Anti-Inflado)
 
-**CONTEXTO:** En abril de 2026 se descubrió que varios posts del blog tenían prosa extremadamente artificial e inflada, con frases ininteligibles que Google podría clasificar como contenido de baja calidad generado por IA. Esto contribuyó al rechazo de AdSense.
+**CONTEXTO:** En abril y junio de 2026 se descubrió que varios posts del blog tenían prosa extremadamente artificial e inflada, con frases ininteligibles que Google clasificó directamente como contenido de baja calidad o spam generado por IA. Esto causó rechazos de AdSense y que Google marcara múltiples URLs como "Rastreadas: actualmente sin indexar", negándose a mostrarlas en búsquedas. La prosa inflada es letal para el SEO de este proyecto.
 
 ### Obligaciones:
 1. **Escribir en tono conversacional y directo.** Como si le explicaras algo a un amigo en una previa.
@@ -232,3 +236,4 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-04-27 | Prosa corrupta/ininteligible en 3 posts del blog | `ring-of-fire-reglas-cartas`, `juegos-para-beber-sin-cartas`, `juegos-de-mesa-para-beber` | Reescritura completa de secciones corruptas con prosa natural |
 | 2026-04-27 | 4 categorías con "thin content" (~30 palabras) | cartas, dados, preguntas, sin-materiales | Añadido metadata + bloque SEO (~250 palabras) con links internos |
 | 2026-05-19 | Falso positivo de corrección: Títulos duplicados `"\| BeberGames"` persistían en 18 archivos `layout.tsx` | `app/juegos/*/layout.tsx`, `app/not-found.tsx`, `app/blog/page.tsx` | Eliminado de todos los archivos afectados; la regla original solo se aplicó a "6 páginas" en lugar de buscar globalmente. |
+| 2026-06-11 | 7 páginas desindexadas por GSC ("Rastreada, sin indexar") por prosa inflada/stuttering | 6 posts del blog + la-bomba reglas | Reescritura completa con tono conversacional y expansión de thin content |

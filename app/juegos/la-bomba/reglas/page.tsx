@@ -27,10 +27,13 @@ export default function LaBombaReglasPage() {
             <h1 className="text-3xl font-extrabold sm:text-4xl mb-3">
               Cómo jugar a La Bomba
             </h1>
-            <p className="text-muted text-lg leading-relaxed">
+            <p className="text-muted text-lg leading-relaxed mb-4">
               Un temporizador secreto. Un móvil que pasa de mano en mano. El
               que tenga la bomba cuando explote bebe. Así de simple, así de
               tenso.
+            </p>
+            <p className="text-muted leading-relaxed">
+              La Bomba es el juego de beber ideal para subir la adrenalina en cualquier fiesta o botellón. A diferencia de otros juegos donde puedes relajarte, aquí no hay tregua. La cuenta atrás aleatoria hace que cada ronda sea impredecible, obligando a todos a estar atentos y actuar con rapidez. Perfecto para romper el hielo y garantizar carcajadas cuando la presión hace fallar a tus amigos.
             </p>
           </div>
         </header>
