@@ -7,9 +7,14 @@ on:
   workflow_dispatch:
     # Permite ejecutarlo manualmente desde la pestaña de Actions
 
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
 jobs:
   fetch-gsc-data:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -37,8 +42,9 @@ jobs:
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add SEO_DATA.md
           
-          # Solo hacer commit si hay cambios en el archivo
-          git diff --staged --quiet || git commit -m "chore(seo): Actualización automática del dashboard SEO_DATA.md"
-          
-          # Empujar cambios a la rama principal
-          git push
+          if ! git diff --staged --quiet; then
+            git commit -m "chore(seo): Actualización automática del dashboard SEO_DATA.md"
+            git push
+          else
+            echo "No hay datos nuevos para actualizar en SEO_DATA.md"
+          fi
