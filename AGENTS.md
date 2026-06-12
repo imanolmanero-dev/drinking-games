@@ -148,6 +148,10 @@ lib/
 - Si Search Console marca páginas con este error, suele ser consecuencia directa de incumplir las **Reglas #1 (Stuttering)**, **#6 (Prosa Inflada)** o por tener "thin content". 
 - La solución obligatoria es reescribir el contenido manteniendo un tono conversacional natural y directo, eliminando repeticiones algorítmicas y asegurando suficiente longitud de texto (~300 palabras mínimo).
 
+### 🤖 Bucle de Optimización Automatizada:
+- El proyecto cuenta con un sistema de extracción automática de datos desde la API de Search Console. 
+- **OBLIGACIÓN:** Antes de proponer crear nuevos juegos, posts, o estrategias SEO, debes leer siempre el archivo `SEO_DATA.md` situado en la raíz del proyecto para basar tus decisiones en métricas reales recientes.
+
 ### Prohibiciones:
 - ❌ NO eliminar páginas existentes sin aprobación (afecta indexación)
 - ❌ NO cambiar URLs/slugs de posts ya indexados

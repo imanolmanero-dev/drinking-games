@@ -1,0 +1,44 @@
+name: SEO Data Automation
+
+on:
+  schedule:
+    # Ejecutar todos los lunes a las 00:00 UTC
+    - cron: '0 0 * * 1'
+  workflow_dispatch:
+    # Permite ejecutarlo manualmente desde la pestaña de Actions
+
+jobs:
+  fetch-gsc-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: |
+          # Instalamos solo las dependencias necesarias para el script
+          npm install googleapis dotenv
+          npm install -g ts-node typescript
+
+      - name: Fetch SEO Data from Google Search Console
+        env:
+          GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
+        run: |
+          ts-node scripts/fetch-seo-data.ts
+
+      - name: Commit changes
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add SEO_DATA.md
+          
+          # Solo hacer commit si hay cambios en el archivo
+          git diff --staged --quiet || git commit -m "chore(seo): Actualización automática del dashboard SEO_DATA.md"
+          
+          # Empujar cambios a la rama principal
+          git push
