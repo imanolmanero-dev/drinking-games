@@ -40,7 +40,7 @@ async function fetchSeoData() {
         rowLimit: 15,
         orderBy: [{ fieldName: 'clicks', sortOrder: 'DESCENDING' }]
       },
-    });
+    } as any);
 
     // 3. Fetch Top Pages
     const pagesResponse = await searchconsole.searchanalytics.query({
@@ -52,7 +52,7 @@ async function fetchSeoData() {
         rowLimit: 15,
         orderBy: [{ fieldName: 'clicks', sortOrder: 'DESCENDING' }]
       },
-    });
+    } as any);
 
     // 4. Generate the Markdown Content
     const dateUpdated = new Date().toLocaleString('es-ES');
@@ -65,8 +65,8 @@ async function fetchSeoData() {
     markdown += `| Query | Clics | Impresiones | CTR | Posición Media |\n`;
     markdown += `|---|---|---|---|---|\n`;
     
-    const queries = queriesResponse.data?.rows || [];
-    queries.forEach(row => {
+    const queries = (queriesResponse as any).data?.rows || [];
+    queries.forEach((row: any) => {
       const q = row.keys?.[0] || 'Unknown';
       const ctr = row.ctr ? (row.ctr * 100).toFixed(2) + '%' : '0%';
       const pos = row.position ? row.position.toFixed(1) : '0';
@@ -77,8 +77,8 @@ async function fetchSeoData() {
     markdown += `| URL | Clics | Impresiones | CTR | Posición Media |\n`;
     markdown += `|---|---|---|---|---|\n`;
 
-    const pages = pagesResponse.data?.rows || [];
-    pages.forEach(row => {
+    const pages = (pagesResponse as any).data?.rows || [];
+    pages.forEach((row: any) => {
       let p = row.keys?.[0] || 'Unknown';
       p = p.replace(SITE_URL, '/'); // Make it relative
       const ctr = row.ctr ? (row.ctr * 100).toFixed(2) + '%' : '0%';
