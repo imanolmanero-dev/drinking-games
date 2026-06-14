@@ -1,6 +1,6 @@
 # Dashboard de SEO y Search Console
 
-> **Última actualización:** 12/6/2026, 23:15:00
+> **Última actualización:** 14/6/2026, 22:59:21
 > **Periodo de datos:** Últimos 7 días analizados.
 
 *Este archivo se genera automáticamente mediante GitHub Actions y la API de Google Search Console. **NO EDITAR MANUALMENTE**.*
@@ -9,41 +9,41 @@
 
 | Query | Clics | Impresiones | CTR | Posición Media |
 |---|---|---|---|---|
-| juegos para beber online | 55 | 203 | 27.09% | 6.4 |
-| juegos para tomar online | 23 | 63 | 36.51% | 2.2 |
-| juego para beber online | 9 | 19 | 47.37% | 1.7 |
-| verdad o reto online | 8 | 92 | 8.70% | 7.0 |
-| juegos de beber online | 7 | 74 | 9.46% | 14.7 |
-| juegos para beber online gratis | 7 | 23 | 30.43% | 2.3 |
-| juego para tomar online | 5 | 7 | 71.43% | 2.4 |
-| juegos para borrachos online | 5 | 12 | 41.67% | 2.1 |
-| ruleta de shots online | 5 | 18 | 27.78% | 5.4 |
-| ruleta para beber online | 5 | 13 | 38.46% | 2.4 |
-| juego de beber online | 4 | 15 | 26.67% | 2.1 |
+| juegos para beber online | 60 | 201 | 29.85% | 6.1 |
+| juegos para tomar online | 23 | 58 | 39.66% | 2.2 |
+| verdad o reto online | 12 | 129 | 9.30% | 6.8 |
+| juego para beber online | 7 | 17 | 41.18% | 1.7 |
+| juegos de beber online | 7 | 70 | 10.00% | 14.6 |
+| juego de beber online | 6 | 17 | 35.29% | 2.1 |
+| juegos para beber online gratis | 6 | 22 | 27.27% | 2.4 |
+| ruleta de shots online | 6 | 20 | 30.00% | 4.8 |
+| ruleta para beber online | 6 | 14 | 42.86% | 2.1 |
+| juegos para beber en pareja online | 5 | 16 | 31.25% | 2.9 |
+| juego para tomar online | 4 | 7 | 57.14% | 2.4 |
+| juegos para borrachos online | 4 | 8 | 50.00% | 2.1 |
+| juegos para tomar con amigos online | 4 | 9 | 44.44% | 2.0 |
 | juego de borrachos online | 3 | 3 | 100.00% | 1.0 |
-| juegos en linea para tomar | 3 | 5 | 60.00% | 2.0 |
-| juegos online para beber | 3 | 11 | 27.27% | 1.7 |
-| juegos online para tomar | 3 | 4 | 75.00% | 2.0 |
+| juegos en linea para tomar | 3 | 6 | 50.00% | 2.0 |
 
 ## 📄 Top Páginas
 
 | URL | Clics | Impresiones | CTR | Posición Media |
 |---|---|---|---|---|
-| [/](https://bebergames.com/) | 227 | 1070 | 21.21% | 5.9 |
-| [/juegos](https://bebergames.com/juegos) | 44 | 713 | 6.17% | 8.2 |
-| [/juegos/la-ruleta](https://bebergames.com/juegos/la-ruleta) | 36 | 332 | 10.84% | 12.8 |
-| [/juegos/quien-es-mas-probable](https://bebergames.com/juegos/quien-es-mas-probable) | 10 | 233 | 4.29% | 9.5 |
-| [/juegos/verdad-o-reto](https://bebergames.com/juegos/verdad-o-reto) | 10 | 184 | 5.43% | 8.1 |
-| [/blog/juegos-beber-baraja-espanola](https://bebergames.com/blog/juegos-beber-baraja-espanola) | 5 | 505 | 0.99% | 21.4 |
-| [/blog/ring-of-fire-reglas-cartas](https://bebergames.com/blog/ring-of-fire-reglas-cartas) | 5 | 161 | 3.11% | 11.8 |
-| [/juegos/la-piramide](https://bebergames.com/juegos/la-piramide) | 5 | 192 | 2.60% | 9.7 |
-| [/juegos/triman](https://bebergames.com/juegos/triman) | 4 | 93 | 4.30% | 7.7 |
-| [/blog/retos-para-fiestas](https://bebergames.com/blog/retos-para-fiestas) | 3 | 115 | 2.61% | 21.3 |
-| [/juegos/la-bomba](https://bebergames.com/juegos/la-bomba) | 3 | 67 | 4.48% | 10.1 |
-| [/blog/juegos-para-beber-sin-alcohol](https://bebergames.com/blog/juegos-para-beber-sin-alcohol) | 2 | 22 | 9.09% | 9.5 |
-| [/blog/rey-de-la-copa-reglas](https://bebergames.com/blog/rey-de-la-copa-reglas) | 2 | 344 | 0.58% | 8.7 |
-| [/juegos/beer-pong](https://bebergames.com/juegos/beer-pong) | 2 | 24 | 8.33% | 23.9 |
-| [/juegos/triman/reglas](https://bebergames.com/juegos/triman/reglas) | 2 | 130 | 1.54% | 7.3 |
+| [/](https://bebergames.com/) | 240 | 1104 | 21.74% | 5.8 |
+| [/juegos](https://bebergames.com/juegos) | 47 | 746 | 6.30% | 8.0 |
+| [/juegos/la-ruleta](https://bebergames.com/juegos/la-ruleta) | 41 | 378 | 10.85% | 11.9 |
+| [/juegos/verdad-o-reto](https://bebergames.com/juegos/verdad-o-reto) | 17 | 251 | 6.77% | 7.5 |
+| [/juegos/quien-es-mas-probable](https://bebergames.com/juegos/quien-es-mas-probable) | 9 | 271 | 3.32% | 9.2 |
+| [/blog/juegos-beber-baraja-espanola](https://bebergames.com/blog/juegos-beber-baraja-espanola) | 6 | 454 | 1.32% | 22.9 |
+| [/blog/ring-of-fire-reglas-cartas](https://bebergames.com/blog/ring-of-fire-reglas-cartas) | 6 | 155 | 3.87% | 12.2 |
+| [/juegos/la-piramide](https://bebergames.com/juegos/la-piramide) | 4 | 189 | 2.12% | 9.7 |
+| [/juegos/triman](https://bebergames.com/juegos/triman) | 4 | 93 | 4.30% | 7.6 |
+| [/blog/retos-para-fiestas](https://bebergames.com/blog/retos-para-fiestas) | 2 | 115 | 1.74% | 20.2 |
+| [/blog/rey-de-la-copa-reglas](https://bebergames.com/blog/rey-de-la-copa-reglas) | 2 | 349 | 0.57% | 8.8 |
+| [/juegos/beer-pong](https://bebergames.com/juegos/beer-pong) | 2 | 24 | 8.33% | 24.8 |
+| [/juegos/categorias/preguntas](https://bebergames.com/juegos/categorias/preguntas) | 2 | 21 | 9.52% | 15.9 |
+| [/juegos/la-bomba](https://bebergames.com/juegos/la-bomba) | 2 | 80 | 2.50% | 9.3 |
+| [/juegos/triman/reglas](https://bebergames.com/juegos/triman/reglas) | 2 | 134 | 1.49% | 7.3 |
 
 ---
 ## 🤖 Guía para Agentes IA
