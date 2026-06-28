@@ -24,14 +24,13 @@ jobs:
       - name: Install dependencies
         run: |
           # Instalamos solo las dependencias necesarias para el script
-          npm install googleapis dotenv
-          npm install -g ts-node typescript
+          npm install googleapis dotenv tsx
 
       - name: Fetch SEO Data from Google Search Console
         env:
           GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
         run: |
-          ts-node scripts/fetch-seo-data.ts
+          npx tsx scripts/fetch-seo-data.ts
 
       - name: Commit changes
         run: |
