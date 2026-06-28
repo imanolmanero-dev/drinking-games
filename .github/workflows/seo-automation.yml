@@ -7,9 +7,6 @@ on:
   workflow_dispatch:
     # Permite ejecutarlo manualmente desde la pestaña de Actions
 
-env:
-  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-
 jobs:
   fetch-gsc-data:
     runs-on: ubuntu-latest
@@ -22,7 +19,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '20'
 
       - name: Install dependencies
         run: |
