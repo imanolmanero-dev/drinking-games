@@ -26,8 +26,8 @@ export default function DadosCategoryPage() {
     <div className="flex flex-1 flex-col items-center px-4 py-12 sm:py-20">
       <BreadcrumbJsonLd
         items={[
-          { label: "Juegos", url: "https://bebergames.com/juegos" },
-          { label: "Dados", url: "https://bebergames.com/juegos/categorias/dados" },
+          { name: "Juegos", url: "https://bebergames.com/juegos" },
+          { name: "Dados", url: "https://bebergames.com/juegos/categorias/dados" },
         ]}
       />
       <div className="w-full max-w-4xl text-center mb-12">

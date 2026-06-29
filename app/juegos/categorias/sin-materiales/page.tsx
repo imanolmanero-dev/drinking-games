@@ -57,8 +57,8 @@ export default function SinMaterialesCategoryPage() {
     <div className="flex flex-1 flex-col items-center px-4 py-12 sm:py-20">
       <BreadcrumbJsonLd
         items={[
-          { label: "Juegos", url: "https://bebergames.com/juegos" },
-          { label: "Sin Materiales", url: "https://bebergames.com/juegos/categorias/sin-materiales" },
+          { name: "Juegos", url: "https://bebergames.com/juegos" },
+          { name: "Sin Materiales", url: "https://bebergames.com/juegos/categorias/sin-materiales" },
         ]}
       />
       <div className="w-full max-w-4xl text-center mb-12">
