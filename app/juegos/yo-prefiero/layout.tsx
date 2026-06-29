@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description:
       "¿A o B? El grupo elige y la minoría bebe. Más de 60 dilemas para beber en grupo.",
   },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/yo-prefiero",
+  },
 };
 
 export default function YoPrefieroLayout({ children }: { children: React.ReactNode }) {

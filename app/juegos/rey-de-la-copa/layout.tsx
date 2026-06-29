@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description:
       "Roba cartas y cumple sus reglas. El cuarto Rey bebe la copa. El clásico juego de cartas para beber.",
   },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/rey-de-la-copa",
+  },
 };
 
 export default function ReyDeLaCopaLayout({

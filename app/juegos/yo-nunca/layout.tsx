@@ -4,11 +4,14 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "Yo Nunca — Juego para beber online",
   description:
-    "Juega a Yo Nunca con amigos. 40 preguntas divertidas en español para beber en grupo. ¡El que lo haya hecho, bebe!",
+    "Juega a Yo Nunca con amigos. Más de 150 preguntas en español para beber en grupo, en 3 niveles de intensidad. ¡El que lo haya hecho, bebe!",
   openGraph: {
     title: "Yo Nunca — Juego para beber online",
     description:
-      "40 preguntas divertidas para beber en grupo. ¡El que lo haya hecho, bebe!",
+      "Más de 150 preguntas para beber en grupo en 3 niveles: suave, normal y picante. ¡El que lo haya hecho, bebe!",
+  },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/yo-nunca",
   },
 };
 

@@ -17,11 +17,11 @@ export default function PrivacidadPage() {
 
         <h2>2. Datos recopilados</h2>
         <p>No recopilamos datos personales (nombres, correos, contraseñas) para el funcionamiento básico del juego. Los nombres insertados durante las partidas se guardan únicamente en el almacenamiento local de su dispositivo y no se transmiten a nuestros servidores.</p>
-        <p>No obstante, utilizamos servicios de terceros (como Google Analytics y Google AdSense) que pueden recopilar información estadística o de navegación, según sus propias políticas.</p>
+        <p>No obstante, utilizamos servicios de análisis web de terceros (como Vercel Analytics y Google AdSense) que pueden recopilar información estadística o de navegación, según sus propias políticas.</p>
 
         <h2>3. Uso de proveedores externos</h2>
         <ul>
-          <li><strong>Google Analytics:</strong> Nos ayuda a entender cómo navegas por la web para mejorar la experiencia.</li>
+          <li><strong>Vercel Analytics:</strong> Servicio de análisis web respetuoso con la privacidad que nos ayuda a entender cómo navegas por la web para mejorar la experiencia. No utiliza cookies de seguimiento.</li>
           <li><strong>Google AdSense:</strong> Proveedor de publicidad que utiliza cookies para mostrar anuncios relevantes basados en tus visitas previas.</li>
         </ul>
 

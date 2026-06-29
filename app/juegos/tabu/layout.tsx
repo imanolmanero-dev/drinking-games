@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description:
       "Describe la palabra sin decir las prohibidas. Si fallas… ¡bebes! El juego perfecto para fiestas.",
   },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/tabu",
+  },
 };
 
 export default function TabuLayout({ children }: { children: React.ReactNode }) {

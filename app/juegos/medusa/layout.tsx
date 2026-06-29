@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description:
       "Todos miran abajo. A la de 3, mira a alguien. Si hacéis contacto visual… ¡MEDUSA! A beber.",
   },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/medusa",
+  },
 };
 
 export default function MedusaLayout({ children }: { children: React.ReactNode }) {

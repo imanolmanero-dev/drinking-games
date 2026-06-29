@@ -18,6 +18,24 @@ export function WebSiteJsonLd() {
   );
 }
 
+export function OrganizationJsonLd() {
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: "BeberGames",
+    url: "https://bebergames.com",
+    logo: "https://bebergames.com/icon.png",
+    sameAs: [],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
+  );
+}
+
 export function GameJsonLd({
   name,
   description,

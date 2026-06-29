@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     "beer pong virtual",
   ],
   openGraph: {
-    title: "12 Juegos para Beber Gratis Online — BeberGames",
+    title: "13 Juegos para Beber Gratis Online — BeberGames",
     description:
       "Yo Nunca, Verdad o Reto, Ring of Fire, Medusa, La Bomba y más. Juega desde el móvil, sin descargas ni registro.",
     type: "website",

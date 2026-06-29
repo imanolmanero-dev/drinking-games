@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description:
       "Pasa el móvil antes de que explote. El que tenga la bomba cuando explote bebe. ¡Tensión pura!",
   },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/la-bomba",
+  },
 };
 
 export default function LaBombaLayout({ children }: { children: React.ReactNode }) {

@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description:
       "Controla tu partida de Beer Pong desde el móvil. Vasos, turnos, reglas especiales y desafíos automáticos.",
   },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/beer-pong",
+  },
 };
 
 export default function BeerPongLayout({ children }: { children: React.ReactNode }) {

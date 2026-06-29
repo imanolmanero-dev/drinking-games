@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Eye, Zap, Scale, Hand, Users, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -54,6 +55,12 @@ const juegos = [
 export default function SinMaterialesCategoryPage() {
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-12 sm:py-20">
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Juegos", url: "https://bebergames.com/juegos" },
+          { label: "Sin Materiales", url: "https://bebergames.com/juegos/categorias/sin-materiales" },
+        ]}
+      />
       <div className="w-full max-w-4xl text-center mb-12">
         <h1 className="text-3xl font-extrabold sm:text-5xl mb-4">
           Juegos para Beber{" "}

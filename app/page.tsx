@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { WebSiteJsonLd, GameJsonLd } from "@/components/seo/JsonLd";
+import { WebSiteJsonLd, GameJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import {
   Wine,
   Users,
@@ -173,6 +173,7 @@ export default function Home() {
   return (
     <div className="flex flex-1 flex-col">
       <WebSiteJsonLd />
+      <OrganizationJsonLd />
       {juegos.map((juego) => (
         <GameJsonLd
           key={juego.id}

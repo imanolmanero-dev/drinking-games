@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
-import { Scale, ChevronRight, Users, Zap, ShieldCheck } from "lucide-react";
+import { Scale, ChevronRight, Users, Zap, ShieldCheck, HelpCircle } from "lucide-react";
+import { FAQJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
   title: "Cómo Jugar a Yo Prefiero — Reglas del Juego",
@@ -82,6 +83,58 @@ export default function YoPrefieroReglasPage() {
             <p className="text-sm text-muted leading-relaxed">
               Yo Prefiero es un juego de entretenimiento. Puedes sustituir el alcohol por agua, refrescos o cualquier otra bebida. BeberGames promueve el consumo responsable. Si no deseas beber, siempre puedes pasar.
             </p>
+          </section>
+
+          {/* Preguntas Frecuentes */}
+          <section className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-6">
+            <h2 className="flex items-center gap-2 text-lg font-bold">
+              <HelpCircle className="h-5 w-5 text-violet-400" /> Preguntas Frecuentes (FAQ)
+            </h2>
+            <div className="flex flex-col gap-5">
+              {[
+                {
+                  q: "¿Qué pasa si hay un empate exacto en los votos?",
+                  a: "En caso de un empate exacto (por ejemplo, en un grupo de 4 personas, 2 eligen A y 2 eligen B), el grupo puede decidir la penalización antes de empezar. La regla más común en BeberGames es que en caso de empate, todos beben. Otra alternativa popular es que nadie beba y se pase al siguiente dilema para mantener la tensión.",
+                },
+                {
+                  q: "¿Puede alguien negarse a votar?",
+                  a: "La regla de oro de 'Yo Prefiero' (Would you rather) es que la abstención está prohibida. Tienes que elegir una de las dos opciones, por muy terribles o asquerosas que sean ambas. Si un jugador se niega a votar a la cuenta de 3, debe recibir una penalización automática (normalmente beber el doble).",
+                },
+                {
+                  q: "¿Cuántas preguntas tiene la aplicación?",
+                  a: "La aplicación cuenta con una enorme base de datos de preguntas categorizadas por niveles (suave, normal y picante). Tenemos suficientes dilemas para que puedas jugar durante horas sin que se repitan las mismas situaciones incómodas.",
+                },
+                {
+                  q: "¿Es apto para jugar por videollamada?",
+                  a: "¡Totalmente! Es uno de los mejores juegos para videollamadas. Solo necesitas que una persona comparta pantalla o lea la pregunta en voz alta. Para votar, todos pueden mostrar 1 o 2 dedos a la cámara al mismo tiempo. Funciona perfecto en Zoom, Discord o WhatsApp.",
+                },
+              ].map(({ q, a }, idx) => (
+                <div key={idx} className="flex flex-col gap-1">
+                  <h3 className="font-semibold text-sm">❓ {q}</h3>
+                  <p className="text-sm text-muted leading-relaxed">{a}</p>
+                </div>
+              ))}
+            </div>
+            <FAQJsonLd
+              faqs={[
+                {
+                  q: "¿Qué pasa si hay un empate exacto en los votos?",
+                  a: "En caso de un empate exacto, el grupo decide. La regla más común es que todos beben, o bien que nadie beba y se pase al siguiente dilema.",
+                },
+                {
+                  q: "¿Puede alguien negarse a votar?",
+                  a: "No, la abstención está prohibida. Tienes que elegir una de las dos opciones. Si un jugador se niega a votar a la de 3, debe beber el doble como penalización.",
+                },
+                {
+                  q: "¿Cuántas preguntas tiene la aplicación?",
+                  a: "Tenemos cientos de preguntas categorizadas por niveles (suave, normal y picante) para asegurar horas de juego sin repeticiones.",
+                },
+                {
+                  q: "¿Es apto para jugar por videollamada?",
+                  a: "¡Totalmente! Una persona lee la pregunta y todos votan mostrando 1 o 2 dedos a la cámara al mismo tiempo.",
+                },
+              ]}
+            />
           </section>
 
           <Link

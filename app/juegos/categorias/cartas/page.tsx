@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Flame, Crown, Users, ArrowRight, Triangle } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -41,6 +42,12 @@ const juegos = [
 export default function CartasCategoryPage() {
   return (
     <div className="flex flex-1 flex-col items-center px-4 py-12 sm:py-20">
+      <BreadcrumbJsonLd
+        items={[
+          { label: "Juegos", url: "https://bebergames.com/juegos" },
+          { label: "Cartas", url: "https://bebergames.com/juegos/categorias/cartas" },
+        ]}
+      />
       <div className="w-full max-w-4xl text-center mb-12">
         <h1 className="text-3xl font-extrabold sm:text-5xl mb-4">
           Juegos de <span className="bg-gradient-to-r from-red-400 to-rose-400 bg-clip-text text-transparent">Cartas</span> para beber

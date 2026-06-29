@@ -20,7 +20,7 @@ export default function CookiesPage() {
 
         <h2>Cookies de Terceros</h2>
         <ul>
-          <li><strong>Google Analytics:</strong> Recopila estadísticas anónimas sobre el tráfico de la web.</li>
+          <li><strong>Vercel Analytics:</strong> Servicio de análisis web respetuoso con la privacidad que recopila estadísticas anónimas sobre el tráfico de la web. No utiliza cookies de seguimiento.</li>
           <li><strong>Google AdSense:</strong> Google utiliza cookies para publicar anuncios basados en las visitas anteriores del usuario a este u otros sitios web. Los usuarios pueden inhabilitar esta publicidad en la Configuración de anuncios de Google.</li>
         </ul>
 

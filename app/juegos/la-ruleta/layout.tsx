@@ -10,6 +10,9 @@ export const metadata: Metadata = {
     description:
       "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos. ¡Sin excusas!",
   },
+  alternates: {
+    canonical: "https://bebergames.com/juegos/la-ruleta",
+  },
 };
 
 export default function LaRuletaLayout({
