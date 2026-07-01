@@ -24,7 +24,7 @@ async function fetchSeoData() {
     const endDate = new Date();
     endDate.setDate(endDate.getDate() - 3); // GSC data is usually delayed by 2-3 days
     const startDate = new Date();
-    startDate.setDate(endDate.getDate() - 7);
+    startDate.setDate(startDate.getDate() - 10); // 7 days before endDate
 
     const formatDt = (d: Date) => d.toISOString().split('T')[0];
     
