@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     url: "https://bebergames.com/juegos",
   },
   alternates: {
-    canonical: "https://bebergames.com/juegos",
+    canonical: "https://bebergames.com",
   },
 };
 
