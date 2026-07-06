@@ -1,6 +1,6 @@
 # 📈 Dashboard SEO Avanzado (Pro Mode)
 
-> **Última actualización:** 6/7/2026, 2:14:17
+> **Última actualización:** 6/7/2026, 22:52:07
 > **Comparativa:** Últimos 7 días vs Semana anterior.
 
 *Este archivo se genera automáticamente mediante GitHub Actions y la API de Google Search Console. **NO EDITAR MANUALMENTE**.*
