@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { PartyPopper, ChevronRight, Users, Zap, ShieldCheck, Dices, RotateCw } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Reglas de La Ruleta para Beber | Cómo Jugar',
+  title: 'Reglas de La Ruleta para Beber — Cómo Jugar',
   description: 'Gira la ruleta y que la suerte decida tu castigo. Descubre las reglas, castigos y cómo pasarlo genial con nuestro juego de ruleta para beber en grupo.',
 };
 

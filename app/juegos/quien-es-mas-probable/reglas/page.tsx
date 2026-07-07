@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Hand, ChevronRight, Users, Zap, ShieldCheck, Flame, Scale } from 'lucide-react';
 
 export const metadata: Metadata = {
-  title: 'Reglas de Quién Es Más Probable | Cómo Jugar',
+  title: 'Reglas de Quién Es Más Probable — Cómo Jugar',
   description: 'El juego perfecto para descubrir qué piensan tus amigos de ti. Aprende las reglas de Quién Es Más Probable, el sistema de votaciones, castigos y variantes.',
 };
 

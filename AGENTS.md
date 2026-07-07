@@ -152,6 +152,17 @@ lib/
 - El proyecto cuenta con un sistema de extracción automática de datos desde la API de Search Console. 
 - **OBLIGACIÓN:** Antes de proponer crear nuevos juegos, posts, o estrategias SEO, debes leer siempre el archivo `SEO_DATA.md` situado en la raíz del proyecto para basar tus decisiones en métricas reales recientes.
 
+### Regla de canonical URLs:
+- Cada página DEBE tener un `alternates.canonical` que apunte a **su propia URL**, NO a otra página.
+- **Bug real encontrado (julio 2026):** `/juegos` tenía `canonical: "https://bebergames.com"` en vez de `canonical: "https://bebergames.com/juegos"`, lo cual le decía a Google que era un duplicado de la homepage.
+- Al crear o editar metadata, verificar siempre que el canonical coincide con la URL real de la página.
+
+### Regla de separadores en títulos:
+- Usar SIEMPRE `—` (em dash) como separador en títulos, NUNCA `|` (pipe).
+- El template ya añade `| BeberGames` al final. Si el título usa `|` como separador interno, el resultado será `"Título | Cómo Jugar | BeberGames"` (doble pipe, aspecto poco profesional).
+- Correcto: `title: "Reglas de X — Cómo Jugar"`
+- Incorrecto: `title: "Reglas de X | Cómo Jugar"`
+
 ### Prohibiciones:
 - ❌ NO eliminar páginas existentes sin aprobación (afecta indexación)
 - ❌ NO cambiar URLs/slugs de posts ya indexados
@@ -242,3 +253,6 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-05-19 | Falso positivo de corrección: Títulos duplicados `"\| BeberGames"` persistían en 18 archivos `layout.tsx` | `app/juegos/*/layout.tsx`, `app/not-found.tsx`, `app/blog/page.tsx` | Eliminado de todos los archivos afectados; la regla original solo se aplicó a "6 páginas" en lugar de buscar globalmente. |
 | 2026-06-11 | 7 páginas desindexadas por GSC ("Rastreada, sin indexar") por prosa inflada/stuttering | 6 posts del blog + la-bomba reglas | Reescritura completa con tono conversacional y expansión de thin content |
 | 2026-06-28 | Error al extraer datos SEO en GitHub Actions (Premature close / fetch error con Node 24) | `.github/workflows/seo-automation.yml` | Cambiar la versión de Node de 24 a 20 LTS en el workflow, eliminar FORCE_JAVASCRIPT_ACTIONS_TO_NODE24 y usar tsx en lugar de ts-node para evitar el error de Unknown file extension |
+| 2026-07-07 | Canonical URL de `/juegos` apuntaba a homepage (`bebergames.com` en vez de `bebergames.com/juegos`) | `app/juegos/page.tsx` | Corregido canonical a URL correcta. Añadida regla de canonical URLs a AGENTS.md |
+| 2026-07-07 | 5 páginas de reglas usaban `\|` como separador en títulos (doble pipe con template) | 5× `app/juegos/*/reglas/page.tsx` | Cambiado `\|` por `—` en la-ruleta, QEMP, ring-of-fire, triman, verdad-o-reto. Añadida regla de separadores |
+| 2026-07-07 | Auditoría masiva: 3 count mismatches, 2 posts con prosa inflada, 2 posts con <3 links, 5 posts con listas >15 ítems, 1 post con word count <800 | 15 archivos MDX del blog | Correcciones individuales por archivo. La-bomba mencionaba "Next.js" en contenido de usuario |

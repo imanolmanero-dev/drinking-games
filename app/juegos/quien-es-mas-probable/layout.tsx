@@ -4,7 +4,7 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "Quién Es Más Probable — Juego para Beber Online",
   description:
-    "Juego para beber de 'Quién Es Más Probable'. Lee la pregunta, cuenta hasta tres, y señalad todos a la vez. ¡El más votado bebe!",
+    "¿Quién bebería antes en un apocalipsis zombie? Señalad al culpable y que beba. +200 preguntas gratis, sin descargar nada. ¡Probadlo ahora!",
   openGraph: {
     title: "Quién Es Más Probable — Juego para Beber Online",
     description: "El más señalado, bebe. Descubre qué piensan tus amigos de ti.",
