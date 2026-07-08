@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const runtime = "edge";
+
 
 export const alt = "BeberGames — Juegos para beber con amigos";
 export const size = {
