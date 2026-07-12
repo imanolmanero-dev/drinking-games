@@ -84,6 +84,12 @@ Contenido...
 - Framer Motion para animaciones
 - MDX con gray-matter + next-mdx-remote v6
 
+### Infraestructura (Doble CDN Vercel + Cloudflare):
+- **Hosting:** Vercel (Plan Hobby)
+- **Proxy/Caché:** Cloudflare (Plan Free) con nube naranja activada (Proxied).
+- **SSL:** Modo Full (strict) en Cloudflare.
+- **Regla estricta:** Antes de sugerir cambios de DNS, caché o rutas dinámicas, tener en cuenta que Cloudflare está absorbiendo las peticiones estáticas antes de que lleguen a Vercel. NO desactivar la nube naranja ni cambiar los nameservers.
+
 ### Convenciones de archivos:
 ```
 app/                    → Rutas (App Router)
