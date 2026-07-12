@@ -1,12 +1,15 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
-import { Dice3, Users, ArrowRight } from "lucide-react";
+import { Dice3, Users, ArrowRight, PartyPopper } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Juegos de Dados para Beber — Triman y Más",
   description:
     "Los mejores juegos de dados para beber. Juega al Triman desde el móvil con dado digital. Sin necesidad de dados físicos, gratis y sin descargas.",
+  alternates: {
+    canonical: "https://bebergames.com/juegos/categorias/dados",
+  },
 };
 
 const juegos = [
@@ -18,6 +21,15 @@ const juegos = [
     color: "from-emerald-500 to-teal-500",
     shadowColor: "shadow-emerald-500/20",
     jugadores: "3+",
+  },
+  {
+    id: "la-ruleta",
+    nombre: "La Ruleta (Azar)",
+    descripcion: "Gira la ruleta y deja que la suerte decida tu castigo. ¡Una alternativa perfecta y rápida a los dados!",
+    icono: PartyPopper,
+    color: "from-rose-500 to-pink-500",
+    shadowColor: "shadow-rose-500/20",
+    jugadores: "2+",
   },
 ];
 

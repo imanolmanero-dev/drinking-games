@@ -4,6 +4,9 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Wine, Sparkles, Hand, Scale, Users, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/categorias/preguntas",
+  },
   title: "Juegos de Preguntas para Beber — Yo Nunca, Verdad o Reto y Más",
   description:
     "Los mejores juegos de preguntas para beber en grupo. Yo Nunca, Verdad o Reto, Quién Es Más Probable y Yo Prefiero. Gratis, sin descargas y desde el móvil.",

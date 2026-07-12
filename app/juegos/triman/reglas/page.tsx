@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { Dice3, ChevronRight, Users, Zap, ShieldCheck, Crown, Target } from 'lucide-react';
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/triman/reglas",
+  },
   title: 'Reglas del Triman (El Señor del 3) — Cómo Jugar',
   description: 'Aprende a jugar al Triman, el mejor juego de dados para beber en grupo. Conoce todas las reglas, qué pasa con cada tirada de dados y cómo ser el Señor del Tres.',
 };

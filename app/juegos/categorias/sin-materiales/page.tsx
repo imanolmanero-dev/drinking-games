@@ -4,6 +4,9 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Eye, Zap, Scale, Hand, Users, ArrowRight } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/categorias/sin-materiales",
+  },
   title: "Juegos para Beber Sin Materiales — Solo Necesitáis Gente y Bebidas",
   description:
     "Los mejores juegos para beber que no necesitan cartas, dados ni ningún material. Solo personas, bebidas y el móvil. Medusa, La Bomba, Yo Prefiero y más.",

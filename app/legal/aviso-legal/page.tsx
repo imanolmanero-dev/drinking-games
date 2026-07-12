@@ -3,7 +3,10 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Aviso Legal',
   description: 'Aviso legal y condiciones de uso de BeberGames.',
-  robots: { index: true, follow: true }
+  robots: { index: true, follow: true },
+  alternates: {
+    canonical: "https://bebergames.com/legal/aviso-legal",
+  },
 }
 
 export default function AvisoLegalPage() {

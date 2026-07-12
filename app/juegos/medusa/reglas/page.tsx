@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Eye, ChevronRight, Users, Zap, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/medusa/reglas",
+  },
   title: "Cómo Jugar a Medusa — Reglas del Juego de Beber",
   description:
     "Aprende las reglas de Medusa, el juego de beber de contacto visual. Todos miran abajo, a la de 3 todos miran a alguien. Si dos se cruzan la mirada… ¡MEDUSA! A beber.",

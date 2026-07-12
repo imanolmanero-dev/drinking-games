@@ -4,6 +4,9 @@ import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
 import { Flame, Crown, Users, ArrowRight, Triangle } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/categorias/cartas",
+  },
   title: "Juegos de Cartas para Beber — Ring of Fire, El Rey de la Copa y La Pirámide",
   description:
     "Los mejores juegos de cartas para beber online. Juega al Ring of Fire, al Rey de la Copa y a La Pirámide desde el móvil sin necesidad de una baraja física.",

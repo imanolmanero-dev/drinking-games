@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Wine, ChevronRight, Users, Zap, ShieldCheck, Flame, MessageCircleQuestion } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/yo-nunca/reglas",
+  },
   title: "Cómo Jugar a Yo Nunca — Reglas Completas y Trucos",
   description:
     "Descubre las reglas del clásico juego para beber Yo Nunca. Qué necesitas, cómo se juega, variantes extremas y todo lo necesario para pasarlo genial rompiendo el hielo.",

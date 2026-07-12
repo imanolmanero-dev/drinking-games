@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { MessageSquare, ChevronRight, Users, Zap, ShieldCheck, Timer, BookOpen } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/tabu/reglas",
+  },
   title: "Cómo Jugar al Tabú Borracho — Reglas del Juego de Beber",
   description:
     "Aprende las reglas del Tabú Borracho, el juego de palabras para beber en equipo. Describe la palabra sin decir las prohibidas o todo tu equipo bebe.",

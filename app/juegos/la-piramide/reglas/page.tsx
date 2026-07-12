@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { Triangle, ChevronRight, Users, Zap, ShieldCheck, Eye, List, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/la-piramide/reglas",
+  },
   title: 'Reglas de La Pirámide — Cómo Jugar al Juego de Cartas',
   description: 'Las reglas completas de La Pirámide explicadas paso a paso. Aprende a jugar, farolear y asignar tragos en este clásico juego de beber con cartas.',
 };

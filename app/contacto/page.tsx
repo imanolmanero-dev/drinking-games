@@ -5,6 +5,9 @@ import ContactForm from '@/components/ui/ContactForm';
 export const metadata: Metadata = {
   title: 'Contacto — Escríbenos',
   description: 'Ponte en contacto con el equipo de BeberGames.',
+  alternates: {
+    canonical: "https://bebergames.com/contacto",
+  },
 }
 
 export default function ContactoPage() {
@@ -21,6 +24,15 @@ export default function ContactoPage() {
           ¿Tienes alguna sugerencia para un nuevo juego? ¿Has encontrado un bug? 
           ¿O tal vez una idea descabellada para una carta de Ring of Fire?
         </p>
+
+        <div className="text-sm text-muted text-left w-full space-y-3 rounded-xl bg-surface/50 p-6 border border-border mt-2 mb-6">
+          <p>
+            BeberGames es un proyecto creado para asegurar la mejor diversión en tus previas y fiestas. Trabajamos constantemente para añadir nuevos <strong>juegos para beber online</strong> y mejorar los existentes.
+          </p>
+          <p>
+            Si tienes sugerencias sobre reglas alternativas, has notado algún error en la aplicación o simplemente quieres saludarnos, utiliza el formulario de abajo. Intentamos responder a todos los mensajes en un plazo de 24 a 48 horas.
+          </p>
+        </div>
 
         <ContactForm />
       </div>

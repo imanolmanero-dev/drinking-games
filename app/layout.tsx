@@ -22,11 +22,11 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL("https://bebergames.com"),
   title: {
-    default: "BeberGames — Juegos para beber con amigos",
+    default: "BeberGames — La Web Definitiva para Fiestas y Previas",
     template: "%s | BeberGames",
   },
   description:
-    "La mejor colección de juegos para beber en grupo. Yo Nunca, Verdad o Reto, Triman, La Ruleta y más. Diversión garantizada con tus amigos. ¡Elige un juego y a beber!",
+    "BeberGames es tu plataforma gratuita con el mejor catálogo interactivo para jugar con amigos. Entra, elige tu dinámica favorita y empieza la diversión.",
   keywords: [
     "juegos para beber",
     "drinking games",

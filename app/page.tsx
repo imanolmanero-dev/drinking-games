@@ -21,7 +21,14 @@ import {
   CalendarDays,
   Triangle,
 } from "lucide-react";
+import type { Metadata } from "next";
 import { getAllPosts, readingTime } from "@/lib/blog";
+
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com",
+  },
+};
 
 const juegos = [
   {
@@ -196,11 +203,10 @@ export default function Home() {
 
           {/* Title */}
           <h1 className="max-w-2xl text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl md:text-6xl">
-            Juegos para{" "}
+            Bienvenido a{" "}
             <span className="bg-gradient-to-r from-accent to-accent-secondary bg-clip-text text-transparent">
-              beber
-            </span>{" "}
-            con amigos
+              BeberGames
+            </span>
           </h1>
 
           {/* Subtitle */}

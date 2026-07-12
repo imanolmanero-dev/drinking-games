@@ -5,6 +5,9 @@ import { reglasCartas } from "@/lib/data/rey-de-la-copa";
 import { FAQJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/rey-de-la-copa/reglas",
+  },
   title: "Reglas de El Rey de la Copa — Cómo Jugar",
   description:
     "Aprende las reglas de El Rey de la Copa. Roba cartas, cumple sus reglas y el que saque el cuarto Rey bebe la copa entera. Guía completa con todas las reglas de cada carta.",

@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { Sparkles, ChevronRight, Users, Zap, ShieldCheck, Gamepad2, AlertTriangle } from 'lucide-react';
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/verdad-o-reto/reglas",
+  },
   title: 'Reglas de Verdad o Reto — Cómo Jugar Extremo para Fiestas',
   description: 'Descubre las reglas para jugar a Verdad o Reto con amigos. Retos divertidos, preguntas incómodas y mucho alcohol. Conoce las variantes y sube de nivel.',
 };

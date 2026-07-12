@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 import { Flame, ChevronRight, Users, Zap, ShieldCheck, GlassWater, List } from 'lucide-react';
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/ring-of-fire/reglas",
+  },
   title: 'Reglas de Ring of Fire (Copa del Rey) — Cómo Jugar',
   description: 'Las reglas completas de Ring of Fire o La Copa del Rey explicadas. Qué significa cada carta de la baraja y cómo sobrevivir a este mítico juego universitario.',
 };

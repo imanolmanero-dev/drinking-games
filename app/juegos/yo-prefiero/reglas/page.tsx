@@ -4,6 +4,9 @@ import { Scale, ChevronRight, Users, Zap, ShieldCheck, HelpCircle } from "lucide
 import { FAQJsonLd } from "@/components/seo/JsonLd";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/yo-prefiero/reglas",
+  },
   title: "Cómo Jugar a Yo Prefiero — Reglas del Juego",
   description:
     "Aprende las reglas de Yo Prefiero, el juego de beber de dilemas. A o B, el grupo elige y la minoría bebe. Variaciones, consejos y más de 60 preguntas.",

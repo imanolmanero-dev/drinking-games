@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Zap, ChevronRight, Users, ShieldCheck } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/la-bomba/reglas",
+  },
   title: "Reglas de La Bomba — Cómo Jugar al Juego de la Bomba",
   description:
     "Aprende a jugar a La Bomba, el juego de beber del temporizador secreto. Pasa el móvil antes de que explote. El que la tenga cuando explote bebe. Reglas y variaciones.",

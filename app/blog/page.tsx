@@ -4,11 +4,14 @@ import { getAllPosts, readingTime } from "@/lib/blog";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Blog",
+  title: "Blog — Guías, Reglas y Consejos para Juegos de Beber",
   description: "Artículos, reglas, trucos y consejos sobre los mejores juegos de mesa y juegos picantes para beber en previas y fiestas.",
   openGraph: {
-    title: "Blog",
+    title: "Blog — Guías, Reglas y Consejos para Juegos de Beber",
     description: "Los mejores artículos de juegos con alcohol, verdad o reto, ring of fire y más.",
+  },
+  alternates: {
+    canonical: "https://bebergames.com/blog",
   },
 };
 
@@ -27,6 +30,14 @@ export default function BlogIndexPage() {
         <p className="text-muted max-w-2xl mx-auto">
           Trucos, guías completas y las mejores ideas para que tu previa, fiesta y botellón sean legendarias. Descubre todo lo que hay detrás de los clásicos juegos para beber.
         </p>
+        <div className="mt-8 text-sm text-muted text-left max-w-3xl mx-auto space-y-4 rounded-xl bg-surface/50 p-6 border border-border">
+          <p>
+            Bienvenido al blog oficial de BeberGames. Aquí encontrarás toda la información que necesitas para llevar tus fiestas al siguiente nivel. Analizamos a fondo los <strong>mejores juegos de cartas</strong>, te enseñamos reglas de variantes poco conocidas y te damos listas de preguntas picantes para juegos como Yo Nunca o Verdad o Reto.
+          </p>
+          <p>
+            Ya sea que busques <strong>juegos para beber en pareja</strong>, opciones rápidas sin materiales, o quieras dominar el clásico Ring of Fire, nuestros artículos están pensados para que nunca te quedes sin ideas cuando estés con tus amigos y algo de alcohol.
+          </p>
+        </div>
       </div>
 
       <div className="grid gap-6 w-full max-w-4xl sm:grid-cols-2">

@@ -3,6 +3,9 @@ import Link from 'next/link';
 import { Info, ShieldAlert, Heart, Smartphone, Users, BookOpen, Gamepad2 } from 'lucide-react';
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/sobre-nosotros",
+  },
   title: 'Sobre Nosotros — Quiénes Somos',
   description: 'BeberGames es un proyecto creado por Imanol, desarrollador web español. 13 juegos de beber gratuitos, más de 30 artículos y cero anuncios intrusivos.',
 };

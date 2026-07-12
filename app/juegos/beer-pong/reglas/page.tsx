@@ -3,6 +3,9 @@ import type { Metadata } from "next";
 import { Trophy, ChevronRight, Users, Zap, ShieldCheck, Target } from "lucide-react";
 
 export const metadata: Metadata = {
+  alternates: {
+    canonical: "https://bebergames.com/juegos/beer-pong/reglas",
+  },
   title: "Cómo Jugar al Beer Pong — Reglas Completas",
   description:
     "Las reglas completas del Beer Pong: montaje, turnos, reglas especiales (Re-rack, Heating Up, Redemption) y cómo usar el árbitro virtual de BeberGames.",
