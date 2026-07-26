@@ -25,11 +25,18 @@ export default function PrivacidadPage() {
         <h2>3. Uso de proveedores externos</h2>
         <ul>
           <li><strong>Vercel Analytics:</strong> Servicio de análisis web respetuoso con la privacidad que nos ayuda a entender cómo navegas por la web para mejorar la experiencia. No utiliza cookies de seguimiento.</li>
-          <li><strong>Google AdSense:</strong> Proveedor de publicidad que utiliza cookies para mostrar anuncios relevantes basados en tus visitas previas.</li>
+          <li><strong>Google AdSense:</strong> Proveedor de publicidad que utiliza cookies DART para mostrar anuncios relevantes basados en tus visitas a este u otros sitios web. Google puede usar esta información para personalizar los anuncios que ves. Puedes consultar la <a href="https://policies.google.com/technologies/ads" target="_blank" rel="noopener noreferrer" className="text-accent underline">Política de tecnologías publicitarias de Google</a>.
+          </li>
         </ul>
 
-        <h2>4. Derechos de los usuarios</h2>
-        <p>Dado que no almacenamos información de identidad personal de forma nativa en nuestros servidores, cualquier control de privacidad respecto a navegación de anuncios deberá gestionarse directamente ajustando las preferencias de Google y borrando el caché o almacenamiento local del navegador.</p>
+        <h2>4. Derechos de los usuarios y gestión de consentimiento</h2>
+        <p>Puedes gestionar tu consentimiento sobre cookies publicitarias en cualquier momento a través del panel de preferencias que aparece al entrar en BeberGames.</p>
+        <p>Además, puedes optar por no recibir publicidad personalizada de Google directamente en:</p>
+        <ul>
+          <li><a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" className="text-accent underline">Configuración de anuncios de Google</a> — desactiva los anuncios basados en intereses.</li>
+          <li><a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" className="text-accent underline">aboutads.info</a> — herramienta de opt-out de publicidad conductual de múltiples redes publicitarias.</li>
+        </ul>
+        <p>Para cualquier otra consulta sobre privacidad o para borrar datos guardados localmente en tu dispositivo, también puedes borrar el almacenamiento local (localStorage) de tu navegador desde sus ajustes de privacidad.</p>
 
         <h2>5. Cambios en la política</h2>
         <p>Nos reservamos el derecho de modificar esta política en cualquier momento. Los cambios se actualizarán en esta misma página.</p>
@@ -38,7 +45,7 @@ export default function PrivacidadPage() {
         <p>Para ejercer tu derecho de acceso, rectificación, cancelación u oposición respecto a tus datos o cookies (según la normativa vigente RGPD de la UE), no dudes en contactarnos directamente escribiendo a <a href="mailto:info@bebergames.com" className="text-accent underline font-semibold">info@bebergames.com</a>. Trataremos de resolver tu solicitud de inmediato.</p>
 
         <hr />
-        <p className="text-xs text-muted"><strong>Última actualización:</strong> Abril de 2026</p>
+        <p className="text-xs text-muted"><strong>Última actualización:</strong> Julio de 2026</p>
       </div>
     </div>
   );

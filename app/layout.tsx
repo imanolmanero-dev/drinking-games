@@ -6,8 +6,8 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AppProvider } from "@/lib/AppContext";
 import InstallPWA from "@/components/ui/InstallPWA";
-import CookieBanner from "@/components/ui/CookieBanner";
 import "./globals.css";
+
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -111,13 +111,19 @@ export default function RootLayout({
         <meta name="theme-color" content="#0a0a0f" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+        {/* Google AdSense — verificación de cuenta y carga del script */}
+        <meta name="google-adsense-account" content="ca-pub-2015657577739632" />
+        <script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2015657577739632"
+          crossOrigin="anonymous"
+        />
       </head>
       <body className="min-h-full flex flex-col">
         <AppProvider>
           <Navbar />
           <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
-          <CookieBanner />
           <InstallPWA />
         </AppProvider>
 

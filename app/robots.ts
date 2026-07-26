@@ -2,10 +2,13 @@ import type { MetadataRoute } from "next";
 
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: {
-      userAgent: "*",
-      allow: "/",
-    },
+    rules: [
+      // Bots de AdSense — acceso explícito garantizado
+      { userAgent: "Mediapartners-Google", allow: "/" },
+      { userAgent: "AdsBot-Google", allow: "/" },
+      // Resto de crawlers
+      { userAgent: "*", allow: "/" },
+    ],
     sitemap: "https://bebergames.com/sitemap.xml",
   };
 }

@@ -24,17 +24,19 @@ export default function CookiesPage() {
         <h2>Cookies de Terceros</h2>
         <ul>
           <li><strong>Vercel Analytics:</strong> Servicio de análisis web respetuoso con la privacidad que recopila estadísticas anónimas sobre el tráfico de la web. No utiliza cookies de seguimiento.</li>
-          <li><strong>Google AdSense:</strong> Google utiliza cookies para publicar anuncios basados en las visitas anteriores del usuario a este u otros sitios web. Los usuarios pueden inhabilitar esta publicidad en la Configuración de anuncios de Google.</li>
+          <li><strong>Google AdSense:</strong> Google utiliza cookies DART para publicar anuncios basados en las visitas anteriores del usuario a este u otros sitios web. Puedes inhabilitar esta publicidad personalizada en la <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" className="text-accent underline">Configuración de anuncios de Google</a> o a través de <a href="https://optout.aboutads.info/" target="_blank" rel="noopener noreferrer" className="text-accent underline">aboutads.info</a>.
+          </li>
         </ul>
 
         <h2>Uso del LocalStorage</h2>
         <p>Para mejorar tu experiencia de juego y que no tengas que escribir de nuevo los nombres de los participantes, hacemos uso del <code>localStorage</code> de tu navegador, una memoria temporal de tu propio móvil u ordenador. Nosotros nunca accedemos remotamente a ella.</p>
 
         <h2>¿Cómo desactivar cookies?</h2>
-        <p>Puedes restringir, bloquear o borrar las cookies de cualquier página web usando tu navegador. En cada navegador la operativa es diferente, la función de "Ayuda" web te mostrará cómo hacerlo.</p>
+        <p>Puedes restringir, bloquear o borrar las cookies de cualquier página web usando tu navegador. En cada navegador la operativa es diferente, la función de &ldquo;Ayuda&rdquo; te mostrará cómo hacerlo.</p>
+        <p>Para desactivar específicamente la publicidad personalizada de Google, usa la <a href="https://adssettings.google.com/" target="_blank" rel="noopener noreferrer" className="text-accent underline">Configuración de anuncios de Google</a>.</p>
 
         <hr />
-        <p className="text-xs text-muted"><strong>Última actualización:</strong> Abril de 2026</p>
+        <p className="text-xs text-muted"><strong>Última actualización:</strong> Julio de 2026</p>
       </div>
     </div>
   );

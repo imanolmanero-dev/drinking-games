@@ -1,4 +1,5 @@
 import { BreadcrumbJsonLd, GameJsonLd } from "@/components/seo/JsonLd";
+import AlcoholDisclaimer from "@/components/ui/AlcoholDisclaimer";
 
 const BASE = "https://bebergames.com";
 
@@ -56,6 +57,7 @@ export default function GameLayout({ gameId, children }: Props) {
       />
       <GameJsonLd name={name} description={description} url={url} />
       {children}
+      <AlcoholDisclaimer />
     </>
   );
 }
