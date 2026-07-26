@@ -83,16 +83,17 @@ export default function Navbar() {
             <span className="hidden sm:inline">Nosotros</span>
           </Link>
 
-          {/* Navigation action — only show on home */}
+          {/* Navigation action — only show on home, hidden on mobile to avoid overflow */}
           {isHome && (
             <Link
               href="/juegos"
-              className="ml-1 flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-accent/40 hover:bg-surface-hover hover:shadow-lg hover:shadow-accent-glow"
+              className="ml-1 hidden sm:flex items-center gap-2 rounded-full border border-border bg-surface px-4 py-2 text-sm font-medium text-foreground transition-all hover:border-accent/40 hover:bg-surface-hover hover:shadow-lg hover:shadow-accent-glow"
             >
               <Gamepad2 className="h-4 w-4" />
-              <span className="hidden sm:inline">Ver todos</span>
+              <span>Ver todos</span>
             </Link>
           )}
+
         </div>
       </div>
     </nav>
