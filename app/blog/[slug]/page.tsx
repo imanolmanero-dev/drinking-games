@@ -11,6 +11,7 @@ import {
   BreadcrumbJsonLd,
 } from "@/components/seo/JsonLd";
 import { blogFAQs } from "@/lib/data/blog-faqs";
+import AuthorBio from "@/components/ui/AuthorBio";
 
 const BASE_URL = "https://bebergames.com";
 
@@ -150,6 +151,9 @@ export default async function BlogPostPage({ params }: Params) {
             </div>
           </div>
         )}
+
+        {/* Author bio — señal E-E-A-T */}
+        <AuthorBio />
       </div>
     </article>
   );
