@@ -21,6 +21,8 @@ interface Params {
   }>;
 }
 
+export const dynamicParams = false;
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const resolvedParams = await params;
   const post = getPostBySlug(resolvedParams.slug);

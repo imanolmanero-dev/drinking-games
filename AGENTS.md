@@ -90,6 +90,14 @@ Contenido...
 - **SSL:** Modo Full (strict) en Cloudflare.
 - **Regla estricta:** Antes de sugerir cambios de DNS, caché o rutas dinámicas, tener en cuenta que Cloudflare está absorbiendo las peticiones estáticas antes de que lleguen a Vercel. NO desactivar la nube naranja ni cambiar los nameservers.
 
+### Exportación estática a Cloudflare Pages:
+- **Hosting previsto:** Cloudflare Pages mediante `output: "export"` en `next.config.ts`; Vercel se conserva como rollback.
+- **Build y publicación:** ejecutar `npm run build` y publicar exclusivamente el directorio `out`.
+- **Configuración de Pages:** las redirecciones viven en `public/_redirects` y los headers en `public/_headers`.
+- **Rutas de metadata:** `app/robots.ts`, `app/sitemap.ts` y `app/opengraph-image.tsx` deben conservar `dynamic = "force-static"`.
+- **Vercel Analytics:** mantener `@vercel/analytics` y renderizar `<Analytics />` solo cuando `process.env.VERCEL === "1"`.
+- **Rollback técnico:** el stash `wip: OpenNext Workers migration` conserva la alternativa OpenNext. NO recuperarlo ni eliminarlo hasta verificar el dominio en producción sobre Cloudflare Pages.
+
 ### Convenciones de archivos:
 ```
 app/                    → Rutas (App Router)
