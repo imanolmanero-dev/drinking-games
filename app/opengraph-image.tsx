@@ -1,5 +1,6 @@
 import { ImageResponse } from "next/og";
 
+export const dynamic = "force-static";
 
 
 export const alt = "BeberGames — Juegos para beber con amigos";

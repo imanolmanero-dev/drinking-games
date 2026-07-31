@@ -127,7 +127,7 @@ export default function RootLayout({
           <InstallPWA />
         </AppProvider>
 
-        <Analytics />
+        {process.env.VERCEL === "1" && <Analytics />}
       </body>
     </html>
   );
