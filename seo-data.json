@@ -1,227 +1,227 @@
 {
-  "updatedAt": "2026-08-17T00:42:01.731Z",
+  "updatedAt": "2026-08-24T00:43:32.089Z",
   "periods": {
     "current": {
-      "start": "2026-08-07",
-      "end": "2026-08-14"
+      "start": "2026-08-14",
+      "end": "2026-08-21"
     },
     "previous": {
-      "start": "2026-07-30",
-      "end": "2026-08-06"
+      "start": "2026-08-06",
+      "end": "2026-08-13"
     }
   },
   "topQueries": [
     {
       "query": "verdad o reto",
-      "clicks": 358,
-      "impressions": 9085,
-      "ctr": 0.03940561364887177,
-      "position": 6.333296642817832,
-      "prevClicks": 183
+      "clicks": 414,
+      "impressions": 9305,
+      "ctr": 0.04449220849005911,
+      "position": 5.938097796883396,
+      "prevClicks": 322
     },
     {
       "query": "verdad o reto online",
-      "clicks": 108,
-      "impressions": 323,
-      "ctr": 0.33436532507739936,
-      "position": 1.718266253869969,
-      "prevClicks": 124
-    },
-    {
-      "query": "juegos para tomar",
-      "clicks": 101,
-      "impressions": 1011,
-      "ctr": 0.09990108803165183,
-      "position": 4.006923837784372,
-      "prevClicks": 120
+      "clicks": 103,
+      "impressions": 299,
+      "ctr": 0.34448160535117056,
+      "position": 1.8026755852842808,
+      "prevClicks": 107
     },
     {
       "query": "juegos para beber",
-      "clicks": 86,
-      "impressions": 979,
-      "ctr": 0.08784473953013279,
-      "position": 4.763023493360572,
-      "prevClicks": 88
+      "clicks": 90,
+      "impressions": 983,
+      "ctr": 0.09155645981688708,
+      "position": 4.626653102746694,
+      "prevClicks": 79
+    },
+    {
+      "query": "juegos para tomar",
+      "clicks": 89,
+      "impressions": 1042,
+      "ctr": 0.0854126679462572,
+      "position": 4.145873320537428,
+      "prevClicks": 100
     },
     {
       "query": "juegos para beber online",
-      "clicks": 74,
-      "impressions": 175,
-      "ctr": 0.4228571428571429,
-      "position": 10.205714285714286,
-      "prevClicks": 71
+      "clicks": 72,
+      "impressions": 209,
+      "ctr": 0.3444976076555024,
+      "position": 10.598086124401913,
+      "prevClicks": 74
     },
     {
       "query": "juegos de beber",
-      "clicks": 55,
-      "impressions": 577,
-      "ctr": 0.09532062391681109,
-      "position": 3.0589254766031195,
-      "prevClicks": 36
-    },
-    {
-      "query": "rey de copas game",
-      "clicks": 37,
-      "impressions": 176,
-      "ctr": 0.21022727272727273,
-      "position": 4.727272727272727,
-      "prevClicks": 0
-    },
-    {
-      "query": "verdad o reto juego",
-      "clicks": 29,
-      "impressions": 481,
-      "ctr": 0.060291060291060294,
-      "position": 6.3118503118503115,
-      "prevClicks": 33
+      "clicks": 61,
+      "impressions": 590,
+      "ctr": 0.10338983050847457,
+      "position": 3.8779661016949154,
+      "prevClicks": 47
     },
     {
       "query": "juegos para beber con amigos",
-      "clicks": 28,
-      "impressions": 243,
-      "ctr": 0.11522633744855967,
-      "position": 3.3621399176954734,
-      "prevClicks": 30
+      "clicks": 44,
+      "impressions": 293,
+      "ctr": 0.15017064846416384,
+      "position": 3.2320819112627985,
+      "prevClicks": 23
     },
     {
-      "query": "juego para beber",
-      "clicks": 25,
-      "impressions": 128,
-      "ctr": 0.1953125,
-      "position": 3.40625,
-      "prevClicks": 7
+      "query": "verdad o reto juego",
+      "clicks": 44,
+      "impressions": 387,
+      "ctr": 0.11369509043927649,
+      "position": 5.498708010335918,
+      "prevClicks": 26
     },
     {
-      "query": "juego de verdad o reto",
-      "clicks": 22,
-      "impressions": 286,
-      "ctr": 0.07692307692307693,
-      "position": 5.786713286713287,
-      "prevClicks": 11
-    },
-    {
-      "query": "juego de beber",
-      "clicks": 20,
-      "impressions": 200,
-      "ctr": 0.1,
-      "position": 3.755,
-      "prevClicks": 8
+      "query": "bebergames",
+      "clicks": 34,
+      "impressions": 38,
+      "ctr": 0.8947368421052632,
+      "position": 1,
+      "prevClicks": 12
     },
     {
       "query": "verdad o reto juego online",
-      "clicks": 20,
-      "impressions": 51,
-      "ctr": 0.39215686274509803,
-      "position": 1.6666666666666665,
-      "prevClicks": 16
+      "clicks": 25,
+      "impressions": 64,
+      "ctr": 0.390625,
+      "position": 1.40625,
+      "prevClicks": 17
     },
     {
-      "query": "juegos para tomar con amigos",
-      "clicks": 18,
-      "impressions": 339,
-      "ctr": 0.05309734513274336,
-      "position": 5.6371681415929205,
-      "prevClicks": 21
+      "query": "juego de beber",
+      "clicks": 24,
+      "impressions": 172,
+      "ctr": 0.13953488372093023,
+      "position": 3.5,
+      "prevClicks": 18
+    },
+    {
+      "query": "ruleta para tomar",
+      "clicks": 24,
+      "impressions": 49,
+      "ctr": 0.4897959183673469,
+      "position": 1.5306122448979593,
+      "prevClicks": 8
     },
     {
       "query": "juegos para tomar online",
+      "clicks": 23,
+      "impressions": 45,
+      "ctr": 0.5111111111111111,
+      "position": 3.8,
+      "prevClicks": 19
+    },
+    {
+      "query": "juegos para tomar con amigos",
+      "clicks": 19,
+      "impressions": 352,
+      "ctr": 0.05397727272727273,
+      "position": 4.616477272727273,
+      "prevClicks": 18
+    },
+    {
+      "query": "juego para beber",
       "clicks": 17,
-      "impressions": 40,
-      "ctr": 0.425,
-      "position": 1.125,
-      "prevClicks": 16
+      "impressions": 98,
+      "ctr": 0.17346938775510204,
+      "position": 3.4285714285714284,
+      "prevClicks": 20
     }
   ],
   "topPages": [
     {
       "url": "/juegos/verdad-o-reto",
-      "clicks": 996,
-      "impressions": 16355,
-      "delta": "+30.9% 🟢"
+      "clicks": 1146,
+      "impressions": 17676,
+      "delta": "+23.6% 🟢"
     },
     {
       "url": "/",
-      "clicks": 984,
-      "impressions": 9566,
-      "delta": "+8.4% 🟢"
+      "clicks": 1096,
+      "impressions": 10942,
+      "delta": "+15.0% 🟢"
     },
     {
       "url": "/juegos/la-ruleta",
-      "clicks": 170,
-      "impressions": 3450,
-      "delta": "-3.4% 🔴"
+      "clicks": 217,
+      "impressions": 5047,
+      "delta": "+34.0% 🟢"
     },
     {
       "url": "/juegos",
-      "clicks": 164,
-      "impressions": 2673,
-      "delta": "-1.8% 🔴"
-    },
-    {
-      "url": "/blog/rey-de-la-copa-reglas",
-      "clicks": 83,
-      "impressions": 1931,
-      "delta": "+76.6% 🟢"
-    },
-    {
-      "url": "/juegos/rey-de-la-copa",
-      "clicks": 82,
-      "impressions": 543,
-      "delta": "+4000.0% 🟢"
+      "clicks": 193,
+      "impressions": 2921,
+      "delta": "+28.7% 🟢"
     },
     {
       "url": "/blog/preguntas-picantes-verdad-o-reto",
-      "clicks": 71,
-      "impressions": 2611,
-      "delta": "-9.0% 🔴"
-    },
-    {
-      "url": "/juegos/quien-es-mas-probable",
-      "clicks": 66,
-      "impressions": 927,
-      "delta": "-13.2% 🔴"
+      "clicks": 99,
+      "impressions": 3065,
+      "delta": "+54.7% 🟢"
     },
     {
       "url": "/juegos/categorias/preguntas",
-      "clicks": 52,
-      "impressions": 674,
-      "delta": "-16.1% 🔴"
+      "clicks": 73,
+      "impressions": 867,
+      "delta": "+55.3% 🟢"
     },
     {
-      "url": "/blog/ring-of-fire-reglas-cartas",
-      "clicks": 44,
-      "impressions": 501,
-      "delta": "-4.3% 🔴"
-    },
-    {
-      "url": "/blog/juegos-para-beber-en-pareja",
-      "clicks": 40,
-      "impressions": 626,
-      "delta": "+110.5% 🟢"
+      "url": "/juegos/quien-es-mas-probable",
+      "clicks": 65,
+      "impressions": 1060,
+      "delta": "+1.6% 🟢"
     },
     {
       "url": "/juegos/la-piramide",
-      "clicks": 35,
-      "impressions": 780,
-      "delta": "+6.1% 🟢"
+      "clicks": 63,
+      "impressions": 812,
+      "delta": "+117.2% 🟢"
     },
     {
-      "url": "/juegos/la-bomba",
-      "clicks": 24,
-      "impressions": 574,
-      "delta": "-29.4% 🔴"
+      "url": "/blog/rey-de-la-copa-reglas",
+      "clicks": 60,
+      "impressions": 1665,
+      "delta": "-20.0% 🔴"
+    },
+    {
+      "url": "/blog/ring-of-fire-reglas-cartas",
+      "clicks": 46,
+      "impressions": 531,
+      "delta": "+31.4% 🟢"
+    },
+    {
+      "url": "/blog/juegos-para-beber-en-pareja",
+      "clicks": 44,
+      "impressions": 722,
+      "delta": "+63.0% 🟢"
+    },
+    {
+      "url": "/juegos/rey-de-la-copa",
+      "clicks": 38,
+      "impressions": 392,
+      "delta": "-50.6% 🔴"
     },
     {
       "url": "/blog/retos-para-fiestas",
-      "clicks": 22,
-      "impressions": 1183,
-      "delta": "-15.4% 🔴"
+      "clicks": 36,
+      "impressions": 1928,
+      "delta": "+111.8% 🟢"
     },
     {
-      "url": "/blog/yo-prefiero-preguntas",
-      "clicks": 14,
-      "impressions": 244,
-      "delta": "-33.3% 🔴"
+      "url": "/juegos/la-bomba",
+      "clicks": 28,
+      "impressions": 700,
+      "delta": "+27.3% 🟢"
+    },
+    {
+      "url": "/blog/juegos-para-beber-con-dados",
+      "clicks": 27,
+      "impressions": 561,
+      "delta": "+170.0% 🟢"
     }
   ],
   "cannibalization": [
@@ -230,24 +230,11 @@
       "urls": [
         {
           "url": "/",
-          "imp": 143
+          "imp": 171
         },
         {
           "url": "/juegos",
-          "imp": 143
-        }
-      ]
-    },
-    {
-      "query": "rey de copas game",
-      "urls": [
-        {
-          "url": "/juegos/rey-de-la-copa",
-          "imp": 142
-        },
-        {
-          "url": "/blog/rey-de-la-copa-reglas",
-          "imp": 94
+          "imp": 171
         }
       ]
     },
@@ -256,11 +243,11 @@
       "urls": [
         {
           "url": "/",
-          "imp": 40
+          "imp": 43
         },
         {
           "url": "/juegos",
-          "imp": 40
+          "imp": 43
         }
       ]
     }

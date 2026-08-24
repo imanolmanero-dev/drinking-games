@@ -1,6 +1,6 @@
 # 📈 Dashboard SEO Avanzado (Pro Mode)
 
-> **Última actualización:** 17/8/2026, 0:42:01
+> **Última actualización:** 24/8/2026, 0:43:32
 > **Comparativa:** Últimos 7 días vs Semana anterior.
 
 *Este archivo se genera automáticamente mediante GitHub Actions y la API de Google Search Console. **NO EDITAR MANUALMENTE**.*
@@ -8,51 +8,48 @@
 ## 🏆 Top Palabras Clave (Tendencias)
 | Query | Clics | Impresiones | CTR | Pos | Crecimiento (Clics) |
 |---|---|---|---|---|---|
-| verdad o reto | 358 | 9085 | 3.9% | 6.3 | +95.6% 🟢 |
-| verdad o reto online | 108 | 323 | 33.4% | 1.7 | -12.9% 🔴 |
-| juegos para tomar | 101 | 1011 | 10.0% | 4.0 | -15.8% 🔴 |
-| juegos para beber | 86 | 979 | 8.8% | 4.8 | -2.3% 🔴 |
-| juegos para beber online | 74 | 175 | 42.3% | 10.2 | +4.2% 🟢 |
-| juegos de beber | 55 | 577 | 9.5% | 3.1 | +52.8% 🟢 |
-| rey de copas game | 37 | 176 | 21.0% | 4.7 | +100% |
-| verdad o reto juego | 29 | 481 | 6.0% | 6.3 | -12.1% 🔴 |
-| juegos para beber con amigos | 28 | 243 | 11.5% | 3.4 | -6.7% 🔴 |
-| juego para beber | 25 | 128 | 19.5% | 3.4 | +257.1% 🟢 |
-| juego de verdad o reto | 22 | 286 | 7.7% | 5.8 | +100.0% 🟢 |
-| juego de beber | 20 | 200 | 10.0% | 3.8 | +150.0% 🟢 |
-| verdad o reto juego online | 20 | 51 | 39.2% | 1.7 | +25.0% 🟢 |
-| juegos para tomar con amigos | 18 | 339 | 5.3% | 5.6 | -14.3% 🔴 |
-| juegos para tomar online | 17 | 40 | 42.5% | 1.1 | +6.3% 🟢 |
+| verdad o reto | 414 | 9305 | 4.4% | 5.9 | +28.6% 🟢 |
+| verdad o reto online | 103 | 299 | 34.4% | 1.8 | -3.7% 🔴 |
+| juegos para beber | 90 | 983 | 9.2% | 4.6 | +13.9% 🟢 |
+| juegos para tomar | 89 | 1042 | 8.5% | 4.1 | -11.0% 🔴 |
+| juegos para beber online | 72 | 209 | 34.4% | 10.6 | -2.7% 🔴 |
+| juegos de beber | 61 | 590 | 10.3% | 3.9 | +29.8% 🟢 |
+| juegos para beber con amigos | 44 | 293 | 15.0% | 3.2 | +91.3% 🟢 |
+| verdad o reto juego | 44 | 387 | 11.4% | 5.5 | +69.2% 🟢 |
+| bebergames | 34 | 38 | 89.5% | 1.0 | +183.3% 🟢 |
+| verdad o reto juego online | 25 | 64 | 39.1% | 1.4 | +47.1% 🟢 |
+| juego de beber | 24 | 172 | 14.0% | 3.5 | +33.3% 🟢 |
+| ruleta para tomar | 24 | 49 | 49.0% | 1.5 | +200.0% 🟢 |
+| juegos para tomar online | 23 | 45 | 51.1% | 3.8 | +21.1% 🟢 |
+| juegos para tomar con amigos | 19 | 352 | 5.4% | 4.6 | +5.6% 🟢 |
+| juego para beber | 17 | 98 | 17.3% | 3.4 | -15.0% 🔴 |
 
 ## 📄 Top Páginas (Tráfico)
 | URL | Clics | Impresiones | CTR | Pos | Crecimiento (Clics) |
 |---|---|---|---|---|---|
-| [/juegos/verdad-o-reto](https://bebergames.com/juegos/verdad-o-reto) | 996 | 16355 | 6.1% | 6.2 | +30.9% 🟢 |
-| [/](https://bebergames.com/) | 984 | 9566 | 10.3% | 6.5 | +8.4% 🟢 |
-| [/juegos/la-ruleta](https://bebergames.com/juegos/la-ruleta) | 170 | 3450 | 4.9% | 10.0 | -3.4% 🔴 |
-| [/juegos](https://bebergames.com/juegos) | 164 | 2673 | 6.1% | 6.1 | -1.8% 🔴 |
-| [/blog/rey-de-la-copa-reglas](https://bebergames.com/blog/rey-de-la-copa-reglas) | 83 | 1931 | 4.3% | 6.3 | +76.6% 🟢 |
-| [/juegos/rey-de-la-copa](https://bebergames.com/juegos/rey-de-la-copa) | 82 | 543 | 15.1% | 6.2 | +4000.0% 🟢 |
-| [/blog/preguntas-picantes-verdad-o-reto](https://bebergames.com/blog/preguntas-picantes-verdad-o-reto) | 71 | 2611 | 2.7% | 9.0 | -9.0% 🔴 |
-| [/juegos/quien-es-mas-probable](https://bebergames.com/juegos/quien-es-mas-probable) | 66 | 927 | 7.1% | 7.1 | -13.2% 🔴 |
-| [/juegos/categorias/preguntas](https://bebergames.com/juegos/categorias/preguntas) | 52 | 674 | 7.7% | 5.4 | -16.1% 🔴 |
-| [/blog/ring-of-fire-reglas-cartas](https://bebergames.com/blog/ring-of-fire-reglas-cartas) | 44 | 501 | 8.8% | 5.2 | -4.3% 🔴 |
-| [/blog/juegos-para-beber-en-pareja](https://bebergames.com/blog/juegos-para-beber-en-pareja) | 40 | 626 | 6.4% | 7.8 | +110.5% 🟢 |
-| [/juegos/la-piramide](https://bebergames.com/juegos/la-piramide) | 35 | 780 | 4.5% | 6.5 | +6.1% 🟢 |
-| [/juegos/la-bomba](https://bebergames.com/juegos/la-bomba) | 24 | 574 | 4.2% | 7.5 | -29.4% 🔴 |
-| [/blog/retos-para-fiestas](https://bebergames.com/blog/retos-para-fiestas) | 22 | 1183 | 1.9% | 7.9 | -15.4% 🔴 |
-| [/blog/yo-prefiero-preguntas](https://bebergames.com/blog/yo-prefiero-preguntas) | 14 | 244 | 5.7% | 8.9 | -33.3% 🔴 |
+| [/juegos/verdad-o-reto](https://bebergames.com/juegos/verdad-o-reto) | 1146 | 17676 | 6.5% | 6.1 | +23.6% 🟢 |
+| [/](https://bebergames.com/) | 1096 | 10942 | 10.0% | 6.4 | +15.0% 🟢 |
+| [/juegos/la-ruleta](https://bebergames.com/juegos/la-ruleta) | 217 | 5047 | 4.3% | 10.2 | +34.0% 🟢 |
+| [/juegos](https://bebergames.com/juegos) | 193 | 2921 | 6.6% | 6.2 | +28.7% 🟢 |
+| [/blog/preguntas-picantes-verdad-o-reto](https://bebergames.com/blog/preguntas-picantes-verdad-o-reto) | 99 | 3065 | 3.2% | 8.9 | +54.7% 🟢 |
+| [/juegos/categorias/preguntas](https://bebergames.com/juegos/categorias/preguntas) | 73 | 867 | 8.4% | 4.7 | +55.3% 🟢 |
+| [/juegos/quien-es-mas-probable](https://bebergames.com/juegos/quien-es-mas-probable) | 65 | 1060 | 6.1% | 7.0 | +1.6% 🟢 |
+| [/juegos/la-piramide](https://bebergames.com/juegos/la-piramide) | 63 | 812 | 7.8% | 6.4 | +117.2% 🟢 |
+| [/blog/rey-de-la-copa-reglas](https://bebergames.com/blog/rey-de-la-copa-reglas) | 60 | 1665 | 3.6% | 6.0 | -20.0% 🔴 |
+| [/blog/ring-of-fire-reglas-cartas](https://bebergames.com/blog/ring-of-fire-reglas-cartas) | 46 | 531 | 8.7% | 4.6 | +31.4% 🟢 |
+| [/blog/juegos-para-beber-en-pareja](https://bebergames.com/blog/juegos-para-beber-en-pareja) | 44 | 722 | 6.1% | 7.7 | +63.0% 🟢 |
+| [/juegos/rey-de-la-copa](https://bebergames.com/juegos/rey-de-la-copa) | 38 | 392 | 9.7% | 6.6 | -50.6% 🔴 |
+| [/blog/retos-para-fiestas](https://bebergames.com/blog/retos-para-fiestas) | 36 | 1928 | 1.9% | 8.2 | +111.8% 🟢 |
+| [/juegos/la-bomba](https://bebergames.com/juegos/la-bomba) | 28 | 700 | 4.0% | 7.3 | +27.3% 🟢 |
+| [/blog/juegos-para-beber-con-dados](https://bebergames.com/blog/juegos-para-beber-con-dados) | 27 | 561 | 4.8% | 6.4 | +170.0% 🟢 |
 
 ## 🚨 Alertas de Canibalización
 - **Query:** `juegos para beber online`
-  - 🥇 / (143 imp)
-  - 🥈 /juegos (143 imp)
-- **Query:** `rey de copas game`
-  - 🥇 /juegos/rey-de-la-copa (142 imp)
-  - 🥈 /blog/rey-de-la-copa-reglas (94 imp)
+  - 🥇 / (171 imp)
+  - 🥈 /juegos (171 imp)
 - **Query:** `juegos para tomar online`
-  - 🥇 / (40 imp)
-  - 🥈 /juegos (40 imp)
+  - 🥇 / (43 imp)
+  - 🥈 /juegos (43 imp)
 
 ## 💡 Oportunidades de CTR Rápido (Low-Hanging Fruit)
 *✅ No hay oportunidades críticas urgentes de CTR.*
