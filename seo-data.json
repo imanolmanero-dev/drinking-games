@@ -1,7 +1,7 @@
 {
   "schemaVersion": 2,
-  "schemaDescription": "v2: periodos 7/7, totales sin dimensiones, top 50 y comparativas por query, page, country, device y query+page.",
-  "updatedAt": "2026-08-26T22:43:28.150Z",
+  "schemaDescription": "v2: periodos 7/7, totales sin dimensiones, display/fetch separados y comparativas que distinguen previous conocido, cero real y desconocido por truncamiento.",
+  "updatedAt": "2026-08-26T23:27:10.954Z",
   "periods": {
     "current": {
       "start": "2026-08-19",
@@ -47,6 +47,8 @@
       "position": 5.850492390331245,
       "prevClicks": 365,
       "delta": "-11.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 325,
         "impressions": 6702,
@@ -80,6 +82,8 @@
       "position": 3.8112449799196786,
       "prevClicks": 79,
       "delta": "-8.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 72,
         "impressions": 747,
@@ -113,6 +117,8 @@
       "position": 2.4380952380952383,
       "prevClicks": 88,
       "delta": "-22.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 68,
         "impressions": 210,
@@ -146,6 +152,8 @@
       "position": 4.978407557354926,
       "prevClicks": 70,
       "delta": "-15.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 59,
         "impressions": 741,
@@ -179,6 +187,8 @@
       "position": 3.392857142857143,
       "prevClicks": 53,
       "delta": "-13.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 46,
         "impressions": 364,
@@ -212,6 +222,8 @@
       "position": 14.904494382022472,
       "prevClicks": 64,
       "delta": "-37.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 40,
         "impressions": 178,
@@ -245,6 +257,8 @@
       "position": 5.196581196581197,
       "prevClicks": 31,
       "delta": "+12.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 35,
         "impressions": 234,
@@ -278,6 +292,8 @@
       "position": 1,
       "prevClicks": 23,
       "delta": "+17.4%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 27,
         "impressions": 30,
@@ -311,6 +327,8 @@
       "position": 1.2142857142857142,
       "prevClicks": 13,
       "delta": "+92.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 25,
         "impressions": 42,
@@ -344,6 +362,8 @@
       "position": 3.853982300884956,
       "prevClicks": 30,
       "delta": "-20.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 24,
         "impressions": 226,
@@ -377,6 +397,8 @@
       "position": 3.401639344262295,
       "prevClicks": 22,
       "delta": "-4.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 21,
         "impressions": 122,
@@ -410,6 +432,8 @@
       "position": 1.7413793103448276,
       "prevClicks": 18,
       "delta": "+16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 21,
         "impressions": 58,
@@ -443,6 +467,8 @@
       "position": 1.0606060606060606,
       "prevClicks": 22,
       "delta": "-27.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 16,
         "impressions": 33,
@@ -476,6 +502,8 @@
       "position": 7.886639676113361,
       "prevClicks": 8,
       "delta": "+87.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 15,
         "impressions": 247,
@@ -509,6 +537,8 @@
       "position": 1,
       "prevClicks": 6,
       "delta": "+150.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 15,
         "impressions": 22,
@@ -542,6 +572,8 @@
       "position": 6.214285714285714,
       "prevClicks": 12,
       "delta": "+8.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 13,
         "impressions": 182,
@@ -575,6 +607,8 @@
       "position": 1,
       "prevClicks": 10,
       "delta": "+30.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 13,
         "impressions": 16,
@@ -608,6 +642,8 @@
       "position": 5.479674796747967,
       "prevClicks": 19,
       "delta": "-36.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 12,
         "impressions": 246,
@@ -641,6 +677,8 @@
       "position": 5.304761904761905,
       "prevClicks": 7,
       "delta": "+57.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 11,
         "impressions": 105,
@@ -672,8 +710,10 @@
       "impressions": 15,
       "ctr": 0.7333333333333333,
       "position": 1.5333333333333332,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 5,
+      "delta": "+120.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 11,
         "impressions": 15,
@@ -681,22 +721,22 @@
         "position": 1.5333333333333332
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 5,
+        "impressions": 8,
+        "ctr": 0.625,
+        "position": 1.625
       },
       "difference": {
-        "clicks": 11,
-        "impressions": 15,
-        "ctr": 0.7333333333333333,
-        "position": 1.5333333333333332
+        "clicks": 6,
+        "impressions": 7,
+        "ctr": 0.10833333333333328,
+        "position": -0.09166666666666679
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 120,
+        "impressions": 87.5,
+        "ctr": 17.333333333333325,
+        "position": -5.641025641025648
       }
     },
     {
@@ -707,6 +747,8 @@
       "position": 32.671232876712324,
       "prevClicks": 9,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 9,
         "impressions": 73,
@@ -740,6 +782,8 @@
       "position": 2.357142857142857,
       "prevClicks": 12,
       "delta": "-25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 9,
         "impressions": 28,
@@ -773,6 +817,8 @@
       "position": 1,
       "prevClicks": 6,
       "delta": "+50.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 9,
         "impressions": 19,
@@ -806,6 +852,8 @@
       "position": 7.673809523809524,
       "prevClicks": 13,
       "delta": "-38.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 420,
@@ -839,6 +887,8 @@
       "position": 6.895161290322581,
       "prevClicks": 40,
       "delta": "-80.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 124,
@@ -872,6 +922,8 @@
       "position": 3.275,
       "prevClicks": 21,
       "delta": "-61.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 80,
@@ -903,8 +955,10 @@
       "impressions": 35,
       "ctr": 0.22857142857142856,
       "position": 3.6285714285714286,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 5,
+      "delta": "+60.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 35,
@@ -912,22 +966,22 @@
         "position": 3.6285714285714286
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 5,
+        "impressions": 25,
+        "ctr": 0.2,
+        "position": 2.4
       },
       "difference": {
-        "clicks": 8,
-        "impressions": 35,
-        "ctr": 0.22857142857142856,
-        "position": 3.6285714285714286
+        "clicks": 3,
+        "impressions": 10,
+        "ctr": 0.028571428571428553,
+        "position": 1.2285714285714286
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 60,
+        "impressions": 40,
+        "ctr": 14.285714285714276,
+        "position": 51.1904761904762
       }
     },
     {
@@ -938,6 +992,8 @@
       "position": 2.041666666666667,
       "prevClicks": 10,
       "delta": "-20.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 24,
@@ -969,8 +1025,10 @@
       "impressions": 16,
       "ctr": 0.5,
       "position": 1.1875,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 1,
+      "delta": "+700.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 16,
@@ -978,22 +1036,22 @@
         "position": 1.1875
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 1,
+        "impressions": 7,
+        "ctr": 0.14285714285714285,
+        "position": 1
       },
       "difference": {
-        "clicks": 8,
-        "impressions": 16,
-        "ctr": 0.5,
-        "position": 1.1875
+        "clicks": 7,
+        "impressions": 9,
+        "ctr": 0.35714285714285715,
+        "position": 0.1875
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 700,
+        "impressions": 128.57142857142858,
+        "ctr": 250,
+        "position": 18.75
       }
     },
     {
@@ -1004,6 +1062,8 @@
       "position": 7.607361963190184,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 163,
@@ -1012,21 +1072,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 154,
         "ctr": 0,
-        "position": 0
+        "position": 8.753246753246753
       },
       "difference": {
         "clicks": 7,
-        "impressions": 163,
+        "impressions": 9,
         "ctr": 0.04294478527607362,
-        "position": 7.607361963190184
+        "position": -1.1458847900565692
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 5.844155844155844,
         "ctr": null,
-        "position": null
+        "position": -13.090968669785733
       }
     },
     {
@@ -1037,6 +1097,8 @@
       "position": 6.161764705882353,
       "prevClicks": 6,
       "delta": "+16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 136,
@@ -1070,6 +1132,8 @@
       "position": 6.477876106194691,
       "prevClicks": 7,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 113,
@@ -1103,6 +1167,8 @@
       "position": 6.206896551724138,
       "prevClicks": 6,
       "delta": "+16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 87,
@@ -1136,6 +1202,8 @@
       "position": 4.454545454545455,
       "prevClicks": 8,
       "delta": "-12.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 77,
@@ -1169,6 +1237,8 @@
       "position": 4.045454545454545,
       "prevClicks": 7,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 66,
@@ -1202,6 +1272,8 @@
       "position": 3.9491525423728815,
       "prevClicks": 12,
       "delta": "-41.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 59,
@@ -1233,8 +1305,10 @@
       "impressions": 33,
       "ctr": 0.21212121212121213,
       "position": 4.121212121212121,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 4,
+      "delta": "+75.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 33,
@@ -1242,22 +1316,22 @@
         "position": 4.121212121212121
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 4,
+        "impressions": 32,
+        "ctr": 0.125,
+        "position": 4.1875
       },
       "difference": {
-        "clicks": 7,
-        "impressions": 33,
-        "ctr": 0.21212121212121213,
-        "position": 4.121212121212121
+        "clicks": 3,
+        "impressions": 1,
+        "ctr": 0.08712121212121213,
+        "position": -0.0662878787878789
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 75,
+        "impressions": 3.125,
+        "ctr": 69.6969696969697,
+        "position": -1.5829941203075557
       }
     },
     {
@@ -1268,6 +1342,8 @@
       "position": 2.166666666666667,
       "prevClicks": 9,
       "delta": "-22.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 18,
@@ -1301,6 +1377,8 @@
       "position": 1.0588235294117647,
       "prevClicks": 7,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 17,
@@ -1334,6 +1412,8 @@
       "position": 1.7857142857142856,
       "prevClicks": 9,
       "delta": "-22.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 14,
@@ -1365,8 +1445,10 @@
       "impressions": 11,
       "ctr": 0.6363636363636364,
       "position": 1,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 5,
+      "delta": "+40.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 11,
@@ -1374,22 +1456,22 @@
         "position": 1
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 5,
+        "impressions": 11,
+        "ctr": 0.45454545454545453,
+        "position": 1.1818181818181819
       },
       "difference": {
-        "clicks": 7,
-        "impressions": 11,
-        "ctr": 0.6363636363636364,
-        "position": 1
+        "clicks": 2,
+        "impressions": 0,
+        "ctr": 0.18181818181818182,
+        "position": -0.18181818181818188
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 40,
+        "impressions": 0,
+        "ctr": 40,
+        "position": -15.384615384615389
       }
     },
     {
@@ -1400,6 +1482,8 @@
       "position": 6.538461538461538,
       "prevClicks": 11,
       "delta": "-45.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 91,
@@ -1433,6 +1517,8 @@
       "position": 4.279069767441861,
       "prevClicks": 8,
       "delta": "-25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 86,
@@ -1466,6 +1552,8 @@
       "position": 3.0694444444444446,
       "prevClicks": 8,
       "delta": "-25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 72,
@@ -1497,8 +1585,10 @@
       "impressions": 12,
       "ctr": 0.5,
       "position": 1.1666666666666667,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 3,
+      "delta": "+100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 12,
@@ -1506,22 +1596,57 @@
         "position": 1.1666666666666667
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 3,
+        "impressions": 12,
+        "ctr": 0.25,
+        "position": 1.3333333333333333
       },
       "difference": {
-        "clicks": 6,
-        "impressions": 12,
-        "ctr": 0.5,
-        "position": 1.1666666666666667
+        "clicks": 3,
+        "impressions": 0,
+        "ctr": 0.25,
+        "position": -0.16666666666666652
+      },
+      "percentDelta": {
+        "clicks": 100,
+        "impressions": 0,
+        "ctr": 100,
+        "position": -12.49999999999999
+      }
+    },
+    {
+      "query": "retos",
+      "clicks": 5,
+      "impressions": 483,
+      "ctr": 0.010351966873706004,
+      "position": 9.031055900621118,
+      "prevClicks": 0,
+      "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 5,
+        "impressions": 483,
+        "ctr": 0.010351966873706004,
+        "position": 9.031055900621118
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 117,
+        "ctr": 0,
+        "position": 9.205128205128204
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 366,
+        "ctr": 0.010351966873706004,
+        "position": -0.17407230450708688
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 312.8205128205128,
         "ctr": null,
-        "position": null
+        "position": -1.8910361770964872
       }
     },
     {
@@ -1530,8 +1655,10 @@
       "impressions": 187,
       "ctr": 0.026737967914438502,
       "position": 7.572192513368984,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 4,
+      "delta": "+25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 187,
@@ -1539,22 +1666,22 @@
         "position": 7.572192513368984
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 4,
+        "impressions": 200,
+        "ctr": 0.02,
+        "position": 8.235
       },
       "difference": {
-        "clicks": 5,
-        "impressions": 187,
-        "ctr": 0.026737967914438502,
-        "position": 7.572192513368984
+        "clicks": 1,
+        "impressions": -13,
+        "ctr": 0.006737967914438502,
+        "position": -0.6628074866310154
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 25,
+        "impressions": -6.5,
+        "ctr": 33.68983957219251,
+        "position": -8.048664075665032
       }
     },
     {
@@ -1565,6 +1692,8 @@
       "position": 6.013333333333334,
       "prevClicks": 7,
       "delta": "-28.6%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 150,
@@ -1596,8 +1725,10 @@
       "impressions": 75,
       "ctr": 0.06666666666666667,
       "position": 4.533333333333333,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 4,
+      "delta": "+25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 75,
@@ -1605,22 +1736,22 @@
         "position": 4.533333333333333
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 4,
+        "impressions": 66,
+        "ctr": 0.06060606060606061,
+        "position": 6.196969696969697
       },
       "difference": {
-        "clicks": 5,
-        "impressions": 75,
-        "ctr": 0.06666666666666667,
-        "position": 4.533333333333333
+        "clicks": 1,
+        "impressions": 9,
+        "ctr": 0.006060606060606058,
+        "position": -1.663636363636364
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 25,
+        "impressions": 13.636363636363635,
+        "ctr": 9.999999999999995,
+        "position": -26.845965770171155
       }
     },
     {
@@ -1631,6 +1762,8 @@
       "position": 5.5636363636363635,
       "prevClicks": 6,
       "delta": "-16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 55,
@@ -1655,39 +1788,6 @@
         "ctr": -28.78787878787878,
         "position": -0.9504132231405005
       }
-    },
-    {
-      "query": "a beber: juegos para tomar",
-      "clicks": 5,
-      "impressions": 38,
-      "ctr": 0.13157894736842105,
-      "position": 5.921052631578948,
-      "prevClicks": 0,
-      "delta": null,
-      "current": {
-        "clicks": 5,
-        "impressions": 38,
-        "ctr": 0.13157894736842105,
-        "position": 5.921052631578948
-      },
-      "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
-      },
-      "difference": {
-        "clicks": 5,
-        "impressions": 38,
-        "ctr": 0.13157894736842105,
-        "position": 5.921052631578948
-      },
-      "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
-      }
     }
   ],
   "topPages": [
@@ -1699,6 +1799,8 @@
       "position": 6.383115942028986,
       "prevClicks": 987,
       "delta": "-10.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 880,
         "impressions": 13800,
@@ -1733,6 +1835,8 @@
       "position": 6.600852436355258,
       "prevClicks": 893,
       "delta": "-5.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 841,
         "impressions": 8681,
@@ -1767,6 +1871,8 @@
       "position": 10.102930312730855,
       "prevClicks": 163,
       "delta": "+1.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 165,
         "impressions": 4061,
@@ -1801,6 +1907,8 @@
       "position": 6.540685944855413,
       "prevClicks": 152,
       "delta": "+3.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 157,
         "impressions": 2974,
@@ -1835,6 +1943,8 @@
       "position": 8.872277593207826,
       "prevClicks": 72,
       "delta": "+26.4%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 91,
         "impressions": 2709,
@@ -1869,6 +1979,8 @@
       "position": 4.918699186991869,
       "prevClicks": 50,
       "delta": "+56.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 78,
         "impressions": 738,
@@ -1903,6 +2015,8 @@
       "position": 6.20627802690583,
       "prevClicks": 50,
       "delta": "+48.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 74,
         "impressions": 669,
@@ -1937,6 +2051,8 @@
       "position": 7.077049180327869,
       "prevClicks": 38,
       "delta": "+36.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 52,
         "impressions": 610,
@@ -1971,6 +2087,8 @@
       "position": 6.591796875,
       "prevClicks": 12,
       "delta": "+200.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 36,
         "impressions": 512,
@@ -2005,6 +2123,8 @@
       "position": 4.623711340206185,
       "prevClicks": 36,
       "delta": "-5.6%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 34,
         "impressions": 388,
@@ -2039,6 +2159,8 @@
       "position": 5.830287206266319,
       "prevClicks": 80,
       "delta": "-60.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 32,
         "impressions": 1149,
@@ -2073,6 +2195,8 @@
       "position": 7.284274193548387,
       "prevClicks": 33,
       "delta": "-9.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 30,
         "impressions": 496,
@@ -2107,6 +2231,8 @@
       "position": 7.28,
       "prevClicks": 14,
       "delta": "+92.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 27,
         "impressions": 425,
@@ -2141,6 +2267,8 @@
       "position": 6.549382716049383,
       "prevClicks": 97,
       "delta": "-74.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 25,
         "impressions": 324,
@@ -2175,6 +2303,8 @@
       "position": 9.874125874125873,
       "prevClicks": 15,
       "delta": "+53.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 23,
         "impressions": 572,
@@ -2209,6 +2339,8 @@
       "position": 8.286225402504472,
       "prevClicks": 26,
       "delta": "-19.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 21,
         "impressions": 1677,
@@ -2243,6 +2375,8 @@
       "position": 7.094269870609981,
       "prevClicks": 21,
       "delta": "-4.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 20,
         "impressions": 541,
@@ -2277,6 +2411,8 @@
       "position": 11.252199413489736,
       "prevClicks": 7,
       "delta": "+114.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 15,
         "impressions": 1023,
@@ -2311,6 +2447,8 @@
       "position": 3.463276836158192,
       "prevClicks": 5,
       "delta": "+180.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 14,
         "impressions": 177,
@@ -2345,6 +2483,8 @@
       "position": 11.157706093189963,
       "prevClicks": 10,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 10,
         "impressions": 279,
@@ -2379,6 +2519,8 @@
       "position": 12.88735632183908,
       "prevClicks": 3,
       "delta": "+200.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 9,
         "impressions": 435,
@@ -2413,6 +2555,8 @@
       "position": 16.70980392156863,
       "prevClicks": 2,
       "delta": "+200.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 255,
@@ -2447,6 +2591,8 @@
       "position": 5.840336134453781,
       "prevClicks": 1,
       "delta": "+300.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 4,
         "impressions": 119,
@@ -2481,6 +2627,8 @@
       "position": 9.588628762541806,
       "prevClicks": 9,
       "delta": "-66.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 3,
         "impressions": 897,
@@ -2515,6 +2663,8 @@
       "position": 6.864661654135339,
       "prevClicks": 1,
       "delta": "+200.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 3,
         "impressions": 133,
@@ -2549,6 +2699,8 @@
       "position": 5.263736263736264,
       "prevClicks": 3,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 3,
         "impressions": 91,
@@ -2583,6 +2735,8 @@
       "position": 8.264367816091955,
       "prevClicks": 4,
       "delta": "-50.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 2,
         "impressions": 174,
@@ -2617,6 +2771,8 @@
       "position": 8.435114503816795,
       "prevClicks": 6,
       "delta": "-66.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 2,
         "impressions": 131,
@@ -2651,6 +2807,8 @@
       "position": 10.483333333333333,
       "prevClicks": 1,
       "delta": "+100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 2,
         "impressions": 60,
@@ -2685,6 +2843,8 @@
       "position": 6.146341463414634,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 2,
         "impressions": 41,
@@ -2719,6 +2879,8 @@
       "position": 6.5676274944567625,
       "prevClicks": 1,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 451,
@@ -2753,6 +2915,8 @@
       "position": 9.89655172413793,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "known_absent",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 58,
@@ -2787,6 +2951,8 @@
       "position": 5.933333333333334,
       "prevClicks": 1,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 45,
@@ -2821,6 +2987,8 @@
       "position": 20.46875,
       "prevClicks": 3,
       "delta": "-66.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 32,
@@ -2855,6 +3023,8 @@
       "position": 6.645161290322581,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 31,
@@ -2889,6 +3059,8 @@
       "position": 7.095238095238095,
       "prevClicks": 2,
       "delta": "-50.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 21,
@@ -2923,6 +3095,8 @@
       "position": 5.055555555555555,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 18,
@@ -2957,6 +3131,8 @@
       "position": 6.294117647058823,
       "prevClicks": 3,
       "delta": "-66.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 17,
@@ -2991,6 +3167,8 @@
       "position": 13,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 10,
@@ -3018,6 +3196,78 @@
       "url": "/blog/preguntas-quien-es-mas-probable"
     },
     {
+      "page": "/juegos/medusa",
+      "clicks": 0,
+      "impressions": 76,
+      "ctr": 0,
+      "position": 6.078947368421052,
+      "prevClicks": 0,
+      "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 0,
+        "impressions": 76,
+        "ctr": 0,
+        "position": 6.078947368421052
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 85,
+        "ctr": 0,
+        "position": 7.129411764705883
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -9,
+        "ctr": 0,
+        "position": -1.0504643962848306
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -10.588235294117647,
+        "ctr": null,
+        "position": -14.734236581552903
+      },
+      "url": "/juegos/medusa"
+    },
+    {
+      "page": "/juegos/yo-nunca/reglas",
+      "clicks": 0,
+      "impressions": 43,
+      "ctr": 0,
+      "position": 21.441860465116278,
+      "prevClicks": 0,
+      "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 0,
+        "impressions": 43,
+        "ctr": 0,
+        "position": 21.441860465116278
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 130,
+        "ctr": 0,
+        "position": 15.761538461538462
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -87,
+        "ctr": 0,
+        "position": 5.680322003577816
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -66.92307692307692,
+        "ctr": null,
+        "position": 36.03913423451029
+      },
+      "url": "/juegos/yo-nunca/reglas"
+    },
+    {
       "page": "/blog/drinking-games-reglas",
       "clicks": 0,
       "impressions": 41,
@@ -3025,6 +3275,8 @@
       "position": 9,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
         "impressions": 41,
@@ -3052,6 +3304,78 @@
       "url": "/blog/drinking-games-reglas"
     },
     {
+      "page": "/juegos/categorias/cartas",
+      "clicks": 0,
+      "impressions": 39,
+      "ctr": 0,
+      "position": 10.256410256410257,
+      "prevClicks": 1,
+      "delta": "-100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 0,
+        "impressions": 39,
+        "ctr": 0,
+        "position": 10.256410256410257
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 60,
+        "ctr": 0.016666666666666666,
+        "position": 10.3
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -21,
+        "ctr": -0.016666666666666666,
+        "position": -0.043589743589743435
+      },
+      "percentDelta": {
+        "clicks": -100,
+        "impressions": -35,
+        "ctr": -100,
+        "position": -0.423201394075179
+      },
+      "url": "/juegos/categorias/cartas"
+    },
+    {
+      "page": "/juegos/categorias/sin-materiales",
+      "clicks": 0,
+      "impressions": 37,
+      "ctr": 0,
+      "position": 1.9189189189189189,
+      "prevClicks": 0,
+      "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 0,
+        "impressions": 37,
+        "ctr": 0,
+        "position": 1.9189189189189189
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 44,
+        "ctr": 0,
+        "position": 2.5227272727272725
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -7,
+        "ctr": 0,
+        "position": -0.6038083538083536
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -15.909090909090908,
+        "ctr": null,
+        "position": -23.934745556367172
+      },
+      "url": "/juegos/categorias/sin-materiales"
+    },
+    {
       "page": "/contacto",
       "clicks": 0,
       "impressions": 33,
@@ -3059,6 +3383,8 @@
       "position": 1.696969696969697,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
         "impressions": 33,
@@ -3067,23 +3393,59 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 32,
         "ctr": 0,
-        "position": 0
+        "position": 1.28125
       },
       "difference": {
         "clicks": 0,
-        "impressions": 33,
+        "impressions": 1,
         "ctr": 0,
-        "position": 1.696969696969697
+        "position": 0.415719696969697
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 3.125,
         "ctr": null,
-        "position": null
+        "position": 32.44641537324465
       },
       "url": "/contacto"
+    },
+    {
+      "page": "/sobre-nosotros",
+      "clicks": 0,
+      "impressions": 30,
+      "ctr": 0,
+      "position": 1.2666666666666666,
+      "prevClicks": 0,
+      "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 0,
+        "impressions": 30,
+        "ctr": 0,
+        "position": 1.2666666666666666
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 33,
+        "ctr": 0,
+        "position": 1.303030303030303
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -3,
+        "ctr": 0,
+        "position": -0.036363636363636376
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -9.090909090909092,
+        "ctr": null,
+        "position": -2.7906976744186056
+      },
+      "url": "/sobre-nosotros"
     },
     {
       "page": "/blog/100-preguntas-yo-nunca",
@@ -3093,6 +3455,8 @@
       "position": 67.625,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
         "impressions": 24,
@@ -3127,6 +3491,8 @@
       "position": 7.363636363636363,
       "prevClicks": 1,
       "delta": "-100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
         "impressions": 22,
@@ -3161,6 +3527,8 @@
       "position": 8,
       "prevClicks": 1,
       "delta": "-100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
         "impressions": 11,
@@ -3195,6 +3563,8 @@
       "position": 7.625,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "known_absent",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
         "impressions": 8,
@@ -3220,176 +3590,6 @@
         "position": null
       },
       "url": "/blog/preguntas-yo-nunca-parejas"
-    },
-    {
-      "page": "/blog/juegos-para-beber-dos-personas",
-      "clicks": 0,
-      "impressions": 5,
-      "ctr": 0,
-      "position": 7,
-      "prevClicks": 1,
-      "delta": "-100.0%",
-      "current": {
-        "clicks": 0,
-        "impressions": 5,
-        "ctr": 0,
-        "position": 7
-      },
-      "previous": {
-        "clicks": 1,
-        "impressions": 12,
-        "ctr": 0.08333333333333333,
-        "position": 8.666666666666668
-      },
-      "difference": {
-        "clicks": -1,
-        "impressions": -7,
-        "ctr": -0.08333333333333333,
-        "position": -1.6666666666666679
-      },
-      "percentDelta": {
-        "clicks": -100,
-        "impressions": -58.333333333333336,
-        "ctr": -100,
-        "position": -19.230769230769244
-      },
-      "url": "/blog/juegos-para-beber-dos-personas"
-    },
-    {
-      "page": "/blog/como-organizar-fiesta-juegos-beber",
-      "clicks": 0,
-      "impressions": 3,
-      "ctr": 0,
-      "position": 4.666666666666666,
-      "prevClicks": 0,
-      "delta": null,
-      "current": {
-        "clicks": 0,
-        "impressions": 3,
-        "ctr": 0,
-        "position": 4.666666666666666
-      },
-      "previous": {
-        "clicks": 0,
-        "impressions": 5,
-        "ctr": 0,
-        "position": 6.6
-      },
-      "difference": {
-        "clicks": 0,
-        "impressions": -2,
-        "ctr": 0,
-        "position": -1.9333333333333336
-      },
-      "percentDelta": {
-        "clicks": null,
-        "impressions": -40,
-        "ctr": null,
-        "position": -29.292929292929298
-      },
-      "url": "/blog/como-organizar-fiesta-juegos-beber"
-    },
-    {
-      "page": "/blog",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 17.5,
-      "prevClicks": 0,
-      "delta": null,
-      "current": {
-        "clicks": 0,
-        "impressions": 2,
-        "ctr": 0,
-        "position": 17.5
-      },
-      "previous": {
-        "clicks": 0,
-        "impressions": 2,
-        "ctr": 0,
-        "position": 20
-      },
-      "difference": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": -2.5
-      },
-      "percentDelta": {
-        "clicks": null,
-        "impressions": 0,
-        "ctr": null,
-        "position": -12.5
-      },
-      "url": "/blog"
-    },
-    {
-      "page": "/blog/la-bomba-juego-beber",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 3.5,
-      "prevClicks": 0,
-      "delta": null,
-      "current": {
-        "clicks": 0,
-        "impressions": 2,
-        "ctr": 0,
-        "position": 3.5
-      },
-      "previous": {
-        "clicks": 0,
-        "impressions": 7,
-        "ctr": 0,
-        "position": 7.428571428571429
-      },
-      "difference": {
-        "clicks": 0,
-        "impressions": -5,
-        "ctr": 0,
-        "position": -3.928571428571429
-      },
-      "percentDelta": {
-        "clicks": null,
-        "impressions": -71.42857142857143,
-        "ctr": null,
-        "position": -52.88461538461539
-      },
-      "url": "/blog/la-bomba-juego-beber"
-    },
-    {
-      "page": "/blog/verdad-o-reto-preguntas-buenas",
-      "clicks": 0,
-      "impressions": 2,
-      "ctr": 0,
-      "position": 9.5,
-      "prevClicks": 0,
-      "delta": null,
-      "current": {
-        "clicks": 0,
-        "impressions": 2,
-        "ctr": 0,
-        "position": 9.5
-      },
-      "previous": {
-        "clicks": 0,
-        "impressions": 8,
-        "ctr": 0,
-        "position": 8.5
-      },
-      "difference": {
-        "clicks": 0,
-        "impressions": -6,
-        "ctr": 0,
-        "position": 1
-      },
-      "percentDelta": {
-        "clicks": null,
-        "impressions": -75,
-        "ctr": null,
-        "position": 11.76470588235294
-      },
-      "url": "/blog/verdad-o-reto-preguntas-buenas"
     }
   ],
   "countries": [
@@ -3401,6 +3601,8 @@
       "position": 7.703237592611387,
       "prevClicks": 765,
       "delta": "-1.4%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 754,
         "impressions": 9853,
@@ -3434,6 +3636,8 @@
       "position": 6.6600047585058295,
       "prevClicks": 430,
       "delta": "+2.6%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 441,
         "impressions": 4203,
@@ -3467,6 +3671,8 @@
       "position": 7.548116560056859,
       "prevClicks": 272,
       "delta": "+11.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 304,
         "impressions": 7035,
@@ -3500,6 +3706,8 @@
       "position": 6.716821298910851,
       "prevClicks": 161,
       "delta": "+1.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 164,
         "impressions": 2479,
@@ -3533,6 +3741,8 @@
       "position": 6.791508457024508,
       "prevClicks": 185,
       "delta": "-12.4%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 162,
         "impressions": 2897,
@@ -3566,6 +3776,8 @@
       "position": 6.821316614420063,
       "prevClicks": 148,
       "delta": "+4.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 154,
         "impressions": 2552,
@@ -3599,6 +3811,8 @@
       "position": 6.992803030303031,
       "prevClicks": 194,
       "delta": "-29.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 136,
         "impressions": 2640,
@@ -3632,6 +3846,8 @@
       "position": 5.943887775551103,
       "prevClicks": 116,
       "delta": "-2.6%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 113,
         "impressions": 1497,
@@ -3665,6 +3881,8 @@
       "position": 7.359393232205368,
       "prevClicks": 57,
       "delta": "+26.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 72,
         "impressions": 1714,
@@ -3698,6 +3916,8 @@
       "position": 6.183783783783784,
       "prevClicks": 74,
       "delta": "-14.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 63,
         "impressions": 1295,
@@ -3731,6 +3951,8 @@
       "position": 6.126605504587156,
       "prevClicks": 24,
       "delta": "+29.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 31,
         "impressions": 545,
@@ -3764,6 +3986,8 @@
       "position": 6.382687927107061,
       "prevClicks": 18,
       "delta": "+61.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 29,
         "impressions": 439,
@@ -3797,6 +4021,8 @@
       "position": 5.616959064327485,
       "prevClicks": 118,
       "delta": "-77.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 27,
         "impressions": 342,
@@ -3830,6 +4056,8 @@
       "position": 6.99554565701559,
       "prevClicks": 28,
       "delta": "-10.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 25,
         "impressions": 898,
@@ -3863,6 +4091,8 @@
       "position": 6.941080196399345,
       "prevClicks": 28,
       "delta": "-10.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 25,
         "impressions": 611,
@@ -3896,6 +4126,8 @@
       "position": 6.323643410852713,
       "prevClicks": 23,
       "delta": "+8.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 25,
         "impressions": 516,
@@ -3929,6 +4161,8 @@
       "position": 6.629533678756476,
       "prevClicks": 15,
       "delta": "+13.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 17,
         "impressions": 386,
@@ -3962,6 +4196,8 @@
       "position": 6.585635359116022,
       "prevClicks": 16,
       "delta": "-12.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 14,
         "impressions": 362,
@@ -3995,6 +4231,8 @@
       "position": 6.323651452282157,
       "prevClicks": 12,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 12,
         "impressions": 241,
@@ -4028,6 +4266,8 @@
       "position": 8.608142493638677,
       "prevClicks": 10,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 10,
         "impressions": 393,
@@ -4061,6 +4301,8 @@
       "position": 8.13978494623656,
       "prevClicks": 5,
       "delta": "+100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 10,
         "impressions": 93,
@@ -4094,6 +4336,8 @@
       "position": 8.862068965517242,
       "prevClicks": 6,
       "delta": "+16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 174,
@@ -4127,6 +4371,8 @@
       "position": 5.702970297029703,
       "prevClicks": 5,
       "delta": "+20.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 101,
@@ -4160,6 +4406,8 @@
       "position": 6.7125,
       "prevClicks": 2,
       "delta": "+200.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 80,
@@ -4193,6 +4441,8 @@
       "position": 7.27027027027027,
       "prevClicks": 6,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 74,
@@ -4226,6 +4476,8 @@
       "position": 7.14,
       "prevClicks": 4,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 4,
         "impressions": 100,
@@ -4259,6 +4511,8 @@
       "position": 6.090909090909091,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 4,
         "impressions": 33,
@@ -4267,21 +4521,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 44,
         "ctr": 0,
-        "position": 0
+        "position": 6.5227272727272725
       },
       "difference": {
         "clicks": 4,
-        "impressions": 33,
+        "impressions": -11,
         "ctr": 0.12121212121212122,
-        "position": 6.090909090909091
+        "position": -0.43181818181818166
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": -25,
         "ctr": null,
-        "position": null
+        "position": -6.6202090592334475
       }
     },
     {
@@ -4292,6 +4546,8 @@
       "position": 9.875,
       "prevClicks": 2,
       "delta": "+50.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 3,
         "impressions": 40,
@@ -4325,6 +4581,8 @@
       "position": 6.2,
       "prevClicks": 10,
       "delta": "-70.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 3,
         "impressions": 20,
@@ -4358,6 +4616,8 @@
       "position": 12.096491228070175,
       "prevClicks": 4,
       "delta": "-50.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 2,
         "impressions": 114,
@@ -4391,6 +4651,8 @@
       "position": 5.578947368421052,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 2,
         "impressions": 19,
@@ -4399,21 +4661,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 12,
         "ctr": 0,
-        "position": 0
+        "position": 10
       },
       "difference": {
         "clicks": 2,
-        "impressions": 19,
+        "impressions": 7,
         "ctr": 0.10526315789473684,
-        "position": 5.578947368421052
+        "position": -4.421052631578948
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 58.333333333333336,
         "ctr": null,
-        "position": null
+        "position": -44.21052631578948
       }
     },
     {
@@ -4424,6 +4686,8 @@
       "position": 7.483870967741935,
       "prevClicks": 4,
       "delta": "-75.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 186,
@@ -4457,6 +4721,8 @@
       "position": 7.035714285714286,
       "prevClicks": 1,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 28,
@@ -4490,6 +4756,8 @@
       "position": 18.466666666666665,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 15,
@@ -4498,21 +4766,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 35,
         "ctr": 0,
-        "position": 0
+        "position": 15.142857142857142
       },
       "difference": {
         "clicks": 1,
-        "impressions": 15,
+        "impressions": -20,
         "ctr": 0.06666666666666667,
-        "position": 18.466666666666665
+        "position": 3.3238095238095227
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": -57.14285714285714,
         "ctr": null,
-        "position": null
+        "position": 21.949685534591186
       }
     },
     {
@@ -4523,6 +4791,8 @@
       "position": 5.2,
       "prevClicks": 1,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 15,
@@ -4556,6 +4826,8 @@
       "position": 6.166666666666667,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 12,
@@ -4564,21 +4836,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 16,
         "ctr": 0,
-        "position": 0
+        "position": 6.6875
       },
       "difference": {
         "clicks": 1,
-        "impressions": 12,
+        "impressions": -4,
         "ctr": 0.08333333333333333,
-        "position": 6.166666666666667
+        "position": -0.520833333333333
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": -25,
         "ctr": null,
-        "position": null
+        "position": -7.7881619937694655
       }
     },
     {
@@ -4589,6 +4861,8 @@
       "position": 11.444444444444445,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 9,
@@ -4597,21 +4871,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 6,
         "ctr": 0,
-        "position": 0
+        "position": 29.666666666666668
       },
       "difference": {
         "clicks": 1,
-        "impressions": 9,
+        "impressions": 3,
         "ctr": 0.1111111111111111,
-        "position": 11.444444444444445
+        "position": -18.22222222222222
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 50,
         "ctr": null,
-        "position": null
+        "position": -61.42322097378277
       }
     },
     {
@@ -4622,6 +4896,8 @@
       "position": 6.777777777777778,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 9,
@@ -4630,21 +4906,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 7,
         "ctr": 0,
-        "position": 0
+        "position": 8.142857142857142
       },
       "difference": {
         "clicks": 1,
-        "impressions": 9,
+        "impressions": 2,
         "ctr": 0.1111111111111111,
-        "position": 6.777777777777778
+        "position": -1.3650793650793647
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 28.57142857142857,
         "ctr": null,
-        "position": null
+        "position": -16.764132553606235
       }
     },
     {
@@ -4655,6 +4931,8 @@
       "position": 4.875,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 8,
@@ -4663,21 +4941,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 7,
         "ctr": 0,
-        "position": 0
+        "position": 6.142857142857143
       },
       "difference": {
         "clicks": 1,
-        "impressions": 8,
+        "impressions": 1,
         "ctr": 0.125,
-        "position": 4.875
+        "position": -1.2678571428571432
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 14.285714285714285,
         "ctr": null,
-        "position": null
+        "position": -20.639534883720938
       }
     },
     {
@@ -4688,6 +4966,8 @@
       "position": 6,
       "prevClicks": 3,
       "delta": "-66.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 8,
@@ -4721,6 +5001,8 @@
       "position": 4.5,
       "prevClicks": 1,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 8,
@@ -4754,6 +5036,8 @@
       "position": 3.3333333333333335,
       "prevClicks": 1,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 6,
@@ -4787,6 +5071,8 @@
       "position": 4.2,
       "prevClicks": 2,
       "delta": "-50.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 5,
@@ -4820,6 +5106,8 @@
       "position": 6.5,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 1,
         "impressions": 4,
@@ -4828,219 +5116,231 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 5,
         "ctr": 0,
-        "position": 0
+        "position": 8.6
       },
       "difference": {
         "clicks": 1,
-        "impressions": 4,
+        "impressions": -1,
         "ctr": 0.25,
-        "position": 6.5
+        "position": -2.0999999999999996
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": -20,
         "ctr": null,
-        "position": null
+        "position": -24.418604651162788
       }
     },
     {
-      "country": "are",
+      "country": "ind",
       "clicks": 0,
-      "impressions": 18,
+      "impressions": 69,
       "ctr": 0,
-      "position": 6.277777777777778,
+      "position": 19.985507246376812,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
-        "impressions": 18,
+        "impressions": 69,
         "ctr": 0,
-        "position": 6.277777777777778
+        "position": 19.985507246376812
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 70,
         "ctr": 0,
-        "position": 0
+        "position": 15.785714285714286
       },
       "difference": {
         "clicks": 0,
-        "impressions": 18,
+        "impressions": -1,
         "ctr": 0,
-        "position": 6.277777777777778
+        "position": 4.199792960662526
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": -1.4285714285714286,
         "ctr": null,
-        "position": null
+        "position": 26.605023280215097
       }
     },
     {
-      "country": "bgd",
+      "country": "rus",
       "clicks": 0,
-      "impressions": 16,
+      "impressions": 37,
       "ctr": 0,
-      "position": 20.25,
-      "prevClicks": 0,
-      "delta": null,
-      "current": {
-        "clicks": 0,
-        "impressions": 16,
-        "ctr": 0,
-        "position": 20.25
-      },
-      "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
-      },
-      "difference": {
-        "clicks": 0,
-        "impressions": 16,
-        "ctr": 0,
-        "position": 20.25
-      },
-      "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
-      }
-    },
-    {
-      "country": "bel",
-      "clicks": 0,
-      "impressions": 15,
-      "ctr": 0,
-      "position": 4.333333333333334,
-      "prevClicks": 1,
+      "position": 13.783783783783784,
+      "prevClicks": 2,
       "delta": "-100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
-        "impressions": 15,
+        "impressions": 37,
         "ctr": 0,
-        "position": 4.333333333333334
+        "position": 13.783783783783784
       },
       "previous": {
-        "clicks": 1,
-        "impressions": 7,
-        "ctr": 0.14285714285714285,
-        "position": 7.571428571428571
+        "clicks": 2,
+        "impressions": 68,
+        "ctr": 0.029411764705882353,
+        "position": 13.102941176470589
       },
       "difference": {
-        "clicks": -1,
-        "impressions": 8,
-        "ctr": -0.14285714285714285,
-        "position": -3.2380952380952372
+        "clicks": -2,
+        "impressions": -31,
+        "ctr": -0.029411764705882353,
+        "position": 0.6808426073131955
       },
       "percentDelta": {
         "clicks": -100,
-        "impressions": 114.28571428571428,
+        "impressions": -45.588235294117645,
         "ctr": -100,
-        "position": -42.767295597484264
+        "position": 5.196105196105195
       }
     },
     {
-      "country": "alb",
+      "country": "rou",
       "clicks": 0,
-      "impressions": 3,
+      "impressions": 32,
       "ctr": 0,
-      "position": 2.333333333333333,
+      "position": 9.21875,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
-        "impressions": 3,
+        "impressions": 32,
         "ctr": 0,
-        "position": 2.333333333333333
+        "position": 9.21875
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 12,
         "ctr": 0,
-        "position": 0
+        "position": 10
       },
       "difference": {
         "clicks": 0,
-        "impressions": 3,
+        "impressions": 20,
         "ctr": 0,
-        "position": 2.333333333333333
+        "position": -0.78125
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 166.66666666666669,
         "ctr": null,
-        "position": null
+        "position": -7.8125
       }
     },
     {
-      "country": "abw",
+      "country": "gnq",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 31,
       "ctr": 0,
-      "position": 5,
+      "position": 6.806451612903226,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
-        "impressions": 2,
+        "impressions": 31,
         "ctr": 0,
-        "position": 5
+        "position": 6.806451612903226
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 13,
         "ctr": 0,
-        "position": 0
+        "position": 6.615384615384615
       },
       "difference": {
         "clicks": 0,
-        "impressions": 2,
+        "impressions": 18,
         "ctr": 0,
-        "position": 5
+        "position": 0.191066997518611
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 138.46153846153845,
         "ctr": null,
-        "position": null
+        "position": 2.8882220555138876
       }
     },
     {
-      "country": "bgr",
+      "country": "nld",
       "clicks": 0,
-      "impressions": 2,
+      "impressions": 31,
       "ctr": 0,
-      "position": 2.5,
+      "position": 9.193548387096774,
       "prevClicks": 1,
       "delta": "-100.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 0,
-        "impressions": 2,
+        "impressions": 31,
         "ctr": 0,
-        "position": 2.5
+        "position": 9.193548387096774
       },
       "previous": {
         "clicks": 1,
-        "impressions": 4,
-        "ctr": 0.25,
-        "position": 8.5
+        "impressions": 43,
+        "ctr": 0.023255813953488372,
+        "position": 9.883720930232558
       },
       "difference": {
         "clicks": -1,
-        "impressions": -2,
-        "ctr": -0.25,
-        "position": -6
+        "impressions": -12,
+        "ctr": -0.023255813953488372,
+        "position": -0.6901725431357839
       },
       "percentDelta": {
         "clicks": -100,
-        "impressions": -50,
+        "impressions": -27.906976744186046,
         "ctr": -100,
-        "position": -70.58823529411765
+        "position": -6.9829222011385195
+      }
+    },
+    {
+      "country": "phl",
+      "clicks": 0,
+      "impressions": 29,
+      "ctr": 0,
+      "position": 19.379310344827587,
+      "prevClicks": 0,
+      "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 0,
+        "impressions": 29,
+        "ctr": 0,
+        "position": 19.379310344827587
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 28,
+        "ctr": 0,
+        "position": 19.428571428571427
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 1,
+        "ctr": 0,
+        "position": -0.04926108374383986
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": 3.571428571428571,
+        "ctr": null,
+        "position": -0.25354969574035224
       }
     }
   ],
@@ -5053,6 +5353,8 @@
       "position": 6.77085703187859,
       "prevClicks": 2318,
       "delta": "-3.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 2229,
         "impressions": 36043,
@@ -5086,6 +5388,8 @@
       "position": 9.830926796507724,
       "prevClicks": 406,
       "delta": "-5.4%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 384,
         "impressions": 5956,
@@ -5119,6 +5423,8 @@
       "position": 6.748784440842788,
       "prevClicks": 45,
       "delta": "-31.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 31,
         "impressions": 617,
@@ -5155,6 +5461,8 @@
       "position": 5.860787824529991,
       "prevClicks": 365,
       "delta": "-11.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 325,
         "impressions": 6702,
@@ -5190,6 +5498,8 @@
       "position": 3.7092866756393,
       "prevClicks": 77,
       "delta": "-9.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 70,
         "impressions": 743,
@@ -5225,6 +5535,8 @@
       "position": 2.4380952380952383,
       "prevClicks": 88,
       "delta": "-22.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 68,
         "impressions": 210,
@@ -5260,6 +5572,8 @@
       "position": 3.463172804532578,
       "prevClicks": 70,
       "delta": "-15.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 59,
         "impressions": 706,
@@ -5295,6 +5609,8 @@
       "position": 3.352617079889807,
       "prevClicks": 53,
       "delta": "-13.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 46,
         "impressions": 363,
@@ -5330,6 +5646,8 @@
       "position": 5.196581196581197,
       "prevClicks": 31,
       "delta": "+12.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 35,
         "impressions": 234,
@@ -5365,6 +5683,8 @@
       "position": 1.128787878787879,
       "prevClicks": 56,
       "delta": "-37.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 35,
         "impressions": 132,
@@ -5400,6 +5720,8 @@
       "position": 1,
       "prevClicks": 22,
       "delta": "+22.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 27,
         "impressions": 30,
@@ -5435,6 +5757,8 @@
       "position": 3.8893805309734515,
       "prevClicks": 30,
       "delta": "-20.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 24,
         "impressions": 226,
@@ -5470,6 +5794,8 @@
       "position": 1.2142857142857142,
       "prevClicks": 13,
       "delta": "+84.6%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 24,
         "impressions": 42,
@@ -5505,6 +5831,8 @@
       "position": 1.7413793103448276,
       "prevClicks": 18,
       "delta": "+16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 21,
         "impressions": 58,
@@ -5540,6 +5868,8 @@
       "position": 3.371900826446281,
       "prevClicks": 21,
       "delta": "-4.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 20,
         "impressions": 121,
@@ -5575,6 +5905,8 @@
       "position": 7.661157024793388,
       "prevClicks": 6,
       "delta": "+150.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 15,
         "impressions": 242,
@@ -5610,6 +5942,8 @@
       "position": 1.0909090909090908,
       "prevClicks": 20,
       "delta": "-25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 15,
         "impressions": 33,
@@ -5645,6 +5979,8 @@
       "position": 6.214285714285714,
       "prevClicks": 12,
       "delta": "+8.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 13,
         "impressions": 182,
@@ -5680,6 +6016,8 @@
       "position": 1.3636363636363638,
       "prevClicks": 6,
       "delta": "+116.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 13,
         "impressions": 22,
@@ -5715,6 +6053,8 @@
       "position": 1,
       "prevClicks": 9,
       "delta": "+44.4%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 13,
         "impressions": 16,
@@ -5750,6 +6090,8 @@
       "position": 4.868312757201647,
       "prevClicks": 19,
       "delta": "-36.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 12,
         "impressions": 243,
@@ -5785,6 +6127,8 @@
       "position": 4.611650485436893,
       "prevClicks": 7,
       "delta": "+57.1%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 11,
         "impressions": 103,
@@ -5818,8 +6162,10 @@
       "impressions": 15,
       "ctr": 0.7333333333333333,
       "position": 1.5333333333333332,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 4,
+      "delta": "+175.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 11,
         "impressions": 15,
@@ -5827,22 +6173,22 @@
         "position": 1.5333333333333332
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 4,
+        "impressions": 8,
+        "ctr": 0.5,
+        "position": 1.625
       },
       "difference": {
-        "clicks": 11,
-        "impressions": 15,
-        "ctr": 0.7333333333333333,
-        "position": 1.5333333333333332
+        "clicks": 7,
+        "impressions": 7,
+        "ctr": 0.23333333333333328,
+        "position": -0.09166666666666679
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 175,
+        "impressions": 87.5,
+        "ctr": 46.66666666666666,
+        "position": -5.641025641025648
       },
       "url": "/juegos/la-ruleta"
     },
@@ -5855,6 +6201,8 @@
       "position": 7.673809523809524,
       "prevClicks": 13,
       "delta": "-38.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 420,
@@ -5890,6 +6238,8 @@
       "position": 6.9,
       "prevClicks": 33,
       "delta": "-75.8%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 120,
@@ -5925,6 +6275,8 @@
       "position": 3.275,
       "prevClicks": 21,
       "delta": "-61.9%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 80,
@@ -5958,8 +6310,10 @@
       "impressions": 35,
       "ctr": 0.22857142857142856,
       "position": 3.6285714285714286,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 5,
+      "delta": "+60.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 35,
@@ -5967,22 +6321,22 @@
         "position": 3.6285714285714286
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 5,
+        "impressions": 25,
+        "ctr": 0.2,
+        "position": 2.4
       },
       "difference": {
-        "clicks": 8,
-        "impressions": 35,
-        "ctr": 0.22857142857142856,
-        "position": 3.6285714285714286
+        "clicks": 3,
+        "impressions": 10,
+        "ctr": 0.028571428571428553,
+        "position": 1.2285714285714286
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 60,
+        "impressions": 40,
+        "ctr": 14.285714285714276,
+        "position": 51.1904761904762
       },
       "url": "/juegos/verdad-o-reto"
     },
@@ -5995,6 +6349,8 @@
       "position": 2.357142857142857,
       "prevClicks": 12,
       "delta": "-33.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 28,
@@ -6030,6 +6386,8 @@
       "position": 1,
       "prevClicks": 8,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 28,
@@ -6065,6 +6423,8 @@
       "position": 2.041666666666667,
       "prevClicks": 10,
       "delta": "-20.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 8,
         "impressions": 24,
@@ -6100,6 +6460,8 @@
       "position": 7.607361963190184,
       "prevClicks": 0,
       "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 163,
@@ -6108,21 +6470,21 @@
       },
       "previous": {
         "clicks": 0,
-        "impressions": 0,
+        "impressions": 154,
         "ctr": 0,
-        "position": 0
+        "position": 8.753246753246753
       },
       "difference": {
         "clicks": 7,
-        "impressions": 163,
+        "impressions": 9,
         "ctr": 0.04294478527607362,
-        "position": 7.607361963190184
+        "position": -1.1458847900565692
       },
       "percentDelta": {
         "clicks": null,
-        "impressions": null,
+        "impressions": 5.844155844155844,
         "ctr": null,
-        "position": null
+        "position": -13.090968669785733
       },
       "url": "/juegos/verdad-o-reto"
     },
@@ -6135,6 +6497,8 @@
       "position": 6.477876106194691,
       "prevClicks": 7,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 113,
@@ -6170,6 +6534,8 @@
       "position": 6.2298850574712645,
       "prevClicks": 6,
       "delta": "+16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 87,
@@ -6205,6 +6571,8 @@
       "position": 4.460526315789474,
       "prevClicks": 8,
       "delta": "-12.5%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 76,
@@ -6240,6 +6608,8 @@
       "position": 4.045454545454545,
       "prevClicks": 6,
       "delta": "+16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 66,
@@ -6273,8 +6643,10 @@
       "impressions": 32,
       "ctr": 0.21875,
       "position": 2.96875,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 4,
+      "delta": "+75.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 32,
@@ -6282,22 +6654,22 @@
         "position": 2.96875
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 4,
+        "impressions": 32,
+        "ctr": 0.125,
+        "position": 4.1875
       },
       "difference": {
-        "clicks": 7,
-        "impressions": 32,
-        "ctr": 0.21875,
-        "position": 2.96875
+        "clicks": 3,
+        "impressions": 0,
+        "ctr": 0.09375,
+        "position": -1.21875
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 75,
+        "impressions": 0,
+        "ctr": 75,
+        "position": -29.1044776119403
       },
       "url": "/juegos/la-piramide"
     },
@@ -6310,6 +6682,8 @@
       "position": 2.166666666666667,
       "prevClicks": 9,
       "delta": "-22.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 18,
@@ -6343,8 +6717,10 @@
       "impressions": 16,
       "ctr": 0.4375,
       "position": 1.1875,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 1,
+      "delta": "+600.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 16,
@@ -6352,22 +6728,22 @@
         "position": 1.1875
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 1,
+        "impressions": 7,
+        "ctr": 0.14285714285714285,
+        "position": 1.5714285714285714
       },
       "difference": {
-        "clicks": 7,
-        "impressions": 16,
-        "ctr": 0.4375,
-        "position": 1.1875
+        "clicks": 6,
+        "impressions": 9,
+        "ctr": 0.29464285714285715,
+        "position": -0.3839285714285714
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 600,
+        "impressions": 128.57142857142858,
+        "ctr": 206.25,
+        "position": -24.43181818181818
       },
       "url": "/"
     },
@@ -6380,6 +6756,8 @@
       "position": 1.7857142857142856,
       "prevClicks": 9,
       "delta": "-22.2%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 14,
@@ -6415,6 +6793,8 @@
       "position": 1,
       "prevClicks": 5,
       "delta": "+40.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 7,
         "impressions": 11,
@@ -6450,6 +6830,8 @@
       "position": 5.68503937007874,
       "prevClicks": 6,
       "delta": "0.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 127,
@@ -6485,6 +6867,8 @@
       "position": 4.309523809523809,
       "prevClicks": 8,
       "delta": "-25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 84,
@@ -6520,6 +6904,8 @@
       "position": 3.0694444444444446,
       "prevClicks": 8,
       "delta": "-25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 72,
@@ -6555,6 +6941,8 @@
       "position": 3.9491525423728815,
       "prevClicks": 12,
       "delta": "-50.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 59,
@@ -6588,8 +6976,10 @@
       "impressions": 19,
       "ctr": 0.3157894736842105,
       "position": 1,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 5,
+      "delta": "+20.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 19,
@@ -6597,22 +6987,22 @@
         "position": 1
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 5,
+        "impressions": 10,
+        "ctr": 0.5,
+        "position": 1.1
       },
       "difference": {
-        "clicks": 6,
-        "impressions": 19,
-        "ctr": 0.3157894736842105,
-        "position": 1
+        "clicks": 1,
+        "impressions": 9,
+        "ctr": -0.1842105263157895,
+        "position": -0.10000000000000009
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 20,
+        "impressions": 90,
+        "ctr": -36.8421052631579,
+        "position": -9.090909090909099
       },
       "url": "/juegos/la-ruleta"
     },
@@ -6625,6 +7015,8 @@
       "position": 1.0588235294117647,
       "prevClicks": 7,
       "delta": "-14.3%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 6,
         "impressions": 17,
@@ -6652,6 +7044,43 @@
       "url": "/"
     },
     {
+      "query": "retos",
+      "page": "/blog/retos-para-fiestas",
+      "clicks": 5,
+      "impressions": 483,
+      "ctr": 0.010351966873706004,
+      "position": 9.031055900621118,
+      "prevClicks": 0,
+      "delta": null,
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
+      "current": {
+        "clicks": 5,
+        "impressions": 483,
+        "ctr": 0.010351966873706004,
+        "position": 9.031055900621118
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 117,
+        "ctr": 0,
+        "position": 9.205128205128204
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 366,
+        "ctr": 0.010351966873706004,
+        "position": -0.17407230450708688
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": 312.8205128205128,
+        "ctr": null,
+        "position": -1.8910361770964872
+      },
+      "url": "/blog/retos-para-fiestas"
+    },
+    {
       "query": "juegos de verdad o reto",
       "page": "/juegos/verdad-o-reto",
       "clicks": 5,
@@ -6660,6 +7089,8 @@
       "position": 6.013333333333334,
       "prevClicks": 7,
       "delta": "-28.6%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 150,
@@ -6695,6 +7126,8 @@
       "position": 4.886363636363637,
       "prevClicks": 9,
       "delta": "-44.4%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 132,
@@ -6728,8 +7161,10 @@
       "impressions": 75,
       "ctr": 0.06666666666666667,
       "position": 4.533333333333333,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 4,
+      "delta": "+25.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 75,
@@ -6737,22 +7172,22 @@
         "position": 4.533333333333333
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 4,
+        "impressions": 65,
+        "ctr": 0.06153846153846154,
+        "position": 5.569230769230769
       },
       "difference": {
-        "clicks": 5,
-        "impressions": 75,
-        "ctr": 0.06666666666666667,
-        "position": 4.533333333333333
+        "clicks": 1,
+        "impressions": 10,
+        "ctr": 0.005128205128205124,
+        "position": -1.0358974358974358
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 25,
+        "impressions": 15.384615384615385,
+        "ctr": 8.333333333333325,
+        "position": -18.60036832412523
       },
       "url": "/"
     },
@@ -6763,8 +7198,10 @@
       "impressions": 71,
       "ctr": 0.07042253521126761,
       "position": 6.014084507042254,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 3,
+      "delta": "+66.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 71,
@@ -6772,22 +7209,22 @@
         "position": 6.014084507042254
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 3,
+        "impressions": 45,
+        "ctr": 0.06666666666666667,
+        "position": 6.644444444444445
       },
       "difference": {
-        "clicks": 5,
-        "impressions": 71,
-        "ctr": 0.07042253521126761,
-        "position": 6.014084507042254
+        "clicks": 2,
+        "impressions": 26,
+        "ctr": 0.003755868544600943,
+        "position": -0.6303599374021909
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 66.66666666666666,
+        "impressions": 57.77777777777777,
+        "ctr": 5.633802816901415,
+        "position": -9.487022469263742
       },
       "url": "/"
     },
@@ -6800,6 +7237,8 @@
       "position": 5.5636363636363635,
       "prevClicks": 6,
       "delta": "-16.7%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 55,
@@ -6833,8 +7272,10 @@
       "impressions": 39,
       "ctr": 0.1282051282051282,
       "position": 8.717948717948719,
-      "prevClicks": 0,
-      "delta": null,
+      "prevClicks": 2,
+      "delta": "+150.0%",
+      "previousStatus": "matched",
+      "previousUnknownBecauseTruncated": false,
       "current": {
         "clicks": 5,
         "impressions": 39,
@@ -6842,62 +7283,319 @@
         "position": 8.717948717948719
       },
       "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
+        "clicks": 2,
+        "impressions": 90,
+        "ctr": 0.022222222222222223,
+        "position": 8.155555555555555
       },
       "difference": {
-        "clicks": 5,
-        "impressions": 39,
-        "ctr": 0.1282051282051282,
-        "position": 8.717948717948719
+        "clicks": 3,
+        "impressions": -51,
+        "ctr": 0.10598290598290597,
+        "position": 0.562393162393164
       },
       "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
-      },
-      "url": "/juegos"
-    },
-    {
-      "query": "a beber: juegos para tomar",
-      "page": "/juegos",
-      "clicks": 5,
-      "impressions": 38,
-      "ctr": 0.13157894736842105,
-      "position": 5.921052631578948,
-      "prevClicks": 0,
-      "delta": null,
-      "current": {
-        "clicks": 5,
-        "impressions": 38,
-        "ctr": 0.13157894736842105,
-        "position": 5.921052631578948
-      },
-      "previous": {
-        "clicks": 0,
-        "impressions": 0,
-        "ctr": 0,
-        "position": 0
-      },
-      "difference": {
-        "clicks": 5,
-        "impressions": 38,
-        "ctr": 0.13157894736842105,
-        "position": 5.921052631578948
-      },
-      "percentDelta": {
-        "clicks": null,
-        "impressions": null,
-        "ctr": null,
-        "position": null
+        "clicks": 150,
+        "impressions": -56.666666666666664,
+        "ctr": 476.92307692307685,
+        "position": 6.8958289666736725
       },
       "url": "/juegos"
     }
   ],
   "cannibalization": [
+    {
+      "query": "beber games",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 13,
+          "impressions": 16,
+          "imp": 16,
+          "ctr": 0.8125,
+          "position": 1
+        },
+        {
+          "url": "/juegos",
+          "clicks": 0,
+          "impressions": 14,
+          "imp": 14,
+          "ctr": 0,
+          "position": 1.2142857142857142
+        }
+      ]
+    },
+    {
+      "query": "bebergames",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 27,
+          "impressions": 30,
+          "imp": 30,
+          "ctr": 0.9,
+          "position": 1
+        },
+        {
+          "url": "/juegos",
+          "clicks": 1,
+          "impressions": 30,
+          "imp": 30,
+          "ctr": 0.03333333333333333,
+          "position": 1.8
+        },
+        {
+          "url": "/contacto",
+          "clicks": 0,
+          "impressions": 29,
+          "imp": 29,
+          "ctr": 0,
+          "position": 1.5517241379310345
+        },
+        {
+          "url": "/sobre-nosotros",
+          "clicks": 0,
+          "impressions": 27,
+          "imp": 27,
+          "ctr": 0,
+          "position": 1
+        },
+        {
+          "url": "/juegos/verdad-o-reto",
+          "clicks": 0,
+          "impressions": 26,
+          "imp": 26,
+          "ctr": 0,
+          "position": 1.1538461538461537
+        },
+        {
+          "url": "/juegos/categorias/sin-materiales",
+          "clicks": 0,
+          "impressions": 25,
+          "imp": 25,
+          "ctr": 0,
+          "position": 1
+        }
+      ]
+    },
+    {
+      "query": "juego cartas beber baraja española",
+      "urls": [
+        {
+          "url": "/blog/juegos-beber-baraja-espanola",
+          "clicks": 1,
+          "impressions": 28,
+          "imp": 28,
+          "ctr": 0.03571428571428571,
+          "position": 5.214285714285714
+        },
+        {
+          "url": "/blog/juegos-para-beber-con-cartas",
+          "clicks": 0,
+          "impressions": 17,
+          "imp": 17,
+          "ctr": 0,
+          "position": 20.41176470588235
+        }
+      ]
+    },
+    {
+      "query": "juego de beber online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 6,
+          "impressions": 17,
+          "imp": 17,
+          "ctr": 0.35294117647058826,
+          "position": 1.0588235294117647
+        },
+        {
+          "url": "/juegos",
+          "clicks": 2,
+          "impressions": 17,
+          "imp": 17,
+          "ctr": 0.11764705882352941,
+          "position": 4.470588235294118
+        }
+      ]
+    },
+    {
+      "query": "juego de borrachos",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 0,
+          "impressions": 17,
+          "imp": 17,
+          "ctr": 0,
+          "position": 5.705882352941177
+        },
+        {
+          "url": "/juegos",
+          "clicks": 0,
+          "impressions": 13,
+          "imp": 13,
+          "ctr": 0,
+          "position": 9
+        }
+      ]
+    },
+    {
+      "query": "juego de cartas para beber",
+      "urls": [
+        {
+          "url": "/blog/juegos-beber-baraja-espanola",
+          "clicks": 0,
+          "impressions": 14,
+          "imp": 14,
+          "ctr": 0,
+          "position": 16.42857142857143
+        },
+        {
+          "url": "/",
+          "clicks": 0,
+          "impressions": 11,
+          "imp": 11,
+          "ctr": 0,
+          "position": 32.54545454545455
+        }
+      ]
+    },
+    {
+      "query": "juego para beber online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 7,
+          "impressions": 11,
+          "imp": 11,
+          "ctr": 0.6363636363636364,
+          "position": 1
+        },
+        {
+          "url": "/juegos",
+          "clicks": 1,
+          "impressions": 11,
+          "imp": 11,
+          "ctr": 0.09090909090909091,
+          "position": 4.727272727272727
+        }
+      ]
+    },
+    {
+      "query": "juegos de beber online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 8,
+          "impressions": 28,
+          "imp": 28,
+          "ctr": 0.2857142857142857,
+          "position": 1
+        },
+        {
+          "url": "/juegos",
+          "clicks": 3,
+          "impressions": 28,
+          "imp": 28,
+          "ctr": 0.10714285714285714,
+          "position": 6.285714285714286
+        },
+        {
+          "url": "/blog/los-20-mejores-juegos",
+          "clicks": 0,
+          "impressions": 12,
+          "imp": 12,
+          "ctr": 0,
+          "position": 56
+        }
+      ]
+    },
+    {
+      "query": "juegos de bebidas",
+      "urls": [
+        {
+          "url": "/juegos",
+          "clicks": 0,
+          "impressions": 17,
+          "imp": 17,
+          "ctr": 0,
+          "position": 8.294117647058822
+        },
+        {
+          "url": "/",
+          "clicks": 0,
+          "impressions": 14,
+          "imp": 14,
+          "ctr": 0,
+          "position": 9.785714285714286
+        }
+      ]
+    },
+    {
+      "query": "juegos de cartas para beber",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 0,
+          "impressions": 17,
+          "imp": 17,
+          "ctr": 0,
+          "position": 10.176470588235293
+        },
+        {
+          "url": "/juegos",
+          "clicks": 0,
+          "impressions": 11,
+          "imp": 11,
+          "ctr": 0,
+          "position": 6.818181818181818
+        }
+      ]
+    },
+    {
+      "query": "juegos de peda online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 13,
+          "impressions": 22,
+          "imp": 22,
+          "ctr": 0.5909090909090909,
+          "position": 1.3636363636363638
+        },
+        {
+          "url": "/juegos",
+          "clicks": 3,
+          "impressions": 22,
+          "imp": 22,
+          "ctr": 0.13636363636363635,
+          "position": 3.1363636363636362
+        }
+      ]
+    },
+    {
+      "query": "juegos para beber cartas",
+      "urls": [
+        {
+          "url": "/blog/juegos-para-beber-con-cartas",
+          "clicks": 0,
+          "impressions": 17,
+          "imp": 17,
+          "ctr": 0,
+          "position": 23.352941176470587
+        },
+        {
+          "url": "/blog/juegos-beber-baraja-espanola",
+          "clicks": 0,
+          "impressions": 11,
+          "imp": 11,
+          "ctr": 0,
+          "position": 21.727272727272727
+        }
+      ]
+    },
     {
       "query": "juegos para beber online",
       "urls": [
@@ -6916,6 +7614,206 @@
           "imp": 132,
           "ctr": 0.03787878787878788,
           "position": 4.886363636363637
+        },
+        {
+          "url": "/juegos/la-ruleta",
+          "clicks": 0,
+          "impressions": 15,
+          "imp": 15,
+          "ctr": 0,
+          "position": 23.2
+        },
+        {
+          "url": "/blog/los-20-mejores-juegos",
+          "clicks": 0,
+          "impressions": 11,
+          "imp": 11,
+          "ctr": 0,
+          "position": 72.36363636363636
+        },
+        {
+          "url": "/juegos/verdad-o-reto",
+          "clicks": 0,
+          "impressions": 11,
+          "imp": 11,
+          "ctr": 0,
+          "position": 52.54545454545455
+        }
+      ]
+    },
+    {
+      "query": "juegos para beber online gratis",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 7,
+          "impressions": 16,
+          "imp": 16,
+          "ctr": 0.4375,
+          "position": 1.1875
+        },
+        {
+          "url": "/juegos",
+          "clicks": 1,
+          "impressions": 16,
+          "imp": 16,
+          "ctr": 0.0625,
+          "position": 4.5625
+        }
+      ]
+    },
+    {
+      "query": "juegos para tomar en pareja",
+      "urls": [
+        {
+          "url": "/blog/juegos-para-beber-en-pareja",
+          "clicks": 1,
+          "impressions": 35,
+          "imp": 35,
+          "ctr": 0.02857142857142857,
+          "position": 8.885714285714286
+        },
+        {
+          "url": "/",
+          "clicks": 0,
+          "impressions": 25,
+          "imp": 25,
+          "ctr": 0,
+          "position": 8.8
+        }
+      ]
+    },
+    {
+      "query": "juegos para tomar en pareja online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 4,
+          "impressions": 12,
+          "imp": 12,
+          "ctr": 0.3333333333333333,
+          "position": 1.1666666666666667
+        },
+        {
+          "url": "/juegos",
+          "clicks": 2,
+          "impressions": 12,
+          "imp": 12,
+          "ctr": 0.16666666666666666,
+          "position": 7.333333333333333
+        }
+      ]
+    },
+    {
+      "query": "juegos para tomar online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 15,
+          "impressions": 33,
+          "imp": 33,
+          "ctr": 0.45454545454545453,
+          "position": 1.0909090909090908
+        },
+        {
+          "url": "/juegos",
+          "clicks": 2,
+          "impressions": 33,
+          "imp": 33,
+          "ctr": 0.06060606060606061,
+          "position": 4.151515151515151
+        }
+      ]
+    },
+    {
+      "query": "rey de copas juego",
+      "urls": [
+        {
+          "url": "/blog/rey-de-la-copa-reglas",
+          "clicks": 2,
+          "impressions": 25,
+          "imp": 25,
+          "ctr": 0.08,
+          "position": 3.12
+        },
+        {
+          "url": "/juegos/rey-de-la-copa",
+          "clicks": 1,
+          "impressions": 20,
+          "imp": 20,
+          "ctr": 0.05,
+          "position": 7.2
+        }
+      ]
+    },
+    {
+      "query": "ruleta de shots online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 1,
+          "impressions": 13,
+          "imp": 13,
+          "ctr": 0.07692307692307693,
+          "position": 4.153846153846153
+        },
+        {
+          "url": "/juegos/la-ruleta",
+          "clicks": 3,
+          "impressions": 13,
+          "imp": 13,
+          "ctr": 0.23076923076923078,
+          "position": 1.9230769230769231
+        }
+      ]
+    },
+    {
+      "query": "ruleta para beber online",
+      "urls": [
+        {
+          "url": "/",
+          "clicks": 4,
+          "impressions": 19,
+          "imp": 19,
+          "ctr": 0.21052631578947367,
+          "position": 3.473684210526316
+        },
+        {
+          "url": "/juegos",
+          "clicks": 0,
+          "impressions": 19,
+          "imp": 19,
+          "ctr": 0,
+          "position": 8.263157894736842
+        },
+        {
+          "url": "/juegos/la-ruleta",
+          "clicks": 6,
+          "impressions": 19,
+          "imp": 19,
+          "ctr": 0.3157894736842105,
+          "position": 1
+        }
+      ]
+    },
+    {
+      "query": "verdad o reto caliente",
+      "urls": [
+        {
+          "url": "/juegos/verdad-o-reto",
+          "clicks": 0,
+          "impressions": 25,
+          "imp": 25,
+          "ctr": 0,
+          "position": 9.96
+        },
+        {
+          "url": "/blog/preguntas-picantes-verdad-o-reto",
+          "clicks": 0,
+          "impressions": 14,
+          "imp": 14,
+          "ctr": 0,
+          "position": 10.357142857142858
         }
       ]
     }
@@ -6927,6 +7825,13 @@
       "impressions": 420,
       "ctr": 0.01904761904761905,
       "position": 7.673809523809524
+    },
+    {
+      "query": "retos",
+      "clicks": 5,
+      "impressions": 483,
+      "ctr": 0.010351966873706004,
+      "position": 9.031055900621118
     },
     {
       "query": "juegos para tomar shots",
@@ -6950,6 +7855,13 @@
       "impressions": 741,
       "ctr": 0.0796221322537112,
       "position": 4.978407557354926
+    },
+    {
+      "query": "retos",
+      "clicks": 5,
+      "impressions": 483,
+      "ctr": 0.010351966873706004,
+      "position": 9.031055900621118
     },
     {
       "query": "preguntas picantes para verdad o reto",
@@ -7096,20 +8008,44 @@
     "periodDays": 7,
     "reportsRequested": 12,
     "reportsSucceeded": 12,
-    "warnings": [
-      "Posible truncamiento al alcanzar el límite de 50 filas: current.query, current.page, current.country, current.queryPage, previous.query, previous.page, previous.country, previous.queryPage."
-    ],
+    "warnings": [],
     "emptyReports": [],
-    "truncatedReports": [
-      "current.query",
-      "current.page",
-      "current.country",
-      "current.queryPage",
-      "previous.query",
-      "previous.page",
-      "previous.country",
-      "previous.queryPage"
-    ],
-    "topLimit": 50
+    "reportsAtFetchLimit": [],
+    "truncatedReports": [],
+    "displayLimit": 50,
+    "fetchLimit": 25000,
+    "topLimit": 50,
+    "rowsFetched": {
+      "current.global": 1,
+      "current.query": 1855,
+      "current.page": 62,
+      "current.country": 115,
+      "current.device": 3,
+      "current.queryPage": 2345,
+      "previous.global": 1,
+      "previous.query": 1691,
+      "previous.page": 61,
+      "previous.country": 125,
+      "previous.device": 3,
+      "previous.queryPage": 2089
+    },
+    "rowsDisplayed": {
+      "topQueries": 50,
+      "topPages": 50,
+      "countries": 50,
+      "devices": 3,
+      "queryPages": 50
+    },
+    "analysisRows": {
+      "queryPages": 2345
+    },
+    "previousUnknownBecauseTruncated": {
+      "topQueries": 0,
+      "topPages": 0,
+      "countries": 0,
+      "devices": 0,
+      "queryPages": 0,
+      "total": 0
+    }
   }
 }

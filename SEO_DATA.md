@@ -1,12 +1,10 @@
 # Dashboard SEO de BeberGames
 
-> **Última actualización:** 2026-08-26T22:43:28.150Z
+> **Última actualización:** 2026-08-26T23:27:10.954Z
 > **Periodo actual:** 2026-08-19 a 2026-08-25 (7 días completos)
 > **Periodo anterior:** 2026-08-12 a 2026-08-18 (7 días completos)
 
 *Generado automáticamente mediante GitHub Actions y la API de Google Search Console. No editar manualmente.*
-
-> **Nota de transición:** este snapshot se generó antes de separar el límite visible del límite de descarga. El próximo workflow distinguirá entre previous igual a cero y previous desconocido por truncamiento.
 
 ## Resumen global
 
@@ -21,7 +19,7 @@ Search Console mide **clics orgánicos**, no page views. Los totales de esta sec
 | CTR global | 6,2% | 6,3% | -0,1% | -1,0% |
 | Posición media global | 7,2 | 7,2 | 0,0 | -0,3% |
 
-`N/D` indica que no existe una base porcentual. En los próximos snapshots también identificará valores anteriores desconocidos porque quedaron fuera del rango recuperado.
+`N/D` indica que no existe una base porcentual o que el valor anterior es desconocido porque el informe alcanzó el límite de descarga.
 
 ## Top 50 queries
 
@@ -46,16 +44,16 @@ Search Console mide **clics orgánicos**, no page views. Los totales de esta sec
 | beber games | 13 | 10 | 3 | +30,0% | 16 | 81,3% | 1,0 |
 | juegos para tomar con amigos | 12 | 19 | -7 | -36,8% | 246 | 4,9% | 5,5 |
 | juegos de beber con amigos | 11 | 7 | 4 | +57,1% | 105 | 10,5% | 5,3 |
-| ruleta de retos para tomar | 11 | 0 | 11 | N/D | 15 | 73,3% | 1,5 |
+| ruleta de retos para tomar | 11 | 5 | 6 | +120,0% | 15 | 73,3% | 1,5 |
 | juegos de beber online | 9 | 9 | 0 | 0,0% | 73 | 12,3% | 32,7 |
 | juego beber | 9 | 12 | -3 | -25,0% | 28 | 32,1% | 2,4 |
 | ruleta para beber online | 9 | 6 | 3 | +50,0% | 19 | 47,4% | 1,0 |
 | preguntas picantes para verdad o reto | 8 | 13 | -5 | -38,5% | 420 | 1,9% | 7,7 |
 | rey de copas game | 8 | 40 | -32 | -80,0% | 124 | 6,5% | 6,9 |
 | juego para beber | 8 | 21 | -13 | -61,9% | 80 | 10,0% | 3,3 |
-| verdad o reto juego picante premium | 8 | 0 | 8 | N/D | 35 | 22,9% | 3,6 |
+| verdad o reto juego picante premium | 8 | 5 | 3 | +60,0% | 35 | 22,9% | 3,6 |
 | verdad o reto preguntas online | 8 | 10 | -2 | -20,0% | 24 | 33,3% | 2,0 |
-| juegos para beber online gratis | 8 | 0 | 8 | N/D | 16 | 50,0% | 1,2 |
+| juegos para beber online gratis | 8 | 1 | 7 | +700,0% | 16 | 50,0% | 1,2 |
 | reto o verdad | 7 | 0 | 7 | N/D | 163 | 4,3% | 7,6 |
 | juegos para borrachos | 7 | 6 | 1 | +16,7% | 136 | 5,1% | 6,2 |
 | juego verdad o reto | 7 | 7 | 0 | 0,0% | 113 | 6,2% | 6,5 |
@@ -63,20 +61,20 @@ Search Console mide **clics orgánicos**, no page views. Los totales de esta sec
 | juegos de tomar | 7 | 8 | -1 | -12,5% | 77 | 9,1% | 4,5 |
 | preguntas para beber | 7 | 7 | 0 | 0,0% | 66 | 10,6% | 4,0 |
 | juegos para tomar en grupo | 7 | 12 | -5 | -41,7% | 59 | 11,9% | 3,9 |
-| piramide juego de beber | 7 | 0 | 7 | N/D | 33 | 21,2% | 4,1 |
+| piramide juego de beber | 7 | 4 | 3 | +75,0% | 33 | 21,2% | 4,1 |
 | verdad o reto juego gratis | 7 | 9 | -2 | -22,2% | 18 | 38,9% | 2,2 |
 | juego de beber online | 7 | 7 | 0 | 0,0% | 17 | 41,2% | 1,1 |
 | verdad o reto en linea | 7 | 9 | -2 | -22,2% | 14 | 50,0% | 1,8 |
-| juego para beber online | 7 | 0 | 7 | N/D | 11 | 63,6% | 1,0 |
+| juego para beber online | 7 | 5 | 2 | +40,0% | 11 | 63,6% | 1,0 |
 | juegos para beber en pareja | 6 | 11 | -5 | -45,5% | 91 | 6,6% | 6,5 |
 | juego para tomar | 6 | 8 | -2 | -25,0% | 86 | 7,0% | 4,3 |
 | juegos beber | 6 | 8 | -2 | -25,0% | 72 | 8,3% | 3,1 |
-| juegos para tomar en pareja online | 6 | 0 | 6 | N/D | 12 | 50,0% | 1,2 |
-| juegos para tomar shots | 5 | 0 | 5 | N/D | 187 | 2,7% | 7,6 |
+| juegos para tomar en pareja online | 6 | 3 | 3 | +100,0% | 12 | 50,0% | 1,2 |
+| retos | 5 | 0 | 5 | N/D | 483 | 1,0% | 9,0 |
+| juegos para tomar shots | 5 | 4 | 1 | +25,0% | 187 | 2,7% | 7,6 |
 | juegos de verdad o reto | 5 | 7 | -2 | -28,6% | 150 | 3,3% | 6,0 |
-| juegos de previa | 5 | 0 | 5 | N/D | 75 | 6,7% | 4,5 |
+| juegos de previa | 5 | 4 | 1 | +25,0% | 75 | 6,7% | 4,5 |
 | juegos verdad o reto | 5 | 6 | -1 | -16,7% | 55 | 9,1% | 5,6 |
-| a beber: juegos para tomar | 5 | 0 | 5 | N/D | 38 | 13,2% | 5,9 |
 
 ## Top 50 pages
 
@@ -121,17 +119,17 @@ Search Console mide **clics orgánicos**, no page views. Los totales de esta sec
 | [/blog/medusa-juego-beber](https://bebergames.com/blog/medusa-juego-beber) | 1 | 0 | 1 | N/D | 18 | 5,6% | 5,1 |
 | [/juegos/la-ruleta/reglas](https://bebergames.com/juegos/la-ruleta/reglas) | 1 | 3 | -2 | -66,7% | 17 | 5,9% | 6,3 |
 | [/blog/preguntas-quien-es-mas-probable](https://bebergames.com/blog/preguntas-quien-es-mas-probable) | 1 | 0 | 1 | N/D | 10 | 10,0% | 13,0 |
+| [/juegos/medusa](https://bebergames.com/juegos/medusa) | 0 | 0 | 0 | N/D | 76 | 0,0% | 6,1 |
+| [/juegos/yo-nunca/reglas](https://bebergames.com/juegos/yo-nunca/reglas) | 0 | 0 | 0 | N/D | 43 | 0,0% | 21,4 |
 | [/blog/drinking-games-reglas](https://bebergames.com/blog/drinking-games-reglas) | 0 | 0 | 0 | N/D | 41 | 0,0% | 9,0 |
+| [/juegos/categorias/cartas](https://bebergames.com/juegos/categorias/cartas) | 0 | 1 | -1 | -100,0% | 39 | 0,0% | 10,3 |
+| [/juegos/categorias/sin-materiales](https://bebergames.com/juegos/categorias/sin-materiales) | 0 | 0 | 0 | N/D | 37 | 0,0% | 1,9 |
 | [/contacto](https://bebergames.com/contacto) | 0 | 0 | 0 | N/D | 33 | 0,0% | 1,7 |
+| [/sobre-nosotros](https://bebergames.com/sobre-nosotros) | 0 | 0 | 0 | N/D | 30 | 0,0% | 1,3 |
 | [/blog/100-preguntas-yo-nunca](https://bebergames.com/blog/100-preguntas-yo-nunca) | 0 | 0 | 0 | N/D | 24 | 0,0% | 67,6 |
 | [/blog/juegos-para-botellon](https://bebergames.com/blog/juegos-para-botellon) | 0 | 1 | -1 | -100,0% | 22 | 0,0% | 7,4 |
 | [/blog/juegos-para-cumpleanos-adultos](https://bebergames.com/blog/juegos-para-cumpleanos-adultos) | 0 | 1 | -1 | -100,0% | 11 | 0,0% | 8,0 |
 | [/blog/preguntas-yo-nunca-parejas](https://bebergames.com/blog/preguntas-yo-nunca-parejas) | 0 | 0 | 0 | N/D | 8 | 0,0% | 7,6 |
-| [/blog/juegos-para-beber-dos-personas](https://bebergames.com/blog/juegos-para-beber-dos-personas) | 0 | 1 | -1 | -100,0% | 5 | 0,0% | 7,0 |
-| [/blog/como-organizar-fiesta-juegos-beber](https://bebergames.com/blog/como-organizar-fiesta-juegos-beber) | 0 | 0 | 0 | N/D | 3 | 0,0% | 4,7 |
-| [/blog](https://bebergames.com/blog) | 0 | 0 | 0 | N/D | 2 | 0,0% | 17,5 |
-| [/blog/la-bomba-juego-beber](https://bebergames.com/blog/la-bomba-juego-beber) | 0 | 0 | 0 | N/D | 2 | 0,0% | 3,5 |
-| [/blog/verdad-o-reto-preguntas-buenas](https://bebergames.com/blog/verdad-o-reto-preguntas-buenas) | 0 | 0 | 0 | N/D | 2 | 0,0% | 9,5 |
 
 ## Países
 
@@ -183,12 +181,12 @@ Los códigos de país son los devueltos por Search Console; no se infieren idiom
 | cze | 1 | 1 | 0 | 0,0% | 6 | 16,7% | 3,3 |
 | mlt | 1 | 2 | -1 | -50,0% | 5 | 20,0% | 4,2 |
 | chn | 1 | 0 | 1 | N/D | 4 | 25,0% | 6,5 |
-| are | 0 | 0 | 0 | N/D | 18 | 0,0% | 6,3 |
-| bgd | 0 | 0 | 0 | N/D | 16 | 0,0% | 20,3 |
-| bel | 0 | 1 | -1 | -100,0% | 15 | 0,0% | 4,3 |
-| alb | 0 | 0 | 0 | N/D | 3 | 0,0% | 2,3 |
-| abw | 0 | 0 | 0 | N/D | 2 | 0,0% | 5,0 |
-| bgr | 0 | 1 | -1 | -100,0% | 2 | 0,0% | 2,5 |
+| ind | 0 | 0 | 0 | N/D | 69 | 0,0% | 20,0 |
+| rus | 0 | 2 | -2 | -100,0% | 37 | 0,0% | 13,8 |
+| rou | 0 | 0 | 0 | N/D | 32 | 0,0% | 9,2 |
+| gnq | 0 | 0 | 0 | N/D | 31 | 0,0% | 6,8 |
+| nld | 0 | 1 | -1 | -100,0% | 31 | 0,0% | 9,2 |
+| phl | 0 | 0 | 0 | N/D | 29 | 0,0% | 19,4 |
 
 ## Dispositivos
 
@@ -205,6 +203,7 @@ Queries en posiciones 1–10, con más de 50 impresiones y CTR inferior al 3%.
 | Query | Clics | Impresiones | CTR | Posición |
 |---|---:|---:|---:|---:|
 | preguntas picantes para verdad o reto | 8 | 420 | 1,9% | 7,7 |
+| retos | 5 | 483 | 1,0% | 9,0 |
 | juegos para tomar shots | 5 | 187 | 2,7% | 7,6 |
 
 ## Oportunidades de posición 4–15
@@ -215,6 +214,7 @@ Queries entre las posiciones 4 y 15 con al menos 50 impresiones.
 |---|---:|---:|---:|---:|
 | verdad o reto | 325 | 6702 | 4,8% | 5,9 |
 | juegos para beber | 59 | 741 | 8,0% | 5,0 |
+| retos | 5 | 483 | 1,0% | 9,0 |
 | preguntas picantes para verdad o reto | 8 | 420 | 1,9% | 7,7 |
 | verdad o reto picante | 15 | 247 | 6,1% | 7,9 |
 | juegos para tomar con amigos | 12 | 246 | 4,9% | 5,5 |
@@ -238,20 +238,90 @@ Queries entre las posiciones 4 y 15 con al menos 50 impresiones.
 
 ## Canibalización
 
+- **beber games**
+  - /: 16 impresiones
+  - /juegos: 14 impresiones
+- **bebergames**
+  - /: 30 impresiones
+  - /juegos: 30 impresiones
+  - /contacto: 29 impresiones
+  - /sobre-nosotros: 27 impresiones
+  - /juegos/verdad-o-reto: 26 impresiones
+  - /juegos/categorias/sin-materiales: 25 impresiones
+- **juego cartas beber baraja española**
+  - /blog/juegos-beber-baraja-espanola: 28 impresiones
+  - /blog/juegos-para-beber-con-cartas: 17 impresiones
+- **juego de beber online**
+  - /: 17 impresiones
+  - /juegos: 17 impresiones
+- **juego de borrachos**
+  - /: 17 impresiones
+  - /juegos: 13 impresiones
+- **juego de cartas para beber**
+  - /blog/juegos-beber-baraja-espanola: 14 impresiones
+  - /: 11 impresiones
+- **juego para beber online**
+  - /: 11 impresiones
+  - /juegos: 11 impresiones
+- **juegos de beber online**
+  - /: 28 impresiones
+  - /juegos: 28 impresiones
+  - /blog/los-20-mejores-juegos: 12 impresiones
+- **juegos de bebidas**
+  - /juegos: 17 impresiones
+  - /: 14 impresiones
+- **juegos de cartas para beber**
+  - /: 17 impresiones
+  - /juegos: 11 impresiones
+- **juegos de peda online**
+  - /: 22 impresiones
+  - /juegos: 22 impresiones
+- **juegos para beber cartas**
+  - /blog/juegos-para-beber-con-cartas: 17 impresiones
+  - /blog/juegos-beber-baraja-espanola: 11 impresiones
 - **juegos para beber online**
   - /: 132 impresiones
   - /juegos: 132 impresiones
+  - /juegos/la-ruleta: 15 impresiones
+  - /blog/los-20-mejores-juegos: 11 impresiones
+  - /juegos/verdad-o-reto: 11 impresiones
+- **juegos para beber online gratis**
+  - /: 16 impresiones
+  - /juegos: 16 impresiones
+- **juegos para tomar en pareja**
+  - /blog/juegos-para-beber-en-pareja: 35 impresiones
+  - /: 25 impresiones
+- **juegos para tomar en pareja online**
+  - /: 12 impresiones
+  - /juegos: 12 impresiones
+- **juegos para tomar online**
+  - /: 33 impresiones
+  - /juegos: 33 impresiones
+- **rey de copas juego**
+  - /blog/rey-de-la-copa-reglas: 25 impresiones
+  - /juegos/rey-de-la-copa: 20 impresiones
+- **ruleta de shots online**
+  - /: 13 impresiones
+  - /juegos/la-ruleta: 13 impresiones
+- **ruleta para beber online**
+  - /: 19 impresiones
+  - /juegos: 19 impresiones
+  - /juegos/la-ruleta: 19 impresiones
+- **verdad o reto caliente**
+  - /juegos/verdad-o-reto: 25 impresiones
+  - /blog/preguntas-picantes-verdad-o-reto: 14 impresiones
 
 ## Calidad de datos
 
-- Schema: versión 2. v2: periodos 7/7, totales sin dimensiones, top 50 y comparativas por query, page, country, device y query+page.
+- Schema: versión 2. v2: periodos 7/7, totales sin dimensiones, display/fetch separados y comparativas que distinguen previous conocido, cero real y desconocido por truncamiento.
 - Días por periodo: 7.
 - Informes solicitados: 12.
 - Informes completados: 12.
-- Límite por informe dimensional: 50.
+- Límite visible por colección: 50.
+- Límite real de descarga por informe dimensional: 25000.
 - Informes vacíos: ninguno.
-- Informes posiblemente truncados: current.query, current.page, current.country, current.queryPage, previous.query, previous.page, previous.country, previous.queryPage.
-- Avisos:
-  - Posible truncamiento al alcanzar el límite de 50 filas: current.query, current.page, current.country, current.queryPage, previous.query, previous.page, previous.country, previous.queryPage.
+- Informes que alcanzaron el límite de descarga: ninguno.
+- Comparaciones con previous desconocido por truncamiento: 0.
+- Avisos: ninguno.
 
 Los informes por dimensión pueden omitir consultas anonimizadas o quedar limitados por filas. No deben sumarse siempre como si fueran los totales globales. Para el total del sitio, usa `globalMetrics`, que procede de informes sin dimensiones.
