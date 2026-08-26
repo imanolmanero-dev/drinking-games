@@ -22,9 +22,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: |
-          # Instalamos solo las dependencias necesarias para el script
-          npm install googleapis dotenv tsx
+        run: npm ci
 
       - name: Fetch SEO Data from Google Search Console
         env:
@@ -36,7 +34,7 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add SEO_DATA.md seo-data.json
+          git add -- seo-data.json SEO_DATA.md
           
           if ! git diff --staged --quiet; then
             git commit -m "chore(seo): Actualización automática del dashboard SEO_DATA.md y seo-data.json"

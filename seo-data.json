@@ -1,4 +1,7 @@
 {
+  "schemaVersion": 1,
+  "schemaDescription": "Snapshot legado anterior al schema v2. Conservado sin recalcular ni inventar métricas ausentes; el generador actual producirá schemaVersion 2.",
+  "reportingSchemaVersionAvailable": 2,
   "updatedAt": "2026-08-24T00:43:32.089Z",
   "periods": {
     "current": {
@@ -10,6 +13,7 @@
       "end": "2026-08-13"
     }
   },
+  "globalMetrics": null,
   "topQueries": [
     {
       "query": "verdad o reto",
@@ -224,6 +228,9 @@
       "delta": "+170.0% 🟢"
     }
   ],
+  "countries": [],
+  "devices": [],
+  "queryPages": [],
   "cannibalization": [
     {
       "query": "juegos para beber online",
@@ -252,5 +259,67 @@
       ]
     }
   ],
-  "ctrOpportunities": []
+  "ctrOpportunities": [],
+  "positionOpportunities": [
+    {
+      "query": "verdad o reto",
+      "clicks": 414,
+      "impressions": 9305,
+      "ctr": 0.04449220849005911,
+      "position": 5.938097796883396
+    },
+    {
+      "query": "juegos para beber",
+      "clicks": 90,
+      "impressions": 983,
+      "ctr": 0.09155645981688708,
+      "position": 4.626653102746694
+    },
+    {
+      "query": "juegos para tomar",
+      "clicks": 89,
+      "impressions": 1042,
+      "ctr": 0.0854126679462572,
+      "position": 4.145873320537428
+    },
+    {
+      "query": "juegos para beber online",
+      "clicks": 72,
+      "impressions": 209,
+      "ctr": 0.3444976076555024,
+      "position": 10.598086124401913
+    },
+    {
+      "query": "verdad o reto juego",
+      "clicks": 44,
+      "impressions": 387,
+      "ctr": 0.11369509043927649,
+      "position": 5.498708010335918
+    },
+    {
+      "query": "juegos para tomar con amigos",
+      "clicks": 19,
+      "impressions": 352,
+      "ctr": 0.05397727272727273,
+      "position": 4.616477272727273
+    }
+  ],
+  "dataQuality": {
+    "periodDays": 8,
+    "reportsRequested": 5,
+    "reportsSucceeded": 5,
+    "warnings": [
+      "Snapshot legado: ambos rangos contienen 8 fechas inclusivas por el error corregido en schema v2.",
+      "No se solicitaron totales sin dimensiones; globalMetrics no está disponible.",
+      "No se solicitaron informes de country ni device.",
+      "Solo se persistieron 15 filas aunque la API solicitó hasta 50; no puede determinarse el truncamiento original.",
+      "El informe query + page anterior no se solicitó y las filas actuales no se persistieron."
+    ],
+    "emptyReports": [
+      "country",
+      "device"
+    ],
+    "truncatedReports": [],
+    "topLimit": 15
+  }
 }
