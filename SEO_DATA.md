@@ -6,6 +6,8 @@
 
 *Generado automáticamente mediante GitHub Actions y la API de Google Search Console. No editar manualmente.*
 
+> **Nota de transición:** este snapshot se generó antes de separar el límite visible del límite de descarga. El próximo workflow distinguirá entre previous igual a cero y previous desconocido por truncamiento.
+
 ## Resumen global
 
 Search Console mide **clics orgánicos**, no page views. Los totales de esta sección proceden de informes específicos **sin dimensiones**.
@@ -19,7 +21,7 @@ Search Console mide **clics orgánicos**, no page views. Los totales de esta sec
 | CTR global | 6,2% | 6,3% | -0,1% | -1,0% |
 | Posición media global | 7,2 | 7,2 | 0,0 | -0,3% |
 
-Cuando el valor anterior es 0, el crecimiento se muestra como `N/D` y no se fuerza un porcentaje artificial.
+`N/D` indica que no existe una base porcentual. En los próximos snapshots también identificará valores anteriores desconocidos porque quedaron fuera del rango recuperado.
 
 ## Top 50 queries
 

@@ -1,14 +1,18 @@
 export const SCHEMA_VERSION = 2;
-export const TOP_LIMIT = 50;
+export const DISPLAY_LIMIT = 50;
+// Máximo admitido por Search Analytics Query en una sola respuesta.
+export const FETCH_LIMIT = 25_000;
+// Alias conservado para consumidores del schema v2 anterior.
+export const TOP_LIMIT = DISPLAY_LIMIT;
 export const PERIOD_DAYS = 7;
 
 export const REPORT_DEFINITIONS = Object.freeze([
   { key: 'global', dimensions: [], rowLimit: 1 },
-  { key: 'query', dimensions: ['query'], rowLimit: TOP_LIMIT },
-  { key: 'page', dimensions: ['page'], rowLimit: TOP_LIMIT },
-  { key: 'country', dimensions: ['country'], rowLimit: TOP_LIMIT },
-  { key: 'device', dimensions: ['device'], rowLimit: TOP_LIMIT },
-  { key: 'queryPage', dimensions: ['query', 'page'], rowLimit: TOP_LIMIT },
+  { key: 'query', dimensions: ['query'], rowLimit: FETCH_LIMIT },
+  { key: 'page', dimensions: ['page'], rowLimit: FETCH_LIMIT },
+  { key: 'country', dimensions: ['country'], rowLimit: FETCH_LIMIT },
+  { key: 'device', dimensions: ['device'], rowLimit: FETCH_LIMIT },
+  { key: 'queryPage', dimensions: ['query', 'page'], rowLimit: FETCH_LIMIT },
 ]);
 
 const METRICS = ['clicks', 'impressions', 'ctr', 'position'];
@@ -68,6 +72,15 @@ export function normalizeMetrics(row) {
 }
 
 export function compareMetrics(current, previous) {
+  if (previous === null) {
+    return {
+      current,
+      previous: null,
+      difference: null,
+      percentDelta: null,
+    };
+  }
+
   const difference = {};
   const percentDelta = {};
 
@@ -95,9 +108,8 @@ function compareText(a, b) {
   return 0;
 }
 
-function compareRows(currentRows, previousRows, dimensions) {
-  const previousByKey = new Map(previousRows.map((row) => [rowKey(row), row]));
-  const sortedCurrent = [...currentRows].sort((a, b) => {
+function sortRows(rows) {
+  return [...rows].sort((a, b) => {
     const clickDifference = metricValue(b.clicks) - metricValue(a.clicks);
     if (clickDifference !== 0) return clickDifference;
 
@@ -106,22 +118,69 @@ function compareRows(currentRows, previousRows, dimensions) {
 
     return compareText(rowKey(a), rowKey(b));
   });
+}
 
-  return sortedCurrent.slice(0, TOP_LIMIT).map((row) => {
+function reportState(reportRuns, period, key) {
+  const report = reportRuns.find((candidate) => candidate.period === period && candidate.key === key);
+  const reachedFetchLimit = Boolean(
+    report?.succeeded
+    && report.dimensions.length > 0
+    && report.rows.length >= report.rowLimit,
+  );
+
+  return {
+    succeeded: report?.succeeded === true,
+    reachedFetchLimit,
+  };
+}
+
+function compareRows(currentRows, previousRows, dimensions, previousReportState) {
+  const previousByKey = new Map(previousRows.map((row) => [rowKey(row), row]));
+  const sortedCurrent = sortRows(currentRows);
+
+  return sortedCurrent.slice(0, DISPLAY_LIMIT).map((row) => {
     const keys = row.keys ?? [];
     const current = normalizeMetrics(row);
-    const previous = normalizeMetrics(previousByKey.get(rowKey(row)));
+    const previousRow = previousByKey.get(rowKey(row));
+    let previous;
+    let previousStatus;
+
+    if (previousRow) {
+      previous = normalizeMetrics(previousRow);
+      previousStatus = 'matched';
+    } else if (previousReportState.succeeded && !previousReportState.reachedFetchLimit) {
+      // Solo un informe completado por debajo del fetchLimit permite interpretar
+      // una identidad ausente como cero real durante el periodo anterior.
+      previous = normalizeMetrics();
+      previousStatus = 'known_absent';
+    } else {
+      // Ausencia en un informe truncado o fallido no equivale a cero.
+      previous = null;
+      previousStatus = previousReportState.reachedFetchLimit
+        ? 'unknown_truncated'
+        : 'unknown_report_unavailable';
+    }
+
     const comparison = compareMetrics(current, previous);
     const identity = Object.fromEntries(dimensions.map((dimension, index) => [dimension, keys[index] ?? '']));
 
     return {
       ...identity,
       ...current,
-      prevClicks: previous.clicks,
-      delta: legacyDelta(comparison.percentDelta.clicks),
+      prevClicks: previous?.clicks ?? null,
+      delta: legacyDelta(comparison.percentDelta?.clicks ?? null),
+      previousStatus,
+      previousUnknownBecauseTruncated: previousStatus === 'unknown_truncated',
       ...comparison,
     };
   });
+}
+
+function currentRowsForAnalysis(rows, dimensions) {
+  return sortRows(rows).map((row) => ({
+    ...Object.fromEntries(dimensions.map((dimension, index) => [dimension, row.keys?.[index] ?? ''])),
+    ...normalizeMetrics(row),
+  }));
 }
 
 function relativeUrl(url) {
@@ -192,21 +251,30 @@ function findCannibalization(queryPages) {
     .sort((a, b) => compareText(a.query, b.query));
 }
 
-function buildDataQuality(reportRuns) {
+function buildDataQuality(reportRuns, displayedCollections, analysisRows) {
   const succeeded = reportRuns.filter((report) => report.succeeded);
   const emptyReports = succeeded
     .filter((report) => report.rows.length === 0)
     .map((report) => report.name);
-  const truncatedReports = succeeded
+  const reportsAtFetchLimit = succeeded
     .filter((report) => report.dimensions.length > 0 && report.rows.length >= report.rowLimit)
     .map((report) => report.name);
   const warnings = reportRuns
     .filter((report) => report.warning)
     .map((report) => report.warning);
 
-  if (truncatedReports.length > 0) {
-    warnings.push(`Posible truncamiento al alcanzar el límite de ${TOP_LIMIT} filas: ${truncatedReports.join(', ')}.`);
+  if (reportsAtFetchLimit.length > 0) {
+    warnings.push(`Posible truncamiento al alcanzar el límite real de descarga: ${reportsAtFetchLimit.join(', ')}.`);
   }
+
+  const previousUnknownBecauseTruncated = Object.fromEntries(
+    Object.entries(displayedCollections).map(([name, rows]) => [
+      name,
+      rows.filter((row) => row.previousUnknownBecauseTruncated).length,
+    ]),
+  );
+  previousUnknownBecauseTruncated.total = Object.values(previousUnknownBecauseTruncated)
+    .reduce((total, count) => total + count, 0);
 
   return {
     periodDays: PERIOD_DAYS,
@@ -214,27 +282,73 @@ function buildDataQuality(reportRuns) {
     reportsSucceeded: succeeded.length,
     warnings,
     emptyReports,
-    truncatedReports,
-    topLimit: TOP_LIMIT,
+    reportsAtFetchLimit,
+    // Compatibilidad con lectores existentes: ahora solo contiene informes que
+    // alcanzaron el límite real de recuperación, nunca el límite visible.
+    truncatedReports: reportsAtFetchLimit,
+    displayLimit: DISPLAY_LIMIT,
+    fetchLimit: FETCH_LIMIT,
+    topLimit: DISPLAY_LIMIT,
+    rowsFetched: Object.fromEntries(reportRuns.map((report) => [report.name, report.rows.length])),
+    rowsDisplayed: Object.fromEntries(
+      Object.entries(displayedCollections).map(([name, rows]) => [name, rows.length]),
+    ),
+    analysisRows,
+    previousUnknownBecauseTruncated,
   };
 }
 
 export function buildSeoSnapshot({ generatedAt, periods, reports, reportRuns }) {
   const currentGlobal = normalizeMetrics(reports.current.global?.[0]);
   const previousGlobal = normalizeMetrics(reports.previous.global?.[0]);
-  const topQueries = compareRows(reports.current.query, reports.previous.query, ['query']);
-  const topPages = normalizePageRows(compareRows(reports.current.page, reports.previous.page, ['page']));
-  const countries = compareRows(reports.current.country, reports.previous.country, ['country']);
-  const devices = compareRows(reports.current.device, reports.previous.device, ['device']);
+  const topQueries = compareRows(
+    reports.current.query,
+    reports.previous.query,
+    ['query'],
+    reportState(reportRuns, 'previous', 'query'),
+  );
+  const topPages = normalizePageRows(compareRows(
+    reports.current.page,
+    reports.previous.page,
+    ['page'],
+    reportState(reportRuns, 'previous', 'page'),
+  ));
+  const countries = compareRows(
+    reports.current.country,
+    reports.previous.country,
+    ['country'],
+    reportState(reportRuns, 'previous', 'country'),
+  );
+  const devices = compareRows(
+    reports.current.device,
+    reports.previous.device,
+    ['device'],
+    reportState(reportRuns, 'previous', 'device'),
+  );
   const queryPages = normalizePageRows(compareRows(
     reports.current.queryPage,
     reports.previous.queryPage,
     ['query', 'page'],
+    reportState(reportRuns, 'previous', 'queryPage'),
   ));
+  const queryPagesForAnalysis = normalizePageRows(currentRowsForAnalysis(
+    reports.current.queryPage,
+    ['query', 'page'],
+  ));
+  const displayedCollections = {
+    topQueries,
+    topPages,
+    countries,
+    devices,
+    queryPages,
+  };
+  const dataQuality = buildDataQuality(reportRuns, displayedCollections, {
+    queryPages: queryPagesForAnalysis.length,
+  });
 
   return {
     schemaVersion: SCHEMA_VERSION,
-    schemaDescription: 'v2: periodos 7/7, totales sin dimensiones, top 50 y comparativas por query, page, country, device y query+page.',
+    schemaDescription: 'v2: periodos 7/7, totales sin dimensiones, display/fetch separados y comparativas que distinguen previous conocido, cero real y desconocido por truncamiento.',
     updatedAt: generatedAt,
     periods,
     globalMetrics: compareMetrics(currentGlobal, previousGlobal),
@@ -243,10 +357,10 @@ export function buildSeoSnapshot({ generatedAt, periods, reports, reportRuns }) 
     countries,
     devices,
     queryPages,
-    cannibalization: findCannibalization(queryPages),
+    cannibalization: findCannibalization(queryPagesForAnalysis),
     ctrOpportunities: findCtrOpportunities(topQueries),
     positionOpportunities: findPositionOpportunities(topQueries),
-    dataQuality: buildDataQuality(reportRuns),
+    dataQuality,
   };
 }
 
@@ -283,7 +397,12 @@ function comparisonTable(rows, identityLabel, identityValue, linkPages = false) 
     const identity = linkPages
       ? `[${escapeCell(rawIdentity)}](https://bebergames.com${rawIdentity === '/' ? '/' : rawIdentity})`
       : escapeCell(rawIdentity);
-    output += `| ${identity} | ${formatNumber(row.clicks)} | ${formatNumber(row.previous.clicks)} | ${formatNumber(row.difference.clicks)} | ${formatPercentDelta(row.percentDelta.clicks)} | ${formatNumber(row.impressions)} | ${formatPercent(row.ctr)} | ${formatNumber(row.position, 1)} |\n`;
+    const previousClicks = row.previous === null ? 'N/D' : formatNumber(row.previous.clicks);
+    const differenceClicks = row.difference === null ? 'N/D' : formatNumber(row.difference.clicks);
+    const percentDeltaClicks = row.percentDelta === null
+      ? 'N/D'
+      : formatPercentDelta(row.percentDelta.clicks);
+    output += `| ${identity} | ${formatNumber(row.clicks)} | ${previousClicks} | ${differenceClicks} | ${percentDeltaClicks} | ${formatNumber(row.impressions)} | ${formatPercent(row.ctr)} | ${formatNumber(row.position, 1)} |\n`;
   }
 
   return output;
@@ -304,6 +423,10 @@ export function renderSeoMarkdown(snapshot) {
   const { current, previous } = snapshot.periods;
   const global = snapshot.globalMetrics;
   const quality = snapshot.dataQuality;
+  const displayLimit = quality.displayLimit ?? quality.topLimit ?? DISPLAY_LIMIT;
+  const fetchLimit = quality.fetchLimit ?? quality.topLimit ?? DISPLAY_LIMIT;
+  const reportsAtFetchLimit = quality.reportsAtFetchLimit ?? quality.truncatedReports ?? [];
+  const unknownCounts = quality.previousUnknownBecauseTruncated ?? { total: 0 };
   let md = '# Dashboard SEO de BeberGames\n\n';
   md += `> **Última actualización:** ${snapshot.updatedAt}\n`;
   md += `> **Periodo actual:** ${current.start} a ${current.end} (${quality.periodDays} días completos)\n`;
@@ -320,11 +443,11 @@ export function renderSeoMarkdown(snapshot) {
   md += `| Impresiones | ${formatNumber(global.current.impressions)} | ${formatNumber(global.previous.impressions)} | ${formatNumber(global.difference.impressions)} | ${formatPercentDelta(global.percentDelta.impressions)} |\n`;
   md += `| CTR global | ${formatPercent(global.current.ctr)} | ${formatPercent(global.previous.ctr)} | ${formatPercent(global.difference.ctr)} | ${formatPercentDelta(global.percentDelta.ctr)} |\n`;
   md += `| Posición media global | ${formatNumber(global.current.position, 1)} | ${formatNumber(global.previous.position, 1)} | ${formatNumber(global.difference.position, 1)} | ${formatPercentDelta(global.percentDelta.position)} |\n`;
-  md += '\nCuando el valor anterior es 0, el crecimiento se muestra como `N/D` y no se fuerza un porcentaje artificial.\n\n';
+  md += '\n`N/D` indica que no existe una base porcentual o que el valor anterior es desconocido porque el informe alcanzó el límite de descarga.\n\n';
 
-  md += `## Top ${quality.topLimit} queries\n\n`;
+  md += `## Top ${displayLimit} queries\n\n`;
   md += comparisonTable(snapshot.topQueries, 'Query', (row) => row.query);
-  md += `\n## Top ${quality.topLimit} pages\n\n`;
+  md += `\n## Top ${displayLimit} pages\n\n`;
   md += comparisonTable(snapshot.topPages, 'Página', (row) => row.url, true);
   md += '\n## Países\n\n';
   md += 'Los códigos de país son los devueltos por Search Console; no se infieren idiomas a partir de ellos.\n\n';
@@ -356,9 +479,11 @@ export function renderSeoMarkdown(snapshot) {
   md += `- Días por periodo: ${quality.periodDays}.\n`;
   md += `- Informes solicitados: ${quality.reportsRequested}.\n`;
   md += `- Informes completados: ${quality.reportsSucceeded}.\n`;
-  md += `- Límite por informe dimensional: ${quality.topLimit}.\n`;
+  md += `- Límite visible por colección: ${displayLimit}.\n`;
+  md += `- Límite real de descarga por informe dimensional: ${fetchLimit}.\n`;
   md += `- Informes vacíos: ${quality.emptyReports.length > 0 ? quality.emptyReports.join(', ') : 'ninguno'}.\n`;
-  md += `- Informes posiblemente truncados: ${quality.truncatedReports.length > 0 ? quality.truncatedReports.join(', ') : 'ninguno'}.\n`;
+  md += `- Informes que alcanzaron el límite de descarga: ${reportsAtFetchLimit.length > 0 ? reportsAtFetchLimit.join(', ') : 'ninguno'}.\n`;
+  md += `- Comparaciones con previous desconocido por truncamiento: ${unknownCounts.total ?? 0}.\n`;
   if (quality.warnings.length === 0) {
     md += '- Avisos: ninguno.\n';
   } else {
