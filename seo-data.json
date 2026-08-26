@@ -1,325 +1,7115 @@
 {
-  "schemaVersion": 1,
-  "schemaDescription": "Snapshot legado anterior al schema v2. Conservado sin recalcular ni inventar métricas ausentes; el generador actual producirá schemaVersion 2.",
-  "reportingSchemaVersionAvailable": 2,
-  "updatedAt": "2026-08-24T00:43:32.089Z",
+  "schemaVersion": 2,
+  "schemaDescription": "v2: periodos 7/7, totales sin dimensiones, top 50 y comparativas por query, page, country, device y query+page.",
+  "updatedAt": "2026-08-26T22:43:28.150Z",
   "periods": {
     "current": {
-      "start": "2026-08-14",
-      "end": "2026-08-21"
+      "start": "2026-08-19",
+      "end": "2026-08-25"
     },
     "previous": {
-      "start": "2026-08-06",
-      "end": "2026-08-13"
+      "start": "2026-08-12",
+      "end": "2026-08-18"
     }
   },
-  "globalMetrics": null,
+  "globalMetrics": {
+    "current": {
+      "clicks": 2644,
+      "impressions": 42616,
+      "ctr": 0.06204242538013891,
+      "position": 7.1982119391777735
+    },
+    "previous": {
+      "clicks": 2769,
+      "impressions": 44205,
+      "ctr": 0.06263997285374957,
+      "position": 7.220269200316706
+    },
+    "difference": {
+      "clicks": -125,
+      "impressions": -1589,
+      "ctr": -0.0005975474736106615,
+      "position": -0.022057261138932915
+    },
+    "percentDelta": {
+      "clicks": -4.5142650776453594,
+      "impressions": -3.594615993665875,
+      "ctr": -0.9539395475247125,
+      "position": -0.30549084150443323
+    }
+  },
   "topQueries": [
     {
       "query": "verdad o reto",
-      "clicks": 414,
-      "impressions": 9305,
-      "ctr": 0.04449220849005911,
-      "position": 5.938097796883396,
-      "prevClicks": 322
-    },
-    {
-      "query": "verdad o reto online",
-      "clicks": 103,
-      "impressions": 299,
-      "ctr": 0.34448160535117056,
-      "position": 1.8026755852842808,
-      "prevClicks": 107
-    },
-    {
-      "query": "juegos para beber",
-      "clicks": 90,
-      "impressions": 983,
-      "ctr": 0.09155645981688708,
-      "position": 4.626653102746694,
-      "prevClicks": 79
+      "clicks": 325,
+      "impressions": 6702,
+      "ctr": 0.04849298716800955,
+      "position": 5.850492390331245,
+      "prevClicks": 365,
+      "delta": "-11.0%",
+      "current": {
+        "clicks": 325,
+        "impressions": 6702,
+        "ctr": 0.04849298716800955,
+        "position": 5.850492390331245
+      },
+      "previous": {
+        "clicks": 365,
+        "impressions": 8206,
+        "ctr": 0.044479649037289785,
+        "position": 6.038386546429442
+      },
+      "difference": {
+        "clicks": -40,
+        "impressions": -1504,
+        "ctr": 0.004013338130719767,
+        "position": -0.18789415609819748
+      },
+      "percentDelta": {
+        "clicks": -10.95890410958904,
+        "impressions": -18.32805264440653,
+        "ctr": 9.022863753612715,
+        "position": -3.1116616111517597
+      }
     },
     {
       "query": "juegos para tomar",
-      "clicks": 89,
-      "impressions": 1042,
-      "ctr": 0.0854126679462572,
-      "position": 4.145873320537428,
-      "prevClicks": 100
+      "clicks": 72,
+      "impressions": 747,
+      "ctr": 0.0963855421686747,
+      "position": 3.8112449799196786,
+      "prevClicks": 79,
+      "delta": "-8.9%",
+      "current": {
+        "clicks": 72,
+        "impressions": 747,
+        "ctr": 0.0963855421686747,
+        "position": 3.8112449799196786
+      },
+      "previous": {
+        "clicks": 79,
+        "impressions": 872,
+        "ctr": 0.09059633027522936,
+        "position": 4.200688073394495
+      },
+      "difference": {
+        "clicks": -7,
+        "impressions": -125,
+        "ctr": 0.005789211893445348,
+        "position": -0.38944309347481676
+      },
+      "percentDelta": {
+        "clicks": -8.860759493670885,
+        "impressions": -14.3348623853211,
+        "ctr": 6.3901174317523335,
+        "position": -9.270935776959876
+      }
     },
     {
-      "query": "juegos para beber online",
-      "clicks": 72,
-      "impressions": 209,
-      "ctr": 0.3444976076555024,
-      "position": 10.598086124401913,
-      "prevClicks": 74
+      "query": "verdad o reto online",
+      "clicks": 68,
+      "impressions": 210,
+      "ctr": 0.3238095238095238,
+      "position": 2.4380952380952383,
+      "prevClicks": 88,
+      "delta": "-22.7%",
+      "current": {
+        "clicks": 68,
+        "impressions": 210,
+        "ctr": 0.3238095238095238,
+        "position": 2.4380952380952383
+      },
+      "previous": {
+        "clicks": 88,
+        "impressions": 258,
+        "ctr": 0.34108527131782945,
+        "position": 1.4689922480620154
+      },
+      "difference": {
+        "clicks": -20,
+        "impressions": -48,
+        "ctr": -0.017275747508305628,
+        "position": 0.9691029900332229
+      },
+      "percentDelta": {
+        "clicks": -22.727272727272727,
+        "impressions": -18.6046511627907,
+        "ctr": -5.064935064935059,
+        "position": 65.97059932152283
+      }
+    },
+    {
+      "query": "juegos para beber",
+      "clicks": 59,
+      "impressions": 741,
+      "ctr": 0.0796221322537112,
+      "position": 4.978407557354926,
+      "prevClicks": 70,
+      "delta": "-15.7%",
+      "current": {
+        "clicks": 59,
+        "impressions": 741,
+        "ctr": 0.0796221322537112,
+        "position": 4.978407557354926
+      },
+      "previous": {
+        "clicks": 70,
+        "impressions": 846,
+        "ctr": 0.08274231678486997,
+        "position": 4.6548463356974
+      },
+      "difference": {
+        "clicks": -11,
+        "impressions": -105,
+        "ctr": -0.003120184531158768,
+        "position": 0.3235612216575259
+      },
+      "percentDelta": {
+        "clicks": -15.714285714285714,
+        "impressions": -12.411347517730496,
+        "ctr": -3.7709658762290252,
+        "position": 6.951061288020997
+      }
     },
     {
       "query": "juegos de beber",
-      "clicks": 61,
-      "impressions": 590,
-      "ctr": 0.10338983050847457,
-      "position": 3.8779661016949154,
-      "prevClicks": 47
+      "clicks": 46,
+      "impressions": 364,
+      "ctr": 0.12637362637362637,
+      "position": 3.392857142857143,
+      "prevClicks": 53,
+      "delta": "-13.2%",
+      "current": {
+        "clicks": 46,
+        "impressions": 364,
+        "ctr": 0.12637362637362637,
+        "position": 3.392857142857143
+      },
+      "previous": {
+        "clicks": 53,
+        "impressions": 520,
+        "ctr": 0.10192307692307692,
+        "position": 3.95
+      },
+      "difference": {
+        "clicks": -7,
+        "impressions": -156,
+        "ctr": 0.024450549450549447,
+        "position": -0.5571428571428574
+      },
+      "percentDelta": {
+        "clicks": -13.20754716981132,
+        "impressions": -30,
+        "ctr": 23.989218328840966,
+        "position": -14.104882459312845
+      }
     },
     {
-      "query": "juegos para beber con amigos",
-      "clicks": 44,
-      "impressions": 293,
-      "ctr": 0.15017064846416384,
-      "position": 3.2320819112627985,
-      "prevClicks": 23
+      "query": "juegos para beber online",
+      "clicks": 40,
+      "impressions": 178,
+      "ctr": 0.2247191011235955,
+      "position": 14.904494382022472,
+      "prevClicks": 64,
+      "delta": "-37.5%",
+      "current": {
+        "clicks": 40,
+        "impressions": 178,
+        "ctr": 0.2247191011235955,
+        "position": 14.904494382022472
+      },
+      "previous": {
+        "clicks": 64,
+        "impressions": 155,
+        "ctr": 0.4129032258064516,
+        "position": 10.664516129032258
+      },
+      "difference": {
+        "clicks": -24,
+        "impressions": 23,
+        "ctr": -0.1881841246828561,
+        "position": 4.239978252990214
+      },
+      "percentDelta": {
+        "clicks": -37.5,
+        "impressions": 14.838709677419354,
+        "ctr": -45.575842696629216,
+        "position": 39.75781180964811
+      }
     },
     {
       "query": "verdad o reto juego",
-      "clicks": 44,
-      "impressions": 387,
-      "ctr": 0.11369509043927649,
-      "position": 5.498708010335918,
-      "prevClicks": 26
+      "clicks": 35,
+      "impressions": 234,
+      "ctr": 0.14957264957264957,
+      "position": 5.196581196581197,
+      "prevClicks": 31,
+      "delta": "+12.9%",
+      "current": {
+        "clicks": 35,
+        "impressions": 234,
+        "ctr": 0.14957264957264957,
+        "position": 5.196581196581197
+      },
+      "previous": {
+        "clicks": 31,
+        "impressions": 394,
+        "ctr": 0.07868020304568528,
+        "position": 5.588832487309645
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": -160,
+        "ctr": 0.07089244652696429,
+        "position": -0.39225129072844833
+      },
+      "percentDelta": {
+        "clicks": 12.903225806451612,
+        "impressions": -40.609137055837564,
+        "ctr": 90.10201268265784,
+        "position": -7.018483585241082
+      }
     },
     {
       "query": "bebergames",
-      "clicks": 34,
-      "impressions": 38,
-      "ctr": 0.8947368421052632,
+      "clicks": 27,
+      "impressions": 30,
+      "ctr": 0.9,
       "position": 1,
-      "prevClicks": 12
-    },
-    {
-      "query": "verdad o reto juego online",
-      "clicks": 25,
-      "impressions": 64,
-      "ctr": 0.390625,
-      "position": 1.40625,
-      "prevClicks": 17
-    },
-    {
-      "query": "juego de beber",
-      "clicks": 24,
-      "impressions": 172,
-      "ctr": 0.13953488372093023,
-      "position": 3.5,
-      "prevClicks": 18
+      "prevClicks": 23,
+      "delta": "+17.4%",
+      "current": {
+        "clicks": 27,
+        "impressions": 30,
+        "ctr": 0.9,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 23,
+        "impressions": 29,
+        "ctr": 0.7931034482758621,
+        "position": 1
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": 1,
+        "ctr": 0.10689655172413792,
+        "position": 0
+      },
+      "percentDelta": {
+        "clicks": 17.391304347826086,
+        "impressions": 3.4482758620689653,
+        "ctr": 13.478260869565215,
+        "position": 0
+      }
     },
     {
       "query": "ruleta para tomar",
+      "clicks": 25,
+      "impressions": 42,
+      "ctr": 0.5952380952380952,
+      "position": 1.2142857142857142,
+      "prevClicks": 13,
+      "delta": "+92.3%",
+      "current": {
+        "clicks": 25,
+        "impressions": 42,
+        "ctr": 0.5952380952380952,
+        "position": 1.2142857142857142
+      },
+      "previous": {
+        "clicks": 13,
+        "impressions": 36,
+        "ctr": 0.3611111111111111,
+        "position": 1.6944444444444444
+      },
+      "difference": {
+        "clicks": 12,
+        "impressions": 6,
+        "ctr": 0.23412698412698413,
+        "position": -0.48015873015873023
+      },
+      "percentDelta": {
+        "clicks": 92.3076923076923,
+        "impressions": 16.666666666666664,
+        "ctr": 64.83516483516483,
+        "position": -28.33723653395785
+      }
+    },
+    {
+      "query": "juegos para beber con amigos",
       "clicks": 24,
-      "impressions": 49,
-      "ctr": 0.4897959183673469,
-      "position": 1.5306122448979593,
-      "prevClicks": 8
+      "impressions": 226,
+      "ctr": 0.10619469026548672,
+      "position": 3.853982300884956,
+      "prevClicks": 30,
+      "delta": "-20.0%",
+      "current": {
+        "clicks": 24,
+        "impressions": 226,
+        "ctr": 0.10619469026548672,
+        "position": 3.853982300884956
+      },
+      "previous": {
+        "clicks": 30,
+        "impressions": 216,
+        "ctr": 0.1388888888888889,
+        "position": 3.1527777777777777
+      },
+      "difference": {
+        "clicks": -6,
+        "impressions": 10,
+        "ctr": -0.03269419862340217,
+        "position": 0.7012045231071782
+      },
+      "percentDelta": {
+        "clicks": -20,
+        "impressions": 4.62962962962963,
+        "ctr": -23.539823008849563,
+        "position": 22.240848310007415
+      }
+    },
+    {
+      "query": "juego de beber",
+      "clicks": 21,
+      "impressions": 122,
+      "ctr": 0.1721311475409836,
+      "position": 3.401639344262295,
+      "prevClicks": 22,
+      "delta": "-4.5%",
+      "current": {
+        "clicks": 21,
+        "impressions": 122,
+        "ctr": 0.1721311475409836,
+        "position": 3.401639344262295
+      },
+      "previous": {
+        "clicks": 22,
+        "impressions": 159,
+        "ctr": 0.13836477987421383,
+        "position": 3.849056603773585
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -37,
+        "ctr": 0.03376636766676977,
+        "position": -0.44741725951128997
+      },
+      "percentDelta": {
+        "clicks": -4.545454545454546,
+        "impressions": -23.270440251572328,
+        "ctr": 24.40387481371088,
+        "position": -11.624075859852141
+      }
+    },
+    {
+      "query": "verdad o reto juego online",
+      "clicks": 21,
+      "impressions": 58,
+      "ctr": 0.3620689655172414,
+      "position": 1.7413793103448276,
+      "prevClicks": 18,
+      "delta": "+16.7%",
+      "current": {
+        "clicks": 21,
+        "impressions": 58,
+        "ctr": 0.3620689655172414,
+        "position": 1.7413793103448276
+      },
+      "previous": {
+        "clicks": 18,
+        "impressions": 45,
+        "ctr": 0.4,
+        "position": 1.2222222222222223
+      },
+      "difference": {
+        "clicks": 3,
+        "impressions": 13,
+        "ctr": -0.03793103448275864,
+        "position": 0.5191570881226053
+      },
+      "percentDelta": {
+        "clicks": 16.666666666666664,
+        "impressions": 28.888888888888886,
+        "ctr": -9.48275862068966,
+        "position": 42.47648902821316
+      }
     },
     {
       "query": "juegos para tomar online",
-      "clicks": 23,
-      "impressions": 45,
-      "ctr": 0.5111111111111111,
-      "position": 3.8,
-      "prevClicks": 19
+      "clicks": 16,
+      "impressions": 33,
+      "ctr": 0.48484848484848486,
+      "position": 1.0606060606060606,
+      "prevClicks": 22,
+      "delta": "-27.3%",
+      "current": {
+        "clicks": 16,
+        "impressions": 33,
+        "ctr": 0.48484848484848486,
+        "position": 1.0606060606060606
+      },
+      "previous": {
+        "clicks": 22,
+        "impressions": 45,
+        "ctr": 0.4888888888888889,
+        "position": 3.8
+      },
+      "difference": {
+        "clicks": -6,
+        "impressions": -12,
+        "ctr": -0.004040404040404011,
+        "position": -2.7393939393939393
+      },
+      "percentDelta": {
+        "clicks": -27.27272727272727,
+        "impressions": -26.666666666666668,
+        "ctr": -0.8264462809917295,
+        "position": -72.08931419457734
+      }
+    },
+    {
+      "query": "verdad o reto picante",
+      "clicks": 15,
+      "impressions": 247,
+      "ctr": 0.06072874493927125,
+      "position": 7.886639676113361,
+      "prevClicks": 8,
+      "delta": "+87.5%",
+      "current": {
+        "clicks": 15,
+        "impressions": 247,
+        "ctr": 0.06072874493927125,
+        "position": 7.886639676113361
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 136,
+        "ctr": 0.058823529411764705,
+        "position": 9.639705882352942
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 111,
+        "ctr": 0.0019052155275065472,
+        "position": -1.7530662062395814
+      },
+      "percentDelta": {
+        "clicks": 87.5,
+        "impressions": 81.61764705882352,
+        "ctr": 3.23886639676113,
+        "position": -18.185888943446457
+      }
+    },
+    {
+      "query": "juegos de peda online",
+      "clicks": 15,
+      "impressions": 22,
+      "ctr": 0.6818181818181818,
+      "position": 1,
+      "prevClicks": 6,
+      "delta": "+150.0%",
+      "current": {
+        "clicks": 15,
+        "impressions": 22,
+        "ctr": 0.6818181818181818,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 9,
+        "ctr": 0.6666666666666666,
+        "position": 1
+      },
+      "difference": {
+        "clicks": 9,
+        "impressions": 13,
+        "ctr": 0.015151515151515138,
+        "position": 0
+      },
+      "percentDelta": {
+        "clicks": 150,
+        "impressions": 144.44444444444443,
+        "ctr": 2.2727272727272707,
+        "position": 0
+      }
+    },
+    {
+      "query": "juego de verdad o reto",
+      "clicks": 13,
+      "impressions": 182,
+      "ctr": 0.07142857142857142,
+      "position": 6.214285714285714,
+      "prevClicks": 12,
+      "delta": "+8.3%",
+      "current": {
+        "clicks": 13,
+        "impressions": 182,
+        "ctr": 0.07142857142857142,
+        "position": 6.214285714285714
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 196,
+        "ctr": 0.061224489795918366,
+        "position": 6.081632653061225
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -14,
+        "ctr": 0.010204081632653059,
+        "position": 0.13265306122448983
+      },
+      "percentDelta": {
+        "clicks": 8.333333333333332,
+        "impressions": -7.142857142857142,
+        "ctr": 16.666666666666664,
+        "position": 2.1812080536912757
+      }
+    },
+    {
+      "query": "beber games",
+      "clicks": 13,
+      "impressions": 16,
+      "ctr": 0.8125,
+      "position": 1,
+      "prevClicks": 10,
+      "delta": "+30.0%",
+      "current": {
+        "clicks": 13,
+        "impressions": 16,
+        "ctr": 0.8125,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 10,
+        "impressions": 14,
+        "ctr": 0.7142857142857143,
+        "position": 1
+      },
+      "difference": {
+        "clicks": 3,
+        "impressions": 2,
+        "ctr": 0.0982142857142857,
+        "position": 0
+      },
+      "percentDelta": {
+        "clicks": 30,
+        "impressions": 14.285714285714285,
+        "ctr": 13.749999999999998,
+        "position": 0
+      }
     },
     {
       "query": "juegos para tomar con amigos",
-      "clicks": 19,
-      "impressions": 352,
-      "ctr": 0.05397727272727273,
-      "position": 4.616477272727273,
-      "prevClicks": 18
+      "clicks": 12,
+      "impressions": 246,
+      "ctr": 0.04878048780487805,
+      "position": 5.479674796747967,
+      "prevClicks": 19,
+      "delta": "-36.8%",
+      "current": {
+        "clicks": 12,
+        "impressions": 246,
+        "ctr": 0.04878048780487805,
+        "position": 5.479674796747967
+      },
+      "previous": {
+        "clicks": 19,
+        "impressions": 302,
+        "ctr": 0.06291390728476821,
+        "position": 4.3509933774834435
+      },
+      "difference": {
+        "clicks": -7,
+        "impressions": -56,
+        "ctr": -0.014133419479890164,
+        "position": 1.1286814192645238
+      },
+      "percentDelta": {
+        "clicks": -36.84210526315789,
+        "impressions": -18.543046357615893,
+        "ctr": -22.464698331193837,
+        "position": 25.94077538948906
+      }
+    },
+    {
+      "query": "juegos de beber con amigos",
+      "clicks": 11,
+      "impressions": 105,
+      "ctr": 0.10476190476190476,
+      "position": 5.304761904761905,
+      "prevClicks": 7,
+      "delta": "+57.1%",
+      "current": {
+        "clicks": 11,
+        "impressions": 105,
+        "ctr": 0.10476190476190476,
+        "position": 5.304761904761905
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 86,
+        "ctr": 0.08139534883720931,
+        "position": 4.848837209302326
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": 19,
+        "ctr": 0.023366555924695456,
+        "position": 0.45592469545957837
+      },
+      "percentDelta": {
+        "clicks": 57.14285714285714,
+        "impressions": 22.093023255813954,
+        "ctr": 28.707482993197274,
+        "position": 9.402763503482909
+      }
+    },
+    {
+      "query": "ruleta de retos para tomar",
+      "clicks": 11,
+      "impressions": 15,
+      "ctr": 0.7333333333333333,
+      "position": 1.5333333333333332,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 11,
+        "impressions": 15,
+        "ctr": 0.7333333333333333,
+        "position": 1.5333333333333332
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 11,
+        "impressions": 15,
+        "ctr": 0.7333333333333333,
+        "position": 1.5333333333333332
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "juegos de beber online",
+      "clicks": 9,
+      "impressions": 73,
+      "ctr": 0.1232876712328767,
+      "position": 32.671232876712324,
+      "prevClicks": 9,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 9,
+        "impressions": 73,
+        "ctr": 0.1232876712328767,
+        "position": 32.671232876712324
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 91,
+        "ctr": 0.0989010989010989,
+        "position": 31.67032967032967
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -18,
+        "ctr": 0.02438657233177781,
+        "position": 1.0009032063826524
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -19.78021978021978,
+        "ctr": 24.65753424657534,
+        "position": 3.1603813941992147
+      }
+    },
+    {
+      "query": "juego beber",
+      "clicks": 9,
+      "impressions": 28,
+      "ctr": 0.32142857142857145,
+      "position": 2.357142857142857,
+      "prevClicks": 12,
+      "delta": "-25.0%",
+      "current": {
+        "clicks": 9,
+        "impressions": 28,
+        "ctr": 0.32142857142857145,
+        "position": 2.357142857142857
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 39,
+        "ctr": 0.3076923076923077,
+        "position": 3.230769230769231
+      },
+      "difference": {
+        "clicks": -3,
+        "impressions": -11,
+        "ctr": 0.013736263736263743,
+        "position": -0.8736263736263736
+      },
+      "percentDelta": {
+        "clicks": -25,
+        "impressions": -28.205128205128204,
+        "ctr": 4.464285714285716,
+        "position": -27.040816326530614
+      }
+    },
+    {
+      "query": "ruleta para beber online",
+      "clicks": 9,
+      "impressions": 19,
+      "ctr": 0.47368421052631576,
+      "position": 1,
+      "prevClicks": 6,
+      "delta": "+50.0%",
+      "current": {
+        "clicks": 9,
+        "impressions": 19,
+        "ctr": 0.47368421052631576,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 10,
+        "ctr": 0.6,
+        "position": 1.1
+      },
+      "difference": {
+        "clicks": 3,
+        "impressions": 9,
+        "ctr": -0.12631578947368421,
+        "position": -0.10000000000000009
+      },
+      "percentDelta": {
+        "clicks": 50,
+        "impressions": 90,
+        "ctr": -21.05263157894737,
+        "position": -9.090909090909099
+      }
+    },
+    {
+      "query": "preguntas picantes para verdad o reto",
+      "clicks": 8,
+      "impressions": 420,
+      "ctr": 0.01904761904761905,
+      "position": 7.673809523809524,
+      "prevClicks": 13,
+      "delta": "-38.5%",
+      "current": {
+        "clicks": 8,
+        "impressions": 420,
+        "ctr": 0.01904761904761905,
+        "position": 7.673809523809524
+      },
+      "previous": {
+        "clicks": 13,
+        "impressions": 396,
+        "ctr": 0.03282828282828283,
+        "position": 7.638888888888889
+      },
+      "difference": {
+        "clicks": -5,
+        "impressions": 24,
+        "ctr": -0.013780663780663782,
+        "position": 0.0349206349206348
+      },
+      "percentDelta": {
+        "clicks": -38.46153846153847,
+        "impressions": 6.0606060606060606,
+        "ctr": -41.97802197802198,
+        "position": 0.4571428571428555
+      }
+    },
+    {
+      "query": "rey de copas game",
+      "clicks": 8,
+      "impressions": 124,
+      "ctr": 0.06451612903225806,
+      "position": 6.895161290322581,
+      "prevClicks": 40,
+      "delta": "-80.0%",
+      "current": {
+        "clicks": 8,
+        "impressions": 124,
+        "ctr": 0.06451612903225806,
+        "position": 6.895161290322581
+      },
+      "previous": {
+        "clicks": 40,
+        "impressions": 179,
+        "ctr": 0.22346368715083798,
+        "position": 4.675977653631285
+      },
+      "difference": {
+        "clicks": -32,
+        "impressions": -55,
+        "ctr": -0.1589475581185799,
+        "position": 2.2191836366912963
+      },
+      "percentDelta": {
+        "clicks": -80,
+        "impressions": -30.726256983240223,
+        "ctr": -71.12903225806451,
+        "position": 47.459243843218886
+      }
     },
     {
       "query": "juego para beber",
-      "clicks": 17,
-      "impressions": 98,
-      "ctr": 0.17346938775510204,
-      "position": 3.4285714285714284,
-      "prevClicks": 20
+      "clicks": 8,
+      "impressions": 80,
+      "ctr": 0.1,
+      "position": 3.275,
+      "prevClicks": 21,
+      "delta": "-61.9%",
+      "current": {
+        "clicks": 8,
+        "impressions": 80,
+        "ctr": 0.1,
+        "position": 3.275
+      },
+      "previous": {
+        "clicks": 21,
+        "impressions": 98,
+        "ctr": 0.21428571428571427,
+        "position": 3.520408163265306
+      },
+      "difference": {
+        "clicks": -13,
+        "impressions": -18,
+        "ctr": -0.11428571428571427,
+        "position": -0.245408163265306
+      },
+      "percentDelta": {
+        "clicks": -61.904761904761905,
+        "impressions": -18.367346938775512,
+        "ctr": -53.333333333333336,
+        "position": -6.97101449275362
+      }
+    },
+    {
+      "query": "verdad o reto juego picante premium",
+      "clicks": 8,
+      "impressions": 35,
+      "ctr": 0.22857142857142856,
+      "position": 3.6285714285714286,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 8,
+        "impressions": 35,
+        "ctr": 0.22857142857142856,
+        "position": 3.6285714285714286
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 8,
+        "impressions": 35,
+        "ctr": 0.22857142857142856,
+        "position": 3.6285714285714286
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "verdad o reto preguntas online",
+      "clicks": 8,
+      "impressions": 24,
+      "ctr": 0.3333333333333333,
+      "position": 2.041666666666667,
+      "prevClicks": 10,
+      "delta": "-20.0%",
+      "current": {
+        "clicks": 8,
+        "impressions": 24,
+        "ctr": 0.3333333333333333,
+        "position": 2.041666666666667
+      },
+      "previous": {
+        "clicks": 10,
+        "impressions": 20,
+        "ctr": 0.5,
+        "position": 1.4
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 4,
+        "ctr": -0.16666666666666669,
+        "position": 0.641666666666667
+      },
+      "percentDelta": {
+        "clicks": -20,
+        "impressions": 20,
+        "ctr": -33.333333333333336,
+        "position": 45.833333333333364
+      }
+    },
+    {
+      "query": "juegos para beber online gratis",
+      "clicks": 8,
+      "impressions": 16,
+      "ctr": 0.5,
+      "position": 1.1875,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 8,
+        "impressions": 16,
+        "ctr": 0.5,
+        "position": 1.1875
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 8,
+        "impressions": 16,
+        "ctr": 0.5,
+        "position": 1.1875
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "reto o verdad",
+      "clicks": 7,
+      "impressions": 163,
+      "ctr": 0.04294478527607362,
+      "position": 7.607361963190184,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 7,
+        "impressions": 163,
+        "ctr": 0.04294478527607362,
+        "position": 7.607361963190184
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 163,
+        "ctr": 0.04294478527607362,
+        "position": 7.607361963190184
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "juegos para borrachos",
+      "clicks": 7,
+      "impressions": 136,
+      "ctr": 0.051470588235294115,
+      "position": 6.161764705882353,
+      "prevClicks": 6,
+      "delta": "+16.7%",
+      "current": {
+        "clicks": 7,
+        "impressions": 136,
+        "ctr": 0.051470588235294115,
+        "position": 6.161764705882353
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 119,
+        "ctr": 0.05042016806722689,
+        "position": 7.932773109243698
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 17,
+        "ctr": 0.0010504201680672232,
+        "position": -1.7710084033613445
+      },
+      "percentDelta": {
+        "clicks": 16.666666666666664,
+        "impressions": 14.285714285714285,
+        "ctr": 2.083333333333326,
+        "position": -22.32521186440678
+      }
+    },
+    {
+      "query": "juego verdad o reto",
+      "clicks": 7,
+      "impressions": 113,
+      "ctr": 0.061946902654867256,
+      "position": 6.477876106194691,
+      "prevClicks": 7,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 7,
+        "impressions": 113,
+        "ctr": 0.061946902654867256,
+        "position": 6.477876106194691
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 198,
+        "ctr": 0.03535353535353535,
+        "position": 6.121212121212121
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -85,
+        "ctr": 0.026593367301331904,
+        "position": 0.35666398498256946
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -42.92929292929293,
+        "ctr": 75.2212389380531,
+        "position": 5.82668886357663
+      }
+    },
+    {
+      "query": "verdad o reto +18",
+      "clicks": 7,
+      "impressions": 87,
+      "ctr": 0.08045977011494253,
+      "position": 6.206896551724138,
+      "prevClicks": 6,
+      "delta": "+16.7%",
+      "current": {
+        "clicks": 7,
+        "impressions": 87,
+        "ctr": 0.08045977011494253,
+        "position": 6.206896551724138
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 61,
+        "ctr": 0.09836065573770492,
+        "position": 5.524590163934426
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 26,
+        "ctr": -0.01790088562276239,
+        "position": 0.682306387789712
+      },
+      "percentDelta": {
+        "clicks": 16.666666666666664,
+        "impressions": 42.62295081967213,
+        "ctr": -18.199233716475096,
+        "position": 12.350353013404284
+      }
+    },
+    {
+      "query": "juegos de tomar",
+      "clicks": 7,
+      "impressions": 77,
+      "ctr": 0.09090909090909091,
+      "position": 4.454545454545455,
+      "prevClicks": 8,
+      "delta": "-12.5%",
+      "current": {
+        "clicks": 7,
+        "impressions": 77,
+        "ctr": 0.09090909090909091,
+        "position": 4.454545454545455
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 73,
+        "ctr": 0.1095890410958904,
+        "position": 4.506849315068493
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": 4,
+        "ctr": -0.018679950186799493,
+        "position": -0.052303860523037926
+      },
+      "percentDelta": {
+        "clicks": -12.5,
+        "impressions": 5.47945205479452,
+        "ctr": -17.04545454545454,
+        "position": -1.160541586073486
+      }
+    },
+    {
+      "query": "preguntas para beber",
+      "clicks": 7,
+      "impressions": 66,
+      "ctr": 0.10606060606060606,
+      "position": 4.045454545454545,
+      "prevClicks": 7,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 7,
+        "impressions": 66,
+        "ctr": 0.10606060606060606,
+        "position": 4.045454545454545
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 73,
+        "ctr": 0.0958904109589041,
+        "position": 5.698630136986301
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -7,
+        "ctr": 0.01017019510170196,
+        "position": -1.653175591531756
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -9.58904109589041,
+        "ctr": 10.606060606060614,
+        "position": -29.010052447552454
+      }
+    },
+    {
+      "query": "juegos para tomar en grupo",
+      "clicks": 7,
+      "impressions": 59,
+      "ctr": 0.11864406779661017,
+      "position": 3.9491525423728815,
+      "prevClicks": 12,
+      "delta": "-41.7%",
+      "current": {
+        "clicks": 7,
+        "impressions": 59,
+        "ctr": 0.11864406779661017,
+        "position": 3.9491525423728815
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 53,
+        "ctr": 0.22641509433962265,
+        "position": 3.452830188679245
+      },
+      "difference": {
+        "clicks": -5,
+        "impressions": 6,
+        "ctr": -0.10777102654301247,
+        "position": 0.4963223536936363
+      },
+      "percentDelta": {
+        "clicks": -41.66666666666667,
+        "impressions": 11.320754716981133,
+        "ctr": -47.59887005649717,
+        "position": 14.37436324905067
+      }
+    },
+    {
+      "query": "piramide juego de beber",
+      "clicks": 7,
+      "impressions": 33,
+      "ctr": 0.21212121212121213,
+      "position": 4.121212121212121,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 7,
+        "impressions": 33,
+        "ctr": 0.21212121212121213,
+        "position": 4.121212121212121
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 33,
+        "ctr": 0.21212121212121213,
+        "position": 4.121212121212121
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "verdad o reto juego gratis",
+      "clicks": 7,
+      "impressions": 18,
+      "ctr": 0.3888888888888889,
+      "position": 2.166666666666667,
+      "prevClicks": 9,
+      "delta": "-22.2%",
+      "current": {
+        "clicks": 7,
+        "impressions": 18,
+        "ctr": 0.3888888888888889,
+        "position": 2.166666666666667
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 21,
+        "ctr": 0.42857142857142855,
+        "position": 1.9523809523809523
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -3,
+        "ctr": -0.03968253968253965,
+        "position": 0.21428571428571463
+      },
+      "percentDelta": {
+        "clicks": -22.22222222222222,
+        "impressions": -14.285714285714285,
+        "ctr": -9.259259259259252,
+        "position": 10.97560975609758
+      }
+    },
+    {
+      "query": "juego de beber online",
+      "clicks": 7,
+      "impressions": 17,
+      "ctr": 0.4117647058823529,
+      "position": 1.0588235294117647,
+      "prevClicks": 7,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 7,
+        "impressions": 17,
+        "ctr": 0.4117647058823529,
+        "position": 1.0588235294117647
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 20,
+        "ctr": 0.35,
+        "position": 1.1
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -3,
+        "ctr": 0.061764705882352944,
+        "position": -0.04117647058823537
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -15,
+        "ctr": 17.647058823529413,
+        "position": -3.743315508021397
+      }
+    },
+    {
+      "query": "verdad o reto en linea",
+      "clicks": 7,
+      "impressions": 14,
+      "ctr": 0.5,
+      "position": 1.7857142857142856,
+      "prevClicks": 9,
+      "delta": "-22.2%",
+      "current": {
+        "clicks": 7,
+        "impressions": 14,
+        "ctr": 0.5,
+        "position": 1.7857142857142856
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 20,
+        "ctr": 0.45,
+        "position": 1.55
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -6,
+        "ctr": 0.04999999999999999,
+        "position": 0.23571428571428554
+      },
+      "percentDelta": {
+        "clicks": -22.22222222222222,
+        "impressions": -30,
+        "ctr": 11.111111111111107,
+        "position": 15.207373271889391
+      }
+    },
+    {
+      "query": "juego para beber online",
+      "clicks": 7,
+      "impressions": 11,
+      "ctr": 0.6363636363636364,
+      "position": 1,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 7,
+        "impressions": 11,
+        "ctr": 0.6363636363636364,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 11,
+        "ctr": 0.6363636363636364,
+        "position": 1
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "juegos para beber en pareja",
+      "clicks": 6,
+      "impressions": 91,
+      "ctr": 0.06593406593406594,
+      "position": 6.538461538461538,
+      "prevClicks": 11,
+      "delta": "-45.5%",
+      "current": {
+        "clicks": 6,
+        "impressions": 91,
+        "ctr": 0.06593406593406594,
+        "position": 6.538461538461538
+      },
+      "previous": {
+        "clicks": 11,
+        "impressions": 88,
+        "ctr": 0.125,
+        "position": 6.465909090909091
+      },
+      "difference": {
+        "clicks": -5,
+        "impressions": 3,
+        "ctr": -0.059065934065934064,
+        "position": 0.0725524475524475
+      },
+      "percentDelta": {
+        "clicks": -45.45454545454545,
+        "impressions": 3.4090909090909087,
+        "ctr": -47.25274725274725,
+        "position": 1.1220765175070968
+      }
+    },
+    {
+      "query": "juego para tomar",
+      "clicks": 6,
+      "impressions": 86,
+      "ctr": 0.06976744186046512,
+      "position": 4.279069767441861,
+      "prevClicks": 8,
+      "delta": "-25.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 86,
+        "ctr": 0.06976744186046512,
+        "position": 4.279069767441861
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 97,
+        "ctr": 0.08247422680412371,
+        "position": 4.927835051546392
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -11,
+        "ctr": -0.012706784943658594,
+        "position": -0.648765284104531
+      },
+      "percentDelta": {
+        "clicks": -25,
+        "impressions": -11.34020618556701,
+        "ctr": -15.406976744186046,
+        "position": -13.165320618857637
+      }
+    },
+    {
+      "query": "juegos beber",
+      "clicks": 6,
+      "impressions": 72,
+      "ctr": 0.08333333333333333,
+      "position": 3.0694444444444446,
+      "prevClicks": 8,
+      "delta": "-25.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 72,
+        "ctr": 0.08333333333333333,
+        "position": 3.0694444444444446
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 62,
+        "ctr": 0.12903225806451613,
+        "position": 2.629032258064516
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 10,
+        "ctr": -0.0456989247311828,
+        "position": 0.4404121863799286
+      },
+      "percentDelta": {
+        "clicks": -25,
+        "impressions": 16.129032258064516,
+        "ctr": -35.41666666666667,
+        "position": 16.751874573960475
+      }
+    },
+    {
+      "query": "juegos para tomar en pareja online",
+      "clicks": 6,
+      "impressions": 12,
+      "ctr": 0.5,
+      "position": 1.1666666666666667,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 6,
+        "impressions": 12,
+        "ctr": 0.5,
+        "position": 1.1666666666666667
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 6,
+        "impressions": 12,
+        "ctr": 0.5,
+        "position": 1.1666666666666667
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "juegos para tomar shots",
+      "clicks": 5,
+      "impressions": 187,
+      "ctr": 0.026737967914438502,
+      "position": 7.572192513368984,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 5,
+        "impressions": 187,
+        "ctr": 0.026737967914438502,
+        "position": 7.572192513368984
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 187,
+        "ctr": 0.026737967914438502,
+        "position": 7.572192513368984
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "juegos de verdad o reto",
+      "clicks": 5,
+      "impressions": 150,
+      "ctr": 0.03333333333333333,
+      "position": 6.013333333333334,
+      "prevClicks": 7,
+      "delta": "-28.6%",
+      "current": {
+        "clicks": 5,
+        "impressions": 150,
+        "ctr": 0.03333333333333333,
+        "position": 6.013333333333334
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 148,
+        "ctr": 0.0472972972972973,
+        "position": 5.22972972972973
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 2,
+        "ctr": -0.013963963963963967,
+        "position": 0.7836036036036038
+      },
+      "percentDelta": {
+        "clicks": -28.57142857142857,
+        "impressions": 1.3513513513513513,
+        "ctr": -29.52380952380953,
+        "position": 14.98363479758829
+      }
+    },
+    {
+      "query": "juegos de previa",
+      "clicks": 5,
+      "impressions": 75,
+      "ctr": 0.06666666666666667,
+      "position": 4.533333333333333,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 5,
+        "impressions": 75,
+        "ctr": 0.06666666666666667,
+        "position": 4.533333333333333
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 75,
+        "ctr": 0.06666666666666667,
+        "position": 4.533333333333333
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "query": "juegos verdad o reto",
+      "clicks": 5,
+      "impressions": 55,
+      "ctr": 0.09090909090909091,
+      "position": 5.5636363636363635,
+      "prevClicks": 6,
+      "delta": "-16.7%",
+      "current": {
+        "clicks": 5,
+        "impressions": 55,
+        "ctr": 0.09090909090909091,
+        "position": 5.5636363636363635
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 47,
+        "ctr": 0.1276595744680851,
+        "position": 5.617021276595745
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": 8,
+        "ctr": -0.036750483558994185,
+        "position": -0.0533849129593813
+      },
+      "percentDelta": {
+        "clicks": -16.666666666666664,
+        "impressions": 17.02127659574468,
+        "ctr": -28.78787878787878,
+        "position": -0.9504132231405005
+      }
+    },
+    {
+      "query": "a beber: juegos para tomar",
+      "clicks": 5,
+      "impressions": 38,
+      "ctr": 0.13157894736842105,
+      "position": 5.921052631578948,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 5,
+        "impressions": 38,
+        "ctr": 0.13157894736842105,
+        "position": 5.921052631578948
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 38,
+        "ctr": 0.13157894736842105,
+        "position": 5.921052631578948
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
     }
   ],
   "topPages": [
     {
-      "url": "/juegos/verdad-o-reto",
-      "clicks": 1146,
-      "impressions": 17676,
-      "delta": "+23.6% 🟢"
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 880,
+      "impressions": 13800,
+      "ctr": 0.06376811594202898,
+      "position": 6.383115942028986,
+      "prevClicks": 987,
+      "delta": "-10.8%",
+      "current": {
+        "clicks": 880,
+        "impressions": 13800,
+        "ctr": 0.06376811594202898,
+        "position": 6.383115942028986
+      },
+      "previous": {
+        "clicks": 987,
+        "impressions": 15361,
+        "ctr": 0.06425362932100774,
+        "position": 6.1343011522687325
+      },
+      "difference": {
+        "clicks": -107,
+        "impressions": -1561,
+        "ctr": -0.000485513378978758,
+        "position": 0.24881478976025306
+      },
+      "percentDelta": {
+        "clicks": -10.840932117527863,
+        "impressions": -10.162098821691295,
+        "ctr": -0.7556201635757551,
+        "position": 4.05612283427315
+      },
+      "url": "/juegos/verdad-o-reto"
     },
     {
-      "url": "/",
-      "clicks": 1096,
-      "impressions": 10942,
-      "delta": "+15.0% 🟢"
+      "page": "/",
+      "clicks": 841,
+      "impressions": 8681,
+      "ctr": 0.0968782398341205,
+      "position": 6.600852436355258,
+      "prevClicks": 893,
+      "delta": "-5.8%",
+      "current": {
+        "clicks": 841,
+        "impressions": 8681,
+        "ctr": 0.0968782398341205,
+        "position": 6.600852436355258
+      },
+      "previous": {
+        "clicks": 893,
+        "impressions": 8661,
+        "ctr": 0.1031058769195243,
+        "position": 6.43747835122965
+      },
+      "difference": {
+        "clicks": -52,
+        "impressions": 20,
+        "ctr": -0.006227637085403803,
+        "position": 0.16337408512560803
+      },
+      "percentDelta": {
+        "clicks": -5.823068309070549,
+        "impressions": 0.23092021706500404,
+        "ctr": -6.040040850692311,
+        "position": 2.5378584006329317
+      },
+      "url": "/"
     },
     {
-      "url": "/juegos/la-ruleta",
-      "clicks": 217,
-      "impressions": 5047,
-      "delta": "+34.0% 🟢"
+      "page": "/juegos/la-ruleta",
+      "clicks": 165,
+      "impressions": 4061,
+      "ctr": 0.04063038660428466,
+      "position": 10.102930312730855,
+      "prevClicks": 163,
+      "delta": "+1.2%",
+      "current": {
+        "clicks": 165,
+        "impressions": 4061,
+        "ctr": 0.04063038660428466,
+        "position": 10.102930312730855
+      },
+      "previous": {
+        "clicks": 163,
+        "impressions": 4451,
+        "ctr": 0.03662098404852842,
+        "position": 10.378791282857785
+      },
+      "difference": {
+        "clicks": 2,
+        "impressions": -390,
+        "ctr": 0.004009402555756242,
+        "position": -0.27586097012692967
+      },
+      "percentDelta": {
+        "clicks": 1.2269938650306749,
+        "impressions": -8.762075937991462,
+        "ctr": 10.948374709000634,
+        "position": -2.657929643334843
+      },
+      "url": "/juegos/la-ruleta"
     },
     {
-      "url": "/juegos",
-      "clicks": 193,
-      "impressions": 2921,
-      "delta": "+28.7% 🟢"
+      "page": "/juegos",
+      "clicks": 157,
+      "impressions": 2974,
+      "ctr": 0.05279085406859448,
+      "position": 6.540685944855413,
+      "prevClicks": 152,
+      "delta": "+3.3%",
+      "current": {
+        "clicks": 157,
+        "impressions": 2974,
+        "ctr": 0.05279085406859448,
+        "position": 6.540685944855413
+      },
+      "previous": {
+        "clicks": 152,
+        "impressions": 2381,
+        "ctr": 0.06383872322553549,
+        "position": 6.125997480050399
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 593,
+        "ctr": -0.01104786915694101,
+        "position": 0.414688464805014
+      },
+      "percentDelta": {
+        "clicks": 3.289473684210526,
+        "impressions": 24.9055018899622,
+        "ctr": -17.305905567550358,
+        "position": 6.769321504872742
+      },
+      "url": "/juegos"
     },
     {
-      "url": "/blog/preguntas-picantes-verdad-o-reto",
-      "clicks": 99,
-      "impressions": 3065,
-      "delta": "+54.7% 🟢"
+      "page": "/blog/preguntas-picantes-verdad-o-reto",
+      "clicks": 91,
+      "impressions": 2709,
+      "ctr": 0.03359173126614987,
+      "position": 8.872277593207826,
+      "prevClicks": 72,
+      "delta": "+26.4%",
+      "current": {
+        "clicks": 91,
+        "impressions": 2709,
+        "ctr": 0.03359173126614987,
+        "position": 8.872277593207826
+      },
+      "previous": {
+        "clicks": 72,
+        "impressions": 2524,
+        "ctr": 0.028526148969889066,
+        "position": 8.990887480190175
+      },
+      "difference": {
+        "clicks": 19,
+        "impressions": 185,
+        "ctr": 0.005065582296260807,
+        "position": -0.1186098869823482
+      },
+      "percentDelta": {
+        "clicks": 26.38888888888889,
+        "impressions": 7.3296354992076065,
+        "ctr": 17.75768016078094,
+        "position": -1.3192233496824874
+      },
+      "url": "/blog/preguntas-picantes-verdad-o-reto"
     },
     {
-      "url": "/juegos/categorias/preguntas",
-      "clicks": 73,
-      "impressions": 867,
-      "delta": "+55.3% 🟢"
+      "page": "/juegos/categorias/preguntas",
+      "clicks": 78,
+      "impressions": 738,
+      "ctr": 0.10569105691056911,
+      "position": 4.918699186991869,
+      "prevClicks": 50,
+      "delta": "+56.0%",
+      "current": {
+        "clicks": 78,
+        "impressions": 738,
+        "ctr": 0.10569105691056911,
+        "position": 4.918699186991869
+      },
+      "previous": {
+        "clicks": 50,
+        "impressions": 669,
+        "ctr": 0.07473841554559044,
+        "position": 4.920777279521674
+      },
+      "difference": {
+        "clicks": 28,
+        "impressions": 69,
+        "ctr": 0.030952641364978675,
+        "position": -0.0020780925298051756
+      },
+      "percentDelta": {
+        "clicks": 56.00000000000001,
+        "impressions": 10.31390134529148,
+        "ctr": 41.41463414634147,
+        "position": -0.04223098124057298
+      },
+      "url": "/juegos/categorias/preguntas"
     },
     {
-      "url": "/juegos/quien-es-mas-probable",
-      "clicks": 65,
-      "impressions": 1060,
-      "delta": "+1.6% 🟢"
+      "page": "/juegos/quien-es-mas-probable",
+      "clicks": 74,
+      "impressions": 669,
+      "ctr": 0.11061285500747384,
+      "position": 6.20627802690583,
+      "prevClicks": 50,
+      "delta": "+48.0%",
+      "current": {
+        "clicks": 74,
+        "impressions": 669,
+        "ctr": 0.11061285500747384,
+        "position": 6.20627802690583
+      },
+      "previous": {
+        "clicks": 50,
+        "impressions": 935,
+        "ctr": 0.053475935828877004,
+        "position": 7.531550802139037
+      },
+      "difference": {
+        "clicks": 24,
+        "impressions": -266,
+        "ctr": 0.05713691917859683,
+        "position": -1.3252727752332074
+      },
+      "percentDelta": {
+        "clicks": 48,
+        "impressions": -28.449197860962567,
+        "ctr": 106.84603886397608,
+        "position": -17.596280102854998
+      },
+      "url": "/juegos/quien-es-mas-probable"
     },
     {
-      "url": "/juegos/la-piramide",
-      "clicks": 63,
-      "impressions": 812,
-      "delta": "+117.2% 🟢"
+      "page": "/juegos/la-piramide",
+      "clicks": 52,
+      "impressions": 610,
+      "ctr": 0.08524590163934426,
+      "position": 7.077049180327869,
+      "prevClicks": 38,
+      "delta": "+36.8%",
+      "current": {
+        "clicks": 52,
+        "impressions": 610,
+        "ctr": 0.08524590163934426,
+        "position": 7.077049180327869
+      },
+      "previous": {
+        "clicks": 38,
+        "impressions": 679,
+        "ctr": 0.055964653902798235,
+        "position": 6.310751104565537
+      },
+      "difference": {
+        "clicks": 14,
+        "impressions": -69,
+        "ctr": 0.029281247736546022,
+        "position": 0.7662980757623314
+      },
+      "percentDelta": {
+        "clicks": 36.84210526315789,
+        "impressions": -10.1620029455081,
+        "ctr": 52.320966350301966,
+        "position": 12.142739636934028
+      },
+      "url": "/juegos/la-piramide"
     },
     {
-      "url": "/blog/rey-de-la-copa-reglas",
-      "clicks": 60,
-      "impressions": 1665,
-      "delta": "-20.0% 🔴"
-    },
-    {
-      "url": "/blog/ring-of-fire-reglas-cartas",
-      "clicks": 46,
-      "impressions": 531,
-      "delta": "+31.4% 🟢"
-    },
-    {
-      "url": "/blog/juegos-para-beber-en-pareja",
-      "clicks": 44,
-      "impressions": 722,
-      "delta": "+63.0% 🟢"
-    },
-    {
-      "url": "/juegos/rey-de-la-copa",
-      "clicks": 38,
-      "impressions": 392,
-      "delta": "-50.6% 🔴"
-    },
-    {
-      "url": "/blog/retos-para-fiestas",
+      "page": "/blog/juegos-para-beber-con-dados",
       "clicks": 36,
-      "impressions": 1928,
-      "delta": "+111.8% 🟢"
+      "impressions": 512,
+      "ctr": 0.0703125,
+      "position": 6.591796875,
+      "prevClicks": 12,
+      "delta": "+200.0%",
+      "current": {
+        "clicks": 36,
+        "impressions": 512,
+        "ctr": 0.0703125,
+        "position": 6.591796875
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 419,
+        "ctr": 0.028639618138424822,
+        "position": 6.782816229116945
+      },
+      "difference": {
+        "clicks": 24,
+        "impressions": 93,
+        "ctr": 0.04167288186157518,
+        "position": -0.19101935411694537
+      },
+      "percentDelta": {
+        "clicks": 200,
+        "impressions": 22.195704057279237,
+        "ctr": 145.5078125,
+        "position": -2.8162248196692508
+      },
+      "url": "/blog/juegos-para-beber-con-dados"
     },
     {
-      "url": "/juegos/la-bomba",
-      "clicks": 28,
-      "impressions": 700,
-      "delta": "+27.3% 🟢"
+      "page": "/blog/ring-of-fire-reglas-cartas",
+      "clicks": 34,
+      "impressions": 388,
+      "ctr": 0.08762886597938144,
+      "position": 4.623711340206185,
+      "prevClicks": 36,
+      "delta": "-5.6%",
+      "current": {
+        "clicks": 34,
+        "impressions": 388,
+        "ctr": 0.08762886597938144,
+        "position": 4.623711340206185
+      },
+      "previous": {
+        "clicks": 36,
+        "impressions": 453,
+        "ctr": 0.07947019867549669,
+        "position": 4.8719646799117
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -65,
+        "ctr": 0.008158667303884745,
+        "position": -0.24825333970551444
+      },
+      "percentDelta": {
+        "clicks": -5.555555555555555,
+        "impressions": -14.348785871964681,
+        "ctr": 10.26632302405497,
+        "position": -5.095548839447125
+      },
+      "url": "/blog/ring-of-fire-reglas-cartas"
     },
     {
-      "url": "/blog/juegos-para-beber-con-dados",
+      "page": "/blog/rey-de-la-copa-reglas",
+      "clicks": 32,
+      "impressions": 1149,
+      "ctr": 0.0278503046127067,
+      "position": 5.830287206266319,
+      "prevClicks": 80,
+      "delta": "-60.0%",
+      "current": {
+        "clicks": 32,
+        "impressions": 1149,
+        "ctr": 0.0278503046127067,
+        "position": 5.830287206266319
+      },
+      "previous": {
+        "clicks": 80,
+        "impressions": 1667,
+        "ctr": 0.04799040191961608,
+        "position": 5.964607078584283
+      },
+      "difference": {
+        "clicks": -48,
+        "impressions": -518,
+        "ctr": -0.02014009730690938,
+        "position": -0.13431987231796416
+      },
+      "percentDelta": {
+        "clicks": -60,
+        "impressions": -31.073785242951406,
+        "ctr": -41.966927763272416,
+        "position": -2.2519483772910216
+      },
+      "url": "/blog/rey-de-la-copa-reglas"
+    },
+    {
+      "page": "/blog/juegos-para-beber-en-pareja",
+      "clicks": 30,
+      "impressions": 496,
+      "ctr": 0.06048387096774194,
+      "position": 7.284274193548387,
+      "prevClicks": 33,
+      "delta": "-9.1%",
+      "current": {
+        "clicks": 30,
+        "impressions": 496,
+        "ctr": 0.06048387096774194,
+        "position": 7.284274193548387
+      },
+      "previous": {
+        "clicks": 33,
+        "impressions": 630,
+        "ctr": 0.05238095238095238,
+        "position": 7.987301587301587
+      },
+      "difference": {
+        "clicks": -3,
+        "impressions": -134,
+        "ctr": 0.008102918586789555,
+        "position": -0.7030273937532003
+      },
+      "percentDelta": {
+        "clicks": -9.090909090909092,
+        "impressions": -21.26984126984127,
+        "ctr": 15.469208211143695,
+        "position": -8.80181355454126
+      },
+      "url": "/blog/juegos-para-beber-en-pareja"
+    },
+    {
+      "page": "/juegos/yo-nunca",
       "clicks": 27,
-      "impressions": 561,
-      "delta": "+170.0% 🟢"
+      "impressions": 425,
+      "ctr": 0.06352941176470588,
+      "position": 7.28,
+      "prevClicks": 14,
+      "delta": "+92.9%",
+      "current": {
+        "clicks": 27,
+        "impressions": 425,
+        "ctr": 0.06352941176470588,
+        "position": 7.28
+      },
+      "previous": {
+        "clicks": 14,
+        "impressions": 273,
+        "ctr": 0.05128205128205128,
+        "position": 6.915750915750916
+      },
+      "difference": {
+        "clicks": 13,
+        "impressions": 152,
+        "ctr": 0.012247360482654596,
+        "position": 0.3642490842490842
+      },
+      "percentDelta": {
+        "clicks": 92.85714285714286,
+        "impressions": 55.67765567765568,
+        "ctr": 23.882352941176464,
+        "position": 5.266949152542372
+      },
+      "url": "/juegos/yo-nunca"
+    },
+    {
+      "page": "/juegos/rey-de-la-copa",
+      "clicks": 25,
+      "impressions": 324,
+      "ctr": 0.07716049382716049,
+      "position": 6.549382716049383,
+      "prevClicks": 97,
+      "delta": "-74.2%",
+      "current": {
+        "clicks": 25,
+        "impressions": 324,
+        "ctr": 0.07716049382716049,
+        "position": 6.549382716049383
+      },
+      "previous": {
+        "clicks": 97,
+        "impressions": 620,
+        "ctr": 0.15645161290322582,
+        "position": 5.753225806451613
+      },
+      "difference": {
+        "clicks": -72,
+        "impressions": -296,
+        "ctr": -0.07929111907606533,
+        "position": 0.7961569095977703
+      },
+      "percentDelta": {
+        "clicks": -74.22680412371135,
+        "impressions": -47.74193548387097,
+        "ctr": -50.68092147129949,
+        "position": 13.83844362070697
+      },
+      "url": "/juegos/rey-de-la-copa"
+    },
+    {
+      "page": "/blog/yo-prefiero-preguntas",
+      "clicks": 23,
+      "impressions": 572,
+      "ctr": 0.04020979020979021,
+      "position": 9.874125874125873,
+      "prevClicks": 15,
+      "delta": "+53.3%",
+      "current": {
+        "clicks": 23,
+        "impressions": 572,
+        "ctr": 0.04020979020979021,
+        "position": 9.874125874125873
+      },
+      "previous": {
+        "clicks": 15,
+        "impressions": 250,
+        "ctr": 0.06,
+        "position": 9.004
+      },
+      "difference": {
+        "clicks": 8,
+        "impressions": 322,
+        "ctr": -0.01979020979020979,
+        "position": 0.8701258741258737
+      },
+      "percentDelta": {
+        "clicks": 53.333333333333336,
+        "impressions": 128.8,
+        "ctr": -32.98368298368298,
+        "position": 9.663770259061238
+      },
+      "url": "/blog/yo-prefiero-preguntas"
+    },
+    {
+      "page": "/blog/retos-para-fiestas",
+      "clicks": 21,
+      "impressions": 1677,
+      "ctr": 0.012522361359570662,
+      "position": 8.286225402504472,
+      "prevClicks": 26,
+      "delta": "-19.2%",
+      "current": {
+        "clicks": 21,
+        "impressions": 1677,
+        "ctr": 0.012522361359570662,
+        "position": 8.286225402504472
+      },
+      "previous": {
+        "clicks": 26,
+        "impressions": 1413,
+        "ctr": 0.01840056617126681,
+        "position": 8.094833687190375
+      },
+      "difference": {
+        "clicks": -5,
+        "impressions": 264,
+        "ctr": -0.0058782048116961475,
+        "position": 0.19139171531409715
+      },
+      "percentDelta": {
+        "clicks": -19.230769230769234,
+        "impressions": 18.683651804670912,
+        "ctr": -31.94578230356406,
+        "position": 2.364368716023949
+      },
+      "url": "/blog/retos-para-fiestas"
+    },
+    {
+      "page": "/juegos/la-bomba",
+      "clicks": 20,
+      "impressions": 541,
+      "ctr": 0.036968576709796676,
+      "position": 7.094269870609981,
+      "prevClicks": 21,
+      "delta": "-4.8%",
+      "current": {
+        "clicks": 20,
+        "impressions": 541,
+        "ctr": 0.036968576709796676,
+        "position": 7.094269870609981
+      },
+      "previous": {
+        "clicks": 21,
+        "impressions": 524,
+        "ctr": 0.04007633587786259,
+        "position": 7.261450381679389
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": 17,
+        "ctr": -0.003107759168065917,
+        "position": -0.16718051106940823
+      },
+      "percentDelta": {
+        "clicks": -4.761904761904762,
+        "impressions": 3.2442748091603053,
+        "ctr": -7.754599066983527,
+        "position": -2.3023019132817324
+      },
+      "url": "/juegos/la-bomba"
+    },
+    {
+      "page": "/blog/juegos-beber-baraja-espanola",
+      "clicks": 15,
+      "impressions": 1023,
+      "ctr": 0.01466275659824047,
+      "position": 11.252199413489736,
+      "prevClicks": 7,
+      "delta": "+114.3%",
+      "current": {
+        "clicks": 15,
+        "impressions": 1023,
+        "ctr": 0.01466275659824047,
+        "position": 11.252199413489736
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 1348,
+        "ctr": 0.0051928783382789315,
+        "position": 15.10459940652819
+      },
+      "difference": {
+        "clicks": 8,
+        "impressions": -325,
+        "ctr": 0.00946987825996154,
+        "position": -3.8523999930384534
+      },
+      "percentDelta": {
+        "clicks": 114.28571428571428,
+        "impressions": -24.10979228486647,
+        "ctr": 182.3627984918308,
+        "position": -25.504814059308657
+      },
+      "url": "/blog/juegos-beber-baraja-espanola"
+    },
+    {
+      "page": "/juegos/triman",
+      "clicks": 14,
+      "impressions": 177,
+      "ctr": 0.07909604519774012,
+      "position": 3.463276836158192,
+      "prevClicks": 5,
+      "delta": "+180.0%",
+      "current": {
+        "clicks": 14,
+        "impressions": 177,
+        "ctr": 0.07909604519774012,
+        "position": 3.463276836158192
+      },
+      "previous": {
+        "clicks": 5,
+        "impressions": 162,
+        "ctr": 0.030864197530864196,
+        "position": 4.413580246913581
+      },
+      "difference": {
+        "clicks": 9,
+        "impressions": 15,
+        "ctr": 0.048231847666875924,
+        "position": -0.9503034107553887
+      },
+      "percentDelta": {
+        "clicks": 180,
+        "impressions": 9.25925925925926,
+        "ctr": 156.271186440678,
+        "position": -21.531350005926285
+      },
+      "url": "/juegos/triman"
+    },
+    {
+      "page": "/blog/juegos-para-beber-sin-cartas",
+      "clicks": 10,
+      "impressions": 279,
+      "ctr": 0.035842293906810034,
+      "position": 11.157706093189963,
+      "prevClicks": 10,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 10,
+        "impressions": 279,
+        "ctr": 0.035842293906810034,
+        "position": 11.157706093189963
+      },
+      "previous": {
+        "clicks": 10,
+        "impressions": 362,
+        "ctr": 0.027624309392265192,
+        "position": 14.265193370165745
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -83,
+        "ctr": 0.008217984514544842,
+        "position": -3.1074872769757818
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -22.92817679558011,
+        "ctr": 29.749103942652326,
+        "position": -21.78370244510521
+      },
+      "url": "/blog/juegos-para-beber-sin-cartas"
+    },
+    {
+      "page": "/blog/juegos-para-beber-con-cartas",
+      "clicks": 9,
+      "impressions": 435,
+      "ctr": 0.020689655172413793,
+      "position": 12.88735632183908,
+      "prevClicks": 3,
+      "delta": "+200.0%",
+      "current": {
+        "clicks": 9,
+        "impressions": 435,
+        "ctr": 0.020689655172413793,
+        "position": 12.88735632183908
+      },
+      "previous": {
+        "clicks": 3,
+        "impressions": 247,
+        "ctr": 0.012145748987854251,
+        "position": 22.31578947368421
+      },
+      "difference": {
+        "clicks": 6,
+        "impressions": 188,
+        "ctr": 0.008543906184559542,
+        "position": -9.428433151845129
+      },
+      "percentDelta": {
+        "clicks": 200,
+        "impressions": 76.11336032388664,
+        "ctr": 70.34482758620689,
+        "position": -42.25005421817393
+      },
+      "url": "/blog/juegos-para-beber-con-cartas"
+    },
+    {
+      "page": "/blog/los-20-mejores-juegos",
+      "clicks": 6,
+      "impressions": 255,
+      "ctr": 0.023529411764705882,
+      "position": 16.70980392156863,
+      "prevClicks": 2,
+      "delta": "+200.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 255,
+        "ctr": 0.023529411764705882,
+        "position": 16.70980392156863
+      },
+      "previous": {
+        "clicks": 2,
+        "impressions": 308,
+        "ctr": 0.006493506493506494,
+        "position": 22.82792207792208
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": -53,
+        "ctr": 0.017035905271199386,
+        "position": -6.11811815635345
+      },
+      "percentDelta": {
+        "clicks": 200,
+        "impressions": -17.20779220779221,
+        "ctr": 262.35294117647055,
+        "position": -26.801029613950544
+      },
+      "url": "/blog/los-20-mejores-juegos"
+    },
+    {
+      "page": "/juegos/triman/reglas",
+      "clicks": 4,
+      "impressions": 119,
+      "ctr": 0.03361344537815126,
+      "position": 5.840336134453781,
+      "prevClicks": 1,
+      "delta": "+300.0%",
+      "current": {
+        "clicks": 4,
+        "impressions": 119,
+        "ctr": 0.03361344537815126,
+        "position": 5.840336134453781
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 130,
+        "ctr": 0.007692307692307693,
+        "position": 5.915384615384616
+      },
+      "difference": {
+        "clicks": 3,
+        "impressions": -11,
+        "ctr": 0.025921137685843566,
+        "position": -0.0750484809308345
+      },
+      "percentDelta": {
+        "clicks": 300,
+        "impressions": -8.461538461538462,
+        "ctr": 336.97478991596637,
+        "position": -1.2686999377124166
+      },
+      "url": "/juegos/triman/reglas"
+    },
+    {
+      "page": "/blog/beer-pong-reglas-completas",
+      "clicks": 3,
+      "impressions": 897,
+      "ctr": 0.0033444816053511705,
+      "position": 9.588628762541806,
+      "prevClicks": 9,
+      "delta": "-66.7%",
+      "current": {
+        "clicks": 3,
+        "impressions": 897,
+        "ctr": 0.0033444816053511705,
+        "position": 9.588628762541806
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 347,
+        "ctr": 0.025936599423631124,
+        "position": 9.671469740634006
+      },
+      "difference": {
+        "clicks": -6,
+        "impressions": 550,
+        "ctr": -0.022592117818279953,
+        "position": -0.08284097809220015
+      },
+      "percentDelta": {
+        "clicks": -66.66666666666666,
+        "impressions": 158.5014409221902,
+        "ctr": -87.10516536603492,
+        "position": -0.856550041656539
+      },
+      "url": "/blog/beer-pong-reglas-completas"
+    },
+    {
+      "page": "/juegos/categorias/dados",
+      "clicks": 3,
+      "impressions": 133,
+      "ctr": 0.022556390977443608,
+      "position": 6.864661654135339,
+      "prevClicks": 1,
+      "delta": "+200.0%",
+      "current": {
+        "clicks": 3,
+        "impressions": 133,
+        "ctr": 0.022556390977443608,
+        "position": 6.864661654135339
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 139,
+        "ctr": 0.007194244604316547,
+        "position": 5.841726618705036
+      },
+      "difference": {
+        "clicks": 2,
+        "impressions": -6,
+        "ctr": 0.01536214637312706,
+        "position": 1.0229350354303026
+      },
+      "percentDelta": {
+        "clicks": 200,
+        "impressions": -4.316546762589928,
+        "ctr": 213.53383458646613,
+        "position": 17.510833734582768
+      },
+      "url": "/juegos/categorias/dados"
+    },
+    {
+      "page": "/blog/juegos-para-beber-sin-alcohol",
+      "clicks": 3,
+      "impressions": 91,
+      "ctr": 0.03296703296703297,
+      "position": 5.263736263736264,
+      "prevClicks": 3,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 3,
+        "impressions": 91,
+        "ctr": 0.03296703296703297,
+        "position": 5.263736263736264
+      },
+      "previous": {
+        "clicks": 3,
+        "impressions": 99,
+        "ctr": 0.030303030303030304,
+        "position": 5.363636363636363
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -8,
+        "ctr": 0.002664002664002664,
+        "position": -0.09990009990009963
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -8.080808080808081,
+        "ctr": 8.79120879120879,
+        "position": -1.8625442354255863
+      },
+      "url": "/blog/juegos-para-beber-sin-alcohol"
+    },
+    {
+      "page": "/blog/juegos-de-mesa-para-beber",
+      "clicks": 2,
+      "impressions": 174,
+      "ctr": 0.011494252873563218,
+      "position": 8.264367816091955,
+      "prevClicks": 4,
+      "delta": "-50.0%",
+      "current": {
+        "clicks": 2,
+        "impressions": 174,
+        "ctr": 0.011494252873563218,
+        "position": 8.264367816091955
+      },
+      "previous": {
+        "clicks": 4,
+        "impressions": 168,
+        "ctr": 0.023809523809523808,
+        "position": 8.720238095238095
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 6,
+        "ctr": -0.01231527093596059,
+        "position": -0.45587027914614
+      },
+      "percentDelta": {
+        "clicks": -50,
+        "impressions": 3.571428571428571,
+        "ctr": -51.724137931034484,
+        "position": -5.227727433211707
+      },
+      "url": "/blog/juegos-de-mesa-para-beber"
+    },
+    {
+      "page": "/juegos/ring-of-fire",
+      "clicks": 2,
+      "impressions": 131,
+      "ctr": 0.015267175572519083,
+      "position": 8.435114503816795,
+      "prevClicks": 6,
+      "delta": "-66.7%",
+      "current": {
+        "clicks": 2,
+        "impressions": 131,
+        "ctr": 0.015267175572519083,
+        "position": 8.435114503816795
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 229,
+        "ctr": 0.026200873362445413,
+        "position": 7.043668122270742
+      },
+      "difference": {
+        "clicks": -4,
+        "impressions": -98,
+        "ctr": -0.01093369778992633,
+        "position": 1.3914463815460527
+      },
+      "percentDelta": {
+        "clicks": -66.66666666666666,
+        "impressions": -42.79475982532751,
+        "ctr": -41.73027989821883,
+        "position": 19.754570450963797
+      },
+      "url": "/juegos/ring-of-fire"
+    },
+    {
+      "page": "/juegos/ring-of-fire/reglas",
+      "clicks": 2,
+      "impressions": 60,
+      "ctr": 0.03333333333333333,
+      "position": 10.483333333333333,
+      "prevClicks": 1,
+      "delta": "+100.0%",
+      "current": {
+        "clicks": 2,
+        "impressions": 60,
+        "ctr": 0.03333333333333333,
+        "position": 10.483333333333333
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 71,
+        "ctr": 0.014084507042253521,
+        "position": 12.070422535211268
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -11,
+        "ctr": 0.01924882629107981,
+        "position": -1.5870892018779355
+      },
+      "percentDelta": {
+        "clicks": 100,
+        "impressions": -15.492957746478872,
+        "ctr": 136.66666666666666,
+        "position": -13.148580318942054
+      },
+      "url": "/juegos/ring-of-fire/reglas"
+    },
+    {
+      "page": "/blog/juegos-para-previas",
+      "clicks": 2,
+      "impressions": 41,
+      "ctr": 0.04878048780487805,
+      "position": 6.146341463414634,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 2,
+        "impressions": 41,
+        "ctr": 0.04878048780487805,
+        "position": 6.146341463414634
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 7
+      },
+      "difference": {
+        "clicks": 2,
+        "impressions": 39,
+        "ctr": 0.04878048780487805,
+        "position": -0.8536585365853657
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": 1950,
+        "ctr": null,
+        "position": -12.19512195121951
+      },
+      "url": "/blog/juegos-para-previas"
+    },
+    {
+      "page": "/blog/reglas-del-yo-nunca",
+      "clicks": 1,
+      "impressions": 451,
+      "ctr": 0.0022172949002217295,
+      "position": 6.5676274944567625,
+      "prevClicks": 1,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 451,
+        "ctr": 0.0022172949002217295,
+        "position": 6.5676274944567625
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 529,
+        "ctr": 0.001890359168241966,
+        "position": 6.466918714555765
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -78,
+        "ctr": 0.00032693573197976346,
+        "position": 0.10070877990099714
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -14.744801512287333,
+        "ctr": 17.29490022172949,
+        "position": 1.5572915687701692
+      },
+      "url": "/blog/reglas-del-yo-nunca"
+    },
+    {
+      "page": "/juegos/verdad-o-reto/reglas",
+      "clicks": 1,
+      "impressions": 58,
+      "ctr": 0.017241379310344827,
+      "position": 9.89655172413793,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 58,
+        "ctr": 0.017241379310344827,
+        "position": 9.89655172413793
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 58,
+        "ctr": 0.017241379310344827,
+        "position": 9.89655172413793
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos/verdad-o-reto/reglas"
+    },
+    {
+      "page": "/juegos/tabu",
+      "clicks": 1,
+      "impressions": 45,
+      "ctr": 0.022222222222222223,
+      "position": 5.933333333333334,
+      "prevClicks": 1,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 45,
+        "ctr": 0.022222222222222223,
+        "position": 5.933333333333334
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 43,
+        "ctr": 0.023255813953488372,
+        "position": 6.6976744186046515
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": -0.0010335917312661487,
+        "position": -0.7643410852713179
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": 4.651162790697675,
+        "ctr": -4.444444444444439,
+        "position": -11.412037037037038
+      },
+      "url": "/juegos/tabu"
+    },
+    {
+      "page": "/juegos/beer-pong",
+      "clicks": 1,
+      "impressions": 32,
+      "ctr": 0.03125,
+      "position": 20.46875,
+      "prevClicks": 3,
+      "delta": "-66.7%",
+      "current": {
+        "clicks": 1,
+        "impressions": 32,
+        "ctr": 0.03125,
+        "position": 20.46875
+      },
+      "previous": {
+        "clicks": 3,
+        "impressions": 52,
+        "ctr": 0.057692307692307696,
+        "position": 22.865384615384617
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -20,
+        "ctr": -0.026442307692307696,
+        "position": -2.3966346153846168
+      },
+      "percentDelta": {
+        "clicks": -66.66666666666666,
+        "impressions": -38.46153846153847,
+        "ctr": -45.833333333333336,
+        "position": -10.48149705634988
+      },
+      "url": "/juegos/beer-pong"
+    },
+    {
+      "page": "/blog/tabu-juego-beber",
+      "clicks": 1,
+      "impressions": 31,
+      "ctr": 0.03225806451612903,
+      "position": 6.645161290322581,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 31,
+        "ctr": 0.03225806451612903,
+        "position": 6.645161290322581
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 31,
+        "ctr": 0,
+        "position": 6.870967741935484
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 0,
+        "ctr": 0.03225806451612903,
+        "position": -0.22580645161290303
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": 0,
+        "ctr": null,
+        "position": -3.2863849765258184
+      },
+      "url": "/blog/tabu-juego-beber"
+    },
+    {
+      "page": "/juegos/yo-prefiero",
+      "clicks": 1,
+      "impressions": 21,
+      "ctr": 0.047619047619047616,
+      "position": 7.095238095238095,
+      "prevClicks": 2,
+      "delta": "-50.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 21,
+        "ctr": 0.047619047619047616,
+        "position": 7.095238095238095
+      },
+      "previous": {
+        "clicks": 2,
+        "impressions": 42,
+        "ctr": 0.047619047619047616,
+        "position": 5.976190476190476
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -21,
+        "ctr": 0,
+        "position": 1.1190476190476186
+      },
+      "percentDelta": {
+        "clicks": -50,
+        "impressions": -50,
+        "ctr": 0,
+        "position": 18.725099601593616
+      },
+      "url": "/juegos/yo-prefiero"
+    },
+    {
+      "page": "/blog/medusa-juego-beber",
+      "clicks": 1,
+      "impressions": 18,
+      "ctr": 0.05555555555555555,
+      "position": 5.055555555555555,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 18,
+        "ctr": 0.05555555555555555,
+        "position": 5.055555555555555
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 24,
+        "ctr": 0,
+        "position": 5.083333333333333
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -6,
+        "ctr": 0.05555555555555555,
+        "position": -0.02777777777777768
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -25,
+        "ctr": null,
+        "position": -0.546448087431692
+      },
+      "url": "/blog/medusa-juego-beber"
+    },
+    {
+      "page": "/juegos/la-ruleta/reglas",
+      "clicks": 1,
+      "impressions": 17,
+      "ctr": 0.058823529411764705,
+      "position": 6.294117647058823,
+      "prevClicks": 3,
+      "delta": "-66.7%",
+      "current": {
+        "clicks": 1,
+        "impressions": 17,
+        "ctr": 0.058823529411764705,
+        "position": 6.294117647058823
+      },
+      "previous": {
+        "clicks": 3,
+        "impressions": 45,
+        "ctr": 0.06666666666666667,
+        "position": 6.177777777777778
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -28,
+        "ctr": -0.00784313725490196,
+        "position": 0.11633986928104534
+      },
+      "percentDelta": {
+        "clicks": -66.66666666666666,
+        "impressions": -62.22222222222222,
+        "ctr": -11.76470588235294,
+        "position": 1.8831993228946187
+      },
+      "url": "/juegos/la-ruleta/reglas"
+    },
+    {
+      "page": "/blog/preguntas-quien-es-mas-probable",
+      "clicks": 1,
+      "impressions": 10,
+      "ctr": 0.1,
+      "position": 13,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 10,
+        "ctr": 0.1,
+        "position": 13
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 22,
+        "ctr": 0,
+        "position": 8.681818181818182
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -12,
+        "ctr": 0.1,
+        "position": 4.318181818181818
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -54.54545454545454,
+        "ctr": null,
+        "position": 49.73821989528796
+      },
+      "url": "/blog/preguntas-quien-es-mas-probable"
+    },
+    {
+      "page": "/blog/drinking-games-reglas",
+      "clicks": 0,
+      "impressions": 41,
+      "ctr": 0,
+      "position": 9,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 41,
+        "ctr": 0,
+        "position": 9
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 47,
+        "ctr": 0,
+        "position": 10.446808510638299
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -6,
+        "ctr": 0,
+        "position": -1.4468085106382986
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -12.76595744680851,
+        "ctr": null,
+        "position": -13.849287169042777
+      },
+      "url": "/blog/drinking-games-reglas"
+    },
+    {
+      "page": "/contacto",
+      "clicks": 0,
+      "impressions": 33,
+      "ctr": 0,
+      "position": 1.696969696969697,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 33,
+        "ctr": 0,
+        "position": 1.696969696969697
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 33,
+        "ctr": 0,
+        "position": 1.696969696969697
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/contacto"
+    },
+    {
+      "page": "/blog/100-preguntas-yo-nunca",
+      "clicks": 0,
+      "impressions": 24,
+      "ctr": 0,
+      "position": 67.625,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 24,
+        "ctr": 0,
+        "position": 67.625
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 36,
+        "ctr": 0,
+        "position": 58.833333333333336
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -12,
+        "ctr": 0,
+        "position": 8.791666666666664
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -33.33333333333333,
+        "ctr": null,
+        "position": 14.943342776203961
+      },
+      "url": "/blog/100-preguntas-yo-nunca"
+    },
+    {
+      "page": "/blog/juegos-para-botellon",
+      "clicks": 0,
+      "impressions": 22,
+      "ctr": 0,
+      "position": 7.363636363636363,
+      "prevClicks": 1,
+      "delta": "-100.0%",
+      "current": {
+        "clicks": 0,
+        "impressions": 22,
+        "ctr": 0,
+        "position": 7.363636363636363
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 21,
+        "ctr": 0.047619047619047616,
+        "position": 6.523809523809524
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": 1,
+        "ctr": -0.047619047619047616,
+        "position": 0.8398268398268396
+      },
+      "percentDelta": {
+        "clicks": -100,
+        "impressions": 4.761904761904762,
+        "ctr": -100,
+        "position": 12.873258128732578
+      },
+      "url": "/blog/juegos-para-botellon"
+    },
+    {
+      "page": "/blog/juegos-para-cumpleanos-adultos",
+      "clicks": 0,
+      "impressions": 11,
+      "ctr": 0,
+      "position": 8,
+      "prevClicks": 1,
+      "delta": "-100.0%",
+      "current": {
+        "clicks": 0,
+        "impressions": 11,
+        "ctr": 0,
+        "position": 8
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 30,
+        "ctr": 0.03333333333333333,
+        "position": 10
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -19,
+        "ctr": -0.03333333333333333,
+        "position": -2
+      },
+      "percentDelta": {
+        "clicks": -100,
+        "impressions": -63.33333333333333,
+        "ctr": -100,
+        "position": -20
+      },
+      "url": "/blog/juegos-para-cumpleanos-adultos"
+    },
+    {
+      "page": "/blog/preguntas-yo-nunca-parejas",
+      "clicks": 0,
+      "impressions": 8,
+      "ctr": 0,
+      "position": 7.625,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 8,
+        "ctr": 0,
+        "position": 7.625
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 8,
+        "ctr": 0,
+        "position": 7.625
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/blog/preguntas-yo-nunca-parejas"
+    },
+    {
+      "page": "/blog/juegos-para-beber-dos-personas",
+      "clicks": 0,
+      "impressions": 5,
+      "ctr": 0,
+      "position": 7,
+      "prevClicks": 1,
+      "delta": "-100.0%",
+      "current": {
+        "clicks": 0,
+        "impressions": 5,
+        "ctr": 0,
+        "position": 7
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 12,
+        "ctr": 0.08333333333333333,
+        "position": 8.666666666666668
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -7,
+        "ctr": -0.08333333333333333,
+        "position": -1.6666666666666679
+      },
+      "percentDelta": {
+        "clicks": -100,
+        "impressions": -58.333333333333336,
+        "ctr": -100,
+        "position": -19.230769230769244
+      },
+      "url": "/blog/juegos-para-beber-dos-personas"
+    },
+    {
+      "page": "/blog/como-organizar-fiesta-juegos-beber",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 4.666666666666666,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 4.666666666666666
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 5,
+        "ctr": 0,
+        "position": 6.6
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -2,
+        "ctr": 0,
+        "position": -1.9333333333333336
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -40,
+        "ctr": null,
+        "position": -29.292929292929298
+      },
+      "url": "/blog/como-organizar-fiesta-juegos-beber"
+    },
+    {
+      "page": "/blog",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 17.5,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 17.5
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 20
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": -2.5
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": 0,
+        "ctr": null,
+        "position": -12.5
+      },
+      "url": "/blog"
+    },
+    {
+      "page": "/blog/la-bomba-juego-beber",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 3.5,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 3.5
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 7,
+        "ctr": 0,
+        "position": 7.428571428571429
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -5,
+        "ctr": 0,
+        "position": -3.928571428571429
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -71.42857142857143,
+        "ctr": null,
+        "position": -52.88461538461539
+      },
+      "url": "/blog/la-bomba-juego-beber"
+    },
+    {
+      "page": "/blog/verdad-o-reto-preguntas-buenas",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 9.5,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 9.5
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 8,
+        "ctr": 0,
+        "position": 8.5
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -6,
+        "ctr": 0,
+        "position": 1
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": -75,
+        "ctr": null,
+        "position": 11.76470588235294
+      },
+      "url": "/blog/verdad-o-reto-preguntas-buenas"
     }
   ],
-  "countries": [],
-  "devices": [],
-  "queryPages": [],
+  "countries": [
+    {
+      "country": "esp",
+      "clicks": 754,
+      "impressions": 9853,
+      "ctr": 0.0765249162691566,
+      "position": 7.703237592611387,
+      "prevClicks": 765,
+      "delta": "-1.4%",
+      "current": {
+        "clicks": 754,
+        "impressions": 9853,
+        "ctr": 0.0765249162691566,
+        "position": 7.703237592611387
+      },
+      "previous": {
+        "clicks": 765,
+        "impressions": 9930,
+        "ctr": 0.0770392749244713,
+        "position": 8.179456193353474
+      },
+      "difference": {
+        "clicks": -11,
+        "impressions": -77,
+        "ctr": -0.0005143586553146978,
+        "position": -0.47621860074208655
+      },
+      "percentDelta": {
+        "clicks": -1.4379084967320261,
+        "impressions": -0.7754279959718027,
+        "ctr": -0.6676577055261372,
+        "position": -5.8221303407561
+      }
+    },
+    {
+      "country": "per",
+      "clicks": 441,
+      "impressions": 4203,
+      "ctr": 0.10492505353319058,
+      "position": 6.6600047585058295,
+      "prevClicks": 430,
+      "delta": "+2.6%",
+      "current": {
+        "clicks": 441,
+        "impressions": 4203,
+        "ctr": 0.10492505353319058,
+        "position": 6.6600047585058295
+      },
+      "previous": {
+        "clicks": 430,
+        "impressions": 4230,
+        "ctr": 0.1016548463356974,
+        "position": 6.657919621749409
+      },
+      "difference": {
+        "clicks": 11,
+        "impressions": -27,
+        "ctr": 0.0032702071974931857,
+        "position": 0.0020851367564205248
+      },
+      "percentDelta": {
+        "clicks": 2.558139534883721,
+        "impressions": -0.6382978723404255,
+        "ctr": 3.216971266371204,
+        "position": 0.03131814252621816
+      }
+    },
+    {
+      "country": "mex",
+      "clicks": 304,
+      "impressions": 7035,
+      "ctr": 0.04321250888415067,
+      "position": 7.548116560056859,
+      "prevClicks": 272,
+      "delta": "+11.8%",
+      "current": {
+        "clicks": 304,
+        "impressions": 7035,
+        "ctr": 0.04321250888415067,
+        "position": 7.548116560056859
+      },
+      "previous": {
+        "clicks": 272,
+        "impressions": 7151,
+        "ctr": 0.03803663823241505,
+        "position": 7.533631659907705
+      },
+      "difference": {
+        "clicks": 32,
+        "impressions": -116,
+        "ctr": 0.005175870651735623,
+        "position": 0.014484900149153823
+      },
+      "percentDelta": {
+        "clicks": 11.76470588235294,
+        "impressions": -1.6221507481471122,
+        "ctr": 13.607592290647585,
+        "position": 0.1922698215555083
+      }
+    },
+    {
+      "country": "ecu",
+      "clicks": 164,
+      "impressions": 2479,
+      "ctr": 0.06615570794675273,
+      "position": 6.716821298910851,
+      "prevClicks": 161,
+      "delta": "+1.9%",
+      "current": {
+        "clicks": 164,
+        "impressions": 2479,
+        "ctr": 0.06615570794675273,
+        "position": 6.716821298910851
+      },
+      "previous": {
+        "clicks": 161,
+        "impressions": 2341,
+        "ctr": 0.06877402819307989,
+        "position": 6.692866296454507
+      },
+      "difference": {
+        "clicks": 3,
+        "impressions": 138,
+        "ctr": -0.0026183202463271604,
+        "position": 0.02395500245634441
+      },
+      "percentDelta": {
+        "clicks": 1.8633540372670807,
+        "impressions": 5.89491670226399,
+        "ctr": -3.8071352153117277,
+        "position": 0.3579184372625879
+      }
+    },
+    {
+      "country": "col",
+      "clicks": 162,
+      "impressions": 2897,
+      "ctr": 0.05591991715567829,
+      "position": 6.791508457024508,
+      "prevClicks": 185,
+      "delta": "-12.4%",
+      "current": {
+        "clicks": 162,
+        "impressions": 2897,
+        "ctr": 0.05591991715567829,
+        "position": 6.791508457024508
+      },
+      "previous": {
+        "clicks": 185,
+        "impressions": 3212,
+        "ctr": 0.05759651307596513,
+        "position": 6.8368617683686175
+      },
+      "difference": {
+        "clicks": -23,
+        "impressions": -315,
+        "ctr": -0.0016765959202868427,
+        "position": -0.04535331134410914
+      },
+      "percentDelta": {
+        "clicks": -12.432432432432433,
+        "impressions": -9.806973848069738,
+        "ctr": -2.910933024843967,
+        "position": -0.6633644628291373
+      }
+    },
+    {
+      "country": "chl",
+      "clicks": 154,
+      "impressions": 2552,
+      "ctr": 0.0603448275862069,
+      "position": 6.821316614420063,
+      "prevClicks": 148,
+      "delta": "+4.1%",
+      "current": {
+        "clicks": 154,
+        "impressions": 2552,
+        "ctr": 0.0603448275862069,
+        "position": 6.821316614420063
+      },
+      "previous": {
+        "clicks": 148,
+        "impressions": 2908,
+        "ctr": 0.05089408528198074,
+        "position": 6.7991746905089405
+      },
+      "difference": {
+        "clicks": 6,
+        "impressions": -356,
+        "ctr": 0.009450742304226156,
+        "position": 0.02214192391112224
+      },
+      "percentDelta": {
+        "clicks": 4.054054054054054,
+        "impressions": -12.242090784044017,
+        "ctr": 18.56943150046599,
+        "position": 0.32565605266813413
+      }
+    },
+    {
+      "country": "arg",
+      "clicks": 136,
+      "impressions": 2640,
+      "ctr": 0.051515151515151514,
+      "position": 6.992803030303031,
+      "prevClicks": 194,
+      "delta": "-29.9%",
+      "current": {
+        "clicks": 136,
+        "impressions": 2640,
+        "ctr": 0.051515151515151514,
+        "position": 6.992803030303031
+      },
+      "previous": {
+        "clicks": 194,
+        "impressions": 3082,
+        "ctr": 0.06294613887086307,
+        "position": 6.934458144062297
+      },
+      "difference": {
+        "clicks": -58,
+        "impressions": -442,
+        "ctr": -0.011430987355711561,
+        "position": 0.058344886240733196
+      },
+      "percentDelta": {
+        "clicks": -29.896907216494846,
+        "impressions": -14.341336794289422,
+        "ctr": -18.15995001562012,
+        "position": 0.8413762838945336
+      }
+    },
+    {
+      "country": "bol",
+      "clicks": 113,
+      "impressions": 1497,
+      "ctr": 0.07548430193720775,
+      "position": 5.943887775551103,
+      "prevClicks": 116,
+      "delta": "-2.6%",
+      "current": {
+        "clicks": 113,
+        "impressions": 1497,
+        "ctr": 0.07548430193720775,
+        "position": 5.943887775551103
+      },
+      "previous": {
+        "clicks": 116,
+        "impressions": 1512,
+        "ctr": 0.07671957671957672,
+        "position": 5.916666666666667
+      },
+      "difference": {
+        "clicks": -3,
+        "impressions": -15,
+        "ctr": -0.0012352747823689697,
+        "position": 0.02722110888443563
+      },
+      "percentDelta": {
+        "clicks": -2.586206896551724,
+        "impressions": -0.992063492063492,
+        "ctr": -1.610116785294726,
+        "position": 0.46007507973694023
+      }
+    },
+    {
+      "country": "usa",
+      "clicks": 72,
+      "impressions": 1714,
+      "ctr": 0.042007001166861145,
+      "position": 7.359393232205368,
+      "prevClicks": 57,
+      "delta": "+26.3%",
+      "current": {
+        "clicks": 72,
+        "impressions": 1714,
+        "ctr": 0.042007001166861145,
+        "position": 7.359393232205368
+      },
+      "previous": {
+        "clicks": 57,
+        "impressions": 1596,
+        "ctr": 0.03571428571428571,
+        "position": 6.944235588972431
+      },
+      "difference": {
+        "clicks": 15,
+        "impressions": 118,
+        "ctr": 0.006292715452575433,
+        "position": 0.4151576432329369
+      },
+      "percentDelta": {
+        "clicks": 26.31578947368421,
+        "impressions": 7.393483709273182,
+        "ctr": 17.61960326721121,
+        "position": 5.978449865557767
+      }
+    },
+    {
+      "country": "ven",
+      "clicks": 63,
+      "impressions": 1295,
+      "ctr": 0.04864864864864865,
+      "position": 6.183783783783784,
+      "prevClicks": 74,
+      "delta": "-14.9%",
+      "current": {
+        "clicks": 63,
+        "impressions": 1295,
+        "ctr": 0.04864864864864865,
+        "position": 6.183783783783784
+      },
+      "previous": {
+        "clicks": 74,
+        "impressions": 1474,
+        "ctr": 0.050203527815468114,
+        "position": 6.3833107191316145
+      },
+      "difference": {
+        "clicks": -11,
+        "impressions": -179,
+        "ctr": -0.001554879166819463,
+        "position": -0.19952693534783084
+      },
+      "percentDelta": {
+        "clicks": -14.864864864864865,
+        "impressions": -12.143826322930801,
+        "ctr": -3.097151205259309,
+        "position": -3.125759408042328
+      }
+    },
+    {
+      "country": "ury",
+      "clicks": 31,
+      "impressions": 545,
+      "ctr": 0.05688073394495413,
+      "position": 6.126605504587156,
+      "prevClicks": 24,
+      "delta": "+29.2%",
+      "current": {
+        "clicks": 31,
+        "impressions": 545,
+        "ctr": 0.05688073394495413,
+        "position": 6.126605504587156
+      },
+      "previous": {
+        "clicks": 24,
+        "impressions": 373,
+        "ctr": 0.064343163538874,
+        "position": 6.554959785522788
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 172,
+        "ctr": -0.007462429593919864,
+        "position": -0.42835428093563266
+      },
+      "percentDelta": {
+        "clicks": 29.166666666666668,
+        "impressions": 46.11260053619303,
+        "ctr": -11.597859327217122,
+        "position": -6.534811729611083
+      }
+    },
+    {
+      "country": "slv",
+      "clicks": 29,
+      "impressions": 439,
+      "ctr": 0.06605922551252848,
+      "position": 6.382687927107061,
+      "prevClicks": 18,
+      "delta": "+61.1%",
+      "current": {
+        "clicks": 29,
+        "impressions": 439,
+        "ctr": 0.06605922551252848,
+        "position": 6.382687927107061
+      },
+      "previous": {
+        "clicks": 18,
+        "impressions": 442,
+        "ctr": 0.04072398190045249,
+        "position": 6.420814479638009
+      },
+      "difference": {
+        "clicks": 11,
+        "impressions": -3,
+        "ctr": 0.025335243612075987,
+        "position": -0.03812655253094821
+      },
+      "percentDelta": {
+        "clicks": 61.111111111111114,
+        "impressions": -0.6787330316742082,
+        "ctr": 62.21209820298659,
+        "position": -0.5937962022085662
+      }
+    },
+    {
+      "country": "ita",
+      "clicks": 27,
+      "impressions": 342,
+      "ctr": 0.07894736842105263,
+      "position": 5.616959064327485,
+      "prevClicks": 118,
+      "delta": "-77.1%",
+      "current": {
+        "clicks": 27,
+        "impressions": 342,
+        "ctr": 0.07894736842105263,
+        "position": 5.616959064327485
+      },
+      "previous": {
+        "clicks": 118,
+        "impressions": 752,
+        "ctr": 0.15691489361702127,
+        "position": 4.735372340425532
+      },
+      "difference": {
+        "clicks": -91,
+        "impressions": -410,
+        "ctr": -0.07796752519596864,
+        "position": 0.881586723901953
+      },
+      "percentDelta": {
+        "clicks": -77.11864406779661,
+        "impressions": -54.52127659574468,
+        "ctr": -49.687778768956285,
+        "position": 18.617051849881175
+      }
+    },
+    {
+      "country": "gtm",
+      "clicks": 25,
+      "impressions": 898,
+      "ctr": 0.02783964365256125,
+      "position": 6.99554565701559,
+      "prevClicks": 28,
+      "delta": "-10.7%",
+      "current": {
+        "clicks": 25,
+        "impressions": 898,
+        "ctr": 0.02783964365256125,
+        "position": 6.99554565701559
+      },
+      "previous": {
+        "clicks": 28,
+        "impressions": 874,
+        "ctr": 0.032036613272311214,
+        "position": 6.779176201372998
+      },
+      "difference": {
+        "clicks": -3,
+        "impressions": 24,
+        "ctr": -0.004196969619749965,
+        "position": 0.21636945564259236
+      },
+      "percentDelta": {
+        "clicks": -10.714285714285714,
+        "impressions": 2.745995423340961,
+        "ctr": -13.100540884505246,
+        "position": 3.191677708550645
+      }
+    },
+    {
+      "country": "dom",
+      "clicks": 25,
+      "impressions": 611,
+      "ctr": 0.04091653027823241,
+      "position": 6.941080196399345,
+      "prevClicks": 28,
+      "delta": "-10.7%",
+      "current": {
+        "clicks": 25,
+        "impressions": 611,
+        "ctr": 0.04091653027823241,
+        "position": 6.941080196399345
+      },
+      "previous": {
+        "clicks": 28,
+        "impressions": 631,
+        "ctr": 0.044374009508716325,
+        "position": 6.664025356576862
+      },
+      "difference": {
+        "clicks": -3,
+        "impressions": -20,
+        "ctr": -0.003457479230483916,
+        "position": 0.27705483982248325
+      },
+      "percentDelta": {
+        "clicks": -10.714285714285714,
+        "impressions": -3.1695721077654517,
+        "ctr": -7.791676408697682,
+        "position": 4.15746977236592
+      }
+    },
+    {
+      "country": "cri",
+      "clicks": 25,
+      "impressions": 516,
+      "ctr": 0.04844961240310078,
+      "position": 6.323643410852713,
+      "prevClicks": 23,
+      "delta": "+8.7%",
+      "current": {
+        "clicks": 25,
+        "impressions": 516,
+        "ctr": 0.04844961240310078,
+        "position": 6.323643410852713
+      },
+      "previous": {
+        "clicks": 23,
+        "impressions": 504,
+        "ctr": 0.04563492063492063,
+        "position": 6.055555555555555
+      },
+      "difference": {
+        "clicks": 2,
+        "impressions": 12,
+        "ctr": 0.0028146917681801456,
+        "position": 0.26808785529715795
+      },
+      "percentDelta": {
+        "clicks": 8.695652173913043,
+        "impressions": 2.380952380952381,
+        "ctr": 6.1678463094034495,
+        "position": 4.427138894815453
+      }
+    },
+    {
+      "country": "pry",
+      "clicks": 17,
+      "impressions": 386,
+      "ctr": 0.04404145077720207,
+      "position": 6.629533678756476,
+      "prevClicks": 15,
+      "delta": "+13.3%",
+      "current": {
+        "clicks": 17,
+        "impressions": 386,
+        "ctr": 0.04404145077720207,
+        "position": 6.629533678756476
+      },
+      "previous": {
+        "clicks": 15,
+        "impressions": 327,
+        "ctr": 0.045871559633027525,
+        "position": 6.232415902140673
+      },
+      "difference": {
+        "clicks": 2,
+        "impressions": 59,
+        "ctr": -0.001830108855825456,
+        "position": 0.3971177766158034
+      },
+      "percentDelta": {
+        "clicks": 13.333333333333334,
+        "impressions": 18.04281345565749,
+        "ctr": -3.9896373056994943,
+        "position": 6.371811234218239
+      }
+    },
+    {
+      "country": "hnd",
+      "clicks": 14,
+      "impressions": 362,
+      "ctr": 0.03867403314917127,
+      "position": 6.585635359116022,
+      "prevClicks": 16,
+      "delta": "-12.5%",
+      "current": {
+        "clicks": 14,
+        "impressions": 362,
+        "ctr": 0.03867403314917127,
+        "position": 6.585635359116022
+      },
+      "previous": {
+        "clicks": 16,
+        "impressions": 330,
+        "ctr": 0.048484848484848485,
+        "position": 6.315151515151515
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 32,
+        "ctr": -0.009810815335677216,
+        "position": 0.27048384396450675
+      },
+      "percentDelta": {
+        "clicks": -12.5,
+        "impressions": 9.696969696969697,
+        "ctr": -20.234806629834257,
+        "position": 4.283093498478274
+      }
+    },
+    {
+      "country": "pan",
+      "clicks": 12,
+      "impressions": 241,
+      "ctr": 0.04979253112033195,
+      "position": 6.323651452282157,
+      "prevClicks": 12,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 12,
+        "impressions": 241,
+        "ctr": 0.04979253112033195,
+        "position": 6.323651452282157
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 197,
+        "ctr": 0.06091370558375635,
+        "position": 6.538071065989848
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 44,
+        "ctr": -0.0111211744634244,
+        "position": -0.21441961370769036
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": 22.33502538071066,
+        "ctr": -18.257261410788388,
+        "position": -3.279554650653339
+      }
+    },
+    {
+      "country": "nic",
+      "clicks": 10,
+      "impressions": 393,
+      "ctr": 0.02544529262086514,
+      "position": 8.608142493638677,
+      "prevClicks": 10,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 10,
+        "impressions": 393,
+        "ctr": 0.02544529262086514,
+        "position": 8.608142493638677
+      },
+      "previous": {
+        "clicks": 10,
+        "impressions": 403,
+        "ctr": 0.02481389578163772,
+        "position": 8.459057071960299
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -10,
+        "ctr": 0.0006313968392274195,
+        "position": 0.1490854216783788
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -2.481389578163772,
+        "ctr": 2.5445292620865008,
+        "position": 1.7624354630796906
+      }
+    },
+    {
+      "country": "deu",
+      "clicks": 10,
+      "impressions": 93,
+      "ctr": 0.10752688172043011,
+      "position": 8.13978494623656,
+      "prevClicks": 5,
+      "delta": "+100.0%",
+      "current": {
+        "clicks": 10,
+        "impressions": 93,
+        "ctr": 0.10752688172043011,
+        "position": 8.13978494623656
+      },
+      "previous": {
+        "clicks": 5,
+        "impressions": 112,
+        "ctr": 0.044642857142857144,
+        "position": 8.4375
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": -19,
+        "ctr": 0.06288402457757297,
+        "position": -0.2977150537634401
+      },
+      "percentDelta": {
+        "clicks": 100,
+        "impressions": -16.964285714285715,
+        "ctr": 140.86021505376345,
+        "position": -3.528474711270401
+      }
+    },
+    {
+      "country": "bra",
+      "clicks": 7,
+      "impressions": 174,
+      "ctr": 0.040229885057471264,
+      "position": 8.862068965517242,
+      "prevClicks": 6,
+      "delta": "+16.7%",
+      "current": {
+        "clicks": 7,
+        "impressions": 174,
+        "ctr": 0.040229885057471264,
+        "position": 8.862068965517242
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 175,
+        "ctr": 0.03428571428571429,
+        "position": 8.708571428571428
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -1,
+        "ctr": 0.005944170771756976,
+        "position": 0.1534975369458138
+      },
+      "percentDelta": {
+        "clicks": 16.666666666666664,
+        "impressions": -0.5714285714285714,
+        "ctr": 17.337164750957847,
+        "position": 1.7626029504932688
+      }
+    },
+    {
+      "country": "can",
+      "clicks": 6,
+      "impressions": 101,
+      "ctr": 0.0594059405940594,
+      "position": 5.702970297029703,
+      "prevClicks": 5,
+      "delta": "+20.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 101,
+        "ctr": 0.0594059405940594,
+        "position": 5.702970297029703
+      },
+      "previous": {
+        "clicks": 5,
+        "impressions": 117,
+        "ctr": 0.042735042735042736,
+        "position": 7.316239316239316
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -16,
+        "ctr": 0.016670897859016667,
+        "position": -1.6132690192096133
+      },
+      "percentDelta": {
+        "clicks": 20,
+        "impressions": -13.675213675213676,
+        "ctr": 39.009900990099,
+        "position": -22.05052280929028
+      }
+    },
+    {
+      "country": "prt",
+      "clicks": 6,
+      "impressions": 80,
+      "ctr": 0.075,
+      "position": 6.7125,
+      "prevClicks": 2,
+      "delta": "+200.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 80,
+        "ctr": 0.075,
+        "position": 6.7125
+      },
+      "previous": {
+        "clicks": 2,
+        "impressions": 59,
+        "ctr": 0.03389830508474576,
+        "position": 6.0508474576271185
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": 21,
+        "ctr": 0.041101694915254235,
+        "position": 0.6616525423728818
+      },
+      "percentDelta": {
+        "clicks": 200,
+        "impressions": 35.59322033898305,
+        "ctr": 121.24999999999999,
+        "position": 10.93487394957984
+      }
+    },
+    {
+      "country": "fra",
+      "clicks": 6,
+      "impressions": 74,
+      "ctr": 0.08108108108108109,
+      "position": 7.27027027027027,
+      "prevClicks": 6,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 74,
+        "ctr": 0.08108108108108109,
+        "position": 7.27027027027027
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 90,
+        "ctr": 0.06666666666666667,
+        "position": 6.955555555555556
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -16,
+        "ctr": 0.01441441441441442,
+        "position": 0.31471471471471446
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -17.77777777777778,
+        "ctr": 21.62162162162163,
+        "position": 4.524652447975128
+      }
+    },
+    {
+      "country": "pri",
+      "clicks": 4,
+      "impressions": 100,
+      "ctr": 0.04,
+      "position": 7.14,
+      "prevClicks": 4,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 4,
+        "impressions": 100,
+        "ctr": 0.04,
+        "position": 7.14
+      },
+      "previous": {
+        "clicks": 4,
+        "impressions": 84,
+        "ctr": 0.047619047619047616,
+        "position": 5.904761904761905
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 16,
+        "ctr": -0.007619047619047616,
+        "position": 1.2352380952380946
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": 19.047619047619047,
+        "ctr": -15.999999999999995,
+        "position": 20.919354838709666
+      }
+    },
+    {
+      "country": "aus",
+      "clicks": 4,
+      "impressions": 33,
+      "ctr": 0.12121212121212122,
+      "position": 6.090909090909091,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 4,
+        "impressions": 33,
+        "ctr": 0.12121212121212122,
+        "position": 6.090909090909091
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": 33,
+        "ctr": 0.12121212121212122,
+        "position": 6.090909090909091
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "mar",
+      "clicks": 3,
+      "impressions": 40,
+      "ctr": 0.075,
+      "position": 9.875,
+      "prevClicks": 2,
+      "delta": "+50.0%",
+      "current": {
+        "clicks": 3,
+        "impressions": 40,
+        "ctr": 0.075,
+        "position": 9.875
+      },
+      "previous": {
+        "clicks": 2,
+        "impressions": 41,
+        "ctr": 0.04878048780487805,
+        "position": 8.658536585365853
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -1,
+        "ctr": 0.026219512195121947,
+        "position": 1.2164634146341466
+      },
+      "percentDelta": {
+        "clicks": 50,
+        "impressions": -2.4390243902439024,
+        "ctr": 53.749999999999986,
+        "position": 14.049295774647891
+      }
+    },
+    {
+      "country": "che",
+      "clicks": 3,
+      "impressions": 20,
+      "ctr": 0.15,
+      "position": 6.2,
+      "prevClicks": 10,
+      "delta": "-70.0%",
+      "current": {
+        "clicks": 3,
+        "impressions": 20,
+        "ctr": 0.15,
+        "position": 6.2
+      },
+      "previous": {
+        "clicks": 10,
+        "impressions": 38,
+        "ctr": 0.2631578947368421,
+        "position": 5.2368421052631575
+      },
+      "difference": {
+        "clicks": -7,
+        "impressions": -18,
+        "ctr": -0.1131578947368421,
+        "position": 0.9631578947368427
+      },
+      "percentDelta": {
+        "clicks": -70,
+        "impressions": -47.368421052631575,
+        "ctr": -43,
+        "position": 18.391959798994986
+      }
+    },
+    {
+      "country": "gbr",
+      "clicks": 2,
+      "impressions": 114,
+      "ctr": 0.017543859649122806,
+      "position": 12.096491228070175,
+      "prevClicks": 4,
+      "delta": "-50.0%",
+      "current": {
+        "clicks": 2,
+        "impressions": 114,
+        "ctr": 0.017543859649122806,
+        "position": 12.096491228070175
+      },
+      "previous": {
+        "clicks": 4,
+        "impressions": 107,
+        "ctr": 0.037383177570093455,
+        "position": 7.121495327102804
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 7,
+        "ctr": -0.01983931792097065,
+        "position": 4.974995900967371
+      },
+      "percentDelta": {
+        "clicks": -50,
+        "impressions": 6.5420560747663545,
+        "ctr": -53.07017543859649,
+        "position": 69.85886632591978
+      }
+    },
+    {
+      "country": "and",
+      "clicks": 2,
+      "impressions": 19,
+      "ctr": 0.10526315789473684,
+      "position": 5.578947368421052,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 2,
+        "impressions": 19,
+        "ctr": 0.10526315789473684,
+        "position": 5.578947368421052
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 2,
+        "impressions": 19,
+        "ctr": 0.10526315789473684,
+        "position": 5.578947368421052
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "cub",
+      "clicks": 1,
+      "impressions": 186,
+      "ctr": 0.005376344086021506,
+      "position": 7.483870967741935,
+      "prevClicks": 4,
+      "delta": "-75.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 186,
+        "ctr": 0.005376344086021506,
+        "position": 7.483870967741935
+      },
+      "previous": {
+        "clicks": 4,
+        "impressions": 241,
+        "ctr": 0.016597510373443983,
+        "position": 7.385892116182573
+      },
+      "difference": {
+        "clicks": -3,
+        "impressions": -55,
+        "ctr": -0.011221166287422478,
+        "position": 0.09797885155936203
+      },
+      "percentDelta": {
+        "clicks": -75,
+        "impressions": -22.821576763485478,
+        "ctr": -67.60752688172043,
+        "position": 1.3265675969554072
+      }
+    },
+    {
+      "country": "pol",
+      "clicks": 1,
+      "impressions": 28,
+      "ctr": 0.03571428571428571,
+      "position": 7.035714285714286,
+      "prevClicks": 1,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 28,
+        "ctr": 0.03571428571428571,
+        "position": 7.035714285714286
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 34,
+        "ctr": 0.029411764705882353,
+        "position": 6.882352941176471
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -6,
+        "ctr": 0.00630252100840336,
+        "position": 0.15336134453781458
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -17.647058823529413,
+        "ctr": 21.428571428571423,
+        "position": 2.2283272283272204
+      }
+    },
+    {
+      "country": "idn",
+      "clicks": 1,
+      "impressions": 15,
+      "ctr": 0.06666666666666667,
+      "position": 18.466666666666665,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 15,
+        "ctr": 0.06666666666666667,
+        "position": 18.466666666666665
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 15,
+        "ctr": 0.06666666666666667,
+        "position": 18.466666666666665
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "irl",
+      "clicks": 1,
+      "impressions": 15,
+      "ctr": 0.06666666666666667,
+      "position": 5.2,
+      "prevClicks": 1,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 15,
+        "ctr": 0.06666666666666667,
+        "position": 5.2
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 18,
+        "ctr": 0.05555555555555555,
+        "position": 3.9444444444444446
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -3,
+        "ctr": 0.011111111111111113,
+        "position": 1.2555555555555555
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -16.666666666666664,
+        "ctr": 20.000000000000004,
+        "position": 31.830985915492953
+      }
+    },
+    {
+      "country": "grc",
+      "clicks": 1,
+      "impressions": 12,
+      "ctr": 0.08333333333333333,
+      "position": 6.166666666666667,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 12,
+        "ctr": 0.08333333333333333,
+        "position": 6.166666666666667
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 12,
+        "ctr": 0.08333333333333333,
+        "position": 6.166666666666667
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "mys",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111111111111111,
+      "position": 11.444444444444445,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 9,
+        "ctr": 0.1111111111111111,
+        "position": 11.444444444444445
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 9,
+        "ctr": 0.1111111111111111,
+        "position": 11.444444444444445
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "tha",
+      "clicks": 1,
+      "impressions": 9,
+      "ctr": 0.1111111111111111,
+      "position": 6.777777777777778,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 9,
+        "ctr": 0.1111111111111111,
+        "position": 6.777777777777778
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 9,
+        "ctr": 0.1111111111111111,
+        "position": 6.777777777777778
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "aut",
+      "clicks": 1,
+      "impressions": 8,
+      "ctr": 0.125,
+      "position": 4.875,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 8,
+        "ctr": 0.125,
+        "position": 4.875
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 8,
+        "ctr": 0.125,
+        "position": 4.875
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "hrv",
+      "clicks": 1,
+      "impressions": 8,
+      "ctr": 0.125,
+      "position": 6,
+      "prevClicks": 3,
+      "delta": "-66.7%",
+      "current": {
+        "clicks": 1,
+        "impressions": 8,
+        "ctr": 0.125,
+        "position": 6
+      },
+      "previous": {
+        "clicks": 3,
+        "impressions": 14,
+        "ctr": 0.21428571428571427,
+        "position": 4.5
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -6,
+        "ctr": -0.08928571428571427,
+        "position": 1.5
+      },
+      "percentDelta": {
+        "clicks": -66.66666666666666,
+        "impressions": -42.857142857142854,
+        "ctr": -41.666666666666664,
+        "position": 33.33333333333333
+      }
+    },
+    {
+      "country": "hun",
+      "clicks": 1,
+      "impressions": 8,
+      "ctr": 0.125,
+      "position": 4.5,
+      "prevClicks": 1,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 8,
+        "ctr": 0.125,
+        "position": 4.5
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 15,
+        "ctr": 0.06666666666666667,
+        "position": 7.066666666666666
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -7,
+        "ctr": 0.058333333333333334,
+        "position": -2.5666666666666664
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -46.666666666666664,
+        "ctr": 87.5,
+        "position": -36.32075471698113
+      }
+    },
+    {
+      "country": "cze",
+      "clicks": 1,
+      "impressions": 6,
+      "ctr": 0.16666666666666666,
+      "position": 3.3333333333333335,
+      "prevClicks": 1,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 6,
+        "ctr": 0.16666666666666666,
+        "position": 3.3333333333333335
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 10,
+        "ctr": 0.1,
+        "position": 8.4
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -4,
+        "ctr": 0.06666666666666665,
+        "position": -5.066666666666666
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -40,
+        "ctr": 66.66666666666666,
+        "position": -60.317460317460316
+      }
+    },
+    {
+      "country": "mlt",
+      "clicks": 1,
+      "impressions": 5,
+      "ctr": 0.2,
+      "position": 4.2,
+      "prevClicks": 2,
+      "delta": "-50.0%",
+      "current": {
+        "clicks": 1,
+        "impressions": 5,
+        "ctr": 0.2,
+        "position": 4.2
+      },
+      "previous": {
+        "clicks": 2,
+        "impressions": 12,
+        "ctr": 0.16666666666666666,
+        "position": 5.333333333333333
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -7,
+        "ctr": 0.033333333333333354,
+        "position": -1.1333333333333329
+      },
+      "percentDelta": {
+        "clicks": -50,
+        "impressions": -58.333333333333336,
+        "ctr": 20.00000000000001,
+        "position": -21.249999999999993
+      }
+    },
+    {
+      "country": "chn",
+      "clicks": 1,
+      "impressions": 4,
+      "ctr": 0.25,
+      "position": 6.5,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 1,
+        "impressions": 4,
+        "ctr": 0.25,
+        "position": 6.5
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 4,
+        "ctr": 0.25,
+        "position": 6.5
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "are",
+      "clicks": 0,
+      "impressions": 18,
+      "ctr": 0,
+      "position": 6.277777777777778,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 18,
+        "ctr": 0,
+        "position": 6.277777777777778
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 18,
+        "ctr": 0,
+        "position": 6.277777777777778
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "bgd",
+      "clicks": 0,
+      "impressions": 16,
+      "ctr": 0,
+      "position": 20.25,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 16,
+        "ctr": 0,
+        "position": 20.25
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 16,
+        "ctr": 0,
+        "position": 20.25
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "bel",
+      "clicks": 0,
+      "impressions": 15,
+      "ctr": 0,
+      "position": 4.333333333333334,
+      "prevClicks": 1,
+      "delta": "-100.0%",
+      "current": {
+        "clicks": 0,
+        "impressions": 15,
+        "ctr": 0,
+        "position": 4.333333333333334
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 7,
+        "ctr": 0.14285714285714285,
+        "position": 7.571428571428571
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": 8,
+        "ctr": -0.14285714285714285,
+        "position": -3.2380952380952372
+      },
+      "percentDelta": {
+        "clicks": -100,
+        "impressions": 114.28571428571428,
+        "ctr": -100,
+        "position": -42.767295597484264
+      }
+    },
+    {
+      "country": "alb",
+      "clicks": 0,
+      "impressions": 3,
+      "ctr": 0,
+      "position": 2.333333333333333,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 2.333333333333333
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 3,
+        "ctr": 0,
+        "position": 2.333333333333333
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "abw",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 5,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 5
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 5
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      }
+    },
+    {
+      "country": "bgr",
+      "clicks": 0,
+      "impressions": 2,
+      "ctr": 0,
+      "position": 2.5,
+      "prevClicks": 1,
+      "delta": "-100.0%",
+      "current": {
+        "clicks": 0,
+        "impressions": 2,
+        "ctr": 0,
+        "position": 2.5
+      },
+      "previous": {
+        "clicks": 1,
+        "impressions": 4,
+        "ctr": 0.25,
+        "position": 8.5
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -2,
+        "ctr": -0.25,
+        "position": -6
+      },
+      "percentDelta": {
+        "clicks": -100,
+        "impressions": -50,
+        "ctr": -100,
+        "position": -70.58823529411765
+      }
+    }
+  ],
+  "devices": [
+    {
+      "device": "MOBILE",
+      "clicks": 2229,
+      "impressions": 36043,
+      "ctr": 0.06184279887911661,
+      "position": 6.77085703187859,
+      "prevClicks": 2318,
+      "delta": "-3.8%",
+      "current": {
+        "clicks": 2229,
+        "impressions": 36043,
+        "ctr": 0.06184279887911661,
+        "position": 6.77085703187859
+      },
+      "previous": {
+        "clicks": 2318,
+        "impressions": 36716,
+        "ctr": 0.06313323891491447,
+        "position": 6.665786033336965
+      },
+      "difference": {
+        "clicks": -89,
+        "impressions": -673,
+        "ctr": -0.0012904400357978615,
+        "position": 0.10507099854162494
+      },
+      "percentDelta": {
+        "clicks": -3.8395168248490075,
+        "impressions": -1.832988342956749,
+        "ctr": -2.0439946658478987,
+        "position": 1.5762731959313319
+      }
+    },
+    {
+      "device": "DESKTOP",
+      "clicks": 384,
+      "impressions": 5956,
+      "ctr": 0.06447280053727333,
+      "position": 9.830926796507724,
+      "prevClicks": 406,
+      "delta": "-5.4%",
+      "current": {
+        "clicks": 384,
+        "impressions": 5956,
+        "ctr": 0.06447280053727333,
+        "position": 9.830926796507724
+      },
+      "previous": {
+        "clicks": 406,
+        "impressions": 6810,
+        "ctr": 0.05961820851688693,
+        "position": 10.317327459618209
+      },
+      "difference": {
+        "clicks": -22,
+        "impressions": -854,
+        "ctr": 0.004854592020386406,
+        "position": -0.48640066311048535
+      },
+      "percentDelta": {
+        "clicks": -5.41871921182266,
+        "impressions": -12.540381791483114,
+        "ctr": 8.142800901190006,
+        "position": -4.714405595967045
+      }
+    },
+    {
+      "device": "TABLET",
+      "clicks": 31,
+      "impressions": 617,
+      "ctr": 0.050243111831442464,
+      "position": 6.748784440842788,
+      "prevClicks": 45,
+      "delta": "-31.1%",
+      "current": {
+        "clicks": 31,
+        "impressions": 617,
+        "ctr": 0.050243111831442464,
+        "position": 6.748784440842788
+      },
+      "previous": {
+        "clicks": 45,
+        "impressions": 679,
+        "ctr": 0.0662739322533137,
+        "position": 6.14138438880707
+      },
+      "difference": {
+        "clicks": -14,
+        "impressions": -62,
+        "ctr": -0.016030820421871234,
+        "position": 0.6074000520357181
+      },
+      "percentDelta": {
+        "clicks": -31.11111111111111,
+        "impressions": -9.131075110456553,
+        "ctr": -24.188726814334593,
+        "position": 9.890279024754259
+      }
+    }
+  ],
+  "queryPages": [
+    {
+      "query": "verdad o reto",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 325,
+      "impressions": 6702,
+      "ctr": 0.04849298716800955,
+      "position": 5.860787824529991,
+      "prevClicks": 365,
+      "delta": "-11.0%",
+      "current": {
+        "clicks": 325,
+        "impressions": 6702,
+        "ctr": 0.04849298716800955,
+        "position": 5.860787824529991
+      },
+      "previous": {
+        "clicks": 365,
+        "impressions": 8206,
+        "ctr": 0.044479649037289785,
+        "position": 6.044723373141604
+      },
+      "difference": {
+        "clicks": -40,
+        "impressions": -1504,
+        "ctr": 0.004013338130719767,
+        "position": -0.183935548611613
+      },
+      "percentDelta": {
+        "clicks": -10.95890410958904,
+        "impressions": -18.32805264440653,
+        "ctr": 9.022863753612715,
+        "position": -3.042910936650799
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos para tomar",
+      "page": "/",
+      "clicks": 70,
+      "impressions": 743,
+      "ctr": 0.09421265141318977,
+      "position": 3.7092866756393,
+      "prevClicks": 77,
+      "delta": "-9.1%",
+      "current": {
+        "clicks": 70,
+        "impressions": 743,
+        "ctr": 0.09421265141318977,
+        "position": 3.7092866756393
+      },
+      "previous": {
+        "clicks": 77,
+        "impressions": 867,
+        "ctr": 0.08881199538638986,
+        "position": 4.213379469434832
+      },
+      "difference": {
+        "clicks": -7,
+        "impressions": -124,
+        "ctr": 0.005400656026799913,
+        "position": -0.504092793795532
+      },
+      "percentDelta": {
+        "clicks": -9.090909090909092,
+        "impressions": -14.302191464821224,
+        "ctr": 6.080998409396785,
+        "position": -11.964096693696312
+      },
+      "url": "/"
+    },
+    {
+      "query": "verdad o reto online",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 68,
+      "impressions": 210,
+      "ctr": 0.3238095238095238,
+      "position": 2.4380952380952383,
+      "prevClicks": 88,
+      "delta": "-22.7%",
+      "current": {
+        "clicks": 68,
+        "impressions": 210,
+        "ctr": 0.3238095238095238,
+        "position": 2.4380952380952383
+      },
+      "previous": {
+        "clicks": 88,
+        "impressions": 258,
+        "ctr": 0.34108527131782945,
+        "position": 1.4689922480620154
+      },
+      "difference": {
+        "clicks": -20,
+        "impressions": -48,
+        "ctr": -0.017275747508305628,
+        "position": 0.9691029900332229
+      },
+      "percentDelta": {
+        "clicks": -22.727272727272727,
+        "impressions": -18.6046511627907,
+        "ctr": -5.064935064935059,
+        "position": 65.97059932152283
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos para beber",
+      "page": "/",
+      "clicks": 59,
+      "impressions": 706,
+      "ctr": 0.08356940509915015,
+      "position": 3.463172804532578,
+      "prevClicks": 70,
+      "delta": "-15.7%",
+      "current": {
+        "clicks": 59,
+        "impressions": 706,
+        "ctr": 0.08356940509915015,
+        "position": 3.463172804532578
+      },
+      "previous": {
+        "clicks": 70,
+        "impressions": 810,
+        "ctr": 0.08641975308641975,
+        "position": 3.4962962962962965
+      },
+      "difference": {
+        "clicks": -11,
+        "impressions": -104,
+        "ctr": -0.0028503479872696025,
+        "position": -0.03312349176371843
+      },
+      "percentDelta": {
+        "clicks": -15.714285714285714,
+        "impressions": -12.839506172839506,
+        "ctr": -3.29825981384054,
+        "position": -0.9473880059538109
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos de beber",
+      "page": "/",
+      "clicks": 46,
+      "impressions": 363,
+      "ctr": 0.12672176308539945,
+      "position": 3.352617079889807,
+      "prevClicks": 53,
+      "delta": "-13.2%",
+      "current": {
+        "clicks": 46,
+        "impressions": 363,
+        "ctr": 0.12672176308539945,
+        "position": 3.352617079889807
+      },
+      "previous": {
+        "clicks": 53,
+        "impressions": 512,
+        "ctr": 0.103515625,
+        "position": 3.1640625
+      },
+      "difference": {
+        "clicks": -7,
+        "impressions": -149,
+        "ctr": 0.023206138085399453,
+        "position": 0.18855457988980717
+      },
+      "percentDelta": {
+        "clicks": -13.20754716981132,
+        "impressions": -29.1015625,
+        "ctr": 22.418005093819847,
+        "position": 5.959255858245757
+      },
+      "url": "/"
+    },
+    {
+      "query": "verdad o reto juego",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 35,
+      "impressions": 234,
+      "ctr": 0.14957264957264957,
+      "position": 5.196581196581197,
+      "prevClicks": 31,
+      "delta": "+12.9%",
+      "current": {
+        "clicks": 35,
+        "impressions": 234,
+        "ctr": 0.14957264957264957,
+        "position": 5.196581196581197
+      },
+      "previous": {
+        "clicks": 31,
+        "impressions": 393,
+        "ctr": 0.07888040712468193,
+        "position": 5.587786259541985
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": -159,
+        "ctr": 0.07069224244796764,
+        "position": -0.39120506296078794
+      },
+      "percentDelta": {
+        "clicks": 12.903225806451612,
+        "impressions": -40.458015267175576,
+        "ctr": 89.61952026468155,
+        "position": -7.001074214188964
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos para beber online",
+      "page": "/",
+      "clicks": 35,
+      "impressions": 132,
+      "ctr": 0.26515151515151514,
+      "position": 1.128787878787879,
+      "prevClicks": 56,
+      "delta": "-37.5%",
+      "current": {
+        "clicks": 35,
+        "impressions": 132,
+        "ctr": 0.26515151515151514,
+        "position": 1.128787878787879
+      },
+      "previous": {
+        "clicks": 56,
+        "impressions": 127,
+        "ctr": 0.4409448818897638,
+        "position": 1.1338582677165354
+      },
+      "difference": {
+        "clicks": -21,
+        "impressions": 5,
+        "ctr": -0.17579336673824864,
+        "position": -0.005070388928656522
+      },
+      "percentDelta": {
+        "clicks": -37.5,
+        "impressions": 3.937007874015748,
+        "ctr": -39.86742424242424,
+        "position": -0.4471801346801238
+      },
+      "url": "/"
+    },
+    {
+      "query": "bebergames",
+      "page": "/",
+      "clicks": 27,
+      "impressions": 30,
+      "ctr": 0.9,
+      "position": 1,
+      "prevClicks": 22,
+      "delta": "+22.7%",
+      "current": {
+        "clicks": 27,
+        "impressions": 30,
+        "ctr": 0.9,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 22,
+        "impressions": 29,
+        "ctr": 0.7586206896551724,
+        "position": 1
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 1,
+        "ctr": 0.14137931034482765,
+        "position": 0
+      },
+      "percentDelta": {
+        "clicks": 22.727272727272727,
+        "impressions": 3.4482758620689653,
+        "ctr": 18.636363636363644,
+        "position": 0
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos para beber con amigos",
+      "page": "/",
+      "clicks": 24,
+      "impressions": 226,
+      "ctr": 0.10619469026548672,
+      "position": 3.8893805309734515,
+      "prevClicks": 30,
+      "delta": "-20.0%",
+      "current": {
+        "clicks": 24,
+        "impressions": 226,
+        "ctr": 0.10619469026548672,
+        "position": 3.8893805309734515
+      },
+      "previous": {
+        "clicks": 30,
+        "impressions": 216,
+        "ctr": 0.1388888888888889,
+        "position": 3.1574074074074074
+      },
+      "difference": {
+        "clicks": -6,
+        "impressions": 10,
+        "ctr": -0.03269419862340217,
+        "position": 0.731973123566044
+      },
+      "percentDelta": {
+        "clicks": -20,
+        "impressions": 4.62962962962963,
+        "ctr": -23.539823008849563,
+        "position": 23.182726494173828
+      },
+      "url": "/"
+    },
+    {
+      "query": "ruleta para tomar",
+      "page": "/juegos/la-ruleta",
+      "clicks": 24,
+      "impressions": 42,
+      "ctr": 0.5714285714285714,
+      "position": 1.2142857142857142,
+      "prevClicks": 13,
+      "delta": "+84.6%",
+      "current": {
+        "clicks": 24,
+        "impressions": 42,
+        "ctr": 0.5714285714285714,
+        "position": 1.2142857142857142
+      },
+      "previous": {
+        "clicks": 13,
+        "impressions": 36,
+        "ctr": 0.3611111111111111,
+        "position": 1.6944444444444444
+      },
+      "difference": {
+        "clicks": 11,
+        "impressions": 6,
+        "ctr": 0.2103174603174603,
+        "position": -0.48015873015873023
+      },
+      "percentDelta": {
+        "clicks": 84.61538461538461,
+        "impressions": 16.666666666666664,
+        "ctr": 58.241758241758234,
+        "position": -28.33723653395785
+      },
+      "url": "/juegos/la-ruleta"
+    },
+    {
+      "query": "verdad o reto juego online",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 21,
+      "impressions": 58,
+      "ctr": 0.3620689655172414,
+      "position": 1.7413793103448276,
+      "prevClicks": 18,
+      "delta": "+16.7%",
+      "current": {
+        "clicks": 21,
+        "impressions": 58,
+        "ctr": 0.3620689655172414,
+        "position": 1.7413793103448276
+      },
+      "previous": {
+        "clicks": 18,
+        "impressions": 45,
+        "ctr": 0.4,
+        "position": 1.2222222222222223
+      },
+      "difference": {
+        "clicks": 3,
+        "impressions": 13,
+        "ctr": -0.03793103448275864,
+        "position": 0.5191570881226053
+      },
+      "percentDelta": {
+        "clicks": 16.666666666666664,
+        "impressions": 28.888888888888886,
+        "ctr": -9.48275862068966,
+        "position": 42.47648902821316
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juego de beber",
+      "page": "/",
+      "clicks": 20,
+      "impressions": 121,
+      "ctr": 0.1652892561983471,
+      "position": 3.371900826446281,
+      "prevClicks": 21,
+      "delta": "-4.8%",
+      "current": {
+        "clicks": 20,
+        "impressions": 121,
+        "ctr": 0.1652892561983471,
+        "position": 3.371900826446281
+      },
+      "previous": {
+        "clicks": 21,
+        "impressions": 159,
+        "ctr": 0.1320754716981132,
+        "position": 3.849056603773585
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -38,
+        "ctr": 0.033213784500233906,
+        "position": -0.4771557773273041
+      },
+      "percentDelta": {
+        "clicks": -4.761904761904762,
+        "impressions": -23.89937106918239,
+        "ctr": 25.147579693034245,
+        "position": -12.396694214876037
+      },
+      "url": "/"
+    },
+    {
+      "query": "verdad o reto picante",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 15,
+      "impressions": 242,
+      "ctr": 0.06198347107438017,
+      "position": 7.661157024793388,
+      "prevClicks": 6,
+      "delta": "+150.0%",
+      "current": {
+        "clicks": 15,
+        "impressions": 242,
+        "ctr": 0.06198347107438017,
+        "position": 7.661157024793388
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 81,
+        "ctr": 0.07407407407407407,
+        "position": 8.098765432098766
+      },
+      "difference": {
+        "clicks": 9,
+        "impressions": 161,
+        "ctr": -0.012090602999693903,
+        "position": -0.43760840730537787
+      },
+      "percentDelta": {
+        "clicks": 150,
+        "impressions": 198.76543209876542,
+        "ctr": -16.32231404958677,
+        "position": -5.403396492642623
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos para tomar online",
+      "page": "/",
+      "clicks": 15,
+      "impressions": 33,
+      "ctr": 0.45454545454545453,
+      "position": 1.0909090909090908,
+      "prevClicks": 20,
+      "delta": "-25.0%",
+      "current": {
+        "clicks": 15,
+        "impressions": 33,
+        "ctr": 0.45454545454545453,
+        "position": 1.0909090909090908
+      },
+      "previous": {
+        "clicks": 20,
+        "impressions": 43,
+        "ctr": 0.46511627906976744,
+        "position": 1.2093023255813953
+      },
+      "difference": {
+        "clicks": -5,
+        "impressions": -10,
+        "ctr": -0.010570824524312905,
+        "position": -0.11839323467230445
+      },
+      "percentDelta": {
+        "clicks": -25,
+        "impressions": -23.25581395348837,
+        "ctr": -2.2727272727272747,
+        "position": -9.790209790209792
+      },
+      "url": "/"
+    },
+    {
+      "query": "juego de verdad o reto",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 13,
+      "impressions": 182,
+      "ctr": 0.07142857142857142,
+      "position": 6.214285714285714,
+      "prevClicks": 12,
+      "delta": "+8.3%",
+      "current": {
+        "clicks": 13,
+        "impressions": 182,
+        "ctr": 0.07142857142857142,
+        "position": 6.214285714285714
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 196,
+        "ctr": 0.061224489795918366,
+        "position": 6.081632653061225
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -14,
+        "ctr": 0.010204081632653059,
+        "position": 0.13265306122448983
+      },
+      "percentDelta": {
+        "clicks": 8.333333333333332,
+        "impressions": -7.142857142857142,
+        "ctr": 16.666666666666664,
+        "position": 2.1812080536912757
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos de peda online",
+      "page": "/",
+      "clicks": 13,
+      "impressions": 22,
+      "ctr": 0.5909090909090909,
+      "position": 1.3636363636363638,
+      "prevClicks": 6,
+      "delta": "+116.7%",
+      "current": {
+        "clicks": 13,
+        "impressions": 22,
+        "ctr": 0.5909090909090909,
+        "position": 1.3636363636363638
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 9,
+        "ctr": 0.6666666666666666,
+        "position": 1
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 13,
+        "ctr": -0.07575757575757569,
+        "position": 0.36363636363636376
+      },
+      "percentDelta": {
+        "clicks": 116.66666666666667,
+        "impressions": 144.44444444444443,
+        "ctr": -11.363636363636353,
+        "position": 36.363636363636374
+      },
+      "url": "/"
+    },
+    {
+      "query": "beber games",
+      "page": "/",
+      "clicks": 13,
+      "impressions": 16,
+      "ctr": 0.8125,
+      "position": 1,
+      "prevClicks": 9,
+      "delta": "+44.4%",
+      "current": {
+        "clicks": 13,
+        "impressions": 16,
+        "ctr": 0.8125,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 14,
+        "ctr": 0.6428571428571429,
+        "position": 1
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": 2,
+        "ctr": 0.1696428571428571,
+        "position": 0
+      },
+      "percentDelta": {
+        "clicks": 44.44444444444444,
+        "impressions": 14.285714285714285,
+        "ctr": 26.38888888888888,
+        "position": 0
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos para tomar con amigos",
+      "page": "/",
+      "clicks": 12,
+      "impressions": 243,
+      "ctr": 0.04938271604938271,
+      "position": 4.868312757201647,
+      "prevClicks": 19,
+      "delta": "-36.8%",
+      "current": {
+        "clicks": 12,
+        "impressions": 243,
+        "ctr": 0.04938271604938271,
+        "position": 4.868312757201647
+      },
+      "previous": {
+        "clicks": 19,
+        "impressions": 300,
+        "ctr": 0.06333333333333334,
+        "position": 4.093333333333334
+      },
+      "difference": {
+        "clicks": -7,
+        "impressions": -57,
+        "ctr": -0.013950617283950625,
+        "position": 0.774979423868313
+      },
+      "percentDelta": {
+        "clicks": -36.84210526315789,
+        "impressions": -19,
+        "ctr": -22.02729044834309,
+        "position": 18.932722081473443
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos de beber con amigos",
+      "page": "/",
+      "clicks": 11,
+      "impressions": 103,
+      "ctr": 0.10679611650485436,
+      "position": 4.611650485436893,
+      "prevClicks": 7,
+      "delta": "+57.1%",
+      "current": {
+        "clicks": 11,
+        "impressions": 103,
+        "ctr": 0.10679611650485436,
+        "position": 4.611650485436893
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 86,
+        "ctr": 0.08139534883720931,
+        "position": 4.872093023255815
+      },
+      "difference": {
+        "clicks": 4,
+        "impressions": 17,
+        "ctr": 0.025400767667645055,
+        "position": -0.26044253781892124
+      },
+      "percentDelta": {
+        "clicks": 57.14285714285714,
+        "impressions": 19.767441860465116,
+        "ctr": 31.20665742024964,
+        "position": -5.345598628264254
+      },
+      "url": "/"
+    },
+    {
+      "query": "ruleta de retos para tomar",
+      "page": "/juegos/la-ruleta",
+      "clicks": 11,
+      "impressions": 15,
+      "ctr": 0.7333333333333333,
+      "position": 1.5333333333333332,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 11,
+        "impressions": 15,
+        "ctr": 0.7333333333333333,
+        "position": 1.5333333333333332
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 11,
+        "impressions": 15,
+        "ctr": 0.7333333333333333,
+        "position": 1.5333333333333332
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos/la-ruleta"
+    },
+    {
+      "query": "preguntas picantes para verdad o reto",
+      "page": "/blog/preguntas-picantes-verdad-o-reto",
+      "clicks": 8,
+      "impressions": 420,
+      "ctr": 0.01904761904761905,
+      "position": 7.673809523809524,
+      "prevClicks": 13,
+      "delta": "-38.5%",
+      "current": {
+        "clicks": 8,
+        "impressions": 420,
+        "ctr": 0.01904761904761905,
+        "position": 7.673809523809524
+      },
+      "previous": {
+        "clicks": 13,
+        "impressions": 396,
+        "ctr": 0.03282828282828283,
+        "position": 7.638888888888889
+      },
+      "difference": {
+        "clicks": -5,
+        "impressions": 24,
+        "ctr": -0.013780663780663782,
+        "position": 0.0349206349206348
+      },
+      "percentDelta": {
+        "clicks": -38.46153846153847,
+        "impressions": 6.0606060606060606,
+        "ctr": -41.97802197802198,
+        "position": 0.4571428571428555
+      },
+      "url": "/blog/preguntas-picantes-verdad-o-reto"
+    },
+    {
+      "query": "rey de copas game",
+      "page": "/juegos/rey-de-la-copa",
+      "clicks": 8,
+      "impressions": 120,
+      "ctr": 0.06666666666666667,
+      "position": 6.9,
+      "prevClicks": 33,
+      "delta": "-75.8%",
+      "current": {
+        "clicks": 8,
+        "impressions": 120,
+        "ctr": 0.06666666666666667,
+        "position": 6.9
+      },
+      "previous": {
+        "clicks": 33,
+        "impressions": 145,
+        "ctr": 0.22758620689655173,
+        "position": 5.924137931034482
+      },
+      "difference": {
+        "clicks": -25,
+        "impressions": -25,
+        "ctr": -0.16091954022988508,
+        "position": 0.975862068965518
+      },
+      "percentDelta": {
+        "clicks": -75.75757575757575,
+        "impressions": -17.24137931034483,
+        "ctr": -70.70707070707071,
+        "position": 16.472642607683365
+      },
+      "url": "/juegos/rey-de-la-copa"
+    },
+    {
+      "query": "juego para beber",
+      "page": "/",
+      "clicks": 8,
+      "impressions": 80,
+      "ctr": 0.1,
+      "position": 3.275,
+      "prevClicks": 21,
+      "delta": "-61.9%",
+      "current": {
+        "clicks": 8,
+        "impressions": 80,
+        "ctr": 0.1,
+        "position": 3.275
+      },
+      "previous": {
+        "clicks": 21,
+        "impressions": 98,
+        "ctr": 0.21428571428571427,
+        "position": 3.6122448979591835
+      },
+      "difference": {
+        "clicks": -13,
+        "impressions": -18,
+        "ctr": -0.11428571428571427,
+        "position": -0.33724489795918355
+      },
+      "percentDelta": {
+        "clicks": -61.904761904761905,
+        "impressions": -18.367346938775512,
+        "ctr": -53.333333333333336,
+        "position": -9.336158192090393
+      },
+      "url": "/"
+    },
+    {
+      "query": "verdad o reto juego picante premium",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 8,
+      "impressions": 35,
+      "ctr": 0.22857142857142856,
+      "position": 3.6285714285714286,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 8,
+        "impressions": 35,
+        "ctr": 0.22857142857142856,
+        "position": 3.6285714285714286
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 8,
+        "impressions": 35,
+        "ctr": 0.22857142857142856,
+        "position": 3.6285714285714286
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juego beber",
+      "page": "/",
+      "clicks": 8,
+      "impressions": 28,
+      "ctr": 0.2857142857142857,
+      "position": 2.357142857142857,
+      "prevClicks": 12,
+      "delta": "-33.3%",
+      "current": {
+        "clicks": 8,
+        "impressions": 28,
+        "ctr": 0.2857142857142857,
+        "position": 2.357142857142857
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 38,
+        "ctr": 0.3157894736842105,
+        "position": 2.552631578947368
+      },
+      "difference": {
+        "clicks": -4,
+        "impressions": -10,
+        "ctr": -0.03007518796992481,
+        "position": -0.19548872180451093
+      },
+      "percentDelta": {
+        "clicks": -33.33333333333333,
+        "impressions": -26.31578947368421,
+        "ctr": -9.523809523809524,
+        "position": -7.658321060382904
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos de beber online",
+      "page": "/",
+      "clicks": 8,
+      "impressions": 28,
+      "ctr": 0.2857142857142857,
+      "position": 1,
+      "prevClicks": 8,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 8,
+        "impressions": 28,
+        "ctr": 0.2857142857142857,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 36,
+        "ctr": 0.2222222222222222,
+        "position": 1.0555555555555556
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -8,
+        "ctr": 0.06349206349206349,
+        "position": -0.05555555555555558
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -22.22222222222222,
+        "ctr": 28.57142857142857,
+        "position": -5.263157894736844
+      },
+      "url": "/"
+    },
+    {
+      "query": "verdad o reto preguntas online",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 8,
+      "impressions": 24,
+      "ctr": 0.3333333333333333,
+      "position": 2.041666666666667,
+      "prevClicks": 10,
+      "delta": "-20.0%",
+      "current": {
+        "clicks": 8,
+        "impressions": 24,
+        "ctr": 0.3333333333333333,
+        "position": 2.041666666666667
+      },
+      "previous": {
+        "clicks": 10,
+        "impressions": 20,
+        "ctr": 0.5,
+        "position": 1.4
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 4,
+        "ctr": -0.16666666666666669,
+        "position": 0.641666666666667
+      },
+      "percentDelta": {
+        "clicks": -20,
+        "impressions": 20,
+        "ctr": -33.333333333333336,
+        "position": 45.833333333333364
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "reto o verdad",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 7,
+      "impressions": 163,
+      "ctr": 0.04294478527607362,
+      "position": 7.607361963190184,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 7,
+        "impressions": 163,
+        "ctr": 0.04294478527607362,
+        "position": 7.607361963190184
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 163,
+        "ctr": 0.04294478527607362,
+        "position": 7.607361963190184
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juego verdad o reto",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 7,
+      "impressions": 113,
+      "ctr": 0.061946902654867256,
+      "position": 6.477876106194691,
+      "prevClicks": 7,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 7,
+        "impressions": 113,
+        "ctr": 0.061946902654867256,
+        "position": 6.477876106194691
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 198,
+        "ctr": 0.03535353535353535,
+        "position": 6.121212121212121
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": -85,
+        "ctr": 0.026593367301331904,
+        "position": 0.35666398498256946
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": -42.92929292929293,
+        "ctr": 75.2212389380531,
+        "position": 5.82668886357663
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "verdad o reto +18",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 7,
+      "impressions": 87,
+      "ctr": 0.08045977011494253,
+      "position": 6.2298850574712645,
+      "prevClicks": 6,
+      "delta": "+16.7%",
+      "current": {
+        "clicks": 7,
+        "impressions": 87,
+        "ctr": 0.08045977011494253,
+        "position": 6.2298850574712645
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 61,
+        "ctr": 0.09836065573770492,
+        "position": 5.524590163934426
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": 26,
+        "ctr": -0.01790088562276239,
+        "position": 0.7052948935368386
+      },
+      "percentDelta": {
+        "clicks": 16.666666666666664,
+        "impressions": 42.62295081967213,
+        "ctr": -18.199233716475096,
+        "position": 12.76646543197245
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos de tomar",
+      "page": "/",
+      "clicks": 7,
+      "impressions": 76,
+      "ctr": 0.09210526315789473,
+      "position": 4.460526315789474,
+      "prevClicks": 8,
+      "delta": "-12.5%",
+      "current": {
+        "clicks": 7,
+        "impressions": 76,
+        "ctr": 0.09210526315789473,
+        "position": 4.460526315789474
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 71,
+        "ctr": 0.11267605633802817,
+        "position": 4.549295774647888
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": 5,
+        "ctr": -0.02057079318013344,
+        "position": -0.08876945885841359
+      },
+      "percentDelta": {
+        "clicks": -12.5,
+        "impressions": 7.042253521126761,
+        "ctr": -18.256578947368425,
+        "position": -1.9512791266090908
+      },
+      "url": "/"
+    },
+    {
+      "query": "preguntas para beber",
+      "page": "/juegos/categorias/preguntas",
+      "clicks": 7,
+      "impressions": 66,
+      "ctr": 0.10606060606060606,
+      "position": 4.045454545454545,
+      "prevClicks": 6,
+      "delta": "+16.7%",
+      "current": {
+        "clicks": 7,
+        "impressions": 66,
+        "ctr": 0.10606060606060606,
+        "position": 4.045454545454545
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 70,
+        "ctr": 0.08571428571428572,
+        "position": 5.857142857142857
+      },
+      "difference": {
+        "clicks": 1,
+        "impressions": -4,
+        "ctr": 0.02034632034632035,
+        "position": -1.8116883116883118
+      },
+      "percentDelta": {
+        "clicks": 16.666666666666664,
+        "impressions": -5.714285714285714,
+        "ctr": 23.73737373737374,
+        "position": -30.93126385809313
+      },
+      "url": "/juegos/categorias/preguntas"
+    },
+    {
+      "query": "piramide juego de beber",
+      "page": "/juegos/la-piramide",
+      "clicks": 7,
+      "impressions": 32,
+      "ctr": 0.21875,
+      "position": 2.96875,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 7,
+        "impressions": 32,
+        "ctr": 0.21875,
+        "position": 2.96875
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 32,
+        "ctr": 0.21875,
+        "position": 2.96875
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos/la-piramide"
+    },
+    {
+      "query": "verdad o reto juego gratis",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 7,
+      "impressions": 18,
+      "ctr": 0.3888888888888889,
+      "position": 2.166666666666667,
+      "prevClicks": 9,
+      "delta": "-22.2%",
+      "current": {
+        "clicks": 7,
+        "impressions": 18,
+        "ctr": 0.3888888888888889,
+        "position": 2.166666666666667
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 21,
+        "ctr": 0.42857142857142855,
+        "position": 1.9523809523809523
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -3,
+        "ctr": -0.03968253968253965,
+        "position": 0.21428571428571463
+      },
+      "percentDelta": {
+        "clicks": -22.22222222222222,
+        "impressions": -14.285714285714285,
+        "ctr": -9.259259259259252,
+        "position": 10.97560975609758
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos para beber online gratis",
+      "page": "/",
+      "clicks": 7,
+      "impressions": 16,
+      "ctr": 0.4375,
+      "position": 1.1875,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 7,
+        "impressions": 16,
+        "ctr": 0.4375,
+        "position": 1.1875
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 7,
+        "impressions": 16,
+        "ctr": 0.4375,
+        "position": 1.1875
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/"
+    },
+    {
+      "query": "verdad o reto en linea",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 7,
+      "impressions": 14,
+      "ctr": 0.5,
+      "position": 1.7857142857142856,
+      "prevClicks": 9,
+      "delta": "-22.2%",
+      "current": {
+        "clicks": 7,
+        "impressions": 14,
+        "ctr": 0.5,
+        "position": 1.7857142857142856
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 20,
+        "ctr": 0.45,
+        "position": 1.55
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -6,
+        "ctr": 0.04999999999999999,
+        "position": 0.23571428571428554
+      },
+      "percentDelta": {
+        "clicks": -22.22222222222222,
+        "impressions": -30,
+        "ctr": 11.111111111111107,
+        "position": 15.207373271889391
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juego para beber online",
+      "page": "/",
+      "clicks": 7,
+      "impressions": 11,
+      "ctr": 0.6363636363636364,
+      "position": 1,
+      "prevClicks": 5,
+      "delta": "+40.0%",
+      "current": {
+        "clicks": 7,
+        "impressions": 11,
+        "ctr": 0.6363636363636364,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 5,
+        "impressions": 11,
+        "ctr": 0.45454545454545453,
+        "position": 1.1818181818181819
+      },
+      "difference": {
+        "clicks": 2,
+        "impressions": 0,
+        "ctr": 0.18181818181818182,
+        "position": -0.18181818181818188
+      },
+      "percentDelta": {
+        "clicks": 40,
+        "impressions": 0,
+        "ctr": 40,
+        "position": -15.384615384615389
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos para borrachos",
+      "page": "/",
+      "clicks": 6,
+      "impressions": 127,
+      "ctr": 0.047244094488188976,
+      "position": 5.68503937007874,
+      "prevClicks": 6,
+      "delta": "0.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 127,
+        "ctr": 0.047244094488188976,
+        "position": 5.68503937007874
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 114,
+        "ctr": 0.05263157894736842,
+        "position": 6.105263157894737
+      },
+      "difference": {
+        "clicks": 0,
+        "impressions": 13,
+        "ctr": -0.005387484459179442,
+        "position": -0.42022378781599734
+      },
+      "percentDelta": {
+        "clicks": 0,
+        "impressions": 11.403508771929824,
+        "ctr": -10.236220472440941,
+        "position": -6.882975834917198
+      },
+      "url": "/"
+    },
+    {
+      "query": "juego para tomar",
+      "page": "/",
+      "clicks": 6,
+      "impressions": 84,
+      "ctr": 0.07142857142857142,
+      "position": 4.309523809523809,
+      "prevClicks": 8,
+      "delta": "-25.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 84,
+        "ctr": 0.07142857142857142,
+        "position": 4.309523809523809
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 97,
+        "ctr": 0.08247422680412371,
+        "position": 5.030927835051546
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": -13,
+        "ctr": -0.011045655375552285,
+        "position": -0.721404025527737
+      },
+      "percentDelta": {
+        "clicks": -25,
+        "impressions": -13.402061855670103,
+        "ctr": -13.392857142857146,
+        "position": -14.33938329430133
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos beber",
+      "page": "/",
+      "clicks": 6,
+      "impressions": 72,
+      "ctr": 0.08333333333333333,
+      "position": 3.0694444444444446,
+      "prevClicks": 8,
+      "delta": "-25.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 72,
+        "ctr": 0.08333333333333333,
+        "position": 3.0694444444444446
+      },
+      "previous": {
+        "clicks": 8,
+        "impressions": 62,
+        "ctr": 0.12903225806451613,
+        "position": 2.629032258064516
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 10,
+        "ctr": -0.0456989247311828,
+        "position": 0.4404121863799286
+      },
+      "percentDelta": {
+        "clicks": -25,
+        "impressions": 16.129032258064516,
+        "ctr": -35.41666666666667,
+        "position": 16.751874573960475
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos para tomar en grupo",
+      "page": "/",
+      "clicks": 6,
+      "impressions": 59,
+      "ctr": 0.1016949152542373,
+      "position": 3.9491525423728815,
+      "prevClicks": 12,
+      "delta": "-50.0%",
+      "current": {
+        "clicks": 6,
+        "impressions": 59,
+        "ctr": 0.1016949152542373,
+        "position": 3.9491525423728815
+      },
+      "previous": {
+        "clicks": 12,
+        "impressions": 53,
+        "ctr": 0.22641509433962265,
+        "position": 3.452830188679245
+      },
+      "difference": {
+        "clicks": -6,
+        "impressions": 6,
+        "ctr": -0.12472017908538535,
+        "position": 0.4963223536936363
+      },
+      "percentDelta": {
+        "clicks": -50,
+        "impressions": 11.320754716981133,
+        "ctr": -55.08474576271186,
+        "position": 14.37436324905067
+      },
+      "url": "/"
+    },
+    {
+      "query": "ruleta para beber online",
+      "page": "/juegos/la-ruleta",
+      "clicks": 6,
+      "impressions": 19,
+      "ctr": 0.3157894736842105,
+      "position": 1,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 6,
+        "impressions": 19,
+        "ctr": 0.3157894736842105,
+        "position": 1
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 6,
+        "impressions": 19,
+        "ctr": 0.3157894736842105,
+        "position": 1
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos/la-ruleta"
+    },
+    {
+      "query": "juego de beber online",
+      "page": "/",
+      "clicks": 6,
+      "impressions": 17,
+      "ctr": 0.35294117647058826,
+      "position": 1.0588235294117647,
+      "prevClicks": 7,
+      "delta": "-14.3%",
+      "current": {
+        "clicks": 6,
+        "impressions": 17,
+        "ctr": 0.35294117647058826,
+        "position": 1.0588235294117647
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 20,
+        "ctr": 0.35,
+        "position": 1.1
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": -3,
+        "ctr": 0.0029411764705882804,
+        "position": -0.04117647058823537
+      },
+      "percentDelta": {
+        "clicks": -14.285714285714285,
+        "impressions": -15,
+        "ctr": 0.8403361344537945,
+        "position": -3.743315508021397
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos de verdad o reto",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 5,
+      "impressions": 150,
+      "ctr": 0.03333333333333333,
+      "position": 6.013333333333334,
+      "prevClicks": 7,
+      "delta": "-28.6%",
+      "current": {
+        "clicks": 5,
+        "impressions": 150,
+        "ctr": 0.03333333333333333,
+        "position": 6.013333333333334
+      },
+      "previous": {
+        "clicks": 7,
+        "impressions": 148,
+        "ctr": 0.0472972972972973,
+        "position": 5.22972972972973
+      },
+      "difference": {
+        "clicks": -2,
+        "impressions": 2,
+        "ctr": -0.013963963963963967,
+        "position": 0.7836036036036038
+      },
+      "percentDelta": {
+        "clicks": -28.57142857142857,
+        "impressions": 1.3513513513513513,
+        "ctr": -29.52380952380953,
+        "position": 14.98363479758829
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos para beber online",
+      "page": "/juegos",
+      "clicks": 5,
+      "impressions": 132,
+      "ctr": 0.03787878787878788,
+      "position": 4.886363636363637,
+      "prevClicks": 9,
+      "delta": "-44.4%",
+      "current": {
+        "clicks": 5,
+        "impressions": 132,
+        "ctr": 0.03787878787878788,
+        "position": 4.886363636363637
+      },
+      "previous": {
+        "clicks": 9,
+        "impressions": 127,
+        "ctr": 0.07086614173228346,
+        "position": 4.52755905511811
+      },
+      "difference": {
+        "clicks": -4,
+        "impressions": 5,
+        "ctr": -0.032987353853495584,
+        "position": 0.3588045812455265
+      },
+      "percentDelta": {
+        "clicks": -44.44444444444444,
+        "impressions": 3.937007874015748,
+        "ctr": -46.54882154882154,
+        "position": 7.924901185770759
+      },
+      "url": "/juegos"
+    },
+    {
+      "query": "juegos de previa",
+      "page": "/",
+      "clicks": 5,
+      "impressions": 75,
+      "ctr": 0.06666666666666667,
+      "position": 4.533333333333333,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 5,
+        "impressions": 75,
+        "ctr": 0.06666666666666667,
+        "position": 4.533333333333333
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 75,
+        "ctr": 0.06666666666666667,
+        "position": 4.533333333333333
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos para beber en pareja",
+      "page": "/",
+      "clicks": 5,
+      "impressions": 71,
+      "ctr": 0.07042253521126761,
+      "position": 6.014084507042254,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 5,
+        "impressions": 71,
+        "ctr": 0.07042253521126761,
+        "position": 6.014084507042254
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 71,
+        "ctr": 0.07042253521126761,
+        "position": 6.014084507042254
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/"
+    },
+    {
+      "query": "juegos verdad o reto",
+      "page": "/juegos/verdad-o-reto",
+      "clicks": 5,
+      "impressions": 55,
+      "ctr": 0.09090909090909091,
+      "position": 5.5636363636363635,
+      "prevClicks": 6,
+      "delta": "-16.7%",
+      "current": {
+        "clicks": 5,
+        "impressions": 55,
+        "ctr": 0.09090909090909091,
+        "position": 5.5636363636363635
+      },
+      "previous": {
+        "clicks": 6,
+        "impressions": 47,
+        "ctr": 0.1276595744680851,
+        "position": 5.617021276595745
+      },
+      "difference": {
+        "clicks": -1,
+        "impressions": 8,
+        "ctr": -0.036750483558994185,
+        "position": -0.0533849129593813
+      },
+      "percentDelta": {
+        "clicks": -16.666666666666664,
+        "impressions": 17.02127659574468,
+        "ctr": -28.78787878787878,
+        "position": -0.9504132231405005
+      },
+      "url": "/juegos/verdad-o-reto"
+    },
+    {
+      "query": "juegos para tomar shots",
+      "page": "/juegos",
+      "clicks": 5,
+      "impressions": 39,
+      "ctr": 0.1282051282051282,
+      "position": 8.717948717948719,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 5,
+        "impressions": 39,
+        "ctr": 0.1282051282051282,
+        "position": 8.717948717948719
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 39,
+        "ctr": 0.1282051282051282,
+        "position": 8.717948717948719
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos"
+    },
+    {
+      "query": "a beber: juegos para tomar",
+      "page": "/juegos",
+      "clicks": 5,
+      "impressions": 38,
+      "ctr": 0.13157894736842105,
+      "position": 5.921052631578948,
+      "prevClicks": 0,
+      "delta": null,
+      "current": {
+        "clicks": 5,
+        "impressions": 38,
+        "ctr": 0.13157894736842105,
+        "position": 5.921052631578948
+      },
+      "previous": {
+        "clicks": 0,
+        "impressions": 0,
+        "ctr": 0,
+        "position": 0
+      },
+      "difference": {
+        "clicks": 5,
+        "impressions": 38,
+        "ctr": 0.13157894736842105,
+        "position": 5.921052631578948
+      },
+      "percentDelta": {
+        "clicks": null,
+        "impressions": null,
+        "ctr": null,
+        "position": null
+      },
+      "url": "/juegos"
+    }
+  ],
   "cannibalization": [
     {
       "query": "juegos para beber online",
       "urls": [
         {
           "url": "/",
-          "imp": 171
+          "clicks": 35,
+          "impressions": 132,
+          "imp": 132,
+          "ctr": 0.26515151515151514,
+          "position": 1.128787878787879
         },
         {
           "url": "/juegos",
-          "imp": 171
-        }
-      ]
-    },
-    {
-      "query": "juegos para tomar online",
-      "urls": [
-        {
-          "url": "/",
-          "imp": 43
-        },
-        {
-          "url": "/juegos",
-          "imp": 43
+          "clicks": 5,
+          "impressions": 132,
+          "imp": 132,
+          "ctr": 0.03787878787878788,
+          "position": 4.886363636363637
         }
       ]
     }
   ],
-  "ctrOpportunities": [],
+  "ctrOpportunities": [
+    {
+      "query": "preguntas picantes para verdad o reto",
+      "clicks": 8,
+      "impressions": 420,
+      "ctr": 0.01904761904761905,
+      "position": 7.673809523809524
+    },
+    {
+      "query": "juegos para tomar shots",
+      "clicks": 5,
+      "impressions": 187,
+      "ctr": 0.026737967914438502,
+      "position": 7.572192513368984
+    }
+  ],
   "positionOpportunities": [
     {
       "query": "verdad o reto",
-      "clicks": 414,
-      "impressions": 9305,
-      "ctr": 0.04449220849005911,
-      "position": 5.938097796883396
+      "clicks": 325,
+      "impressions": 6702,
+      "ctr": 0.04849298716800955,
+      "position": 5.850492390331245
     },
     {
       "query": "juegos para beber",
-      "clicks": 90,
-      "impressions": 983,
-      "ctr": 0.09155645981688708,
-      "position": 4.626653102746694
+      "clicks": 59,
+      "impressions": 741,
+      "ctr": 0.0796221322537112,
+      "position": 4.978407557354926
     },
     {
-      "query": "juegos para tomar",
-      "clicks": 89,
-      "impressions": 1042,
-      "ctr": 0.0854126679462572,
-      "position": 4.145873320537428
+      "query": "preguntas picantes para verdad o reto",
+      "clicks": 8,
+      "impressions": 420,
+      "ctr": 0.01904761904761905,
+      "position": 7.673809523809524
     },
     {
-      "query": "juegos para beber online",
-      "clicks": 72,
-      "impressions": 209,
-      "ctr": 0.3444976076555024,
-      "position": 10.598086124401913
-    },
-    {
-      "query": "verdad o reto juego",
-      "clicks": 44,
-      "impressions": 387,
-      "ctr": 0.11369509043927649,
-      "position": 5.498708010335918
+      "query": "verdad o reto picante",
+      "clicks": 15,
+      "impressions": 247,
+      "ctr": 0.06072874493927125,
+      "position": 7.886639676113361
     },
     {
       "query": "juegos para tomar con amigos",
-      "clicks": 19,
-      "impressions": 352,
-      "ctr": 0.05397727272727273,
-      "position": 4.616477272727273
+      "clicks": 12,
+      "impressions": 246,
+      "ctr": 0.04878048780487805,
+      "position": 5.479674796747967
+    },
+    {
+      "query": "verdad o reto juego",
+      "clicks": 35,
+      "impressions": 234,
+      "ctr": 0.14957264957264957,
+      "position": 5.196581196581197
+    },
+    {
+      "query": "juegos para tomar shots",
+      "clicks": 5,
+      "impressions": 187,
+      "ctr": 0.026737967914438502,
+      "position": 7.572192513368984
+    },
+    {
+      "query": "juego de verdad o reto",
+      "clicks": 13,
+      "impressions": 182,
+      "ctr": 0.07142857142857142,
+      "position": 6.214285714285714
+    },
+    {
+      "query": "juegos para beber online",
+      "clicks": 40,
+      "impressions": 178,
+      "ctr": 0.2247191011235955,
+      "position": 14.904494382022472
+    },
+    {
+      "query": "reto o verdad",
+      "clicks": 7,
+      "impressions": 163,
+      "ctr": 0.04294478527607362,
+      "position": 7.607361963190184
+    },
+    {
+      "query": "juegos de verdad o reto",
+      "clicks": 5,
+      "impressions": 150,
+      "ctr": 0.03333333333333333,
+      "position": 6.013333333333334
+    },
+    {
+      "query": "juegos para borrachos",
+      "clicks": 7,
+      "impressions": 136,
+      "ctr": 0.051470588235294115,
+      "position": 6.161764705882353
+    },
+    {
+      "query": "rey de copas game",
+      "clicks": 8,
+      "impressions": 124,
+      "ctr": 0.06451612903225806,
+      "position": 6.895161290322581
+    },
+    {
+      "query": "juego verdad o reto",
+      "clicks": 7,
+      "impressions": 113,
+      "ctr": 0.061946902654867256,
+      "position": 6.477876106194691
+    },
+    {
+      "query": "juegos de beber con amigos",
+      "clicks": 11,
+      "impressions": 105,
+      "ctr": 0.10476190476190476,
+      "position": 5.304761904761905
+    },
+    {
+      "query": "juegos para beber en pareja",
+      "clicks": 6,
+      "impressions": 91,
+      "ctr": 0.06593406593406594,
+      "position": 6.538461538461538
+    },
+    {
+      "query": "verdad o reto +18",
+      "clicks": 7,
+      "impressions": 87,
+      "ctr": 0.08045977011494253,
+      "position": 6.206896551724138
+    },
+    {
+      "query": "juego para tomar",
+      "clicks": 6,
+      "impressions": 86,
+      "ctr": 0.06976744186046512,
+      "position": 4.279069767441861
+    },
+    {
+      "query": "juegos de tomar",
+      "clicks": 7,
+      "impressions": 77,
+      "ctr": 0.09090909090909091,
+      "position": 4.454545454545455
+    },
+    {
+      "query": "juegos de previa",
+      "clicks": 5,
+      "impressions": 75,
+      "ctr": 0.06666666666666667,
+      "position": 4.533333333333333
+    },
+    {
+      "query": "preguntas para beber",
+      "clicks": 7,
+      "impressions": 66,
+      "ctr": 0.10606060606060606,
+      "position": 4.045454545454545
+    },
+    {
+      "query": "juegos verdad o reto",
+      "clicks": 5,
+      "impressions": 55,
+      "ctr": 0.09090909090909091,
+      "position": 5.5636363636363635
     }
   ],
   "dataQuality": {
-    "periodDays": 8,
-    "reportsRequested": 5,
-    "reportsSucceeded": 5,
+    "periodDays": 7,
+    "reportsRequested": 12,
+    "reportsSucceeded": 12,
     "warnings": [
-      "Snapshot legado: ambos rangos contienen 8 fechas inclusivas por el error corregido en schema v2.",
-      "No se solicitaron totales sin dimensiones; globalMetrics no está disponible.",
-      "No se solicitaron informes de country ni device.",
-      "Solo se persistieron 15 filas aunque la API solicitó hasta 50; no puede determinarse el truncamiento original.",
-      "El informe query + page anterior no se solicitó y las filas actuales no se persistieron."
+      "Posible truncamiento al alcanzar el límite de 50 filas: current.query, current.page, current.country, current.queryPage, previous.query, previous.page, previous.country, previous.queryPage."
     ],
-    "emptyReports": [
-      "country",
-      "device"
+    "emptyReports": [],
+    "truncatedReports": [
+      "current.query",
+      "current.page",
+      "current.country",
+      "current.queryPage",
+      "previous.query",
+      "previous.page",
+      "previous.country",
+      "previous.queryPage"
     ],
-    "truncatedReports": [],
-    "topLimit": 15
+    "topLimit": 50
   }
 }
