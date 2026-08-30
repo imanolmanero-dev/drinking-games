@@ -21,6 +21,7 @@ import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 import IntensitySelector from "@/components/ui/IntensitySelector";
 import { type Intensidad } from "@/lib/data/yo-nunca";
+import VerdadRetoExperimentAd from "./VerdadRetoExperimentAd";
 
 
 // ───── Shuffle helper ─────
@@ -295,6 +296,8 @@ export default function VerdadORetoPage() {
             <p>
               Olvídate de quedarte en blanco intentando inventar preguntas en tiempo real. Con BeberGames, el juego fluye solo: introduces los nombres, eliges el nivel y la app se encarga de todo. Vosotros solo tenéis que sobrevivir a lo que salga en pantalla.
             </p>
+
+            <VerdadRetoExperimentAd />
 
             <h3>¿Cómo funciona la versión para beber?</h3>
             <p>
