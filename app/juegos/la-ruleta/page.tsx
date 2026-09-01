@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -16,6 +16,11 @@ import {
   BookOpen,
 } from "lucide-react";
 import { useApp } from "@/lib/AppContext";
+import {
+  createSpinLifecycle,
+  getTargetRotation,
+  normalizeRotation,
+} from "./spin-geometry";
 
 // ───── Castigos de la ruleta ─────
 const CASTIGOS = [
@@ -40,11 +45,14 @@ const CASTIGOS = [
 // ───── SVG Roulette Wheel ─────
 function RouletteWheel({
   rotation,
-  spinning,
+  spinDuration,
+  onSpinComplete,
 }: {
   rotation: number;
-  spinning: boolean;
+  spinDuration: number | null;
+  onSpinComplete?: () => void;
 }) {
+  const spinning = spinDuration !== null;
   const segCount = CASTIGOS.length;
   const segAngle = 360 / segCount;
   const radius = 160;
@@ -112,11 +120,12 @@ function RouletteWheel({
         transition={
           spinning
             ? {
-                duration: 4 + Math.random() * 2,
+                duration: spinDuration,
                 ease: [0.2, 0.8, 0.3, 1],
               }
             : { duration: 0 }
         }
+        onAnimationComplete={spinning ? onSpinComplete : undefined}
         className="relative"
       >
         <svg
@@ -161,6 +170,13 @@ function RouletteWheel({
 
 type Phase = "setup" | "playing" | "result";
 
+type ActiveSpin = {
+  id: number;
+  selectedIndex: number;
+  durationSeconds: number;
+  targetRotation: number;
+};
+
 export default function LaRuletaPage() {
   const { playSound, vibrateDevice, recentPlayers, savePlayersToRecent } = useApp();
 
@@ -170,13 +186,19 @@ export default function LaRuletaPage() {
 
   const [turnIdx, setTurnIdx] = useState(0);
   const [rotation, setRotation] = useState(0);
-  const [spinning, setSpinning] = useState(false);
+  const [activeSpin, setActiveSpin] = useState<ActiveSpin | null>(null);
   const [selectedCastigo, setSelectedCastigo] = useState<
     (typeof CASTIGOS)[number] | null
   >(null);
   const [roundCount, setRoundCount] = useState(0);
 
-  const spinResolveRef = useRef<(() => void) | null>(null);
+  const spinLifecycleRef = useRef(createSpinLifecycle());
+  const spinning = activeSpin !== null;
+
+  useEffect(() => {
+    const spinLifecycle = spinLifecycleRef.current;
+    return () => spinLifecycle.cancel();
+  }, []);
 
   const currentPlayer = players[turnIdx % players.length] ?? "";
 
@@ -213,31 +235,42 @@ export default function LaRuletaPage() {
 
   // ── Spin the wheel ──
   const spinWheel = useCallback(() => {
-    if (spinning) return;
+    const spinId = spinLifecycleRef.current.begin();
+    if (spinId === null) return;
 
-    setSpinning(true);
     setSelectedCastigo(null);
     playSound("spin");
     vibrateDevice("dice");
 
-    const segAngle = 360 / CASTIGOS.length;
-    const segIndex = Math.floor(Math.random() * CASTIGOS.length);
-    const fullRotations = (3 + Math.floor(Math.random() * 3)) * 360;
-    const segMid = segIndex * segAngle + segAngle / 2;
-    const targetRotation = rotation + fullRotations + (360 - segMid);
+    const selectedIndex = Math.floor(Math.random() * CASTIGOS.length);
+    const durationSeconds = 4 + Math.random() * 2;
+    const extraRotations = 3 + Math.floor(Math.random() * 3);
+    const targetRotation = getTargetRotation(
+      rotation,
+      selectedIndex,
+      extraRotations,
+    );
 
+    setActiveSpin({
+      id: spinId,
+      selectedIndex,
+      durationSeconds,
+      targetRotation,
+    });
     setRotation(targetRotation);
+  }, [rotation, playSound, vibrateDevice]);
 
-    const duration = 4000 + Math.random() * 2000;
-    setTimeout(() => {
-      setSpinning(false);
-      setSelectedCastigo(CASTIGOS[segIndex]);
-      setRoundCount((r) => r + 1);
-      setPhase("result");
-      playSound("drink");
-      vibrateDevice("result");
-    }, duration);
-  }, [spinning, rotation, playSound, vibrateDevice]);
+  const completeSpin = useCallback((spin: ActiveSpin) => {
+    if (!spinLifecycleRef.current.complete(spin.id)) return;
+
+    setActiveSpin(null);
+    setRotation(normalizeRotation(spin.targetRotation));
+    setSelectedCastigo(CASTIGOS[spin.selectedIndex]);
+    setRoundCount((r) => r + 1);
+    setPhase("result");
+    playSound("drink");
+    vibrateDevice("result");
+  }, [playSound, vibrateDevice]);
 
   // ── Next turn ──
   const nextTurn = useCallback(() => {
@@ -247,6 +280,9 @@ export default function LaRuletaPage() {
   }, []);
 
   const restartGame = useCallback(() => {
+    spinLifecycleRef.current.cancel();
+    setActiveSpin(null);
+    setSelectedCastigo(null);
     setPhase("setup");
     setPlayers([]);
     setRotation(0);
@@ -451,7 +487,7 @@ export default function LaRuletaPage() {
 
         {/* Wheel (stopped) */}
         <div className="mb-6">
-          <RouletteWheel rotation={rotation} spinning={false} />
+          <RouletteWheel rotation={rotation} spinDuration={null} />
         </div>
 
         {/* Result card */}
@@ -567,7 +603,13 @@ export default function LaRuletaPage() {
 
       {/* Wheel */}
       <div className="mb-8">
-        <RouletteWheel rotation={rotation} spinning={spinning} />
+        <RouletteWheel
+          rotation={rotation}
+          spinDuration={activeSpin?.durationSeconds ?? null}
+          onSpinComplete={
+            activeSpin ? () => completeSpin(activeSpin) : undefined
+          }
+        />
       </div>
 
       {/* Spin button */}
