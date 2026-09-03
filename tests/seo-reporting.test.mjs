@@ -28,7 +28,7 @@ function emptyReports() {
   };
 }
 
-function reportRuns(reports, rowLimitOverrides = {}) {
+function reportRuns(reports, rowLimitOverrides = {}, successOverrides = {}) {
   return ['current', 'previous'].flatMap((period) => REPORT_DEFINITIONS.map((definition) => ({
     name: `${period}.${definition.key}`,
     period,
@@ -36,16 +36,16 @@ function reportRuns(reports, rowLimitOverrides = {}) {
     dimensions: definition.dimensions,
     rowLimit: rowLimitOverrides[`${period}.${definition.key}`] ?? definition.rowLimit,
     rows: reports[period][definition.key],
-    succeeded: true,
+    succeeded: successOverrides[`${period}.${definition.key}`] ?? true,
   })));
 }
 
-function snapshotFrom(reports, rowLimitOverrides = {}) {
+function snapshotFrom(reports, rowLimitOverrides = {}, successOverrides = {}) {
   return buildSeoSnapshot({
     generatedAt: '2026-08-27T10:00:00.000Z',
     periods: PERIODS,
     reports,
-    reportRuns: reportRuns(reports, rowLimitOverrides),
+    reportRuns: reportRuns(reports, rowLimitOverrides, successOverrides),
   });
 }
 
@@ -115,6 +115,22 @@ test('usa el informe sin dimensiones para los totales globales', () => {
   assert.deepEqual(globalDefinition.dimensions, []);
 });
 
+test('presenta inequívocamente mejora y empeoramiento de posición', () => {
+  const improvementReports = emptyReports();
+  improvementReports.current.global = [{ clicks: 1, impressions: 10, ctr: 0.1, position: 6 }];
+  improvementReports.previous.global = [{ clicks: 1, impressions: 10, ctr: 0.1, position: 9 }];
+  const improvementMarkdown = renderSeoMarkdown(snapshotFrom(improvementReports));
+  assert.match(improvementMarkdown, /-3,0 \(mejora\)/);
+  assert.match(improvementMarkdown, /Mejora 33,3%/);
+
+  const worseningReports = emptyReports();
+  worseningReports.current.global = [{ clicks: 1, impressions: 10, ctr: 0.1, position: 9 }];
+  worseningReports.previous.global = [{ clicks: 1, impressions: 10, ctr: 0.1, position: 6 }];
+  const worseningMarkdown = renderSeoMarkdown(snapshotFrom(worseningReports));
+  assert.match(worseningMarkdown, /\+3,0 \(empeora\)/);
+  assert.match(worseningMarkdown, /Empeora 50,0%/);
+});
+
 test('separa el límite visible del límite de descarga', () => {
   const reports = emptyReports();
   reports.current.query = Array.from({ length: 60 }, (_, index) => ({
@@ -160,9 +176,13 @@ test('interpreta como cero real una query ausente cuando previous no está trunc
   const row = snapshotFrom(reports).topQueries[0];
   assert.equal(row.previousStatus, 'known_absent');
   assert.equal(row.previousUnknownBecauseTruncated, false);
-  assert.deepEqual(row.previous, { clicks: 0, impressions: 0, ctr: 0, position: 0 });
+  assert.deepEqual(row.previous, { clicks: 0, impressions: 0, ctr: null, position: null });
   assert.equal(row.difference.clicks, 12);
+  assert.equal(row.difference.ctr, null);
+  assert.equal(row.difference.position, null);
   assert.equal(row.percentDelta.clicks, null);
+  assert.equal(row.percentDelta.ctr, null);
+  assert.equal(row.percentDelta.position, null);
 });
 
 test('deja previous desconocido cuando una query falta y previous está truncado', () => {
@@ -348,8 +368,17 @@ test('conserva la unión query + page completa sin ampliar el display ni el Mark
   assert.equal(previousOnly.presence, 'previous_only');
   assert.equal(previousOnly.currentStatus, 'known_absent');
   assert.equal(previousOnly.clicks, 0);
+  assert.equal(previousOnly.impressions, 0);
+  assert.equal(previousOnly.ctr, null);
+  assert.equal(previousOnly.position, null);
   assert.equal(previousOnly.difference.clicks, -9);
+  assert.equal(previousOnly.difference.impressions, -90);
+  assert.equal(previousOnly.difference.ctr, null);
+  assert.equal(previousOnly.difference.position, null);
   assert.equal(previousOnly.percentDelta.clicks, -100);
+  assert.equal(previousOnly.percentDelta.impressions, -100);
+  assert.equal(previousOnly.percentDelta.ctr, null);
+  assert.equal(previousOnly.percentDelta.position, null);
   assert.doesNotMatch(markdown, /fixture-query-051|fixture-query-100/);
   assert.ok(markdown.length < 10_000);
 });
@@ -429,6 +458,7 @@ test('calcula cobertura query por página y usa null cuando el denominador es ce
     impressionsCoveragePct: 50,
     queryRowCount: 2,
     pageDataStatus: 'present',
+    pageReportStatus: 'complete_from_api_response',
     queryDataStatus: 'complete_from_api_response',
   });
   assert.equal(coverage[1].page, '/sin-datos');
@@ -470,6 +500,129 @@ test('marca el dataset query + page como potencialmente truncado al alcanzar fet
   assert.equal(previousOnly.clicks, null);
   assert.equal(previousOnly.previous.clicks, 2);
   assert.equal(previousOnly.difference, null);
+});
+
+test('mantiene null CTR y posición en una ausencia current conocida', () => {
+  const reports = emptyReports();
+  reports.previous.queryPage = [{
+    keys: ['query perdida', 'https://bebergames.com/perdida'],
+    clicks: 7,
+    impressions: 100,
+    ctr: 0.07,
+    position: 8,
+  }];
+
+  const row = snapshotFrom(reports).queryPagesFull[0];
+  assert.equal(row.presence, 'previous_only');
+  assert.equal(row.currentStatus, 'known_absent');
+  assert.deepEqual(
+    { clicks: row.clicks, impressions: row.impressions, ctr: row.ctr, position: row.position },
+    { clicks: 0, impressions: 0, ctr: null, position: null },
+  );
+  assert.deepEqual(row.difference, {
+    clicks: -7,
+    impressions: -100,
+    ctr: null,
+    position: null,
+  });
+  assert.deepEqual(row.percentDelta, {
+    clicks: -100,
+    impressions: -100,
+    ctr: null,
+    position: null,
+  });
+});
+
+test('no inventa ausencias cuando el informe query + page no está disponible', () => {
+  const previousReports = emptyReports();
+  previousReports.current.queryPage = [{
+    keys: ['query actual', 'https://bebergames.com/actual'],
+    clicks: 4,
+    impressions: 40,
+    ctr: 0.1,
+    position: 5,
+  }];
+  const currentOnly = snapshotFrom(
+    previousReports,
+    {},
+    { 'previous.queryPage': false },
+  ).queryPagesFull[0];
+  assert.equal(currentOnly.presence, 'current_only');
+  assert.equal(currentOnly.previousStatus, 'unknown_report_unavailable');
+  assert.equal(currentOnly.previous, null);
+  assert.equal(currentOnly.difference, null);
+  assert.equal(currentOnly.percentDelta, null);
+
+  const currentReports = emptyReports();
+  currentReports.previous.queryPage = [{
+    keys: ['query anterior', 'https://bebergames.com/anterior'],
+    clicks: 7,
+    impressions: 70,
+    ctr: 0.1,
+    position: 8,
+  }];
+  const previousOnly = snapshotFrom(
+    currentReports,
+    {},
+    { 'current.queryPage': false },
+  ).queryPagesFull[0];
+  assert.equal(previousOnly.presence, 'previous_only');
+  assert.equal(previousOnly.currentStatus, 'unknown_report_unavailable');
+  assert.deepEqual(
+    { clicks: previousOnly.clicks, impressions: previousOnly.impressions, ctr: previousOnly.ctr, position: previousOnly.position },
+    { clicks: null, impressions: null, ctr: null, position: null },
+  );
+  assert.equal(previousOnly.difference, null);
+  assert.equal(previousOnly.percentDelta, null);
+});
+
+test('no inventa métricas page cuando existen query rows sin su page row', () => {
+  const reports = emptyReports();
+  reports.current.queryPage = [{
+    keys: ['query foo', 'https://bebergames.com/foo'],
+    clicks: 5,
+    impressions: 50,
+    ctr: 0.1,
+    position: 4,
+  }];
+
+  const coverage = snapshotFrom(reports).pageQueryCoverage[0];
+  assert.deepEqual(coverage, {
+    page: '/foo',
+    pageClicks: null,
+    pageImpressions: null,
+    queryClicks: 5,
+    queryImpressions: 50,
+    clicksCoveragePct: null,
+    impressionsCoveragePct: null,
+    queryRowCount: 1,
+    pageDataStatus: 'page_row_missing',
+    pageReportStatus: 'complete_from_api_response',
+    queryDataStatus: 'complete_from_api_response',
+  });
+});
+
+test('conserva coverage superior a 100% sin clamp y el validator la acepta', () => {
+  const reports = emptyReports();
+  reports.current.page = [{
+    keys: ['https://bebergames.com/descuadre'],
+    clicks: 10,
+    impressions: 40,
+    ctr: 0.25,
+    position: 4,
+  }];
+  reports.current.queryPage = [{
+    keys: ['query descuadrada', 'https://bebergames.com/descuadre'],
+    clicks: 11,
+    impressions: 50,
+    ctr: 0.22,
+    position: 4,
+  }];
+
+  const snapshot = snapshotFrom(reports);
+  assert.ok(Math.abs(snapshot.pageQueryCoverage[0].clicksCoveragePct - 110) < 1e-9);
+  assert.equal(snapshot.pageQueryCoverage[0].impressionsCoveragePct, 125);
+  assert.equal(validateSeoSnapshot(snapshot), true);
 });
 
 test('detecta canibalización más allá del top 50 visible de query + page', () => {
@@ -531,6 +684,59 @@ test('valida el schema v3 y rechaza artifacts sin el dataset completo', () => {
   const invalid = structuredClone(snapshot);
   delete invalid.queryPagesFull;
   assert.throws(() => validateSeoSnapshot(invalid), /queryPagesFull debe ser un array/);
+});
+
+test('el validator v3 rechaza métricas y coberturas corruptas', () => {
+  const reports = emptyReports();
+  reports.current.page = [{
+    keys: ['https://bebergames.com/validacion'],
+    clicks: 10,
+    impressions: 100,
+    ctr: 0.1,
+    position: 6,
+  }];
+  reports.current.queryPage = [{
+    keys: ['query validación', 'https://bebergames.com/validacion'],
+    clicks: 5,
+    impressions: 50,
+    ctr: 0.1,
+    position: 6,
+  }];
+  reports.previous.queryPage = [{
+    keys: ['query validación', 'https://bebergames.com/validacion'],
+    clicks: 4,
+    impressions: 40,
+    ctr: 0.1,
+    position: 7,
+  }];
+  const valid = snapshotFrom(reports);
+  assert.equal(validateSeoSnapshot(valid), true);
+
+  const corruptions = [
+    (snapshot) => { delete snapshot.queryPagesFull[0].difference; },
+    (snapshot) => { snapshot.queryPagesFull[0].previous.position = '7'; },
+    (snapshot) => { snapshot.queryPagesFull[0].previous.ctr = Number.NaN; },
+    (snapshot) => {
+      snapshot.queryPagesFull[0].position = null;
+      snapshot.queryPagesFull[0].difference.position = -5;
+    },
+    (snapshot) => {
+      snapshot.pageQueryCoverage[0].pageClicks = null;
+      snapshot.pageQueryCoverage[0].clicksCoveragePct = 50;
+    },
+    (snapshot) => {
+      snapshot.pageQueryCoverage[0].pageImpressions = 0;
+      snapshot.pageQueryCoverage[0].impressionsCoveragePct = 10;
+    },
+    (snapshot) => { snapshot.pageQueryCoverage[0].queryRowCount = -1; },
+    (snapshot) => { snapshot.queryPagesFull[0].percentDelta.clicks = Number.POSITIVE_INFINITY; },
+  ];
+
+  for (const corrupt of corruptions) {
+    const invalid = structuredClone(valid);
+    corrupt(invalid);
+    assert.throws(() => validateSeoSnapshot(invalid), /Snapshot SEO inválido/);
+  }
 });
 
 test('genera JSON y Markdown deterministas con las mismas entradas', () => {

@@ -85,6 +85,12 @@ export function compareMetrics(current, previous) {
   const percentDelta = {};
 
   for (const metric of METRICS) {
+    if (current[metric] === null || previous[metric] === null) {
+      difference[metric] = null;
+      percentDelta[metric] = null;
+      continue;
+    }
+
     difference[metric] = current[metric] - previous[metric];
     percentDelta[metric] = calculatePercentDelta(current[metric], previous[metric]);
   }
@@ -146,9 +152,18 @@ function reportState(reportRuns, period, key) {
   };
 }
 
+function knownAbsentMetrics() {
+  return {
+    clicks: 0,
+    impressions: 0,
+    ctr: null,
+    position: null,
+  };
+}
+
 function missingPeriod(state) {
   if (state.succeeded && !state.reachedFetchLimit) {
-    return { metrics: normalizeMetrics(), status: 'known_absent' };
+    return { metrics: knownAbsentMetrics(), status: 'known_absent' };
   }
 
   return {
@@ -174,7 +189,7 @@ function compareRows(currentRows, previousRows, dimensions, previousReportState)
     } else if (previousReportState.succeeded && !previousReportState.reachedFetchLimit) {
       // Solo un informe completado por debajo del fetchLimit permite interpretar
       // una identidad ausente como cero real durante el periodo anterior.
-      previous = normalizeMetrics();
+      previous = knownAbsentMetrics();
       previousStatus = 'known_absent';
     } else {
       // Ausencia en un informe truncado o fallido no equivale a cero.
@@ -315,9 +330,16 @@ function buildPageQueryCoverage(pageRows, queryPageRows, pageState, queryPageSta
   const urls = [...new Set([...pageByUrl.keys(), ...queriesByUrl.keys()])].sort(compareText);
   return urls.map((page) => {
     const pageRow = pageByUrl.get(page);
-    const pageMissing = pageRow ? null : missingPeriod(pageState);
-    const pageMetrics = pageRow ? normalizeMetrics(pageRow) : pageMissing.metrics;
     const queryAggregate = queriesByUrl.get(page) ?? { clicks: 0, impressions: 0, rowCount: 0 };
+    const hasQueryRows = queryAggregate.rowCount > 0;
+    const pageMissing = pageRow ? null : missingPeriod(pageState);
+    // Una fila query + page sin su fila page es una inconsistencia entre
+    // agregaciones, no evidencia de que las métricas de página sean cero.
+    const pageMetrics = pageRow
+      ? normalizeMetrics(pageRow)
+      : hasQueryRows
+        ? null
+        : pageMissing.metrics;
     const queryMetricsAvailable = queryPageState.succeeded;
     const queryClicks = queryMetricsAvailable ? queryAggregate.clicks : null;
     const queryImpressions = queryMetricsAvailable ? queryAggregate.impressions : null;
@@ -331,7 +353,12 @@ function buildPageQueryCoverage(pageRows, queryPageRows, pageState, queryPageSta
       clicksCoveragePct: coveragePercent(queryClicks, pageMetrics?.clicks ?? null),
       impressionsCoveragePct: coveragePercent(queryImpressions, pageMetrics?.impressions ?? null),
       queryRowCount: queryMetricsAvailable ? queryAggregate.rowCount : 0,
-      pageDataStatus: pageRow ? 'present' : pageMissing.status,
+      pageDataStatus: pageRow
+        ? 'present'
+        : hasQueryRows
+          ? 'page_row_missing'
+          : pageMissing.status,
+      pageReportStatus: pageState.apiResponseStatus,
       queryDataStatus: queryPageState.apiResponseStatus,
     };
   });
@@ -563,6 +590,92 @@ function assertSnapshot(condition, message) {
   if (!condition) throw new Error(`Snapshot SEO inválido: ${message}`);
 }
 
+const API_RESPONSE_STATUSES = [
+  'complete_from_api_response',
+  'potentially_truncated_by_fetch_limit',
+  'report_unavailable',
+];
+const UNKNOWN_STATUSES = ['unknown_truncated', 'unknown_report_unavailable'];
+
+function isNonNegativeMetric(value) {
+  return value === null || (typeof value === 'number' && Number.isFinite(value) && value >= 0);
+}
+
+function assertMetricSet(metrics, label) {
+  assertSnapshot(metrics && typeof metrics === 'object' && !Array.isArray(metrics), `${label} debe ser un objeto`);
+  for (const metric of METRICS) {
+    assertSnapshot(Object.hasOwn(metrics, metric), `${label}.${metric} es obligatorio`);
+    assertSnapshot(isNonNegativeMetric(metrics[metric]), `${label}.${metric} debe ser un número no negativo o null`);
+  }
+}
+
+function assertKnownAbsent(metrics, label) {
+  assertMetricSet(metrics, label);
+  assertSnapshot(metrics.clicks === 0, `${label}.clicks debe ser 0 si la ausencia es conocida`);
+  assertSnapshot(metrics.impressions === 0, `${label}.impressions debe ser 0 si la ausencia es conocida`);
+  assertSnapshot(metrics.ctr === null, `${label}.ctr debe ser null si la ausencia es conocida`);
+  assertSnapshot(metrics.position === null, `${label}.position debe ser null si la ausencia es conocida`);
+}
+
+function assertUnknownMetrics(metrics, label) {
+  assertMetricSet(metrics, label);
+  for (const metric of METRICS) {
+    assertSnapshot(metrics[metric] === null, `${label}.${metric} debe ser null si el periodo es desconocido`);
+  }
+}
+
+function approximatelyEqual(actual, expected) {
+  return Math.abs(actual - expected) <= 1e-9 * Math.max(1, Math.abs(actual), Math.abs(expected));
+}
+
+function assertComparison(current, previous, difference, percentDelta, label) {
+  assertMetricSet(current, `${label}.current`);
+
+  if (previous === null) {
+    assertSnapshot(difference === null, `${label}.difference debe ser null sin previous`);
+    assertSnapshot(percentDelta === null, `${label}.percentDelta debe ser null sin previous`);
+    return;
+  }
+
+  assertMetricSet(previous, `${label}.previous`);
+  assertSnapshot(difference && typeof difference === 'object' && !Array.isArray(difference),
+    `${label}.difference debe ser un objeto`);
+  assertSnapshot(percentDelta && typeof percentDelta === 'object' && !Array.isArray(percentDelta),
+    `${label}.percentDelta debe ser un objeto`);
+
+  for (const metric of METRICS) {
+    assertSnapshot(Object.hasOwn(difference, metric), `${label}.difference.${metric} es obligatorio`);
+    assertSnapshot(Object.hasOwn(percentDelta, metric), `${label}.percentDelta.${metric} es obligatorio`);
+    const differenceValue = difference[metric];
+    const percentValue = percentDelta[metric];
+    assertSnapshot(differenceValue === null || (typeof differenceValue === 'number' && Number.isFinite(differenceValue)),
+      `${label}.difference.${metric} debe ser un número finito o null`);
+    assertSnapshot(percentValue === null || (typeof percentValue === 'number' && Number.isFinite(percentValue)),
+      `${label}.percentDelta.${metric} debe ser un número finito o null`);
+
+    if (current[metric] === null || previous[metric] === null) {
+      assertSnapshot(differenceValue === null, `${label}.difference.${metric} debe ser null si una métrica es desconocida`);
+      assertSnapshot(percentValue === null, `${label}.percentDelta.${metric} debe ser null si una métrica es desconocida`);
+      continue;
+    }
+
+    const expectedDifference = current[metric] - previous[metric];
+    assertSnapshot(
+      typeof differenceValue === 'number' && approximatelyEqual(differenceValue, expectedDifference),
+      `${label}.difference.${metric} no coincide con current - previous`,
+    );
+    if (previous[metric] === 0) {
+      assertSnapshot(percentValue === null, `${label}.percentDelta.${metric} debe ser null con denominador 0`);
+    } else {
+      const expectedPercent = calculatePercentDelta(current[metric], previous[metric]);
+      assertSnapshot(
+        typeof percentValue === 'number' && approximatelyEqual(percentValue, expectedPercent),
+        `${label}.percentDelta.${metric} no coincide con las métricas`,
+      );
+    }
+  }
+}
+
 export function validateSeoSnapshot(snapshot) {
   assertSnapshot(snapshot?.schemaVersion === SCHEMA_VERSION, `schemaVersion debe ser ${SCHEMA_VERSION}`);
   for (const field of [
@@ -594,11 +707,7 @@ export function validateSeoSnapshot(snapshot) {
     assertSnapshot(typeof report.reachedLimit === 'boolean', `${period}.reachedLimit debe ser boolean`);
     assertSnapshot(typeof report.potentiallyTruncated === 'boolean',
       `${period}.potentiallyTruncated debe ser boolean`);
-    assertSnapshot([
-      'complete_from_api_response',
-      'potentially_truncated_by_fetch_limit',
-      'report_unavailable',
-    ].includes(report.apiResponseStatus), `${period}.apiResponseStatus desconocido`);
+    assertSnapshot(API_RESPONSE_STATUSES.includes(report.apiResponseStatus), `${period}.apiResponseStatus desconocido`);
   }
 
   for (const row of snapshot.queryPagesFull) {
@@ -606,15 +715,102 @@ export function validateSeoSnapshot(snapshot) {
     assertSnapshot(typeof row.page === 'string', 'queryPagesFull.page debe ser texto');
     assertSnapshot(typeof row.url === 'string', 'queryPagesFull.url debe ser texto');
     assertSnapshot(['matched', 'current_only', 'previous_only'].includes(row.presence), 'presence desconocido');
-    for (const metric of METRICS) {
-      assertSnapshot(row[metric] === null || Number.isFinite(row[metric]), `${metric} debe ser número o null`);
+    assertSnapshot(['present', 'known_absent', ...UNKNOWN_STATUSES].includes(row.currentStatus),
+      'currentStatus desconocido');
+    assertSnapshot(['matched', 'present', 'known_absent', ...UNKNOWN_STATUSES].includes(row.previousStatus),
+      'previousStatus desconocido');
+    assertSnapshot(Object.hasOwn(row, 'previous'), 'queryPagesFull.previous es obligatorio');
+    assertSnapshot(Object.hasOwn(row, 'difference'), 'queryPagesFull.difference es obligatorio');
+    assertSnapshot(Object.hasOwn(row, 'percentDelta'), 'queryPagesFull.percentDelta es obligatorio');
+
+    const current = Object.fromEntries(METRICS.map((metric) => [metric, row[metric]]));
+    assertComparison(current, row.previous, row.difference, row.percentDelta, 'queryPagesFull');
+
+    if (row.currentStatus === 'known_absent') assertKnownAbsent(current, 'queryPagesFull.current');
+    if (UNKNOWN_STATUSES.includes(row.currentStatus)) assertUnknownMetrics(current, 'queryPagesFull.current');
+    if (row.currentStatus === 'present') {
+      assertSnapshot(METRICS.every((metric) => current[metric] !== null),
+        'queryPagesFull.current no puede contener null con status present');
     }
+    if (row.previousStatus === 'known_absent') assertKnownAbsent(row.previous, 'queryPagesFull.previous');
+    if (UNKNOWN_STATUSES.includes(row.previousStatus)) {
+      assertSnapshot(row.previous === null, 'queryPagesFull.previous debe ser null si el periodo es desconocido');
+    }
+    if (['matched', 'present'].includes(row.previousStatus)) {
+      assertMetricSet(row.previous, 'queryPagesFull.previous');
+      assertSnapshot(METRICS.every((metric) => row.previous[metric] !== null),
+        'queryPagesFull.previous no puede contener null si está presente');
+    }
+
+    assertSnapshot(row.presence !== 'matched' || (row.currentStatus === 'present' && row.previousStatus === 'matched'),
+      'presence matched no coincide con los estados');
+    assertSnapshot(row.presence !== 'current_only' || (row.currentStatus === 'present'
+      && ['known_absent', ...UNKNOWN_STATUSES].includes(row.previousStatus)),
+    'presence current_only no coincide con los estados');
+    assertSnapshot(row.presence !== 'previous_only' || (['known_absent', ...UNKNOWN_STATUSES].includes(row.currentStatus)
+      && row.previousStatus === 'present'),
+    'presence previous_only no coincide con los estados');
   }
 
   for (const coverage of snapshot.pageQueryCoverage) {
     assertSnapshot(typeof coverage.page === 'string', 'pageQueryCoverage.page debe ser texto');
+    for (const metric of ['pageClicks', 'pageImpressions', 'queryClicks', 'queryImpressions']) {
+      assertSnapshot(Object.hasOwn(coverage, metric), `pageQueryCoverage.${metric} es obligatorio`);
+      assertSnapshot(isNonNegativeMetric(coverage[metric]),
+        `pageQueryCoverage.${metric} debe ser un número no negativo o null`);
+    }
+    for (const metric of ['clicksCoveragePct', 'impressionsCoveragePct']) {
+      assertSnapshot(Object.hasOwn(coverage, metric), `pageQueryCoverage.${metric} es obligatorio`);
+      assertSnapshot(coverage[metric] === null
+        || (typeof coverage[metric] === 'number' && Number.isFinite(coverage[metric]) && coverage[metric] >= 0),
+      `pageQueryCoverage.${metric} debe ser un número no negativo o null`);
+    }
     assertSnapshot(Number.isInteger(coverage.queryRowCount) && coverage.queryRowCount >= 0,
       'pageQueryCoverage.queryRowCount debe ser entero no negativo');
+    assertSnapshot(['present', 'page_row_missing', 'known_absent', ...UNKNOWN_STATUSES].includes(coverage.pageDataStatus),
+      'pageQueryCoverage.pageDataStatus desconocido');
+    assertSnapshot(API_RESPONSE_STATUSES.includes(coverage.pageReportStatus),
+      'pageQueryCoverage.pageReportStatus desconocido');
+    assertSnapshot(API_RESPONSE_STATUSES.includes(coverage.queryDataStatus),
+      'pageQueryCoverage.queryDataStatus desconocido');
+
+    if (coverage.pageDataStatus === 'present') {
+      assertSnapshot(coverage.pageClicks !== null && coverage.pageImpressions !== null,
+        'pageQueryCoverage requiere métricas page con status present');
+    } else if (coverage.pageDataStatus === 'known_absent') {
+      assertSnapshot(coverage.pageClicks === 0 && coverage.pageImpressions === 0,
+        'pageQueryCoverage requiere ceros con page known_absent');
+    } else {
+      assertSnapshot(coverage.pageClicks === null && coverage.pageImpressions === null,
+        'pageQueryCoverage no puede inventar métricas page ausentes');
+    }
+
+    if (coverage.queryDataStatus === 'report_unavailable') {
+      assertSnapshot(coverage.queryClicks === null && coverage.queryImpressions === null,
+        'pageQueryCoverage query metrics deben ser null si el informe no está disponible');
+      assertSnapshot(coverage.queryRowCount === 0,
+        'pageQueryCoverage.queryRowCount debe ser 0 si el informe no está disponible');
+    } else {
+      assertSnapshot(coverage.queryClicks !== null && coverage.queryImpressions !== null,
+        'pageQueryCoverage requiere query metrics si el informe está disponible');
+    }
+
+    for (const [queryMetric, pageMetric, coverageMetric] of [
+      ['queryClicks', 'pageClicks', 'clicksCoveragePct'],
+      ['queryImpressions', 'pageImpressions', 'impressionsCoveragePct'],
+    ]) {
+      const numerator = coverage[queryMetric];
+      const denominator = coverage[pageMetric];
+      const percentage = coverage[coverageMetric];
+      if (numerator === null || denominator === null || denominator === 0) {
+        assertSnapshot(percentage === null,
+          `pageQueryCoverage.${coverageMetric} debe ser null sin denominador válido`);
+      } else {
+        const expected = (numerator / denominator) * 100;
+        assertSnapshot(typeof percentage === 'number' && approximatelyEqual(percentage, expected),
+          `pageQueryCoverage.${coverageMetric} no coincide con sus métricas`);
+      }
+    }
   }
 
   return true;
@@ -640,6 +836,25 @@ function formatPercentDelta(value) {
   if (typeof value !== 'number' || !Number.isFinite(value)) return 'N/D';
   const prefix = value > 0 ? '+' : '';
   return `${prefix}${formatNumber(value, 1)}%`;
+}
+
+function formatPositionDifference(value) {
+  if (typeof value !== 'number' || !Number.isFinite(value)) return 'N/D';
+  if (value === 0) return '0,0 (sin cambio)';
+  const prefix = value > 0 ? '+' : '';
+  const interpretation = value < 0 ? 'mejora' : 'empeora';
+  return `${prefix}${formatNumber(value, 1)} (${interpretation})`;
+}
+
+function formatPositionChange(current, previous) {
+  if (typeof current !== 'number' || !Number.isFinite(current)
+    || typeof previous !== 'number' || !Number.isFinite(previous)
+    || previous === 0) {
+    return 'N/D';
+  }
+  if (current === previous) return 'Sin cambio';
+  const direction = current < previous ? 'Mejora' : 'Empeora';
+  return `${direction} ${formatNumber(Math.abs(calculatePercentDelta(current, previous)), 1)}%`;
 }
 
 function comparisonTable(rows, identityLabel, identityValue, linkPages = false) {
@@ -694,12 +909,12 @@ export function renderSeoMarkdown(snapshot) {
   md += 'Search Console mide **clics orgánicos**, no page views. Los totales de esta sección proceden de informes específicos **sin dimensiones**.\n\n';
 
   md += '## Comparativa actual vs anterior\n\n';
-  md += '| Métrica | Actual | Anterior | Diferencia | Crecimiento |\n';
+  md += '| Métrica | Actual | Anterior | Diferencia | Cambio relativo |\n';
   md += '|---|---:|---:|---:|---:|\n';
   md += `| Clics orgánicos | ${formatNumber(global.current.clicks)} | ${formatNumber(global.previous.clicks)} | ${formatNumber(global.difference.clicks)} | ${formatPercentDelta(global.percentDelta.clicks)} |\n`;
   md += `| Impresiones | ${formatNumber(global.current.impressions)} | ${formatNumber(global.previous.impressions)} | ${formatNumber(global.difference.impressions)} | ${formatPercentDelta(global.percentDelta.impressions)} |\n`;
   md += `| CTR global | ${formatPercent(global.current.ctr)} | ${formatPercent(global.previous.ctr)} | ${formatPercent(global.difference.ctr)} | ${formatPercentDelta(global.percentDelta.ctr)} |\n`;
-  md += `| Posición media global | ${formatNumber(global.current.position, 1)} | ${formatNumber(global.previous.position, 1)} | ${formatNumber(global.difference.position, 1)} | ${formatPercentDelta(global.percentDelta.position)} |\n`;
+  md += `| Posición media global | ${formatNumber(global.current.position, 1)} | ${formatNumber(global.previous.position, 1)} | ${formatPositionDifference(global.difference.position)} | ${formatPositionChange(global.current.position, global.previous.position)} |\n`;
   md += '\n`N/D` indica que no existe una base porcentual o que el valor anterior es desconocido porque el informe alcanzó el límite de descarga.\n\n';
 
   md += `## Top ${displayLimit} queries\n\n`;
