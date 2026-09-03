@@ -7,6 +7,7 @@ import {
   buildSeoSnapshot,
   calculatePeriods,
   renderSeoMarkdown,
+  validateSeoSnapshot,
 } from './seo-reporting.mjs';
 
 dotenv.config();
@@ -125,6 +126,7 @@ async function fetchSeoData() {
 
   const generatedAt = new Date().toISOString();
   const snapshot = buildSeoSnapshot({ generatedAt, periods, reports, reportRuns });
+  validateSeoSnapshot(snapshot);
   const markdown = renderSeoMarkdown(snapshot);
 
   fs.writeFileSync(OUTPUT_MD, markdown, 'utf8');

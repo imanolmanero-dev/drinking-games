@@ -1,4 +1,4 @@
-export const SCHEMA_VERSION = 2;
+export const SCHEMA_VERSION = 3;
 export const DISPLAY_LIMIT = 50;
 // Máximo admitido por Search Analytics Query en una sola respuesta.
 export const FETCH_LIMIT = 25_000;
@@ -72,10 +72,10 @@ export function normalizeMetrics(row) {
 }
 
 export function compareMetrics(current, previous) {
-  if (previous === null) {
+  if (current === null || previous === null) {
     return {
       current,
-      previous: null,
+      previous,
       difference: null,
       percentDelta: null,
     };
@@ -122,15 +122,38 @@ function sortRows(rows) {
 
 function reportState(reportRuns, period, key) {
   const report = reportRuns.find((candidate) => candidate.period === period && candidate.key === key);
+  const fetchLimit = report?.rowLimit ?? FETCH_LIMIT;
+  const fetchedRows = report?.rows?.length ?? 0;
   const reachedFetchLimit = Boolean(
     report?.succeeded
     && report.dimensions.length > 0
-    && report.rows.length >= report.rowLimit,
+    && fetchedRows >= fetchLimit,
   );
+  const succeeded = report?.succeeded === true;
 
   return {
-    succeeded: report?.succeeded === true,
+    succeeded,
+    fetchLimit,
+    fetchedRows,
     reachedFetchLimit,
+    reachedLimit: reachedFetchLimit,
+    potentiallyTruncated: reachedFetchLimit,
+    apiResponseStatus: !succeeded
+      ? 'report_unavailable'
+      : reachedFetchLimit
+        ? 'potentially_truncated_by_fetch_limit'
+        : 'complete_from_api_response',
+  };
+}
+
+function missingPeriod(state) {
+  if (state.succeeded && !state.reachedFetchLimit) {
+    return { metrics: normalizeMetrics(), status: 'known_absent' };
+  }
+
+  return {
+    metrics: null,
+    status: state.reachedFetchLimit ? 'unknown_truncated' : 'unknown_report_unavailable',
   };
 }
 
@@ -183,6 +206,53 @@ function currentRowsForAnalysis(rows, dimensions) {
   }));
 }
 
+function nullableMetrics(metrics) {
+  return metrics ?? {
+    clicks: null,
+    impressions: null,
+    ctr: null,
+    position: null,
+  };
+}
+
+function compareAllRows(currentRows, previousRows, dimensions, currentReportState, previousReportState) {
+  const currentByKey = new Map(currentRows.map((row) => [rowKey(row), row]));
+  const previousByKey = new Map(previousRows.map((row) => [rowKey(row), row]));
+  const allKeys = [...new Set([...currentByKey.keys(), ...previousByKey.keys()])];
+
+  return allKeys.map((key) => {
+    const currentRow = currentByKey.get(key);
+    const previousRow = previousByKey.get(key);
+    const identityRow = currentRow ?? previousRow;
+    const identity = Object.fromEntries(dimensions.map((dimension, index) => [
+      dimension,
+      identityRow?.keys?.[index] ?? '',
+    ]));
+    const currentMissing = currentRow ? null : missingPeriod(currentReportState);
+    const previousMissing = previousRow ? null : missingPeriod(previousReportState);
+    const current = currentRow ? normalizeMetrics(currentRow) : currentMissing.metrics;
+    const previous = previousRow ? normalizeMetrics(previousRow) : previousMissing.metrics;
+    const comparison = compareMetrics(current, previous);
+    let previousStatus = previousMissing?.status;
+    if (previousRow) previousStatus = currentRow ? 'matched' : 'present';
+
+    return {
+      ...identity,
+      ...nullableMetrics(current),
+      presence: currentRow && previousRow
+        ? 'matched'
+        : currentRow
+          ? 'current_only'
+          : 'previous_only',
+      currentStatus: currentRow ? 'present' : currentMissing.status,
+      previousStatus,
+      previous,
+      difference: comparison.difference,
+      percentDelta: comparison.percentDelta,
+    };
+  });
+}
+
 function relativeUrl(url) {
   try {
     const parsed = new URL(url);
@@ -198,6 +268,101 @@ function normalizePageRows(rows) {
     page: relativeUrl(row.page),
     url: relativeUrl(row.page),
   }));
+}
+
+function sortFullQueryPages(rows) {
+  return [...rows].sort((a, b) => {
+    const pageDifference = compareText(a.page, b.page);
+    if (pageDifference !== 0) return pageDifference;
+
+    const currentImpressions = metricValue(b.impressions) - metricValue(a.impressions);
+    if (currentImpressions !== 0) return currentImpressions;
+
+    const currentClicks = metricValue(b.clicks) - metricValue(a.clicks);
+    if (currentClicks !== 0) return currentClicks;
+
+    const previousImpressions = metricValue(b.previous?.impressions) - metricValue(a.previous?.impressions);
+    if (previousImpressions !== 0) return previousImpressions;
+
+    const previousClicks = metricValue(b.previous?.clicks) - metricValue(a.previous?.clicks);
+    if (previousClicks !== 0) return previousClicks;
+
+    return compareText(a.query, b.query);
+  });
+}
+
+function coveragePercent(queryMetric, pageMetric) {
+  if (typeof queryMetric !== 'number' || typeof pageMetric !== 'number' || pageMetric === 0) {
+    return null;
+  }
+  return (queryMetric / pageMetric) * 100;
+}
+
+function buildPageQueryCoverage(pageRows, queryPageRows, pageState, queryPageState) {
+  const pages = normalizePageRows(currentRowsForAnalysis(pageRows, ['page']));
+  const queryPages = normalizePageRows(currentRowsForAnalysis(queryPageRows, ['query', 'page']));
+  const pageByUrl = new Map(pages.map((row) => [row.page, row]));
+  const queriesByUrl = new Map();
+
+  for (const row of queryPages) {
+    const aggregate = queriesByUrl.get(row.page) ?? { clicks: 0, impressions: 0, rowCount: 0 };
+    aggregate.clicks += row.clicks;
+    aggregate.impressions += row.impressions;
+    aggregate.rowCount += 1;
+    queriesByUrl.set(row.page, aggregate);
+  }
+
+  const urls = [...new Set([...pageByUrl.keys(), ...queriesByUrl.keys()])].sort(compareText);
+  return urls.map((page) => {
+    const pageRow = pageByUrl.get(page);
+    const pageMissing = pageRow ? null : missingPeriod(pageState);
+    const pageMetrics = pageRow ? normalizeMetrics(pageRow) : pageMissing.metrics;
+    const queryAggregate = queriesByUrl.get(page) ?? { clicks: 0, impressions: 0, rowCount: 0 };
+    const queryMetricsAvailable = queryPageState.succeeded;
+    const queryClicks = queryMetricsAvailable ? queryAggregate.clicks : null;
+    const queryImpressions = queryMetricsAvailable ? queryAggregate.impressions : null;
+
+    return {
+      page,
+      pageClicks: pageMetrics?.clicks ?? null,
+      pageImpressions: pageMetrics?.impressions ?? null,
+      queryClicks,
+      queryImpressions,
+      clicksCoveragePct: coveragePercent(queryClicks, pageMetrics?.clicks ?? null),
+      impressionsCoveragePct: coveragePercent(queryImpressions, pageMetrics?.impressions ?? null),
+      queryRowCount: queryMetricsAvailable ? queryAggregate.rowCount : 0,
+      pageDataStatus: pageRow ? 'present' : pageMissing.status,
+      queryDataStatus: queryPageState.apiResponseStatus,
+    };
+  });
+}
+
+function countStatuses(rows, field) {
+  const counts = {};
+  for (const row of rows) counts[row[field]] = (counts[row[field]] ?? 0) + 1;
+  return counts;
+}
+
+function queryPageDatasetQuality(currentState, previousState, rows) {
+  const reportSummary = (state) => ({
+    fetchLimit: state.fetchLimit,
+    fetchedRows: state.fetchedRows,
+    reachedLimit: state.reachedLimit,
+    potentiallyTruncated: state.potentiallyTruncated,
+    apiResponseStatus: state.apiResponseStatus,
+  });
+
+  return {
+    storedRows: rows.length,
+    currentRows: currentState.fetchedRows,
+    previousRows: previousState.fetchedRows,
+    unionRows: rows.length,
+    current: reportSummary(currentState),
+    previous: reportSummary(previousState),
+    presenceCounts: countStatuses(rows, 'presence'),
+    currentStatusCounts: countStatuses(rows, 'currentStatus'),
+    previousStatusCounts: countStatuses(rows, 'previousStatus'),
+  };
 }
 
 function findCtrOpportunities(topQueries) {
@@ -251,7 +416,7 @@ function findCannibalization(queryPages) {
     .sort((a, b) => compareText(a.query, b.query));
 }
 
-function buildDataQuality(reportRuns, displayedCollections, analysisRows) {
+function buildDataQuality(reportRuns, displayedCollections, analysisRows, queryPageDataset) {
   const succeeded = reportRuns.filter((report) => report.succeeded);
   const emptyReports = succeeded
     .filter((report) => report.rows.length === 0)
@@ -294,6 +459,7 @@ function buildDataQuality(reportRuns, displayedCollections, analysisRows) {
       Object.entries(displayedCollections).map(([name, rows]) => [name, rows.length]),
     ),
     analysisRows,
+    queryPageDataset,
     previousUnknownBecauseTruncated,
   };
 }
@@ -335,6 +501,21 @@ export function buildSeoSnapshot({ generatedAt, periods, reports, reportRuns }) 
     reports.current.queryPage,
     ['query', 'page'],
   ));
+  const currentQueryPageState = reportState(reportRuns, 'current', 'queryPage');
+  const previousQueryPageState = reportState(reportRuns, 'previous', 'queryPage');
+  const queryPagesFull = sortFullQueryPages(normalizePageRows(compareAllRows(
+    reports.current.queryPage,
+    reports.previous.queryPage,
+    ['query', 'page'],
+    currentQueryPageState,
+    previousQueryPageState,
+  )));
+  const pageQueryCoverage = buildPageQueryCoverage(
+    reports.current.page,
+    reports.current.queryPage,
+    reportState(reportRuns, 'current', 'page'),
+    currentQueryPageState,
+  );
   const displayedCollections = {
     topQueries,
     topPages,
@@ -342,13 +523,25 @@ export function buildSeoSnapshot({ generatedAt, periods, reports, reportRuns }) 
     devices,
     queryPages,
   };
-  const dataQuality = buildDataQuality(reportRuns, displayedCollections, {
-    queryPages: queryPagesForAnalysis.length,
-  });
+  const queryPageDataset = queryPageDatasetQuality(
+    currentQueryPageState,
+    previousQueryPageState,
+    queryPagesFull,
+  );
+  const dataQuality = buildDataQuality(
+    reportRuns,
+    displayedCollections,
+    {
+      queryPages: queryPagesForAnalysis.length,
+      queryPagesFull: queryPagesFull.length,
+      pageQueryCoverage: pageQueryCoverage.length,
+    },
+    queryPageDataset,
+  );
 
   return {
     schemaVersion: SCHEMA_VERSION,
-    schemaDescription: 'v2: periodos 7/7, totales sin dimensiones, display/fetch separados y comparativas que distinguen previous conocido, cero real y desconocido por truncamiento.',
+    schemaDescription: 'v3: conserva el display v2 y añade la unión completa current + previous de query/page, cobertura por URL y estado explícito de truncamiento.',
     updatedAt: generatedAt,
     periods,
     globalMetrics: compareMetrics(currentGlobal, previousGlobal),
@@ -357,11 +550,74 @@ export function buildSeoSnapshot({ generatedAt, periods, reports, reportRuns }) 
     countries,
     devices,
     queryPages,
+    queryPagesFull,
+    pageQueryCoverage,
     cannibalization: findCannibalization(queryPagesForAnalysis),
     ctrOpportunities: findCtrOpportunities(topQueries),
     positionOpportunities: findPositionOpportunities(topQueries),
     dataQuality,
   };
+}
+
+function assertSnapshot(condition, message) {
+  if (!condition) throw new Error(`Snapshot SEO inválido: ${message}`);
+}
+
+export function validateSeoSnapshot(snapshot) {
+  assertSnapshot(snapshot?.schemaVersion === SCHEMA_VERSION, `schemaVersion debe ser ${SCHEMA_VERSION}`);
+  for (const field of [
+    'topQueries',
+    'topPages',
+    'countries',
+    'devices',
+    'queryPages',
+    'queryPagesFull',
+    'pageQueryCoverage',
+    'cannibalization',
+    'ctrOpportunities',
+    'positionOpportunities',
+  ]) {
+    assertSnapshot(Array.isArray(snapshot[field]), `${field} debe ser un array`);
+  }
+
+  const dataset = snapshot.dataQuality?.queryPageDataset;
+  assertSnapshot(dataset && typeof dataset === 'object', 'falta dataQuality.queryPageDataset');
+  assertSnapshot(dataset.storedRows === snapshot.queryPagesFull.length, 'storedRows no coincide');
+  assertSnapshot(dataset.unionRows === snapshot.queryPagesFull.length, 'unionRows no coincide');
+  for (const period of ['current', 'previous']) {
+    const report = dataset[period];
+    assertSnapshot(report && typeof report === 'object', `falta queryPageDataset.${period}`);
+    assertSnapshot(Number.isInteger(report.fetchLimit) && report.fetchLimit > 0,
+      `${period}.fetchLimit debe ser entero positivo`);
+    assertSnapshot(Number.isInteger(report.fetchedRows) && report.fetchedRows >= 0,
+      `${period}.fetchedRows debe ser entero no negativo`);
+    assertSnapshot(typeof report.reachedLimit === 'boolean', `${period}.reachedLimit debe ser boolean`);
+    assertSnapshot(typeof report.potentiallyTruncated === 'boolean',
+      `${period}.potentiallyTruncated debe ser boolean`);
+    assertSnapshot([
+      'complete_from_api_response',
+      'potentially_truncated_by_fetch_limit',
+      'report_unavailable',
+    ].includes(report.apiResponseStatus), `${period}.apiResponseStatus desconocido`);
+  }
+
+  for (const row of snapshot.queryPagesFull) {
+    assertSnapshot(typeof row.query === 'string', 'queryPagesFull.query debe ser texto');
+    assertSnapshot(typeof row.page === 'string', 'queryPagesFull.page debe ser texto');
+    assertSnapshot(typeof row.url === 'string', 'queryPagesFull.url debe ser texto');
+    assertSnapshot(['matched', 'current_only', 'previous_only'].includes(row.presence), 'presence desconocido');
+    for (const metric of METRICS) {
+      assertSnapshot(row[metric] === null || Number.isFinite(row[metric]), `${metric} debe ser número o null`);
+    }
+  }
+
+  for (const coverage of snapshot.pageQueryCoverage) {
+    assertSnapshot(typeof coverage.page === 'string', 'pageQueryCoverage.page debe ser texto');
+    assertSnapshot(Number.isInteger(coverage.queryRowCount) && coverage.queryRowCount >= 0,
+      'pageQueryCoverage.queryRowCount debe ser entero no negativo');
+  }
+
+  return true;
 }
 
 function escapeCell(value) {
@@ -427,6 +683,7 @@ export function renderSeoMarkdown(snapshot) {
   const fetchLimit = quality.fetchLimit ?? quality.topLimit ?? DISPLAY_LIMIT;
   const reportsAtFetchLimit = quality.reportsAtFetchLimit ?? quality.truncatedReports ?? [];
   const unknownCounts = quality.previousUnknownBecauseTruncated ?? { total: 0 };
+  const queryPageDataset = quality.queryPageDataset;
   let md = '# Dashboard SEO de BeberGames\n\n';
   md += `> **Última actualización:** ${snapshot.updatedAt}\n`;
   md += `> **Periodo actual:** ${current.start} a ${current.end} (${quality.periodDays} días completos)\n`;
@@ -472,6 +729,17 @@ export function renderSeoMarkdown(snapshot) {
         md += `  - ${escapeCell(url.url)}: ${formatNumber(url.impressions)} impresiones\n`;
       }
     }
+  }
+
+  if (queryPageDataset) {
+    md += '\n## Dataset query + page para análisis\n\n';
+    md += `- Filas current recuperadas: ${queryPageDataset.currentRows}.\n`;
+    md += `- Filas previous recuperadas: ${queryPageDataset.previousRows}.\n`;
+    md += `- Filas almacenadas en la unión current + previous: ${queryPageDataset.storedRows}.\n`;
+    md += `- URLs con resumen de cobertura: ${snapshot.pageQueryCoverage?.length ?? 0}.\n`;
+    md += `- Estado current: ${queryPageDataset.current.apiResponseStatus}.\n`;
+    md += `- Estado previous: ${queryPageDataset.previous.apiResponseStatus}.\n\n`;
+    md += 'La cobertura compara las filas de queries visibles con las métricas de cada página. Puede ser inferior al 100% porque Search Console omite consultas anonimizadas. No se reconstruyen consultas ocultas.\n';
   }
 
   md += '\n## Calidad de datos\n\n';

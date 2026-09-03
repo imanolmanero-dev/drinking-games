@@ -9,7 +9,12 @@ import {
   calculatePeriods,
   countInclusiveDays,
   renderSeoMarkdown,
+  validateSeoSnapshot,
 } from '../scripts/seo-reporting.mjs';
+import {
+  QUERY_PAGE_FIXTURE_CURRENT_ROWS,
+  createQueryPageFixture,
+} from './fixtures/seo-query-pages.mjs';
 
 const PERIODS = {
   current: { start: '2026-08-20', end: '2026-08-26' },
@@ -100,7 +105,7 @@ test('usa el informe sin dimensiones para los totales globales', () => {
   reports.current.query = [{ keys: ['top parcial'], clicks: 10, impressions: 100, ctr: 0.1, position: 2 }];
 
   const snapshot = snapshotFrom(reports);
-  assert.equal(snapshot.schemaVersion, 2);
+  assert.equal(snapshot.schemaVersion, 3);
   assert.equal(snapshot.globalMetrics.current.clicks, 1_000);
   assert.equal(snapshot.globalMetrics.current.impressions, 20_000);
   assert.equal(snapshot.globalMetrics.current.position, 7.5);
@@ -294,6 +299,179 @@ test('mantiene query + page separado y compara solo la misma combinación', () =
   );
 });
 
+test('conserva la unión query + page completa sin ampliar el display ni el Markdown', () => {
+  const reports = emptyReports();
+  const fixture = createQueryPageFixture();
+  const pageClicks = fixture.current.reduce((total, row) => total + row.clicks, 0);
+  const pageImpressions = fixture.current.reduce((total, row) => total + row.impressions, 0);
+  reports.current.queryPage = fixture.current;
+  reports.previous.queryPage = fixture.previous;
+  reports.current.page = [{
+    keys: ['https://bebergames.com/juegos/la-ruleta'],
+    clicks: pageClicks,
+    impressions: pageImpressions,
+    ctr: pageClicks / pageImpressions,
+    position: 6,
+  }];
+
+  const snapshot = snapshotFrom(reports);
+  const markdown = renderSeoMarkdown(snapshot);
+  const json = JSON.stringify(snapshot);
+  const row51 = snapshot.queryPagesFull.find((row) => row.query === 'fixture-query-051');
+  const row100 = snapshot.queryPagesFull.find((row) => row.query === 'fixture-query-100');
+  const matched = snapshot.queryPagesFull.find((row) => row.query === 'fixture-query-001');
+  const currentOnly = snapshot.queryPagesFull.find((row) => row.query === 'fixture-query-002');
+  const previousOnly = snapshot.queryPagesFull.find((row) => row.query === 'fixture-query-lost');
+  const ruletaRows = snapshot.queryPagesFull.filter((row) => row.page === '/juegos/la-ruleta');
+
+  assert.equal(snapshot.queryPages.length, DISPLAY_LIMIT);
+  assert.equal(snapshot.queryPagesFull.length, QUERY_PAGE_FIXTURE_CURRENT_ROWS + 1);
+  assert.equal(snapshot.dataQuality.analysisRows.queryPages, QUERY_PAGE_FIXTURE_CURRENT_ROWS);
+  assert.equal(snapshot.dataQuality.analysisRows.queryPagesFull, QUERY_PAGE_FIXTURE_CURRENT_ROWS + 1);
+  assert.equal(snapshot.dataQuality.queryPageDataset.storedRows, QUERY_PAGE_FIXTURE_CURRENT_ROWS + 1);
+  assert.equal(snapshot.dataQuality.queryPageDataset.current.apiResponseStatus, 'complete_from_api_response');
+  assert.equal(snapshot.dataQuality.queryPageDataset.current.potentiallyTruncated, false);
+  assert.equal(ruletaRows.length, QUERY_PAGE_FIXTURE_CURRENT_ROWS + 1);
+  assert.ok(row51);
+  assert.ok(row100);
+  assert.match(json, /fixture-query-051/);
+  assert.match(json, /fixture-query-100/);
+  assert.equal(snapshot.queryPages.some((row) => row.query === 'fixture-query-051'), false);
+  assert.equal(snapshot.queryPages.some((row) => row.query === 'fixture-query-100'), false);
+  assert.equal(matched.presence, 'matched');
+  assert.equal(matched.previousStatus, 'matched');
+  assert.equal(matched.previous.clicks, 100);
+  assert.equal(matched.difference.clicks, 20);
+  assert.equal(currentOnly.presence, 'current_only');
+  assert.equal(currentOnly.previousStatus, 'known_absent');
+  assert.equal(currentOnly.previous.clicks, 0);
+  assert.equal(previousOnly.presence, 'previous_only');
+  assert.equal(previousOnly.currentStatus, 'known_absent');
+  assert.equal(previousOnly.clicks, 0);
+  assert.equal(previousOnly.difference.clicks, -9);
+  assert.equal(previousOnly.percentDelta.clicks, -100);
+  assert.doesNotMatch(markdown, /fixture-query-051|fixture-query-100/);
+  assert.ok(markdown.length < 10_000);
+});
+
+test('ordena queryPagesFull de forma determinista por page, métricas y query', () => {
+  const fixture = createQueryPageFixture();
+  const reports = emptyReports();
+  reports.current.queryPage = [...fixture.current].reverse();
+  reports.previous.queryPage = [...fixture.previous].reverse();
+
+  const first = snapshotFrom(reports).queryPagesFull;
+  reports.current.queryPage = [...fixture.current.slice(37), ...fixture.current.slice(0, 37)];
+  reports.previous.queryPage = [...fixture.previous];
+  const second = snapshotFrom(reports).queryPagesFull;
+
+  assert.deepEqual(first, second);
+  assert.equal(first[0].query, 'fixture-query-001');
+  assert.equal(first[50].query, 'fixture-query-051');
+  assert.equal(first[99].query, 'fixture-query-100');
+  assert.equal(first.at(-1).query, 'fixture-query-lost');
+
+  const pageReports = emptyReports();
+  pageReports.current.queryPage = [
+    { keys: ['zeta', 'https://bebergames.com/zeta'], clicks: 10, impressions: 100, ctr: 0.1, position: 3 },
+    { keys: ['beta', 'https://bebergames.com/alfa'], clicks: 1, impressions: 10, ctr: 0.1, position: 3 },
+    { keys: ['alfa', 'https://bebergames.com/alfa'], clicks: 1, impressions: 10, ctr: 0.1, position: 3 },
+  ];
+  assert.deepEqual(
+    snapshotFrom(pageReports).queryPagesFull.map((row) => `${row.page}:${row.query}`),
+    ['/alfa:alfa', '/alfa:beta', '/zeta:zeta'],
+  );
+});
+
+test('calcula cobertura query por página y usa null cuando el denominador es cero', () => {
+  const reports = emptyReports();
+  reports.current.page = [
+    {
+      keys: ['https://bebergames.com/juegos/la-ruleta'],
+      clicks: 10,
+      impressions: 100,
+      ctr: 0.1,
+      position: 5,
+    },
+    {
+      keys: ['https://bebergames.com/sin-datos'],
+      clicks: 0,
+      impressions: 0,
+      ctr: 0,
+      position: 0,
+    },
+  ];
+  reports.current.queryPage = [
+    {
+      keys: ['ruleta uno', 'https://bebergames.com/juegos/la-ruleta'],
+      clicks: 3,
+      impressions: 30,
+      ctr: 0.1,
+      position: 4,
+    },
+    {
+      keys: ['ruleta dos', 'https://bebergames.com/juegos/la-ruleta'],
+      clicks: 2,
+      impressions: 20,
+      ctr: 0.1,
+      position: 6,
+    },
+  ];
+
+  const coverage = snapshotFrom(reports).pageQueryCoverage;
+  assert.deepEqual(coverage[0], {
+    page: '/juegos/la-ruleta',
+    pageClicks: 10,
+    pageImpressions: 100,
+    queryClicks: 5,
+    queryImpressions: 50,
+    clicksCoveragePct: 50,
+    impressionsCoveragePct: 50,
+    queryRowCount: 2,
+    pageDataStatus: 'present',
+    queryDataStatus: 'complete_from_api_response',
+  });
+  assert.equal(coverage[1].page, '/sin-datos');
+  assert.equal(coverage[1].clicksCoveragePct, null);
+  assert.equal(coverage[1].impressionsCoveragePct, null);
+  assert.equal(coverage[1].queryRowCount, 0);
+});
+
+test('marca el dataset query + page como potencialmente truncado al alcanzar fetchLimit', () => {
+  const reports = emptyReports();
+  reports.current.queryPage = [
+    { keys: ['actual', 'https://bebergames.com/actual'], clicks: 3, impressions: 30, ctr: 0.1, position: 3 },
+    { keys: ['actual dos', 'https://bebergames.com/actual'], clicks: 2, impressions: 20, ctr: 0.1, position: 4 },
+  ];
+  reports.previous.queryPage = [
+    { keys: ['anterior uno', 'https://bebergames.com/uno'], clicks: 2, impressions: 20, ctr: 0.1, position: 4 },
+    { keys: ['anterior dos', 'https://bebergames.com/dos'], clicks: 1, impressions: 10, ctr: 0.1, position: 5 },
+  ];
+
+  const snapshot = snapshotFrom(reports, { 'current.queryPage': 2, 'previous.queryPage': 2 });
+  const quality = snapshot.dataQuality.queryPageDataset;
+  const current = snapshot.queryPagesFull.find((row) => row.query === 'actual');
+  const previousOnly = snapshot.queryPagesFull.find((row) => row.query === 'anterior uno');
+
+  assert.equal(quality.current.fetchLimit, 2);
+  assert.equal(quality.current.fetchedRows, 2);
+  assert.equal(quality.current.reachedLimit, true);
+  assert.equal(quality.current.potentiallyTruncated, true);
+  assert.equal(quality.current.apiResponseStatus, 'potentially_truncated_by_fetch_limit');
+  assert.equal(quality.previous.fetchLimit, 2);
+  assert.equal(quality.previous.fetchedRows, 2);
+  assert.equal(quality.previous.reachedLimit, true);
+  assert.equal(quality.previous.potentiallyTruncated, true);
+  assert.equal(quality.previous.apiResponseStatus, 'potentially_truncated_by_fetch_limit');
+  assert.equal(current.previousStatus, 'unknown_truncated');
+  assert.equal(current.previous, null);
+  assert.equal(current.difference, null);
+  assert.equal(previousOnly.currentStatus, 'unknown_truncated');
+  assert.equal(previousOnly.clicks, null);
+  assert.equal(previousOnly.previous.clicks, 2);
+  assert.equal(previousOnly.difference, null);
+});
+
 test('detecta canibalización más allá del top 50 visible de query + page', () => {
   const reports = emptyReports();
   reports.current.queryPage = Array.from({ length: DISPLAY_LIMIT }, (_, index) => ({
@@ -322,6 +500,7 @@ test('detecta canibalización más allá del top 50 visible de query + page', ()
 
   const snapshot = snapshotFrom(reports);
   assert.equal(snapshot.queryPages.length, DISPLAY_LIMIT);
+  assert.equal(snapshot.queryPagesFull.length, DISPLAY_LIMIT + 2);
   assert.equal(snapshot.dataQuality.analysisRows.queryPages, DISPLAY_LIMIT + 2);
   assert.equal(snapshot.queryPages.some((row) => row.query === 'conflicto profundo'), false);
   assert.deepEqual(snapshot.cannibalization, [{
@@ -339,8 +518,19 @@ test('tolera periodos vacíos y los declara en dataQuality', () => {
 
   assert.deepEqual(snapshot.globalMetrics.current, { clicks: 0, impressions: 0, ctr: 0, position: 0 });
   assert.equal(snapshot.topQueries.length, 0);
+  assert.equal(snapshot.queryPagesFull.length, 0);
+  assert.equal(snapshot.pageQueryCoverage.length, 0);
   assert.equal(snapshot.dataQuality.emptyReports.length, 12);
   assert.match(renderSeoMarkdown(snapshot), /Sin filas para este periodo/);
+});
+
+test('valida el schema v3 y rechaza artifacts sin el dataset completo', () => {
+  const snapshot = snapshotFrom(emptyReports());
+  assert.equal(validateSeoSnapshot(snapshot), true);
+
+  const invalid = structuredClone(snapshot);
+  delete invalid.queryPagesFull;
+  assert.throws(() => validateSeoSnapshot(invalid), /queryPagesFull debe ser un array/);
 });
 
 test('genera JSON y Markdown deterministas con las mismas entradas', () => {
