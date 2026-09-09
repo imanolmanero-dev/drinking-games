@@ -8,7 +8,9 @@
     "start": "next start",
     "lint": "eslint",
     "typecheck": "tsc --noEmit",
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs",
+    "test:static-export": "node --test tests/static-export/*.test.mjs",
+    "audit:static-export": "node scripts/audit-static-export.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

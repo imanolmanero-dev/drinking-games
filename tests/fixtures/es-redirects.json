@@ -1,0 +1,32 @@
+[
+  {
+    "source": "/aviso-legal",
+    "destination": "/legal/aviso-legal",
+    "status": 308
+  },
+  {
+    "source": "/blog/la-bomba-reglas-juego-beber",
+    "destination": "/blog/la-bomba-juego-beber",
+    "status": 308
+  },
+  {
+    "source": "/blog/mejores-juegos-para-beber",
+    "destination": "/blog/los-20-mejores-juegos",
+    "status": 308
+  },
+  {
+    "source": "/blog/yo-nunca-preguntas-fuertes",
+    "destination": "/blog/yo-nunca-preguntas-picantes-18",
+    "status": 308
+  },
+  {
+    "source": "/cookies",
+    "destination": "/legal/cookies",
+    "status": 308
+  },
+  {
+    "source": "/privacidad",
+    "destination": "/legal/privacidad",
+    "status": 308
+  }
+]
