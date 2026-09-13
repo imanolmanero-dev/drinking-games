@@ -100,10 +100,12 @@ Contenido...
 
 ### Convenciones de archivos:
 ```
-app/                    → Rutas (App Router)
-  juegos/[slug]/        → Páginas de juego
-  juegos/[slug]/reglas/ → Páginas de reglas (SEO)
-  blog/[slug]/          → Posts del blog (dinámico)
+app/                    → CSS, metadata global y global-not-found.tsx
+  (spanish)/            → Root español y TODAS las rutas públicas actuales
+    juegos/[slug]/      → Páginas de juego
+    juegos/[slug]/reglas/ → Páginas de reglas (SEO)
+    blog/[slug]/        → Posts del blog (exportados estáticamente)
+  (english)/layout.tsx  → Root futuro en-US, sin páginas públicas en Fase 1
 components/
   layout/               → Navbar, Footer, GameLayout
   seo/                  → JsonLd y schemas
@@ -114,6 +116,13 @@ lib/
   blog.ts               → Utilidades de lectura MDX
   data/                 → Datos estáticos de juegos (9 archivos)
 ```
+
+### Roots por idioma (Fase 1):
+- No crear `app/layout.tsx`: cada route group tiene su propio `<html>` y `<body>`. Los grupos no cambian las 70 URLs españolas ni añaden `/es` o `/en`.
+- AdSense, AppProvider, Navbar/Footer y PWA permanecen en el root español. El root inglés solo importa el CSS común; no debe importar el shell español ni heredar sus anuncios o manifest. La prohibición de contenido inglés del blog sigue aplicándose a `content/blog/`; esta fase solo prepara un layout, sin publicar contenido inglés.
+- `global-not-found.tsx` compone el root y el not-found españoles. `experimental.globalNotFound` es necesario en Next.js 16.2.12: sin él, el export usa el 404 por defecto y pierde la baseline española. Su título absoluto incluye la marca porque no tiene un layout padre que aplique el template.
+- `icon.png`, `apple-icon.png`, `opengraph-image.tsx`, `robots.ts` y `sitemap.ts` permanecen en `app/`. El root español conserva mediante `generateMetadata` el descriptor y la query de la imagen global, aplicando `metadataBase`. No fijar `twitter.images`: debe seguir derivándose de la metadata final de cada página. Si no hay imagen heredada, omitir la propiedad `images` para permitir la convención de archivo del 404.
+- Tras mover rutas, regenerar los tipos con `next typegen`. Si `.next/dev/types` conserva imports antiguos, retirar únicamente esos tipos generados. Verificar los 12 tests originales de exportación, los tests de roots y la auditoría sin cambiar fixtures.
 
 ### Reglas de código:
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.

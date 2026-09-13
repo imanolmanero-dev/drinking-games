@@ -5,14 +5,14 @@ import test from "node:test";
 
 const projectRoot = process.cwd();
 const pageSource = readFileSync(
-  join(projectRoot, "app/juegos/verdad-o-reto/page.tsx"),
+  join(projectRoot, "app/(spanish)/juegos/verdad-o-reto/page.tsx"),
   "utf8",
 );
 const adSource = readFileSync(
-  join(projectRoot, "app/juegos/verdad-o-reto/VerdadRetoExperimentAd.tsx"),
+  join(projectRoot, "app/(spanish)/juegos/verdad-o-reto/VerdadRetoExperimentAd.tsx"),
   "utf8",
 );
-const layoutSource = readFileSync(join(projectRoot, "app/layout.tsx"), "utf8");
+const layoutSource = readFileSync(join(projectRoot, "app/(spanish)/layout.tsx"), "utf8");
 
 const setupStart = pageSource.indexOf('if (phase === "setup")');
 const setupEnd = pageSource.indexOf("// GAME OVER", setupStart);

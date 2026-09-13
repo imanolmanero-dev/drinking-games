@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, ResolvingMetadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 
 import { Analytics } from "@vercel/analytics/next";
@@ -6,7 +6,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { AppProvider } from "@/lib/AppContext";
 import InstallPWA from "@/components/ui/InstallPWA";
-import "./globals.css";
+import "../globals.css";
 
 
 const geistSans = Geist({
@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
+const metadata: Metadata = {
   metadataBase: new URL("https://bebergames.com"),
   title: {
     default: "BeberGames — La Web Definitiva para Fiestas y Previas",
@@ -96,6 +96,27 @@ export const metadata: Metadata = {
     google: "u-Uwc22BnlD9rUJxvPXr2uMFwnBjb4vDvRRt2FshYR4",
   },
 };
+
+export async function generateMetadata(
+  _props: unknown,
+  parent: ResolvingMetadata,
+): Promise<Metadata> {
+  // La imagen global se resuelve antes de este root. Conservamos sus campos
+  // al definir openGraph aquí y aplicamos el metadataBase español.
+  const images = (await parent).openGraph?.images?.map((image) => {
+    const descriptor = typeof image === "string" ? { url: image } : image;
+    const url = new URL(descriptor.url, metadata.metadataBase!);
+    return {
+      ...descriptor,
+      url: new URL(`${url.pathname}${url.search}`, metadata.metadataBase!).href,
+    };
+  });
+
+  return {
+    ...metadata,
+    openGraph: { ...metadata.openGraph, ...(images ? { images } : {}) },
+  };
+}
 
 export default function RootLayout({
   children,

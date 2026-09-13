@@ -11,7 +11,7 @@ import {
   getSegmentCenter,
   getTargetRotation,
   normalizeRotation,
-} from "../app/juegos/la-ruleta/spin-geometry.ts";
+} from "../app/(spanish)/juegos/la-ruleta/spin-geometry.ts";
 
 const EPSILON = 1e-9;
 const EXPECTED_FINAL_ROTATIONS = [
@@ -136,7 +136,7 @@ test("reset or unmount cancellation invalidates pending completion", () => {
 
 test("the component uses one duration and the selected index for the result", async () => {
   const source = await readFile(
-    new URL("../app/juegos/la-ruleta/page.tsx", import.meta.url),
+    new URL("../app/(spanish)/juegos/la-ruleta/page.tsx", import.meta.url),
     "utf8",
   );
 
