@@ -89,6 +89,10 @@ export function buildSourceInventory(projectRoot = process.cwd()) {
     ...gamePaths,
     ...categoryPaths,
     ...blogPaths,
+    // Independent of the registry and fixtures: discover actual EN page files.
+    ...walkFiles(join(projectRoot, "app", "(english)"))
+      .filter((file) => /[\\/]page\.tsx$/.test(file))
+      .map((file) => "/" + toPosixPath(relative(join(projectRoot, "app", "(english)"), file)).slice(0, -"/page.tsx".length)),
   ]);
 }
 
@@ -154,6 +158,12 @@ export function inspectHtml(html, pathname, htmlFile, inSitemap) {
     inSitemap,
     robots,
     indexability: getIndexability(robots),
+    languages: document.querySelectorAll("link[hreflang]").map((link) => ({
+      locale: link.getAttribute("hreflang"), url: link.getAttribute("href"),
+    })),
+    adScripts: document.querySelectorAll("script[src]").filter((script) => /adsbygoogle|googlesyndication|doubleclick/.test(script.getAttribute("src"))).length,
+    adSlots: document.querySelectorAll("ins.adsbygoogle, [data-ad-slot]").length,
+    manifests: document.querySelectorAll('link[rel="manifest"]').length,
   };
 }
 
@@ -196,6 +206,10 @@ export function readRouteContract(projectRoot = process.cwd()) {
   return JSON.parse(
     readFileSync(join(projectRoot, "tests", "fixtures", "es-routes.json"), "utf8"),
   );
+}
+
+export function readEnglishRouteContract(projectRoot = process.cwd()) {
+  return JSON.parse(readFileSync(join(projectRoot, "tests", "fixtures", "en-routes.json"), "utf8"));
 }
 
 export function readRedirectContract(projectRoot = process.cwd()) {
@@ -307,26 +321,34 @@ function arraysEqual(left, right) {
     && left.every((value, index) => value === right[index]);
 }
 
-function containsLocalePrefix(value) {
+function containsSpanishPrefix(value) {
   const pathname = value.startsWith("http") ? new URL(value).pathname : value;
-  return /^\/(?:en|es)(?:\/|$)/.test(pathname);
+  return /^\/es(?:\/|$)/.test(pathname);
 }
 
 export function validateStaticExportAudit(audit, projectRoot = process.cwd()) {
   const violations = [];
   const routeContract = readRouteContract(projectRoot);
+  const englishContract = readEnglishRouteContract(projectRoot);
   const redirectContract = readRedirectContract(projectRoot);
-  const contractPathnames = routeContract.map(({ pathname }) => pathname);
-  const sortedContractPathnames = sorted(contractPathnames);
+  const spanishPathnames = routeContract.map(({ pathname }) => pathname);
+  const englishPathnames = englishContract.map(({ pathname }) => pathname);
+  const contractPathnames = sorted([...spanishPathnames, ...englishPathnames]);
   const pagesByPathname = new Map(
     audit.pages.map((page) => [page.pathname, page]),
   );
 
-  if (routeContract.length !== 70 || new Set(contractPathnames).size !== 70) {
+  if (routeContract.length !== 70 || new Set(spanishPathnames).size !== 70) {
     violations.push("El contrato no contiene 70 rutas únicas.");
   }
-  if (!arraysEqual(contractPathnames, sortedContractPathnames)) {
+  if (!arraysEqual(spanishPathnames, sorted(spanishPathnames)) || !arraysEqual(englishPathnames, sorted(englishPathnames))) {
     violations.push("El contrato de rutas no está ordenado.");
+  }
+  if (englishContract.length !== 7 || new Set(englishPathnames).size !== 7 || englishPathnames.some((path) => !/^\/en(?:\/|$)/.test(path))) {
+    violations.push("El contrato inglés no contiene exactamente 7 rutas /en únicas.");
+  }
+  if (audit.technicalDocuments.length !== 0) {
+    violations.push("El export contiene documentos adicionales fuera del contrato, aunque tengan noindex.");
   }
   if (!arraysEqual(audit.sourceInventory, contractPathnames)) {
     violations.push("El inventario fuente no coincide con el contrato.");
@@ -341,15 +363,16 @@ export function validateStaticExportAudit(audit, projectRoot = process.cwd()) {
     violations.push("El sitemap contiene URLs duplicadas.");
   }
 
-  for (const expected of routeContract) {
+  for (const expected of [...routeContract, ...englishContract]) {
     const page = pagesByPathname.get(expected.pathname);
     if (!page) continue;
 
     const expectedCanonical = expected.pathname === "/"
       ? SITE_ORIGIN
       : `${SITE_ORIGIN}${expected.pathname}`;
-    if (page.lang !== "es") {
-      violations.push(`${expected.pathname}: lang no es es.`);
+    const expectedLang = englishPathnames.includes(expected.pathname) ? "en-US" : "es";
+    if (page.lang !== expectedLang) {
+      violations.push(`${expected.pathname}: lang no es ${expectedLang}.`);
     }
     if (page.indexability !== "indexable") {
       violations.push(`${expected.pathname}: no consta como indexable.`);
@@ -366,6 +389,17 @@ export function validateStaticExportAudit(audit, projectRoot = process.cwd()) {
     if (!page.inSitemap) {
       violations.push(`${expected.pathname}: ausente del sitemap.`);
     }
+    if (expectedLang === "en-US" && (page.adScripts || page.adSlots || page.manifests)) {
+      violations.push(`${expected.pathname}: EN contiene anuncios o manifest.`);
+    }
+    const pair = englishContract.find((route) => route.equivalentEs && (route.pathname === expected.pathname || route.equivalentEs === expected.pathname));
+    const expectedLanguages = pair ? [
+      { locale: "es", url: pair.equivalentEs === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${pair.equivalentEs}` },
+      { locale: "en-US", url: `${SITE_ORIGIN}${pair.pathname}` },
+    ] : [];
+    if (!arraysEqual(sorted(page.languages.map((link) => JSON.stringify(link))), sorted(expectedLanguages.map((link) => JSON.stringify(link))))) {
+      violations.push(`${expected.pathname}: hreflang inesperado (DELIBERATE SEO ADDITION solo para equivalentes).`);
+    }
   }
 
   const canonicalValues = audit.pages.flatMap(({ canonicals }) => canonicals);
@@ -378,8 +412,11 @@ export function validateStaticExportAudit(audit, projectRoot = process.cwd()) {
     ...audit.sitemap.urls,
     ...canonicalValues,
   ];
-  if (localeCheckedValues.some(containsLocalePrefix)) {
-    violations.push("El export contiene una URL /en o /es.");
+  if (localeCheckedValues.some(containsSpanishPrefix)) {
+    violations.push("El export contiene una URL /es.");
+  }
+  if (audit.sitemap.urls.some((url) => new URL(url).origin !== SITE_ORIGIN || url !== (new URL(url).pathname === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${new URL(url).pathname}`) || (new URL(url).pathname !== "/" && new URL(url).pathname.endsWith("/")))) {
+    violations.push("El sitemap contiene URLs no canónicas.");
   }
 
   const actualRedirects = sorted(

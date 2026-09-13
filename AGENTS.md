@@ -124,7 +124,18 @@ lib/
 - `icon.png`, `apple-icon.png`, `opengraph-image.tsx`, `robots.ts` y `sitemap.ts` permanecen en `app/`. El root español conserva mediante `generateMetadata` el descriptor y la query de la imagen global, aplicando `metadataBase`. No fijar `twitter.images`: debe seguir derivándose de la metadata final de cada página. Si no hay imagen heredada, omitir la propiedad `images` para permitir la convención de archivo del 404.
 - Tras mover rutas, regenerar los tipos con `next typegen`. Si `.next/dev/types` conserva imports antiguos, retirar únicamente esos tipos generados. Verificar los 12 tests originales de exportación, los tests de roots y la auditoría sin cambiar fixtures.
 
+### English foundation (Fase 2, fuera de main hasta añadir King's Cup)
+
+- La Fase 2 amplía la preparación de Fase 1: `app/(english)/en/` contiene exactamente siete páginas: `/en`, `/en/games`, `/en/about`, `/en/contact`, `/en/legal/privacy`, `/en/legal/cookies`, `/en/legal/terms`. Los fixtures ES originales siguen inmutables; `tests/fixtures/en-routes.json` mantiene un contrato EN independiente.
+- `lib/i18n/` define locales, IDs conceptuales, publicación por locale y metadata. Toda navegación, catálogo, sitemap EN y hreflang deben filtrar publicación. Reservar una ruta no la publica. Las equivalencias de futuros juegos requieren revisión editorial al publicarlos.
+- El root EN usa navegación/footer propios y fuentes comunes. No importa AppProvider español, anuncios, analytics, CMP ni PWA. El selector de idioma solo se monta en EN en esta fase para conservar el contenido visible ES.
+- `terms` y `legal-notice` son conceptos relacionados, no equivalentes. Solo home, games-hub, about, contact, privacy y cookies reciben hreflang recíproco `es`/`en-US`, sin `x-default`. Sus adiciones ES se documentan como `DELIBERATE SEO ADDITION`.
+- El layout bajo `/en` permite heredar el descriptor de la imagen OG inglesa generada en build. Next añade un sufijo a las imágenes dentro de route groups: NO fijar `/en/opengraph-image` ni su hash. Usar la URL resuelta del padre, conservar descriptor/query, aplicar el dominio y verificar que el archivo exportado existe. Twitter deriva la imagen de la metadata final.
+- El único 404 estático continúa siendo español, incluido su shell de anuncios/PWA; también puede responder a URLs EN inexistentes. No introducir runtime ni `/en/404` para resolverlo en esta fase.
+- Privacidad, cookies y términos EN requieren revisión humana/legal antes de monetizar. No extrapolar configuración remota desde el repositorio. Revisar CMP y mensajes de estados de EE. UU. antes de añadir publicidad EN.
+
 ### Reglas de código:
+
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.
 - **Sonido/Vibración:** Siempre usar `useApp().playSound()` y `useApp().vibrateDevice()`. NUNCA acceder directamente a Web Audio API desde componentes.
 - **Brand name:** Siempre "BeberGames" (una palabra, camelCase). La única excepción es el array `alternateName` en `JsonLd.tsx` para SEO.
@@ -291,3 +302,4 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-08-27 | Reporting SEO etiquetaba como 7 días rangos de 8 fechas, limitaba snapshots a 15 filas y carecía de totales globales y desgloses de mercado | `scripts/fetch-seo-data.ts`, `scripts/seo-reporting.mjs`, `seo-data.json`, `SEO_DATA.md` | Implementados periodos 7/7 sin solapamiento, schema v2, totales sin dimensiones, top 50, países, dispositivos, query + page, calidad de datos y pruebas deterministas |
 | 2026-08-27 | Comparativas schema v2 convertían en cero las identidades ausentes del top anterior aunque el informe estuviera truncado | `scripts/seo-reporting.mjs`, `tests/seo-reporting.test.mjs`, `SEO_DATA.md` | Separados `displayLimit` y `fetchLimit`; previous desconocido se representa con `null` y canibalización analiza todas las filas recuperadas |
 | 2026-09-04 | El artifact descartaba query + page fuera del top 50 aunque la API recuperaba miles de filas | `scripts/seo-reporting.mjs`, `scripts/fetch-seo-data.ts`, `tests/seo-reporting.test.mjs` | Schema v3 conserva la unión current + previous completa, añade cobertura por URL y mantiene separado el display compacto |
+| 2026-09-13 | El primer build local EN exportó la imagen OG con un sufijo de route group que no coincidía con la URL fijada en metadata | `lib/i18n/metadata.ts`, `app/(english)/en/layout.tsx`, tests EN | Heredado el descriptor resuelto por Next, conservando sufijo/query y verificando la existencia del PNG exportado; corregido antes de publicar |

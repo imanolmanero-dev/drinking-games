@@ -9,6 +9,7 @@ import {
   auditStaticExport,
   readRedirectContract,
   readRouteContract,
+  readEnglishRouteContract,
 } from "../../scripts/audit-static-export.mjs";
 
 const projectRoot = process.cwd();
@@ -16,6 +17,9 @@ const routeContract = readRouteContract(projectRoot);
 const redirectContract = readRedirectContract(projectRoot);
 const audit = auditStaticExport(projectRoot);
 const contractPathnames = routeContract.map(({ pathname }) => pathname);
+const englishContract = readEnglishRouteContract(projectRoot);
+const unionPathnames = sorted([...contractPathnames, ...englishContract.map(({ pathname }) => pathname)]);
+const spanishPages = audit.pages.filter(({ pathname }) => contractPathnames.includes(pathname));
 
 function sorted(values) {
   return [...values].sort((a, b) => a.localeCompare(b, "en"));
@@ -37,7 +41,7 @@ function expectedHtmlFile(pathname) {
 
 function hasLocalePrefix(value) {
   const pathname = value.startsWith("http") ? new URL(value).pathname : value;
-  return /^\/(?:en|es)(?:\/|$)/.test(pathname);
+  return /^\/es(?:\/|$)/.test(pathname);
 }
 
 test("el fixture fija 70 rutas españolas únicas, explícitas y ordenadas", () => {
@@ -53,12 +57,14 @@ test("el fixture fija 70 rutas españolas únicas, explícitas y ordenadas", () 
 });
 
 test("el inventario fuente coincide con el contrato versionado", () => {
-  assert.deepEqual(audit.sourceInventory, contractPathnames);
+  assert.deepEqual(audit.sourceInventory, unionPathnames);
 });
 
-test("el export contiene exactamente las 70 páginas públicas del contrato", () => {
-  assert.deepEqual(audit.exportedInventory, contractPathnames);
-  assert.equal(audit.pages.length, 70);
+test("el export contiene la unión exacta de 70 ES y 7 EN", () => {
+  assert.deepEqual(audit.exportedInventory, unionPathnames);
+  assert.equal(audit.pages.length, 77);
+  assert.equal(spanishPages.length, 70);
+  assert.equal(audit.technicalDocuments.length, 0);
 
   for (const document of audit.technicalDocuments) {
     assert.equal(document.indexability, "non-indexable", document.pathname);
@@ -77,7 +83,7 @@ test("el export contiene exactamente las 70 páginas públicas del contrato", ()
 });
 
 test("las 70 páginas declaran lang es y son indexables", () => {
-  for (const page of audit.pages) {
+  for (const page of spanishPages) {
     assert.equal(page.lang, "es", page.pathname);
     assert.deepEqual(page.robots, ["index, follow"], page.pathname);
     assert.equal(page.indexability, "indexable", page.pathname);
@@ -99,7 +105,7 @@ test("cada página tiene un canonical propio, absoluto y único", () => {
     canonicals.push(page.canonical);
   }
 
-  assert.equal(new Set(canonicals).size, 70);
+  assert.equal(new Set(canonicals).size, 77);
   assert.equal(audit.pages[0].canonical, "https://bebergames.com");
 });
 
@@ -129,10 +135,10 @@ test("cada página mantiene un único H1 con el texto normalizado de baseline", 
   }
 });
 
-test("el sitemap contiene exactamente el conjunto español sin duplicados", () => {
-  assert.equal(audit.sitemap.urls.length, 70);
-  assert.equal(new Set(audit.sitemap.urls).size, 70);
-  assert.deepEqual(sorted(audit.sitemap.pathnames), contractPathnames);
+test("el sitemap contiene exactamente la unión ES + EN sin duplicados", () => {
+  assert.equal(audit.sitemap.urls.length, 77);
+  assert.equal(new Set(audit.sitemap.urls).size, 77);
+  assert.deepEqual(sorted(audit.sitemap.pathnames), unionPathnames);
 
   for (const url of audit.sitemap.urls) {
     assert.equal(new URL(url).origin, SITE_ORIGIN);
@@ -142,7 +148,7 @@ test("el sitemap contiene exactamente el conjunto español sin duplicados", () =
   assert.ok(audit.pages.every(({ inSitemap }) => inSitemap));
 });
 
-test("no aparecen rutas en, rutas es ni otros pathnames indexables", () => {
+test("no aparecen rutas es ni EN fuera del contrato independiente", () => {
   const checkedValues = [
     ...audit.exportedInventory,
     ...audit.sitemap.urls,
@@ -150,7 +156,7 @@ test("no aparecen rutas en, rutas es ni otros pathnames indexables", () => {
   ];
 
   assert.equal(checkedValues.some(hasLocalePrefix), false);
-  assert.deepEqual(audit.exportedInventory, contractPathnames);
+  assert.deepEqual(audit.exportedInventory, unionPathnames);
 });
 
 test("los seis redirects históricos conservan destino y status 308", () => {

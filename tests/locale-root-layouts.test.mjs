@@ -71,28 +71,33 @@ test("cada idioma tiene su propio documento html/body sin layout global", () => 
   }
 });
 
-test("Fase 1 no publica páginas inglesas, prefijos es/en ni rutas fuera del grupo español", () => {
+test("Fase 2 publica exactamente las páginas EN del fixture dentro de su propio root", () => {
   const pages = filesIn("app").filter((file) => /\/(?:page|route)\.[cm]?[jt]sx?$/.test(file));
+  const englishPaths = [];
   assert.ok(pages.length > 0);
   for (const file of pages) {
-    assert.ok(file.startsWith("app/(spanish)/"), file);
+    assert.ok(file.startsWith("app/(spanish)/") || file.startsWith("app/(english)/en/"), file);
     const pathname = "/" + file.split("/").slice(1, -1).filter((part) => !part.startsWith("(")).join("/");
-    assert.doesNotMatch(pathname, /^\/(?:en|es|english|spanish)(?:\/|$)/);
+    assert.doesNotMatch(pathname, /^\/(?:es|english|spanish)(?:\/|$)/);
+    if (file.startsWith("app/(english)/")) englishPaths.push(pathname);
+    else assert.doesNotMatch(pathname, /^\/en(?:\/|$)/);
   }
+  assert.deepEqual(englishPaths.sort(), JSON.parse(read("tests/fixtures/en-routes.json")).map((route) => route.pathname).sort());
 });
 
 test("el grafo inglés no alcanza publicidad ni PWA y los anuncios solo pertenecen a ES", () => {
-  const englishDependencies = localDependencies(englishRoot);
+  const englishDependencies = new Set(filesIn("app/(english)").filter((file) => file.endsWith(".tsx")).flatMap((file) => [...localDependencies(file)]));
   for (const file of englishDependencies) {
-    assert.doesNotMatch(file, /\(spanish\)|InstallPWA|VerdadRetoExperimentAd/);
+    assert.doesNotMatch(file, /\(spanish\)|InstallPWA|VerdadRetoExperimentAd|AppContext|[\\/]Navbar\.|[\\/]Footer\./);
     assert.doesNotMatch(read(file), /adsbygoogle|googlesyndication|google-adsense-account|manifest\.json|appleWebApp|beforeinstallprompt/);
+    if (!file.endsWith(".css")) assert.doesNotMatch(read(file), /@vercel\/analytics|next\/headers|next\/script|use client|localStorage\.(?:getItem|setItem)|sessionStorage\.|navigator\.serviceWorker/);
   }
   const sourceFiles = ["app", "components", "lib"].flatMap(filesIn).filter((file) => /\.[cm]?[jt]sx?$/.test(file));
   assert.deepEqual(sourceFiles.filter((file) => read(file).includes("pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")), [spanishRoot]);
   assert.deepEqual(sourceFiles.filter((file) => read(file).includes("<VerdadRetoExperimentAd")), ["app/(spanish)/juegos/verdad-o-reto/page.tsx"]);
 });
 
-test("el futuro documento inglés conserva sus hijos sin manifest, scripts ni shell español", () => {
+test("el documento inglés conserva sus hijos con metadata propia y sin manifest ni scripts", () => {
   const { renderToStaticMarkup } = require("react-dom/server");
   const { createElement } = require("react");
   const english = loadLayout(englishRoot);
@@ -100,9 +105,10 @@ test("el futuro documento inglés conserva sus hijos sin manifest, scripts ni sh
   const { parse } = require("next/dist/compiled/node-html-parser");
   const document = parse(html);
   assert.equal(document.querySelector("html").getAttribute("lang"), "en-US");
-  assert.equal(document.querySelector("body").innerHTML, "<main>prueba</main>");
+  assert.equal(document.querySelector("main").textContent, "prueba");
   assert.equal(document.querySelectorAll("script, link, nav, footer").length, 0);
-  assert.equal(english.metadata, undefined);
+  assert.equal(english.metadata.metadataBase.href, "https://bebergames.com/");
+  assert.equal(english.metadata.manifest, undefined);
   assert.equal(english.generateMetadata, undefined);
 });
 

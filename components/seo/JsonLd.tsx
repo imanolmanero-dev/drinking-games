@@ -1,13 +1,17 @@
-export function WebSiteJsonLd() {
+import type { Locale } from "@/lib/i18n/locales";
+
+export function WebSiteJsonLd({ locale = "es" }: { locale?: Locale } = {}) {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "BeberGames",
     alternateName: ["Beber Games", "Beber games"],
-    url: "https://bebergames.com",
-    description:
+    url: locale === "en-US" ? "https://bebergames.com/en" : "https://bebergames.com",
+    description: locale === "en-US"
+      ? "A home for browser-based party games with friends. Free to use, with alcohol always optional."
+      :
       "La mejor colección de juegos para beber en grupo. Yo Nunca, Verdad o Reto, Triman, La Ruleta y más.",
-    inLanguage: "es",
+    inLanguage: locale,
   };
 
   return (

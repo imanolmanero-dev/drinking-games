@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n/routes";
 import type { Metadata } from 'next';
 import { Mail } from 'lucide-react';
 import ContactForm from '@/components/ui/ContactForm';
@@ -6,6 +7,8 @@ export const metadata: Metadata = {
   title: 'Contacto — Escríbenos',
   description: 'Ponte en contacto con el equipo de BeberGames.',
   alternates: {
+    // DELIBERATE SEO ADDITION: reciprocal published language equivalents.
+    languages: languageAlternates("contact"),
     canonical: "https://bebergames.com/contacto",
   },
 }

@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n/routes";
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -5,6 +6,8 @@ export const metadata: Metadata = {
   description: 'Política de Privacidad de BeberGames.',
   robots: { index: true, follow: true },
   alternates: {
+    // DELIBERATE SEO ADDITION: reciprocal published language equivalents.
+    languages: languageAlternates("privacy"),
     canonical: "https://bebergames.com/legal/privacidad",
   },
 }

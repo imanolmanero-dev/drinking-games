@@ -8,7 +8,7 @@ import { auditStaticExport } from "../../scripts/audit-static-export.mjs";
 const require = createRequire(import.meta.url);
 const { parse } = require("next/dist/compiled/node-html-parser");
 const audit = auditStaticExport();
-const documents = [...audit.pages, ...audit.errorDocuments].map((page) => ({
+const documents = [...audit.pages.filter((page) => page.lang === "es"), ...audit.errorDocuments].map((page) => ({
   ...page,
   document: parse(readFileSync(join("out", page.htmlFile), "utf8")),
 }));

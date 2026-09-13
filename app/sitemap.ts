@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
+import { publishedRoutes } from "@/lib/i18n/routes";
+import { absoluteUrl } from "@/lib/i18n/locales";
 
 export const dynamic = "force-static";
 
@@ -27,6 +29,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const blogPosts = getAllPosts();
 
   return [
+    // English publication is explicit; no artificial modification dates.
+    ...publishedRoutes("en-US").map(({ pathname }) => ({ url: absoluteUrl(pathname) })),
     {
       url: baseUrl,
       lastModified: new Date(),

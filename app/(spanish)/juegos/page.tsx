@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n/routes";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -50,6 +51,8 @@ export const metadata: Metadata = {
     url: "https://bebergames.com/juegos",
   },
   alternates: {
+    // DELIBERATE SEO ADDITION: reciprocal published language equivalents.
+    languages: languageAlternates("games-hub"),
     canonical: "https://bebergames.com/juegos",
   },
 };

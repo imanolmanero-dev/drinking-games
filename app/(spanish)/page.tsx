@@ -1,3 +1,4 @@
+import { languageAlternates } from "@/lib/i18n/routes";
 import Link from "next/link";
 import { WebSiteJsonLd, GameJsonLd, OrganizationJsonLd } from "@/components/seo/JsonLd";
 import {
@@ -26,6 +27,8 @@ import { getAllPosts, readingTime } from "@/lib/blog";
 
 export const metadata: Metadata = {
   alternates: {
+    // DELIBERATE SEO ADDITION: reciprocal published language equivalents.
+    languages: languageAlternates("home"),
     canonical: "https://bebergames.com",
   },
 };

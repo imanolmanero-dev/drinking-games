@@ -1,9 +1,12 @@
+import { languageAlternates } from "@/lib/i18n/routes";
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import { Info, ShieldAlert, Heart, Smartphone, Users, BookOpen, Gamepad2 } from 'lucide-react';
 
 export const metadata: Metadata = {
   alternates: {
+    // DELIBERATE SEO ADDITION: reciprocal published language equivalents.
+    languages: languageAlternates("about"),
     canonical: "https://bebergames.com/sobre-nosotros",
   },
   title: 'Sobre Nosotros — Quiénes Somos',
