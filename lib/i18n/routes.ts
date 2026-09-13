@@ -25,8 +25,9 @@ export const routeRegistry: readonly RouteEntry[] = [
   { id: "cookies", kind: "page", routes: { es: { pathname: "/legal/cookies", label: "Cookies" }, "en-US": { pathname: "/en/legal/cookies", label: "Cookies" } }, published: { es: true, "en-US": true }, equivalence: "equivalent" },
   { id: "terms", kind: "page", routes: { "en-US": { pathname: "/en/legal/terms", label: "Terms" } }, published: { es: false, "en-US": true }, equivalence: "unpaired", related: ["legal-notice"] },
   { id: "legal-notice", kind: "page", routes: { es: { pathname: "/legal/aviso-legal", label: "Aviso legal" } }, published: { es: true, "en-US": false }, equivalence: "unpaired", related: ["terms"] },
-  // English game equivalences require an editorial review when those pages exist.
-  { id: "kings-cup", kind: "game", routes: { es: { pathname: "/juegos/rey-de-la-copa", label: "El Rey de la Copa" }, "en-US": { pathname: "/en/games/kings-cup", label: "King's Cup" } }, published: { es: true, "en-US": false }, equivalence: "unpaired" },
+  // Reviewed in Phase 3: EN changes core rules (Ace, fourth King); it is not a translation of ES.
+  { id: "kings-cup", kind: "game", routes: { es: { pathname: "/juegos/rey-de-la-copa", label: "El Rey de la Copa" }, "en-US": { pathname: "/en/games/kings-cup", label: "King's Cup" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
+  // Future English game equivalences still require editorial review.
   { id: "truth-or-dare", kind: "game", routes: { es: { pathname: "/juegos/verdad-o-reto", label: "Verdad o Reto" }, "en-US": { pathname: "/en/games/truth-or-dare", label: "Truth or Dare" } }, published: { es: true, "en-US": false }, equivalence: "unpaired" },
   { id: "drinking-games-for-two", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-dos-personas", label: "Juegos para beber de dos personas" } }, published: { es: true, "en-US": false }, equivalence: "unpaired" },
   { id: "drinking-games-without-cards", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-sin-cartas", label: "Juegos para beber sin cartas" } }, published: { es: true, "en-US": false }, equivalence: "unpaired" },

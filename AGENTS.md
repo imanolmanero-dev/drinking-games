@@ -134,6 +134,17 @@ lib/
 - El único 404 estático continúa siendo español, incluido su shell de anuncios/PWA; también puede responder a URLs EN inexistentes. No introducir runtime ni `/en/404` para resolverlo en esta fase.
 - Privacidad, cookies y términos EN requieren revisión humana/legal antes de monetizar. No extrapolar configuración remota desde el repositorio. Revisar CMP y mensajes de estados de EE. UU. antes de añadir publicidad EN.
 
+### King's Cup EN (Fase 3, todavía sin publicar)
+
+- El contrato actual amplía la Fase 2 a 70 ES + 8 EN = 78 páginas públicas. La única ruta nueva es `/en/games/kings-cup`; no crear reglas, blog ni variantes EN como URLs separadas. Home y catálogo solo enlazan juegos publicados en el registry.
+- `app/(english)/en/games/kings-cup/page.tsx` conserva metadata, reglas, tabla de 13 rangos y FAQ en HTML estático. `components/games/kings-cup/KingsCupGame.tsx` es la única entrada cliente EN autorizada en esta fase. Los tests de aislamiento siguen prohibiendo anuncios, CMP, PWA y AppProvider español.
+- `lib/games/kings-cup.ts` comparte las reglas entre tabla y juego y define un reducer con etapas de robo, revelación y avance. Repetir un evento no debe consumir otra carta ni saltar turnos. El temporizador de revelación se cancela al salir de su etapa; pausar bloquea robos y avanzar, y terminar invalida revelaciones tardías.
+- El cuarto Rey EN revela una despedida de grupo opcional y permite continuar hasta las 52 cartas. No importar reglas de consumo españolas. Los jugadores EN se identifican por número, sin nombres, persistencia, cookies, audio ni vibración.
+- La revisión editorial mantiene `kings-cup` como `unpaired`: la adaptación EN cambia reglas centrales respecto a Rey de la Copa ES. No añadir hreflang entre ellos ni con Ring of Fire; el selector ofrece un enlace explícito a la home del otro idioma. Se conservan únicamente las seis parejas de Fase 2.
+- `lib/games/shuffle.ts` extrae solo Fisher–Yates. `shuffleDeck(Carta[])` conserva su API, orden de llamadas a Math.random, copia de array y referencias de cartas. Antes de cambiar primitivas compartidas, ejecutar la caracterización contra `18837ef`; componentes, reglas, metadata y flujo de ambos juegos ES permanecen intactos.
+- `GameJsonLd` permite locale opcional: por defecto mantiene exactamente ES/EUR; EN usa en-US/USD. La FAQ estructurada debe proceder de las mismas preguntas/respuestas que se muestran en la página.
+- Esta fase sigue local, sin monetización. Requiere auditoría combinada de Fases 2 y 3 antes de push, merge o publicación.
+
 ### Reglas de código:
 
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.

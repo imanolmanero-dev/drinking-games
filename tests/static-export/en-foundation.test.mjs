@@ -14,9 +14,9 @@ const absolute = (path) => path === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${path}`;
 const documentFor = (path) => parse(readFileSync(join("out", path === "/" ? "index.html" : `${path.slice(1)}.html`), "utf8"));
 const english = fixture.map((route) => ({ ...route, document: documentFor(route.pathname), page: audit.pages.find((page) => page.pathname === route.pathname) }));
 
-test("seven English documents are indexable, self-canonical, en-US, and have unique titles/descriptions and one H1", () => {
-  assert.equal(english.length, 7);
-  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 7);
+test("eight English documents are indexable, self-canonical, en-US, and have unique titles/descriptions and one H1", () => {
+  assert.equal(english.length, 8);
+  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 8);
   const descriptions = [];
   for (const { pathname, title, h1, document, page } of english) {
     assert.ok(page, pathname);
@@ -37,8 +37,8 @@ test("seven English documents are indexable, self-canonical, en-US, and have uni
     descriptions.push(description[0].getAttribute("content"));
     assert.ok(document.querySelectorAll('link[rel="stylesheet"]').length > 0);
   }
-  assert.equal(new Set(descriptions).size, 7);
-  assert.equal(new Set(english.map((route) => route.page.title)).size, 7);
+  assert.equal(new Set(descriptions).size, 8);
+  assert.equal(new Set(english.map((route) => route.page.title)).size, 8);
 });
 
 test("English output has no ads, PWA, analytics, forms or consent instrumentation", () => {
@@ -82,7 +82,7 @@ test("all English internal links and fragments resolve, with unique interactive 
       const url = new URL(href, absolute(pathname));
       assert.equal(url.origin, SITE_ORIGIN, href);
       assert.ok(allPaths.has(url.pathname), `${pathname} -> ${href}`);
-      assert.doesNotMatch(url.pathname, /^\/es(?:\/|$)|\(spanish\)|\(english\)|kings-cup|truth-or-dare|\/en\/blog/);
+      assert.doesNotMatch(url.pathname, /^\/es(?:\/|$)|\(spanish\)|\(english\)|truth-or-dare|\/en\/blog/);
       if (url.hash) assert.ok(documentFor(url.pathname).getElementById(decodeURIComponent(url.hash.slice(1))), `${pathname} -> ${href}`);
       if (!/^\/en(?:\/|$)/.test(url.pathname)) assert.equal(link.getAttribute("id"), "language-switch");
     }
@@ -115,8 +115,9 @@ test("English social metadata uses en_US and a real English static image, never 
     }
     for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
       const schema = JSON.parse(script.textContent);
-      assert.equal(schema["@type"], "WebSite");
-      assert.equal(schema.inLanguage, "en-US");
+      const expectedTypes = pathname === "/en/games/kings-cup" ? ["WebApplication", "FAQPage"] : ["WebSite"];
+      assert.ok(expectedTypes.includes(schema["@type"]));
+      if (schema["@type"] !== "FAQPage") assert.equal(schema.inLanguage, "en-US");
     }
   }
 });
@@ -124,7 +125,7 @@ test("English social metadata uses en_US and a real English static image, never 
 test("English sitemap entries have no artificial lastModified and no unexpected assets or pages", () => {
   const sitemap = parse(readFileSync("out/sitemap.xml", "utf8"));
   const entries = sitemap.querySelectorAll("url").filter((entry) => /^https:\/\/bebergames\.com\/en(?:\/|$)/.test(entry.querySelector("loc").textContent));
-  assert.equal(entries.length, 7);
+  assert.equal(entries.length, 8);
   for (const entry of entries) assert.equal(entry.querySelectorAll("lastmod").length, 0);
   assert.deepEqual(entries.map((entry) => entry.querySelector("loc").textContent).sort(), fixture.map((route) => absolute(route.pathname)).sort());
 });
@@ -133,7 +134,7 @@ test("English copy has no placeholders, fixed legal age, unsafe instructions or 
   for (const { pathname, document } of english) {
     document.querySelectorAll("script, style").forEach((node) => node.remove());
     const copy = document.textContent;
-    assert.doesNotMatch(copy, /\bTODO\b|placeholder|lorem ipsum|coming soon|18\+|21\+|chug|finish your drink|drink as fast as possible|drink until|punishment drinking|No\.\s*1|thousands of players|best drinking game website|King['’]s Cup|Truth or Dare/i, pathname);
+    assert.doesNotMatch(copy, /\bTODO\b|placeholder|lorem ipsum|coming soon|18\+|21\+|chug|finish your drink|drink as fast as possible|drink until|punishment drinking|No\.\s*1|thousands of players|best drinking game website|Truth or Dare/i, pathname);
     assert.doesNotMatch(copy, /\b(juegos|privacidad|sobre nosotros|contacto|aviso legal|próximamente)\b/i, pathname);
   }
 });
@@ -142,7 +143,7 @@ test("audit rejects missing or unexpected EN/ES, fake alternates, and hidden noi
   assert.deepEqual(validateStaticExportAudit(audit), []);
   const mutations = [
     (a) => { a.exportedInventory = a.exportedInventory.filter((path) => path !== "/en/contact"); },
-    (a) => { a.exportedInventory.push("/en/games/kings-cup"); },
+    (a) => { a.exportedInventory.push("/en/games/truth-or-dare"); },
     (a) => { a.exportedInventory = a.exportedInventory.filter((path) => path !== "/juegos"); },
     (a) => { a.exportedInventory.push("/es"); },
     (a) => { a.sitemap.pathnames = a.sitemap.pathnames.filter((path) => path !== "/en"); },

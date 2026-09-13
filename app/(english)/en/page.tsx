@@ -13,6 +13,8 @@ export default function EnglishHome() {
       <p>A relaxed night with friends does not need a complicated setup. BeberGames brings party game ideas and online play together, with a focus on the people around you. There is nothing to download to browse the site.</p>
       <p>The English games hub is where you can check which games are available in English. It also has a few practical ways to get your group ready, whether you are using one phone around a table or planning the evening ahead of time.</p>
       <p><EnglishLink id="en-home-games" routeId="games-hub">Explore the games hub</EnglishLink></p>
+      <h2>Try a round of King&apos;s Cup</h2>
+      <p>Draw from a full deck and follow the prompt on each card. Our alcohol-optional version has word games, shared gestures, and room to pass. <EnglishLink id="en-home-kings-cup" routeId="kings-cup">Play King&apos;s Cup</EnglishLink> with friends on one screen.</p>
       <h2>Everyone gets a say</h2>
       <p>You can play without alcohol. Choose a non-alcoholic drink, use points, or leave drinks out entirely. Agree on what feels comfortable before starting, and let anyone skip a question or stop without explaining why.</p>
       <p>If you choose to drink alcohol, only do so if you are of legal drinking age where you are. Keep the focus on conversation and having a good time together.</p>

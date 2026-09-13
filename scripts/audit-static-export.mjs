@@ -344,8 +344,8 @@ export function validateStaticExportAudit(audit, projectRoot = process.cwd()) {
   if (!arraysEqual(spanishPathnames, sorted(spanishPathnames)) || !arraysEqual(englishPathnames, sorted(englishPathnames))) {
     violations.push("El contrato de rutas no está ordenado.");
   }
-  if (englishContract.length !== 7 || new Set(englishPathnames).size !== 7 || englishPathnames.some((path) => !/^\/en(?:\/|$)/.test(path))) {
-    violations.push("El contrato inglés no contiene exactamente 7 rutas /en únicas.");
+  if (englishContract.length !== 8 || new Set(englishPathnames).size !== 8 || englishPathnames.some((path) => !/^\/en(?:\/|$)/.test(path))) {
+    violations.push("El contrato inglés no contiene exactamente 8 rutas /en únicas.");
   }
   if (audit.technicalDocuments.length !== 0) {
     violations.push("El export contiene documentos adicionales fuera del contrato, aunque tengan noindex.");

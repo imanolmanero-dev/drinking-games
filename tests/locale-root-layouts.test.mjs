@@ -71,7 +71,7 @@ test("cada idioma tiene su propio documento html/body sin layout global", () => 
   }
 });
 
-test("Fase 2 publica exactamente las páginas EN del fixture dentro de su propio root", () => {
+test("Fase 3 publica exactamente las páginas EN del fixture dentro de su propio root", () => {
   const pages = filesIn("app").filter((file) => /\/(?:page|route)\.[cm]?[jt]sx?$/.test(file));
   const englishPaths = [];
   assert.ok(pages.length > 0);
@@ -90,8 +90,9 @@ test("el grafo inglés no alcanza publicidad ni PWA y los anuncios solo pertenec
   for (const file of englishDependencies) {
     assert.doesNotMatch(file, /\(spanish\)|InstallPWA|VerdadRetoExperimentAd|AppContext|[\\/]Navbar\.|[\\/]Footer\./);
     assert.doesNotMatch(read(file), /adsbygoogle|googlesyndication|google-adsense-account|manifest\.json|appleWebApp|beforeinstallprompt/);
-    if (!file.endsWith(".css")) assert.doesNotMatch(read(file), /@vercel\/analytics|next\/headers|next\/script|use client|localStorage\.(?:getItem|setItem)|sessionStorage\.|navigator\.serviceWorker/);
+    if (!file.endsWith(".css")) assert.doesNotMatch(read(file), /@vercel\/analytics|next\/headers|next\/script|localStorage\.(?:getItem|setItem)|sessionStorage\.|navigator\.serviceWorker/);
   }
+  assert.deepEqual([...englishDependencies].filter((file) => /["']use client["']/.test(read(file))), [resolve("components/games/kings-cup/KingsCupGame.tsx")]);
   const sourceFiles = ["app", "components", "lib"].flatMap(filesIn).filter((file) => /\.[cm]?[jt]sx?$/.test(file));
   assert.deepEqual(sourceFiles.filter((file) => read(file).includes("pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")), [spanishRoot]);
   assert.deepEqual(sourceFiles.filter((file) => read(file).includes("<VerdadRetoExperimentAd")), ["app/(spanish)/juegos/verdad-o-reto/page.tsx"]);

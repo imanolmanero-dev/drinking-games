@@ -20,13 +20,13 @@ const fixture = JSON.parse(read("tests/fixtures/en-routes.json"));
 const sorted = (items) => [...items].sort();
 const render = (component, props) => parse(renderToStaticMarkup(createElement(component, props)));
 
-test("English registry publication matches the independent seven-route fixture", () => {
-  assert.equal(fixture.length, 7);
-  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 7);
+test("English registry publication matches the independent eight-route fixture", () => {
+  assert.equal(fixture.length, 8);
+  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 8);
   assert.deepEqual(fixture.map((route) => route.pathname), sorted(fixture.map((route) => route.pathname)));
   assert.deepEqual(sorted(publishedRoutes("en-US").map((route) => route.pathname)), fixture.map((route) => route.pathname));
   assert.equal(new Set(routeRegistry.map((route) => route.id)).size, routeRegistry.length);
-  assert.deepEqual(publishedRoutes("en-US", "game"), []);
+  assert.deepEqual(publishedRoutes("en-US", "game"), [{ id: "kings-cup", pathname: "/en/games/kings-cup", label: "King's Cup" }]);
   for (const entry of routeRegistry) {
     for (const locale of ["es", "en-US"]) {
       if (entry.published[locale]) assert.ok(entry.routes[locale], entry.id);
@@ -35,7 +35,7 @@ test("English registry publication matches the independent seven-route fixture",
 });
 
 test("unpublished English concepts cannot supply links, metadata, alternates or switches", () => {
-  for (const id of ["kings-cup", "truth-or-dare", "drinking-games-for-two", "drinking-games-without-cards"]) {
+  for (const id of ["truth-or-dare", "drinking-games-for-two", "drinking-games-without-cards"]) {
     assert.equal(routeRegistry.find((route) => route.id === id).published["en-US"], false);
     assert.equal(getPublishedRoute(id, "en-US"), undefined);
     assert.equal(languageAlternates(id), undefined);
@@ -88,7 +88,7 @@ test("English metadata preserves the resolved image suffix and query and rejects
   await assert.rejects(generate({}, Promise.resolve({ openGraph: { images: [{ url: "https://bebergames.com/opengraph-image" }] } })), /missing/);
 });
 
-test("JSON-LD only localizes WebSite; Spanish WebSite and other schemas retain their output", () => {
+test("localized JSON-LD keeps Spanish defaults and existing Article output", () => {
   const schema = (component, props) => JSON.parse(render(component, props).querySelector("script").textContent);
   assert.deepEqual(schema(WebSiteJsonLd), {
     "@context": "https://schema.org", "@type": "WebSite", name: "BeberGames", alternateName: ["Beber Games", "Beber games"],

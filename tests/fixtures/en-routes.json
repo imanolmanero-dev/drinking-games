@@ -3,6 +3,7 @@
   { "pathname": "/en/about", "title": "About BeberGames — Responsible Play | BeberGames", "h1": "About BeberGames", "equivalentEs": "/sobre-nosotros" },
   { "pathname": "/en/contact", "title": "Contact BeberGames — Feedback and Questions | BeberGames", "h1": "Contact BeberGames", "equivalentEs": "/contacto" },
   { "pathname": "/en/games", "title": "Online Drinking Games — The Games Hub | BeberGames", "h1": "Online drinking games", "equivalentEs": "/juegos" },
+  { "pathname": "/en/games/kings-cup", "title": "King's Cup Drinking Game — Play Online & Rules | BeberGames", "h1": "King's Cup Drinking Game", "equivalentEs": null },
   { "pathname": "/en/legal/cookies", "title": "Cookies and Browser Storage — English Site | BeberGames", "h1": "Cookies and browser storage", "equivalentEs": "/legal/cookies" },
   { "pathname": "/en/legal/privacy", "title": "Privacy — English Site | BeberGames", "h1": "Privacy", "equivalentEs": "/legal/privacidad" },
   { "pathname": "/en/legal/terms", "title": "Terms of Use — Play Responsibly | BeberGames", "h1": "Terms of use", "equivalentEs": null }

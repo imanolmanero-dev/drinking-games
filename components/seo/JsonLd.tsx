@@ -44,10 +44,12 @@ export function GameJsonLd({
   name,
   description,
   url,
+  locale = "es",
 }: {
   name: string;
   description: string;
   url: string;
+  locale?: Locale;
 }) {
   const jsonLd = {
     "@context": "https://schema.org",
@@ -60,9 +62,9 @@ export function GameJsonLd({
     offers: {
       "@type": "Offer",
       price: "0",
-      priceCurrency: "EUR",
+      priceCurrency: locale === "en-US" ? "USD" : "EUR",
     },
-    inLanguage: "es",
+    inLanguage: locale,
     browserRequirements: "Requires JavaScript. Requires HTML5.",
   };
 
