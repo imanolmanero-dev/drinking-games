@@ -45,6 +45,7 @@ function loadLayout(file) {
   });
   const loaded = { exports: {} };
   const load = (specifier) => {
+    if (specifier.endsWith(".module.css")) return { default: { root: "test-scoped-root" } };
     if (specifier.endsWith(".css")) return {};
     if (specifier === "next/font/google") {
       const font = (options) => ({ variable: options.variable });

@@ -145,6 +145,15 @@ lib/
 - `GameJsonLd` permite locale opcional: por defecto mantiene exactamente ES/EUR; EN usa en-US/USD. La FAQ estructurada debe proceder de las mismas preguntas/respuestas que se muestran en la página.
 - Esta fase sigue local, sin monetización. Requiere auditoría combinada de Fases 2 y 3 antes de push, merge o publicación.
 
+### English visual parity (Fase 4, revisión local)
+
+- La base EN v1 está publicada en `dbc8595`. Esta fase cambia únicamente presentación EN; conserva las 70 páginas ES, 8 EN, 78 URLs del sitemap, copy, metadata y lógica de King's Cup.
+- `EnglishDesign.module.css` se importa solo en el root EN. Todos sus selectores deben quedar bajo `.root`, incluidos responsive y reduced motion. No trasladar overrides de prosa a `globals.css`: sus enlaces naranjas pertenecen también a ES.
+- `EnglishArtwork.tsx` contiene únicamente SVG/CSS decorativo con `aria-hidden`, sin dependencias ni servicios. Los botones EN comparten clases `en-button` con variantes primary y danger; los controles principales mantienen al menos 48 px de alto.
+- El mock de layouts en `tests/locale-root-layouts.test.mjs` debe resolver el export default de los CSS Modules además de los imports CSS sin valor. No eliminar las comprobaciones de aislamiento para adaptar un cambio visual.
+- Comparar el HTML exportado con un build del HEAD inicial: metadata completa, headings, enlaces y contenido ES. Los hashes de assets y payloads de Next pueden variar entre builds; no equivalen por sí solos a cambios de contenido.
+- El sitemap ES existente usa fechas de build en `lastModified` salvo en los posts. Al comparar exports, conservar la comprobación de URLs, prioridades, frecuencias y fechas editoriales; separar únicamente las fechas generadas por `new Date()`.
+
 ### Reglas de código:
 
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.

@@ -2,17 +2,22 @@ import type { ReactNode } from "react";
 import type { RouteId } from "@/lib/i18n/routes";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function EnglishPage({ routeId, title, intro, children }: {
-  routeId: RouteId; title: string; intro: string; children: ReactNode;
+export default function EnglishPage({ routeId, title, intro, children, hero, actions }: {
+  routeId: RouteId; title: string; intro: string; children: ReactNode; hero?: ReactNode; actions?: ReactNode;
 }) {
+  const wide = routeId === "home" || routeId === "games-hub" || routeId === "kings-cup";
   return (
-    <article className="mx-auto w-full max-w-3xl px-5 py-12 sm:py-16">
+    <article className={`en-page${wide ? " en-page-wide" : ""}`}>
       <LanguageSwitcher routeId={routeId} locale="en-US" />
-      <header className="mb-10">
-        <h1 className="text-4xl font-extrabold leading-tight tracking-tight sm:text-5xl">{title}</h1>
-        <p className="mt-6 text-lg leading-relaxed text-zinc-300">{intro}</p>
+      <header className={`en-page-header${hero ? " en-hero" : ""}`}>
+        <div>
+          <h1>{title}</h1>
+          <p className="en-intro">{intro}</p>
+          {actions && <div className="en-hero-actions">{actions}</div>}
+        </div>
+        {hero}
       </header>
-      <div className="prose prose-invert max-w-none prose-a:text-purple-300 prose-a:underline-offset-4">{children}</div>
+      <div className="en-copy prose prose-invert max-w-none">{children}</div>
     </article>
   );
 }

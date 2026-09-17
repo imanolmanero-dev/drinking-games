@@ -1,15 +1,16 @@
 import EnglishLink from "./EnglishLink";
 import type { RouteId } from "@/lib/i18n/routes";
+import { BrandMark } from "./EnglishArtwork";
 
 const navigation: RouteId[] = ["home", "games-hub", "about", "contact"];
 
 export default function EnglishNav() {
   return (
-    <header className="border-b border-border bg-surface/60">
-      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-4 px-5 py-5">
-        <EnglishLink routeId="home" id="en-brand" className="text-xl font-extrabold tracking-tight">BeberGames</EnglishLink>
-        <nav aria-label="Main navigation" className="flex flex-wrap gap-x-5 gap-y-3 text-sm text-zinc-200">
-          {navigation.map((id) => <EnglishLink key={id} routeId={id} id={`en-nav-${id}`} className="hover:text-purple-300" />)}
+    <header className="en-nav">
+      <div className="en-nav-inner">
+        <EnglishLink routeId="home" id="en-brand" className="en-brand"><BrandMark /><span>Beber<span className="en-brand-accent">Games</span></span></EnglishLink>
+        <nav aria-label="Main navigation" className="en-nav-links">
+          {navigation.map((id) => <EnglishLink key={id} routeId={id} id={`en-nav-${id}`} className="en-nav-link" />)}
         </nav>
       </div>
     </header>

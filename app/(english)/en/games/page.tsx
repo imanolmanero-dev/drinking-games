@@ -2,6 +2,8 @@ import EnglishPage from "@/components/layout/english/EnglishPage";
 import EnglishLink from "@/components/layout/english/EnglishLink";
 import { publishedRoutes } from "@/lib/i18n/routes";
 import { englishPageMetadata } from "@/lib/i18n/metadata";
+import { CardArtwork } from "@/components/layout/english/EnglishArtwork";
+import { KINGS_CUP_DESCRIPTION } from "@/lib/data/kings-cup-editorial";
 
 export const generateMetadata = englishPageMetadata("games-hub", "Online Drinking Games — The Games Hub", "Check the English game selection at BeberGames and plan a relaxed game night with friends. Alcohol is optional, and everyone can play at their own pace.");
 
@@ -11,7 +13,16 @@ export default function EnglishGames() {
     <EnglishPage routeId="games-hub" title="Online drinking games" intro="A place to find a game for your group, with room for non-alcoholic play and everyone's comfort level.">
       <h2>Games in English</h2>
       {games.length > 0 ? (
-        <ul>{games.map((game) => <li key={game.id}><EnglishLink routeId={game.id} id={`en-catalog-${game.id}`} /></li>)}</ul>
+        <ul className="en-catalog">{games.map((game) => <li key={game.id}>
+          <div className="en-catalog-card">
+            <CardArtwork />
+            <div>
+              <EnglishLink routeId={game.id} id={`en-catalog-${game.id}`} />
+              {game.id === "kings-cup" && <p>{KINGS_CUP_DESCRIPTION}</p>}
+              <span className="en-catalog-arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </li>)}</ul>
       ) : <p>There are no playable games in the English selection yet. You can still use the ideas below to plan your game night and agree on how you want to play.</p>}
       <h2>Set up a game night that works for everyone</h2>
       <p>Start by checking how much time you have and what your friends feel like doing. Some groups want a quiet conversation starter. Others want a short activity between other plans. Pick something everyone understands, and explain the rules before taking the first turn.</p>
