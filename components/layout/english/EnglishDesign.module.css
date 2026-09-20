@@ -69,18 +69,6 @@
 }
 .root :global(.en-nav-link svg) { width: 16px; height: 16px; flex: 0 0 auto; }
 .root :global(.en-nav-link:hover) { background: var(--surface-hover); color: var(--en-link); }
-.root :global(.en-nav-cta) {
-  margin-left: 4px;
-  padding-inline: 14px;
-  border: 1px solid var(--border-color);
-  border-radius: 999px;
-  background: var(--surface);
-  color: var(--foreground);
-  box-shadow: 0 5px 20px var(--accent-glow);
-  transition: background .18s, color .18s, border-color .18s, box-shadow .18s;
-}
-.root :global(.en-nav-cta svg) { width: 16px; height: 16px; color: var(--en-link); }
-.root :global(.en-nav-cta:hover) { border-color: color-mix(in srgb, var(--accent) 45%, var(--border-color)); background: var(--surface-hover); box-shadow: 0 7px 26px var(--accent-glow); }
 .root :global(.en-page) { max-width: 800px; margin: auto; padding: 16px 24px 88px; }
 .root :global(.en-page-wide) { max-width: 1120px; }
 .root :global(.en-language) {
@@ -293,7 +281,6 @@
 }
 @media (max-width: 479px) {
   .root :global(.en-nav-inner) { padding: 8px 20px; gap: 6px 8px; }
-  .root :global(.en-nav-cta) { margin-left: 0; padding-inline: 8px; }
   .root :global(.en-nav-link) { gap: 6px; padding: 7px 6px; font-size: 13px; }
   .root :global(.en-page) { padding: 12px 20px 64px; }
   .root :global(.en-language) { margin-bottom: 12px; }
