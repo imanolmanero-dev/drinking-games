@@ -3,7 +3,6 @@ import EnglishLink from "@/components/layout/english/EnglishLink";
 import { publishedRoutes } from "@/lib/i18n/routes";
 import { englishPageMetadata } from "@/lib/i18n/metadata";
 import { CardArtwork } from "@/components/layout/english/EnglishArtwork";
-import { KINGS_CUP_DESCRIPTION } from "@/lib/data/kings-cup-editorial";
 
 export const generateMetadata = englishPageMetadata("games-hub", "Online Drinking Games — The Games Hub", "Check the English game selection at BeberGames and plan a relaxed game night with friends. Alcohol is optional, and everyone can play at their own pace.");
 
@@ -18,7 +17,6 @@ export default function EnglishGames() {
             <CardArtwork />
             <div>
               <EnglishLink routeId={game.id} id={`en-catalog-${game.id}`} />
-              {game.id === "kings-cup" && <p>{KINGS_CUP_DESCRIPTION}</p>}
               <span className="en-catalog-arrow" aria-hidden="true">→</span>
             </div>
           </div>
