@@ -4,7 +4,9 @@ import { createRequire } from "node:module";
 import test from "node:test";
 
 const require = createRequire(import.meta.url);
+require("tsx/cjs");
 const { parse } = require("next/dist/compiled/node-html-parser");
+const { drinkingGamesForTwoEditorial: editorial } = require("../../lib/data/drinking-games-for-2-editorial.ts");
 const read = (path) => readFileSync(path, "utf8");
 const path = "/en/blog/drinking-games-for-2";
 const canonical = `https://bebergames.com${path}`;
@@ -41,9 +43,12 @@ test("one BlogPosting matches visible authorship and a two-level breadcrumb, wit
   assert.equal(post.author.url, new URL(doc.getElementById("two-author").getAttribute("href"), canonical).href);
   assert.equal(post.publisher.name, "BeberGames");
   assert.equal(post.isAccessibleForFree, true);
-  for (const key of ["datePublished", "dateModified", "image", "aggregateRating", "review"]) assert.equal(post[key], undefined, key);
-  assert.equal(doc.querySelectorAll("time").length, 0);
-  assert.equal(meta('meta[property="article:published_time"]'), undefined);
+  assert.equal(post.datePublished, editorial.datePublished);
+  for (const key of ["dateModified", "image", "aggregateRating", "review"]) assert.equal(post[key], undefined, key);
+  assert.equal(doc.querySelectorAll("time").length, 1);
+  assert.equal(doc.querySelector("time").getAttribute("datetime"), editorial.datePublished);
+  assert.equal(doc.querySelector("time").textContent, editorial.datePublished);
+  assert.equal(meta('meta[property="article:published_time"]'), editorial.datePublished);
   assert.deepEqual(schemas.find((schema) => schema["@type"] === "BreadcrumbList").itemListElement, [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://bebergames.com/en" },
     { "@type": "ListItem", position: 2, name: "Drinking games for 2", item: canonical },

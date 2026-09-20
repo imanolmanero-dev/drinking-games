@@ -46,27 +46,25 @@ test("article metadata composes all existing EN image descriptors and Twitter fi
   assert.equal(result.openGraph.description, editorial.description);
   assert.deepEqual(result.openGraph.images, [{ ...descriptor, url: "https://bebergames.com/en/opengraph-image-test?query" }]);
   assert.deepEqual(result.twitter, { card: "summary_large_image", title: editorial.title, description: editorial.description });
-  assert.equal(result.openGraph.publishedTime, undefined);
+  assert.equal(result.openGraph.publishedTime, editorial.datePublished);
   await assert.rejects(generate({}, Promise.resolve({})), /missing/);
 });
 
-test("editorial publication date is pending centrally and schema does not invent modification dates", async () => {
-  assert.equal(editorial.datePublished, null);
+test("editorial publication date is central and schema does not invent modification dates", async () => {
+  assert.equal(editorial.datePublished, "2026-09-21");
   const schema = (datePublished) => JSON.parse(parse(renderToStaticMarkup(createElement(Article, { ...editorial, url: canonical, datePublished }))).querySelector("script").textContent);
-  const pending = schema(null);
-  assert.equal(pending["@type"], "BlogPosting");
-  assert.equal(pending.datePublished, undefined);
-  assert.equal(pending.dateModified, undefined);
-  assert.equal(pending.headline, editorial.headline);
-  assert.equal(pending.mainEntityOfPage, canonical);
-  assert.deepEqual(pending.author, { "@type": "Organization", name: "BeberGames", url: "https://bebergames.com/en/about" });
-  assert.equal(pending.inLanguage, "en-US");
-  assert.equal(pending.isAccessibleForFree, true);
-  // A future launch review can set one fixed ISO date, never the build clock.
-  assert.equal(schema("2026-10-01").datePublished, "2026-10-01");
-  const generate = englishArticleMetadata("drinking-games-for-two", editorial.title, editorial.description, "2026-10-01");
+  const published = schema(editorial.datePublished);
+  assert.equal(published["@type"], "BlogPosting");
+  assert.equal(published.datePublished, editorial.datePublished);
+  assert.equal(published.dateModified, undefined);
+  assert.equal(published.headline, editorial.headline);
+  assert.equal(published.mainEntityOfPage, canonical);
+  assert.deepEqual(published.author, { "@type": "Organization", name: "BeberGames", url: "https://bebergames.com/en/about" });
+  assert.equal(published.inLanguage, "en-US");
+  assert.equal(published.isAccessibleForFree, true);
+  const generate = englishArticleMetadata("drinking-games-for-two", editorial.title, editorial.description, editorial.datePublished);
   const metadata = await generate({}, Promise.resolve({ openGraph: { images: [{ url: "https://bebergames.com/en/opengraph-image-test" }] } }));
-  assert.equal(metadata.openGraph.publishedTime, "2026-10-01");
+  assert.equal(metadata.openGraph.publishedTime, editorial.datePublished);
 });
 
 test("article sources contain no client behavior, remote media or Spanish editorial dependencies", () => {
