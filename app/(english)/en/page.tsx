@@ -22,6 +22,9 @@ export default function EnglishHome() {
         <h2>Try a round of King&apos;s Cup</h2>
         <p>Draw from a full deck and follow the prompt on each card. Our alcohol-optional version has word games, shared gestures, and room to pass. <span className="en-feature-action"><EnglishLink id="en-home-kings-cup" routeId="kings-cup" className="en-button">Play King&apos;s Cup</EnglishLink><span> with friends on one screen.</span></span></p>
       </section>
+      <aside className="en-guide-discovery" aria-label="Two-player guide">
+        <p><strong>Just the two of you?</strong> <EnglishLink id="en-home-two-guide" routeId="drinking-games-for-two">Try seven games for two</EnglishLink>, with or without cards, dice, or alcohol.</p>
+      </aside>
       <section className="en-section en-value">
         <h2>Everyone gets a say</h2>
         <p>You can play without alcohol. Choose a non-alcoholic drink, use points, or leave drinks out entirely. Agree on what feels comfortable before starting, and let anyone skip a question or stop without explaining why.</p>

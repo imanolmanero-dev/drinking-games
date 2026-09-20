@@ -267,6 +267,22 @@
 .root :global(.en-footer-links a:hover) { color: var(--en-link); text-decoration: underline; }
 .root :global(.en-footer-note) { max-width: 80ch; padding-top: 24px; border-top: 1px solid var(--border-color); line-height: 1.8; }
 
+.root :global(.en-article) { max-width: 68ch; margin-inline: auto; font-size: 17px; line-height: 1.85; overflow-wrap: break-word; }
+.root :global(.en-article :is(h2, h3)) { scroll-margin-top: 140px; }
+.root :global(.en-article h2) { margin-top: 2.5em; padding-top: 16px; border-top: 1px solid var(--border-color); }
+.root :global(.en-article h3) { font-size: 1.2em; line-height: 1.45; }
+.root :global(.en-article section) { margin-block: 32px; }
+.root :global(.en-article-breadcrumb), .root :global(.en-article-byline) { font-size: 14px; color: var(--en-soft); }
+.root :global(.en-article-toc), .root :global(.en-article-note), .root :global(.en-guide-discovery) { padding: 16px 20px; border: 1px solid var(--border-color); border-radius: 16px; background: var(--surface); }
+.root :global(.en-article-toc p), .root :global(.en-article-toc ul), .root :global(.en-guide-discovery p) { margin: 0; }
+.root :global(.en-article-toc ul) { padding-left: 20px; margin-top: 8px; }
+.root :global(.en-article-toc li) { margin: 0; padding: 0; }
+.root :global(.en-article-toc a), .root :global(.en-article-choices a) { display: inline-flex; align-items: center; min-height: 48px; }
+.root :global(.en-article-note) { border-left: 3px solid var(--accent); }
+.root :global(.en-article-note p:first-child) { margin-top: 0; }
+.root :global(.en-article-note p:last-child) { margin-bottom: 0; }
+.root :global(.en-guide-discovery) { margin-block: 28px; font-size: 15px; line-height: 1.8; }
+
 @media (max-width: 767px) {
   .root :global(.en-nav-inner) { grid-template-columns: 1fr; }
   .root :global(.en-nav-links) { grid-column: 1 / -1; grid-row: 2; width: 100%; justify-content: space-between; }

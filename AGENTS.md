@@ -154,6 +154,15 @@ lib/
 - Comparar el HTML exportado con un build del HEAD inicial: metadata completa, headings, enlaces y contenido ES. Los hashes de assets y payloads de Next pueden variar entre builds; no equivalen por sí solos a cambios de contenido.
 - El sitemap ES existente usa fechas de build en `lastModified` salvo en los posts. Al comparar exports, conservar la comprobación de URLs, prioridades, frecuencias y fechas editoriales; separar únicamente las fechas generadas por `new Date()`.
 
+### English guide (Fase 5, implementación local)
+
+- Phase 4 está cerrada y verificada en producción sobre `e707c88`. Phase 5 añade solo `/en/blog/drinking-games-for-2`: 70 ES + 9 EN, 79 URLs públicas y de sitemap. El concepto sigue siendo `drinking-games-for-two`, `kind: guide`, publicado EN y `unpaired`; no emparejarlo con los artículos ES de dos personas o parejas. El selector ofrece `/` y se conservan las seis parejas hreflang sin `x-default`.
+- La guía es una ruta literal Server Component, independiente de MDX y `lib/blog.ts`. No crear `/en/blog`, slug alternativo, enlaces a guías futuras ni Blog en navbar/footer. Home y Games enlazan un bloque editorial breve, fuera del catálogo `game`. El sitemap ya deriva EN de `publishedRoutes`.
+- `englishArticleMetadata` compone la herencia OG inglesa. La guía tiene un único `BlogPosting`, breadcrumb Home → artículo y FAQ visible sin `FAQPage`. No modificar `ArticleJsonLd` español ni fijar el path/hash OG.
+- `lib/data/drinking-games-for-2-editorial.ts` centraliza `datePublished`, inicialmente `null`: aún no se ha publicado. Antes del lanzamiento, definir la fecha ISO real y actualizar los tests de fecha pendiente; el mismo dato alimenta autoría visible, OG y schema. No usar el reloj del build ni inventar `dateModified`.
+- Mantener exactamente siete juegos, turnos y finales claros, alcohol opcional y pasar sin penalización. Revisar semánticamente el contenido además de las regex. Estilos solo bajo `.root` en el módulo EN, TOC de anchors nativos y ninguna nueva entrada cliente, persistencia, publicidad, CMP, PWA ni dependencia.
+- Antes de entrega, ejecutar tests unitarios, typegen, TypeScript, build, tests de exportación y auditoría; comparar las 70 páginas ES con el export inicial (metadata, headings, enlaces, JSON-LD y texto). QA visual pendiente no equivale a PASS. Requiere auditoría separada antes de push.
+
 ### Reglas de código:
 
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.

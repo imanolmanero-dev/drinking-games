@@ -20,9 +20,9 @@ const fixture = JSON.parse(read("tests/fixtures/en-routes.json"));
 const sorted = (items) => [...items].sort();
 const render = (component, props) => parse(renderToStaticMarkup(createElement(component, props)));
 
-test("English registry publication matches the independent eight-route fixture", () => {
-  assert.equal(fixture.length, 8);
-  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 8);
+test("English registry publication matches the independent nine-route fixture", () => {
+  assert.equal(fixture.length, 9);
+  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 9);
   assert.deepEqual(fixture.map((route) => route.pathname), sorted(fixture.map((route) => route.pathname)));
   assert.deepEqual(sorted(publishedRoutes("en-US").map((route) => route.pathname)), fixture.map((route) => route.pathname));
   assert.equal(new Set(routeRegistry.map((route) => route.id)).size, routeRegistry.length);
@@ -35,7 +35,7 @@ test("English registry publication matches the independent eight-route fixture",
 });
 
 test("unpublished English concepts cannot supply links, metadata, alternates or switches", () => {
-  for (const id of ["truth-or-dare", "drinking-games-for-two", "drinking-games-without-cards"]) {
+  for (const id of ["truth-or-dare", "drinking-games-without-cards"]) {
     assert.equal(routeRegistry.find((route) => route.id === id).published["en-US"], false);
     assert.equal(getPublishedRoute(id, "en-US"), undefined);
     assert.equal(languageAlternates(id), undefined);

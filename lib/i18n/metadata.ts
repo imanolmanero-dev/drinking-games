@@ -30,3 +30,20 @@ export function englishPageMetadata(id: RouteId, title: string, description: str
     return englishMetadata(id, title, description, images);
   };
 }
+
+// Compose the existing image inheritance contract rather than fixing an asset URL.
+export function englishArticleMetadata(id: RouteId, title: string, description: string, datePublished: string | null) {
+  const pageMetadata = englishPageMetadata(id, title, description);
+  return async function generateMetadata(props: unknown, parent: ResolvingMetadata): Promise<Metadata> {
+    const metadata = await pageMetadata(props, parent);
+    return {
+      ...metadata,
+      openGraph: {
+        ...metadata.openGraph,
+        type: "article",
+        authors: [absoluteUrl("/en/about")],
+        ...(datePublished ? { publishedTime: datePublished } : {}),
+      },
+    };
+  };
+}

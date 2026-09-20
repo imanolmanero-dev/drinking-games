@@ -1,6 +1,7 @@
 [
   { "pathname": "/en", "title": "Party Games with Friends — Free and Online | BeberGames", "h1": "Good company. Your pace.", "equivalentEs": "/" },
   { "pathname": "/en/about", "title": "About BeberGames — Responsible Play | BeberGames", "h1": "About BeberGames", "equivalentEs": "/sobre-nosotros" },
+  { "pathname": "/en/blog/drinking-games-for-2", "title": "Drinking Games for 2 — 7 Easy Games | BeberGames", "h1": "7 Drinking Games for 2, With or Without Alcohol", "equivalentEs": null },
   { "pathname": "/en/contact", "title": "Contact BeberGames — Feedback and Questions | BeberGames", "h1": "Contact BeberGames", "equivalentEs": "/contacto" },
   { "pathname": "/en/games", "title": "Online Drinking Games — The Games Hub | BeberGames", "h1": "Online drinking games", "equivalentEs": "/juegos" },
   { "pathname": "/en/games/kings-cup", "title": "King's Cup Drinking Game — Play Online & Rules | BeberGames", "h1": "King's Cup Drinking Game", "equivalentEs": null },
