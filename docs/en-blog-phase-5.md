@@ -38,15 +38,17 @@ King's Cup is linked once as a usual group game that supports two on one screen.
 
 ## Publication date decision
 
-This commit is local, awaiting an audit; no actual publication date exists yet.
-`drinkingGamesForTwoEditorial.datePublished` is therefore **null**. Visible date,
-OG published time and BlogPosting datePublished are omitted. BlogPosting does
-not require a fabricated date to describe the article. No dateModified or
-artificial EN sitemap lastModified is supplied.
+The implementation uses **2026-09-21** as its planned editorial publication
+date. `drinkingGamesForTwoEditorial.datePublished` stores that fixed value once;
+the visible byline, OpenGraph published time and BlogPosting datePublished all
+use it. The build does not derive it from `new Date()`. No dateModified or
+artificial EN sitemap lastModified is supplied because there has been no later
+editorial update.
 
-At publication review, set that single value to the actual ISO launch date
-and update the tests that explicitly assert the pending state. Do not use
-`new Date()` during build, assume an immediate launch, or backdate publication.
+Phase 5 remains local, so this planned date does not confirm a production
+deployment. Reconfirm it immediately before deployment. If the effective
+publication date changes, update the centralized value in a dedicated reviewed
+commit before deploying.
 
 ## Validation
 
