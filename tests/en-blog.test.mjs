@@ -51,7 +51,7 @@ test("article metadata composes all existing EN image descriptors and Twitter fi
 });
 
 test("editorial publication date is central and schema does not invent modification dates", async () => {
-  assert.equal(editorial.datePublished, "2026-09-21");
+  assert.equal(editorial.datePublished, "2026-09-23");
   const schema = (datePublished) => JSON.parse(parse(renderToStaticMarkup(createElement(Article, { ...editorial, url: canonical, datePublished }))).querySelector("script").textContent);
   const published = schema(editorial.datePublished);
   assert.equal(published["@type"], "BlogPosting");
