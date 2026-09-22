@@ -2,6 +2,9 @@
 
 Base: `e707c88f313a97f2a9861940a1362cfb87033425` (Phase 4 closed, deployed and production verified).
 
+Status: **CLOSED**. Phase 5 is integrated into `main` and published in production
+at `865c4462b6a0488d03a55acb3f2782c8677c9289`.
+
 ## Publication contract
 
 Only `/en/blog/drinking-games-for-2` is added. The existing conceptual ID
@@ -38,17 +41,15 @@ King's Cup is linked once as a usual group game that supports two on one screen.
 
 ## Publication date decision
 
-The implementation uses **2026-09-21** as its planned editorial publication
-date. `drinkingGamesForTwoEditorial.datePublished` stores that fixed value once;
-the visible byline, OpenGraph published time and BlogPosting datePublished all
-use it. The build does not derive it from `new Date()`. No dateModified or
-artificial EN sitemap lastModified is supplied because there has been no later
-editorial update.
-
-Phase 5 remains local, so this planned date does not confirm a production
-deployment. Reconfirm it immediately before deployment. If the effective
-publication date changes, update the centralized value in a dedicated reviewed
-commit before deploying.
+The final editorial publication date is **2026-09-23**. The original planned
+date, 2026-09-21, did not become a production publication because the earlier
+deployment failed. The dedicated commit
+`865c4462b6a0488d03a55acb3f2782c8677c9289` updated both
+`drinkingGamesForTwoEditorial.datePublished` and its direct test assertion.
+The fixed value feeds the visible byline, OpenGraph published time and
+BlogPosting datePublished; it is not derived from the build clock. The first
+effective production publication was verified on 2026-09-23. No dateModified
+or artificial EN sitemap lastModified is supplied without an editorial update.
 
 ## Validation
 
@@ -79,11 +80,50 @@ HTML exports. One extra existing test file, `tests/kings-cup.test.mjs`, needed
 its historical fixture comparison to permit the new guide; a new comparison
 also fixes all eight pre-existing EN fixture entries to the Phase 4 baseline.
 
-Browser connection discovery returned no available browser. Visual QA is
-**PENDING** at 320, 390, 768 and 1440 pixels, including TOC target visibility,
-overflow, reading width and the small Home/Games links. Source/static checks
-do not substitute for that visual review. Existing build metadataBase and Node
-module-type warnings also occur at baseline; final rendered URLs are validated.
+The publication-date commit passed the targeted guide tests (5/5), the full
+unit suite (78/78) and `npm run build`. The export contained the guide, 79
+sitemap URLs and the 2026-09-23 visible and structured publication dates.
+Existing build metadataBase and Node module-type warnings did not block it.
 
-No push, merge, deploy, workflow execution or remote configuration changes.
-Next step: a separate Phase 5 audit, including responsive visual QA.
+## Deployment incident and release
+
+The initial Phase 5 deployment of `98772c7fa7241b66eeed7f37ae4105f68056b1fc`
+failed after approximately 36m 58s with `build exceeded the time limit and was
+terminated`. Production therefore remained on Phase 4 commit
+`e707c88f313a97f2a9861940a1362cfb87033425`. The earlier
+`7b04b159431a96bc896490891c621537dab44290` deployment had also failed;
+Phase 5 code was not the common change behind both failures.
+
+A clean copy of the commit built in WSL2 Ubuntu with Node 22.23.1 and npm
+10.9.8: `npm ci --verbose` passed in about 18 seconds and `npm run build`
+passed in about 19 seconds. The guide was exported. This did not reproduce
+the timeout or establish its exact internal cause.
+
+Cloudflare Pages project `bebergames-static` was then configured manually
+with build command `npm ci --verbose && npm run build`, output directory `out`,
+an empty root directory, production branch `main`, automatic deployments on,
+build system v3, `NODE_VERSION=22.23.1`,
+`SKIP_DEPENDENCY_INSTALL=1`, and build cache disabled. These adjustments
+preceded the successful automatic deployment of
+`865c4462b6a0488d03a55acb3f2782c8677c9289`; none was proven to be the
+sole cause of the earlier timeout. The production deployment URL is
+`https://a60ba0e9.bebergames-static.pages.dev` (not `4a0ba0e9`). The stable
+Pages domain and `https://bebergames.com` also serve Phase 5.
+
+## Final production QA
+
+**PASS.** The guide returns HTTP 200 with the expected title, H1, seven games,
+four visible FAQs, self-canonical, `og:type=article`, BlogPosting and
+BreadcrumbList. Its visible date, `article:published_time` and
+`BlogPosting.datePublished` are 2026-09-23. Home EN and Games EN link to the
+guide, and the links resolve. The live sitemap has 79 unique URLs (70 ES,
+9 EN), with the guide exactly once.
+
+Playwright MCP responsive QA passed at 320×844, 390×844, 768×1024 and
+1440×900. Document and body scroll widths equaled client width at every
+viewport: no horizontal overflow. Relevant console, JavaScript and hydration
+errors: 0. Relevant failed resources and 404/5xx responses: 0.
+Warnings about unused preloaded fonts were non-blocking. The correct
+deployment URL, stable Pages domain and custom domain serve the same Phase 5
+contract. No Phase 5 blockers remain; do not begin Phase 6 until its scope is
+defined separately.
