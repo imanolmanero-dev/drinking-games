@@ -93,7 +93,10 @@ test("el grafo inglés no alcanza publicidad ni PWA y los anuncios solo pertenec
     assert.doesNotMatch(read(file), /adsbygoogle|googlesyndication|google-adsense-account|manifest\.json|appleWebApp|beforeinstallprompt/);
     if (!file.endsWith(".css")) assert.doesNotMatch(read(file), /@vercel\/analytics|next\/headers|next\/script|localStorage\.(?:getItem|setItem)|sessionStorage\.|navigator\.serviceWorker/);
   }
-  assert.deepEqual([...englishDependencies].filter((file) => /["']use client["']/.test(read(file))), [resolve("components/games/kings-cup/KingsCupGame.tsx")]);
+  assert.deepEqual([...englishDependencies].filter((file) => /["']use client["']/.test(read(file))).sort(), [
+    resolve("components/games/kings-cup/KingsCupGame.tsx"),
+    resolve("components/games/truth-or-dare/TruthOrDareGame.tsx"),
+  ].sort());
   const sourceFiles = ["app", "components", "lib"].flatMap(filesIn).filter((file) => /\.[cm]?[jt]sx?$/.test(file));
   assert.deepEqual(sourceFiles.filter((file) => read(file).includes("pagead2.googlesyndication.com/pagead/js/adsbygoogle.js")), [spanishRoot]);
   assert.deepEqual(sourceFiles.filter((file) => read(file).includes("<VerdadRetoExperimentAd")), ["app/(spanish)/juegos/verdad-o-reto/page.tsx"]);

@@ -183,6 +183,12 @@
 .root :global(.en-catalog-card a) { font-size: 28px; font-weight: 800; letter-spacing: -.03em; }
 .root :global(.en-catalog-card a::after) { content: ""; position: absolute; inset: 0; border-radius: 28px; }
 .root :global(.en-catalog-card a:focus-visible::after) { outline: 2px solid var(--en-link); outline-offset: 5px; }
+.root :global(.en-catalog-details) { display: grid; gap: 14px; min-width: 0; }
+.root :global(.en-catalog-details h3) { margin: 0; font-size: 26px; }
+.root :global(.en-catalog-details p) { margin: 0; line-height: 1.6; }
+.root :global(.en-catalog-facts) { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.root :global(.en-catalog-facts li) { margin: 0; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 10px; font-size: 13px; }
+.root :global(.en-catalog-details .en-button) { width: fit-content; font-size: 14px; letter-spacing: 0; }
 .root :global(.en-catalog-arrow) { display: inline-grid; place-items: center; width: 48px; height: 48px; border-radius: 50%; margin-top: 12px; background: var(--accent-glow); color: var(--en-link); font-size: 24px; }
 .root :global(.en-button) {
   display: inline-flex;
@@ -226,6 +232,14 @@
 .root :global(.en-game) { margin: 32px 0 64px; padding: 32px; border: 1px solid var(--accent-glow); border-radius: 28px; background: radial-gradient(ellipse at 100% 0%, var(--accent-glow), transparent 50%), var(--surface); box-shadow: 0 16px 64px #00000030; }
 .root :global(.en-game h2) { margin: 0 0 24px; padding: 0 0 20px; font-size: 24px; font-weight: 800; letter-spacing: -.03em; }
 .root :global(.en-game p) { margin: 0; }
+.root :global(.en-tod-panel) { display: grid; gap: 22px; max-width: 640px; margin-inline: auto; }
+.root :global(.en-tod-panel p) { line-height: 1.7; color: var(--en-copy); }
+.root :global(.en-tod-actions) { display: flex; flex-wrap: wrap; gap: 12px; }
+.root :global(.en-tod-actions .en-button) { flex: 1 1 170px; }
+.root :global(.en-tod-stage) { display: grid; gap: 22px; padding: 28px; border: 1px solid var(--border-color); border-radius: 20px; background: var(--background); }
+.root :global(.en-tod-stage .en-tod-type) { font-weight: 700; color: var(--en-link); }
+.root :global(.en-tod-stage .en-tod-prompt) { font-size: clamp(20px, 3vw, 28px); font-weight: 750; line-height: 1.45; color: var(--foreground); }
+.root :global(.en-tod-secondary) { padding-top: 18px; border-top: 1px solid var(--border-color); }
 .root :global(.en-setup) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); align-items: center; gap: 32px; }
 .root :global(.en-setup-copy) { display: grid; gap: 24px; }
 .root :global(.en-setup-copy p) { font-size: 14px; line-height: 1.8; color: var(--en-copy); }

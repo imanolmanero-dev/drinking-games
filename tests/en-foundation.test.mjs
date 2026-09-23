@@ -20,13 +20,16 @@ const fixture = JSON.parse(read("tests/fixtures/en-routes.json"));
 const sorted = (items) => [...items].sort();
 const render = (component, props) => parse(renderToStaticMarkup(createElement(component, props)));
 
-test("English registry publication matches the independent nine-route fixture", () => {
-  assert.equal(fixture.length, 9);
-  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 9);
+test("English registry publication matches the independent ten-route fixture", () => {
+  assert.equal(fixture.length, 10);
+  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 10);
   assert.deepEqual(fixture.map((route) => route.pathname), sorted(fixture.map((route) => route.pathname)));
   assert.deepEqual(sorted(publishedRoutes("en-US").map((route) => route.pathname)), fixture.map((route) => route.pathname));
   assert.equal(new Set(routeRegistry.map((route) => route.id)).size, routeRegistry.length);
-  assert.deepEqual(publishedRoutes("en-US", "game"), [{ id: "kings-cup", pathname: "/en/games/kings-cup", label: "King's Cup" }]);
+  assert.deepEqual(publishedRoutes("en-US", "game"), [
+    { id: "kings-cup", pathname: "/en/games/kings-cup", label: "King's Cup" },
+    { id: "truth-or-dare", pathname: "/en/games/truth-or-dare", label: "Truth or Dare" },
+  ]);
   for (const entry of routeRegistry) {
     for (const locale of ["es", "en-US"]) {
       if (entry.published[locale]) assert.ok(entry.routes[locale], entry.id);
@@ -35,7 +38,7 @@ test("English registry publication matches the independent nine-route fixture", 
 });
 
 test("unpublished English concepts cannot supply links, metadata, alternates or switches", () => {
-  for (const id of ["truth-or-dare", "drinking-games-without-cards"]) {
+  for (const id of ["drinking-games-without-cards"]) {
     assert.equal(routeRegistry.find((route) => route.id === id).published["en-US"], false);
     assert.equal(getPublishedRoute(id, "en-US"), undefined);
     assert.equal(languageAlternates(id), undefined);
@@ -43,6 +46,14 @@ test("unpublished English concepts cannot supply links, metadata, alternates or 
     assert.throws(() => englishMetadata(id, "Test", "Test"), /unpublished/);
     assert.equal(renderToStaticMarkup(createElement(EnglishLink, { routeId: id, id: "test-link" })), "");
   }
+});
+
+test("Truth or Dare is published but unpaired in both language directions", () => {
+  assert.equal(getPublishedRoute("truth-or-dare", "en-US").pathname, "/en/games/truth-or-dare");
+  assert.equal(routeRegistry.find((route) => route.id === "truth-or-dare").equivalence, "unpaired");
+  assert.equal(languageAlternates("truth-or-dare"), undefined);
+  for (const locale of ["es", "en-US"]) assert.equal(languageSwitch("truth-or-dare", locale).fallback, true);
+  assert.equal(fixture.find((route) => route.pathname === "/en/games/truth-or-dare").equivalentEs, null);
 });
 
 test("locale detection respects path boundaries and never redirects", () => {

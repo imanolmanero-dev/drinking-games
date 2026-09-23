@@ -87,11 +87,13 @@ test("incoming links remain editorial, and all forbidden future routes lack expo
     assert.equal(page.querySelectorAll(`.en-catalog a[href="${path}"]`).length, 0);
     assert.equal(page.querySelectorAll(`.en-nav a[href="${path}"], .en-footer a[href="${path}"]`).length, 0);
   }
-  for (const absent of ["/en/blog", "/en/blog/drinking-games-for-two", "/en/blog/drinking-games-without-cards", "/en/blog/drinking-card-games", "/en/games/truth-or-dare"]) {
+  for (const absent of ["/en/blog", "/en/blog/drinking-games-for-two", "/en/blog/drinking-games-without-cards", "/en/blog/drinking-card-games"]) {
     assert.equal(existsSync(`out${absent}.html`), false, absent);
     assert.equal(existsSync(`out${absent}/index.html`), false, absent);
     assert.equal(doc.querySelectorAll(`a[href="${absent}"]`).length, 0);
   }
+  assert.equal(doc.getElementById("two-truth-or-dare-game").getAttribute("href"), "/en/games/truth-or-dare");
+  assert.ok(doc.querySelector('[data-guide-game="truth-or-dare"]').querySelector("#two-truth-or-dare-game"));
   assert.equal(doc.querySelectorAll('a[href="/en/games/kings-cup"]').length, 1);
   assert.match(doc.getElementById("two-kings-cup").parentNode.textContent, /usually a group game.*supports two players on one screen/);
 });

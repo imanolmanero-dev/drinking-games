@@ -8,7 +8,7 @@ export const generateMetadata = englishPageMetadata("home", "Party Games with Fr
 
 export default function EnglishHome() {
   return (
-    <EnglishPage routeId="home" title="Good company. Your pace." intro="BeberGames is a home for browser-based party and drinking games with friends. Free to use, easy to browse on your phone, and no account required."
+    <EnglishPage routeId="home" title="Party games with friends" intro="Good company. Your pace. BeberGames is a home for browser-based party and drinking games with friends. Free to use, easy to browse on your phone, and no account required."
       hero={<CardArtwork />}
       actions={<EnglishLink id="en-home-games" routeId="games-hub" className="en-button en-button-primary">Explore the games hub<span aria-hidden="true">→</span></EnglishLink>}>
       <WebSiteJsonLd locale="en-US" />
@@ -22,6 +22,9 @@ export default function EnglishHome() {
         <h2>Try a round of King&apos;s Cup</h2>
         <p>Draw from a full deck and follow the prompt on each card. Our alcohol-optional version has word games, shared gestures, and room to pass. <span className="en-feature-action"><EnglishLink id="en-home-kings-cup" routeId="kings-cup" className="en-button">Play King&apos;s Cup</EnglishLink><span> with friends on one screen.</span></span></p>
       </section>
+      <aside className="en-guide-discovery" aria-label="Truth or Dare game">
+        <p><strong>Prefer questions and challenges?</strong> <EnglishLink id="en-home-truth-or-dare" routeId="truth-or-dare">Play Truth or Dare</EnglishLink> with 2–12 people on one shared screen.</p>
+      </aside>
       <aside className="en-guide-discovery" aria-label="Two-player guide">
         <p><strong>Just the two of you?</strong> <EnglishLink id="en-home-two-guide" routeId="drinking-games-for-two">Try seven games for two</EnglishLink>, with or without cards, dice, or alcohol.</p>
       </aside>

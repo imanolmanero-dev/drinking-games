@@ -54,6 +54,7 @@ export default function KingsCupPage() {
       <h2 id="faq">Frequently Asked Questions</h2>
       {KINGS_CUP_FAQS.map(({ q, a }, index) => <section key={q} aria-labelledby={`kc-faq-${index}`}><h3 id={`kc-faq-${index}`}>{q}</h3><p>{a}</p></section>)}
       <FAQJsonLd faqs={KINGS_CUP_FAQS} />
+      <p>For a game of questions and light challenges, <EnglishLink id="kc-truth-or-dare" routeId="truth-or-dare">play Truth or Dare</EnglishLink>. Playing with just one other person? The <EnglishLink id="kc-two-guide" routeId="drinking-games-for-two">seven games for two guide</EnglishLink> has more ways to play together.</p>
       <p>Explore the <EnglishLink id="kc-games-link" routeId="games-hub">English games hub</EnglishLink> or return to the <EnglishLink id="kc-home-link" routeId="home">BeberGames home page</EnglishLink>. For questions about using the site, read our <EnglishLink id="kc-terms-link" routeId="terms">terms of use</EnglishLink>.</p>
     </EnglishPage>
   );

@@ -94,6 +94,7 @@ export default function DrinkingGamesForTwo() {
           <h3 id="truth-or-dare">5. Truth or Dare</h3>
           <p><strong>What you need:</strong> Agreed boundaries. Choose who goes first and plan three turns each.</p>
           <p><strong>Play:</strong> One person chooses Truth or Dare. The other offers a question or challenge within your limits. Accept it, ask for another option, or pass without a penalty. Then swap roles. Finish after your agreed turns, or stop sooner.</p>
+          <p>Want prompts on screen? <EnglishLink id="two-truth-or-dare-game" routeId="truth-or-dare">Play our online Truth or Dare</EnglishLink> together. It supports two players and lets either of you skip freely.</p>
           <p><strong>Try this:</strong> Choose questions only, such as “What meal would you like to learn to cook?” For a creative dare, invent a slogan for a nearby object. Keep tasks light and comfortable for both people. You can enjoy the whole round without drinks.</p>
         </section>
 
@@ -117,7 +118,7 @@ export default function DrinkingGamesForTwo() {
 
         <h2 id="one-phone">Only have one phone?</h2>
         <p>Keep this guide open and read a game aloud. The contents links let you jump straight to the rules. Put the phone between you, or pass it over when you change roles. The guide provides instructions rather than an interactive game or prompt generator.</p>
-        <p>For an on-screen option, <EnglishLink id="two-kings-cup" routeId="kings-cup">King&apos;s Cup</EnglishLink> is usually a group game, but the BeberGames English version supports two players on one screen. You can also browse the <EnglishLink id="two-games" routeId="games-hub">English games hub</EnglishLink>.</p>
+        <p>For an on-screen card game, <EnglishLink id="two-kings-cup" routeId="kings-cup">King&apos;s Cup</EnglishLink> is usually a group game, but the BeberGames English version supports two players on one screen. The Truth or Dare section above links to its online version. You can also browse the <EnglishLink id="two-games" routeId="games-hub">English games hub</EnglishLink>.</p>
 
         <h2 id="partner-or-friend">Playing with a partner or a friend</h2>
         <p>Choose based on your mood, not your relationship. Word games work well when you want something light. Conversation games give you space to swap stories, but knowing someone well never means they owe you an answer. If a topic falls flat, change it. A short round you both enjoy is enough.</p>
@@ -130,7 +131,7 @@ export default function DrinkingGamesForTwo() {
         <h3 id="faq-no-alcohol">Can we play these games without alcohol?</h3>
         <p>Yes. Their rules use conversation or points. Water, a non-alcoholic drink, or no drink at all works equally well.</p>
         <h3 id="faq-one-phone">Can we play online using one phone?</h3>
-        <p>Yes. Share this guide for the instructions, or open the English King&apos;s Cup game mentioned above for two-player play on one screen.</p>
+        <p>Yes. Share this guide for the instructions, or open Truth or Dare or King&apos;s Cup for two-player play on one screen.</p>
       </div>
     </EnglishPage>
   );

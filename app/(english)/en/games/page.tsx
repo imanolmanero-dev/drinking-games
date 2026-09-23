@@ -1,10 +1,15 @@
 import EnglishPage from "@/components/layout/english/EnglishPage";
 import EnglishLink from "@/components/layout/english/EnglishLink";
-import { publishedRoutes } from "@/lib/i18n/routes";
+import { publishedRoutes, type RouteId } from "@/lib/i18n/routes";
 import { englishPageMetadata } from "@/lib/i18n/metadata";
 import { CardArtwork } from "@/components/layout/english/EnglishArtwork";
 
 export const generateMetadata = englishPageMetadata("games-hub", "Online Drinking Games — The Games Hub", "Check the English game selection at BeberGames and plan a relaxed game night with friends. Alcohol is optional, and everyone can play at their own pace.");
+
+const gameDetails: Partial<Record<RouteId, { description: string; setup: string }>> = {
+  "kings-cup": { description: "Draw a card and try its group prompt at your own pace.", setup: "Digital deck" },
+  "truth-or-dare": { description: "Choose a question or a light challenge on each turn.", setup: "No materials" },
+};
 
 export default function EnglishGames() {
   const games = publishedRoutes("en-US", "game");
@@ -15,9 +20,15 @@ export default function EnglishGames() {
         <ul className="en-catalog">{games.map((game) => <li key={game.id}>
           <div className="en-catalog-card">
             <CardArtwork />
-            <div>
-              <EnglishLink routeId={game.id} id={`en-catalog-${game.id}`} />
-              <span className="en-catalog-arrow" aria-hidden="true">→</span>
+            <div className="en-catalog-details">
+              <h3>{game.label}</h3>
+              <p>{gameDetails[game.id]?.description}</p>
+              <ul aria-label={`${game.label} setup`} className="en-catalog-facts">
+                <li>2–12 players</li>
+                <li>{gameDetails[game.id]?.setup}</li>
+                <li>One shared screen</li>
+              </ul>
+              <EnglishLink routeId={game.id} id={`en-catalog-${game.id}`} className="en-button en-button-primary">Play {game.label}</EnglishLink>
             </div>
           </div>
         </li>)}</ul>

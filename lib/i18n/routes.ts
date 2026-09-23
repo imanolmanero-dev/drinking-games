@@ -27,8 +27,8 @@ export const routeRegistry: readonly RouteEntry[] = [
   { id: "legal-notice", kind: "page", routes: { es: { pathname: "/legal/aviso-legal", label: "Aviso legal" } }, published: { es: true, "en-US": false }, equivalence: "unpaired", related: ["terms"] },
   // Reviewed in Phase 3: EN changes core rules (Ace, fourth King); it is not a translation of ES.
   { id: "kings-cup", kind: "game", routes: { es: { pathname: "/juegos/rey-de-la-copa", label: "El Rey de la Copa" }, "en-US": { pathname: "/en/games/kings-cup", label: "King's Cup" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
-  // Future English game equivalences still require editorial review.
-  { id: "truth-or-dare", kind: "game", routes: { es: { pathname: "/juegos/verdad-o-reto", label: "Verdad o Reto" }, "en-US": { pathname: "/en/games/truth-or-dare", label: "Truth or Dare" } }, published: { es: true, "en-US": false }, equivalence: "unpaired" },
+  // Phase 6: EN allows 2–12 players and penalty-free passing; ES has different core rules.
+  { id: "truth-or-dare", kind: "game", routes: { es: { pathname: "/juegos/verdad-o-reto", label: "Verdad o Reto" }, "en-US": { pathname: "/en/games/truth-or-dare", label: "Truth or Dare" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
   { id: "drinking-games-for-two", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-dos-personas", label: "Juegos para beber de dos personas" }, "en-US": { pathname: "/en/blog/drinking-games-for-2", label: "Drinking games for 2" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
   { id: "drinking-games-without-cards", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-sin-cartas", label: "Juegos para beber sin cartas" } }, published: { es: true, "en-US": false }, equivalence: "unpaired" },
 ];

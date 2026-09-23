@@ -60,9 +60,9 @@ test("el inventario fuente coincide con el contrato versionado", () => {
   assert.deepEqual(audit.sourceInventory, unionPathnames);
 });
 
-test("el export contiene la unión exacta de 70 ES y 9 EN", () => {
+test("el export contiene la unión exacta de 70 ES y 10 EN", () => {
   assert.deepEqual(audit.exportedInventory, unionPathnames);
-  assert.equal(audit.pages.length, 79);
+  assert.equal(audit.pages.length, 80);
   assert.equal(spanishPages.length, 70);
   assert.equal(audit.technicalDocuments.length, 0);
 
@@ -105,7 +105,7 @@ test("cada página tiene un canonical propio, absoluto y único", () => {
     canonicals.push(page.canonical);
   }
 
-  assert.equal(new Set(canonicals).size, 79);
+  assert.equal(new Set(canonicals).size, 80);
   assert.equal(audit.pages[0].canonical, "https://bebergames.com");
 });
 
@@ -136,8 +136,8 @@ test("cada página mantiene un único H1 con el texto normalizado de baseline", 
 });
 
 test("el sitemap contiene exactamente la unión ES + EN sin duplicados", () => {
-  assert.equal(audit.sitemap.urls.length, 79);
-  assert.equal(new Set(audit.sitemap.urls).size, 79);
+  assert.equal(audit.sitemap.urls.length, 80);
+  assert.equal(new Set(audit.sitemap.urls).size, 80);
   assert.deepEqual(sorted(audit.sitemap.pathnames), unionPathnames);
 
   for (const url of audit.sitemap.urls) {

@@ -135,7 +135,7 @@ test("King's Cup publication keeps distinct Spanish rules unpaired, with honest 
   for (const locale of ["es", "en-US"]) assert.equal(languageSwitch("kings-cup", locale).fallback, true);
   const fixture = JSON.parse(readFileSync("tests/fixtures/en-routes.json", "utf8"));
   const previous = JSON.parse(execFileSync("git", ["show", "18837ef:tests/fixtures/en-routes.json"], { encoding: "utf8" }));
-  assert.deepEqual(fixture.filter((route) => !["/en/games/kings-cup", "/en/blog/drinking-games-for-2"].includes(route.pathname)), previous);
+  assert.deepEqual(fixture.filter((route) => !["/en/games/kings-cup", "/en/blog/drinking-games-for-2", "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => route.pathname === "/en" ? { ...route, h1: "Good company. Your pace." } : route), previous);
   assert.equal(fixture.find((route) => route.pathname === "/en/games/kings-cup").equivalentEs, null);
 });
 

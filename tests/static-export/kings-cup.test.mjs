@@ -42,30 +42,33 @@ test("Game schema uses the correct English URL/offer and FAQ exactly matches six
   });
 });
 
-test("home and registry-driven hub link only the published King's Cup game", () => {
+test("home and registry-driven hub link both published English games", () => {
   const hub = parse(read("out/en/games.html"));
   const links = hub.querySelectorAll('a[href^="/en/games/"]');
-  assert.deepEqual(links.map((link) => link.getAttribute("href")), ["/en/games/kings-cup"]);
-  assert.equal(links[0].textContent, "King's Cup");
+  assert.deepEqual(links.map((link) => link.getAttribute("href")), ["/en/games/kings-cup", "/en/games/truth-or-dare"]);
+  assert.equal(links[0].textContent, "Play King's Cup");
   assert.doesNotMatch(hub.textContent, /no playable games/i);
   const home = parse(read("out/en.html"));
   assert.equal(home.getElementById("en-home-kings-cup").getAttribute("href"), "/en/games/kings-cup");
+  assert.equal(home.getElementById("en-home-truth-or-dare").getAttribute("href"), "/en/games/truth-or-dare");
 });
 
-test("King's Cup is in the 79-URL union once, with no false ES or Ring of Fire hreflang", () => {
+test("King's Cup is in the 80-URL union once, with no false ES or Ring of Fire hreflang", () => {
   const audit = auditStaticExport();
   assert.deepEqual(validateStaticExportAudit(audit), []);
-  assert.equal(audit.sitemap.urls.length, 79);
+  assert.equal(audit.sitemap.urls.length, 80);
   assert.equal(audit.sitemap.urls.filter((entry) => entry === url).length, 1);
   for (const path of ["/en/games/kings-cup", "/juegos/rey-de-la-copa", "/juegos/rey-de-la-copa/reglas", "/juegos/ring-of-fire", "/juegos/ring-of-fire/reglas"]) {
     assert.deepEqual(audit.pages.find((page) => page.pathname === path).languages, [], path);
   }
   assert.equal(doc.getElementById("language-switch").textContent, "Spanish home");
-  for (const path of ["/en/games/kings-cup/rules", "/en/blog/kings-cup-rules", "/en/games/ring-of-fire", "/en/games/circle-of-death", "/en/games/truth-or-dare"]) {
+  for (const path of ["/en/games/kings-cup/rules", "/en/blog/kings-cup-rules", "/en/games/ring-of-fire", "/en/games/circle-of-death"]) {
     const changed = structuredClone(audit);
     changed.exportedInventory.push(path);
     assert.ok(validateStaticExportAudit(changed).length > 0, path);
   }
+  assert.equal(doc.getElementById("kc-truth-or-dare").getAttribute("href"), "/en/games/truth-or-dare");
+  assert.equal(doc.getElementById("kc-two-guide").getAttribute("href"), "/en/blog/drinking-games-for-2");
 });
 
 test("new copy and shipped game code exclude dangerous instructions and private integrations", () => {

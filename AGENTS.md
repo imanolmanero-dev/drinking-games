@@ -165,6 +165,13 @@ lib/
 - Mantener exactamente siete juegos, turnos y finales claros, alcohol opcional y pasar sin penalización. Revisar semánticamente el contenido además de las regex. Estilos solo bajo `.root` en el módulo EN, TOC de anchors nativos y ninguna nueva entrada cliente, persistencia, publicidad, CMP, PWA ni dependencia.
 - Antes de entrega, ejecutar tests unitarios, typegen, TypeScript, build, tests de exportación y auditoría; comparar las 70 páginas ES con el export inicial (metadata, headings, enlaces, JSON-LD y texto). QA visual pendiente no equivale a PASS. Requiere auditoría separada antes de push.
 
+### Truth or Dare EN (Fase 6, implementación local)
+
+- Phase 6 añade solo `/en/games/truth-or-dare`: 70 ES + 10 EN = 80 páginas públicas y URLs de sitemap. `publishedRoutes` suministra el sitemap; no duplicar la ruta en `app/sitemap.ts`. El juego sigue `unpaired` respecto a Verdad o Reto ES; se conservan las seis parejas hreflang existentes.
+- La ruta EN es Server Component con contenido estático y `GameJsonLd` en-US. `components/games/truth-or-dare/TruthOrDareGame.tsx` es la segunda entrada cliente EN, junto a King's Cup. `lib/games/truth-or-dare.ts` contiene transiciones puras y reutiliza `lib/games/shuffle.ts`; `lib/data/truth-or-dare-prompts.ts` contiene 30 Truth y 30 Dare originales.
+- El juego EN usa 2–12 jugadores numerados, una pantalla y un modo. Cada conjunto se baraja por separado, no repite prompts antes de agotarse y deshabilita su elección al agotarse. Skip consume solo el prompt mostrado y avanza un turno; Finish y Restart son explícitos. No importar el juego ni los prompts ES, AppContext, almacenamiento, audio, vibración, anuncios, CMP, Analytics o PWA al grafo EN.
+- Home, hub, King's Cup y la guía para dos enlazan el juego de forma contextual. La home orienta sobre BeberGames; el hub compara juegos; la ruta nueva responde a jugar online; la guía mantiene intención editorial. Estilos nuevos solo bajo `.root` en `EnglishDesign.module.css`. Phase 6 requiere auditoría independiente antes de push o integración.
+
 ### Reglas de código:
 
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.
