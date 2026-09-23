@@ -11,6 +11,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 Este documento es OBLIGATORIO para cualquier agente IA que trabaje en este repositorio.
 Léelo COMPLETO antes de escribir una sola línea de código o contenido.
 
+Para selección de modelo, eficiencia de prompts y estrategia de uso de Codex, consultar `docs/codex-workflow.md`.
+
 ---
 
 ## 🔴 REGLA CRÍTICA #1: Anti-Stuttering en Contenido MDX
