@@ -9,6 +9,23 @@ export function BrandMark() {
   );
 }
 
+export function TruthOrDareMark() {
+  return (
+    <span className="en-tod-mark" aria-hidden="true">
+      <span>?</span><span>!</span>
+    </span>
+  );
+}
+
+export function TruthOrDareArtwork() {
+  return (
+    <div className="en-tod-art" aria-hidden="true">
+      <div className="en-tod-art-panel en-tod-art-truth"><span>TRUTH</span><strong>?</strong></div>
+      <div className="en-tod-art-panel en-tod-art-dare"><span>DARE</span><strong>!</strong></div>
+    </div>
+  );
+}
+
 export function CardArtwork() {
   return (
     <div className="en-card-art" aria-hidden="true">

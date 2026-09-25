@@ -1,5 +1,6 @@
 import EnglishPage from "@/components/layout/english/EnglishPage";
 import EnglishLink from "@/components/layout/english/EnglishLink";
+import { TruthOrDareMark } from "@/components/layout/english/EnglishArtwork";
 import TruthOrDareGame from "@/components/games/truth-or-dare/TruthOrDareGame";
 import { GameJsonLd } from "@/components/seo/JsonLd";
 import { englishPageMetadata } from "@/lib/i18n/metadata";
@@ -12,7 +13,7 @@ export const generateMetadata = englishPageMetadata("truth-or-dare", title, desc
 
 export default function TruthOrDarePage() {
   return (
-    <EnglishPage routeId="truth-or-dare" title="Truth or Dare Online" intro="Take turns choosing a question or a challenge. This one-screen game has 60 original prompts for 2–12 people, with room to pass and no need to drink.">
+    <EnglishPage routeId="truth-or-dare" title="Truth or Dare Online" intro="Take turns choosing a question or a challenge. This one-screen game has 60 original prompts for 2–12 people, with room to pass and no need to drink." headerDecoration={<TruthOrDareMark />}>
       <GameJsonLd name="Truth or Dare Online" description={description} url={url} locale="en-US" />
       <TruthOrDareGame />
 

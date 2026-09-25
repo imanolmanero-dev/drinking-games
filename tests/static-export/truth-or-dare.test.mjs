@@ -14,6 +14,36 @@ const home = parse(read("out/en.html"));
 const hub = parse(read("out/en/games.html"));
 const guide = parse(read("out/en/blog/drinking-games-for-2.html"));
 
+test("visual polish gives each hub game its own static artwork and keeps decoration opt-in", () => {
+  const cards = hub.querySelectorAll(".en-catalog-card");
+  const kings = cards.find((card) => card.querySelector("#en-catalog-kings-cup"));
+  const truth = cards.find((card) => card.querySelector("#en-catalog-truth-or-dare"));
+  assert.ok(kings.querySelector(".en-card-art .en-art-crown"));
+  assert.equal(kings.querySelector(".en-tod-art"), null);
+  assert.equal(truth.querySelector(".en-card-art"), null);
+  assert.equal(truth.querySelector(".en-tod-art").getAttribute("aria-hidden"), "true");
+  assert.match(truth.querySelector(".en-tod-art-truth").textContent, /TRUTH\?/);
+  assert.match(truth.querySelector(".en-tod-art-dare").textContent, /DARE!/);
+  assert.ok(doc.querySelector(".en-header-decoration .en-tod-mark"));
+  assert.equal(home.querySelector(".en-header-decoration"), null);
+  assert.equal(hub.querySelector(".en-header-decoration"), null);
+  assert.equal(guide.querySelector(".en-header-decoration"), null);
+});
+
+test("setup exports a labelled native selector, stepper and separate game facts", () => {
+  const select = doc.getElementById("tod-player-count");
+  assert.equal(select.getAttribute("aria-describedby"), "tod-player-range");
+  assert.equal(select.querySelector("option[selected]").getAttribute("value"), "4");
+  assert.equal(doc.getElementById("tod-player-range").textContent, "2–12 players");
+  assert.deepEqual(doc.querySelectorAll(".en-tod-facts li").map((item) => item.textContent), ["60 prompts", "No materials", "One shared screen"]);
+  for (const [id, label] of [["tod-player-decrease", "Decrease player count"], ["tod-player-increase", "Increase player count"]]) {
+    const button = doc.getElementById(id);
+    assert.equal(button.tagName, "BUTTON");
+    assert.equal(button.getAttribute("type"), "button");
+    assert.equal(button.getAttribute("aria-label"), label);
+  }
+});
+
 test("Truth or Dare exports a self-canonical English game with useful static content", () => {
   assert.equal(doc.querySelector("html").getAttribute("lang"), "en-US");
   assert.equal(doc.querySelector("title").textContent, "Truth or Dare Online — Play With Friends | BeberGames");

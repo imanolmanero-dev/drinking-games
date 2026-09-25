@@ -2,7 +2,7 @@ import EnglishPage from "@/components/layout/english/EnglishPage";
 import EnglishLink from "@/components/layout/english/EnglishLink";
 import { publishedRoutes, type RouteId } from "@/lib/i18n/routes";
 import { englishPageMetadata } from "@/lib/i18n/metadata";
-import { CardArtwork } from "@/components/layout/english/EnglishArtwork";
+import { CardArtwork, TruthOrDareArtwork } from "@/components/layout/english/EnglishArtwork";
 
 export const generateMetadata = englishPageMetadata("games-hub", "Online Drinking Games — The Games Hub", "Check the English game selection at BeberGames and plan a relaxed game night with friends. Alcohol is optional, and everyone can play at their own pace.");
 
@@ -19,7 +19,7 @@ export default function EnglishGames() {
       {games.length > 0 ? (
         <ul className="en-catalog">{games.map((game) => <li key={game.id}>
           <div className="en-catalog-card">
-            <CardArtwork />
+            <div className="en-catalog-art">{game.id === "truth-or-dare" ? <TruthOrDareArtwork /> : <CardArtwork />}</div>
             <div className="en-catalog-details">
               <h3>{game.label}</h3>
               <p>{gameDetails[game.id]?.description}</p>

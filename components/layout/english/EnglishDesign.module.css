@@ -116,6 +116,9 @@
 }
 .root :global(.en-page-header h1) { max-width: 750px; font-size: clamp(2.25rem, 5vw, 3.5rem); font-weight: 800; line-height: 1.1; letter-spacing: -.045em; text-wrap: balance; }
 .root :global(.en-intro) { max-width: 660px; margin-top: 24px; color: var(--en-copy); font-size: 18px; line-height: 1.8; }
+.root :global(.en-page-header-decorated) { padding-block: 12px 24px; margin-bottom: 24px; }
+.root :global(.en-page-header-decorated::before) { display: none; }
+.root :global(.en-header-decoration) { margin-bottom: 16px; }
 .root :global(.en-hero) {
   padding: 40px;
   border: 1px solid var(--border-color);
@@ -162,15 +165,15 @@
 .root :global(.en-feature-action) { display: flex; align-items: center; flex-wrap: wrap; gap: 12px; margin-top: 24px; }
 .root :global(.en-feature-action > span) { font-size: 14px; color: var(--en-soft); }
 .root :global(.en-value) { padding-left: 28px; border-left: 3px solid var(--accent); }
-.root :global(.en-catalog) { list-style: none; margin: 24px 0 48px; padding: 0; }
+.root :global(.en-copy > .en-catalog) { display: grid; gap: 24px; max-width: none; list-style: none; margin: 24px 0 48px; padding: 0; }
 .root :global(.en-catalog li) { margin: 0; padding: 0; }
 .root :global(.en-catalog-card) {
   position: relative;
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr);
+  grid-template-columns: 240px minmax(0, 1fr);
   gap: 32px;
   align-items: center;
-  padding: 32px;
+  padding: 28px;
   border: 1px solid var(--border-color);
   border-radius: 28px;
   background: radial-gradient(ellipse at 0% 30%, var(--accent-glow), transparent 65%), var(--surface);
@@ -186,6 +189,9 @@
 .root :global(.en-catalog-details) { display: grid; gap: 14px; min-width: 0; }
 .root :global(.en-catalog-details h3) { margin: 0; font-size: 26px; }
 .root :global(.en-catalog-details p) { margin: 0; line-height: 1.6; }
+.root :global(.en-catalog-art) { position: relative; height: 240px; min-width: 0; }
+.root :global(.en-catalog-art > :is(.en-card-art, .en-tod-art)) { position: absolute; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -50%); }
+.root :global(.en-catalog-art > .en-card-art) { width: 280px; max-width: none; transform: translate(-50%, -50%) scale(.76); }
 .root :global(.en-catalog-facts) { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
 .root :global(.en-catalog-facts li) { margin: 0; padding: 6px 10px; border: 1px solid var(--border-color); border-radius: 10px; font-size: 13px; }
 .root :global(.en-catalog-details .en-button) { width: fit-content; font-size: 14px; letter-spacing: 0; }
@@ -229,17 +235,61 @@
 .root :global(.en-art-corner span) { display: block; font-size: 16px; margin-top: 4px; }
 .root :global(.en-art-corner-bottom) { top: auto; left: auto; bottom: 12px; right: 14px; transform: rotate(180deg); }
 .root :global(.en-art-crown) { width: 64px; height: 64px; }
+.root :global(.en-tod-mark) { display: inline-flex; align-items: center; padding: 4px; }
+.root :global(.en-tod-mark > span) { display: grid; place-items: center; width: 32px; height: 34px; border: 1px solid var(--accent); border-radius: 9px; background: var(--surface); color: var(--en-link); font-size: 24px; font-weight: 800; line-height: 1; transform: rotate(-8deg); }
+.root :global(.en-tod-mark > span + span) { margin-left: 4px; border-color: var(--accent-secondary); color: color-mix(in srgb, var(--accent-secondary) 55%, var(--foreground)); transform: rotate(8deg); }
+.root :global(.en-tod-art) { position: relative; width: 240px; height: 200px; }
+.root :global(.en-tod-art-panel) { position: absolute; top: 25px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; width: 126px; height: 146px; border: 1px solid var(--accent); border-radius: 22px; background: var(--surface-hover); box-shadow: 0 8px 16px #00000040; color: var(--en-link); }
+.root :global(.en-tod-art-panel > span) { font-size: 13px; font-weight: 800; letter-spacing: .12em; }
+.root :global(.en-tod-art-panel > strong) { font-size: 72px; font-weight: 800; line-height: 1; color: inherit; }
+.root :global(.en-tod-art-truth) { left: 10px; transform: rotate(-8deg); }
+.root :global(.en-tod-art-dare) { right: 10px; top: 35px; transform: rotate(8deg); border-color: var(--accent-secondary); color: color-mix(in srgb, var(--accent-secondary) 55%, var(--foreground)); background: var(--surface); }
 .root :global(.en-game) { margin: 32px 0 64px; padding: 32px; border: 1px solid var(--accent-glow); border-radius: 28px; background: radial-gradient(ellipse at 100% 0%, var(--accent-glow), transparent 50%), var(--surface); box-shadow: 0 16px 64px #00000030; }
 .root :global(.en-game h2) { margin: 0 0 24px; padding: 0 0 20px; font-size: 24px; font-weight: 800; letter-spacing: -.03em; }
 .root :global(.en-game p) { margin: 0; }
-.root :global(.en-tod-panel) { display: grid; gap: 22px; max-width: 640px; margin-inline: auto; }
+.root :global(.en-tod-game) { margin-top: 24px; background: var(--surface); }
+.root :global(.en-tod-game h2) { max-width: 640px; margin: 0 auto 20px; padding: 0; border: 0; }
+.root :global(.en-tod-panel) { display: grid; gap: 20px; max-width: 640px; margin-inline: auto; }
 .root :global(.en-tod-panel p) { line-height: 1.7; color: var(--en-copy); }
+.root :global(.en-tod-setup > p:first-child) { font-size: 15px; }
+.root :global(.en-tod-panel .en-tod-note) { font-size: 14px; line-height: 1.6; color: var(--en-soft); }
+.root :global(.en-tod-facts) { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; color: var(--en-copy); font-size: 13px; }
+.root :global(.en-tod-facts li) { margin: 0; padding: 0; }
+.root :global(.en-tod-facts strong) { font-weight: 800; color: var(--foreground); }
+.root :global(.en-tod-players) { display: grid; justify-items: center; gap: 10px; padding: 8px 0; }
+.root :global(.en-tod-players label) { font-size: 16px; font-weight: 700; }
+.root :global(.en-tod-players > span) { font-size: 13px; color: var(--en-soft); }
+.root :global(.en-tod-stepper) { display: flex; align-items: center; gap: 16px; }
+.root :global(.en-tod-stepper .en-button) { width: 48px; height: 48px; padding: 0; border-radius: 14px; font-size: 26px; font-weight: 500; }
+.root :global(.en-tod-stepper select) { width: 96px; min-height: 72px; padding: 4px 8px; border: 1px solid var(--accent-glow); border-radius: 16px; background: var(--background); color: var(--foreground); font: inherit; font-size: 44px; font-weight: 800; line-height: 1.2; cursor: pointer; }
+.root :global(.en-tod-stepper option) { font-size: 18px; }
+.root :global(.en-tod-setup > .en-button-primary) { width: 100%; max-width: 360px; min-height: 56px; margin-inline: auto; font-size: 16px; }
+.root :global(.en-tod-progress) { display: grid; gap: 10px; }
+.root :global(.en-tod-progress p) { font-size: 13px; color: var(--en-soft); }
 .root :global(.en-tod-actions) { display: flex; flex-wrap: wrap; gap: 12px; }
 .root :global(.en-tod-actions .en-button) { flex: 1 1 170px; }
-.root :global(.en-tod-stage) { display: grid; gap: 22px; padding: 28px; border: 1px solid var(--border-color); border-radius: 20px; background: var(--background); }
-.root :global(.en-tod-stage .en-tod-type) { font-weight: 700; color: var(--en-link); }
-.root :global(.en-tod-stage .en-tod-prompt) { font-size: clamp(20px, 3vw, 28px); font-weight: 750; line-height: 1.45; color: var(--foreground); }
-.root :global(.en-tod-secondary) { padding-top: 18px; border-top: 1px solid var(--border-color); }
+.root :global(.en-tod-truth) { --tod-accent: var(--accent); --tod-ink: var(--en-link); }
+.root :global(.en-tod-dare) { --tod-accent: var(--accent-secondary); --tod-ink: color-mix(in srgb, var(--accent-secondary) 55%, var(--foreground)); }
+.root :global(.en-tod-stage) { display: grid; gap: 24px; padding: 24px; border: 1px solid color-mix(in srgb, var(--tod-accent) 35%, var(--border-color)); border-radius: 20px; background: var(--background); }
+.root :global(.en-tod-stage .en-tod-type) { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 700; color: var(--tod-ink); }
+.root :global(.en-tod-type > span) { font-size: 24px; line-height: 1; }
+.root :global(.en-tod-stage .en-tod-prompt) { font-size: clamp(22px, 3vw, 32px); font-weight: 750; line-height: 1.4; color: var(--foreground); overflow-wrap: break-word; }
+.root :global(.en-tod-choosing) { padding: 0; border: 0; background: transparent; gap: 16px; }
+.root :global(.en-tod-choices) { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.root :global(.en-tod-choice) { display: flex; flex-direction: column; gap: 8px; min-width: 0; min-height: 190px; padding: 24px 12px; border-radius: 20px; border-color: color-mix(in srgb, var(--tod-accent) 55%, var(--border-color)); background: color-mix(in srgb, var(--tod-accent) 8%, var(--background)); color: var(--foreground); }
+.root :global(.en-tod-choice:hover:not(:disabled)) { border-color: var(--tod-accent); background: color-mix(in srgb, var(--tod-accent) 16%, var(--background)); }
+.root :global(.en-tod-choice:active:not(:disabled)) { background: color-mix(in srgb, var(--tod-accent) 23%, var(--background)); }
+.root :global(.en-tod-choice:disabled) { opacity: .65; border-style: dashed; }
+.root :global(.en-tod-symbol) { font-size: 56px; line-height: 1; font-weight: 800; color: var(--tod-ink); }
+.root :global(.en-tod-choice-label) { font-size: 22px; line-height: 1.3; }
+.root :global(.en-tod-remaining) { font-size: 13px; font-weight: 500; color: var(--en-copy); }
+.root :global(.en-tod-secondary) { justify-content: space-between; gap: 8px; padding-top: 12px; border-top: 1px solid var(--border-color); }
+.root :global(.en-tod-secondary .en-button) { flex: 0 1 auto; min-height: 48px; padding: 10px 12px; border-color: transparent; background: transparent; font-size: 13px; font-weight: 500; }
+.root :global(.en-tod-secondary .en-button:not(.en-button-danger)) { color: var(--en-copy); }
+.root :global(.en-tod-finished) { text-align: center; }
+.root :global(.en-tod-finished > .en-tod-mark) { margin-bottom: 16px; }
+.root :global(.en-tod-finished .en-finished) { padding: 0; gap: 28px; }
+.root :global(.en-tod-finished .en-tod-actions) { max-width: 460px; width: 100%; margin-inline: auto; }
 .root :global(.en-setup) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); align-items: center; gap: 32px; }
 .root :global(.en-setup-copy) { display: grid; gap: 24px; }
 .root :global(.en-setup-copy p) { font-size: 14px; line-height: 1.8; color: var(--en-copy); }
@@ -303,7 +353,10 @@
   .root :global(.en-nav-link) { flex: 1 1 auto; padding-inline: 8px; }
   .root :global(.en-hero) { padding: 28px; grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .root :global(.en-hero > .en-card-art) { height: 250px; }
-  .root :global(.en-catalog-card) { grid-template-columns: minmax(0, 1fr); gap: 8px; padding: 24px; }
+  .root :global(.en-catalog-card) { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 24px; }
+  .root :global(.en-catalog-art) { height: 170px; }
+  .root :global(.en-catalog-art > .en-card-art) { transform: translate(-50%, -50%) scale(.55); }
+  .root :global(.en-catalog-art > .en-tod-art) { transform: translate(-50%, -50%) scale(.8); }
   .root :global(.en-setup) { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .root :global(.en-setup > .en-card-art) { height: 250px; }
   .root :global(.en-drawn-card) { grid-template-columns: minmax(0, 1fr); gap: 24px; text-align: center; }
@@ -318,6 +371,13 @@
   .root :global(.en-intro) { font-size: 16px; }
   .root :global(.en-feature) { padding: 24px; }
   .root :global(.en-game) { padding: 20px 16px; }
+  .root :global(.en-tod-panel) { gap: 18px; }
+  .root :global(.en-tod-stage:not(.en-tod-choosing)) { padding: 14px; gap: 20px; }
+  .root :global(.en-tod-choices) { gap: 12px; }
+  .root :global(.en-tod-choice) { min-height: 152px; padding: 18px 8px; border-radius: 16px; }
+  .root :global(.en-tod-symbol) { font-size: 44px; }
+  .root :global(.en-tod-choice-label) { font-size: 20px; }
+  .root :global(.en-tod-facts) { column-gap: 14px; }
   .root :global(.en-card-stage) { padding: 24px 16px; }
   .root :global(.en-copy table) { font-size: 12px; }
   .root :global(.en-copy th), .root :global(.en-copy td) { padding: 12px 8px; }
