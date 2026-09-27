@@ -172,6 +172,13 @@ lib/
 - El juego EN usa 2–12 jugadores numerados, una pantalla y un modo. Cada conjunto se baraja por separado, no repite prompts antes de agotarse y deshabilita su elección al agotarse. Skip consume solo el prompt mostrado y avanza un turno; Finish y Restart son explícitos. No importar el juego ni los prompts ES, AppContext, almacenamiento, audio, vibración, anuncios, CMP, Analytics o PWA al grafo EN.
 - Home, hub, King's Cup y la guía para dos enlazan el juego de forma contextual. La home orienta sobre BeberGames; el hub compara juegos; la ruta nueva responde a jugar online; la guía mantiene intención editorial. Estilos nuevos solo bajo `.root` en `EnglishDesign.module.css`. Phase 6 requiere auditoría independiente antes de push o integración.
 
+### Contrato visual compartido de juegos EN
+
+- Las páginas de juegos EN deben seguir [docs/en-game-design-system.md](docs/en-game-design-system.md), única especificación visual detallada.
+- Artwork, acentos y mecánicas mantienen la identidad de cada juego; setup, jerarquía de acciones y responsive siguen los patrones compartidos.
+- Reutilizar los patrones existentes antes de introducir nuevos shells o componentes. Documentar las excepciones justificadas en el documento de fase.
+- Comparar los juegos EN nuevos o modificados con las referencias aprobadas a 320, 390, 768 y 1440 px antes de publicar.
+
 ### Reglas de código:
 
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.

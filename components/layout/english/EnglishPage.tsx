@@ -2,10 +2,10 @@ import type { ReactNode } from "react";
 import type { RouteId } from "@/lib/i18n/routes";
 import LanguageSwitcher from "./LanguageSwitcher";
 
-export default function EnglishPage({ routeId, title, intro, children, hero, actions, headerDecoration }: {
-  routeId: RouteId; title: string; intro: string; children: ReactNode; hero?: ReactNode; actions?: ReactNode; headerDecoration?: ReactNode;
+export default function EnglishPage({ routeId, title, intro, children, hero, actions, headerDecoration, variant }: {
+  routeId: RouteId; title: string; intro: string; children: ReactNode; hero?: ReactNode; actions?: ReactNode; headerDecoration?: ReactNode; variant?: "game-detail";
 }) {
-  const wide = routeId === "home" || routeId === "games-hub" || routeId === "kings-cup";
+  const wide = variant === "game-detail" || routeId === "home" || routeId === "games-hub" || routeId === "kings-cup";
   return (
     <article className={`en-page${wide ? " en-page-wide" : ""}`}>
       <LanguageSwitcher routeId={routeId} locale="en-US" />

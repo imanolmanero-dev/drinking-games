@@ -1,6 +1,6 @@
 # Phase 6 — English Truth or Dare
 
-Status: **IMPLEMENTED LOCALLY / NOT DEPLOYED**. Base: `c6cb339088b39cf654ea354d7640c6f62a7f4099`. Implementation branch: `feat/en-truth-or-dare-phase-6`. An independent audit is required before any push or integration.
+Status: **VISUAL ALIGNMENT IMPLEMENTED LOCALLY / NOT DEPLOYED / NOT CLOSED**. Current work is on `feat/en-truth-or-dare-visual-polish`. Original Phase 6 base: `c6cb339088b39cf654ea354d7640c6f62a7f4099`; original implementation branch: `feat/en-truth-or-dare-phase-6`. The latest alignment record below supersedes the earlier visual handoff. An independent audit of both visual-polish commits and the shared design contract is required before integration.
 
 ## Objective and scope
 
@@ -83,6 +83,70 @@ Recovered and reviewed screenshots are preserved under `.playwright-mcp/`: `poli
 
 Home, hub, and the two-person guide load byte-identical JavaScript compared with the base and do not load TruthOrDareGame. Truth or Dare adds 2,745 raw bytes / 652 gzip bytes across its loaded scripts. King's Cup adds 273 raw bytes / 53 gzip bytes while still excluding the Truth or Dare client. Static decorative markup and the bounded stepper introduce no new client entry or service. The small bundle changes are informational, with no new functional subsystem.
 
-### Verdict and handoff
+### First-polish verdict and handoff (historical)
 
 **Visual verdict: PASS. Integration readiness: READY for independent audit.** No BLOCKER, SHOULD FIX, or MINOR finding remains from local validation. INFO: the small script-size changes above and the sandbox font-download retry. The independent audit remains a gate before push/integration; local PASS does not authorize publication. Next action: perform an independent visual and technical audit of the completed polish commit before any push.
+
+## Shared game-shell alignment — approved Option B
+
+Status: **VISUAL ALIGNMENT IMPLEMENTED LOCALLY / NOT DEPLOYED / NOT CLOSED**, validated on **2026-09-27**. This is a second change on top of `567d77998d7096f81f7af3e03aa8fee85cd7d49e`; the first visual-polish commit is not rewritten. Branch base/origin main remains `fd3dfbebd40a3cfeb431b09ddbe133bf1d57e823`.
+
+### Decision and implementation
+
+Human feedback was that King's Cup's setup looked more finished than Truth or Dare. The Astra visual audit confirmed the desktop composition issue: the narrower page, missing setup artwork and isolated centered controls weakened the presentation. The owner approved **Option B — shared game-shell alignment**.
+
+The detailed contract now lives only in [en-game-design-system.md](en-game-design-system.md). AGENTS.md contains a short mandatory pointer and reuse/review rules. This phase record contains the specific implementation and evidence.
+
+`EnglishPage` gains the opt-in `variant="game-detail"`, reusing its existing wide frame. Defaults for all other pages are preserved. Truth or Dare uses that variant and removes its redundant hero mark while keeping the H1, introduction and metadata unchanged. The existing `TruthOrDareArtwork` is reused exactly, through a setup-only sizing wrapper; its source is unchanged.
+
+The setup reuses `.en-game` and `.en-setup`: heading above a left artwork/right configuration composition, with the existing introduction, facts, native stepper, full-column CTA and responsible copy below it. The stepper's dimensions, labels and handlers are unchanged. On mobile, the same artwork is compact beside the heading, and configuration remains one column with a centered selector and full-width CTA.
+
+Choice, prompt and final markup, actions, counters and copy are preserved. Their compact outer shell and inner reading area remain at the prior maximum widths. King's Cup's component, page, artwork, reducer and copy are unchanged; the hub is unchanged. No logic, prompts, routes, SEO, Spanish files, dependencies, providers or client boundaries changed.
+
+### Technical validation
+
+| Gate | Result | Evidence |
+| --- | --- | --- |
+| Targeted tests | PASS, 15/15 | `build/alignment-targeted.log` |
+| Complete unit suite | PASS, 92/92 | `build/alignment-unit.log` |
+| Next typegen | PASS | Local command output |
+| TypeScript | PASS | `build/alignment-typescript.log` |
+| Directed ESLint | PASS | `build/alignment-eslint.log` |
+| Production build | PASS | Authorized `npm.cmd run build` command output |
+| Static export tests | PASS, 40/40 | `build/alignment-export.log` |
+| Static export audit | PASS | `build/alignment-audit.log` |
+| Export comparison | PASS, zero differences | `.playwright-mcp/alignment-comparison.json` |
+| Diff check | PASS | `git diff --check` before commit |
+
+A fresh build of unchanged `567d779` was preserved in `.playwright-mcp/alignment-base-567d779`. The comparison covers all 70 ES and 10 EN pages: titles, metadata, headings, links, JSON-LD and text. EN comparison removes only decorative `aria-hidden` content, not the game UI. Sitemap comparison preserves URLs, priorities, frequencies and editorial dates; only generated ES non-post dates are excluded. Results: **70 ES, 10 EN, 80 URLs, six hreflang pairs, unpaired Truth or Dare, zero ES/EN content differences and intact EN isolation**.
+
+The first changed build failed to fetch Google Fonts in the sandbox. An initial authorized retry was interrupted; the subsequent authorized build passed. Existing metadataBase warnings also occurred in the unchanged baseline; exported social metadata and URLs pass validation. These are environment/build notes, not presentation regressions.
+
+### Visual and responsive evidence
+
+Playwright MCP alone controlled the browser at `http://localhost:3000`. Setup, choice, Truth prompt, Dare prompt and final were checked at all four sizes, with no clipped content or real horizontal overflow. Numeric results below apply to each of those five states; full measurements are in `.playwright-mcp/alignment-browser.json`.
+
+| Viewport | innerWidth | Document clientWidth | Document scrollWidth | Body clientWidth | Body scrollWidth |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 320×844 | 320 | 320 | 320 | 320 | 320 |
+| 390×844 | 390 | 390 | 390 | 390 | 390 |
+| 768×1024 | 768 | 768 | 768 | 768 | 768 |
+| 1440×900 | 1440 | 1440 | 1440 | 1440 | 1440 |
+
+At 1440 px, setup is 1072 px wide and its CTA uses the approximately 599 px configuration column. Artwork and configuration balance one another while retaining the `? / !` identity. At 768 px, the configuration remains usable beside the artwork. At 320/390 px, the artwork wrapper occupies only 72 px of header height. The setup is approximately 654/577 px tall, respectively. Start's document position is approximately 1034/912 px, 28 px later than the first-polish baseline. At 390 px it remains 320 px earlier than King's Cup's Start (1232 px). This small header cost preserves the mobile advantage without a tall illustration block.
+
+King's Cup and hub screenshots at 390 and 1440 px have **identical SHA-256 hashes before and after**. No observable visual regression. Final captures: `.playwright-mcp/alignment-tod-{setup,choice,truth,dare,end}-{320,390,768,1440}.png`, `alignment-tod-page-{320,390,768,1440}.png`, and `alignment-{before,after}-{hub,kings}-{390,1440}.png`. Screenshots hide only the Next development indicator; game-state captures are positioned below the sticky navigation. Artifacts remain ignored by Git.
+
+### Accessibility and performance
+
+Keyboard QA passed: setup order is decrement → native select → increment → Start; choice, prompt and final actions retain logical order. Home/ArrowDown operate the native select, increment/decrement move by one, and limits at 2/12 are truly disabled. Enter activates Start/Truth. The game heading receives focus after state changes. Focus outlines are visible at 2 px with 5 px offset; interactive targets are at least 48 px high. Skip and Next each advance one player. Browser exhaustion produced 30 unique Truths, then a disabled Truth with `0 left` and dashed border while Dare remains enabled. Change players retains the configured count. Evidence: `.playwright-mcp/alignment-accessibility.json`, `alignment-focus-390.png` and `alignment-exhausted-390.png`. This is keyboard/browser QA, not screen-reader certification.
+
+The recorded four-size state matrix reported zero browser errors and warnings. No new dependency, service, client entry, storage or functional subsystem was introduced. Loaded production JS is byte-identical for home, hub and the two-person guide; none loads TruthOrDareGame. Truth or Dare changes by **+546 raw bytes / +90 gzip bytes**; King's Cup's loaded scripts change by **+412 raw / +61 gzip bytes**, with no TruthOrDareGame inclusion or King component changes. Artwork remains static; these small packaging changes are informational.
+
+### Critique and handoff
+
+The setup now reaches the reference's level of composition without borrowing its deck identity. The configuration and CTA read as one group, the selector remains finished, and the artwork has useful desktop presence without dominating mobile. The small mobile height increase is an explicit tradeoff. Existing choice counts are preserved as requested; no further redesign is warranted in this scope.
+
+**Visual verdict: PASS. Integration readiness: READY for final independent audit. BLOCKER: 0. SHOULD FIX: 0. MINOR: 0.** INFO: recorded mobile height tradeoff, small loaded-JS differences, and build environment notes. No push, merge, deployment or production change is part of this work. Phase 6 is not closed.
+
+Next action: **perform one final independent audit of both visual-polish commits and the shared EN game-design contract before integration.**

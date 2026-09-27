@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { TruthOrDareMark } from "@/components/layout/english/EnglishArtwork";
+import { TruthOrDareArtwork, TruthOrDareMark } from "@/components/layout/english/EnglishArtwork";
 import {
   currentPlayerNumber,
   startTruthOrDare,
@@ -38,11 +38,12 @@ export default function TruthOrDareGame() {
   const lastPrompt = game ? truthLeft === 0 && dareLeft === 0 : false;
 
   return (
-    <section id="truth-or-dare-game" aria-labelledby="tod-game-heading" className={`en-game en-tod-game not-prose${phase === "finished" ? " en-tod-finished" : ""}`}>
+    <section id="truth-or-dare-game" aria-labelledby="tod-game-heading" className={`en-game en-tod-game not-prose${!game ? " en-setup en-tod-setting-up" : ""}${phase === "finished" ? " en-tod-finished" : ""}`}>
       {phase === "finished" && <TruthOrDareMark />}
       <h2 id="tod-game-heading" ref={heading} tabIndex={-1}>
         {!game ? "Set up your game" : phase === "finished" ? "Game finished" : `Player ${player}'s turn`}
       </h2>
+      {!game && <div className="en-tod-setup-art"><TruthOrDareArtwork /></div>}
 
       {!game ? (
         <div className="en-tod-panel en-tod-setup">

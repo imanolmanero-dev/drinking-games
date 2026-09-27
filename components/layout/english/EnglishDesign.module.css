@@ -247,8 +247,14 @@
 .root :global(.en-game) { margin: 32px 0 64px; padding: 32px; border: 1px solid var(--accent-glow); border-radius: 28px; background: radial-gradient(ellipse at 100% 0%, var(--accent-glow), transparent 50%), var(--surface); box-shadow: 0 16px 64px #00000030; }
 .root :global(.en-game h2) { margin: 0 0 24px; padding: 0 0 20px; font-size: 24px; font-weight: 800; letter-spacing: -.03em; }
 .root :global(.en-game p) { margin: 0; }
-.root :global(.en-tod-game) { margin-top: 24px; background: var(--surface); }
+.root :global(.en-tod-game) { margin-top: 24px; }
+.root :global(.en-tod-game:not(.en-tod-setting-up)) { max-width: 752px; margin-inline: auto; background: var(--surface); }
 .root :global(.en-tod-game h2) { max-width: 640px; margin: 0 auto 20px; padding: 0; border: 0; }
+.root :global(.en-tod-game.en-tod-setting-up) { gap: 24px 32px; }
+.root :global(.en-tod-setting-up > h2) { grid-column: 1 / -1; width: 100%; max-width: none; margin: 0; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+.root :global(.en-tod-setup-art) { position: relative; min-width: 0; height: 280px; }
+.root :global(.en-tod-setup-art > .en-tod-art) { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.root :global(.en-tod-setting-up > .en-tod-panel) { width: 100%; max-width: none; min-width: 0; margin: 0; }
 .root :global(.en-tod-panel) { display: grid; gap: 20px; max-width: 640px; margin-inline: auto; }
 .root :global(.en-tod-panel p) { line-height: 1.7; color: var(--en-copy); }
 .root :global(.en-tod-setup > p:first-child) { font-size: 15px; }
@@ -256,14 +262,14 @@
 .root :global(.en-tod-facts) { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; color: var(--en-copy); font-size: 13px; }
 .root :global(.en-tod-facts li) { margin: 0; padding: 0; }
 .root :global(.en-tod-facts strong) { font-weight: 800; color: var(--foreground); }
-.root :global(.en-tod-players) { display: grid; justify-items: center; gap: 10px; padding: 8px 0; }
+.root :global(.en-tod-players) { display: grid; justify-items: start; gap: 10px; padding: 8px 0; }
 .root :global(.en-tod-players label) { font-size: 16px; font-weight: 700; }
 .root :global(.en-tod-players > span) { font-size: 13px; color: var(--en-soft); }
 .root :global(.en-tod-stepper) { display: flex; align-items: center; gap: 16px; }
 .root :global(.en-tod-stepper .en-button) { width: 48px; height: 48px; padding: 0; border-radius: 14px; font-size: 26px; font-weight: 500; }
 .root :global(.en-tod-stepper select) { width: 96px; min-height: 72px; padding: 4px 8px; border: 1px solid var(--accent-glow); border-radius: 16px; background: var(--background); color: var(--foreground); font: inherit; font-size: 44px; font-weight: 800; line-height: 1.2; cursor: pointer; }
 .root :global(.en-tod-stepper option) { font-size: 18px; }
-.root :global(.en-tod-setup > .en-button-primary) { width: 100%; max-width: 360px; min-height: 56px; margin-inline: auto; font-size: 16px; }
+.root :global(.en-tod-setup > .en-button-primary) { width: 100%; min-height: 56px; font-size: 16px; }
 .root :global(.en-tod-progress) { display: grid; gap: 10px; }
 .root :global(.en-tod-progress p) { font-size: 13px; color: var(--en-soft); }
 .root :global(.en-tod-actions) { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -347,7 +353,16 @@
 .root :global(.en-article-note p:last-child) { margin-bottom: 0; }
 .root :global(.en-guide-discovery) { margin-block: 28px; font-size: 15px; line-height: 1.8; }
 
+@media (min-width: 1024px) {
+  .root :global(.en-tod-setup-art > .en-tod-art) { transform: translate(-50%, -50%) scale(1.15); }
+}
 @media (max-width: 767px) {
+  .root :global(.en-tod-game.en-tod-setting-up) { grid-template-columns: minmax(0, 1fr) 88px; gap: 18px 12px; }
+  .root :global(.en-tod-setting-up > h2) { grid-column: 1; padding: 0; border: 0; line-height: 1.25; }
+  .root :global(.en-tod-setup-art) { height: 72px; }
+  .root :global(.en-tod-setup-art > .en-tod-art) { transform: translate(-50%, -50%) scale(.36); }
+  .root :global(.en-tod-setting-up > .en-tod-panel) { grid-column: 1 / -1; gap: 16px; }
+  .root :global(.en-tod-players) { justify-items: center; }
   .root :global(.en-nav-inner) { grid-template-columns: 1fr; }
   .root :global(.en-nav-links) { grid-column: 1 / -1; grid-row: 2; width: 100%; justify-content: space-between; }
   .root :global(.en-nav-link) { flex: 1 1 auto; padding-inline: 8px; }

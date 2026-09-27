@@ -14,7 +14,7 @@ const home = parse(read("out/en.html"));
 const hub = parse(read("out/en/games.html"));
 const guide = parse(read("out/en/blog/drinking-games-for-2.html"));
 
-test("visual polish gives each hub game its own static artwork and keeps decoration opt-in", () => {
+test("each hub game keeps its artwork and Truth or Dare places the same decoration inside its wide setup", () => {
   const cards = hub.querySelectorAll(".en-catalog-card");
   const kings = cards.find((card) => card.querySelector("#en-catalog-kings-cup"));
   const truth = cards.find((card) => card.querySelector("#en-catalog-truth-or-dare"));
@@ -24,7 +24,9 @@ test("visual polish gives each hub game its own static artwork and keeps decorat
   assert.equal(truth.querySelector(".en-tod-art").getAttribute("aria-hidden"), "true");
   assert.match(truth.querySelector(".en-tod-art-truth").textContent, /TRUTH\?/);
   assert.match(truth.querySelector(".en-tod-art-dare").textContent, /DARE!/);
-  assert.ok(doc.querySelector(".en-header-decoration .en-tod-mark"));
+  assert.ok(doc.querySelector("article.en-page-wide"));
+  assert.equal(doc.querySelector(".en-tod-setup-art .en-tod-art").toString(), truth.querySelector(".en-tod-art").toString());
+  assert.equal(doc.querySelector(".en-header-decoration"), null);
   assert.equal(home.querySelector(".en-header-decoration"), null);
   assert.equal(hub.querySelector(".en-header-decoration"), null);
   assert.equal(guide.querySelector(".en-header-decoration"), null);
