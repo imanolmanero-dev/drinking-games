@@ -1,10 +1,10 @@
 # Phase 6 — English Truth or Dare
 
-Status: **VISUAL ALIGNMENT IMPLEMENTED LOCALLY / NOT DEPLOYED / NOT CLOSED**. Current work is on `feat/en-truth-or-dare-visual-polish`. Original Phase 6 base: `c6cb339088b39cf654ea354d7640c6f62a7f4099`; original implementation branch: `feat/en-truth-or-dare-phase-6`. The latest alignment record below supersedes the earlier visual handoff. An independent audit of both visual-polish commits and the shared design contract is required before integration.
+Status: **CLOSED**. Implementation: **DEPLOYED**. Production: **VERIFIED**. Final production commit: `deff631db533a42c718c7721a47c38ebe4eaac64`. Independent audit and final production QA: **PASS**. The final production record below supersedes the historical local validation records. Original Phase 6 base: `c6cb339088b39cf654ea354d7640c6f62a7f4099`; original implementation branch: `feat/en-truth-or-dare-phase-6`.
 
 ## Objective and scope
 
-Publish one more English game route, `/en/games/truth-or-dare`, and improve discovery in `/en`, `/en/games`, King's Cup, and the existing two-person guide. The target inventory is **70 ES + 10 EN = 80** public pages and sitemap URLs. No new guide, category, blog hub, rules route, backend, account, storage, dependency, or English advertising is part of this phase. Spanish pages and fixtures remain unchanged.
+Published one more English game route, `/en/games/truth-or-dare`, and improved discovery in `/en`, `/en/games`, King's Cup, and the existing two-person guide. The final inventory is **70 ES + 10 EN = 80** public pages and sitemap URLs. No new guide, category, blog hub, rules route, backend, account, storage, dependency, or English advertising is part of this phase. Spanish pages and fixtures remain unchanged.
 
 ## Architecture and reuse
 
@@ -30,11 +30,11 @@ The game must preserve exact 30+30 prompt counts, independent exhaustion, one-st
 
 The new targeted unit tests passed (8/8). The complete unit suite passed (87/87), `next typegen` and TypeScript passed, and `npm run build` exported the new route. Static export tests passed (38/38) and the export audit returned `PASS` with 70 ES, 10 EN, and 80 sitemap URLs. The new URL occurs once and six hreflang pairs remain. All 70 ES HTML documents matched the pre-Phase-6 local export in title, metadata, headings, links, JSON-LD, and visible text. Home, hub, guide, and King's Cup kept byte-identical loaded JavaScript; the new game adds one route-specific script. Changed Phase 6 source files passed targeted ESLint.
 
-Repository-wide `npm run lint` still reports existing errors in unrelated ES components, legal pages, and UI utilities; the Phase 6 files listed in the targeted lint command passed. Visual QA and the independent audit remain pending. This document does not claim production publication.
+At initial validation, repository-wide `npm run lint` reported existing errors in unrelated ES components, legal pages, and UI utilities; the Phase 6 files listed in the targeted lint command passed. Subsequent visual QA, independent audit, and production verification are recorded below.
 
 ## Visual polish — Direction B, balanced redesign
 
-Local polish validation completed on **2026-09-25** on `feat/en-truth-or-dare-visual-polish`, based on `fd3dfbebd40a3cfeb431b09ddbe133bf1d57e823`. This section supersedes the pending visual QA statement above for the polish. An independent visual and technical audit of the completed commit is still required before any push or integration. No push, merge, deployment, or production configuration change was performed.
+Local polish validation completed on **2026-09-25** on `feat/en-truth-or-dare-visual-polish`, based on `fd3dfbebd40a3cfeb431b09ddbe133bf1d57e823`. This section records the first polish before the later alignment, independent audit, and controlled publication.
 
 ### Recovered state and resumed work
 
@@ -44,7 +44,7 @@ Previous local evidence in `.playwright-mcp/` included the `polish-base-fd3dfbe`
 
 ### Presentation and invariants
 
-- Truth or Dare has static `?` / `!` artwork and a compact decorative mark. King's Cup retains its cards and crown. Decoration is `aria-hidden`; the optional `headerDecoration` prop is only used on Truth or Dare.
+- The first polish introduced static `?` / `!` artwork and a compact decorative mark. King's Cup retained its cards and crown. Decoration is `aria-hidden`; Truth or Dare initially used the optional `headerDecoration` prop, removed from that page by the later alignment.
 - Hub cards have a measured 24 px vertical gap, 1,072 px desktop width at a 1,440 px viewport, and 350 px width at a 390 px viewport. Artwork is smaller on mobile.
 - Setup separates `60 prompts`, `No materials`, and `One shared screen` from the player control. The large player number sits between named decrement/increment buttons and keeps a labelled native select with `2–12 players` as its accessible description.
 - Truth and Dare each have a label, symbol, and remaining count. Prompt text carries the strongest reading emphasis. Next and Play again are primary; Skip remains clearly available, and End game / Change players have lower emphasis.
@@ -85,11 +85,11 @@ Home, hub, and the two-person guide load byte-identical JavaScript compared with
 
 ### First-polish verdict and handoff (historical)
 
-**Visual verdict: PASS. Integration readiness: READY for independent audit.** No BLOCKER, SHOULD FIX, or MINOR finding remains from local validation. INFO: the small script-size changes above and the sandbox font-download retry. The independent audit remains a gate before push/integration; local PASS does not authorize publication. Next action: perform an independent visual and technical audit of the completed polish commit before any push.
+**Historical local visual verdict: PASS**, with zero BLOCKER, SHOULD FIX, or MINOR findings at that stage. INFO: the small script-size changes above and the sandbox font-download retry. The later independent audit and production QA completed the publication gates; final production findings are recorded below.
 
 ## Shared game-shell alignment — approved Option B
 
-Status: **VISUAL ALIGNMENT IMPLEMENTED LOCALLY / NOT DEPLOYED / NOT CLOSED**, validated on **2026-09-27**. This is a second change on top of `567d77998d7096f81f7af3e03aa8fee85cd7d49e`; the first visual-polish commit is not rewritten. Branch base/origin main remains `fd3dfbebd40a3cfeb431b09ddbe133bf1d57e823`.
+Local alignment validation completed on **2026-09-27**. This was a second change on top of `567d77998d7096f81f7af3e03aa8fee85cd7d49e`; the first visual-polish commit was not rewritten. The branch base was `fd3dfbebd40a3cfeb431b09ddbe133bf1d57e823`. Both commits subsequently passed independent audit and were published by fast-forward.
 
 ### Decision and implementation
 
@@ -147,6 +147,84 @@ The recorded four-size state matrix reported zero browser errors and warnings. N
 
 The setup now reaches the reference's level of composition without borrowing its deck identity. The configuration and CTA read as one group, the selector remains finished, and the artwork has useful desktop presence without dominating mobile. The small mobile height increase is an explicit tradeoff. Existing choice counts are preserved as requested; no further redesign is warranted in this scope.
 
-**Visual verdict: PASS. Integration readiness: READY for final independent audit. BLOCKER: 0. SHOULD FIX: 0. MINOR: 0.** INFO: recorded mobile height tradeoff, small loaded-JS differences, and build environment notes. No push, merge, deployment or production change is part of this work. Phase 6 is not closed.
+**Historical local alignment verdict: PASS. BLOCKER: 0. SHOULD FIX: 0. MINOR: 0.** INFO: recorded mobile height tradeoff, small loaded-JS differences, and build environment notes. Independent audit subsequently passed with no blocking findings; final production verification follows.
 
-Next action: **perform one final independent audit of both visual-polish commits and the shared EN game-design contract before integration.**
+## Final implementation history
+
+| Commit | Message | Delivered |
+| --- | --- | --- |
+| `fd3dfbebd40a3cfeb431b09ddbe133bf1d57e823` | `[AGENTS] feat: add English Truth or Dare game` | Functional English game and discovery links. |
+| `567d77998d7096f81f7af3e03aa8fee85cd7d49e` | `[AGENTS] feat: polish English Truth or Dare UI` | Visual polish, artwork, controls, and action hierarchy. |
+| `deff631db533a42c718c7721a47c38ebe4eaac64` | `[AGENTS] feat: align English game detail design` | Alignment with the EN game-detail frame and shared visual contract. |
+
+The audited integration branch and main advanced by fast-forward to the final implementation commit. Normal pushes published the integration branch and main; the existing automatic deployment handled publication. No merge commit, rebase, cherry-pick, force push, or manual deployment was used.
+
+## Final product and design contract
+
+Truth or Dare is live at `/en/games/truth-or-dare`: **2–12 numbered players**, one shared screen, **30 Truth + 30 Dare**, and no repeats within either set before exhaustion. It provides Skip, Next, Finish (End game), Restart (Play again), and Change players. Setup uses a labelled native select with decrement/increment controls. There is no storage or backend, alcohol is optional, and the route remains hreflang **UNPAIRED**.
+
+The site retains **70 ES pages, 10 EN pages, 80 sitemap URLs, and six reciprocal hreflang pairs**, with no additional routes from the visual polish.
+
+[en-game-design-system.md](en-game-design-system.md) is the detailed shared visual contract for future EN games. Its principles cover the shared game-detail frame and setup shell, game-specific artwork identity, CTA/action hierarchy, responsive consistency, accessibility, and client-boundary/performance constraints. AGENTS.md keeps only the mandatory shared-design rules and pointer; this phase record does not duplicate the specification.
+
+## Final production QA — PASS
+
+Production QA on **2026-09-28 (Europe/Madrid)** used only Playwright MCP for browser control. At both the baseline and final Git checks, `main = origin/main = deff631db533a42c718c7721a47c38ebe4eaac64`, ahead/behind was `0 0`, and the working tree was clean. The final aligned design was visible in production.
+
+HTTP **200** was confirmed for `/en`, `/en/games`, `/en/games/kings-cup`, `/en/games/truth-or-dare`, `/en/blog/drinking-games-for-2`, and `/sitemap.xml`.
+
+### Visual and responsive results
+
+| Truth or Dare viewport | window.innerWidth | Document client / scroll width | Body client / scroll width | Result |
+| --- | ---: | --- | --- | --- |
+| 320×844 | 320 | 320 / 320 | 320 / 320 | PASS |
+| 390×844 | 390 | 390 / 390 | 390 / 390 | PASS |
+| 768×1024 | 768 | 768 / 768 | 768 / 768 | PASS |
+| 1440×900 | 1440 | 1440 / 1440 | 1440 / 1440 | PASS |
+
+Setup and prompt measurements matched the table; choice screens also had no horizontal overflow. No clipping or unintended overlap was observed. Desktop setup places artwork beside configuration with an integrated CTA; mobile uses compact artwork. Truth/Dare choices have equal visual weight, symbols and remaining counts. Short and long prompts remained readable, with Next primary, Skip visible, and session actions subordinate.
+
+Hub and King's Cup passed visual regression checks at 390 and 1440 px. Hub artwork distinguishes cards/crown from Truth/Dare's `?` / `!` while retaining a shared product style. King's Cup passed a functional sample covering start, draw, reveal, pause, resume, next, skip, and end.
+
+### Functional and accessibility results
+
+The two-player production flow passed: **Start → Truth → Next → Dare → Skip → End → Play again → Change players**. Double actions did not consume extra prompts or skip turns; player progression and restart were correct. Returning to setup preserved the player count. The singular end message was verified as **after 1 prompt**. Production QA sampled prompts rather than exhausting all 60; exhaustion/no-repeat coverage remains in the earlier local validation.
+
+Accessibility sanity QA passed: Tab navigation, visible focus, native select operated with Home/ArrowDown, named decrement/increment buttons, labels, disabled limits at 2/12, Enter activation, and focus transfer to the game heading. Checked controls were at least approximately 48 px high. Symbols, labels, counts, and borders supplement color. This was a browser/keyboard sanity check, not a full WCAG audit or screen-reader certification.
+
+### EN isolation and runtime
+
+Production DOM, resources, loaded-script inspection, and the exercised flows passed the EN isolation check: no AdSense, manual Spanish ad slot, CMP, AppContext, Analytics, PWA game behavior, storage, audio, or vibration was detected. The QA session had no manifest, service workers, cookies, or local/session storage data. Truth or Dare made no backend requests. EN remains deliberately isolated from current monetization.
+
+No application console errors, JavaScript exceptions, hydration errors, functional failed requests, or 5xx responses were observed on the five EN pages. Non-blocking console findings are listed separately below.
+
+### SEO, sitemap, and guide regression
+
+| Truth or Dare identity | Verified value |
+| --- | --- |
+| Title | `Truth or Dare Online — Play With Friends \| BeberGames` |
+| H1 | `Truth or Dare Online` |
+| Canonical | `https://bebergames.com/en/games/truth-or-dare` |
+| Structured data | `WebApplication` present |
+| Hreflang | UNPAIRED; no language alternates |
+
+The live sitemap contained **80 URLs: 70 ES + 10 EN**. Truth or Dare appeared exactly once, with no unexpected new routes. The six existing hreflang pairs remain the site contract.
+
+The production guide at `/en/blog/drinking-games-for-2` passed regression QA: seven games present, canonical intact, `BlogPosting` and `BreadcrumbList` intact, and visible date / `datePublished` both **2026-09-23**. Its Truth or Dare link was followed successfully.
+
+### Final findings and evidence
+
+**BLOCKER: 0. SHOULD FIX: 0. MINOR: 1. INFO: non-blocking warnings.**
+
+| Severity | Finding | Impact / disposition |
+| --- | --- | --- |
+| MINOR | `/favicon.ico` returns 404 when opening `sitemap.xml` in the browser. | No impact on the sitemap or games. Potential follow-up only; not fixed by this closure. |
+| INFO | Font preload warnings on EN pages. | No observed visual or functional degradation. Potential follow-up only; not fixed by this closure. |
+
+Production screenshots are local, Git-ignored artifacts in `.playwright-mcp/`: `production-phase6-tod-{320,390,768,1440}.png`, `production-phase6-hub-{390,1440}.png`, and `production-phase6-kings-{390,1440}.png`, plus gameplay/focus/end-state details. No screenshots are included in the documentation commit.
+
+## Final phase status
+
+**PHASE 6: CLOSED. IMPLEMENTATION: DEPLOYED. PRODUCTION: VERIFIED. PRODUCTION QA: PASS. BLOCKERS: NONE.**
+
+No further action is required for Phase 6. Leave the phase closed and gather SEO/traffic data before defining the next development phase.
