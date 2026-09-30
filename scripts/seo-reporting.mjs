@@ -1,10 +1,12 @@
-export const SCHEMA_VERSION = 3;
+export const SCHEMA_VERSION = 4;
 export const DISPLAY_LIMIT = 50;
 // Máximo admitido por Search Analytics Query en una sola respuesta.
 export const FETCH_LIMIT = 25_000;
 // Alias conservado para consumidores del schema v2 anterior.
 export const TOP_LIMIT = DISPLAY_LIMIT;
 export const PERIOD_DAYS = 7;
+export const SEARCH_CONSOLE_TIME_ZONE = 'America/Los_Angeles';
+const AVAILABILITY_DAYS = 28;
 
 export const REPORT_DEFINITIONS = Object.freeze([
   { key: 'global', dimensions: [], rowLimit: 1 },
@@ -18,12 +20,17 @@ export const REPORT_DEFINITIONS = Object.freeze([
 const METRICS = ['clicks', 'impressions', 'ctr', 'position'];
 const DAY_MS = 24 * 60 * 60 * 1000;
 
-function atUtcMidnight(value) {
-  return new Date(Date.UTC(
-    value.getUTCFullYear(),
-    value.getUTCMonth(),
-    value.getUTCDate(),
-  ));
+function pacificDate(value) {
+  return new Intl.DateTimeFormat('en-CA', {
+    timeZone: SEARCH_CONSOLE_TIME_ZONE, year: 'numeric', month: '2-digit', day: '2-digit',
+  }).format(value);
+}
+
+function dateValue(value) {
+  if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) throw new Error('Fecha SEO inválida');
+  const date = new Date(`${value}T00:00:00.000Z`);
+  if (!Number.isFinite(date.getTime()) || formatDate(date) !== value) throw new Error('Fecha SEO inválida');
+  return date;
 }
 
 function addUtcDays(value, days) {
@@ -40,9 +47,12 @@ export function countInclusiveDays(period) {
   return Math.round((end.getTime() - start.getTime()) / DAY_MS) + 1;
 }
 
-export function calculatePeriods(now = new Date()) {
-  const today = atUtcMidnight(now);
-  const currentEnd = addUtcDays(today, -1);
+// Calendar arithmetic uses UTC only after resolving the Pacific calendar date.
+// This function constructs ranges; activity rows never certify finalization.
+export function calculatePeriods(now = new Date(), finalizedEnd = null) {
+  const yesterday = addUtcDays(dateValue(pacificDate(now)), -1);
+  const currentEnd = finalizedEnd === null ? yesterday : dateValue(finalizedEnd);
+  if (currentEnd > yesterday) throw new Error('El periodo incluye el día actual de Search Console');
   const currentStart = addUtcDays(currentEnd, -(PERIOD_DAYS - 1));
   const previousEnd = addUtcDays(currentStart, -1);
   const previousStart = addUtcDays(previousEnd, -(PERIOD_DAYS - 1));
@@ -53,8 +63,83 @@ export function calculatePeriods(now = new Date()) {
   };
 }
 
+export function dateAvailabilityRequest(now = new Date()) {
+  // Include today only in the metadata probe, never in the metric periods.
+  const end = dateValue(pacificDate(now));
+  return {
+    startDate: formatDate(addUtcDays(end, -(AVAILABILITY_DAYS - 1))),
+    endDate: formatDate(end),
+    dimensions: ['date'], dataState: 'all', type: 'web', rowLimit: AVAILABILITY_DAYS + 1,
+  };
+}
+
+/**
+ * @typedef {{status: 'unavailable' | 'unverified' | 'verified', reason: string, timeZone: string,
+ * dataState: string, checkedAt: string, requested: {start: string, end: string},
+ * firstIncompleteDate: string | null,
+ * periods: ReturnType<typeof calculatePeriods> | null}} DateCoverage
+ */
+export function assessDateCoverage(now, response, succeeded = true) {
+  const request = dateAvailabilityRequest(now);
+  /** @type {DateCoverage} */
+  const coverage = {
+    status: 'unavailable', reason: succeeded ? 'invalid_response' : 'request_failed',
+    timeZone: SEARCH_CONSOLE_TIME_ZONE, dataState: 'all',
+    checkedAt: now.toISOString(), requested: { start: request.startDate, end: request.endDate },
+    firstIncompleteDate: null, periods: null,
+  };
+  if (!succeeded) return coverage;
+  if (!response || typeof response !== 'object' || Array.isArray(response)) return coverage;
+  const metadata = response.metadata;
+  if (metadata !== undefined && (!metadata || typeof metadata !== 'object' || Array.isArray(metadata))) return coverage;
+  // Optional metadata is the only temporal evidence. Daily rows are deliberately
+  // unused: missing activity neither proves zero traffic nor incomplete data.
+  if (metadata === undefined || !Object.hasOwn(metadata, 'first_incomplete_date')) {
+    return { ...coverage, status: 'unverified', reason: 'metadata_absent' };
+  }
+  const firstIncompleteDate = metadata.first_incomplete_date;
+  try { dateValue(firstIncompleteDate); } catch { return coverage; }
+  if (firstIncompleteDate < request.startDate || firstIncompleteDate > request.endDate) return coverage;
+  coverage.firstIncompleteDate = firstIncompleteDate;
+  const end = formatDate(addUtcDays(dateValue(firstIncompleteDate), -1));
+  const periods = calculatePeriods(now, end);
+  // The boundary describes this request's range; do not extrapolate before it.
+  if (periods.previous.start < request.startDate) {
+    return { ...coverage, status: 'unverified', reason: 'insufficient_metadata_range' };
+  }
+  coverage.status = 'verified';
+  coverage.reason = 'first_incomplete_date';
+  coverage.periods = periods;
+  return coverage;
+}
+
+export async function discoverDateCoverage(query, now = new Date()) {
+  let response;
+  try { response = await query(dateAvailabilityRequest(now)); }
+  catch { return assessDateCoverage(now, null, false); }
+  return assessDateCoverage(now, response);
+}
+
+function assertDateCoverage(coverage, periods) {
+  assertSnapshot(coverage?.status === 'verified', 'cobertura de fechas no verificada o no disponible');
+  assertSnapshot(typeof coverage.checkedAt === 'string' && Number.isFinite(Date.parse(coverage.checkedAt)), 'evidencia de cobertura de fechas inválida');
+  const expected = assessDateCoverage(new Date(coverage.checkedAt), {
+    metadata: { first_incomplete_date: coverage.firstIncompleteDate },
+  });
+  for (const field of ['status', 'reason', 'timeZone', 'dataState', 'checkedAt', 'firstIncompleteDate']) {
+    assertSnapshot(JSON.stringify(coverage[field]) === JSON.stringify(expected[field]), 'evidencia de cobertura de fechas inválida');
+  }
+  for (const boundary of ['start', 'end']) {
+    assertSnapshot(coverage.requested?.[boundary] === expected.requested[boundary], 'solicitud de cobertura inválida');
+    for (const period of ['current', 'previous']) {
+      assertSnapshot(periods?.[period]?.[boundary] === expected.periods[period][boundary]
+        && coverage.periods?.[period]?.[boundary] === expected.periods[period][boundary], 'periodos distintos de la cobertura verificada');
+    }
+  }
+}
+
 export function calculatePercentDelta(current, previous) {
-  if (previous === 0) return null;
+  if (!Number.isFinite(current) || !Number.isFinite(previous) || previous === 0) return null;
   return ((current - previous) / previous) * 100;
 }
 
@@ -491,9 +576,23 @@ function buildDataQuality(reportRuns, displayedCollections, analysisRows, queryP
   };
 }
 
-export function buildSeoSnapshot({ generatedAt, periods, reports, reportRuns }) {
-  const currentGlobal = normalizeMetrics(reports.current.global?.[0]);
-  const previousGlobal = normalizeMetrics(reports.previous.global?.[0]);
+function globalReport(rows, state) {
+  if (!state.succeeded) return { status: 'report_unavailable', metrics: null };
+  if (rows.length === 0) return { status: 'empty_response', metrics: null };
+  const row = rows[0];
+  if (rows.length !== 1 || !METRICS.every((metric) => Number.isFinite(row?.[metric]) && row[metric] >= 0)) {
+    return { status: 'invalid_response', metrics: null };
+  }
+  return {
+    status: row.clicks === 0 && row.impressions === 0 ? 'valid_zero' : 'available',
+    metrics: normalizeMetrics(row),
+  };
+}
+
+export function buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns }) {
+  assertDateCoverage(dateCoverage, periods);
+  const currentGlobal = globalReport(reports.current.global, reportState(reportRuns, 'current', 'global'));
+  const previousGlobal = globalReport(reports.previous.global, reportState(reportRuns, 'previous', 'global'));
   const topQueries = compareRows(
     reports.current.query,
     reports.previous.query,
@@ -565,13 +664,18 @@ export function buildSeoSnapshot({ generatedAt, periods, reports, reportRuns }) 
     },
     queryPageDataset,
   );
+  dataQuality.dateCoverage = dateCoverage;
+  dataQuality.globalReports = { current: currentGlobal.status, previous: previousGlobal.status };
+  for (const [period, report] of Object.entries({ current: currentGlobal, previous: previousGlobal })) {
+    if (report.metrics === null) dataQuality.warnings.push(`${period}.global: no disponible (${report.status}); no equivale a tráfico cero.`);
+  }
 
   return {
     schemaVersion: SCHEMA_VERSION,
-    schemaDescription: 'v3: conserva el display v2 y añade la unión completa current + previous de query/page, cobertura por URL y estado explícito de truncamiento.',
+    schemaDescription: 'v4: conserva los datasets v3; verifica el corte temporal mediante first_incomplete_date y representa totales globales no disponibles con null.',
     updatedAt: generatedAt,
     periods,
-    globalMetrics: compareMetrics(currentGlobal, previousGlobal),
+    globalMetrics: compareMetrics(currentGlobal.metrics, previousGlobal.metrics),
     topQueries,
     topPages,
     countries,
@@ -677,7 +781,35 @@ function assertComparison(current, previous, difference, percentDelta, label) {
 }
 
 export function validateSeoSnapshot(snapshot) {
-  assertSnapshot(snapshot?.schemaVersion === SCHEMA_VERSION, `schemaVersion debe ser ${SCHEMA_VERSION}`);
+  assertSnapshot([3, SCHEMA_VERSION].includes(snapshot?.schemaVersion), `schemaVersion debe ser 3 o ${SCHEMA_VERSION}`);
+  const historical = snapshot.schemaVersion === 3;
+  if (!historical) assertDateCoverage(snapshot.dataQuality?.dateCoverage, snapshot.periods);
+  const global = snapshot.globalMetrics;
+  assertSnapshot(global && typeof global === 'object', 'falta globalMetrics');
+  for (const period of ['current', 'previous']) {
+    const metrics = global[period];
+    if (historical) {
+      // v3 stored numeric totals without provenance. Validate their shape, but
+      // never reclassify historical zeros as API-confirmed zeros.
+      assertMetricSet(metrics, `globalMetrics.${period}`);
+      assertSnapshot(METRICS.every((metric) => metrics[metric] !== null), 'total global v3 no puede ser null');
+      continue;
+    }
+    const status = snapshot.dataQuality?.globalReports?.[period];
+    assertSnapshot(['available', 'valid_zero', 'report_unavailable', 'empty_response', 'invalid_response'].includes(status), 'estado global inválido');
+    if (['available', 'valid_zero'].includes(status)) {
+      assertMetricSet(metrics, `globalMetrics.${period}`);
+      assertSnapshot(METRICS.every((metric) => metrics[metric] !== null), 'total global válido no puede ser null');
+      assertSnapshot((metrics.clicks === 0 && metrics.impressions === 0) === (status === 'valid_zero'), 'estado valid_zero incoherente');
+    } else {
+      assertSnapshot(metrics === null, 'global no disponible debe ser null');
+    }
+  }
+  if (global.current === null || global.previous === null) {
+    assertSnapshot(global.difference === null && global.percentDelta === null, 'comparación global no disponible debe ser null');
+  } else {
+    assertComparison(global.current, global.previous, global.difference, global.percentDelta, 'globalMetrics');
+  }
   for (const field of [
     'topQueries',
     'topPages',
@@ -891,6 +1023,7 @@ function opportunityTable(rows) {
 }
 
 export function renderSeoMarkdown(snapshot) {
+  validateSeoSnapshot(snapshot);
   const { current, previous } = snapshot.periods;
   const global = snapshot.globalMetrics;
   const quality = snapshot.dataQuality;
@@ -901,21 +1034,30 @@ export function renderSeoMarkdown(snapshot) {
   const queryPageDataset = quality.queryPageDataset;
   let md = '# Dashboard SEO de BeberGames\n\n';
   md += `> **Última actualización:** ${snapshot.updatedAt}\n`;
-  md += `> **Periodo actual:** ${current.start} a ${current.end} (${quality.periodDays} días completos)\n`;
-  md += `> **Periodo anterior:** ${previous.start} a ${previous.end} (${quality.periodDays} días completos)\n\n`;
+  md += `> **Periodo actual:** ${current.start} a ${current.end} (${quality.periodDays} días de calendario)\n`;
+  md += `> **Periodo anterior:** ${previous.start} a ${previous.end} (${quality.periodDays} días de calendario)\n\n`;
   md += '*Generado automáticamente mediante GitHub Actions y la API de Google Search Console. No editar manualmente.*\n\n';
+  if (snapshot.schemaVersion === 3) {
+    md += '**Cobertura temporal histórica no verificada (schema v3).** Se conservan las métricas originales; no hay evidencia de finalización ni estados globales que permitan certificar sus ceros.\n\n';
+  } else {
+    md += `Corte temporal verificado por \`first_incomplete_date=${quality.dateCoverage.firstIncompleteDate}\`, consultado con \`all\` en \`${quality.dateCoverage.timeZone}\`. Ambos periodos terminan antes de ese límite; sus métricas se solicitan con \`final\`. Comprobado: ${quality.dateCoverage.checkedAt}. Las filas de actividad no determinan el corte.\n\n`;
+  }
 
   md += '## Resumen global\n\n';
   md += 'Search Console mide **clics orgánicos**, no page views. Los totales de esta sección proceden de informes específicos **sin dimensiones**.\n\n';
+  if (snapshot.schemaVersion !== 3) {
+    md += `Estado de los totales: actual \`${quality.globalReports.current}\`; anterior \`${quality.globalReports.previous}\`. \`valid_zero\` es un cero devuelto por la API; un informe fallido, vacío o inválido es **No disponible**.\n\n`;
+  }
+  if (global.current === null || global.previous === null) md += '**Comparación global no disponible. No interpretar como una caída de tráfico.**\n\n';
 
   md += '## Comparativa actual vs anterior\n\n';
   md += '| Métrica | Actual | Anterior | Diferencia | Cambio relativo |\n';
   md += '|---|---:|---:|---:|---:|\n';
-  md += `| Clics orgánicos | ${formatNumber(global.current.clicks)} | ${formatNumber(global.previous.clicks)} | ${formatNumber(global.difference.clicks)} | ${formatPercentDelta(global.percentDelta.clicks)} |\n`;
-  md += `| Impresiones | ${formatNumber(global.current.impressions)} | ${formatNumber(global.previous.impressions)} | ${formatNumber(global.difference.impressions)} | ${formatPercentDelta(global.percentDelta.impressions)} |\n`;
-  md += `| CTR global | ${formatPercent(global.current.ctr)} | ${formatPercent(global.previous.ctr)} | ${formatPercent(global.difference.ctr)} | ${formatPercentDelta(global.percentDelta.ctr)} |\n`;
-  md += `| Posición media global | ${formatNumber(global.current.position, 1)} | ${formatNumber(global.previous.position, 1)} | ${formatPositionDifference(global.difference.position)} | ${formatPositionChange(global.current.position, global.previous.position)} |\n`;
-  md += '\n`N/D` indica que no existe una base porcentual o que el valor anterior es desconocido porque el informe alcanzó el límite de descarga.\n\n';
+  md += `| Clics orgánicos | ${formatNumber(global.current?.clicks)} | ${formatNumber(global.previous?.clicks)} | ${formatNumber(global.difference?.clicks)} | ${formatPercentDelta(global.percentDelta?.clicks)} |\n`;
+  md += `| Impresiones | ${formatNumber(global.current?.impressions)} | ${formatNumber(global.previous?.impressions)} | ${formatNumber(global.difference?.impressions)} | ${formatPercentDelta(global.percentDelta?.impressions)} |\n`;
+  md += `| CTR global | ${formatPercent(global.current?.ctr)} | ${formatPercent(global.previous?.ctr)} | ${formatPercent(global.difference?.ctr)} | ${formatPercentDelta(global.percentDelta?.ctr)} |\n`;
+  md += `| Posición media global | ${formatNumber(global.current?.position, 1)} | ${formatNumber(global.previous?.position, 1)} | ${formatPositionDifference(global.difference?.position)} | ${formatPositionChange(global.current?.position, global.previous?.position)} |\n`;
+  md += '\n`N/D` indica que no existe una base porcentual o que falta un dato por fallo, respuesta vacía/inválida o truncamiento. No equivale a cero.\n\n';
 
   md += `## Top ${displayLimit} queries\n\n`;
   md += comparisonTable(snapshot.topQueries, 'Query', (row) => row.query);

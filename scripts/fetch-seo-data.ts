@@ -1,11 +1,11 @@
-import { google } from 'googleapis';
+import { google, type searchconsole_v1 } from 'googleapis';
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
 import {
   REPORT_DEFINITIONS,
   buildSeoSnapshot,
-  calculatePeriods,
+  discoverDateCoverage,
   renderSeoMarkdown,
   validateSeoSnapshot,
 } from './seo-reporting.mjs';
@@ -57,8 +57,16 @@ async function fetchSeoData() {
     scopes: ['https://www.googleapis.com/auth/webmasters.readonly'],
   });
   const searchconsole = google.searchconsole({ version: 'v1', auth });
-  const periods = calculatePeriods(new Date());
+  const dateCoverage = await discoverDateCoverage(async (requestBody: searchconsole_v1.Schema$SearchAnalyticsQueryRequest) => {
+    const response = await searchconsole.searchanalytics.query({ siteUrl: SITE_URL, requestBody });
+    return response.data;
+  }, new Date());
+  if (dateCoverage.status !== 'verified') {
+    throw new Error(`Cobertura temporal ${dateCoverage.status} (${dateCoverage.reason}); no se reemplazan los informes existentes.`);
+  }
+  const periods = dateCoverage.periods!;
 
+  console.log(`Corte temporal por metadata: first_incomplete_date=${dateCoverage.firstIncompleteDate}; se excluye esa fecha y las posteriores.`);
   console.log(`Actual: ${periods.current.start} a ${periods.current.end}`);
   console.log(`Anterior: ${periods.previous.start} a ${periods.previous.end}`);
 
@@ -75,10 +83,14 @@ async function fetchSeoData() {
         endDate: string;
         rowLimit: number;
         dimensions?: string[];
+        dataState: string;
+        type: string;
       } = {
         startDate: periods[period].start,
         endDate: periods[period].end,
         rowLimit: definition.rowLimit,
+        dataState: 'final',
+        type: 'web',
       };
 
       // La ausencia de `dimensions` es intencionada: este informe aporta los
@@ -125,7 +137,7 @@ async function fetchSeoData() {
   };
 
   const generatedAt = new Date().toISOString();
-  const snapshot = buildSeoSnapshot({ generatedAt, periods, reports, reportRuns });
+  const snapshot = buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns });
   validateSeoSnapshot(snapshot);
   const markdown = renderSeoMarkdown(snapshot);
 

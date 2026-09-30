@@ -4,6 +4,9 @@ import {
   DISPLAY_LIMIT,
   FETCH_LIMIT,
   REPORT_DEFINITIONS,
+  assessDateCoverage,
+  dateAvailabilityRequest,
+  discoverDateCoverage,
   buildSeoSnapshot,
   calculatePercentDelta,
   calculatePeriods,
@@ -20,6 +23,18 @@ const PERIODS = {
   current: { start: '2026-08-20', end: '2026-08-26' },
   previous: { start: '2026-08-13', end: '2026-08-19' },
 };
+
+function dateRows(start, count) {
+  return Array.from({ length: count }, (_, index) => ({
+    keys: [new Date(Date.parse(`${start}T00:00:00Z`) + index * 86_400_000).toISOString().slice(0, 10)],
+    clicks: 1, impressions: 10, ctr: 0.1, position: 5,
+  }));
+}
+
+const DATE_COVERAGE = assessDateCoverage(new Date('2026-08-27T10:00:00Z'), {
+  rows: dateRows('2026-08-13', 15),
+  metadata: { first_incomplete_date: '2026-08-27' },
+});
 
 function emptyReports() {
   return {
@@ -44,6 +59,7 @@ function snapshotFrom(reports, rowLimitOverrides = {}, successOverrides = {}) {
   return buildSeoSnapshot({
     generatedAt: '2026-08-27T10:00:00.000Z',
     periods: PERIODS,
+    dateCoverage: DATE_COVERAGE,
     reports,
     reportRuns: reportRuns(reports, rowLimitOverrides, successOverrides),
   });
@@ -93,6 +109,7 @@ test('previous = 0 produce percentDelta null y nunca +100%', () => {
 
   const reports = emptyReports();
   reports.current.global = [{ clicks: 12, impressions: 120, ctr: 0.1, position: 4 }];
+  reports.previous.global = [{ clicks: 0, impressions: 0, ctr: 0, position: 0 }];
   const snapshot = snapshotFrom(reports);
   assert.equal(snapshot.globalMetrics.percentDelta.clicks, null);
   assert.doesNotMatch(renderSeoMarkdown(snapshot), /\+100%/);
@@ -105,7 +122,7 @@ test('usa el informe sin dimensiones para los totales globales', () => {
   reports.current.query = [{ keys: ['top parcial'], clicks: 10, impressions: 100, ctr: 0.1, position: 2 }];
 
   const snapshot = snapshotFrom(reports);
-  assert.equal(snapshot.schemaVersion, 3);
+  assert.equal(snapshot.schemaVersion, 4);
   assert.equal(snapshot.globalMetrics.current.clicks, 1_000);
   assert.equal(snapshot.globalMetrics.current.impressions, 20_000);
   assert.equal(snapshot.globalMetrics.current.position, 7.5);
@@ -669,7 +686,8 @@ test('tolera periodos vacíos y los declara en dataQuality', () => {
   const reports = emptyReports();
   const snapshot = snapshotFrom(reports);
 
-  assert.deepEqual(snapshot.globalMetrics.current, { clicks: 0, impressions: 0, ctr: 0, position: 0 });
+  assert.equal(snapshot.globalMetrics.current, null);
+  assert.equal(snapshot.dataQuality.globalReports.current, 'empty_response');
   assert.equal(snapshot.topQueries.length, 0);
   assert.equal(snapshot.queryPagesFull.length, 0);
   assert.equal(snapshot.pageQueryCoverage.length, 0);
@@ -677,7 +695,7 @@ test('tolera periodos vacíos y los declara en dataQuality', () => {
   assert.match(renderSeoMarkdown(snapshot), /Sin filas para este periodo/);
 });
 
-test('valida el schema v3 y rechaza artifacts sin el dataset completo', () => {
+test('valida el schema v4 y rechaza artifacts sin el dataset completo', () => {
   const snapshot = snapshotFrom(emptyReports());
   assert.equal(validateSeoSnapshot(snapshot), true);
 
@@ -686,7 +704,7 @@ test('valida el schema v3 y rechaza artifacts sin el dataset completo', () => {
   assert.throws(() => validateSeoSnapshot(invalid), /queryPagesFull debe ser un array/);
 });
 
-test('el validator v3 rechaza métricas y coberturas corruptas', () => {
+test('el validator v4 rechaza métricas y coberturas corruptas', () => {
   const reports = emptyReports();
   reports.current.page = [{
     keys: ['https://bebergames.com/validacion'],
@@ -755,6 +773,7 @@ test('la salida no conserva secretos ni credenciales', () => {
   const snapshot = buildSeoSnapshot({
     generatedAt: '2026-08-27T10:00:00.000Z',
     periods: PERIODS,
+    dateCoverage: DATE_COVERAGE,
     reports,
     reportRuns: reportRuns(reports),
     credentials: { private_key: fakeSecret },
@@ -762,4 +781,218 @@ test('la salida no conserva secretos ni credenciales', () => {
   const output = `${JSON.stringify(snapshot)}\n${renderSeoMarkdown(snapshot)}`;
 
   assert.doesNotMatch(output, /GCP_CREDENTIALS|private_key|FAKE_PRIVATE_KEY_SHOULD_NOT_APPEAR/);
+});
+
+test('consulta metadata all y selecciona 7/7 días anteriores al primer día incompleto', async () => {
+  const now = new Date('2026-09-28T02:40:00Z');
+  const requests = [];
+  const coverage = await discoverDateCoverage(async (request) => {
+    requests.push(request);
+    return { rows: dateRows('2026-09-01', 26), metadata: { first_incomplete_date: '2026-09-25' } };
+  }, now);
+  assert.deepEqual(requests, [{ startDate: '2026-08-31', endDate: '2026-09-27', dimensions: ['date'], dataState: 'all', type: 'web', rowLimit: 29 }]);
+  assert.equal(coverage.status, 'verified');
+  assert.equal(coverage.firstIncompleteDate, '2026-09-25');
+  assert.deepEqual(coverage.periods, {
+    current: { start: '2026-09-18', end: '2026-09-24' },
+    previous: { start: '2026-09-11', end: '2026-09-17' },
+  });
+  assert.equal(coverage.reason, 'first_incomplete_date');
+});
+
+test('el corte de fecha respeta medianoche Pacific en verano e invierno', () => {
+  for (const [now, end] of [
+    ['2026-09-28T06:59:59Z', '2026-09-26'],
+    ['2026-09-28T07:00:00Z', '2026-09-27'],
+    ['2026-01-05T07:59:59Z', '2026-01-03'],
+    ['2026-01-05T08:00:00Z', '2026-01-04'],
+  ]) {
+    assert.equal(calculatePeriods(new Date(now)).current.end, end);
+    assert.equal(dateAvailabilityRequest(new Date(now)).endDate,
+      new Date(Date.parse(end) + 86_400_000).toISOString().slice(0, 10));
+  }
+  assert.throws(() => calculatePeriods(new Date('2026-09-28T02:40:00Z'), '2026-09-27'), /día actual/);
+});
+
+test('cambios DST mantienen 7 fechas por ventana, sin horas perdidas o repetidas', () => {
+  for (const now of ['2026-03-09T07:00:00Z', '2026-11-02T08:00:00Z']) {
+    const periods = calculatePeriods(new Date(now));
+    assert.equal(countInclusiveDays(periods.current), 7);
+    assert.equal(countInclusiveDays(periods.previous), 7);
+    assert.equal(Date.parse(periods.current.start) - Date.parse(periods.previous.end), 86_400_000);
+  }
+});
+
+test('los días omitidos internos o finales no invalidan ni desplazan los periodos', () => {
+  const now = new Date('2026-08-27T10:00:00Z');
+  const metadata = { first_incomplete_date: '2026-08-27' };
+  for (const rows of [
+    dateRows('2026-08-13', 15).filter((row) => row.keys[0] !== '2026-08-15'),
+    [...dateRows('2026-08-13', 10), ...dateRows('2026-08-27', 1)],
+  ]) {
+    const coverage = assessDateCoverage(now, { rows, metadata });
+    assert.equal(coverage.status, 'verified');
+    assert.deepEqual(coverage.periods, PERIODS);
+    const reports = emptyReports();
+    const snapshot = buildSeoSnapshot({ generatedAt: now.toISOString(), periods: PERIODS,
+      dateCoverage: coverage, reports, reportRuns: reportRuns(reports) });
+    assert.equal(validateSeoSnapshot(snapshot), true);
+    // No global row is invented from missing daily activity.
+    assert.equal(snapshot.globalMetrics.current, null);
+  }
+});
+
+test('metadata opcional ausente queda unverified incluso con todas las filas diarias', () => {
+  const now = new Date('2026-08-27T10:00:00Z');
+  for (const response of [{}, { rows: [] }, { metadata: {} }, { rows: dateRows('2026-08-01', 27) }]) {
+    const coverage = assessDateCoverage(now, response);
+    assert.equal(coverage.status, 'unverified');
+    assert.equal(coverage.reason, 'metadata_absent');
+    assert.equal(coverage.firstIncompleteDate, null);
+    assert.equal(coverage.periods, null);
+    assert.throws(() => buildSeoSnapshot({ periods: PERIODS, dateCoverage: coverage }), /cobertura de fechas/);
+  }
+});
+
+test('fallos de consulta quedan unavailable sin exponer detalles privados', async () => {
+  const now = new Date('2026-08-27T10:00:00Z');
+  const failure = await discoverDateCoverage(async () => { throw new Error('PRIVATE_CREDENTIAL'); }, now);
+  assert.equal(failure.status, 'unavailable');
+  assert.equal(failure.reason, 'request_failed');
+  assert.equal(failure.periods, null);
+  assert.doesNotMatch(JSON.stringify(failure), /PRIVATE_CREDENTIAL/);
+});
+
+test('metadata malformada o fuera del rango consultado no certifica finalización', () => {
+  const now = new Date('2026-08-27T10:00:00Z');
+  for (const response of [null, [], 'invalid', { metadata: null }, { metadata: [] }, { metadata: 'invalid' },
+    ...['2026-02-30', '2026-08-28', '2026-07-29', '2026-8-25', '', null, 123, {}]
+      .map((date) => ({ metadata: { first_incomplete_date: date } })),
+  ]) {
+    const coverage = assessDateCoverage(now, response);
+    assert.equal(coverage.status, 'unavailable');
+    assert.equal(coverage.reason, 'invalid_response');
+    assert.equal(coverage.periods, null);
+  }
+});
+
+test('un retraso largo no extrapola la metadata antes del rango consultado', () => {
+  const now = new Date('2026-08-27T10:00:00Z');
+  const coverage = assessDateCoverage(now, { metadata: { first_incomplete_date: '2026-08-13' } });
+  assert.equal(coverage.status, 'unverified');
+  assert.equal(coverage.reason, 'insufficient_metadata_range');
+  assert.equal(coverage.periods, null);
+  const edge = assessDateCoverage(now, { metadata: { first_incomplete_date: '2026-08-14' } });
+  assert.equal(edge.status, 'verified');
+  assert.equal(edge.periods.previous.start, edge.requested.start);
+});
+
+test('fallos globales current, previous o ambos conservan null y no fabrican porcentajes', () => {
+  for (const failed of [['current'], ['previous'], ['current', 'previous']]) {
+    const reports = emptyReports();
+    reports.current.global = [{ clicks: 10, impressions: 100, ctr: 0.1, position: 5 }];
+    reports.previous.global = [{ clicks: 20, impressions: 200, ctr: 0.1, position: 5 }];
+    // Even contradictory rows cannot override an explicit failed-request status.
+    const snapshot = snapshotFrom(reports, {}, Object.fromEntries(failed.map((p) => [`${p}.global`, false])));
+    for (const period of failed) {
+      assert.equal(snapshot.globalMetrics[period], null);
+      assert.equal(snapshot.dataQuality.globalReports[period], 'report_unavailable');
+    }
+    assert.equal(snapshot.globalMetrics.difference, null);
+    assert.equal(snapshot.globalMetrics.percentDelta, null);
+    assert.equal(validateSeoSnapshot(snapshot), true);
+    const md = renderSeoMarkdown(snapshot);
+    assert.match(md, /Comparación global no disponible/);
+    assert.doesNotMatch(md, /-100/);
+  }
+  assert.equal(calculatePercentDelta(null, 10), null);
+  assert.equal(calculatePercentDelta(10, null), null);
+});
+
+test('un cero global explícito es válido y mantiene una caída real del 100%', () => {
+  const reports = emptyReports();
+  const zero = { clicks: 0, impressions: 0, ctr: 0, position: 0 };
+  reports.current.global = [zero];
+  reports.previous.global = [{ clicks: 20, impressions: 200, ctr: 0.1, position: 5 }];
+  const snapshot = snapshotFrom(reports);
+  assert.deepEqual(snapshot.globalMetrics.current, zero);
+  assert.equal(snapshot.dataQuality.globalReports.current, 'valid_zero');
+  assert.equal(snapshot.globalMetrics.percentDelta.clicks, -100);
+  assert.equal(validateSeoSnapshot(snapshot), true);
+});
+
+test('respuesta global vacía o malformada queda no disponible, sin normalizar campos ausentes', () => {
+  for (const [rows, status] of [
+    [[], 'empty_response'], [[{ clicks: 0 }], 'invalid_response'],
+    [[{ clicks: 0, impressions: 0, ctr: NaN, position: 0 }], 'invalid_response'],
+  ]) {
+    const reports = emptyReports();
+    reports.current.global = rows;
+    const snapshot = snapshotFrom(reports);
+    assert.equal(snapshot.globalMetrics.current, null);
+    assert.equal(snapshot.dataQuality.globalReports.current, status);
+    assert.equal(snapshot.globalMetrics.percentDelta, null);
+  }
+});
+
+test('dos ventanas completas conservan métricas normales y publican la evidencia de cobertura', () => {
+  const reports = emptyReports();
+  reports.current.global = [{ clicks: 20, impressions: 200, ctr: 0.1, position: 5 }];
+  reports.previous.global = [{ clicks: 10, impressions: 100, ctr: 0.1, position: 6 }];
+  const snapshot = snapshotFrom(reports);
+  assert.equal(snapshot.globalMetrics.percentDelta.clicks, 100);
+  assert.equal(snapshot.globalMetrics.difference.clicks, 10);
+  assert.deepEqual(snapshot.dataQuality.dateCoverage, DATE_COVERAGE);
+  const md = renderSeoMarkdown(snapshot);
+  assert.match(md, /Corte temporal verificado/);
+  assert.match(md, /first_incomplete_date=2026-08-27/);
+  assert.match(md, /America\/Los_Angeles/);
+  assert.match(md, /2026-08-26/);
+  assert.doesNotMatch(md, /Comparación global no disponible/);
+});
+
+test('validator y renderer rechazan cobertura falsa, periodos distintos y ceros globales inventados', () => {
+  const valid = snapshotFrom(emptyReports());
+  for (const corrupt of [
+    (s) => { delete s.dataQuality.dateCoverage; },
+    (s) => { s.dataQuality.dateCoverage.firstIncompleteDate = null; },
+    (s) => { s.periods.current.end = '2026-08-25'; },
+    (s) => { s.dataQuality.dateCoverage.dataState = 'final'; },
+    (s) => { s.dataQuality.dateCoverage.firstIncompleteDate = '2026-08-25'; },
+    (s) => { s.dataQuality.dateCoverage.requested.start = '2026-08-01'; },
+    (s) => { s.dataQuality.dateCoverage.status = 'unverified'; },
+    (s) => { s.globalMetrics.current = { clicks: 0, impressions: 0, ctr: 0, position: 0 }; },
+    (s) => { s.globalMetrics.percentDelta = { clicks: -100 }; },
+  ]) {
+    const invalid = structuredClone(valid);
+    corrupt(invalid);
+    assert.throws(() => validateSeoSnapshot(invalid), /Snapshot SEO inválido/);
+    assert.throws(() => renderSeoMarkdown(invalid), /Snapshot SEO inválido/);
+  }
+});
+
+test('v3 valida y renderiza métricas históricas sin mutar ni inventar evidencia v4', () => {
+  const reports = emptyReports();
+  reports.current.global = [{ clicks: 10, impressions: 100, ctr: 0.1, position: 5 }];
+  reports.previous.global = [{ clicks: 20, impressions: 200, ctr: 0.1, position: 6 }];
+  const historical = snapshotFrom(reports);
+  historical.schemaVersion = 3;
+  historical.schemaDescription = 'v3: dataset query/page completo.';
+  delete historical.dataQuality.dateCoverage;
+  delete historical.dataQuality.globalReports;
+  const before = JSON.stringify(historical);
+  assert.equal(validateSeoSnapshot(historical), true);
+  const md = renderSeoMarkdown(historical);
+  assert.match(md, /Cobertura temporal histórica no verificada \(schema v3\)/);
+  assert.match(md, /Clics orgánicos \| 10 \| 20 \| -10 \| -50,0%/);
+  assert.doesNotMatch(md, /Corte temporal verificado|días completos|valid_zero|first_incomplete_date/);
+  assert.equal(JSON.stringify(historical), before);
+  assert.equal(Object.hasOwn(historical.dataQuality, 'dateCoverage'), false);
+  assert.equal(Object.hasOwn(historical.dataQuality, 'globalReports'), false);
+  const corrupt = structuredClone(historical);
+  corrupt.globalMetrics.difference.clicks = 999;
+  assert.throws(() => validateSeoSnapshot(corrupt), /Snapshot SEO inválido/);
+  const missingDataset = structuredClone(historical);
+  delete missingDataset.queryPagesFull;
+  assert.throws(() => renderSeoMarkdown(missingDataset), /queryPagesFull debe ser un array/);
 });
