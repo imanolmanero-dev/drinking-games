@@ -8,6 +8,7 @@ const require = createRequire(import.meta.url);
 require("tsx/cjs");
 const { buildKingsCupDeck, startKingsCup, kingsCupReducer: reduce, currentPlayerNumber, RANKS, SUITS, CARD_RULES, FOURTH_KING } = require("../lib/games/kings-cup.ts");
 const { shuffle } = require("../lib/games/shuffle.ts");
+const { KINGS_CUP_TITLE, KINGS_CUP_DESCRIPTION, KINGS_CUP_FAQS } = require("../lib/data/kings-cup-editorial.ts");
 const { languageAlternates, languageSwitch, getPublishedRoute } = require("../lib/i18n/routes.ts");
 const { GameJsonLd } = require("../components/seo/JsonLd.tsx");
 const { createElement } = require("react");
@@ -65,7 +66,7 @@ test("draw and next locks prevent duplicate draws, turn skips and premature adva
   assert.equal(reduce(next, { type: "next" }), next);
 });
 
-test("fourth King displays a finale without ending or discarding the remaining deck", () => {
+test("fourth King resolves the physical cup and permits ending or continuing the remaining deck", () => {
   const deck = buildKingsCupDeck();
   let state = { ...startKingsCup(3), deck: [...deck.filter((card) => card.rank === "K"), ...deck.filter((card) => card.rank !== "K")] };
   for (let i = 1; i <= 4; i++) {
@@ -75,11 +76,78 @@ test("fourth King displays a finale without ending or discarding the remaining d
     assert.equal(currentPlayerNumber(state), (i - 1) % 3 + 1);
     if (i < 4) state = reduce(state, { type: "next" });
   }
-  assert.match(FOURTH_KING, /favorite moment/);
+  assert.match(FOURTH_KING, /physical central cup/);
+  assert.match(FOURTH_KING, /optional sip/);
+  assert.match(FOURTH_KING, /pass/);
+  assert.match(FOURTH_KING, /discard the rest/);
+  assert.match(FOURTH_KING, /End game.*Next player.*Finish game/);
+  const endedOnFourth = reduce(state, { type: "finish" });
+  assert.equal(endedOnFourth.phase, "finished");
+  assert.equal(endedOnFourth.drawn, 4);
+  assert.equal(endedOnFourth.kings, 4);
+  assert.equal(reduce(endedOnFourth, { type: "reveal" }), endedOnFourth);
   state = draw(reduce(state, { type: "next" }));
   assert.equal(state.drawn, 5);
   assert.equal(state.kings, 4);
   assert.equal(state.phase, "revealed");
+});
+
+test("canonical card meanings and gender-neutral numbered groups are stable", () => {
+  assert.deepEqual(RANKS.map((rank) => CARD_RULES[rank].name), ["Waterfall", "You", "Me", "Floor", "Odds", "Evens", "Heaven", "Mate", "Rhyme", "Categories", "Make a rule", "Questions", "King's Cup"]);
+  assert.match(CARD_RULES.A.rule, /drawer stops first.*seating order/);
+  assert.match(CARD_RULES.A.rule, /own pace.*stop or pass at any time.*without waiting/);
+  assert.match(CARD_RULES["4"].rule, /floor.*last player.*small sip/i);
+  assert.match(CARD_RULES["7"].rule, /raises a hand.*last player.*small sip/i);
+  assert.match(CARD_RULES["5"].rule, /odd numbers \(1, 3, 5, 7, 9, 11\)/);
+  assert.match(CARD_RULES["6"].rule, /even numbers \(2, 4, 6, 8, 10, 12\)/);
+  assert.match(CARD_RULES["8"].rule, /willing player.*either of you.*once.*no chain reactions/);
+  assert.match(CARD_RULES["8"].rule, /table until the next 8.*screen does not track mates/);
+  assert.match(CARD_RULES.J.rule, /Everyone must agree.*next Jack/);
+  assert.match(CARD_RULES.Q.rule, /respond with a question.*round ends/);
+  assert.match(CARD_RULES.K.rule, /first three Kings.*small optional amount.*physical central cup/);
+  for (const rule of Object.values(CARD_RULES)) assert.match(rule.rule, /optional|pass/i);
+});
+
+test("King counting is tied to drawn cards, including skipping, with no early fourth King", () => {
+  const deck = buildKingsCupDeck();
+  const kings = deck.filter((card) => card.rank === "K");
+  const others = deck.filter((card) => card.rank !== "K");
+  let state = { ...startKingsCup(2, () => 0), deck: [kings[0], others[0], kings[1], others[1], kings[2], others[2], kings[3], ...others.slice(3)] };
+  for (const expected of [1, 1, 2, 2, 3, 3, 4]) {
+    assert.equal(reduce(state, { type: "reveal" }), state);
+    const revealing = reduce(state, { type: "draw" });
+    assert.equal(revealing.kings, expected);
+    assert.equal(reduce(revealing, { type: "draw" }), revealing);
+    state = reduce(revealing, { type: "reveal" });
+    assert.equal(state.deck[state.drawn - 1].rank === "K" && state.kings === 4, state.drawn === 7);
+    // Skip uses the same next action as the normal advance and consumes no extra card.
+    const advanced = reduce(state, { type: "next" });
+    assert.equal(advanced.kings, expected);
+    assert.equal(advanced.drawn, state.drawn);
+    assert.equal(reduce(advanced, { type: "next" }), advanced);
+    state = advanced;
+  }
+  assert.equal(state.phase, "ready");
+  const finished = reduce(state, { type: "finish" });
+  assert.equal(finished.phase, "finished");
+  assert.equal(startKingsCup(finished.playerCount, () => 0).kings, 0);
+});
+
+test("editorial answers describe the actual rules and voluntary central-cup resolution", () => {
+  assert.match(KINGS_CUP_TITLE, /King's Cup Rules.*Free Online Game/);
+  assert.match(KINGS_CUP_DESCRIPTION, /52-card.*Waterfall.*central cup.*Alcohol is optional/);
+  const answers = KINGS_CUP_FAQS.map(({ a }) => a).join(" ");
+  assert.match(answers, /first three Kings.*small optional amount.*physical central cup/);
+  assert.match(answers, /fourth King's drawer.*small sip.*pass.*discards the rest.*End game.*Next player.*Finish game/);
+  assert.match(answers, /odd-numbered players for 5.*even-numbered players for 6/);
+  assert.match(answers, /until the next 8/);
+  assert.match(answers, /not an ongoing Question Master/);
+  assert.match(answers, /Water, soda.*non-alcoholic/);
+  const source = readFileSync("app/(english)/en/games/kings-cup/page.tsx", "utf8") + readFileSync("components/games/kings-cup/KingsCupGame.tsx", "utf8");
+  assert.match(source, /legal drinking age.*know your limits/s);
+  assert.match(source, /fourthKing \? FOURTH_KING : rule.rule/);
+  assert.match(source, /<p>\{FOURTH_KING\}<\/p>/);
+  assert.doesNotMatch(source + answers + JSON.stringify(CARD_RULES) + FOURTH_KING, /\bWave\b|gentler online adaptation|favorite moment|Crown moment|Five favorites|Story mix|Group finale/i);
 });
 
 test("all 52 cards are revealed once; last rule remains visible before completion", () => {

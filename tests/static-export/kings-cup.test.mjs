@@ -5,6 +5,9 @@ import test from "node:test";
 import { auditStaticExport, validateStaticExportAudit } from "../../scripts/audit-static-export.mjs";
 
 const require = createRequire(import.meta.url);
+require("tsx/cjs");
+const { CARD_RULES, RANKS, FOURTH_KING } = require("../../lib/games/kings-cup.ts");
+const { KINGS_CUP_TITLE, KINGS_CUP_FAQS } = require("../../lib/data/kings-cup-editorial.ts");
 const { parse } = require("next/dist/compiled/node-html-parser");
 const read = (file) => readFileSync(file, "utf8");
 const doc = parse(read("out/en/games/kings-cup.html"));
@@ -15,7 +18,7 @@ test("King's Cup exports one canonical, expected title/H1, en-US and complete se
   assert.equal(doc.querySelector("html").getAttribute("lang"), "en-US");
   assert.deepEqual(doc.querySelectorAll('link[rel="canonical"]').map((node) => node.getAttribute("href")), [url]);
   assert.deepEqual(doc.querySelectorAll("h1").map((node) => node.textContent), ["King's Cup Drinking Game"]);
-  assert.equal(doc.querySelector("title").textContent, "King's Cup Drinking Game — Play Online & Rules | BeberGames");
+  assert.equal(doc.querySelector("title").textContent, `${KINGS_CUP_TITLE} | BeberGames`);
   for (const id of ["how-to-play", "rules", "card-meanings", "setup", "variations", "play-responsibly", "faq"]) assert.equal(doc.getElementById(id)?.tagName, "H2", id);
   assert.ok(doc.querySelector("#kc-start"));
   assert.ok(doc.querySelector("#kings-cup-game").range[0] < doc.querySelector("#how-to-play").range[0]);
@@ -24,7 +27,7 @@ test("King's Cup exports one canonical, expected title/H1, en-US and complete se
   for (const row of rows) assert.equal(row.querySelectorAll("td").length, 2);
 });
 
-test("Game schema uses the correct English URL/offer and FAQ exactly matches six visible answers", () => {
+test("Game schema uses the correct English URL/offer and FAQ exactly matches all visible answers", () => {
   assert.deepEqual(schemas.map((schema) => schema["@type"]).sort(), ["FAQPage", "WebApplication"]);
   const game = schemas.find((schema) => schema["@type"] === "WebApplication");
   assert.equal(game.url, url);
@@ -34,12 +37,25 @@ test("Game schema uses the correct English URL/offer and FAQ exactly matches six
   assert.deepEqual(game.offers, { "@type": "Offer", price: "0", priceCurrency: "USD" });
   assert.equal(game.aggregateRating, undefined);
   const questions = schemas.find((schema) => schema["@type"] === "FAQPage").mainEntity;
-  assert.equal(questions.length, 6);
+  assert.equal(questions.length, KINGS_CUP_FAQS.length);
   questions.forEach((question, index) => {
     const heading = doc.getElementById(`kc-faq-${index}`);
     assert.equal(heading.textContent, question.name);
     assert.equal(heading.parentNode.querySelector("p").textContent, question.acceptedAnswer.text);
   });
+});
+
+test("exported rules match the playable deck and physical central-cup instructions", () => {
+  const rows = doc.querySelectorAll("tbody tr");
+  rows.forEach((row, index) => {
+    const cells = row.querySelectorAll("td");
+    assert.equal(cells[0].textContent, CARD_RULES[RANKS[index]].name);
+    assert.equal(cells[1].textContent, CARD_RULES[RANKS[index]].rule);
+  });
+  assert.equal(doc.getElementById("central-cup").parentNode.querySelectorAll("p").some((node) => node.textContent === FOURTH_KING), true);
+  assert.match(doc.getElementById("kings-cup-game").textContent, /physical King's Cup/);
+  assert.match(doc.textContent, /legal drinking age.*know your limits/s);
+  assert.doesNotMatch(doc.textContent, /gentler online adaptation|Crown moment|Five favorites|Story mix|group finale|Ace uses a wave/i);
 });
 
 test("home and registry-driven hub link both published English games", () => {

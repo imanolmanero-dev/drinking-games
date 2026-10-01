@@ -1,5 +1,35 @@
 # King's Cup — Phase 3
 
+## Current product contract — search-intent alignment
+
+This existing-game improvement supersedes the historical gentle rules below;
+it is not a new phase or a publication approval. The primary deck now uses
+Waterfall, You, Me, Floor, Odds, Evens, Heaven, Mate, Rhyme, Categories,
+Make a rule, Questions and King's Cup. Odds/Evens are explicit gender-neutral
+house variants of group-sip rules, using the existing numbered seating order.
+No Spanish rules are imported and the route remains unpaired.
+
+The central cup is physical. The first three Kings invite a small optional
+addition. The fourth offers a small optional sip or pass, then the cup is set
+aside and the remainder discarded. End game stops the session; Next player
+continues the deck, or Finish game completes the last card. This keeps the
+existing reducer, King count, skip and exhaustion behavior. Skipping a King
+still counts that card; the browser cannot verify pouring or sipping.
+
+Mates are remembered at the table until the next 8 replaces the pair, without
+recursive sip chains. An agreed Jack rule lasts until the next Jack. Neither
+is digitally tracked. Queen uses a question chain for that card, with safety
+questions excluded. Passing never incurs a replacement sip. Waterfall permits
+stopping at any time regardless of seating order, with no amount or duration
+requirement. Alcohol is optional throughout, including the cup.
+
+The shared visual contract, client boundary, route inventory and schema types
+are unchanged. The visible FAQ and FAQ schema share the updated editorial data;
+the table and playable cards share rule data. This contract requires focused
+state/content tests, the normal validation gates, comparison of all 70 ES
+exports with the initial HEAD build, and Playwright MCP review at the four
+viewports in `docs/en-game-design-system.md` before independent review.
+
 Local implementation on `feat/en-kings-cup`, based on
 `18837ef918024278e09a516592ba8d2a06682aad`. Do not push, merge or publish before
 the combined Phase 2 + Phase 3 audit. No remote settings changed.

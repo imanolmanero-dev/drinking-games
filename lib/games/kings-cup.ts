@@ -9,22 +9,22 @@ export const SUIT_SYMBOLS: Record<Suit, string> = { spades: "♠", hearts: "♥"
 
 // Shared by the visible server-rendered table and the playable card display.
 export const CARD_RULES: Record<Rank, { label: string; name: string; rule: string }> = {
-  A: { label: "Ace", name: "Wave", rule: "Send a wave around the group, one person at a time. Wave a hand or say hello; everyone can pass." },
-  "2": { label: "2", name: "You", rule: "Invite someone to take a sip of any drink, or choose a word for the group to repeat. They can decline." },
-  "3": { label: "3", name: "Me", rule: "Take an optional sip of your own drink, or share one good thing about your day." },
-  "4": { label: "4", name: "Table", rule: "Tap the table or say 'table.' Let everyone join at their own pace; there is no last-place penalty." },
-  "5": { label: "5", name: "Five favorites", rule: "Name a topic, such as snacks. Together, come up with five favorites. Help each other if you get stuck." },
-  "6": { label: "6", name: "Story mix", rule: "Start a sentence with 'On the way to the party...' Each person adds a few words, or passes." },
-  "7": { label: "7", name: "Heaven", rule: "Point up or say 'sky.' Give everyone time to join; this is a shared gesture, not a race." },
-  "8": { label: "8", name: "Mate", rule: "Invite a willing partner to invent a team name. Your partnership lasts for this card only." },
-  "9": { label: "9", name: "Rhyme", rule: "Say a word and take turns finding rhymes. Stop the round when you run out; passing has no penalty." },
-  "10": { label: "10", name: "Categories", rule: "Pick a category, such as movie titles. Each person offers an example or passes. No timer needed." },
-  J: { label: "Jack", name: "Make a rule", rule: "Suggest a lighthearted rule, such as giving the next card a nickname. Everyone must agree; it expires after the next card." },
-  Q: { label: "Queen", name: "Questions", rule: "Ask a playful question. The next person replies with another question or passes. Keep personal topics optional." },
-  K: { label: "King", name: "Crown moment", rule: "The first three Kings invite you to give someone a compliment. The fourth reveals a group finale, then you can keep playing." },
+  A: { label: "Ace", name: "Waterfall", rule: "Start a sip together. The card drawer stops first, then stopping passes around in seating order. Sip at your own pace; anyone may stop or pass at any time, without waiting. There is no minimum amount or duration." },
+  "2": { label: "2", name: "You", rule: "Choose another player to take a small sip of their chosen drink. They can pass." },
+  "3": { label: "3", name: "Me", rule: "Take a small sip of your own drink, or pass." },
+  "4": { label: "4", name: "Floor", rule: "Everyone touches the floor. The last player takes a small sip, or passes. If reaching the floor is uncomfortable, agree on an accessible surface before playing." },
+  "5": { label: "5", name: "Odds", rule: "Players with odd numbers (1, 3, 5, 7, 9, 11) take a small sip, or pass. This house rule replaces the gender-based group rule." },
+  "6": { label: "6", name: "Evens", rule: "Players with even numbers (2, 4, 6, 8, 10, 12) take a small sip, or pass. This house rule replaces the gender-based group rule." },
+  "7": { label: "7", name: "Heaven", rule: "Everyone raises a hand. The last player takes a small sip, or passes. Agree on an accessible gesture if needed." },
+  "8": { label: "8", name: "Mate", rule: "Choose a willing player as your mate. When either of you takes a sip for a card rule, the other is invited to sip too, once; no chain reactions. Either can pass. Remember the pair at the table until the next 8 replaces it; the screen does not track mates." },
+  "9": { label: "9", name: "Rhyme", rule: "Say a word, then go around finding new rhymes. The first player to repeat a rhyme or run out takes a small sip and ends the round. Anyone can pass without a sip." },
+  "10": { label: "10", name: "Categories", rule: "Pick a category, such as movie titles, then go around naming examples. The first player to repeat an answer or run out takes a small sip and ends the round. Anyone can pass without a sip." },
+  J: { label: "Jack", name: "Make a rule", rule: "Propose a lighthearted rule, such as no first names. Everyone must agree. Remember it at the table until the next Jack replaces it. Breaking it invites a small sip, always optional; drop any rule that makes someone uncomfortable." },
+  Q: { label: "Queen", name: "Questions", rule: "Ask another player a question. They respond with a question to someone else. Continue until someone answers instead of asking a question; they take a small sip and the round ends. Anyone can pass without a sip. Safety questions and rule clarifications do not count." },
+  K: { label: "King", name: "King's Cup", rule: "On each of the first three Kings, add a small optional amount of your chosen drink to the physical central cup. On the fourth King, take a small optional sip from that cup, or pass, then set it aside and discard the rest. You can end the game or continue the deck." },
 };
 
-export const FOURTH_KING = "Fourth King — group finale! Invite everyone to share a favorite moment from the game, or pass. Keep drawing afterward if you want to finish the deck.";
+export const FOURTH_KING = "Fourth King — resolve the King's Cup! Take a small optional sip from the physical central cup, or pass. Set it aside and discard the rest; you never need to empty it by drinking. Choose End game to stop here, or Next player to continue the remaining deck (Finish game if this was the last card).";
 
 export function buildKingsCupDeck(): Card[] {
   return SUITS.flatMap((suit) => RANKS.map((rank) => ({ id: `${rank}-${suit}`, rank, suit })));

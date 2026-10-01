@@ -45,7 +45,7 @@ export default function KingsCupGame() {
         <div className="en-setup">
           <CardArtwork />
           <div className="en-setup-copy">
-            <p className="text-sm leading-relaxed text-zinc-300">Share one screen and take seats in order. Players use numbers, so there are no names to enter or save.</p>
+            <p className="text-sm leading-relaxed text-zinc-300">Share one screen, take seats in order, and put a physical King&apos;s Cup in the middle. Agree on what goes into it. Players use numbers, so there are no names to enter or save.</p>
             <div className="en-players">
               <label htmlFor="kc-player-count" className="font-semibold">Players</label>
               <select id="kc-player-count" value={playerCount} onChange={(event) => setPlayerCount(Number(event.target.value))} className={`${button} bg-background`}>
@@ -84,7 +84,7 @@ export default function KingsCupGame() {
                 </div>
                 <div className="en-card-rule">
                   <p id="kc-card-name" className="text-sm text-zinc-300">{rule.label} of {card.suit}</p>
-                  <h3>{fourthKing ? "Group finale" : rule.name}</h3>
+                  <h3>{fourthKing ? "Fourth King — King's Cup" : rule.name}</h3>
                   <p id="kc-card-rule" className="text-sm leading-relaxed text-zinc-200">{fourthKing ? FOURTH_KING : rule.rule}</p>
                 </div>
               </motion.div>
@@ -104,7 +104,7 @@ export default function KingsCupGame() {
             </>
           )}
           <button id="kc-end" type="button" onClick={() => dispatch({ type: "finish" })} className={`${button} en-button-danger`}>End game</button>
-          <p className="text-xs leading-relaxed text-zinc-300">No timer, no penalties. Optional sips can always become a word, a gesture, or a pass.</p>
+          <p className="text-xs leading-relaxed text-zinc-300">Small sips, at your own pace. Alcohol is optional; pass on any action without penalty. Remember mates and agreed Jack rules at the table.</p>
         </div>
       )}
     </section>

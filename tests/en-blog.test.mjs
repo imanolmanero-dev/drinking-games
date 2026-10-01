@@ -28,7 +28,13 @@ test("two-person guide publishes the existing concept as an unpaired guide only"
   assert.deepEqual(languageSwitch(entry.id, "en-US"), { pathname: "/", label: "Spanish home", locale: "es", fallback: true });
   const fixture = JSON.parse(read("tests/fixtures/en-routes.json"));
   const previous = JSON.parse(execFileSync("git", ["show", "e707c88:tests/fixtures/en-routes.json"], { encoding: "utf8" }));
-  assert.deepEqual(fixture.filter((route) => ![entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => route.pathname === "/en" ? { ...route, h1: "Good company. Your pace." } : route), previous);
+  // Existing King's Cup metadata was deliberately updated after Phase 5.
+  // Keep every other field in this historical route comparison intact.
+  assert.deepEqual(fixture.filter((route) => ![entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => {
+    if (route.pathname === "/en") return { ...route, h1: "Good company. Your pace." };
+    if (route.pathname === "/en/games/kings-cup") return { ...route, title: previous.find(({ pathname }) => pathname === route.pathname).title };
+    return route;
+  }), previous);
 });
 
 test("article metadata composes all existing EN image descriptors and Twitter fields", async () => {
