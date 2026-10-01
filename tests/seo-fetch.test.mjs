@@ -6,6 +6,16 @@ import test from 'node:test';
 import ts from 'typescript';
 import * as reporting from '../scripts/seo-reporting.mjs';
 
+function loadRegistryModule(file, dependencies = {}) {
+  const exports = {};
+  vm.runInNewContext(ts.transpileModule(readFileSync(file, 'utf8'), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS },
+  }).outputText, { exports, require: (name) => dependencies[name] });
+  return exports;
+}
+const locales = loadRegistryModule('lib/i18n/locales.ts');
+const routes = loadRegistryModule('lib/i18n/routes.ts', { './locales': locales });
+
 // Run the actual extractor with an in-memory API and filesystem. No credentials,
 // network, generated files or execution of the real CLI are involved.
 const code = ts.transpileModule(readFileSync('scripts/fetch-seo-data.ts', 'utf8'), {
@@ -27,13 +37,16 @@ async function runExtractor(reply) {
       auth: { GoogleAuth: class {} },
       searchconsole: () => ({ searchanalytics: { query: async ({ requestBody }) => {
         requests.push(requestBody);
-        return { data: await reply(requestBody) };
+        return { data: { responseAggregationType: requestBody.dimensionFilterGroups ? 'byPage' : 'byProperty',
+          ...await reply(requestBody) } };
       } } }),
     } },
     'node:fs': { writeFileSync: (...args) => writes.push(args) },
     'node:path': path,
     dotenv: { config() {} },
     './seo-reporting.mjs': reporting,
+    '../lib/i18n/routes': routes,
+    '../lib/i18n/locales': locales,
   };
   await vm.runInNewContext(code, {
     exports: {}, require: (name) => {
@@ -47,11 +60,11 @@ async function runExtractor(reply) {
   return { requests, writes, errors, exitCode: processMock.exitCode };
 }
 
-test('extractor usa metadata all y 12 informes final, sin consumir los días incompletos', async () => {
+test('extractor usa metadata all y 14 informes final: exactamente 15 peticiones, sin duplicar dimensiones EN', async () => {
   const run = await runExtractor((request) => request.dimensions?.[0] === 'date'
     ? { rows: dates, metadata } : { rows: request.dimensions ? [] : [metrics] });
   assert.equal(run.exitCode, undefined);
-  assert.equal(run.requests.length, 13);
+  assert.equal(run.requests.length, 15);
   assert.deepEqual([...run.requests[0].dimensions], ['date']);
   assert.equal(run.requests[0].dataState, 'all');
   assert.equal(run.requests[0].endDate, '2026-09-27');
@@ -64,11 +77,23 @@ test('extractor usa metadata all y 12 informes final, sin consumir los días inc
     assert.ok(['2026-09-11', '2026-09-18'].includes(request.startDate));
     assert.equal(request.endDate, request.startDate === '2026-09-11' ? '2026-09-17' : '2026-09-24');
   }
-  assert.equal(run.requests.filter((request) => !request.dimensions).length, 2);
+  assert.equal(run.requests.filter((request) => !request.dimensions).length, 4);
+  const englishRequests = run.requests.filter((request) => request.dimensionFilterGroups);
+  assert.equal(englishRequests.length, 2);
+  for (const request of englishRequests) {
+    assert.equal(request.dimensions, undefined);
+    assert.equal(request.aggregationType, 'auto');
+    assert.deepEqual(JSON.parse(JSON.stringify(request.dimensionFilterGroups)), reporting.EN_TOTAL_DEFINITION.dimensionFilterGroups);
+  }
+  assert.equal(run.requests.filter((request) => request.dimensions?.join() === 'page').length, 2);
+  assert.equal(run.requests.filter((request) => request.dimensions?.join() === 'query,page').length, 2);
   assert.deepEqual(run.writes.map(([file]) => path.basename(file)).sort(), ['SEO_DATA.md', 'seo-data.json']);
   const snapshot = JSON.parse(run.writes.find(([file]) => file.endsWith('seo-data.json'))[1]);
   assert.equal(reporting.validateSeoSnapshot(snapshot), true);
   assert.equal(snapshot.schemaVersion, 4);
+  assert.deepEqual(snapshot.english.publishedPages, Array.from(routes.publishedRoutes('en-US'), (route) => locales.absoluteUrl(route.pathname)).sort());
+  assert.equal(snapshot.english.quality.totals.current.responseAggregationType, 'byPage');
+  assert.equal(snapshot.dataQuality.reportsRequested, 14);
   assert.equal(snapshot.dataQuality.dateCoverage.status, 'verified');
   assert.equal(snapshot.dataQuality.dateCoverage.firstIncompleteDate, '2026-09-25');
 });
@@ -88,6 +113,31 @@ test('extractor conserva los outputs si falta metadata, falla la petición o la 
     assert.equal(run.exitCode, 1);
     assert.ok(run.errors.join('').includes(`Cobertura temporal ${reason}`));
     assert.doesNotMatch(run.errors.join(''), /PRIVATE_API_DETAILS/);
+  }
+});
+
+test('extractor guarda current desconocido cuando query/page descarta una observación malformada', async () => {
+  const observed = { clicks: 1, impressions: 10, ctr: 0.1, position: 8 };
+  for (const currentRows of [[{ keys: ['reviewed', 'https://bebergames.com/en'], ...observed, ctr: 2 }], {}]) {
+    const run = await runExtractor((request) => {
+      if (request.dimensions?.[0] === 'date') return { rows: dates, metadata };
+      if (request.dimensions?.join() === 'query,page') return { rows: request.startDate === '2026-09-18'
+        ? currentRows : [{ keys: ['reviewed', 'https://bebergames.com/en'], ...observed }] };
+      return { rows: request.dimensions ? [] : [metrics] };
+    });
+    assert.equal(run.exitCode, undefined);
+    assert.equal(run.requests.length, 15);
+    assert.equal(run.writes.length, 2);
+    const saved = JSON.parse(run.writes.find(([file]) => file.endsWith('seo-data.json'))[1]);
+    const row = saved.queryPagesFull[0];
+    assert.equal(saved.english.quality.queryPages.current.status, 'invalid_response');
+    assert.equal(saved.dataQuality.queryPageDataset.current.apiResponseStatus, 'report_unavailable');
+    assert.equal(row.currentStatus, 'unknown_report_unavailable');
+    for (const metric of ['clicks', 'impressions', 'ctr', 'position']) assert.equal(row[metric], null);
+    assert.deepEqual(row.previous, observed);
+    assert.equal(row.difference, null);
+    assert.equal(row.percentDelta, null);
+    assert.equal(reporting.validateSeoSnapshot(saved), true);
   }
 });
 

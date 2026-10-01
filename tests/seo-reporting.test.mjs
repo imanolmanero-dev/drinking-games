@@ -517,6 +517,7 @@ test('marca el dataset query + page como potencialmente truncado al alcanzar fet
   assert.equal(previousOnly.clicks, null);
   assert.equal(previousOnly.previous.clicks, 2);
   assert.equal(previousOnly.difference, null);
+  assert.equal(validateSeoSnapshot(snapshot), true);
 });
 
 test('mantiene null CTR y posición en una ausencia current conocida', () => {

@@ -17,6 +17,21 @@ export const REPORT_DEFINITIONS = Object.freeze([
   { key: 'queryPage', dimensions: ['query', 'page'], rowLimit: FETCH_LIMIT },
 ]);
 
+export const EN_SCOPE = Object.freeze({
+  origin: 'https://bebergames.com', pathnamePrefix: '/en',
+  pageFilterExpression: '^https://bebergames\\.com/en(/|[?]|$)',
+});
+const englishUrlPattern = new RegExp(EN_SCOPE.pageFilterExpression);
+export function isEnglishPageUrl(value) {
+  return typeof value === 'string' && englishUrlPattern.test(value);
+}
+export const EN_TOTAL_DEFINITION = Object.freeze({
+  key: 'englishTotal', dimensions: [], rowLimit: 1,
+  dimensionFilterGroups: [{ groupType: 'and', filters: [{
+    dimension: 'page', operator: 'includingRegex', expression: EN_SCOPE.pageFilterExpression,
+  }] }],
+});
+
 const METRICS = ['clicks', 'impressions', 'ctr', 'position'];
 const DAY_MS = 24 * 60 * 60 * 1000;
 
@@ -215,12 +230,14 @@ function reportState(reportRuns, period, key) {
   const report = reportRuns.find((candidate) => candidate.period === period && candidate.key === key);
   const fetchLimit = report?.rowLimit ?? FETCH_LIMIT;
   const fetchedRows = report?.rows?.length ?? 0;
+  // API completion does not certify absence after malformed rows were discarded.
+  // Valid retained rows remain observations; only missing identities use this state.
+  const succeeded = report?.succeeded === true && !report.comparisonUnavailable;
   const reachedFetchLimit = Boolean(
-    report?.succeeded
+    succeeded
     && report.dimensions.length > 0
     && fetchedRows >= fetchLimit,
   );
-  const succeeded = report?.succeeded === true;
 
   return {
     succeeded,
@@ -589,8 +606,247 @@ function globalReport(rows, state) {
   };
 }
 
-export function buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns }) {
+const EN_PERIODS = ['current', 'previous'];
+const EN_SOURCE_STATUSES = ['complete_from_api_response', 'potentially_truncated_by_fetch_limit',
+  'report_unavailable', 'invalid_response'];
+const EN_PAGE_STATUSES = ['observed', 'no_observation', 'unknown_truncated',
+  'report_unavailable', 'invalid_response', 'page_row_missing'];
+
+function validObservedMetrics(row) {
+  return METRICS.every((key) => typeof row?.[key] === 'number' && Number.isFinite(row[key]) && row[key] >= 0)
+    && row.ctr <= 1 && row.clicks <= row.impressions
+    && (row.impressions !== 0 || (row.clicks === 0 && row.ctr === 0));
+}
+
+function validAbsoluteUrl(value) {
+  try { const url = new URL(value); return url.href === value && !url.hash && !url.username && !url.password; }
+  catch { return false; }
+}
+
+function englishSource(reports, runs, period, key) {
+  const state = reportState(runs, period, key);
+  const run = runs.find((item) => item.period === period && item.key === key);
+  const rows = reports[period][key];
+  const keyCount = key === 'page' ? 1 : 2;
+  const seen = new Set();
+  const valid = Array.isArray(rows) && rows.every((row) => {
+    if (!Array.isArray(row?.keys) || row.keys.length !== keyCount
+      || !row.keys.every((value) => typeof value === 'string')) return false;
+    const identity = rowKey(row);
+    const unique = !seen.has(identity);
+    seen.add(identity);
+    return unique && validObservedMetrics(row) && Array.isArray(row.keys)
+      && row.keys.length === keyCount && row.keys.every((value) => typeof value === 'string')
+      && validAbsoluteUrl(row.keys[keyCount - 1]);
+  });
+  return {
+    source: key, fetchedRows: state.fetchedRows, fetchLimit: state.fetchLimit,
+    status: !state.succeeded ? 'report_unavailable'
+      : run?.invalidResponse || !valid ? 'invalid_response' : state.apiResponseStatus,
+  };
+}
+
+function sourceUsable(source) {
+  return ['complete_from_api_response', 'potentially_truncated_by_fetch_limit'].includes(source.status);
+}
+
+function englishComparison(current, previous) {
+  const comparison = compareMetrics(current, previous);
+  // CTR/position have no meaningful movement without impressions in both periods.
+  if (comparison.difference && (!current.impressions || !previous.impressions)) {
+    comparison.difference.ctr = comparison.difference.position = null;
+  }
+  if (comparison.percentDelta) {
+    comparison.percentDelta.ctr = comparison.percentDelta.position = null;
+  }
+  return comparison;
+}
+
+function englishTotal(reports, runs, period) {
+  const key = EN_TOTAL_DEFINITION.key;
+  const run = runs.find((item) => item.period === period && item.key === key);
+  const rows = reports[period][key];
+  const responseAggregationType = typeof run?.responseAggregationType === 'string'
+    ? run.responseAggregationType : null;
+  let status;
+  if (!run?.succeeded) status = 'report_unavailable';
+  else if (run.invalidResponse || !Array.isArray(rows)) status = 'invalid_response';
+  else if (rows.length === 0) status = 'empty_response';
+  else if (rows.length !== 1 || !validObservedMetrics(rows[0])
+    || (rows[0].keys != null && (!Array.isArray(rows[0].keys) || rows[0].keys.length !== 0))
+    || responseAggregationType !== 'byPage') status = 'invalid_response';
+  else status = rows[0].impressions === 0 ? 'valid_zero' : 'available';
+  return { metrics: ['available', 'valid_zero'].includes(status) ? normalizeMetrics(rows[0]) : null,
+    quality: { source: key, status, fetchedRows: rows?.length ?? 0, fetchLimit: 1,
+      requestedAggregationType: 'auto', responseAggregationType } };
+}
+
+function buildEnglishReport(reports, runs, periods, publishedPages) {
+  const quality = { totals: {}, pages: {}, queryPages: {} };
+  const totals = {};
+  for (const period of EN_PERIODS) {
+    const total = englishTotal(reports, runs, period);
+    totals[period] = total.metrics;
+    quality.totals[period] = total.quality;
+    quality.pages[period] = englishSource(reports, runs, period, 'page');
+    quality.queryPages[period] = englishSource(reports, runs, period, 'queryPage');
+  }
+  const urls = new Set(publishedPages);
+  for (const period of EN_PERIODS) {
+    for (const [key, index] of [['page', 0], ['queryPage', 1]]) {
+      for (const row of reports[period][key]) {
+        if (isEnglishPageUrl(row?.keys?.[index])) urls.add(row.keys[index]);
+      }
+    }
+  }
+  const pages = [...urls].map((page) => {
+    const observations = {};
+    const statuses = {};
+    for (const period of EN_PERIODS) {
+      const source = quality.pages[period];
+      const row = reports[period].page.find((item) => item?.keys?.[0] === page);
+      const queryEvidence = sourceUsable(quality.queryPages[period])
+        && reports[period].queryPage.some((item) => item.keys[1] === page);
+      observations[period] = sourceUsable(source) && row ? normalizeMetrics(row) : null;
+      statuses[period] = !sourceUsable(source) ? source.status
+        : row ? 'observed' : queryEvidence ? 'page_row_missing'
+          : source.status === 'potentially_truncated_by_fetch_limit' ? 'unknown_truncated' : 'no_observation';
+    }
+    return { page, ...englishComparison(observations.current, observations.previous),
+      currentStatus: statuses.current, previousStatus: statuses.previous };
+  }).sort((a, b) => (b.current?.impressions ?? -1) - (a.current?.impressions ?? -1)
+    || (b.current?.clicks ?? -1) - (a.current?.clicks ?? -1) || compareText(a.page, b.page));
+  return { scope: { ...EN_SCOPE }, periods: structuredClone(periods),
+    publishedPages: [...publishedPages].sort(compareText),
+    totals: englishComparison(totals.current, totals.previous), pages, quality };
+}
+
+function assertEnglishComparison(value, label) {
+  assertSnapshot(value && typeof value === 'object' && !Array.isArray(value), `${label}: objeto EN obligatorio`);
+  for (const period of EN_PERIODS) {
+    assertSnapshot(value[period] === null || validObservedMetrics(value[period]), `${label}.${period}: métricas EN inválidas`);
+  }
+  const expected = englishComparison(value.current, value.previous);
+  for (const field of ['difference', 'percentDelta']) {
+    if (expected[field] === null) assertSnapshot(value[field] === null, `${label}.${field} debe ser null`);
+    else for (const metric of METRICS) {
+      const actual = value[field]?.[metric];
+      const wanted = expected[field][metric];
+      assertSnapshot(wanted === null ? actual === null
+        : typeof actual === 'number' && Number.isFinite(actual) && approximatelyEqual(actual, wanted),
+      `${label}.${field}.${metric}: comparación EN inválida`);
+    }
+  }
+}
+
+function validateEnglishReport(snapshot) {
+  const en = snapshot.english;
+  assertSnapshot(snapshot.schemaVersion === 4 && en && typeof en === 'object', 'english requiere v4');
+  for (const [key, value] of Object.entries(EN_SCOPE)) assertSnapshot(en.scope?.[key] === value, 'scope EN inválido');
+  assertSnapshot(JSON.stringify(en.periods) === JSON.stringify(snapshot.periods), 'periodos EN distintos del padre');
+  assertSnapshot(Array.isArray(en.publishedPages) && new Set(en.publishedPages).size === en.publishedPages.length,
+    'inventario EN inválido');
+  assertSnapshot(en.publishedPages.every((page) => isEnglishPageUrl(page) && validAbsoluteUrl(page)
+    && !new URL(page).search), 'inventario publicado EN fuera del scope');
+  assertEnglishComparison(en.totals, 'english.totals');
+  for (const period of EN_PERIODS) {
+    const total = en.quality?.totals?.[period];
+    assertSnapshot(total?.source === EN_TOTAL_DEFINITION.key && total.requestedAggregationType === 'auto'
+      && ['available', 'valid_zero', 'report_unavailable', 'empty_response', 'invalid_response'].includes(total.status)
+      && (total.responseAggregationType === null || typeof total.responseAggregationType === 'string'), 'provenance EN inválida');
+    assertSnapshot(Number.isInteger(total.fetchedRows) && total.fetchedRows >= 0 && total.fetchLimit === 1
+      && total.fetchedRows === snapshot.dataQuality.rowsFetched[`${period}.englishTotal`], 'filas de totales EN incoherentes');
+    const available = ['available', 'valid_zero'].includes(total.status);
+    assertSnapshot(available ? en.totals[period] !== null && total.responseAggregationType === 'byPage'
+      && ((en.totals[period].impressions === 0) === (total.status === 'valid_zero'))
+      : en.totals[period] === null, 'estado de totales EN incoherente');
+    if (available) assertSnapshot(total.fetchedRows === 1, 'total EN requiere una fila');
+    if (total.status === 'empty_response') assertSnapshot(total.fetchedRows === 0, 'total EN vacío incoherente');
+    for (const [collection, source] of [['pages', 'page'], ['queryPages', 'queryPage']]) {
+      const item = en.quality?.[collection]?.[period];
+      assertSnapshot(item?.source === source && EN_SOURCE_STATUSES.includes(item.status)
+        && Number.isInteger(item.fetchedRows) && item.fetchedRows >= 0
+        && Number.isInteger(item.fetchLimit) && item.fetchLimit > 0, 'calidad dimensional EN inválida');
+      assertSnapshot(item.fetchedRows === snapshot.dataQuality.rowsFetched[`${period}.${source}`], 'filas EN incoherentes');
+      if (sourceUsable(item)) assertSnapshot((item.fetchedRows >= item.fetchLimit)
+        === (item.status === 'potentially_truncated_by_fetch_limit'), 'límite EN incoherente');
+      if (collection === 'queryPages' && item.status !== 'invalid_response') {
+        assertSnapshot(item.status === snapshot.dataQuality.queryPageDataset[period].apiResponseStatus,
+          'estado de fuente query EN incoherente');
+      }
+    }
+  }
+  assertSnapshot(Array.isArray(en.pages) && new Set(en.pages.map((row) => row.page)).size === en.pages.length, 'páginas EN duplicadas');
+  const pages = new Map(en.pages.map((row) => [row.page, row]));
+  for (const page of en.publishedPages) assertSnapshot(pages.has(page), 'falta página EN publicada');
+  for (const period of EN_PERIODS) {
+    assertSnapshot(en.pages.filter((row) => row[`${period}Status`] === 'observed').length
+      <= en.quality.pages[period].fetchedRows, 'observaciones EN exceden las filas page recuperadas');
+  }
+  for (const row of en.pages) {
+    assertSnapshot(isEnglishPageUrl(row.page) && validAbsoluteUrl(row.page), 'página EN fuera del scope');
+    assertEnglishComparison(row, 'english.pages');
+    for (const period of EN_PERIODS) {
+      const status = row[`${period}Status`];
+      const source = en.quality.pages[period];
+      assertSnapshot(EN_PAGE_STATUSES.includes(status), 'estado de página EN inválido');
+      assertSnapshot(status === 'observed' ? row[period] !== null && sourceUsable(source) && source.fetchedRows > 0
+        : row[period] === null, 'observación EN incoherente');
+      if (!sourceUsable(source)) assertSnapshot(status === source.status, 'fallo EN incoherente');
+      else if (status !== 'observed') {
+        const queryEvidence = snapshot.queryPagesFull.some((query) => query.sourcePage === row.page
+          && queryObserved(query, period, en));
+        const expected = queryEvidence ? 'page_row_missing'
+          : source.status === 'potentially_truncated_by_fetch_limit' ? 'unknown_truncated' : 'no_observation';
+        assertSnapshot(status === expected, 'ausencia EN incoherente con fuente/evidencia query');
+      }
+    }
+  }
+  for (const row of snapshot.queryPagesFull) {
+    assertSnapshot(validAbsoluteUrl(row.sourcePage) && relativeUrl(row.sourcePage) === row.page, 'origen query/page EN no conservado');
+    if (isEnglishPageUrl(row.sourcePage)) {
+      assertSnapshot(pages.has(row.sourcePage), 'falta página con evidencia query EN');
+      for (const period of EN_PERIODS) {
+        const metrics = queryObserved(row, period, en);
+        if (metrics) assertSnapshot(validObservedMetrics(metrics), 'query EN inválida');
+      }
+    }
+  }
+}
+
+function queryObserved(row, period, english) {
+  if (!sourceUsable(english.quality.queryPages[period])) return null;
+  const status = row[`${period}Status`];
+  return ['present', 'matched'].includes(status)
+    ? period === 'current' ? Object.fromEntries(METRICS.map((key) => [key, row[key]])) : row.previous
+    : null;
+}
+
+export function buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns, publishedEnglishPages }) {
   assertDateCoverage(dateCoverage, periods);
+  const english = publishedEnglishPages === undefined ? undefined
+    : buildEnglishReport(reports, reportRuns, periods, publishedEnglishPages);
+  if (english) {
+    // EN classified the untouched sources above. Unsafe dimensional rows must
+    // not crash legacy display helpers or be normalized into fabricated zeros.
+    reports = Object.fromEntries(EN_PERIODS.map((period) => [period, {
+      ...reports[period],
+      ...Object.fromEntries(['page', 'queryPage'].map((key) => [key, reports[period][key].filter((row) => {
+        const count = key === 'page' ? 1 : 2;
+        return validObservedMetrics(row) && Array.isArray(row.keys) && row.keys.length === count
+          && row.keys.every((value) => typeof value === 'string') && validAbsoluteUrl(row.keys[count - 1]);
+      })])),
+    }]));
+    // The existing v3/v4 dimensional contract represents unusable absence as
+    // unknown_report_unavailable. Keep valid rows and raw retrieval counts, but
+    // never infer known_absent from a source with invalid/discarded observations.
+    reportRuns = reportRuns.map((run) => {
+      const collection = run.key === 'page' ? 'pages' : run.key === 'queryPage' ? 'queryPages' : null;
+      if (!collection || english.quality[collection][run.period].status !== 'invalid_response') return run;
+      return { ...run, comparisonUnavailable: true,
+        warning: `${run.name}: respuesta inválida; las identidades ausentes son desconocidas, no ceros.` };
+    });
+  }
   const currentGlobal = globalReport(reports.current.global, reportState(reportRuns, 'current', 'global'));
   const previousGlobal = globalReport(reports.previous.global, reportState(reportRuns, 'previous', 'global'));
   const topQueries = compareRows(
@@ -635,7 +891,7 @@ export function buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, 
     ['query', 'page'],
     currentQueryPageState,
     previousQueryPageState,
-  )));
+  ).map((row) => ({ ...row, sourcePage: row.page }))));
   const pageQueryCoverage = buildPageQueryCoverage(
     reports.current.page,
     reports.current.queryPage,
@@ -687,6 +943,7 @@ export function buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, 
     ctrOpportunities: findCtrOpportunities(topQueries),
     positionOpportunities: findPositionOpportunities(topQueries),
     dataQuality,
+    ...(english === undefined ? {} : { english }),
   };
 }
 
@@ -856,7 +1113,14 @@ export function validateSeoSnapshot(snapshot) {
     assertSnapshot(Object.hasOwn(row, 'percentDelta'), 'queryPagesFull.percentDelta es obligatorio');
 
     const current = Object.fromEntries(METRICS.map((metric) => [metric, row[metric]]));
-    assertComparison(current, row.previous, row.difference, row.percentDelta, 'queryPagesFull');
+    if (UNKNOWN_STATUSES.includes(row.currentStatus)) {
+      assertUnknownMetrics(current, 'queryPagesFull.current');
+      assertSnapshot(row.difference === null && row.percentDelta === null,
+        'queryPagesFull: comparación debe ser null sin observación current');
+      if (row.previous !== null) assertMetricSet(row.previous, 'queryPagesFull.previous');
+    } else {
+      assertComparison(current, row.previous, row.difference, row.percentDelta, 'queryPagesFull');
+    }
 
     if (row.currentStatus === 'known_absent') assertKnownAbsent(current, 'queryPagesFull.current');
     if (UNKNOWN_STATUSES.includes(row.currentStatus)) assertUnknownMetrics(current, 'queryPagesFull.current');
@@ -945,6 +1209,7 @@ export function validateSeoSnapshot(snapshot) {
     }
   }
 
+  if (Object.hasOwn(snapshot, 'english')) validateEnglishReport(snapshot);
   return true;
 }
 
@@ -1022,6 +1287,81 @@ function opportunityTable(rows) {
   return output;
 }
 
+function englishMetric(metrics, metric) {
+  if (!metrics || (['ctr', 'position'].includes(metric) && !metrics.impressions)) return 'N/D';
+  return metric === 'ctr' ? formatPercent(metrics[metric]) : formatNumber(metrics[metric], metric === 'position' ? 1 : 0);
+}
+
+function englishMovement(current, previous) {
+  return METRICS.map((metric) => `${englishMetric(previous, metric)} → ${englishMetric(current, metric)}`);
+}
+
+function englishPageLabel(page) {
+  // Escape destination syntax independently of the table label.
+  return `[${escapeCell(relativeUrl(page)).replace(/[\[\]<>]/g, (char) => `\\${char}`)}](<${page.replaceAll('>', '%3E').replaceAll('<', '%3C').replaceAll('|', '%7C')}>)`;
+}
+
+function renderEnglishMarkdown(snapshot) {
+  const en = snapshot.english;
+  let md = '## English performance\n\n';
+  if (!en) return md + '*EN extension not collected in this snapshot.*\n\n';
+  md += 'Scope: `https://bebergames.com/en` and `/en/*`, including query-string variants. Same verified periods as above; finalized web-search data.\n\n';
+  md += '### EN totals\n\n';
+  md += 'Page-filtered totals use page aggregation, not interchangeable with sitewide property totals. ';
+  md += EN_PERIODS.map((period) => `${period}: \`${en.quality.totals[period].status}\`, aggregation \`${en.quality.totals[period].responseAggregationType ?? 'unavailable'}\``).join('; ') + '.\n\n';
+  md += '| Metric | Previous | Current | Difference | Change |\n|---|---:|---:|---:|---:|\n';
+  for (const [metric, label] of [['clicks', 'Clicks'], ['impressions', 'Impressions'], ['ctr', 'CTR'], ['position', 'Average position']]) {
+    const delta = en.totals.difference?.[metric];
+    const difference = metric === 'ctr' ? delta == null ? 'N/D' : `${formatNumber(delta * 100, 1)} pp`
+      : metric === 'position' ? formatPositionDifference(delta) : formatNumber(delta);
+    md += `| ${label} | ${englishMetric(en.totals.previous, metric)} | ${englishMetric(en.totals.current, metric)} | ${difference} | ${['clicks', 'impressions'].includes(metric) ? formatPercentDelta(en.totals.percentDelta?.[metric]) : '—'} |\n`;
+  }
+  md += '\n### EN landing pages\n\nPrevious → current. No minimum-impression threshold.\n\n';
+  md += EN_PERIODS.map((period) => `${period} page source: \`${en.quality.pages[period].status}\` (${en.quality.pages[period].fetchedRows}/${en.quality.pages[period].fetchLimit} rows)`).join('; ') + '.\n\n';
+  md += '| Page | Impressions | Δ imp. | Clicks | Δ clicks | CTR | Position | Status, previous → current |\n|---|---|---:|---|---:|---|---|---|\n';
+  for (const row of en.pages) {
+    const [clicks, impressions, ctr, position] = englishMovement(row.current, row.previous);
+    md += `| ${englishPageLabel(row.page)} | ${impressions} | ${formatNumber(row.difference?.impressions)} | ${clicks} | ${formatNumber(row.difference?.clicks)} | ${ctr} | ${position} | ${row.previousStatus} → ${row.currentStatus} |\n`;
+  }
+  md += '\n`page_row_missing`: query/page evidence exists, but page metrics are unavailable. `no_observation`: no returned page observation; never confirmed zero.\n\n';
+  md += '### Queries reaching EN pages\n\n';
+  md += EN_PERIODS.map((period) => `${period} query/page source: \`${en.quality.queryPages[period].status}\``).join('; ') + '.\n\n';
+  for (const page of en.pages) {
+    const rows = snapshot.queryPagesFull.filter((row) => row.sourcePage === page.page)
+      .sort((a, b) => Math.max(queryObserved(b, 'current', en)?.impressions ?? -1, queryObserved(b, 'previous', en)?.impressions ?? -1)
+        - Math.max(queryObserved(a, 'current', en)?.impressions ?? -1, queryObserved(a, 'previous', en)?.impressions ?? -1)
+        || compareText(a.query, b.query));
+    if (rows.length === 0) continue;
+    const shown = rows.slice(0, 5);
+    md += `#### ${englishPageLabel(page.page)}\n\nShowing ${shown.length} of ${rows.length} retrieved combinations.\n\n`;
+    const queryImpressions = rows.reduce((sum, row) => sum + (queryObserved(row, 'current', en)?.impressions ?? 0), 0);
+    const coverage = sourceUsable(en.quality.queryPages.current)
+      ? coveragePercent(queryImpressions, page.current?.impressions) : null;
+    md += `Current query impression coverage: ${coverage != null
+      ? `${formatNumber(coverage, 1)}%` : 'N/D'}. Coverage may be partial; undisclosed queries are not inferred.\n\n`;
+    md += '| Query | Impressions, previous → current | Clicks, previous → current | CTR, previous → current | Position, previous → current |\n|---|---|---|---|---|\n';
+    for (const row of shown) {
+      const [clicks, impressions, ctr, position] = englishMovement(queryObserved(row, 'current', en), queryObserved(row, 'previous', en));
+      const query = row.query.replaceAll('\\', '\\\\').replaceAll('|', '\\|').replace(/[\r\n]+/g, ' ')
+        .replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;')
+        .replace(/[\[\]`*_]/g, (char) => `\\${char}`);
+      md += `| ${query} | ${impressions} | ${clicks} | ${ctr} | ${position} |\n`;
+    }
+    md += '\n';
+  }
+  if (!snapshot.queryPagesFull.some((row) => isEnglishPageUrl(row.sourcePage))) md += '*No retrieved EN query/page combinations.*\n\n';
+  md += '### Published pages without current observations\n\n';
+  md += '| Page | Current | Previous status |\n|---|---|---|\n';
+  for (const page of en.publishedPages) {
+    const row = en.pages.find((item) => item.page === page);
+    if (row.currentStatus === 'observed') continue;
+    md += `| ${englishPageLabel(page)} | ${row.currentStatus === 'no_observation'
+      ? 'No observed Search Console data in this period.' : row.currentStatus} | ${row.previousStatus} |\n`;
+  }
+  md += '\nNo observation does not prove zero traffic or an indexing problem. Queries are limited to those disclosed and retrieved.\n\n';
+  return md;
+}
+
 export function renderSeoMarkdown(snapshot) {
   validateSeoSnapshot(snapshot);
   const { current, previous } = snapshot.periods;
@@ -1059,6 +1399,7 @@ export function renderSeoMarkdown(snapshot) {
   md += `| Posición media global | ${formatNumber(global.current?.position, 1)} | ${formatNumber(global.previous?.position, 1)} | ${formatPositionDifference(global.difference?.position)} | ${formatPositionChange(global.current?.position, global.previous?.position)} |\n`;
   md += '\n`N/D` indica que no existe una base porcentual o que falta un dato por fallo, respuesta vacía/inválida o truncamiento. No equivale a cero.\n\n';
 
+  md += renderEnglishMarkdown(snapshot);
   md += `## Top ${displayLimit} queries\n\n`;
   md += comparisonTable(snapshot.topQueries, 'Query', (row) => row.query);
   md += `\n## Top ${displayLimit} pages\n\n`;

@@ -2,7 +2,10 @@ import { google, type searchconsole_v1 } from 'googleapis';
 import fs from 'node:fs';
 import path from 'node:path';
 import dotenv from 'dotenv';
+import { publishedRoutes } from '../lib/i18n/routes';
+import { absoluteUrl } from '../lib/i18n/locales';
 import {
+  EN_TOTAL_DEFINITION,
   REPORT_DEFINITIONS,
   buildSeoSnapshot,
   discoverDateCoverage,
@@ -35,6 +38,8 @@ type ReportRun = {
   rows: ApiRow[];
   succeeded: boolean;
   warning?: string;
+  responseAggregationType?: string | null;
+  invalidResponse?: boolean;
 };
 
 function safeFailureWarning(name: string, error: unknown) {
@@ -70,7 +75,7 @@ async function fetchSeoData() {
   console.log(`Actual: ${periods.current.start} a ${periods.current.end}`);
   console.log(`Anterior: ${periods.previous.start} a ${periods.previous.end}`);
 
-  const requests = PERIOD_NAMES.flatMap((period) => REPORT_DEFINITIONS.map((definition) => ({
+  const requests = PERIOD_NAMES.flatMap((period) => [...REPORT_DEFINITIONS, EN_TOTAL_DEFINITION].map((definition) => ({
     period,
     definition,
     name: `${period}.${definition.key}`,
@@ -78,14 +83,7 @@ async function fetchSeoData() {
 
   const reportRuns: ReportRun[] = await Promise.all(requests.map(async ({ period, definition, name }) => {
     try {
-      const requestBody: {
-        startDate: string;
-        endDate: string;
-        rowLimit: number;
-        dimensions?: string[];
-        dataState: string;
-        type: string;
-      } = {
+      const requestBody: searchconsole_v1.Schema$SearchAnalyticsQueryRequest = {
         startDate: periods[period].start,
         endDate: periods[period].end,
         rowLimit: definition.rowLimit,
@@ -97,6 +95,10 @@ async function fetchSeoData() {
       // totales globales y no se reconstruye sumando un top dimensional.
       if (definition.dimensions.length > 0) {
         requestBody.dimensions = [...definition.dimensions];
+      }
+      if (definition.key === EN_TOTAL_DEFINITION.key) {
+        requestBody.dimensionFilterGroups = EN_TOTAL_DEFINITION.dimensionFilterGroups;
+        requestBody.aggregationType = 'auto';
       }
 
       const response = await searchconsole.searchanalytics.query({
@@ -110,8 +112,10 @@ async function fetchSeoData() {
         key: definition.key,
         dimensions: definition.dimensions,
         rowLimit: definition.rowLimit,
-        rows: response.data.rows ?? [],
+        rows: Array.isArray(response.data.rows) ? response.data.rows : [],
         succeeded: true,
+        responseAggregationType: response.data.responseAggregationType ?? null,
+        invalidResponse: response.data.rows != null && !Array.isArray(response.data.rows),
       };
     } catch (error: unknown) {
       return {
@@ -137,7 +141,8 @@ async function fetchSeoData() {
   };
 
   const generatedAt = new Date().toISOString();
-  const snapshot = buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns });
+  const publishedEnglishPages = publishedRoutes('en-US').map((route) => absoluteUrl(route.pathname));
+  const snapshot = buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns, publishedEnglishPages });
   validateSeoSnapshot(snapshot);
   const markdown = renderSeoMarkdown(snapshot);
 
