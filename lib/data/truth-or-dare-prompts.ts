@@ -1,4 +1,4 @@
-// Original English prompts for the single, alcohol-optional game mode.
+// Original Classic prompts. Text remains the stable identity within a session.
 // Each prompt can be used by a pair or a larger group on one shared screen.
 export const TRUTHS: readonly string[] = [
   "What small thing made you laugh this week?",
@@ -33,6 +33,112 @@ export const TRUTHS: readonly string[] = [
   "Which everyday invention would you miss most for one day?",
 ];
 
+export const PARTY_TRUTHS: readonly string[] = [
+  "What is the funniest thing you have done while trying to look cool?",
+  "Which completely harmless opinion would you defend in a very dramatic debate?",
+  "If this group formed a band, what role would you take?",
+  "What is your most ridiculous reason for being late?",
+  "Which party snack do you quietly hope nobody else wants?",
+  "Have you ever confidently sung the wrong lyrics? What did you sing?",
+  "Who here would you pick as your partner in a silly talent contest, and why?",
+  "What outfit did you once think was much cooler than it actually was?",
+  "Which tiny inconvenience makes you act like the main character in a drama?",
+  "What is the funniest thing you have said while half asleep?",
+  "If everyone here swapped jobs for a day, whose would you want to try?",
+  "What is a dance move you attempt even though you have never quite mastered it?",
+  "Which ordinary activity deserves its own cheering crowd?",
+  "What is your least convincing excuse for leaving a boring conversation?",
+  "Which fictional villain would be the worst guest at a party?",
+  "What is the strangest thing you have mistaken for something else?",
+  "If you had to enter a contest tomorrow, what oddly specific contest could you win?",
+  "What is the most unnecessary item you have packed for a short trip?",
+  "Which animal best matches your energy at the end of a party?",
+  "Have you ever waved back at someone who was waving at somebody else? What happened?",
+  "Who here would make the most entertaining game-show host?",
+  "What is a phrase you use so often it could go on your own T-shirt?",
+  "Which boring chore could you turn into a dramatic rivalry?",
+  "What is your funniest attempt at fixing something without reading the instructions?",
+  "If your entrance tonight had a sound effect, what would it be?",
+  "What would your very unhelpful superpower be?",
+  "Which two foods should never meet, even if everyone else here disagrees?",
+  "What is a harmless thing you take far too seriously during games?",
+  "If this gathering were a sitcom, what would today's episode be called?",
+  "What is the funniest purchase you were convinced would change your life?",
+  "Which player would you trust to give a speech with absolutely no preparation?",
+  "What is the most dramatic reaction you have had to a small surprise?",
+  "Which word do you keep mispronouncing even after someone corrects you?",
+  "What is your most questionable strategy for remembering someone's name?",
+  "If you could replace a normal greeting with one sound, which sound would you choose?",
+  "What is the funniest thing you have found in a coat pocket after forgetting it was there?",
+  "Which player would you recruit to help you win an argument about pizza toppings?",
+  "What is something you practiced alone because you wanted it to look effortless?",
+  "How would you distract a room full of people if you had only ten seconds?",
+  "What is the silliest thing you have done because you misunderstood a rule?",
+  "Which part of a party would you outsource to a robot?",
+  "What is the funniest reaction you have had to tasting an unexpected flavor?",
+  "If this group opened a restaurant, what would be your job?",
+  "What is a harmless shortcut you tried that took longer than the proper way?",
+  "Which everyday situation makes you feel like you are in a spy movie?",
+  "What is a completely useless fact you are surprisingly proud of knowing?",
+  "What would be the first rule in a club devoted to your most pointless hobby?",
+  "What is your funniest memory of getting too competitive over a very small prize?",
+  "Which person here could sell you a product that clearly does nothing?",
+  "What is the most elaborate explanation you have given for a very simple mistake?",
+];
+
+export const PARTY_DARES: readonly string[] = [
+  "Deliver an acceptance speech for winning the award for Most Dramatic Entrance.",
+  "Let the group choose a harmless word. Work it into an extravagant compliment for a sandwich.",
+  "Challenge a willing player to a ten-second silly-face contest. Let the group pick a favorite.",
+  "Act like a robot trying to understand a party for the first time.",
+  "Give a dramatic reading of the sentence: I forgot to buy the crackers.",
+  "Ask a willing player to give you a fictional job. Introduce yourself on your first day.",
+  "Lead a seated slow-motion celebration and invite everyone to copy you.",
+  "Argue both sides of whether soup should count as a drink. Give each side one sentence.",
+  "Perform three facial expressions for a selfie without taking a photo.",
+  "Try to make the group laugh using only the word banana, three different ways.",
+  "Make three harmless sound effects. Let the group vote on which belongs in a cartoon.",
+  "Give each willing player a friendly stage name based on a food.",
+  "Act out arriving at a party and realizing you are dressed as the wrong theme.",
+  "Invent a ridiculous handshake using only your own two hands.",
+  "Let the group pick a normal object. Explain why it should be elected party president.",
+  "Challenge a willing player to name three round things. Take turns, with no repeats, for six answers.",
+  "Pretend you are on hold with customer support for your imaginary pet dragon.",
+  "Make a beat with your voice and invite a willing player to add one sound.",
+  "React to an imaginary gift as if it is exactly what you wanted, then as if you have no idea what it is.",
+  "Describe a snack as though it is the final contestant in a dating show.",
+  "Give the group a silent thumbs-up review of three imaginary meals, each with a different reaction.",
+  "Sell an invisible hat to the group with one feature nobody needs.",
+  "Invite a willing player to join a scene where you both keep politely offering the other the last cookie.",
+  "Say one friendly sentence in three voices: sleepy, excited, and suspicious.",
+  "Give yourself a very grand introduction, then bow while seated.",
+  "Mime trying to catch an imaginary fly without moving from your seat.",
+  "Ask the group for two animals. Invent their combined creature and demonstrate its sound.",
+  "Announce three absurd but harmless events in tomorrow's party Olympics.",
+  "Pretend to be a detective investigating who moved your imaginary cupcake.",
+  "Lead a ten-second round of applause for an everyday task the group chooses.",
+  "Tell the group one true thing about yourself in the style of a movie trailer.",
+  "Do a seated victory pose for winning a contest nobody remembers entering.",
+  "Let a willing player choose happy or grumpy. Act as a toaster with that personality.",
+  "Give a short pep talk to your own left shoe.",
+  "Try a tongue twister once: Six sleepy sheep share shiny shoes.",
+  "Challenge a willing player to a staring contest for five seconds. Blinking ends the round.",
+  "Explain your imaginary campaign to make Tuesdays more exciting. Ask for a show of hands.",
+  "Demonstrate three ways to say hello without speaking or touching anyone.",
+  "Act as a royal food critic reviewing a plain glass of water. No tasting is needed.",
+  "Let the group choose a fictional place. Pretend to check in at its hotel.",
+  "Hold a five-second seated air-guitar solo and end with a dramatic pose.",
+  "Teach the group a silly facial expression and invite them to try it.",
+  "Challenge a willing player to rock-paper-scissors. Give your move a dramatic name before the reveal.",
+  "Ask a willing player for a sentence. Repeat it as if it is breaking news.",
+  "Make up a two-line chant for this group and invite everyone to join the second line.",
+  "Deliver a polite complaint to an imaginary cloud about its choice of shape.",
+  "Name an absurd invention. Let the group vote on whether they would try it.",
+  "Perform a silent scene of trying to sneak a noisy snack during a movie.",
+  "Give the player after you a sincere compliment in the voice of an overexcited announcer.",
+  "Present a fictional party mystery with two possible endings. Let the group vote for the ending.",
+];
+
 export const DARES: readonly string[] = [
   "Invent a cheerful team name for the people playing.",
   "Describe this room as if you were narrating a nature documentary.",
@@ -65,3 +171,20 @@ export const DARES: readonly string[] = [
   "Describe your dream treehouse in three details.",
   "Tell a very short story with a surprising but happy ending.",
 ];
+
+export type PromptCategory = "classic" | "party" | "both";
+
+export const PROMPT_POOLS = {
+  classic: { truths: TRUTHS, dares: DARES },
+  party: { truths: PARTY_TRUTHS, dares: PARTY_DARES },
+} as const;
+
+export const TOTAL_PROMPTS = TRUTHS.length + DARES.length + PARTY_TRUTHS.length + PARTY_DARES.length;
+
+export function promptsForCategory(category: PromptCategory) {
+  if (category === "both") {
+    return { truths: [...TRUTHS, ...PARTY_TRUTHS], dares: [...DARES, ...PARTY_DARES] };
+  }
+  if (category !== "classic" && category !== "party") throw new RangeError("Unknown Truth or Dare category");
+  return PROMPT_POOLS[category];
+}

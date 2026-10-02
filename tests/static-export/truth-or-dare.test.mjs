@@ -5,6 +5,8 @@ import test from "node:test";
 import { auditStaticExport, validateStaticExportAudit } from "../../scripts/audit-static-export.mjs";
 
 const require = createRequire(import.meta.url);
+require("tsx/cjs");
+const { TOTAL_PROMPTS, PROMPT_POOLS } = require("../../lib/data/truth-or-dare-prompts.ts");
 const { parse } = require("next/dist/compiled/node-html-parser");
 const read = (path) => readFileSync(path, "utf8");
 const pathname = "/en/games/truth-or-dare";
@@ -37,7 +39,14 @@ test("setup exports a labelled native selector, stepper and separate game facts"
   assert.equal(select.getAttribute("aria-describedby"), "tod-player-range");
   assert.equal(select.querySelector("option[selected]").getAttribute("value"), "4");
   assert.equal(doc.getElementById("tod-player-range").textContent, "2–12 players");
-  assert.deepEqual(doc.querySelectorAll(".en-tod-facts li").map((item) => item.textContent), ["60 prompts", "No materials", "One shared screen"]);
+  assert.deepEqual(doc.querySelectorAll(".en-tod-facts li").map((item) => item.textContent), [`${TOTAL_PROMPTS} prompts`, "No materials", "One shared screen"]);
+  const category = doc.getElementById("tod-category");
+  assert.equal(doc.querySelector('label[for="tod-category"]').textContent, "Category");
+  assert.equal(category.tagName, "SELECT");
+  assert.equal(category.getAttribute("aria-describedby"), "tod-category-help");
+  assert.equal(category.querySelector("option[selected]").getAttribute("value"), "classic");
+  assert.deepEqual(category.querySelectorAll("option").map((option) => [option.getAttribute("value"), option.textContent]), [["classic", "Classic"], ["party", "Party"], ["both", "Both"]]);
+  assert.match(doc.getElementById("tod-category-help").textContent, new RegExp(`${PROMPT_POOLS.classic.truths.length + PROMPT_POOLS.classic.dares.length} prompts`));
   for (const [id, label] of [["tod-player-decrease", "Decrease player count"], ["tod-player-increase", "Increase player count"]]) {
     const button = doc.getElementById(id);
     assert.equal(button.tagName, "BUTTON");
@@ -49,7 +58,12 @@ test("setup exports a labelled native selector, stepper and separate game facts"
 test("Truth or Dare exports a self-canonical English game with useful static content", () => {
   assert.equal(doc.querySelector("html").getAttribute("lang"), "en-US");
   assert.equal(doc.querySelector("title").textContent, "Truth or Dare Online — Play With Friends | BeberGames");
-  assert.equal(doc.querySelector('meta[name="description"]').getAttribute("content"), "Play Truth or Dare online with 2–12 friends on one shared screen. Choose from 30 truths and 30 dares, pass freely, and play without alcohol.");
+  const description = doc.querySelector('meta[name="description"]').getAttribute("content");
+  assert.match(description, /Truth or Dare online.*2–12.*Classic, Party, or Both/);
+  assert.match(description, new RegExp(`${TOTAL_PROMPTS} prompts.*shared screen.*No signup`));
+  for (const selector of ['meta[property="og:description"]', 'meta[name="twitter:description"]']) {
+    assert.equal(doc.querySelector(selector).getAttribute("content"), description);
+  }
   assert.deepEqual(doc.querySelectorAll("h1").map((node) => node.textContent), ["Truth or Dare Online"]);
   assert.deepEqual(doc.querySelectorAll('link[rel="canonical"]').map((node) => node.getAttribute("href")), [url]);
   assert.equal(doc.querySelectorAll('link[hreflang]').length, 0);
@@ -61,6 +75,14 @@ test("Truth or Dare exports a self-canonical English game with useful static con
   assert.match(doc.textContent, /Passing never carries a penalty/);
   assert.match(doc.textContent, /Alcohol is optional/);
   assert.match(doc.textContent, /When all Truths have appeared/);
+  assert.match(doc.querySelector(".en-intro").textContent, new RegExp(`${TOTAL_PROMPTS} original prompts`));
+  for (const [category, { truths, dares }] of Object.entries(PROMPT_POOLS)) {
+    const editorial = doc.textContent;
+    assert.match(editorial, new RegExp(`${category === "classic" ? "Classic" : "Party"}.*${truths.length} Truths.*${dares.length}.*Dares`));
+  }
+  assert.match(doc.textContent, /Both combines all 160 prompts: 80 Truths and 80 Dares/);
+  assert.match(doc.textContent, /same player count and category/);
+  assert.match(doc.textContent, /No signup or download/);
 });
 
 test("one WebApplication matches the route, copy and free EN offer", () => {

@@ -1,4 +1,4 @@
-import { DARES, TRUTHS } from "@/lib/data/truth-or-dare-prompts";
+import { promptsForCategory, type PromptCategory } from "@/lib/data/truth-or-dare-prompts";
 import { shuffle } from "@/lib/games/shuffle";
 
 export type PromptType = "truth" | "dare";
@@ -7,6 +7,7 @@ export type GamePhase = "choosing" | "revealed" | "finished";
 export type TruthOrDareState = {
   phase: GamePhase;
   playerCount: number;
+  category: PromptCategory;
   turn: number;
   truths: string[];
   dares: string[];
@@ -21,16 +22,18 @@ export type TruthOrDareAction =
   | { type: "skip" }
   | { type: "finish" };
 
-export function startTruthOrDare(playerCount: number, random: () => number = Math.random): TruthOrDareState {
+export function startTruthOrDare(playerCount: number, category: PromptCategory = "classic", random: () => number = Math.random): TruthOrDareState {
   if (!Number.isInteger(playerCount) || playerCount < 2 || playerCount > 12) {
     throw new RangeError("Truth or Dare requires 2–12 players");
   }
+  const prompts = promptsForCategory(category);
   return {
     phase: "choosing",
     playerCount,
+    category,
     turn: 0,
-    truths: shuffle(TRUTHS, random),
-    dares: shuffle(DARES, random),
+    truths: shuffle(prompts.truths, random),
+    dares: shuffle(prompts.dares, random),
     truthIndex: 0,
     dareIndex: 0,
     current: null,

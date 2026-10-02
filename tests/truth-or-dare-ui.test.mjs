@@ -49,6 +49,7 @@ function gameUI() {
     text: () => text(render()),
     click(id) { const node = find(id); assert.notEqual(node.props.disabled, true, id); node.props.onClick(); },
     select(value) { find("tod-player-count").props.onChange({ target: { value: String(value) } }); },
+    category(value) { find("tod-category").props.onChange({ target: { value } }); },
   };
 }
 
@@ -75,6 +76,57 @@ test("player stepper and native select share state, one-step changes and real bo
   assert.equal(ui.find("tod-player-count").props.value, 11);
   assert.equal(ui.find("tod-player-increase").props.disabled, false);
 });
+
+test("category setup is labelled, defaults to Classic and updates the active session", () => {
+  const ui = gameUI();
+  assert.equal(ui.find("tod-category").type, "select");
+  assert.equal(ui.find("tod-category").props.value, "classic");
+  assert.equal(ui.find("tod-category").props["aria-describedby"], "tod-category-help");
+  for (const [category, size] of [["classic", 30], ["party", 50], ["both", 80]]) {
+    ui.category(category);
+    assert.ok(ui.text().includes(`${size * 2} prompts. Changing setup starts fresh pools.`));
+    ui.select(12);
+    ui.click("tod-start");
+    assert.ok(ui.text().includes(`Prompts used: 0 / ${size * 2}`));
+    assert.match(ui.text(), new RegExp(`Truth${size} left!Dare${size} left`));
+    ui.click("tod-truth");
+    ui.click("tod-skip");
+    assert.match(ui.text(), /Player 2's turn/);
+    ui.click("tod-dare");
+    ui.click("tod-next");
+    assert.match(ui.text(), /Player 3's turn/);
+    ui.click("tod-finish");
+    ui.click("tod-restart");
+    assert.ok(ui.text().includes(`Prompts used: 0 / ${size * 2}`));
+    assert.match(ui.text(), /Player 1's turn/);
+    ui.click("tod-back-setup");
+    assert.equal(ui.find("tod-category").props.value, category);
+    assert.equal(ui.find("tod-player-count").props.value, 12);
+    // The finished-state setup binding preserves the selection too.
+    ui.click("tod-start");
+    ui.click("tod-finish");
+    ui.click("tod-change-players");
+    assert.equal(ui.find("tod-category").props.value, category);
+  }
+});
+
+for (const [category, count] of [["party", 50], ["both", 80]]) {
+  test(`${category} controls use selected pool limits and show correct final/restart counts`, () => {
+    const ui = gameUI();
+    ui.category(category);
+    ui.click("tod-start");
+    for (let i = 0; i < count; i++) { ui.click("tod-truth"); ui.click("tod-next"); }
+    assert.equal(ui.find("tod-truth").props.disabled, true);
+    assert.equal(ui.find("tod-dare").props.disabled, false);
+    for (let i = 0; i < count - 1; i++) { ui.click("tod-dare"); ui.click("tod-skip"); }
+    ui.click("tod-dare");
+    assert.ok(ui.text().includes("Finish gameSkip and finish"));
+    ui.click("tod-next");
+    assert.ok(ui.text().includes(`All ${count * 2} prompts were used.`));
+    ui.click("tod-restart");
+    assert.ok(ui.text().includes(`Prompts used: 0 / ${count * 2}`));
+  });
+}
 
 test("choices keep labels, symbols and a disabled exhausted type in its place", () => {
   const ui = gameUI();
