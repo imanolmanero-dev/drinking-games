@@ -5,6 +5,9 @@ Base: `e707c88f313a97f2a9861940a1362cfb87033425` (Phase 4 closed, deployed and p
 Status: **CLOSED**. Phase 5 is integrated into `main` and published in production
 at `865c4462b6a0488d03a55acb3f2782c8677c9289`.
 
+The records below describe that original release. The existing-page improvement
+at the end of this document has a separate local review gate.
+
 ## Publication contract
 
 Only `/en/blog/drinking-games-for-2` is added. The existing conceptual ID
@@ -127,3 +130,57 @@ Warnings about unused preloaded fonts were non-blocking. The correct
 deployment URL, stable Pages domain and custom domain serve the same Phase 5
 contract. No Phase 5 blockers remain; do not begin Phase 6 until its scope is
 defined separately.
+
+## Existing-guide intent alignment (local, uncommitted)
+
+Based on `17a2180fdc4b0d6df1e455483b3c3fa79accb230`; this is not Phase 7.
+The original seven entries removed drinking outcomes despite the article title.
+The revised guide retains all seven and adds Would You Rather Match, Memory
+Chain and Movie or TV Cue: **10 games**, grouped by no equipment, cards, dice
+and a shared screen. Each has equipment, turns, a concrete small optional sip
+trigger and a clear ending. Sip invitations never accumulate. Truth or Dare
+uses one optional round-end toast regardless of answers or passes; declining
+a prompt never triggers drinking. Movie/TV uses only the first uncommon cue
+in a ten-minute segment, then disables that cue. Alcohol-free drinks and
+consequence-free passing remain explicit.
+
+The existing editorial data file now supplies the games and six FAQs. FAQPage
+reuses the existing FAQJsonLd component and exactly the visible FAQ data.
+The literal Server Component, canonical, unpaired language status, inherited
+OG image and shell remain. No routes, styles, clients, dependencies or ad
+configuration change. Inventory remains **70 ES + 10 EN = 80**.
+
+Publication stays **2026-09-23**. The substantive editorial update is dated
+**2026-10-02** in the byline, BlogPosting and article modified metadata; it is
+not a deployment claim or a build timestamp. The English schema component
+accepts an optional modification date without inventing one when omitted.
+
+The authorized follow-up replaces only the four incoming “seven games”
+anchors on home, hub, King's Cup and Truth or Dare with count-neutral
+“drinking games for two guide” wording. IDs, destinations and all other
+source content on those pages remain baseline-equivalent. Focused tests
+check the four anchors and preserve the guide's accurate seven-game
+no-equipment subgroup. Independent delta review is required before commit
+or publication.
+
+Local validation passes: 10 focused guide tests, 174 unit tests, 15 focused
+EN export tests, all 42 static-export tests, typegen, TypeScript, targeted
+ESLint, build, export audit and diff checks. The clean baseline export is
+retained under `build/two-intent/baseline`; `compare.cjs` verifies all 70 ES
+and nine other EN pages in metadata, headings, links, JSON-LD and text,
+allowing only the four verified incoming-anchor labels; sitemap properties
+and editorial dates remain identical. Loaded JS for both games and the
+guide is byte-identical to the baseline. Existing metadataBase build
+warnings also occur on the unchanged base.
+
+Playwright MCP QA passes at 320×844, 390×844, 768×1024 and 1440×900:
+document/body scroll widths equal the viewport, no overflowing article
+text, one H1, ten game sections and six FAQs. Native contents links and
+both interactive-product links work; both game routes return HTTP 200.
+The sampled four-size run has no page exceptions or failed requests.
+Reviewed screenshots are ignored under `build/two-intent/`: `games-320.png`,
+`faq-320.png`, `hero-390.png`, `cards-768.png` and `movie-1440.png`.
+
+Follow-up Playwright MCP checks on the fresh export at 390×844 confirm
+HTTP 200, visible and naturally wrapped guide links, unchanged destinations,
+no horizontal overflow and no page exceptions on all four affected pages.

@@ -26,7 +26,7 @@ export default function EnglishHome() {
         <p><strong>Prefer questions and challenges?</strong> <EnglishLink id="en-home-truth-or-dare" routeId="truth-or-dare">Play Truth or Dare</EnglishLink> with 2–12 people on one shared screen.</p>
       </aside>
       <aside className="en-guide-discovery" aria-label="Two-player guide">
-        <p><strong>Just the two of you?</strong> <EnglishLink id="en-home-two-guide" routeId="drinking-games-for-two">Try seven games for two</EnglishLink>, with or without cards, dice, or alcohol.</p>
+        <p><strong>Just the two of you?</strong> <EnglishLink id="en-home-two-guide" routeId="drinking-games-for-two">Try our drinking games for two guide</EnglishLink>, with or without cards, dice, or alcohol.</p>
       </aside>
       <section className="en-section en-value">
         <h2>Everyone gets a say</h2>

@@ -118,7 +118,7 @@ test("English social metadata uses en_US and a real English static image, never 
       const schema = JSON.parse(script.textContent);
       const expectedTypes = pathname === "/en/games/kings-cup" ? ["WebApplication", "FAQPage"]
         : pathname === "/en/games/truth-or-dare" ? ["WebApplication"]
-        : pathname === "/en/blog/drinking-games-for-2" ? ["BlogPosting", "BreadcrumbList"] : ["WebSite"];
+        : pathname === "/en/blog/drinking-games-for-2" ? ["BlogPosting", "BreadcrumbList", "FAQPage"] : ["WebSite"];
       assert.ok(expectedTypes.includes(schema["@type"]));
       if (!["FAQPage", "BreadcrumbList"].includes(schema["@type"])) assert.equal(schema.inLanguage, "en-US");
     }

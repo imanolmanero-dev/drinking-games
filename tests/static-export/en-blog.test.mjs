@@ -6,7 +6,7 @@ import test from "node:test";
 const require = createRequire(import.meta.url);
 require("tsx/cjs");
 const { parse } = require("next/dist/compiled/node-html-parser");
-const { drinkingGamesForTwoEditorial: editorial } = require("../../lib/data/drinking-games-for-2-editorial.ts");
+const { drinkingGamesForTwoEditorial: editorial, drinkingGamesForTwoGames: gameData, drinkingGamesForTwoFaqs: faqs } = require("../../lib/data/drinking-games-for-2-editorial.ts");
 const read = (path) => readFileSync(path, "utf8");
 const path = "/en/blog/drinking-games-for-2";
 const canonical = `https://bebergames.com${path}`;
@@ -31,9 +31,9 @@ test("guide exports article social metadata with exactly the inherited English b
   assert.equal(doc.getElementById("language-switch").textContent, "Spanish home");
 });
 
-test("one BlogPosting matches visible authorship and a two-level breadcrumb, with no FAQPage or Article", () => {
+test("one BlogPosting matches authorship and real dates, alongside breadcrumb and visible FAQ schema", () => {
   const schemas = doc.querySelectorAll('script[type="application/ld+json"]').map((node) => JSON.parse(node.textContent));
-  assert.deepEqual(schemas.map((schema) => schema["@type"]).sort(), ["BlogPosting", "BreadcrumbList"]);
+  assert.deepEqual(schemas.map((schema) => schema["@type"]).sort(), ["BlogPosting", "BreadcrumbList", "FAQPage"]);
   const post = schemas.find((schema) => schema["@type"] === "BlogPosting");
   assert.equal(post.headline, doc.querySelector("h1").textContent);
   assert.equal(post.description, meta('meta[name="description"]'));
@@ -44,11 +44,12 @@ test("one BlogPosting matches visible authorship and a two-level breadcrumb, wit
   assert.equal(post.publisher.name, "BeberGames");
   assert.equal(post.isAccessibleForFree, true);
   assert.equal(post.datePublished, editorial.datePublished);
-  for (const key of ["dateModified", "image", "aggregateRating", "review"]) assert.equal(post[key], undefined, key);
-  assert.equal(doc.querySelectorAll("time").length, 1);
-  assert.equal(doc.querySelector("time").getAttribute("datetime"), editorial.datePublished);
-  assert.equal(doc.querySelector("time").textContent, editorial.datePublished);
+  assert.equal(post.dateModified, editorial.dateModified);
+  for (const key of ["image", "aggregateRating", "review"]) assert.equal(post[key], undefined, key);
+  assert.deepEqual(doc.querySelectorAll("time").map((time) => [time.getAttribute("datetime"), time.textContent]), [editorial.datePublished, editorial.dateModified].map((date) => [date, date]));
   assert.equal(meta('meta[property="article:published_time"]'), editorial.datePublished);
+  assert.equal(meta('meta[property="article:modified_time"]'), editorial.dateModified);
+  assert.deepEqual(schemas.find((schema) => schema["@type"] === "FAQPage").mainEntity.map(({ name, acceptedAnswer }) => [name, acceptedAnswer.text]), doc.querySelectorAll("[data-guide-faq]").map((section) => [section.querySelector("h3").textContent, section.querySelector("p").textContent]));
   assert.deepEqual(schemas.find((schema) => schema["@type"] === "BreadcrumbList").itemListElement, [
     { "@type": "ListItem", position: 1, name: "Home", item: "https://bebergames.com/en" },
     { "@type": "ListItem", position: 2, name: "Drinking games for 2", item: canonical },
@@ -58,22 +59,31 @@ test("one BlogPosting matches visible authorship and a two-level breadcrumb, wit
   assert.equal(breadcrumb.querySelector('[aria-current="page"]').textContent, "Drinking games for 2");
 });
 
-test("seven complete game sections and four visible FAQ answers use a native contents list", () => {
-  const names = ["Categories", "Rhyme Round", "Two Truths and a Lie", "Never Have I Ever", "Truth or Dare", "Higher or Lower", "Roll, Keep or Reroll"];
+test("ten complete games expose equipment, play, sip outcomes and endings, with a native contents list", () => {
+  const names = gameData.map(({ name }) => name);
   const games = doc.querySelectorAll("[data-guide-game]");
+  assert.equal(games.length, 10);
+  assert.equal(doc.querySelector("h1").textContent, editorial.headline);
+  assert.equal(doc.querySelector("title").textContent, `${editorial.title} | BeberGames`);
+  assert.equal(meta('meta[name="description"]'), editorial.description);
+  assert.match(doc.querySelector(".en-intro").textContent, /These 10 drinking games/);
   assert.deepEqual(games.map((game) => game.querySelector("h3").textContent), names.map((name, i) => `${i + 1}. ${name}`));
-  for (const game of games) {
-    assert.ok(game.querySelectorAll("p").length >= 3);
+  for (const [index, game] of games.entries()) {
+    assert.equal(game.getAttribute("data-guide-game"), gameData[index].id);
+    assert.ok(game.querySelectorAll("p").length >= 4);
     assert.match(game.textContent, /What you need:/);
-    assert.match(game.textContent, /Try this:/);
+    assert.match(game.textContent, /Play:/);
+    assert.match(game.textContent, /Round end:/);
+    assert.equal(game.querySelector("[data-sip-rule]").textContent, `When to sip: ${gameData[index].sip}`);
+    for (const key of ["equipment", "play", "ending"]) assert.ok(game.textContent.includes(gameData[index][key]), key);
   }
-  assert.equal(doc.querySelectorAll('h3[id^="faq-"]').length, 4);
+  assert.equal(doc.querySelectorAll('h3[id^="faq-"]').length, faqs.length);
   for (const heading of doc.querySelectorAll('h3[id^="faq-"]')) {
     assert.ok(heading.nextElementSibling.textContent.length > 35);
     assert.equal(heading.nextElementSibling.tagName, "P");
   }
   const links = doc.querySelectorAll('nav[aria-label="On this page"] a');
-  assert.equal(links.length, 8);
+  assert.equal(links.length, 9);
   for (const link of links) {
     assert.ok(link.getAttribute("href").startsWith("#"));
     assert.equal(doc.getElementById(link.getAttribute("href").slice(1))?.tagName, "H2");
@@ -98,13 +108,31 @@ test("incoming links remain editorial, and all forbidden future routes lack expo
   assert.match(doc.getElementById("two-kings-cup").parentNode.textContent, /usually a group game.*supports two players on one screen/);
 });
 
-test("guide copy keeps passing and alcohol optional and contains no pressure or consumption penalties", () => {
+test("all four exported incoming guide links use count-neutral labels without changing the no-equipment subgroup", () => {
+  for (const [pathname, id] of [["/en", "en-home-two-guide"], ["/en/games", "en-games-two-guide"], ["/en/games/kings-cup", "kc-two-guide"], ["/en/games/truth-or-dare", "tod-two-guide"]]) {
+    const page = documentFor(pathname);
+    assert.equal(page.querySelectorAll(`#${id}`).length, 1);
+    const anchor = page.getElementById(id);
+    assert.equal(anchor.tagName, "A");
+    assert.equal(anchor.getAttribute("href"), path);
+    assert.match(anchor.textContent, /drinking games for two guide$/i);
+    assert.doesNotMatch(anchor.textContent, /\b(?:\d+|one|two|three|four|five|six|seven|eight|nine|ten|eleven|twelve)\s+(?:easy\s+)?(?:drinking\s+)?games\b/i);
+  }
+  assert.equal(doc.getElementById("without-cards").textContent, "Seven games with no equipment");
+});
+
+test("guide offers real sip rules while keeping passing, non-alcoholic choices and limits explicit", () => {
   const content = doc.querySelector(".en-article").textContent;
   assert.doesNotMatch(content, /\bchug(?:ging)?\b|(?:finish|down) your drink|shots? as punishment|drinking races?|drink as fast|must (?:drink|sip)|take \d+ (?:shots?|sips?)|loser drinks|stack(?:ed)? (?:sips|drinks)|\b(?:sexy|sexual|intimate)\b/i);
   assert.match(content, /Passing has no penalty/);
   assert.match(content, /pause or stop without an explanation/);
   assert.match(content, /legal drinking age where you are/);
   assert.match(content, /non-alcoholic/);
+  assert.match(content, /Alcohol is optional.*Water, soda and mocktails/);
+  assert.match(content, /set your own limits/);
+  assert.match(content, /You can decline any sip/);
+  assert.match(content, /Do not combine sip rules, save them up or add extra drinks/);
+  assert.equal(doc.querySelectorAll("[data-sip-rule]").length, 10);
   assert.doesNotMatch(content, /\b(\w+)\b(?:\s+\1\b){3,}/i);
 });
 

@@ -42,7 +42,7 @@ export default function TruthOrDarePage() {
       <p>Alcohol is optional. Water, soda, or no drink at all works just as well. If you choose alcohol, only drink if you are of legal drinking age where you are and decide your own limits. Read more about <EnglishLink id="tod-responsible" routeId="about" fragment="#responsible-play">responsible play</EnglishLink>.</p>
 
       <h2 id="more-games">Find another game</h2>
-      <p>See both playable options in the <EnglishLink id="tod-games" routeId="games-hub">English games hub</EnglishLink>. If your group wants a digital deck, try <EnglishLink id="tod-kings-cup" routeId="kings-cup">King&apos;s Cup</EnglishLink>. For a quieter evening with one other person, the <EnglishLink id="tod-two-guide" routeId="drinking-games-for-two">seven games for two guide</EnglishLink> includes a version of Truth or Dare you can play without a screen.</p>
+      <p>See both playable options in the <EnglishLink id="tod-games" routeId="games-hub">English games hub</EnglishLink>. If your group wants a digital deck, try <EnglishLink id="tod-kings-cup" routeId="kings-cup">King&apos;s Cup</EnglishLink>. For a quieter evening with one other person, the <EnglishLink id="tod-two-guide" routeId="drinking-games-for-two">drinking games for two guide</EnglishLink> includes a version of Truth or Dare you can play without a screen.</p>
     </EnglishPage>
   );
 }
