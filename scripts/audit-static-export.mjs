@@ -203,9 +203,19 @@ function urlToPathname(url) {
 }
 
 export function readRouteContract(projectRoot = process.cwd()) {
-  return JSON.parse(
+  const historical = JSON.parse(
     readFileSync(join(projectRoot, "tests", "fixtures", "es-routes.json"), "utf8"),
   );
+  // ES-01: keep the historical fixture immutable; review editorial changes separately.
+  const updates = JSON.parse(readFileSync(join(projectRoot, "tests", "fixtures", "es-editorial-updates.json"), "utf8"));
+  for (const [pathname, update] of Object.entries(updates)) {
+    if (!historical.some((route) => route.pathname === pathname)
+      || Object.keys(update).sort().join(",") !== "h1,title"
+      || typeof update.title !== "string" || typeof update.h1 !== "string") {
+      throw new Error(`Invalid editorial contract: ${pathname}`);
+    }
+  }
+  return historical.map((route) => ({ ...route, ...updates[route.pathname] }));
 }
 
 export function readEnglishRouteContract(projectRoot = process.cwd()) {

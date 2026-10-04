@@ -29,6 +29,7 @@ Para selección de modelo, eficiencia de prompts y estrategia de uso de Codex, c
 3. **Si detectas repetición de palabras o incoherencia, PARA inmediatamente.** Borra el bloque corrupto y reescríbelo desde cero.
 4. **Cada pregunta/ítem de lista debe ser una frase clara de 1-2 líneas máximo.** Sin adjetivos redundantes excesivos.
 5. **Siempre verificar que el número total de ítems coincida con lo prometido en el título.** Si el título dice "80 preguntas", el archivo debe contener exactamente 80.
+6. **En listas mixtas, contar preguntas y retos por separado.** No llamar «preguntas» al total de ambos tipos. Verificar también los conteos y niveles del producto antes de escribir su descripción; el copy sigue al inventario real.
 
 ---
 

@@ -3,6 +3,7 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import test from "node:test";
+import { assertEs01Compatible } from "./helpers/es01-baseline.mjs";
 
 const require = createRequire(import.meta.url);
 require("tsx/cjs");
@@ -159,7 +160,7 @@ test("rendered guide count, sip rules, visible FAQ and existing FAQ schema share
 test("intent alignment preserves Spanish sources, both interactive games, shared EN design and infrastructure", () => {
   const paths = ["app/(spanish)", "content/blog", "components/games", "lib/games", "lib/data/truth-or-dare-prompts.ts", "app/(english)/en/games", "app/(english)/en/page.tsx", "app/globals.css", "components/layout", "lib/i18n", "scripts", "app/sitemap.ts", "tests/fixtures/es-routes.json", "public", "package.json", "package-lock.json", "next.config.ts"];
   const exclusions = incomingGuideLinks.map(([file]) => `:(exclude,literal)${file}`);
-  assert.equal(execFileSync("git", ["diff", "17a2180fdc4b0d6df1e455483b3c3fa79accb230", "--", ...paths, ...exclusions], { encoding: "utf8" }), "");
+  assertEs01Compatible("17a2180fdc4b0d6df1e455483b3c3fa79accb230", paths, exclusions);
   for (const [file, id, before, after] of incomingGuideLinks) {
     const baseline = execFileSync("git", ["show", `17a2180fdc4b0d6df1e455483b3c3fa79accb230:${file}`], { encoding: "utf8" });
     const anchor = new RegExp(`(<EnglishLink\\b[^>]*\\bid="${id}"[^>]*>)([^<]*)(</EnglishLink>)`, "g");
@@ -191,7 +192,7 @@ test("article sources contain no client behavior, remote media or Spanish editor
 test("Phase 5 leaves Spanish files, fixtures, navigation, sitemap and dependencies unchanged", () => {
   const base = "e707c88f313a97f2a9861940a1362cfb87033425";
   const paths = ["app/(spanish)", "content/blog", "lib/blog.ts", "app/globals.css", "tests/fixtures/es-routes.json", "tests/fixtures/es-redirects.json", "components/layout/english/EnglishNav.tsx", "components/layout/english/EnglishFooter.tsx", "app/sitemap.ts", "package.json", "package-lock.json"];
-  assert.equal(execFileSync("git", ["diff", base, "--", ...paths], { encoding: "utf8" }), "");
+  assertEs01Compatible(base, paths);
   const originalRegistry = execFileSync("git", ["show", `${base}:lib/i18n/routes.ts`], { encoding: "utf8" });
   const oldModule = require("typescript").transpileModule(originalRegistry.replace('import { absoluteUrl, type Locale } from "./locales";', 'const absoluteUrl = (path: string) => path; type Locale = "es" | "en-US";'), { compilerOptions: { module: 1 } }).outputText;
   const loaded = { exports: {} };

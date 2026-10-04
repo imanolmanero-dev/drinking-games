@@ -291,7 +291,7 @@ export default function VerdadORetoPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>Verdad o Reto Online: El Clásico en tu Móvil</h2>
             <p>
-              El <strong>Verdad o Reto</strong> es quizás el juego de fiestas más universal de la historia. Todas las generaciones lo han jugado, en todos los países, con todas las variaciones posibles. Nuestra versión digital lo lleva al siguiente nivel con cientos de preguntas y retos organizados por intensidad.
+              El <strong>Verdad o Reto</strong> es quizás el juego de fiestas más universal de la historia. Todas las generaciones lo han jugado, en todos los países, con todas las variaciones posibles. Nuestra versión digital reúne 80 verdades y 80 retos organizados por intensidad.
             </p>
             <p>
               Olvídate de quedarte en blanco intentando inventar preguntas en tiempo real. Con BeberGames, el juego fluye solo: introduces los nombres, eliges el nivel y la app se encarga de todo. Vosotros solo tenéis que sobrevivir a lo que salga en pantalla.
@@ -307,15 +307,18 @@ export default function VerdadORetoPage() {
               La regla de beber es clara: el que se acobarda y no quiere responder ni cumplir el reto, bebe. Fondo blanco sin excusas. Esto mantiene la tensión alta durante toda la partida y garantiza que nadie se quede mirando sin participar.
             </p>
             <ul>
+              <li><strong>Nivel Soft (suave):</strong> Preguntas para romper el hielo y retos de imitación, baile o canciones.</li>
               <li><strong>Nivel Normal:</strong> Preguntas divertidas y retos sociales para cualquier grupo.</li>
-              <li><strong>Nivel Picante (+18):</strong> Preguntas más personales y retos que requieren valor. Solo para grupos de confianza.</li>
+              <li><strong>Nivel Picante (+18):</strong> Preguntas más íntimas y retos atrevidos. Solo para grupos de confianza.</li>
               <li><strong>Prohibido acampar en Verdad:</strong> Estableced la regla de máximo 2 verdades seguidas para que nadie se escaquee de los retos.</li>
             </ul>
+
+            <p>Si buscas más ideas para el nivel Picante, consulta nuestras <Link href="/blog/preguntas-picantes-verdad-o-reto" className="text-amber-500 underline">50 preguntas picantes y 15 retos</Link> para Verdad o Reto.</p>
 
             <h3>Preguntas frecuentes</h3>
             <p><strong>¿Cuántos jugadores necesito?</strong> Mínimo 3 para que funcione bien, aunque con 4-6 es donde más brilla.</p>
             <p><strong>¿Cuánto dura una partida?</strong> El juego termina cuando se agotan todas las tarjetas del nivel elegido. Normalmente entre 30 y 60 minutos.</p>
-            <p><strong>¿Puedo mezclar niveles?</strong> Sí. Puedes seleccionar Normal y Picante a la vez para una experiencia variada.</p>
+            <p><strong>¿Puedo mezclar niveles?</strong> Sí. Puedes combinar Soft, Normal y Picante, o elegir solo el nivel que encaje con vuestro grupo.</p>
 
             <h3>Otros juegos de preguntas que te encantarán</h3>
             <ul>
