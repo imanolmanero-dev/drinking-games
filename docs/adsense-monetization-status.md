@@ -79,6 +79,16 @@ Comparar con el baseline previo cuando sea posible. Confirmar también en AdSens
 
 ## Reglas operativas actuales
 
+### Coordinación técnica de carga — 2026-10-04
+
+El root español es el único propietario del script de AdSense. Usa `next/script` con ID `spanish-adsense` y `lazyOnload`: el componente se monta, espera `load` si aún no ocurrió y programa la carga en idle. No se emite un script publicitario ejecutable en el HTML estático. Esto evita la carrera confirmada en el blog actual, donde Auto Ads insertaba un bloque entre el encabezado y la prosa antes de hidratar. No cambia el publisher, slots, CMP ni ajustes remotos.
+
+El slot manual conserva su cola previa a la llegada del script. La CMP sigue siendo la de Google; no se añade otra UI ni se cambia el consentimiento. La carga más tardía también retrasa su inicialización. EN no importa este loader.
+
+La prueba determinista se ejecuta **solo mediante Playwright MCP**: `browser_run_code_unsafe` con `filename: "tests/browser/adsense-hydration.mjs"`, sirviendo `out` en `http://127.0.0.1:4173`. Retrasa los scripts Next un segundo y responde inmediatamente con un mock que inserta el mismo bloque. El control negativo añade la etiqueta nativa anterior a la respuesta HTML y debe producir #418; la versión corregida debe tener el párrafo hidratado antes de insertar, un único loader y cero errores en cuatro artículos a 390/1440 px, incluido refresco. El control negativo conserva el loader nuevo, pero verifica la **primera** ejecución/inserción de la etiqueta nativa; la segunda ejecución no se usa para probar la carrera.
+
+`lazyOnload` no se trata como una garantía universal para futuras fronteras de hidratación: cambios de Suspense, streaming o carga diferida requieren repetir la prueba. La QA con recursos reales de Google puede servir el export local mediante interceptación del origen de producción, sin publicar nada. Verificar CMP nueva/guardada y slot procesado; no exigir una impresión concreta.
+
 - No activar Anchor Ads de forma permanente ni Side rail sin revisión.
 - No reducir la frecuencia de Vignette por debajo de 10 minutos sin datos.
 - No eliminar las exclusiones de Auto Ads de los juegos sin análisis.

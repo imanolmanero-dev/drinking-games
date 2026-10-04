@@ -186,6 +186,8 @@ lib/
 
 ### Reglas de código:
 
+- **Scripts que modifican el DOM:** AdSense tiene un único propietario en el root español: `next/script`, ID `spanish-adsense`, estrategia `lazyOnload`. No volver a emitir su script nativo `async` ni cargarlo desde slots manuales: Auto Ads puede insertar nodos antes de hidratar y provocar React #418. `afterInteractive` no garantiza la hidratación completa. Al cambiar esta secuencia, ejecutar mediante Playwright MCP `tests/browser/adsense-hydration.mjs` con Next retrasado y un mock publicitario inmediato; el control negativo debe reproducir #418 y los artículos corregidos deben hidratar antes de la inserción. Revalidar si se añaden nuevas fronteras Suspense o carga diferida en el shell/blog. Los slots manuales encolan `adsbygoogle.push` y EN permanece aislado.
+
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.
 - **Sonido/Vibración:** Siempre usar `useApp().playSound()` y `useApp().vibrateDevice()`. NUNCA acceder directamente a Web Audio API desde componentes.
 - **Brand name:** Siempre "BeberGames" (una palabra, camelCase). La única excepción es el array `alternateName` en `JsonLd.tsx` para SEO.
@@ -364,3 +366,4 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-10-01 | El validator rechazaba comparaciones query/page con current desconocido y previous observado | `scripts/seo-reporting.mjs`, tests SEO | Exigido el contrato de métricas y deltas null para current fallido/truncado, sin relajar las observaciones válidas |
 | 2026-10-02 | King's Cup EN sustituía Waterfall y la copa central por actividades que no respondían a la intención del juego | Datos, página y cliente King's Cup EN | Reglas reconocibles EN con copa física, sorbos opcionales, 5/6 sin género y pruebas de coherencia entre juego y contenido |
 | 2026-10-02 | La guía EN «Drinking Games for 2» eliminaba las mecánicas de beber de sus siete juegos | Guía para dos, datos editoriales y tests EN | Diez juegos con sorbos pequeños opcionales, desencadenantes claros y pasar sin consecuencia; FAQ visible y schema comparten datos |
+| 2026-10-04 | Auto Ads insertaba nodos antes de hidratar el blog español y provocaba React #418 | Root español y tests de carga/export | Carga única con `lazyOnload`; regresión con publicidad inmediata y Next retrasado, sin cambiar ajustes de AdSense |

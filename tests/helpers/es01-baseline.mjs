@@ -1,9 +1,11 @@
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { rootFile, loadingReplacements } from "./adsense-loading.mjs";
 
-// Exact, reviewed copy changes only. No whole-page regression exclusions.
+// Exact editorial + AdSense loading changes only. No whole-page exclusions.
 export const es01Replacements = {
+  [rootFile]: loadingReplacements,
   "content/blog/preguntas-picantes-verdad-o-reto.mdx": [
     ['title: "65 preguntas picantes para Verdad o Reto (Adultos)"', 'title: "50 preguntas picantes para Verdad o Reto + 15 retos"'],
     ['excerpt: "Sube la temperatura con esta lista de 65 preguntas picantes para Verdad o Reto. Perfectas para previas con amigos de confianza."', 'excerpt: "50 preguntas picantes para Verdad o Reto y 15 retos para variar la partida. Ideas para previas con amigos de confianza."'],
@@ -35,6 +37,6 @@ export function assertEs01Compatible(base, paths, additionalExclusions = []) {
       assert.equal(expected.split(before).length - 1, 1, `${file}: exact original fragment`);
       expected = expected.replace(before, after);
     }
-    assert.equal(readFileSync(file, "utf8").replace(/\r\n/g, "\n"), expected, `${file}: only reviewed ES-01 changes`);
+    assert.equal(readFileSync(file, "utf8").replace(/\r\n/g, "\n"), expected, `${file}: only explicit editorial/loading fragments`);
   }
 }

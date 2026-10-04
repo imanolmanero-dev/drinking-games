@@ -34,8 +34,14 @@ test("los 72 documentos conservan un solo html/body, CSS, fuentes, AdSense y man
     assert.equal(manifests.length, 1, pathname);
     assert.equal(manifests[0].getAttribute("href"), "/manifest.json", pathname);
     const scripts = document.querySelectorAll("script[src]").filter((script) => script.getAttribute("src").includes("adsbygoogle.js"));
-    assert.equal(scripts.length, 1, pathname);
-    assert.equal(scripts[0].getAttribute("src"), "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2015657577739632", pathname);
+    // The executable loader is created after hydration/load/idle, not by the HTML parser.
+    assert.equal(scripts.length, 0, pathname);
+    assert.equal(document.querySelector('meta[name="google-adsense-account"]').getAttribute("content"), "ca-pub-2015657577739632", pathname);
+    const payload = document.querySelectorAll("script:not([src])").map(script => script.textContent).join("\n");
+    // Verify the client descriptor remains, without treating inert RSC text as an executable tag.
+    assert.equal(payload.split('spanish-adsense').length - 1, 1, pathname);
+    assert.match(payload, /lazyOnload/, pathname);
+    assert.match(payload, /pagead2\.googlesyndication\.com\/pagead\/js\/adsbygoogle\.js\?client=ca-pub-2015657577739632/, pathname);
     assert.equal(document.querySelectorAll("ins.adsbygoogle").length, pathname === "/juegos/verdad-o-reto" ? 1 : 0, pathname);
   }
 });

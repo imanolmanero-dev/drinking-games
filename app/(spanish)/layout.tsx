@@ -1,5 +1,6 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 
 import { Analytics } from "@vercel/analytics/next";
 import Navbar from "@/components/layout/Navbar";
@@ -134,8 +135,10 @@ export default function RootLayout({
         <link rel="apple-touch-icon" href="/icons/icon-192.png" />
         {/* Google AdSense — verificación de cuenta y carga del script */}
         <meta name="google-adsense-account" content="ca-pub-2015657577739632" />
-        <script
-          async
+        {/* Sole AdSense owner: wait for load + idle, not partial hydration. */}
+        <Script
+          id="spanish-adsense"
+          strategy="lazyOnload"
           src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2015657577739632"
           crossOrigin="anonymous"
         />
