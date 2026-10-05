@@ -44,8 +44,8 @@ export default function YoNuncaReglasPage() {
             </h2>
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>Jugadores:</strong> Mínimo 2 personas (el punto ideal está entre 4 y 10).</li>
-              <li>✅ <strong>Bebida:</strong> Vuestras copas llenas en todo momento.</li>
-              <li>✅ <strong>Sinceridad:</strong> La regla de oro. Si mientes y te pillan... ¡toca beber el doble!</li>
+              <li>✅ <strong>Bebida (opcional):</strong> Podéis jugar sin vasos o con agua, refrescos o zumos.</li>
+              <li>✅ <strong>Sinceridad:</strong> Responded con sinceridad, pero podéis pasar sin penalización ni explicaciones.</li>
               <li>✅ <strong>Nuestra aplicación:</strong> Que te servirá para leer las más de 500 frases seleccionadas a mano.</li>
             </ul>
           </section>
@@ -60,7 +60,7 @@ export default function YoNuncaReglasPage() {
                 {
                   paso: "1",
                   titulo: "Preparación",
-                  desc: "Todos los jugadores deben estar sentados en círculo con su vaso bien lleno.",
+                  desc: "Sentaos en círculo y acordad cómo responder: levantar la mano, bajar un dedo o jugar con bebida. El alcohol no es necesario.",
                 },
                 {
                   paso: "2",
@@ -75,7 +75,7 @@ export default function YoNuncaReglasPage() {
                 {
                   paso: "4",
                   titulo: "El momento de la verdad",
-                  desc: "Todos los que SÍ hayan hecho lo que dice la tarjeta alguna vez en su vida, deben dar un trago a su bebida. Los que nunca lo hayan hecho se salvan por esta ronda.",
+                  desc: "Quienes SÍ hayan hecho lo que dice la tarjeta responden con el gesto acordado o, si elegís bebida, pueden tomar un sorbo pequeño y opcional. Se puede pasar sin penalización. Después, pasad el dispositivo al siguiente jugador y avanzad a otra frase.",
                 },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
@@ -123,15 +123,15 @@ export default function YoNuncaReglasPage() {
               <div className="mt-2 space-y-4">
                 <div>
                   <strong className="text-foreground block mb-1">📖 La historia completa</strong>
-                  Si tras leer una frase, eres la ÚNICA persona de la mesa que bebe, estás moralmente obligado a explicar detalladamente la historia de qué pasó y cómo ocurrió. Prepárate para ser juzgado.
+                  Si eres la única persona que ha hecho lo dicho, puedes contar la historia si quieres. Si prefieres guardártela, pasad a la siguiente frase sin insistir.
                 </div>
                 <div>
-                  <strong className="text-foreground block mb-1">😴 Solidaridad (o castigo por aburridos)</strong>
-                  Si sale una frase picante o divertida y absolutamente nadie en el círculo bebe, significa que sois un grupo muy aburrido. Todos deberéis beber un trago simbólico de castigo.
+                  <strong className="text-foreground block mb-1">😴 Regla del creador (opcional)</strong>
+                  Si nadie ha hecho lo dicho, se pasa al siguiente turno sin consecuencia. Solo si lo habéis acordado antes, quien propuso la frase puede tomar un sorbo pequeño y opcional, también sin alcohol. No es una regla universal ni obliga a beber.
                 </div>
                 <div>
                   <strong className="text-foreground block mb-1">🕵️‍♂️ El Detective</strong>
-                  Si un jugador bebe, pero tú estás absolutamente seguro de que otro jugador también lo ha hecho y no está bebiendo (es decir, está mintiendo), puedes acusarlo. Si el grupo vota que miente, el infractor bebe 5 tragos seguidos.
+                  Si crees que un amigo también ha hecho lo dicho, puedes preguntarle si quiere compartir su anécdota. Puede pasar sin explicar nada; no se vota ni se le impone un castigo.
                 </div>
               </div>
             </div>

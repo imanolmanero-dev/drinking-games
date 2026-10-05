@@ -67,6 +67,8 @@ Contenido...
 - **Links internos:** Incluir al menos 3 links a juegos de BeberGames donde sea natural
 - **Autor:** Siempre "BeberGames" (nunca "Beber Games", "beber games", ni variantes)
 - **Fechas:** Formato ISO `YYYY-MM-DD`
+- **Reglas caseras:** Una consecuencia opcional debe seguir siendo opcional en el artículo, la FAQ visible/schema y el copy del juego. Separar la dinámica básica de las variantes acordadas; no convertirlas en obligaciones universales.
+- **Coherencia de Yo Nunca:** Validar todas las instrucciones visibles, incluida la tarjeta de juego, y todas sus FAQ; no comprobar solo el bloque del creador. Los tests deben rechazar consumo obligatorio, penalizaciones por pasar, cantidades acumuladas y relatos forzados, aunque otro párrafo diga «opcional».
 
 ### Cosas PROHIBIDAS en contenido:
 - ❌ Texto placeholder o lorem ipsum
@@ -367,3 +369,5 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-10-02 | King's Cup EN sustituía Waterfall y la copa central por actividades que no respondían a la intención del juego | Datos, página y cliente King's Cup EN | Reglas reconocibles EN con copa física, sorbos opcionales, 5/6 sin género y pruebas de coherencia entre juego y contenido |
 | 2026-10-02 | La guía EN «Drinking Games for 2» eliminaba las mecánicas de beber de sus siete juegos | Guía para dos, datos editoriales y tests EN | Diez juegos con sorbos pequeños opcionales, desencadenantes claros y pasar sin consecuencia; FAQ visible y schema comparten datos |
 | 2026-10-04 | Auto Ads insertaba nodos antes de hidratar el blog español y provocaba React #418 | Root español y tests de carga/export | Carga única con `lazyOnload`; regresión con publicidad inmediata y Next retrasado, sin cambiar ajustes de AdSense |
+| 2026-10-05 | La FAQ de Yo Nunca exigía una consecuencia que el artículo marcaba como opcional | Artículo, FAQ y copy de Yo Nunca | Regla del creador opcional coherente, explicación sin alcohol y tests de semántica compartida |
+| 2026-10-05 | La revisión ES-02 detectó consumo y relatos obligatorios fuera del bloque del creador | Copy de juego/reglas/artículo y tests Yo Nunca | Correcciones puntuales y validación de superficies completas con casos negativos de coerción |

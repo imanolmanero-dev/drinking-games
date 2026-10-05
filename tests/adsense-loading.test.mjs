@@ -6,6 +6,7 @@ import ts from "typescript";
 import { createRequire } from "node:module";
 import { runInNewContext } from "node:vm";
 import { rootFile, loadingReplacements } from "./helpers/adsense-loading.mjs";
+import { assertEs02Compatible } from "./helpers/es02-baseline.mjs";
 const require = createRequire(import.meta.url);
 
 test("installed Next loader cannot execute before mount, load and idle, and deduplicates remounts", () => {
@@ -38,7 +39,7 @@ test("installed Next loader cannot execute before mount, load and idle, and dedu
   assert.equal(appended.length,1,"same source is not appended twice while loading");
 });
 
-test("Spanish root changes only the reviewed loading contract; all other production source is identical", () => {
+test("Spanish root changes only the reviewed loading contract; other source matches the exact editorial baseline", () => {
   const base = "b6c0f36bc3ee9f1604c9093fb5fbf70a8b303f9d";
   let expected = execFileSync("git", ["show", `${base}:${rootFile}`], {encoding:"utf8"}).replace(/\r\n/g,"\n");
   for(const [before,after] of loadingReplacements) {
@@ -46,7 +47,7 @@ test("Spanish root changes only the reviewed loading contract; all other product
     expected = expected.replace(before,after);
   }
   assert.equal(readFileSync(rootFile,"utf8").replace(/\r\n/g,"\n"), expected);
-  assert.equal(execFileSync("git", ["diff",base,"--","app","components","lib","content","public","scripts",`:(exclude,literal)${rootFile}`], {encoding:"utf8"}), "");
+  assertEs02Compatible(base, ["app", "components", "lib", "content", "public", "scripts"], [`:(exclude,literal)${rootFile}`]);
 });
 
 test("manual slot queues once before a delayed external loader, including Strict Mode effect replay", () => {

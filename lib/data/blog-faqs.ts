@@ -366,7 +366,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "reglas-del-yo-nunca": [
     {
       q: "¿Cuáles son las reglas del Yo Nunca?",
-      a: "Las reglas del Yo Nunca son: por turnos, cada jugador dice 'Yo nunca he...' seguido de algo que no haya hecho. Todos los que sí lo hayan hecho beben. Si nadie bebe, el que propuso la frase bebe como penalización. Opcional: el que bebe puede contar la historia si quiere.",
+      a: "Por turnos, cada jugador dice 'Yo nunca he...' seguido de algo que afirma no haber hecho. Quienes sí lo hayan hecho levantan la mano, bajan un dedo o pueden tomar un sorbo pequeño y opcional, según lo acordado. Después pasa el turno al siguiente jugador. Si nadie lo ha hecho, se sigue sin consecuencia. La regla del creador es opcional y debe acordarse antes; no obliga a beber. Contar la historia también es voluntario.",
     },
     {
       q: "¿Cuántos jugadores se necesitan para el Yo Nunca?",
@@ -374,11 +374,11 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Qué pasa si nadie bebe en el Yo Nunca?",
-      a: "Si nadie bebe cuando alguien dice su frase, esa persona bebe como penalización por haber elegido algo demasiado específico o raro. Esto incentiva a elegir frases donde al menos algún jugador haya vivido esa experiencia.",
+      a: "Si nadie ha hecho lo dicho, se pasa al siguiente turno sin consecuencia. Solo si lo habéis acordado antes, quien propuso la frase puede tomar un sorbo pequeño y opcional, también de una bebida sin alcohol. La regla del creador no es universal ni obliga a beber.",
     },
     {
       q: "¿Se puede jugar al Yo Nunca sin alcohol?",
-      a: "Sí. El Yo Nunca funciona igual con cualquier bebida: agua, refrescos o zumos. La mecánica y la diversión son exactamente iguales. BeberGames promueve el juego responsable y ninguno de sus juegos requiere consumir alcohol para disfrutarse.",
+      a: "Sí, no hace falta alcohol ni otra bebida. Podéis levantar la mano si habéis hecho lo dicho, o empezar con cinco dedos y bajar uno por cada frase que os aplique. Los turnos son los mismos: acordad cuándo terminar o reiniciar los dedos. También podéis usar agua, refrescos o zumos con sorbos pequeños y opcionales. Se puede pasar sin penalización.",
     },
   ],
 

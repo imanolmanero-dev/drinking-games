@@ -253,7 +253,7 @@ export default function YoNuncaPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>El Juego del Yo Nunca: Confesiones, Amigos y Mucha Bebida</h2>
             <p>
-              El <strong>Yo Nunca</strong> (conocido en el mundo anglosajón como <em>Never Have I Ever</em>) es uno de los juegos conversacionales para fiestas más populares del planeta. La premisa es simple: un jugador dice algo que nunca ha hecho, y todos los que sí lo han hecho deben beber. Lo que parece inocente acaba revelando secretos que nadie esperaba.
+              El <strong>Yo Nunca</strong> (conocido en el mundo anglosajón como <em>Never Have I Ever</em>) es uno de los juegos conversacionales para fiestas más populares del planeta. La premisa es simple: un jugador dice algo que nunca ha hecho, y quienes sí lo han hecho responden con el gesto o la bebida que el grupo haya elegido. Compartir anécdotas es voluntario.
             </p>
             <p>
               Con nuestra aplicación móvil gratuita, tienes acceso a cientos de frases curadas y organizadas por nivel de intensidad. Nada de quedarse en blanco ni repetir siempre las mismas preguntas aburridas. El motor aleatorio se encarga de sacar las confesiones más comprometidas en el momento menos esperado.
@@ -261,12 +261,12 @@ export default function YoNuncaPage() {
 
             <h3>¿Cómo se juega al Yo Nunca?</h3>
             <p>
-              Todos los jugadores empiezan con una copa llena. Cuando aparece una frase en pantalla —por ejemplo, &ldquo;Yo nunca he mentido en una entrevista de trabajo&rdquo;— cualquiera que sí lo haya hecho debe beber. Así de sencillo, así de brutal.
+              Antes de empezar, acordad cómo responder: levantar la mano, bajar un dedo o, si elegís jugar con bebida, tomar un sorbo pequeño y opcional. Puede ser agua o un refresco; el alcohol no es necesario. La app muestra frases como &ldquo;Yo nunca he mentido en una entrevista de trabajo&rdquo; y permite avanzar a la siguiente. Quienes sí lo hayan hecho responden según lo acordado y cualquiera puede pasar sin penalización.
             </p>
             <ul>
               <li><strong>Modo Normal:</strong> Frases divertidas y sociales, perfectas para cualquier grupo.</li>
               <li><strong>Modo Picante (+18):</strong> Preguntas exclusivamente para adultos con la mente abierta. Las risas nerviosas están garantizadas.</li>
-              <li><strong>Regla de Solidaridad:</strong> Si nadie bebe, todos beben por aburridos. El grupo no puede escapar.</li>
+              <li><strong>Regla del creador (opcional):</strong> Si nadie ha hecho lo dicho, se pasa al siguiente turno sin consecuencia. Solo si lo habéis acordado antes, quien propuso la frase puede tomar un sorbo pequeño y opcional, también sin alcohol. No obliga a beber.</li>
             </ul>
 
             <h3>Preguntas frecuentes sobre el Yo Nunca</h3>
@@ -277,11 +277,11 @@ export default function YoNuncaPage() {
             <h3>Juegos relacionados que te pueden gustar</h3>
             <p>Si el Yo Nunca os ha gustado, prueba también:</p>
             <ul>
-              <li><Link href="/juegos/verdad-o-reto" className="text-accent underline">Verdad o Reto</Link> — Elige entre confesar una verdad o cumplir un reto. El gallina que se acobarde, bebe.</li>
+              <li><Link href="/juegos/verdad-o-reto" className="text-accent underline">Verdad o Reto</Link> — Preguntas y retos para seguir la conversación.</li>
               <li><Link href="/juegos/quien-es-mas-probable" className="text-accent underline">Quién Es Más Probable</Link> — El grupo vota quién es más probable que haya hecho algo. La mayoría señala y el más votado bebe.</li>
               <li><Link href="/juegos/yo-prefiero" className="text-accent underline">Yo Prefiero</Link> — Dilemas A o B donde la minoría siempre paga.</li>
             </ul>
-            <p>Consulta también nuestra <Link href="/juegos/yo-nunca/reglas" className="text-accent underline">guía completa de reglas del Yo Nunca</Link> con variantes avanzadas y estrategias para sacarle todo el partido.</p>
+            <p>Consulta también las <Link href="/blog/reglas-del-yo-nunca" className="text-accent underline">reglas completas de Yo Nunca</Link> con variantes y una explicación de cómo jugar sin alcohol.</p>
           </div>
         </div>
 
@@ -388,7 +388,7 @@ export default function YoNuncaPage() {
 
               {/* Subtle hint */}
               <p className="text-xs text-muted">
-                Los que sí lo hayan hecho… ¡beben! 🍺
+                Responde como hayáis acordado; puedes pasar. ✋
               </p>
             </div>
           </motion.div>
