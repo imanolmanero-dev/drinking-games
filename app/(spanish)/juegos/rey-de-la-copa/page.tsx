@@ -276,7 +276,7 @@ export default function ReyDeLaCopaPage() {
               <li><Link href="/juegos/beer-pong" className="text-amber-500 underline">Beer Pong</Link> — El clásico de las fiestas universitarias. Apunta bien.</li>
               <li><Link href="/juegos/triman" className="text-amber-500 underline">Triman</Link> — Dados y el poder del 3. Simple, rápido y brutal.</li>
             </ul>
-            <p>Consulta todas las variantes y reglas avanzadas en la <Link href="/juegos/rey-de-la-copa/reglas" className="text-amber-500 underline">guía oficial del Rey de la Copa</Link>.</p>
+            <p>Para conocer variantes y consejos para jugar con una baraja física, consulta la <Link href="/blog/rey-de-la-copa-reglas" className="text-amber-500 underline">guía del Rey de la Copa</Link>.</p>
           </div>
         </div>
       </div>

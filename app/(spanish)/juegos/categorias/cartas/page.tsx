@@ -106,6 +106,9 @@ export default function CartasCategoryPage() {
             <p>
               La versión digital tiene una ventaja clara: no necesitas una baraja física, no se mojan las cartas con cerveza y la app recuerda las reglas por ti. Solo abre el móvil, elige tu juego y empieza. Si quieres conocer todas las reglas carta por carta, consulta nuestra <Link href="/blog/ring-of-fire-reglas-cartas" className="text-accent hover:underline">guía completa del Ring of Fire</Link> o la <Link href="/blog/rey-de-la-copa-reglas" className="text-accent hover:underline">guía del Rey de la Copa</Link>.
             </p>
+            <p>
+              Si tienes una baraja física y quieres comparar otras dinámicas, nuestra <Link href="/blog/juegos-para-beber-con-cartas" className="text-accent hover:underline">guía de juegos para beber con cartas</Link> explica cómo preparar cada juego y qué lo distingue.
+            </p>
           </div>
         </div>
       </div>

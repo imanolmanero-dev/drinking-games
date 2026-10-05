@@ -227,6 +227,7 @@ lib/
 - Una categoría sin texto SEO es "thin content" para Google y perjudica AdSense.
 
 ### Regla anti-canibalización:
+- **Alias de búsqueda:** Cuando la evidencia para cambiar un título o una URL sea débil, explicar primero el alias en el contenido, vinculado a la mecánica real y sin presentarlo como nombre universal. Conservar títulos y canonicals establecidos; distinguir variantes cuando sus reglas cambien.
 - Si existe tanto un post de blog (`/blog/reglas-de-X`) como una página de reglas (`/juegos/X/reglas`) para el mismo juego:
   - El post del blog debe cubrir: guía extensa, estrategias, variantes, contexto cultural
   - La página de reglas debe cubrir: cómo jugar paso a paso (resumen rápido)

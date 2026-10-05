@@ -385,7 +385,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "rey-de-la-copa-reglas": [
     {
       q: "¿Cuáles son las reglas de El Rey de la Copa?",
-      a: "En El Rey de la Copa las cartas se colocan boca abajo en círculo alrededor de un vaso central. Por turnos, cada jugador roba una carta y ejecuta su regla (As = waterfall, 2 = elige quién bebe, 7 = todos señalan al cielo y el último bebe, Rey = añade al vaso central). El que saca el 4º Rey bebe el vaso entero.",
+      a: "Se colocan las cartas boca abajo en círculo alrededor de una copa central y se roba por turnos. As inicia una cascada o Waterfall, 2 invita a otra persona a un sorbo y 7 hace que todos señalen al cielo. En esta guía, beber es opcional, con sorbos pequeños y con o sin alcohol. Cualquiera puede pasar o parar en cualquier momento. Los tres primeros Reyes permiten una aportación pequeña y opcional a la copa. El cuarto termina la variante: puedes dar un sorbo pequeño y opcional o pasar, retirar la copa y desechar el resto.",
     },
     {
       q: "¿En qué se diferencia El Rey de la Copa del Ring of Fire?",
@@ -397,7 +397,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Qué se pone en el vaso central de El Rey de la Copa?",
-      a: "En el vaso central cada jugador que roba un Rey vierte parte de su bebida. La mezcla puede ser cualquier cosa: cerveza, vino, refrescos o lo que haya en la mesa. El desgraciado que saca el cuarto Rey tiene que beberse toda esa mezcla de golpe.",
+      a: "Quien saca uno de los tres primeros Reyes puede añadir una cantidad pequeña y opcional a la copa central, también de agua o refresco, o pasar sin aportar nada. Al cuarto Rey, la persona puede dar un sorbo pequeño y opcional o pasar. No tienes que terminar la copa ni beber toda la mezcla: se retira la copa, se desecha el resto y termina esta variante.",
     },
   ],
 

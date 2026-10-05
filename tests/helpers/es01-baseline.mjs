@@ -3,10 +3,11 @@ import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { rootFile, loadingReplacements } from "./adsense-loading.mjs";
 import { es02Replacements } from "./es02-baseline.mjs";
+import { es03Replacements, mergeEditorialReplacements } from "./es03-baseline.mjs";
 
 // Exact editorial + AdSense loading changes only. No whole-page exclusions.
 export const es01Replacements = {
-  ...es02Replacements,
+  ...mergeEditorialReplacements(es02Replacements, es03Replacements),
   [rootFile]: loadingReplacements,
   "content/blog/preguntas-picantes-verdad-o-reto.mdx": [
     ['title: "65 preguntas picantes para Verdad o Reto (Adultos)"', 'title: "50 preguntas picantes para Verdad o Reto + 15 retos"'],
