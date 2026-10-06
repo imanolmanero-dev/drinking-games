@@ -10,6 +10,7 @@ import {
   buildSeoSnapshot,
   calculatePercentDelta,
   calculatePeriods,
+  calculateMaturePeriods,
   countInclusiveDays,
   renderSeoMarkdown,
   validateSeoSnapshot,
@@ -784,23 +785,6 @@ test('la salida no conserva secretos ni credenciales', () => {
   assert.doesNotMatch(output, /GCP_CREDENTIALS|private_key|FAKE_PRIVATE_KEY_SHOULD_NOT_APPEAR/);
 });
 
-test('consulta metadata all y selecciona 7/7 días anteriores al primer día incompleto', async () => {
-  const now = new Date('2026-09-28T02:40:00Z');
-  const requests = [];
-  const coverage = await discoverDateCoverage(async (request) => {
-    requests.push(request);
-    return { rows: dateRows('2026-09-01', 26), metadata: { first_incomplete_date: '2026-09-25' } };
-  }, now);
-  assert.deepEqual(requests, [{ startDate: '2026-08-31', endDate: '2026-09-27', dimensions: ['date'], dataState: 'all', type: 'web', rowLimit: 29 }]);
-  assert.equal(coverage.status, 'verified');
-  assert.equal(coverage.firstIncompleteDate, '2026-09-25');
-  assert.deepEqual(coverage.periods, {
-    current: { start: '2026-09-18', end: '2026-09-24' },
-    previous: { start: '2026-09-11', end: '2026-09-17' },
-  });
-  assert.equal(coverage.reason, 'first_incomplete_date');
-});
-
 test('el corte de fecha respeta medianoche Pacific en verano e invierno', () => {
   for (const [now, end] of [
     ['2026-09-28T06:59:59Z', '2026-09-26'],
@@ -858,9 +842,9 @@ test('objeto metadata ausente queda unverified incluso con todas las filas diari
 test('fallos de consulta quedan unavailable sin exponer detalles privados', async () => {
   const now = new Date('2026-08-27T10:00:00Z');
   const failure = await discoverDateCoverage(async () => { throw new Error('PRIVATE_CREDENTIAL'); }, now);
-  assert.equal(failure.status, 'unavailable');
-  assert.equal(failure.reason, 'request_failed');
-  assert.equal(failure.periods, null);
+  assert.equal(failure.status, 'mature_lag');
+  assert.equal(failure.advisory.coverage.reason, 'request_failed');
+  assert.deepEqual(failure.periods, calculateMaturePeriods(now));
   assert.doesNotMatch(JSON.stringify(failure), /PRIVATE_CREDENTIAL/);
 });
 
@@ -898,121 +882,6 @@ test('objeto metadata sin campo propio produce first_incomplete_date_absent', ()
     assert.equal(coverage.status, 'unverified');
     assert.equal(coverage.reason, 'first_incomplete_date_absent');
     assert.equal(coverage.firstIncompleteDate, null);
-    assert.equal(coverage.periods, null);
-  }
-});
-
-test('reintento idéntico distingue las dos ausencias y conserva evidencia del segundo intento', async () => {
-  const now = new Date('2026-09-28T02:40:00Z');
-  for (const first of [{}, { metadata: {} }]) {
-    const requests = [], diagnostics = [];
-    const coverage = await discoverDateCoverage(async (request) => {
-      requests.push(request);
-      return requests.length === 1 ? first : { rows: [], metadata: { first_incomplete_date: '2026-09-25' } };
-    }, now, (diagnostic) => diagnostics.push(diagnostic));
-    assert.equal(requests.length, 2);
-    assert.deepEqual(requests[0], requests[1]);
-    assert.equal(coverage.successfulAttempt, 2);
-    assert.equal(coverage.status, 'verified');
-    assert.deepEqual(coverage.requested, coverage.attempts[1].coverage.requested);
-    assert.equal(diagnostics[0].reason, first.metadata ? 'first_incomplete_date_absent' : 'metadata_object_absent');
-    assert.equal(diagnostics[1].responseRowCount, 0);
-    assert.equal(diagnostics[1].firstReturnedDate, null);
-    assert.equal(diagnostics[1].lastReturnedDate, null);
-    const reports = emptyReports();
-    const snapshot = buildSeoSnapshot({ generatedAt: now.toISOString(), periods: coverage.periods,
-      dateCoverage: coverage, reports, reportRuns: reportRuns(reports) });
-    assert.equal(validateSeoSnapshot(snapshot), true);
-  }
-});
-
-test('dos ausencias siguen sin verificar aunque las filas parezcan finalizadas', async () => {
-  const diagnostics = [];
-  let calls = 0;
-  const coverage = await discoverDateCoverage(async () => {
-    calls++;
-    return calls === 1 ? { rows: dateRows('2026-09-01', 10) } : { rows: [], metadata: {} };
-  }, new Date('2026-09-28T02:40:00Z'), (diagnostic) => diagnostics.push(diagnostic));
-  assert.equal(calls, 2);
-  assert.equal(coverage.status, 'unverified');
-  assert.equal(coverage.firstIncompleteDate, null);
-  assert.equal(coverage.periods, null);
-  assert.equal(coverage.successfulAttempt, null);
-  assert.equal(diagnostics[0].lastReturnedDate, '2026-09-10');
-  assert.equal(diagnostics[0].metadataObjectPresent, false);
-  assert.equal(diagnostics[1].metadataObjectPresent, true);
-});
-
-test('respuestas inválidas no consumen un reintento y no filtran valores arbitrarios', async () => {
-  for (const [response, reason] of [
-    ...[null, 'PRIVATE_TOKEN', 123, [], true].map((metadata) => [{ metadata }, 'malformed_metadata']),
-    ...[null, true, 123, {}, [], 'bad', '2026-02-30', '2026-13-01', '2026-09-28', '2026-08-30']
-      .map((first_incomplete_date) => [{ metadata: { first_incomplete_date } }, 'invalid_first_incomplete_date']),
-    [null, 'invalid_response'], [[], 'invalid_response'], [{ rows: {} }, 'invalid_response'],
-  ]) {
-    let calls = 0;
-    const diagnostics = [];
-    const coverage = await discoverDateCoverage(async () => { calls++; return response; },
-      new Date('2026-09-28T02:40:00Z'), (diagnostic) => diagnostics.push(diagnostic));
-    assert.equal(calls, 1);
-    assert.equal(coverage.reason, reason);
-    assert.equal(coverage.status, 'unavailable');
-    assert.doesNotMatch(JSON.stringify({ coverage, diagnostics }), /PRIVATE_TOKEN/);
-  }
-});
-
-test('ampliación exacta usa solo el nuevo corte y el rango del segundo intento', async () => {
-  const now = new Date('2026-09-28T02:40:00Z');
-  const requests = [];
-  const coverage = await discoverDateCoverage(async (request) => {
-    requests.push(request);
-    return { metadata: { first_incomplete_date: requests.length === 1 ? '2026-08-31' : '2026-09-01' } };
-  }, now);
-  assert.deepEqual(requests[1], {
-    startDate: '2026-08-17', endDate: '2026-09-27', dimensions: ['date'], dataState: 'all', type: 'web', rowLimit: 43,
-  });
-  assert.equal(coverage.firstIncompleteDate, '2026-09-01');
-  assert.equal(coverage.successfulAttempt, 2);
-  assert.deepEqual(coverage.periods, {
-    previous: { start: '2026-08-18', end: '2026-08-24' },
-    current: { start: '2026-08-25', end: '2026-08-31' },
-  });
-  const reports = emptyReports();
-  const snapshot = buildSeoSnapshot({ generatedAt: now.toISOString(), periods: coverage.periods,
-    dateCoverage: coverage, reports, reportRuns: reportRuns(reports) });
-  assert.equal(validateSeoSnapshot(snapshot), true);
-  const reordered = structuredClone(snapshot);
-  const retryRequest = reordered.dataQuality.dateCoverage.attempts[1].request;
-  reordered.dataQuality.dateCoverage.attempts[1].request = Object.fromEntries(Object.entries(retryRequest).reverse());
-  assert.equal(validateSeoSnapshot(reordered), true);
-  for (const corrupt of [
-    (s) => { s.dataQuality.dateCoverage.firstIncompleteDate = '2026-08-31'; },
-    (s) => { s.dataQuality.dateCoverage.requested.start = '2026-08-31'; },
-    (s) => { s.dataQuality.dateCoverage.requested.end = '2026-09-26'; },
-    (s) => { s.dataQuality.dateCoverage.successfulAttempt = 1; },
-    (s) => { s.dataQuality.dateCoverage.attempts[1].request.startDate = '2026-08-16'; },
-    (s) => { s.dataQuality.dateCoverage.attempts[1].coverage = s.dataQuality.dateCoverage.attempts[0].coverage; },
-    (s) => { s.periods.previous.start = '2026-08-16'; },
-    (s) => { s.dataQuality.dateCoverage.attempts[0].coverage.reason = 'request_failed'; },
-    (s) => { delete s.dataQuality.dateCoverage.attempts; },
-    (s) => { s.dataQuality.dateCoverage.attempts[0].coverage.requested.start = '2026-08-30'; },
-    (s) => { s.dataQuality.dateCoverage.attempts[1] = null; },
-  ]) {
-    const invalid = structuredClone(snapshot);
-    corrupt(invalid);
-    assert.throws(() => validateSeoSnapshot(invalid), /Snapshot SEO inválido/);
-  }
-});
-
-test('un segundo corte aún insuficiente o ausente termina sin extrapolar ni tercer intento', async () => {
-  for (const second of [{ metadata: { first_incomplete_date: '2026-08-20' } }, {}]) {
-    let calls = 0;
-    const coverage = await discoverDateCoverage(async () => {
-      calls++;
-      return calls === 1 ? { metadata: { first_incomplete_date: '2026-08-31' } } : second;
-    }, new Date('2026-09-28T02:40:00Z'));
-    assert.equal(calls, 2);
-    assert.equal(coverage.status, 'unverified');
     assert.equal(coverage.periods, null);
   }
 });
@@ -1125,4 +994,151 @@ test('v3 valida y renderiza métricas históricas sin mutar ni inventar evidenci
   const missingDataset = structuredClone(historical);
   delete missingDataset.queryPagesFull;
   assert.throws(() => renderSeoMarkdown(missingDataset), /queryPagesFull debe ser un array/);
+});
+
+const MATURE_EXAMPLE = {
+  current: { start: '2026-09-21', end: '2026-09-27' },
+  previous: { start: '2026-09-14', end: '2026-09-20' },
+};
+for (const day of ['2026-10-04', '2026-10-05', '2026-10-07', '2026-10-10']) {
+  test('mature complete weeks stable on LA date ' + day, () => {
+    const now = new Date(day + 'T12:00:00Z');
+    const periods = calculateMaturePeriods(now);
+    assert.deepEqual(periods, MATURE_EXAMPLE);
+    for (const period of Object.values(periods)) {
+      assert.equal(countInclusiveDays(period), 7);
+      assert.equal(new Date(period.start).getUTCDay(), 1);
+      assert.equal(new Date(period.end).getUTCDay(), 0);
+    }
+    assert.equal(Date.parse(periods.current.start) - Date.parse(periods.previous.end), 86400000);
+    assert.ok(Date.parse(day) - Date.parse(periods.current.end) >= 7 * 86400000);
+  });
+}
+
+test('mature weeks use LA midnight and DST calendar boundaries', () => {
+  for (const [instant, sunday] of [
+    ['2026-10-04T06:59:59Z', '2026-09-20'], ['2026-10-04T07:00:00Z', '2026-09-27'],
+    ['2026-01-04T07:59:59Z', '2025-12-21'], ['2026-01-04T08:00:00Z', '2025-12-28'],
+    ['2026-03-08T10:00:00Z', '2026-03-01'], ['2026-11-01T09:00:00Z', '2026-10-25'],
+  ]) {
+    const periods = calculateMaturePeriods(new Date(instant));
+    assert.equal(periods.current.end, sunday);
+    assert.equal(countInclusiveDays(periods.current), 7);
+    assert.equal(countInclusiveDays(periods.previous), 7);
+  }
+});
+
+async function matureSnapshot(response, now = new Date('2026-10-04T12:00:00Z')) {
+  let calls = 0;
+  const coverage = await discoverDateCoverage(async () => { calls++; return response; }, now);
+  assert.equal(calls, 1);
+  const reports = emptyReports();
+  return buildSeoSnapshot({ generatedAt: now.toISOString(), periods: coverage.periods,
+    dateCoverage: coverage, reports, reportRuns: reportRuns(reports) });
+}
+
+test('both metadata absence cases publish truthful mature v4 without retry or row evidence', async () => {
+  for (const response of [{ rows: dateRows('2026-09-07', 28) }, { rows: [], metadata: {} }]) {
+    const snapshot = await matureSnapshot(response);
+    assert.equal(validateSeoSnapshot(snapshot), true);
+    assert.deepEqual(snapshot.periods, MATURE_EXAMPLE);
+    assert.equal(snapshot.dataQuality.dateCoverage.status, 'mature_lag');
+    assert.equal(snapshot.dataQuality.dateCoverage.metadataCutoffAvailable, false);
+    assert.equal(snapshot.dataQuality.dateCoverage.metadataCutoff, null);
+    assert.equal(snapshot.dataQuality.dateCoverage.reason, 'mature_lag_only');
+    const md = renderSeoMarkdown(snapshot);
+    assert.match(md, /semana completa de margen/);
+    assert.match(md, /no proporcion\u00f3 un corte independiente/);
+    assert.doesNotMatch(md, /Corte temporal verificado|Same verified periods/);
+    assert.equal(snapshot.globalMetrics.current, null);
+  }
+});
+
+test('optional valid cutoff preserves compatible weeks or moves them backward only', async () => {
+  for (const [cutoff, end, adjusted] of [
+    ['2026-10-03', '2026-09-27', false], ['2026-09-27', '2026-09-20', true],
+    ['2026-09-23', '2026-09-20', true], ['2026-09-08', '2026-09-06', true],
+  ]) {
+    const snapshot = await matureSnapshot({ metadata: { first_incomplete_date: cutoff } });
+    const coverage = snapshot.dataQuality.dateCoverage;
+    assert.equal(coverage.selectedSunday, end);
+    assert.equal(coverage.metadataAdjusted, adjusted);
+    assert.equal(coverage.metadataCutoff, cutoff);
+    assert.equal(coverage.reason, 'mature_lag_plus_metadata');
+    assert.ok(snapshot.periods.current.end < cutoff);
+    assert.ok(snapshot.periods.current.end <= '2026-09-27');
+    assert.equal(validateSeoSnapshot(snapshot), true);
+    assert.match(renderSeoMarkdown(snapshot), /est\u00e1 disponible y es compatible/);
+  }
+});
+
+test('malformed advisory cannot invent cutoff or prevent mature windows', async () => {
+  for (const response of [null, [], { rows: {} }, ...[null, 'PRIVATE_METADATA', 3, [], true].map(metadata => ({ metadata })),
+    ...[null, 3, true, {}, '2026-02-30', 'bad', '2026-10-05', '2026-09-01'].map(first_incomplete_date => ({ metadata: { first_incomplete_date } }))]) {
+    const snapshot = await matureSnapshot(response);
+    assert.equal(validateSeoSnapshot(snapshot), true);
+    assert.deepEqual(snapshot.periods, MATURE_EXAMPLE);
+    assert.equal(snapshot.dataQuality.dateCoverage.metadataCutoff, null);
+    assert.doesNotMatch(JSON.stringify(snapshot), /PRIVATE_METADATA/);
+  }
+});
+
+test('mature validator rejects policy and advisory tampering without weakening old v4', async () => {
+  const valid = await matureSnapshot({ metadata: { first_incomplete_date: '2026-09-23' } });
+  for (const mutate of [
+    s => s.dataQuality.dateCoverage.status = 'verified',
+    s => s.dataQuality.dateCoverage.maturityBufferDays = 6,
+    s => s.dataQuality.dateCoverage.maturityBufferDays = '7',
+    s => s.dataQuality.dateCoverage.timeZone = 'Europe/Madrid',
+    s => s.dataQuality.dateCoverage.periodAlignment = 'Tuesday-Monday',
+    s => s.dataQuality.dateCoverage.method = 'verified',
+    s => s.dataQuality.dateCoverage.reason = 'mature_lag_only',
+    s => s.dataQuality.dateCoverage.metadataCutoffAvailable = false,
+    s => s.dataQuality.dateCoverage.metadataCutoff = '2026-09-20',
+    s => s.dataQuality.dateCoverage.metadataAdjusted = false,
+    s => s.dataQuality.dateCoverage.selectedSunday = '2026-09-27',
+    s => s.dataQuality.dateCoverage.executionDate = '2026-10-05',
+    s => s.dataQuality.dateCoverage.advisory.request.startDate = '2026-09-01',
+    s => s.periods.current.start = '2026-09-16',
+    s => s.periods.previous.end = s.periods.current.start,
+    s => { s.periods.current = { start: '2026-09-28', end: '2026-10-04' }; s.dataQuality.dateCoverage.periods = structuredClone(s.periods); },
+  ]) {
+    const snapshot = structuredClone(valid); mutate(snapshot);
+    assert.throws(() => validateSeoSnapshot(snapshot));
+  }
+  const absent = await matureSnapshot({});
+  absent.dataQuality.dateCoverage.status = 'verified';
+  assert.throws(() => validateSeoSnapshot(absent));
+  assert.equal(validateSeoSnapshot(snapshotFrom(emptyReports())), true);
+});
+
+
+test('historical retry v4 validates and rejects cross-attempt evidence', () => {
+  const now = new Date('2026-09-28T02:40:00Z');
+  const primary = dateAvailabilityRequest(now);
+  const first = assessDateCoverage(now, { metadata: { first_incomplete_date: '2026-08-31' } }, true, primary);
+  const retry = { ...primary, startDate: '2026-08-17', rowLimit: 43 };
+  const second = assessDateCoverage(now, { metadata: { first_incomplete_date: '2026-09-01' } }, true, retry);
+  const coverage = { ...second, successfulAttempt: 2, attempts: [{ request: primary, coverage: first }, { request: retry, coverage: second }] };
+  const reports = emptyReports();
+  const snapshot = buildSeoSnapshot({ generatedAt: now.toISOString(), periods: coverage.periods,
+    dateCoverage: coverage, reports, reportRuns: reportRuns(reports) });
+  const before = JSON.stringify(snapshot);
+  assert.equal(validateSeoSnapshot(snapshot), true);
+  assert.equal(JSON.stringify(snapshot), before);
+  for (const mutate of [
+    s => s.dataQuality.dateCoverage.successfulAttempt = 1,
+    s => s.dataQuality.dateCoverage.attempts[1].coverage = structuredClone(first),
+    s => s.dataQuality.dateCoverage.attempts[1].request.rowLimit++,
+    s => s.dataQuality.dateCoverage.attempts.push(structuredClone(s.dataQuality.dateCoverage.attempts[1])),
+  ]) {
+    const invalid = structuredClone(snapshot); mutate(invalid);
+    assert.throws(() => validateSeoSnapshot(invalid));
+  }
+});
+
+test('mature snapshot binds execution instant to generated timestamp', async () => {
+  const snapshot = await matureSnapshot({});
+  snapshot.updatedAt = '2026-10-11T12:00:00Z';
+  assert.throws(() => validateSeoSnapshot(snapshot));
 });

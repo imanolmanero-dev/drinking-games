@@ -30,7 +30,7 @@ const dates = Array.from({ length: 15 }, (_, index) => ({
 }));
 
 async function runExtractor(reply, { artifacts = new Map(), reportingOverrides = {} } = {}) {
-  const requests = [], writes = [], errors = [], logs = [];
+  const requests = [], writes = [], errors = [], logs = [], snapshots = [], capturedRuns = [];
   const processMock = { env: { GCP_CREDENTIALS: '{}' }, cwd: () => '/memory', exitCode: undefined };
   const modules = {
     googleapis: { google: {
@@ -55,7 +55,12 @@ async function runExtractor(reply, { artifacts = new Map(), reportingOverrides =
     },
     'node:path': path,
     dotenv: { config() {} },
-    './seo-reporting.mjs': { ...reporting, ...reportingOverrides },
+    './seo-reporting.mjs': { ...reporting, buildSeoSnapshot: (...args) => {
+      capturedRuns.push(...args[0].reportRuns);
+      const snapshot = reporting.buildSeoSnapshot(...args);
+      snapshots.push(snapshot);
+      return snapshot;
+    }, ...reportingOverrides },
     '../lib/i18n/routes': routes,
     '../lib/i18n/locales': locales,
   };
@@ -69,7 +74,7 @@ async function runExtractor(reply, { artifacts = new Map(), reportingOverrides =
     Date: class extends Date { constructor(...args) { super(...(args.length ? args : [instant])); } },
   });
   const diagnostics = logs.filter((line) => line.startsWith('{')).map((line) => JSON.parse(line));
-  return { requests, writes, errors, logs, diagnostics, artifacts, exitCode: processMock.exitCode };
+  return { requests, writes, errors, logs, diagnostics, snapshots, capturedRuns, artifacts, exitCode: processMock.exitCode };
 }
 
 test('extractor usa metadata all y 14 informes final: exactamente 15 peticiones, sin duplicar dimensiones EN', async () => {
@@ -86,8 +91,8 @@ test('extractor usa metadata all y 14 informes final: exactamente 15 peticiones,
     assert.equal(request.type, 'web');
   }
   for (const request of run.requests.slice(1)) {
-    assert.ok(['2026-09-11', '2026-09-18'].includes(request.startDate));
-    assert.equal(request.endDate, request.startDate === '2026-09-11' ? '2026-09-17' : '2026-09-24');
+    assert.ok(['2026-09-07', '2026-09-14'].includes(request.startDate));
+    assert.equal(request.endDate, request.startDate === '2026-09-07' ? '2026-09-13' : '2026-09-20');
   }
   assert.equal(run.requests.filter((request) => !request.dimensions).length, 4);
   const englishRequests = run.requests.filter((request) => request.dimensionFilterGroups);
@@ -106,138 +111,198 @@ test('extractor usa metadata all y 14 informes final: exactamente 15 peticiones,
   assert.deepEqual(snapshot.english.publishedPages, Array.from(routes.publishedRoutes('en-US'), (route) => locales.absoluteUrl(route.pathname)).sort());
   assert.equal(snapshot.english.quality.totals.current.responseAggregationType, 'byPage');
   assert.equal(snapshot.dataQuality.reportsRequested, 14);
-  assert.equal(snapshot.dataQuality.dateCoverage.status, 'verified');
+  assert.equal(snapshot.dataQuality.dateCoverage.status, 'mature_lag');
   assert.equal(snapshot.dataQuality.dateCoverage.firstIncompleteDate, '2026-09-25');
-});
-
-test('extractor conserva los outputs si falta metadata, falla la petición o la evidencia es inválida', async () => {
-  for (const [reply, reason] of [
-    [() => { throw new Error('PRIVATE_API_DETAILS'); }, 'unavailable (request_failed)'],
-    [() => ({}), 'unverified (metadata_object_absent)'],
-    [() => ({ rows: [], metadata: {} }), 'unverified (first_incomplete_date_absent)'],
-    [() => ({ rows: dates }), 'unverified (metadata_object_absent)'],
-    [() => ({ metadata: { first_incomplete_date: 'bad' } }), 'unavailable (invalid_first_incomplete_date)'],
-  ]) {
-    const run = await runExtractor(reply);
-    assert.equal(run.requests.length, reason.startsWith('unverified') ? 2 : 1);
-    assert.equal(run.writes.length, 0);
-    assert.equal(run.exitCode, 1);
-    assert.ok(run.errors.join('').includes(`Cobertura temporal ${reason}`));
-    assert.doesNotMatch(run.errors.join(''), /PRIVATE_API_DETAILS/);
-  }
-});
-
-const probeLogs = (run) => run.diagnostics.filter((item) => item.event === 'seo_coverage_probe');
-const outcomeLog = (run) => run.diagnostics.find((item) => item.event === 'seo_reporting_outcome');
-const successfulMetrics = (request) => ({ rows: request.dimensions ? [] : [metrics] });
-
-test('extractor reintenta una ausencia y publica v4 tras 2 probes + 14 informes', async () => {
-  let probes = 0;
-  const run = await runExtractor((request) => request.dataState === 'all'
-    ? (++probes === 1 ? {} : { rows: [], metadata }) : successfulMetrics(request));
-  assert.equal(run.requests.length, 16);
-  assert.deepEqual(run.requests[0], run.requests[1]);
-  assert.equal(run.writes.length, 2);
-  assert.equal(run.exitCode, undefined);
-  const saved = JSON.parse(run.artifacts.get('seo-data.json'));
-  assert.equal(saved.schemaVersion, 4);
-  assert.equal(saved.dataQuality.reportsRequested, 14);
-  assert.equal(saved.dataQuality.dateCoverage.successfulAttempt, 2);
-  assert.equal(reporting.validateSeoSnapshot(saved), true);
-  for (const request of run.requests.slice(2)) assert.equal(request.dataState, 'final');
-  assert.deepEqual(outcomeLog(run).retryClassification, { status: 'verified', reason: 'first_incomplete_date' });
   assert.equal(outcomeLog(run).finalWorkflowOutcome, 'REPORT_UPDATED');
   assert.equal(outcomeLog(run).exitCode, 0);
-  assert.equal(probeLogs(run)[1].responseRowCount, 0);
-  assert.equal(saved.globalMetrics.current.clicks, metrics.clicks);
 });
 
-test('extractor amplía con F, publica solo con F2 y no reintenta una tercera vez', async () => {
-  for (const [second, expectedOutcome, requestCount] of [
-    ['2026-09-01', 'REPORT_UPDATED', 16],
-    ['2026-08-20', 'COVERAGE_UNRESOLVED', 2],
-  ]) {
-    let probes = 0;
-    const run = await runExtractor((request) => request.dataState === 'all'
-      ? { metadata: { first_incomplete_date: ++probes === 1 ? '2026-08-31' : second } } : successfulMetrics(request));
-    assert.equal(run.requests.length, requestCount);
-    assert.equal(run.requests[1].startDate, '2026-08-17');
-    assert.equal(run.requests[1].endDate, '2026-09-27');
-    assert.equal(run.requests[1].rowLimit, 43);
-    assert.equal(outcomeLog(run).finalWorkflowOutcome, expectedOutcome);
-    if (expectedOutcome === 'REPORT_UPDATED') {
-      const saved = JSON.parse(run.artifacts.get('seo-data.json'));
-      assert.equal(saved.dataQuality.dateCoverage.firstIncompleteDate, second);
-      assert.equal(saved.periods.previous.start, '2026-08-18');
-      assert.equal(reporting.validateSeoSnapshot(saved), true);
-      assert.equal(run.exitCode, undefined);
-    } else {
-      assert.equal(run.writes.length, 0);
-      assert.equal(run.exitCode, 1);
-    }
-  }
-});
 
-test('varias ejecuciones no verificadas conservan bytes v3/v4 y muestran su antigüedad', async () => {
-  for (const schemaVersion of [3, 4]) {
-    const artifacts = new Map([
-      ['SEO_DATA.md', 'Historical markdown\r\n'],
-      ['seo-data.json', JSON.stringify({ schemaVersion, updatedAt: '2026-09-21T02:40:00Z' }) + '\n'],
-    ]);
+const probeLogs = run => run.diagnostics.filter(item => item.event === 'seo_coverage_probe');
+const outcomeLog = run => run.diagnostics.find(item => item.event === 'seo_reporting_outcome');
+const successfulMetrics = request => ({ rows: request.dimensions ? [] : [metrics] });
+const maturePeriods = {
+  current: { start: '2026-09-14', end: '2026-09-20' },
+  previous: { start: '2026-09-07', end: '2026-09-13' },
+};
+
+for (const [label, response] of [
+  ['number', 42], ['boolean', true], ['string', 'bad'], ['array', []],
+  ['null', null], ['undefined', undefined], ['function', () => {}],
+  ['rows:null', { rows: null }], ['rows:object', { rows: {} }],
+  ['rows:number', { rows: 42 }], ['rows:boolean', { rows: true }],
+  ['rows:string', { rows: 'bad' }], ['rows:undefined', { rows: undefined }],
+]) {
+  test(`invalid metric envelope ${label} cannot write or enable publication`, async () => {
+    const artifacts = new Map([['SEO_DATA.md', 'historical markdown'],
+      ['seo-data.json', '{"schemaVersion":3,"updatedAt":"2026-09-21T02:40:00Z"}']]);
     const original = [...artifacts];
-    for (let invocation = 0; invocation < 3; invocation++) {
-      let probes = 0;
-      const run = await runExtractor(() => ++probes === 1 ? { rows: dates } : { metadata: {} }, { artifacts });
-      assert.deepEqual([...artifacts], original);
-      assert.equal(run.requests.length, 2);
-      assert.equal(run.requests.filter((request) => request.dataState === 'final').length, 0);
-      assert.equal(run.writes.length, 0);
-      assert.equal(run.exitCode, 1);
-      const logs = probeLogs(run);
-      assert.equal(logs[0].reason, 'metadata_object_absent');
-      assert.equal(logs[1].reason, 'first_incomplete_date_absent');
-      const summary = outcomeLog(run);
-      assert.equal(summary.finalWorkflowOutcome, 'COVERAGE_UNRESOLVED');
-      assert.equal(summary.reportsWritten, false);
-      assert.equal(summary.selectedCutoff, null);
-      assert.equal(summary.selectedPeriods, null);
-      assert.equal(summary.preservedArtifactSchemaVersion, schemaVersion);
-      assert.equal(summary.preservedArtifactTimestamp, '2026-09-21T02:40:00.000Z');
-      assert.equal(summary.preservedArtifactAge, 7 * 86400);
-      assert.equal(summary.exitCode, 1);
-    }
-  }
-});
-
-test('extractor rechaza metadata/cutoff/rows inválidos sin reintento ni escrituras', async () => {
-  for (const [reply, reason] of [
-    ...[null, 'SECRET_METADATA', 1, [], true].map((metadata) => [{ metadata }, 'malformed_metadata']),
-    ...[null, 1, true, {}, '2026-02-30', '2026-99-01', 'bad', '2026-09-28', '2026-08-30']
-      .map((first_incomplete_date) => [{ metadata: { first_incomplete_date } }, 'invalid_first_incomplete_date']),
-    [{ rows: {} }, 'invalid_response'],
-    [null, 'invalid_response'], [[], 'invalid_response'], ['PRIVATE_ENVELOPE', 'invalid_response'],
-  ]) {
-    const run = await runExtractor(() => reply);
-    assert.equal(run.requests.length, 1);
+    const run = await runExtractor(request => request.dataState === 'all'
+      ? { metadata: {} } : response, { artifacts });
+    assert.equal(run.requests.length, 15);
+    assert.equal(run.requests.filter(request => request.dataState === 'final').length, 14);
+    assert.equal(run.capturedRuns.length, 14);
+    assert.ok(run.capturedRuns.every(metric => metric.invalidResponse === true));
     assert.equal(run.writes.length, 0);
+    assert.deepEqual([...artifacts], original);
     assert.equal(run.exitCode, 1);
-    assert.equal(probeLogs(run)[0].reason, reason);
-    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'INVALID_COVERAGE_RESPONSE');
-    assert.doesNotMatch(JSON.stringify([run.logs, run.errors]), /SECRET_METADATA|PRIVATE_ENVELOPE/);
+    assert.equal(outcomeLog(run).exitCode, 1);
+    assert.equal(outcomeLog(run).reportsWritten, false);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'METRIC_REPORT_FAILURE');
+  });
+}
+
+test('array rows and omitted rows are valid empty responses, never confirmed zero traffic', async () => {
+  for (const response of [{ rows: [] }, {}]) {
+    const run = await runExtractor(request => request.dataState === 'all' ? { metadata: {} } : response);
+    assert.equal(run.requests.length, 15);
+    assert.ok(run.capturedRuns.every(metric => metric.succeeded && !metric.invalidResponse));
+    assert.equal(run.writes.length, 2);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'REPORT_UPDATED');
+    assert.equal(outcomeLog(run).exitCode, 0);
+    const saved = JSON.parse(run.artifacts.get('seo-data.json'));
+    assert.equal(reporting.validateSeoSnapshot(saved), true);
+    assert.equal(saved.globalMetrics.current, null);
+    assert.equal(saved.dataQuality.globalReports.current, 'empty_response');
+    assert.equal(saved.english.totals.current, null);
+    assert.equal(saved.english.quality.totals.current.status, 'empty_response');
   }
 });
 
-test('fallos API no filtran tokens, cuerpos privados ni códigos arbitrarios', async () => {
+test('production 28-row missing cutoff and missing object each publish after one advisory', async () => {
+  const productionRows = Array.from({ length: 28 }, (_, i) => ({ keys: [new Date(Date.parse('2026-08-31') + i * 86400000).toISOString().slice(0, 10)], ...metrics }));
+  for (const [response, reason] of [[{ rows: productionRows, metadata: {} }, 'first_incomplete_date_absent'], [{ rows: productionRows }, 'metadata_object_absent']]) {
+    const run = await runExtractor(request => request.dataState === 'all' ? response : successfulMetrics(request));
+    assert.equal(run.requests.length, 15);
+    assert.equal(run.requests.filter(r => r.dataState === 'all').length, 1);
+    assert.equal(run.requests.filter(r => r.dataState === 'final').length, 14);
+    assert.equal(run.writes.length, 2);
+    assert.equal(run.exitCode, undefined);
+    assert.equal(probeLogs(run)[0].responseRowCount, 28);
+    assert.equal(probeLogs(run)[0].reason, reason);
+    const saved = JSON.parse(run.artifacts.get('seo-data.json'));
+    assert.equal(saved.schemaVersion, 4);
+    assert.deepEqual(saved.periods, maturePeriods);
+    assert.equal(saved.dataQuality.dateCoverage.metadataCutoffAvailable, false);
+    assert.equal(reporting.validateSeoSnapshot(saved), true);
+    assert.equal(outcomeLog(run).retryClassification, 'not_attempted');
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'REPORT_UPDATED');
+    assert.equal(outcomeLog(run).exitCode, 0);
+  }
+});
+
+test('valid advisory preserves default or shifts older without widening or retry', async () => {
+  for (const [cutoff, sunday, adjusted] of [['2026-09-25', '2026-09-20', false], ['2026-09-20', '2026-09-13', true], ['2026-08-31', '2026-08-30', true]]) {
+    const run = await runExtractor(request => request.dataState === 'all' ? { rows: [], metadata: { first_incomplete_date: cutoff } } : successfulMetrics(request));
+    assert.equal(run.requests.length, 15);
+    assert.equal(run.exitCode, undefined);
+    const saved = JSON.parse(run.artifacts.get('seo-data.json'));
+    assert.equal(saved.periods.current.end, sunday);
+    assert.equal(saved.dataQuality.dateCoverage.metadataAdjusted, adjusted);
+    assert.equal(saved.dataQuality.dateCoverage.metadataCutoff, cutoff);
+    assert.equal(reporting.validateSeoSnapshot(saved), true);
+    assert.equal(probeLogs(run)[0].responseRowCount, 0);
+    assert.equal(saved.globalMetrics.current.clicks, 10);
+  }
+});
+
+test('malformed advisory or transient probe failure continues with successful metrics', async () => {
+  for (const response of [null, [], 'PRIVATE_ENVELOPE', { rows: {} }, ...[null, 'PRIVATE_METADATA', 1, [], true].map(metadata => ({ metadata })),
+    ...[null, 1, true, {}, '2026-02-30', 'bad', '2026-09-28', '2026-08-30'].map(first_incomplete_date => ({ metadata: { first_incomplete_date } })),
+    new Error('PRIVATE_PROBE_ERROR')]) {
+    const run = await runExtractor(request => {
+      if (request.dataState !== 'all') return successfulMetrics(request);
+      if (response instanceof Error) throw response;
+      return response;
+    });
+    assert.equal(run.requests.length, 15);
+    assert.equal(run.writes.length, 2);
+    assert.equal(run.exitCode, undefined);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'REPORT_UPDATED');
+    assert.equal(outcomeLog(run).metadataAdvisoryUnavailable, true);
+    const saved = JSON.parse(run.artifacts.get('seo-data.json'));
+    assert.deepEqual(saved.periods, maturePeriods);
+    assert.equal(saved.dataQuality.dateCoverage.metadataCutoff, null);
+    assert.doesNotMatch(JSON.stringify([run.logs, run.errors, saved]), /PRIVATE_ENVELOPE|PRIVATE_METADATA|PRIVATE_PROBE_ERROR/);
+  }
+});
+
+test('authentication, property access and outage affecting metrics fail without invented traffic', async () => {
   for (const code of [401, 403, 503, 'PRIVATE_TOKEN']) {
     const run = await runExtractor(() => { throw { code, message: 'PRIVATE_TOKEN', response: { data: 'PRIVATE_BODY' } }; });
-    assert.equal(run.requests.length, 1);
-    assert.equal(run.writes.length, 0);
+    assert.equal(run.requests.length, 15);
     assert.equal(run.exitCode, 1);
     assert.equal(probeLogs(run)[0].reason, 'request_failed');
     assert.equal(probeLogs(run)[0].httpStatus, typeof code === 'number' ? code : null);
-    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'API_FAILURE');
-    assert.doesNotMatch(JSON.stringify([run.logs, run.errors]), /PRIVATE_TOKEN|PRIVATE_BODY/);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'METRIC_REPORT_FAILURE');
+    const saved = run.snapshots[0];
+    assert.equal(saved.globalMetrics.current, null);
+    assert.equal(saved.globalMetrics.previous, null);
+    assert.equal(saved.english.totals.current, null);
+    assert.equal(saved.dataQuality.reportsSucceeded, 0);
+    assert.equal(run.writes.length, 0);
+    assert.equal(outcomeLog(run).reportsWritten, false);
+    assert.doesNotMatch(JSON.stringify([run.logs, run.errors, saved]), /PRIVATE_TOKEN|PRIVATE_BODY/);
   }
+});
+
+test('repeated validation failures preserve v3/v4 bytes and expose stale age', async () => {
+  for (const schemaVersion of [3, 4]) {
+    const artifacts = new Map([['SEO_DATA.md', 'Historical markdown'], ['seo-data.json', JSON.stringify({ schemaVersion, updatedAt: '2026-09-21T02:40:00Z' })]]);
+    const original = [...artifacts];
+    for (let invocation = 0; invocation < 3; invocation++) {
+      const run = await runExtractor(request => request.dataState === 'all' ? { metadata: {} } : successfulMetrics(request), {
+        artifacts, reportingOverrides: { validateSeoSnapshot() { throw new Error('PRIVATE_VALIDATION'); } },
+      });
+      assert.deepEqual([...artifacts], original);
+      assert.equal(run.requests.length, 15);
+      assert.equal(run.writes.length, 0);
+      assert.equal(run.exitCode, 1);
+      assert.equal(outcomeLog(run).preservedArtifactSchemaVersion, schemaVersion);
+      assert.equal(outcomeLog(run).preservedArtifactAge, 7 * 86400);
+    }
+  }
+});
+
+
+
+
+test('advisory auth-shaped failure alone does not hide successful metric access', async () => {
+  for (const code of [401, 403, 503]) {
+    const run = await runExtractor(request => {
+      if (request.dataState === 'all') throw { code, message: 'PRIVATE_ERROR' };
+      return successfulMetrics(request);
+    });
+    assert.equal(run.requests.length, 15);
+    assert.equal(run.exitCode, undefined);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'REPORT_UPDATED');
+    assert.equal(probeLogs(run)[0].httpStatus, code);
+    assert.doesNotMatch(run.logs.join(''), /PRIVATE_ERROR/);
+  }
+});
+
+test('malformed metric envelopes and rows make Actions fail', async () => {
+  for (const dimensions of ['query', 'country', 'device', 'page', 'query,page']) {
+    for (const rows of [{}, [{ keys: ['bad'], clicks: 1 }]]) {
+      const run = await runExtractor(request => request.dataState === 'all' ? { metadata: {} }
+        : request.dimensions?.join() === dimensions ? { rows } : successfulMetrics(request));
+      assert.equal(run.exitCode, 1);
+      assert.equal(outcomeLog(run).exitCode, 1);
+      assert.notEqual(outcomeLog(run).finalWorkflowOutcome, 'REPORT_UPDATED');
+      assert.equal(run.writes.length, 0);
+    }
+  }
+});
+
+test('artifact write failure preserves error status and suppresses private details', async () => {
+  const artifacts = new Map([['SEO_DATA.md', 'original'], ['seo-data.json', '{"schemaVersion":3}']]);
+  artifacts.set = () => { throw new Error('PRIVATE_WRITE_FAILURE'); };
+  const run = await runExtractor(request => request.dataState === 'all' ? { metadata: {} } : successfulMetrics(request), { artifacts });
+  assert.equal(run.exitCode, 1);
+  assert.equal(outcomeLog(run).finalWorkflowOutcome, 'ARTIFACT_WRITE_FAILURE');
+  assert.equal(outcomeLog(run).reportsWritten, false);
+  assert.equal(artifacts.get('SEO_DATA.md'), 'original');
+  assert.doesNotMatch(run.errors.join(''), /PRIVATE_WRITE_FAILURE/);
 });
 
 test('validación fallida preserva informes y emite SNAPSHOT_VALIDATION_FAILURE', async () => {
@@ -277,14 +342,14 @@ test('extractor guarda current desconocido cuando query/page descarta una observ
   for (const currentRows of [[{ keys: ['reviewed', 'https://bebergames.com/en'], ...observed, ctr: 2 }], {}]) {
     const run = await runExtractor((request) => {
       if (request.dimensions?.[0] === 'date') return { rows: dates, metadata };
-      if (request.dimensions?.join() === 'query,page') return { rows: request.startDate === '2026-09-18'
+      if (request.dimensions?.join() === 'query,page') return { rows: request.startDate === '2026-09-14'
         ? currentRows : [{ keys: ['reviewed', 'https://bebergames.com/en'], ...observed }] };
       return { rows: request.dimensions ? [] : [metrics] };
     });
-    assert.equal(run.exitCode, undefined);
+    assert.equal(run.exitCode, 1);
     assert.equal(run.requests.length, 15);
-    assert.equal(run.writes.length, 2);
-    const saved = JSON.parse(run.writes.find(([file]) => file.endsWith('seo-data.json'))[1]);
+    assert.equal(run.writes.length, 0);
+    const saved = run.snapshots[0];
     const row = saved.queryPagesFull[0];
     assert.equal(saved.english.quality.queryPages.current.status, 'invalid_response');
     assert.equal(saved.dataQuality.queryPageDataset.current.apiResponseStatus, 'report_unavailable');
@@ -308,26 +373,27 @@ test('actividad dispersa y días finales omitidos no bloquean ni desplazan la ex
     assert.equal(run.writes.length, 2);
     const snapshot = JSON.parse(run.writes.find(([file]) => file.endsWith('seo-data.json'))[1]);
     assert.deepEqual(snapshot.periods, {
-      current: { start: '2026-09-18', end: '2026-09-24' },
-      previous: { start: '2026-09-11', end: '2026-09-17' },
+      current: { start: '2026-09-14', end: '2026-09-20' },
+      previous: { start: '2026-09-07', end: '2026-09-13' },
     });
     assert.equal(snapshot.globalMetrics.current.clicks, 10);
   }
 });
 
-test('extractor publica un fallo global como no disponible, nunca como cero ni caída del 100%', async () => {
+test('extractor retains failed global null semantics in memory without writing artifacts', async () => {
   const run = await runExtractor((request) => {
     if (request.dimensions?.[0] === 'date') return { rows: dates, metadata };
-    if (!request.dimensions && request.startDate === '2026-09-18') throw { code: 503 };
+    if (!request.dimensions && request.startDate === '2026-09-14') throw { code: 503 };
     return { rows: request.dimensions ? [] : [metrics] };
   });
-  assert.equal(run.exitCode, undefined);
-  const snapshot = JSON.parse(run.writes.find(([file]) => file.endsWith('seo-data.json'))[1]);
+  assert.equal(run.exitCode, 1);
+  assert.equal(run.writes.length, 0);
+  const snapshot = run.snapshots[0];
   assert.equal(snapshot.globalMetrics.current, null);
   assert.equal(snapshot.globalMetrics.previous.clicks, 10);
   assert.equal(snapshot.globalMetrics.percentDelta, null);
   assert.equal(snapshot.dataQuality.globalReports.current, 'report_unavailable');
-  assert.match(run.writes.find(([file]) => file.endsWith('SEO_DATA.md'))[1], /Comparación global no disponible/);
+  assert.match(reporting.renderSeoMarkdown(snapshot), /Comparación global no disponible/);
   assert.doesNotMatch(JSON.stringify(snapshot), /-100/);
 });
 
@@ -336,7 +402,7 @@ test('extractor distingue cero clics válidos de una respuesta global vacía', a
   for (const rows of [[zeroClicks], []]) {
     const run = await runExtractor((request) => {
       if (request.dimensions?.[0] === 'date') return { rows: dates, metadata };
-      return { rows: request.dimensions ? [] : request.startDate === '2026-09-18' ? rows : [metrics] };
+      return { rows: request.dimensions ? [] : request.startDate === '2026-09-14' ? rows : [metrics] };
     });
     assert.equal(run.exitCode, undefined);
     const snapshot = JSON.parse(run.writes.find(([file]) => file.endsWith('seo-data.json'))[1]);

@@ -7,14 +7,14 @@ import test from "node:test";
 import { es03Replacements, projectEs03 } from "./helpers/es03-baseline.mjs";
 import { assertNoCoerciveGuideCopy, assertReyGuideContract } from "./helpers/es03-guide-contract.mjs";
 
-// Exact reviewed coverage patch against 0fc57e3 (also identical against this
+// Exact authorized mature-weekly-window patch against 0fc57e3 (also identical against this
 // test's historical base). Keep reporting files IN the source comparison.
 // Pin the complete residual diff, including paths, blob IDs and every hunk;
 // any extra source edit requires a separate review of this authorization.
-const reviewedReportingDiffSha256 = "8771d69859ac8c9fa2c0aec5144177313838a0cd05ab1d0b234e981f51b82034";
+const reviewedReportingDiffSha256 = "a75b16bcf27b8dd84c8f10583ade22cdc6c2bdf73d429632a8480a57ebe4daed";
 function assertReviewedReportingDiff(diff) {
   assert.equal(createHash("sha256").update(diff).digest("hex"), reviewedReportingDiffSha256,
-    "only the exact reviewed SEO coverage patch may differ outside approved editorial fragments");
+    "only the exact authorized SEO mature-window patch may differ outside approved editorial fragments");
 }
 function reviewedSourceDiff(base, paths, exclusions = []) {
   return execFileSync("git", ["-c", "core.abbrev=40", "diff", "--no-ext-diff", "--no-textconv",

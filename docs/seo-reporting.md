@@ -4,124 +4,114 @@ El extractor `scripts/fetch-seo-data.ts` es el único propietario de
 `SEO_DATA.md` y `seo-data.json`. No editar sus resultados manualmente.
 La automatización semanal existente sigue siendo la encargada de ejecutarlo.
 
-## Finalización y actividad son cosas distintas
+## Política de semanas maduras
 
-Search Console interpreta las fechas en `America/Los_Angeles` y puede omitir
-días sin datos. Ni una fila ausente demuestra que ese día esté incompleto, ni
-la última fila de actividad identifica el último día finalizado. Las filas
-diarias no se usan para elegir periodos, rellenar ceros o calcular métricas.
+El dashboard prioriza tendencias estables y comparables frente a máxima
+frescura. La política no garantiza finalización matemática por día.
+Se captura un único instante de ejecución y se resuelve su fecha `D` en
+`America/Los_Angeles`, la base de fechas de Search Console.
 
-El extractor captura un único instante de ejecución y calcula `D`, su fecha
-de calendario en `America/Los_Angeles`. Consulta primero `[D − 27, D]`: 28
-fechas inclusivas, con `dimensions: ['date']`, `dataState: 'all'`, `type: 'web'`
-y `rowLimit: 29`, sin filtros ni `aggregationType`. Hoy solo entra en el sondeo.
-Esta consulta busca **metadata**, no tráfico. Google documenta
-`metadata.first_incomplete_date` como la primera fecha cuyos datos siguen en
-recopilación/procesamiento. Solo se informa con `all`, agrupación por `date` y
-un rango que contenga datos incompletos. La metadata es opcional: su ausencia
-no se interpreta como confirmación de finalización.
+1. Calcular `D − 7` como fecha de calendario.
+2. Elegir `S`, el último domingo que sea <= `D − 7`.
+3. Actual: `[S − 6, S]`; anterior: `[S − 13, S − 7]`.
 
-Para un corte válido `F = first_incomplete_date`, la ventana anterior es
-`[F − 14, F − 8]` y la actual `[F − 7, F − 1]`. Cada una tiene exactamente
-siete fechas inclusivas, sin solapamiento. Ambas deben quedar dentro del rango
-de la solicitud que aporta el corte. Se excluyen hoy, `F` y fechas posteriores.
-Las filas vacías no invalidan un corte válido ni acreditan tráfico cero.
+Ambas ventanas son lunes-domingo, con siete fechas inclusivas, consecutivas
+y sin solapamiento. La actual termina al menos siete fechas antes de `D`.
+Las semanas no cambian entre ejecuciones de lunes a sábado; el domingo
+habilita una nueva semana madura. La aritmética no usa horas locales ni
+desfases fijos, por lo que conserva los límites durante DST.
 
-## Clasificación y reintento acotado
+Ejemplo: para `D = 2026-10-04`, `S = 2026-09-27`, actual
+`2026-09-21..2026-09-27` y anterior `2026-09-14..2026-09-20`.
+Todas las consultas de métricas usan `dataState: final`; ese parámetro
+no se presenta como prueba independiente de finalización de cada día.
 
-| Estado | Motivo | Comportamiento |
+## Metadata opcional como seguridad adicional
+
+Se hace **un solo sondeo advisory**, sin retry ni ampliación: `[D − 27, D]`,
+`dimensions: ['date']`, `dataState: all`, `type: web`, `rowLimit: 29`, sin
+filtros ni `aggregationType`. Sus filas solo aportan diagnósticos;
+ni la última fila ni filas vacías demuestran finalización o tráfico cero.
+
+Si llega un `first_incomplete_date = F` válido dentro del rango consultado,
+elegir el último domingo <= `min(D − 7, F − 1)`. Esto mantiene ambas semanas
+estrictamente antes del corte y solo puede moverlas hacia atrás. El margen
+mínimo de siete días nunca disminuye. La política madura no exige que las
+ventanas ajustadas estén dentro del sondeo: no se atribuye verificación a
+fechas que la solicitud no cubre.
+
+Metadata y cutoff son opcionales. Su ausencia no prueba finalización, pero
+tampoco impide generar un informe con la política madura. Un campo presente
+con null, tipo incorrecto, fecha imposible o fuera del rango no es evidencia.
+Un fallo API del sondeo, metadata malformada o envelope inválido deja el
+advisory no disponible y continúa con las ventanas maduras por defecto.
+Si autenticación, permisos o una caída API también afectan las métricas,
+la ejecución termina con código 1; el sondeo no oculta esos fallos.
+
+Los motivos del advisory siguen distinguiendo `metadata_object_absent`,
+`first_incomplete_date_absent`, `malformed_metadata`,
+`invalid_first_incomplete_date`, `request_failed` e `invalid_response`.
+`insufficient_metadata_range` conserva un corte válido que puede ajustar
+la política madura sin otra petición.
+
+## Evidencia schema v4 y diagnósticos
+
+`dataQuality.dateCoverage` usa `status: mature_lag`,
+`method: mature_weekly_window`, `maturityBufferDays: 7`,
+`timeZone: America/Los_Angeles`, `periodAlignment: Monday-Sunday`,
+`dataState: final`, `executionDate`, `selectedSunday`, `periods`,
+`metadataCutoff`, `metadataCutoffAvailable` y `metadataAdjusted`.
+`reason` distingue `mature_lag_only` y `mature_lag_plus_metadata`.
+`firstIncompleteDate` conserva el alias del cutoff; ambos son null si falta
+evidencia válida. `advisory` guarda únicamente solicitud y evaluación segura.
+El validator reconstruye exactamente la política, el advisory y las ventanas,
+y exige el mismo instante en `checkedAt` y `updatedAt`.
+
+Los v4 históricos con `verified` conservan su validator estricto, incluida
+la evidencia de intentos y ampliación del contrato anterior. Esa lógica solo
+valida artifacts históricos; el extractor nuevo no reintenta. V3 sigue siendo
+histórico no verificado. No se migra ni reescribe ningún artifact existente.
+
+Se conserva `seo_coverage_probe` con solicitud, metadata presente/tipo,
+cutoff presente/valor seguro, filas y clasificación. `seo_period_selection`
+registra fecha LA, margen, domingo, ventanas, cutoff, ajuste, método y motivo
+del advisory. `seo_reporting_outcome` resume clasificación primaria,
+retry `not_attempted`, selección, outcome, escrituras, exit code y schema,
+timestamp y edad en segundos del artifact anterior. No se serializan metadata
+arbitraria, credenciales, tokens, headers ni cuerpos privados de error.
+
+Una ejecución normal realiza **1 advisory + 14 métricas = 15 peticiones**:
+12 informes existentes y dos totales EN. Solo las métricas cuentan en
+`reportsRequested`. Dimensiones, filtros, límites y semántica null/zero y
+truncamiento permanecen iguales.
+
+## Resultados de ejecución
+
+| Resultado | Comportamiento | Exit code |
 |---|---|---|
-| `verified` | `first_incomplete_date` | Corte válido y ambas ventanas dentro del rango; permite generar v4 |
-| `unverified` | `metadata_object_absent` | Falta el objeto metadata; repetir la misma solicitud una vez |
-| `unverified` | `first_incomplete_date_absent` | Metadata es un objeto pero falta el campo propio; repetir la misma solicitud una vez |
-| `unverified` | `insufficient_metadata_range` | Corte válido pero faltan fechas anteriores; ampliar el rango una vez |
-| `unavailable` | `malformed_metadata` | Metadata null, escalar o array; no reintentar |
-| `unavailable` | `invalid_first_incomplete_date` | Campo presente pero null, tipo incorrecto, fecha imposible o fuera del rango; no reintentar |
-| `unavailable` | `request_failed` | Falló la petición API; no reintentar |
-| `unavailable` | `invalid_response` | Envelope inválido o rows presente sin ser array; no reintentar |
+| `REPORT_UPDATED` | Snapshot validado, Markdown y JSON escritos; metadata opcional puede faltar | 0 |
+| `API_FAILURE` | Fallo al preparar autenticación/cliente; artifacts conservados | 1 |
+| `METRIC_REPORT_FAILURE` | Representación parcial solo en memoria; artifacts conservados, Actions falla y omite el commit automático | 1 |
+| `SNAPSHOT_VALIDATION_FAILURE` | Fallo de construcción/validación/render; artifacts conservados | 1 |
+| `ARTIFACT_WRITE_FAILURE` | No se declara actualización completa | 1 |
 
-Hay como máximo **dos sondeos a nivel de aplicación**. Si el primero verifica
-la cobertura, no hay reintento. Una ausencia no provoca ampliación ni demuestra
-finalización. Repetir la solicitud solo ofrece una oportunidad de recuperación;
-no garantiza que aparezca el campo.
-
-Solo un corte válido con rango insuficiente autoriza ampliar: el segundo
-sondeo empieza en `min(primary.startDate, F − 14)` y termina en `D`. Conserva
-los demás parámetros y calcula `rowLimit = número de fechas inclusivas + 1`.
-El segundo intento se evalúa exclusivamente con **su respuesta y su rango**.
-Si devuelve `F2`, las ventanas proceden de `F2`; nunca se combina el corte del
-primero con el rango del segundo. Si sigue sin verificar, se detiene sin un
-tercer sondeo. Las fechas se calculan como fechas Pacific, sin desfases fijos.
-
-Los 14 informes posteriores (12 existentes y dos totales EN) usan `dataState: 'final'` y los periodos seleccionados.
-Los totales globales siguen obteniéndose sin dimensiones; nunca se suman las
-filas de la consulta diaria. Los sondeos no cuentan en `reportsRequested`:
-el camino directo hace 1 + 14 = 15 peticiones; con reintento hace 2 + 14 = 16.
-
-`dataQuality.dateCoverage` registra estado, motivo, solicitud, zona, instante,
-`firstIncompleteDate` y periodos. La extracción nueva añade `attempts` con la
-solicitud y evaluación de cada intento, y `successfulAttempt`. La evidencia
-principal debe coincidir con el intento exitoso. El validator comprueba el
-contrato del primer sondeo, la regla exacta del reintento, los rangos y los
-periodos. Mantiene compatibilidad con v4 anterior sin intentos únicamente
-para el rango primario original; v3 sigue siendo histórico no verificado.
-
-El fallback es detenerse con código 1 **antes de consultar métricas o escribir**
-si el estado no es `verified`. Actions registra estado y motivo; los últimos
-archivos conservan su fecha original. No se publica un snapshot nuevo de error,
-no se cambia a un desfase fijo y no se busca el último día con actividad.
-Las fechas imposibles, futuras, fuera del rango o campos de metadata de tipo
-incorrecto no sirven como evidencia. Las fechas de filas diarias solo aparecen
-en diagnóstico; no determinan el corte. `dataState: final` por sí solo tampoco
-demuestra que una ventana propuesta tenga todas sus fechas finalizadas.
-
-Esta política puede detener una ejecución legítima si Google omite la metadata,
-incluido un sitio con poca actividad. Es una limitación explícita del fallback,
-no una afirmación de que sus días omitidos estén incompletos. La verificación
-describe el corte comunicado por Google en esa consulta; no garantiza cobertura
-de todas las queries ni impide futuras revisiones de datos históricos.
-
-## Estados de ejecución y diagnósticos seguros
-
-| Resultado | Artifacts | Exit code |
-|---|---|---|
-| `REPORT_UPDATED` | JSON v4 y Markdown escritos tras validar y renderizar | 0 |
-| `COVERAGE_UNRESOLVED` | Conservados; sin consultas de métricas | 1 |
-| `API_FAILURE` | Conservados; falla autenticación o sondeo | 1 |
-| `INVALID_COVERAGE_RESPONSE` | Conservados; sin consultas de métricas | 1 |
-| `SNAPSHOT_VALIDATION_FAILURE` | Conservados; validación/render previo a escribir | 1 |
-| `ARTIFACT_WRITE_FAILURE` | Falló la escritura; no se declara actualización completa | 1 |
-
-No hay éxito silencioso para metadata ausente. Cada repetición no resuelta
-sigue siendo un fallo visible en Actions y conserva los bytes de ambos informes.
-Se usa `process.exitCode`, sin `process.exit()` abrupto. Los estados de calidad
-de informes de métricas parciales mantienen su contrato existente.
-
-Cada sondeo emite JSON `seo_coverage_probe` con `attempt`, `checkedAt`,
-`siteUrl`, `probeStartDate`, `probeEndDate`, `timeZone`, `dataState`,
-`dimensions`, `type`, `rowLimit`, `responseRowCount`, `rowsPresent`,
-`metadataObjectPresent`, `metadataType`, `firstIncompleteDatePresent`,
-`firstIncompleteDateValue`, `firstReturnedDate`, `lastReturnedDate`,
-`classification` y `reason`. `metadataObjectPresent` solo es true para un
-objeto no null y no array. Fechas inválidas o no disponibles se registran como
-null. La ausencia de rows en un envelope válido indica cero filas del sondeo,
-nunca cero tráfico. Los fallos solo añaden un `httpStatus` numérico seguro y
-una categoría de error permitida; nunca el error o metadata completos.
-
-El resumen JSON `seo_reporting_outcome` incluye `primaryClassification`,
-`retryClassification` (o `not_attempted`), `selectedCutoff`, `selectedPeriods`,
-`finalWorkflowOutcome`, `reportsWritten`, `preservedArtifactSchemaVersion`,
-`preservedArtifactTimestamp`, `preservedArtifactAge` y `exitCode`. La edad se
-expresa en segundos desde `updatedAt`, medida con el instante capturado al
-inicio. Estos campos describen el artifact que existía antes del intento;
-si no se puede leer, son null. No se reconstruye ni modifica el informe antiguo.
-Nunca se registran credenciales, tokens, claves, headers de autorización ni
-cuerpos de error privados. No hace falta modificar el workflow existente.
+No se emite `COVERAGE_UNRESOLVED` por ausencia advisory. Se usa
+`process.exitCode`, sin salida abrupta. Respuestas de métricas vacías siguen
+siendo no disponibles, nunca cero; se conserva la política parcial existente.
+Antes de normalizar filas se valida el envelope de métricas: objeto no null
+ni array, con `rows` omitido o array. El cliente Google declara `rows` opcional;
+un campo presente null, undefined o de otro tipo es inválido. Un envelope
+inválido no se convierte en una respuesta vacía exitosa. Fallos de peticiones,
+envelopes o filas detienen la publicación antes de renderizar o escribir;
+los estados parciales/null del snapshot se conservan solo en memoria.
+Las escrituras del par siguen siendo secuenciales, una limitación previa.
+No hace falta modificar el workflow. El Markdown explica el margen semanal
+y si hubo cutoff compatible, sin afirmar finalización verificada por el lag.
 
 ## Totales globales y schema v4
 
 La versión 4 conserva los datasets, límites, cobertura de queries y reglas de
-truncamiento de v3. Añade cobertura temporal obligatoria y estos estados en
+truncamiento de v3. Añade política temporal explícita y estos estados en
 `dataQuality.globalReports.current` y `.previous`:
 
 | Estado | Métricas del periodo |
@@ -140,7 +130,7 @@ Un descenso real desde un valor positivo hasta un cero explícito sigue mostrand
 −100 %. Un denominador anterior igual a cero sigue produciendo `percentDelta: null`.
 
 Los lectores deben admitir métricas globales nulas y comprobar `schemaVersion`.
-El constructor solo genera v4 con corte verificado. El validator y renderer
+El constructor genera v4 con semanas maduras; no exige un corte independiente. El validator y renderer
 también aceptan v3: validan sus métricas y datasets sin exigir campos v4 y
 muestran «Cobertura temporal histórica no verificada». Conservan los valores
 históricos, incluidos sus ceros, sin atribuirles una procedencia que v3 no guardó.
@@ -165,8 +155,8 @@ y `dataState: final`. Guardan `responseAggregationType`; solo una respuesta
 válida `byPage` acredita los totales. Una agregación ausente o inesperada queda
 `invalid_response`. Los totales EN son agregados por página y no intercambiables
 con los totales globales por propiedad; no calcular su cuota de impresiones
-como si ambas agregaciones fueran idénticas. Sin metadata temporal verificada
-se conserva la parada previa a todas las métricas y escrituras.
+como si ambas agregaciones fueran idénticas. ES y EN usan las mismas semanas
+maduras, también cuando falta el cutoff advisory.
 
 ### Fuentes y estructura
 
@@ -265,8 +255,9 @@ UTC/Pacific, DST, metadata opcional o inválida, errores globales, ceros válido
 contrato de JSON/Markdown con datos deterministas. No necesita credenciales ni
 peticiones reales a Search Console. Las pruebas del extractor ejecutan su código
 con API y escritura de archivos simuladas: verifican la consulta `all`, los
-informes `final`, la independencia de los huecos de actividad, la parada antes
-de escribir sin metadata fiable y la salida nula ante un fallo global. También
-se prueba v3 sin mutación ni evidencia temporal inventada.
+14 informes `final`, la independencia de los huecos de actividad, generación
+con advisory ausente/inválido y los valores null ante fallos globales.
+Se comprueban también el ajuste hacia atrás, los outcomes de fallo de métricas,
+validación y escritura, y v3/v4 históricos sin mutación ni evidencia inventada.
 
 Referencia: [Search Analytics: query](https://developers.google.com/webmaster-tools/v1/searchanalytics/query).

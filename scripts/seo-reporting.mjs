@@ -183,28 +183,80 @@ export function coverageProbeDiagnostics(attempt, request, response, coverage, e
   };
 }
 
+export const MATURITY_BUFFER_DAYS = 7;
+
+// Calendar dates, not elapsed local hours: DST cannot change week boundaries.
+export function calculateMaturePeriods(now = new Date(), metadataCutoff = null) {
+  const executionDate = pacificDate(now);
+  let limit = addUtcDays(dateValue(executionDate), -MATURITY_BUFFER_DAYS);
+  if (metadataCutoff !== null) {
+    const cutoffEnd = addUtcDays(dateValue(metadataCutoff), -1);
+    if (cutoffEnd < limit) limit = cutoffEnd;
+  }
+  const sunday = addUtcDays(limit, -limit.getUTCDay());
+  return {
+    current: { start: formatDate(addUtcDays(sunday, -6)), end: formatDate(sunday) },
+    previous: { start: formatDate(addUtcDays(sunday, -13)), end: formatDate(addUtcDays(sunday, -7)) },
+  };
+}
+
+function matureDateCoverage(now, advisory) {
+  const metadataCutoff = ['first_incomplete_date', 'insufficient_metadata_range'].includes(advisory.coverage.reason)
+    ? advisory.coverage.firstIncompleteDate : null;
+  const periods = calculateMaturePeriods(now, metadataCutoff);
+  return {
+    status: 'mature_lag', reason: metadataCutoff === null ? 'mature_lag_only' : 'mature_lag_plus_metadata',
+    method: 'mature_weekly_window', maturityBufferDays: MATURITY_BUFFER_DAYS,
+    timeZone: SEARCH_CONSOLE_TIME_ZONE, periodAlignment: 'Monday-Sunday', dataState: 'final',
+    checkedAt: now.toISOString(), executionDate: pacificDate(now), selectedSunday: periods.current.end,
+    metadataCutoff, metadataCutoffAvailable: metadataCutoff !== null,
+    metadataAdjusted: periods.current.end !== calculateMaturePeriods(now).current.end,
+    firstIncompleteDate: metadataCutoff, periods, advisory,
+  };
+}
+
+// Exactly one advisory probe; absence and probe failures never certify finalization.
 /** @param {(diagnostic: ReturnType<typeof coverageProbeDiagnostics>) => void} onAttempt */
 export async function discoverDateCoverage(query, now = new Date(), onAttempt = () => {}) {
-  const primary = dateAvailabilityRequest(now);
-  let request = primary;
-  const attempts = [];
-  for (let attempt = 1; attempt <= 2; attempt++) {
-    let response, error = null;
-    let succeeded = true;
-    try { response = await query(request); }
-    catch (failure) { succeeded = false; error = failure; }
-    const coverage = assessDateCoverage(now, response, succeeded, request);
-    attempts.push({ request, coverage });
-    onAttempt(coverageProbeDiagnostics(attempt, request, response, coverage, error));
-    const retry = attempt === 1 && coverage.status === 'unverified'
-      ? retryCoverageRequest(primary, coverage) : null;
-    if (!retry) return { ...coverage, successfulAttempt: coverage.status === 'verified' ? attempt : null, attempts };
-    request = retry;
+  const request = dateAvailabilityRequest(now);
+  let response, error = null;
+  let succeeded = true;
+  try { response = await query(request); }
+  catch (failure) { succeeded = false; error = failure; }
+  const coverage = assessDateCoverage(now, response, succeeded, request);
+  onAttempt(coverageProbeDiagnostics(1, request, response, coverage, error));
+  return matureDateCoverage(now, { request, coverage });
+}
+
+function assertMatureDateCoverage(coverage, periods) {
+  assertSnapshot(typeof coverage.checkedAt === 'string' && Number.isFinite(Date.parse(coverage.checkedAt)), 'instante de selección inválido');
+  const now = new Date(coverage.checkedAt);
+  const request = dateAvailabilityRequest(now);
+  const advisory = coverage.advisory;
+  assertSnapshot(advisory && isDeepStrictEqual(advisory.request, request), 'solicitud advisory inválida');
+  const actual = advisory.coverage;
+  assertSnapshot(actual && typeof actual === 'object', 'evaluación advisory inválida');
+  let response;
+  let succeeded = true;
+  switch (actual.reason) {
+    case 'first_incomplete_date':
+    case 'insufficient_metadata_range': response = { metadata: { first_incomplete_date: actual.firstIncompleteDate } }; break;
+    case 'metadata_object_absent': response = {}; break;
+    case 'first_incomplete_date_absent': response = { metadata: {} }; break;
+    case 'malformed_metadata': response = { metadata: null }; break;
+    case 'invalid_first_incomplete_date': response = { metadata: { first_incomplete_date: null } }; break;
+    case 'invalid_response': response = null; break;
+    case 'request_failed': succeeded = false; break;
+    default: assertSnapshot(false, 'motivo advisory inválido');
   }
-  throw new Error('Límite interno de intentos de cobertura');
+  assertSnapshot(isDeepStrictEqual(actual, assessDateCoverage(now, response, succeeded, request)), 'evidencia advisory inconsistente');
+  const expected = matureDateCoverage(now, advisory);
+  assertSnapshot(isDeepStrictEqual(coverage, expected) && isDeepStrictEqual(periods, expected.periods), 'política de semanas maduras inválida');
 }
 
 function assertDateCoverage(coverage, periods) {
+  if (coverage?.status === 'mature_lag') return assertMatureDateCoverage(coverage, periods);
+  // Legacy v4 evidence remains readable; retry rules below are validation only.
   assertSnapshot(coverage?.status === 'verified', 'cobertura de fechas no verificada o no disponible');
   assertSnapshot(typeof coverage.checkedAt === 'string' && Number.isFinite(Date.parse(coverage.checkedAt)), 'evidencia de cobertura de fechas inválida');
   const now = new Date(coverage.checkedAt);
@@ -723,6 +775,26 @@ function validObservedMetrics(row) {
     && (row.impressions !== 0 || (row.clicks === 0 && row.ctr === 0));
 }
 
+// Error signaling only: partial report values and comparison semantics stay unchanged.
+export function hasMetricReportFailure(runs) {
+  return runs.some((run) => {
+    const seen = new Set();
+    return !run.succeeded || run.invalidResponse
+      || (run.dimensions.length === 0 && run.rows.length > 1)
+      || (run.key === EN_TOTAL_DEFINITION.key && run.rows.length > 0 && run.responseAggregationType !== 'byPage')
+      || run.rows.some((row) => {
+        if (!validObservedMetrics(row)) return true;
+        if (run.dimensions.length === 0) return false;
+        if (!Array.isArray(row.keys) || row.keys.length !== run.dimensions.length
+          || !row.keys.every((value) => typeof value === 'string')) return true;
+        const identity = rowKey(row);
+        if (seen.has(identity)) return true;
+        seen.add(identity);
+        return ['page', 'queryPage'].includes(run.key) && !validAbsoluteUrl(row.keys.at(-1));
+      });
+  });
+}
+
 function validAbsoluteUrl(value) {
   try { const url = new URL(value); return url.href === value && !url.hash && !url.username && !url.password; }
   catch { return false; }
@@ -929,6 +1001,7 @@ function queryObserved(row, period, english) {
 
 export function buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns, publishedEnglishPages }) {
   assertDateCoverage(dateCoverage, periods);
+  if (dateCoverage.status === 'mature_lag') assertSnapshot(generatedAt === dateCoverage.checkedAt, 'instantes de ejecución distintos');
   const english = publishedEnglishPages === undefined ? undefined
     : buildEnglishReport(reports, reportRuns, periods, publishedEnglishPages);
   if (english) {
@@ -1033,7 +1106,7 @@ export function buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, 
 
   return {
     schemaVersion: SCHEMA_VERSION,
-    schemaDescription: 'v4: conserva los datasets v3; verifica el corte temporal mediante first_incomplete_date y representa totales globales no disponibles con null.',
+    schemaDescription: 'v4: conserva los datasets v3; declara la política temporal y representa totales globales no disponibles con null.',
     updatedAt: generatedAt,
     periods,
     globalMetrics: compareMetrics(currentGlobal.metrics, previousGlobal.metrics),
@@ -1145,7 +1218,12 @@ function assertComparison(current, previous, difference, percentDelta, label) {
 export function validateSeoSnapshot(snapshot) {
   assertSnapshot([3, SCHEMA_VERSION].includes(snapshot?.schemaVersion), `schemaVersion debe ser 3 o ${SCHEMA_VERSION}`);
   const historical = snapshot.schemaVersion === 3;
-  if (!historical) assertDateCoverage(snapshot.dataQuality?.dateCoverage, snapshot.periods);
+  if (!historical) {
+    assertDateCoverage(snapshot.dataQuality?.dateCoverage, snapshot.periods);
+    if (snapshot.dataQuality.dateCoverage.status === 'mature_lag') {
+      assertSnapshot(snapshot.updatedAt === snapshot.dataQuality.dateCoverage.checkedAt, 'instantes de ejecución distintos');
+    }
+  }
   const global = snapshot.globalMetrics;
   assertSnapshot(global && typeof global === 'object', 'falta globalMetrics');
   for (const period of ['current', 'previous']) {
@@ -1410,7 +1488,7 @@ function renderEnglishMarkdown(snapshot) {
   const en = snapshot.english;
   let md = '## English performance\n\n';
   if (!en) return md + '*EN extension not collected in this snapshot.*\n\n';
-  md += 'Scope: `https://bebergames.com/en` and `/en/*`, including query-string variants. Same verified periods as above; finalized web-search data.\n\n';
+  md += 'Scope: `https://bebergames.com/en` and `/en/*`, including query-string variants. Same reporting periods as above; metric requests use `final`, with the temporal selection policy stated above.\n\n';
   md += '### EN totals\n\n';
   md += 'Page-filtered totals use page aggregation, not interchangeable with sitewide property totals. ';
   md += EN_PERIODS.map((period) => `${period}: \`${en.quality.totals[period].status}\`, aggregation \`${en.quality.totals[period].responseAggregationType ?? 'unavailable'}\``).join('; ') + '.\n\n';
@@ -1484,6 +1562,11 @@ export function renderSeoMarkdown(snapshot) {
   md += '*Generado automáticamente mediante GitHub Actions y la API de Google Search Console. No editar manualmente.*\n\n';
   if (snapshot.schemaVersion === 3) {
     md += '**Cobertura temporal histórica no verificada (schema v3).** Se conservan las métricas originales; no hay evidencia de finalización ni estados globales que permitan certificar sus ceros.\n\n';
+  } else if (quality.dateCoverage.status === 'mature_lag') {
+    md += 'Periodo seleccionado con una semana completa de margen para reducir el riesgo de datos incompletos de Search Console. Semanas de lunes a domingo en `America/Los_Angeles`; métricas solicitadas con `final`.\n\n';
+    md += quality.dateCoverage.metadataCutoffAvailable
+      ? 'El corte de metadata first_incomplete_date=' + quality.dateCoverage.metadataCutoff + ' está disponible y es compatible con ambos periodos.\n\n'
+      : 'Search Console no proporcionó un corte independiente válido de finalización. La selección sigue la política de semanas maduras.\n\n';
   } else {
     md += `Corte temporal verificado por \`first_incomplete_date=${quality.dateCoverage.firstIncompleteDate}\`, consultado con \`all\` en \`${quality.dateCoverage.timeZone}\`. Ambos periodos terminan antes de ese límite; sus métricas se solicitan con \`final\`. Comprobado: ${quality.dateCoverage.checkedAt}. Las filas de actividad no determinan el corte.\n\n`;
   }

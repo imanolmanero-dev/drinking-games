@@ -9,6 +9,7 @@ import {
   REPORT_DEFINITIONS,
   buildSeoSnapshot,
   discoverDateCoverage,
+  hasMetricReportFailure,
   renderSeoMarkdown,
   safeApiFailure,
   validateSeoSnapshot,
@@ -88,15 +89,15 @@ async function fetchSeoData() {
     }, now, (diagnostic) => {
       console.log(JSON.stringify({ event: 'seo_coverage_probe', siteUrl: SITE_URL, ...diagnostic }));
     });
-    if (dateCoverage.status !== 'verified') {
-      finalWorkflowOutcome = dateCoverage.status === 'unverified' ? 'COVERAGE_UNRESOLVED'
-        : dateCoverage.reason === 'request_failed' ? 'API_FAILURE' : 'INVALID_COVERAGE_RESPONSE';
-      console.error(`Cobertura temporal ${dateCoverage.status} (${dateCoverage.reason}); no se reemplazan los informes existentes.`);
-      throw new Error(`Cobertura temporal ${dateCoverage.status} (${dateCoverage.reason}); no se reemplazan los informes existentes.`);
-    }
-    const periods = dateCoverage.periods!;
-
-    console.log(`Corte temporal por metadata: first_incomplete_date=${dateCoverage.firstIncompleteDate}; se excluye esa fecha y las posteriores.`);
+    const periods = dateCoverage.periods;
+    console.log(JSON.stringify({ event: 'seo_period_selection', executionDate: dateCoverage.executionDate,
+      maturityBufferDays: dateCoverage.maturityBufferDays, selectedSunday: dateCoverage.selectedSunday,
+      selectedPeriods: periods, metadataCutoff: dateCoverage.metadataCutoff,
+      metadataCutoffAvailable: dateCoverage.metadataCutoffAvailable, metadataAdjusted: dateCoverage.metadataAdjusted,
+      method: dateCoverage.method, classification: dateCoverage.reason,
+      advisoryClassification: dateCoverage.advisory.coverage.status,
+      advisoryReason: dateCoverage.advisory.coverage.reason,
+    }));
     console.log(`Actual: ${periods.current.start} a ${periods.current.end}`);
     console.log(`Anterior: ${periods.previous.start} a ${periods.previous.end}`);
 
@@ -130,6 +131,13 @@ async function fetchSeoData() {
           siteUrl: SITE_URL,
           requestBody,
         });
+        // The client permits omitted rows, but a present rows field must be an
+        // array. Validate the raw envelope before normalizing zero-row reports.
+        const data: unknown = response.data;
+        const envelope = data !== null && typeof data === 'object' && !Array.isArray(data)
+          ? data as Record<string, unknown> : null;
+        const invalidResponse = envelope === null
+          || ('rows' in envelope && !Array.isArray(envelope.rows));
 
         return {
           name,
@@ -137,10 +145,11 @@ async function fetchSeoData() {
           key: definition.key,
           dimensions: definition.dimensions,
           rowLimit: definition.rowLimit,
-          rows: Array.isArray(response.data.rows) ? response.data.rows : [],
+          rows: !invalidResponse && Array.isArray(envelope?.rows) ? envelope.rows : [],
           succeeded: true,
-          responseAggregationType: response.data.responseAggregationType ?? null,
-          invalidResponse: response.data.rows != null && !Array.isArray(response.data.rows),
+          responseAggregationType: typeof envelope?.responseAggregationType === 'string'
+            ? envelope.responseAggregationType : null,
+          invalidResponse,
         };
       } catch (error: unknown) {
         return {
@@ -156,6 +165,7 @@ async function fetchSeoData() {
       }
     }));
 
+    const metricFailure = hasMetricReportFailure(reportRuns);
     const reports = {
       current: Object.fromEntries(reportRuns
         .filter((report) => report.period === 'current')
@@ -167,9 +177,16 @@ async function fetchSeoData() {
 
     const generatedAt = now.toISOString();
     const publishedEnglishPages = publishedRoutes('en-US').map((route) => absoluteUrl(route.pathname));
-    finalWorkflowOutcome = 'SNAPSHOT_VALIDATION_FAILURE';
+    finalWorkflowOutcome = metricFailure ? 'METRIC_REPORT_FAILURE' : 'SNAPSHOT_VALIDATION_FAILURE';
     const snapshot = buildSeoSnapshot({ generatedAt, periods, dateCoverage, reports, reportRuns, publishedEnglishPages });
     validateSeoSnapshot(snapshot);
+    // Keep partial/null semantics in memory, but never replace artifacts with
+    // reports containing failed requests or invalid metric responses.
+    if (metricFailure) {
+      process.exitCode = 1;
+      console.error('Error al generar el reporting SEO: METRIC_REPORT_FAILURE');
+      return;
+    }
     const markdown = renderSeoMarkdown(snapshot);
 
     finalWorkflowOutcome = 'ARTIFACT_WRITE_FAILURE';
@@ -184,17 +201,17 @@ async function fetchSeoData() {
     console.error(`Error al generar el reporting SEO: ${finalWorkflowOutcome}`);
     process.exitCode = 1;
   } finally {
-    const classify = (attempt: NonNullable<typeof dateCoverage>['attempts'][number] | undefined) => attempt
-      ? { status: attempt.coverage.status, reason: attempt.coverage.reason } : 'not_attempted';
     console.log(JSON.stringify({
       event: 'seo_reporting_outcome',
-      primaryClassification: classify(dateCoverage?.attempts[0]),
-      retryClassification: classify(dateCoverage?.attempts[1]),
-      selectedCutoff: dateCoverage?.status === 'verified' ? dateCoverage.firstIncompleteDate : null,
-      selectedPeriods: dateCoverage?.status === 'verified' ? dateCoverage.periods : null,
+      primaryClassification: dateCoverage ? { status: dateCoverage.advisory.coverage.status, reason: dateCoverage.advisory.coverage.reason } : 'not_attempted',
+      retryClassification: 'not_attempted',
+      selectionMethod: dateCoverage?.reason ?? null,
+      metadataAdvisoryUnavailable: dateCoverage ? !dateCoverage.metadataCutoffAvailable : true,
+      selectedCutoff: dateCoverage?.metadataCutoff ?? null,
+      selectedPeriods: dateCoverage?.periods ?? null,
       finalWorkflowOutcome, reportsWritten,
       ...preserved,
-      exitCode: reportsWritten ? 0 : 1,
+      exitCode: process.exitCode ?? (reportsWritten ? 0 : 1),
     }));
   }
 }
