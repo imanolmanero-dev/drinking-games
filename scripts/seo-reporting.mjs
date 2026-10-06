@@ -1,3 +1,5 @@
+import { isDeepStrictEqual } from 'node:util';
+
 export const SCHEMA_VERSION = 4;
 export const DISPLAY_LIMIT = 50;
 // Máximo admitido por Search Analytics Query en una sola respuesta.
@@ -94,8 +96,7 @@ export function dateAvailabilityRequest(now = new Date()) {
  * firstIncompleteDate: string | null,
  * periods: ReturnType<typeof calculatePeriods> | null}} DateCoverage
  */
-export function assessDateCoverage(now, response, succeeded = true) {
-  const request = dateAvailabilityRequest(now);
+export function assessDateCoverage(now, response, succeeded = true, request = dateAvailabilityRequest(now)) {
   /** @type {DateCoverage} */
   const coverage = {
     status: 'unavailable', reason: succeeded ? 'invalid_response' : 'request_failed',
@@ -105,16 +106,22 @@ export function assessDateCoverage(now, response, succeeded = true) {
   };
   if (!succeeded) return coverage;
   if (!response || typeof response !== 'object' || Array.isArray(response)) return coverage;
+  if (response.rows !== undefined && !Array.isArray(response.rows)) return coverage;
   const metadata = response.metadata;
-  if (metadata !== undefined && (!metadata || typeof metadata !== 'object' || Array.isArray(metadata))) return coverage;
+  if (metadata !== undefined && (!metadata || typeof metadata !== 'object' || Array.isArray(metadata))) {
+    return { ...coverage, reason: 'malformed_metadata' };
+  }
   // Optional metadata is the only temporal evidence. Daily rows are deliberately
   // unused: missing activity neither proves zero traffic nor incomplete data.
-  if (metadata === undefined || !Object.hasOwn(metadata, 'first_incomplete_date')) {
-    return { ...coverage, status: 'unverified', reason: 'metadata_absent' };
+  if (metadata === undefined) return { ...coverage, status: 'unverified', reason: 'metadata_object_absent' };
+  if (!Object.hasOwn(metadata, 'first_incomplete_date')) {
+    return { ...coverage, status: 'unverified', reason: 'first_incomplete_date_absent' };
   }
   const firstIncompleteDate = metadata.first_incomplete_date;
-  try { dateValue(firstIncompleteDate); } catch { return coverage; }
-  if (firstIncompleteDate < request.startDate || firstIncompleteDate > request.endDate) return coverage;
+  try { dateValue(firstIncompleteDate); } catch { return { ...coverage, reason: 'invalid_first_incomplete_date' }; }
+  if (firstIncompleteDate < request.startDate || firstIncompleteDate > request.endDate) {
+    return { ...coverage, reason: 'invalid_first_incomplete_date' };
+  }
   coverage.firstIncompleteDate = firstIncompleteDate;
   const end = formatDate(addUtcDays(dateValue(firstIncompleteDate), -1));
   const periods = calculatePeriods(now, end);
@@ -128,19 +135,117 @@ export function assessDateCoverage(now, response, succeeded = true) {
   return coverage;
 }
 
-export async function discoverDateCoverage(query, now = new Date()) {
-  let response;
-  try { response = await query(dateAvailabilityRequest(now)); }
-  catch { return assessDateCoverage(now, null, false); }
-  return assessDateCoverage(now, response);
+function retryCoverageRequest(primary, coverage) {
+  if (['metadata_object_absent', 'first_incomplete_date_absent'].includes(coverage.reason)) {
+    return { ...primary, dimensions: [...primary.dimensions] };
+  }
+  if (coverage.reason !== 'insufficient_metadata_range') return null;
+  const neededStart = formatDate(addUtcDays(dateValue(coverage.firstIncompleteDate), -2 * PERIOD_DAYS));
+  const startDate = neededStart < primary.startDate ? neededStart : primary.startDate;
+  return { ...primary, dimensions: [...primary.dimensions], startDate,
+    rowLimit: countInclusiveDays({ start: startDate, end: primary.endDate }) + 1 };
+}
+
+export function safeApiFailure(error) {
+  const code = error && typeof error === 'object' ? error.code : null;
+  const httpStatus = Number.isInteger(code) && code >= 100 && code <= 599 ? code : null;
+  const errorCategory = httpStatus === 401 ? 'authentication'
+    : httpStatus === 403 ? 'permission' : httpStatus === 429 ? 'rate_limit'
+      : httpStatus >= 500 ? 'server' : 'request_failed';
+  return { httpStatus, errorCategory };
+}
+
+// Diagnostics deliberately retain no raw metadata, arbitrary field values or API errors.
+export function coverageProbeDiagnostics(attempt, request, response, coverage, error = null) {
+  const validEnvelope = response !== null && typeof response === 'object' && !Array.isArray(response);
+  const envelope = validEnvelope ? response : {};
+  const metadata = envelope.metadata;
+  const metadataObjectPresent = metadata !== null && typeof metadata === 'object' && !Array.isArray(metadata);
+  const firstIncompleteDatePresent = metadataObjectPresent && Object.hasOwn(metadata, 'first_incomplete_date');
+  const value = firstIncompleteDatePresent ? metadata.first_incomplete_date : null;
+  const rows = Array.isArray(envelope.rows) ? envelope.rows : null;
+  const safeDate = (value) => {
+    try { dateValue(value); return value; } catch { return null; }
+  };
+  return {
+    attempt, checkedAt: coverage.checkedAt,
+    probeStartDate: request.startDate, probeEndDate: request.endDate,
+    timeZone: coverage.timeZone, dataState: request.dataState,
+    dimensions: [...request.dimensions], type: request.type, rowLimit: request.rowLimit,
+    responseRowCount: rows ? rows.length : (envelope.rows === undefined && validEnvelope ? 0 : null),
+    rowsPresent: Object.hasOwn(envelope, 'rows'), metadataObjectPresent,
+    metadataType: metadata === null ? 'null' : Array.isArray(metadata) ? 'array' : typeof metadata,
+    firstIncompleteDatePresent, firstIncompleteDateValue: safeDate(value),
+    firstReturnedDate: safeDate(rows?.[0]?.keys?.[0]),
+    lastReturnedDate: safeDate(rows?.at(-1)?.keys?.[0]),
+    classification: coverage.status, reason: coverage.reason,
+    ...(coverage.reason === 'request_failed' ? safeApiFailure(error) : {}),
+  };
+}
+
+/** @param {(diagnostic: ReturnType<typeof coverageProbeDiagnostics>) => void} onAttempt */
+export async function discoverDateCoverage(query, now = new Date(), onAttempt = () => {}) {
+  const primary = dateAvailabilityRequest(now);
+  let request = primary;
+  const attempts = [];
+  for (let attempt = 1; attempt <= 2; attempt++) {
+    let response, error = null;
+    let succeeded = true;
+    try { response = await query(request); }
+    catch (failure) { succeeded = false; error = failure; }
+    const coverage = assessDateCoverage(now, response, succeeded, request);
+    attempts.push({ request, coverage });
+    onAttempt(coverageProbeDiagnostics(attempt, request, response, coverage, error));
+    const retry = attempt === 1 && coverage.status === 'unverified'
+      ? retryCoverageRequest(primary, coverage) : null;
+    if (!retry) return { ...coverage, successfulAttempt: coverage.status === 'verified' ? attempt : null, attempts };
+    request = retry;
+  }
+  throw new Error('Límite interno de intentos de cobertura');
 }
 
 function assertDateCoverage(coverage, periods) {
   assertSnapshot(coverage?.status === 'verified', 'cobertura de fechas no verificada o no disponible');
   assertSnapshot(typeof coverage.checkedAt === 'string' && Number.isFinite(Date.parse(coverage.checkedAt)), 'evidencia de cobertura de fechas inválida');
-  const expected = assessDateCoverage(new Date(coverage.checkedAt), {
+  const now = new Date(coverage.checkedAt);
+  let request = dateAvailabilityRequest(now);
+  if (coverage.attempts !== undefined) {
+    assertSnapshot(Array.isArray(coverage.attempts) && coverage.attempts.length >= 1 && coverage.attempts.length <= 2,
+      'intentos de cobertura inválidos');
+    for (const [index, attempt] of coverage.attempts.entries()) {
+      assertSnapshot(attempt && typeof attempt === 'object' && isDeepStrictEqual(attempt.request, request), 'solicitud de cobertura inválida');
+      const actual = attempt.coverage;
+      assertSnapshot(actual && typeof actual === 'object', 'evaluación de cobertura inválida');
+      const replay = assessDateCoverage(now, {
+        metadata: { first_incomplete_date: actual.firstIncompleteDate },
+      }, true, request);
+      if (index === coverage.attempts.length - 1) {
+        assertSnapshot(actual.status === 'verified' && actual.reason === 'first_incomplete_date', 'intento final no verificado');
+        for (const field of ['status', 'reason', 'checkedAt', 'timeZone', 'dataState', 'requested', 'firstIncompleteDate', 'periods']) {
+          assertSnapshot(isDeepStrictEqual(actual[field], replay[field])
+            && isDeepStrictEqual(coverage[field], actual[field]), 'evidencia distinta del intento exitoso');
+        }
+      } else {
+        assertSnapshot(actual.status === 'unverified' && actual.checkedAt === coverage.checkedAt,
+          'reintento de cobertura inválido');
+        if (actual.reason === 'insufficient_metadata_range') {
+          assertSnapshot(isDeepStrictEqual(actual, replay), 'corte para ampliación inválido');
+        } else {
+          assertSnapshot(['metadata_object_absent', 'first_incomplete_date_absent'].includes(actual.reason)
+            && actual.firstIncompleteDate === null && actual.periods === null, 'motivo de reintento inválido');
+          const absent = assessDateCoverage(now, actual.reason === 'metadata_object_absent' ? {} : { metadata: {} }, true, request);
+          assertSnapshot(isDeepStrictEqual(actual, absent), 'evidencia de ausencia inválida');
+        }
+        request = retryCoverageRequest(request, actual);
+      }
+    }
+    assertSnapshot(coverage.successfulAttempt === coverage.attempts.length, 'intento exitoso inválido');
+  } else {
+    assertSnapshot(coverage.successfulAttempt === undefined, 'intento exitoso sin evidencia');
+  }
+  const expected = assessDateCoverage(now, {
     metadata: { first_incomplete_date: coverage.firstIncompleteDate },
-  });
+  }, true, request);
   for (const field of ['status', 'reason', 'timeZone', 'dataState', 'checkedAt', 'firstIncompleteDate']) {
     assertSnapshot(JSON.stringify(coverage[field]) === JSON.stringify(expected[field]), 'evidencia de cobertura de fechas inválida');
   }

@@ -29,22 +29,33 @@ const dates = Array.from({ length: 15 }, (_, index) => ({
   keys: [`2026-09-${String(index + 11).padStart(2, '0')}`], ...metrics,
 }));
 
-async function runExtractor(reply) {
-  const requests = [], writes = [], errors = [];
+async function runExtractor(reply, { artifacts = new Map(), reportingOverrides = {} } = {}) {
+  const requests = [], writes = [], errors = [], logs = [];
   const processMock = { env: { GCP_CREDENTIALS: '{}' }, cwd: () => '/memory', exitCode: undefined };
   const modules = {
     googleapis: { google: {
       auth: { GoogleAuth: class {} },
       searchconsole: () => ({ searchanalytics: { query: async ({ requestBody }) => {
         requests.push(requestBody);
-        return { data: { responseAggregationType: requestBody.dimensionFilterGroups ? 'byPage' : 'byProperty',
-          ...await reply(requestBody) } };
+        const response = await reply(requestBody);
+        return { data: response && typeof response === 'object' && !Array.isArray(response)
+          ? { responseAggregationType: requestBody.dimensionFilterGroups ? 'byPage' : 'byProperty', ...response }
+          : response };
       } } }),
     } },
-    'node:fs': { writeFileSync: (...args) => writes.push(args) },
+    'node:fs': {
+      readFileSync: (file) => {
+        if (!artifacts.has(path.basename(file))) throw new Error('ENOENT');
+        return artifacts.get(path.basename(file));
+      },
+      writeFileSync: (...args) => {
+        writes.push(args);
+        artifacts.set(path.basename(args[0]), args[1]);
+      },
+    },
     'node:path': path,
     dotenv: { config() {} },
-    './seo-reporting.mjs': reporting,
+    './seo-reporting.mjs': { ...reporting, ...reportingOverrides },
     '../lib/i18n/routes': routes,
     '../lib/i18n/locales': locales,
   };
@@ -54,10 +65,11 @@ async function runExtractor(reply) {
       return modules[name];
     },
     process: processMock,
-    console: { log() {}, error: (message) => errors.push(message) },
+    console: { log: (message) => logs.push(message), error: (message) => errors.push(message) },
     Date: class extends Date { constructor(...args) { super(...(args.length ? args : [instant])); } },
   });
-  return { requests, writes, errors, exitCode: processMock.exitCode };
+  const diagnostics = logs.filter((line) => line.startsWith('{')).map((line) => JSON.parse(line));
+  return { requests, writes, errors, logs, diagnostics, artifacts, exitCode: processMock.exitCode };
 }
 
 test('extractor usa metadata all y 14 informes final: exactamente 15 peticiones, sin duplicar dimensiones EN', async () => {
@@ -101,19 +113,163 @@ test('extractor usa metadata all y 14 informes final: exactamente 15 peticiones,
 test('extractor conserva los outputs si falta metadata, falla la petición o la evidencia es inválida', async () => {
   for (const [reply, reason] of [
     [() => { throw new Error('PRIVATE_API_DETAILS'); }, 'unavailable (request_failed)'],
-    [() => ({}), 'unverified (metadata_absent)'],
-    [() => ({ rows: [], metadata: {} }), 'unverified (metadata_absent)'],
-    [() => ({ rows: dates }), 'unverified (metadata_absent)'],
-    [() => ({ metadata: { first_incomplete_date: 'bad' } }), 'unavailable (invalid_response)'],
-    [() => ({ metadata: { first_incomplete_date: '2026-08-31' } }), 'unverified (insufficient_metadata_range)'],
+    [() => ({}), 'unverified (metadata_object_absent)'],
+    [() => ({ rows: [], metadata: {} }), 'unverified (first_incomplete_date_absent)'],
+    [() => ({ rows: dates }), 'unverified (metadata_object_absent)'],
+    [() => ({ metadata: { first_incomplete_date: 'bad' } }), 'unavailable (invalid_first_incomplete_date)'],
   ]) {
     const run = await runExtractor(reply);
-    assert.equal(run.requests.length, 1);
+    assert.equal(run.requests.length, reason.startsWith('unverified') ? 2 : 1);
     assert.equal(run.writes.length, 0);
     assert.equal(run.exitCode, 1);
     assert.ok(run.errors.join('').includes(`Cobertura temporal ${reason}`));
     assert.doesNotMatch(run.errors.join(''), /PRIVATE_API_DETAILS/);
   }
+});
+
+const probeLogs = (run) => run.diagnostics.filter((item) => item.event === 'seo_coverage_probe');
+const outcomeLog = (run) => run.diagnostics.find((item) => item.event === 'seo_reporting_outcome');
+const successfulMetrics = (request) => ({ rows: request.dimensions ? [] : [metrics] });
+
+test('extractor reintenta una ausencia y publica v4 tras 2 probes + 14 informes', async () => {
+  let probes = 0;
+  const run = await runExtractor((request) => request.dataState === 'all'
+    ? (++probes === 1 ? {} : { rows: [], metadata }) : successfulMetrics(request));
+  assert.equal(run.requests.length, 16);
+  assert.deepEqual(run.requests[0], run.requests[1]);
+  assert.equal(run.writes.length, 2);
+  assert.equal(run.exitCode, undefined);
+  const saved = JSON.parse(run.artifacts.get('seo-data.json'));
+  assert.equal(saved.schemaVersion, 4);
+  assert.equal(saved.dataQuality.reportsRequested, 14);
+  assert.equal(saved.dataQuality.dateCoverage.successfulAttempt, 2);
+  assert.equal(reporting.validateSeoSnapshot(saved), true);
+  for (const request of run.requests.slice(2)) assert.equal(request.dataState, 'final');
+  assert.deepEqual(outcomeLog(run).retryClassification, { status: 'verified', reason: 'first_incomplete_date' });
+  assert.equal(outcomeLog(run).finalWorkflowOutcome, 'REPORT_UPDATED');
+  assert.equal(outcomeLog(run).exitCode, 0);
+  assert.equal(probeLogs(run)[1].responseRowCount, 0);
+  assert.equal(saved.globalMetrics.current.clicks, metrics.clicks);
+});
+
+test('extractor amplía con F, publica solo con F2 y no reintenta una tercera vez', async () => {
+  for (const [second, expectedOutcome, requestCount] of [
+    ['2026-09-01', 'REPORT_UPDATED', 16],
+    ['2026-08-20', 'COVERAGE_UNRESOLVED', 2],
+  ]) {
+    let probes = 0;
+    const run = await runExtractor((request) => request.dataState === 'all'
+      ? { metadata: { first_incomplete_date: ++probes === 1 ? '2026-08-31' : second } } : successfulMetrics(request));
+    assert.equal(run.requests.length, requestCount);
+    assert.equal(run.requests[1].startDate, '2026-08-17');
+    assert.equal(run.requests[1].endDate, '2026-09-27');
+    assert.equal(run.requests[1].rowLimit, 43);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, expectedOutcome);
+    if (expectedOutcome === 'REPORT_UPDATED') {
+      const saved = JSON.parse(run.artifacts.get('seo-data.json'));
+      assert.equal(saved.dataQuality.dateCoverage.firstIncompleteDate, second);
+      assert.equal(saved.periods.previous.start, '2026-08-18');
+      assert.equal(reporting.validateSeoSnapshot(saved), true);
+      assert.equal(run.exitCode, undefined);
+    } else {
+      assert.equal(run.writes.length, 0);
+      assert.equal(run.exitCode, 1);
+    }
+  }
+});
+
+test('varias ejecuciones no verificadas conservan bytes v3/v4 y muestran su antigüedad', async () => {
+  for (const schemaVersion of [3, 4]) {
+    const artifacts = new Map([
+      ['SEO_DATA.md', 'Historical markdown\r\n'],
+      ['seo-data.json', JSON.stringify({ schemaVersion, updatedAt: '2026-09-21T02:40:00Z' }) + '\n'],
+    ]);
+    const original = [...artifacts];
+    for (let invocation = 0; invocation < 3; invocation++) {
+      let probes = 0;
+      const run = await runExtractor(() => ++probes === 1 ? { rows: dates } : { metadata: {} }, { artifacts });
+      assert.deepEqual([...artifacts], original);
+      assert.equal(run.requests.length, 2);
+      assert.equal(run.requests.filter((request) => request.dataState === 'final').length, 0);
+      assert.equal(run.writes.length, 0);
+      assert.equal(run.exitCode, 1);
+      const logs = probeLogs(run);
+      assert.equal(logs[0].reason, 'metadata_object_absent');
+      assert.equal(logs[1].reason, 'first_incomplete_date_absent');
+      const summary = outcomeLog(run);
+      assert.equal(summary.finalWorkflowOutcome, 'COVERAGE_UNRESOLVED');
+      assert.equal(summary.reportsWritten, false);
+      assert.equal(summary.selectedCutoff, null);
+      assert.equal(summary.selectedPeriods, null);
+      assert.equal(summary.preservedArtifactSchemaVersion, schemaVersion);
+      assert.equal(summary.preservedArtifactTimestamp, '2026-09-21T02:40:00.000Z');
+      assert.equal(summary.preservedArtifactAge, 7 * 86400);
+      assert.equal(summary.exitCode, 1);
+    }
+  }
+});
+
+test('extractor rechaza metadata/cutoff/rows inválidos sin reintento ni escrituras', async () => {
+  for (const [reply, reason] of [
+    ...[null, 'SECRET_METADATA', 1, [], true].map((metadata) => [{ metadata }, 'malformed_metadata']),
+    ...[null, 1, true, {}, '2026-02-30', '2026-99-01', 'bad', '2026-09-28', '2026-08-30']
+      .map((first_incomplete_date) => [{ metadata: { first_incomplete_date } }, 'invalid_first_incomplete_date']),
+    [{ rows: {} }, 'invalid_response'],
+    [null, 'invalid_response'], [[], 'invalid_response'], ['PRIVATE_ENVELOPE', 'invalid_response'],
+  ]) {
+    const run = await runExtractor(() => reply);
+    assert.equal(run.requests.length, 1);
+    assert.equal(run.writes.length, 0);
+    assert.equal(run.exitCode, 1);
+    assert.equal(probeLogs(run)[0].reason, reason);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'INVALID_COVERAGE_RESPONSE');
+    assert.doesNotMatch(JSON.stringify([run.logs, run.errors]), /SECRET_METADATA|PRIVATE_ENVELOPE/);
+  }
+});
+
+test('fallos API no filtran tokens, cuerpos privados ni códigos arbitrarios', async () => {
+  for (const code of [401, 403, 503, 'PRIVATE_TOKEN']) {
+    const run = await runExtractor(() => { throw { code, message: 'PRIVATE_TOKEN', response: { data: 'PRIVATE_BODY' } }; });
+    assert.equal(run.requests.length, 1);
+    assert.equal(run.writes.length, 0);
+    assert.equal(run.exitCode, 1);
+    assert.equal(probeLogs(run)[0].reason, 'request_failed');
+    assert.equal(probeLogs(run)[0].httpStatus, typeof code === 'number' ? code : null);
+    assert.equal(outcomeLog(run).finalWorkflowOutcome, 'API_FAILURE');
+    assert.doesNotMatch(JSON.stringify([run.logs, run.errors]), /PRIVATE_TOKEN|PRIVATE_BODY/);
+  }
+});
+
+test('validación fallida preserva informes y emite SNAPSHOT_VALIDATION_FAILURE', async () => {
+  const artifacts = new Map([['SEO_DATA.md', 'original'], ['seo-data.json', '{"schemaVersion":3}']]);
+  const original = [...artifacts];
+  const run = await runExtractor((request) => request.dataState === 'all' ? { metadata } : successfulMetrics(request), {
+    artifacts,
+    reportingOverrides: { validateSeoSnapshot() { throw new Error('PRIVATE_VALIDATION'); } },
+  });
+  assert.equal(run.requests.length, 15);
+  assert.equal(run.writes.length, 0);
+  assert.deepEqual([...artifacts], original);
+  assert.equal(run.exitCode, 1);
+  assert.equal(outcomeLog(run).finalWorkflowOutcome, 'SNAPSHOT_VALIDATION_FAILURE');
+  assert.doesNotMatch(JSON.stringify([run.logs, run.errors]), /PRIVATE_VALIDATION/);
+});
+
+test('diagnósticos completos contienen solo campos seguros y un instante de ejecución', async () => {
+  const run = await runExtractor((request) => request.dataState === 'all' ? { rows: dates, metadata } : successfulMetrics(request));
+  const probe = probeLogs(run)[0];
+  for (const field of ['attempt', 'checkedAt', 'siteUrl', 'probeStartDate', 'probeEndDate', 'timeZone',
+    'dataState', 'dimensions', 'type', 'rowLimit', 'responseRowCount', 'rowsPresent', 'metadataObjectPresent',
+    'metadataType', 'firstIncompleteDatePresent', 'firstIncompleteDateValue', 'firstReturnedDate', 'lastReturnedDate',
+    'classification', 'reason']) assert.ok(Object.hasOwn(probe, field), field);
+  assert.equal(probe.timeZone, 'America/Los_Angeles');
+  assert.equal(probe.responseRowCount, 15);
+  assert.equal(probe.firstReturnedDate, '2026-09-11');
+  assert.equal(probe.lastReturnedDate, '2026-09-25');
+  assert.equal(outcomeLog(run).retryClassification, 'not_attempted');
+  const saved = JSON.parse(run.artifacts.get('seo-data.json'));
+  assert.equal(saved.updatedAt, probe.checkedAt);
+  assert.equal(outcomeLog(run).exitCode, 0);
 });
 
 test('extractor guarda current desconocido cuando query/page descarta una observación malformada', async () => {

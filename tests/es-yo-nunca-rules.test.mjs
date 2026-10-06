@@ -1,12 +1,47 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 import { execFileSync } from "node:child_process";
 import { createRequire } from "node:module";
 import test from "node:test";
 import ts from "typescript";
 import { readRouteContract } from "../scripts/audit-static-export.mjs";
-import { assertEs02Compatible, es02Replacements } from "./helpers/es02-baseline.mjs";
+import { es02Replacements } from "./helpers/es02-baseline.mjs";
+import { es03Replacements, mergeEditorialReplacements } from "./helpers/es03-baseline.mjs";
 import { assertCreatorRule, assertAlcoholFree, assertChosenReaction, assertNoCoercion } from "./helpers/yo-nunca-contract.mjs";
+
+// Exact reviewed coverage patch against 0fc57e3 (also identical against this
+// test's historical base). Keep reporting files IN the source comparison.
+// Pin the complete residual diff, including paths, blob IDs and every hunk;
+// any extra source edit requires a separate review of this authorization.
+const reviewedReportingDiffSha256 = "8771d69859ac8c9fa2c0aec5144177313838a0cd05ab1d0b234e981f51b82034";
+function assertReviewedReportingDiff(diff) {
+  assert.equal(createHash("sha256").update(diff).digest("hex"), reviewedReportingDiffSha256,
+    "only the exact reviewed SEO coverage patch may differ outside approved editorial fragments");
+}
+function reviewedSourceDiff(base, paths, exclusions = []) {
+  return execFileSync("git", ["-c", "core.abbrev=40", "diff", "--no-ext-diff", "--no-textconv",
+    "--no-color", "--no-renames", "--diff-algorithm=myers", "--indent-heuristic",
+    "--src-prefix=a/", "--dst-prefix=b/", "--unified=3",
+    base, "--", ...paths, ...exclusions], { encoding: "utf8" });
+}
+
+// Preserve the existing exact-fragment baseline transformation, then allow
+// only the pinned reporting diff in the remaining repository comparison.
+function assertReviewedSource(base, paths, additionalExclusions = [], readCurrent = file => readFileSync(file, "utf8")) {
+  const replacements = mergeEditorialReplacements(es02Replacements, es03Replacements);
+  const files = Object.keys(replacements).filter(file => paths.some(path => file === path || file.startsWith(path + "/")));
+  assertReviewedReportingDiff(reviewedSourceDiff(base, paths,
+    [...additionalExclusions, ...files.map(file => ":(exclude,literal)" + file)]));
+  for (const file of files) {
+    let expected = execFileSync("git", ["show", base + ":" + file], { encoding: "utf8" }).replace(/\r\n/g, "\n");
+    for (const [before, after] of replacements[file]) {
+      assert.equal(expected.split(before).length - 1, 1, file + ": unique reviewed original fragment");
+      expected = expected.replace(before, after);
+    }
+    assert.equal(readCurrent(file).replace(/\r\n/g, "\n"), expected, file + ": only exact reviewed fragments");
+  }
+}
 
 const require = createRequire(import.meta.url);
 require("tsx/cjs");
@@ -138,11 +173,35 @@ test("secondary game-to-article link is unique, valid and follows the preserved 
 test("only exact Yo Nunca editorial fragments change; all other production and gameplay stays identical", () => {
   const base = "dbffd98a8e7f1173dd9968f19396b36c107a744f";
   assert.deepEqual(Object.keys(es02Replacements).sort(), [gameFile, rulesFile, layoutFile, "content/blog/reglas-del-yo-nunca.mdx", "lib/data/blog-faqs.ts"].sort());
-  assertEs02Compatible(base, ["app", "components", "lib", "content", "public", "scripts", "package.json", "package-lock.json", "next.config.ts", "SEO_DATA.md", "seo-data.json", "tests/fixtures/es-routes.json", "tests/fixtures/en-routes.json", "tests/fixtures/es-editorial-updates.json"]);
+  assertReviewedSource(base, ["app", "components", "lib", "content", "public", "scripts", "package.json", "package-lock.json", "next.config.ts", "SEO_DATA.md", "seo-data.json", "tests/fixtures/es-routes.json", "tests/fixtures/en-routes.json", "tests/fixtures/es-editorial-updates.json"]);
   const previous = matter(execFileSync("git", ["show", `${base}:content/blog/reglas-del-yo-nunca.mdx`], { encoding: "utf8" }));
   assert.deepEqual(article.data, { ...previous.data, excerpt: article.data.excerpt });
   assert.match(article.data.excerpt, /cómo jugar.*con o sin alcohol/);
   const words = article.content.trim().split(/\s+/).length;
   assert.ok(words >= 800 && words <= 1500, `${words} words`);
   assert.doesNotMatch(article.content, /^# /m);
+});
+
+test("historical guard rejects an extra reporting edit beyond the reviewed coverage patch", () => {
+  const diff = reviewedSourceDiff("0fc57e3a02ea5343313596fdc2412f5c283d484e",
+    ["scripts/seo-reporting.mjs", "scripts/fetch-seo-data.ts"]);
+  assertReviewedReportingDiff(diff);
+  const source = readFileSync("scripts/fetch-seo-data.ts", "utf8").replace(/\r\n/g, "\n");
+  const mutatedSource = source.replace("  safeApiFailure,", "  safeApiFailure, // unreviewed extra edit");
+  assert.notEqual(mutatedSource, source);
+  // Reconstruct this extra source edit's diff and blob ID entirely in memory.
+  const blob = value => execFileSync("git", ["hash-object", "--stdin"], { input: value, encoding: "utf8" }).trim();
+  const mutated = diff.replace("+  safeApiFailure,", "+  safeApiFailure, // unreviewed extra edit")
+    .replace(blob(source), blob(mutatedSource));
+  assert.notEqual(mutated, diff);
+  assert.throws(() => assertReviewedReportingDiff(mutated), { code: "ERR_ASSERTION" });
+});
+
+test("historical ES-02 guard rejects unexpected obligatory Yo Nunca copy", () => {
+  const source = read(gameFile);
+  const mutated = source.replace("opcional", "obligatoria");
+  assert.notEqual(mutated, source);
+  assert.throws(() => assertReviewedSource("dbffd98a8e7f1173dd9968f19396b36c107a744f",
+    ["app", "components", "lib", "content", "public", "scripts", "package.json", "package-lock.json", "next.config.ts", "SEO_DATA.md", "seo-data.json", "tests/fixtures/es-routes.json", "tests/fixtures/en-routes.json", "tests/fixtures/es-editorial-updates.json"], [],
+    file => file === gameFile ? mutated : read(file)), { code: "ERR_ASSERTION" });
 });

@@ -843,12 +843,12 @@ test('los días omitidos internos o finales no invalidan ni desplazan los period
   }
 });
 
-test('metadata opcional ausente queda unverified incluso con todas las filas diarias', () => {
+test('objeto metadata ausente queda unverified incluso con todas las filas diarias', () => {
   const now = new Date('2026-08-27T10:00:00Z');
-  for (const response of [{}, { rows: [] }, { metadata: {} }, { rows: dateRows('2026-08-01', 27) }]) {
+  for (const response of [{}, { rows: [] }, { rows: dateRows('2026-08-01', 27) }]) {
     const coverage = assessDateCoverage(now, response);
     assert.equal(coverage.status, 'unverified');
-    assert.equal(coverage.reason, 'metadata_absent');
+    assert.equal(coverage.reason, 'metadata_object_absent');
     assert.equal(coverage.firstIncompleteDate, null);
     assert.equal(coverage.periods, null);
     assert.throws(() => buildSeoSnapshot({ periods: PERIODS, dateCoverage: coverage }), /cobertura de fechas/);
@@ -872,7 +872,11 @@ test('metadata malformada o fuera del rango consultado no certifica finalizació
   ]) {
     const coverage = assessDateCoverage(now, response);
     assert.equal(coverage.status, 'unavailable');
-    assert.equal(coverage.reason, 'invalid_response');
+    const invalidEnvelope = !response || typeof response !== 'object' || Array.isArray(response);
+    const malformedMetadata = !invalidEnvelope && (response.metadata === null
+      || typeof response.metadata !== 'object' || Array.isArray(response.metadata));
+    assert.equal(coverage.reason, invalidEnvelope ? 'invalid_response'
+      : malformedMetadata ? 'malformed_metadata' : 'invalid_first_incomplete_date');
     assert.equal(coverage.periods, null);
   }
 });
@@ -886,6 +890,131 @@ test('un retraso largo no extrapola la metadata antes del rango consultado', () 
   const edge = assessDateCoverage(now, { metadata: { first_incomplete_date: '2026-08-14' } });
   assert.equal(edge.status, 'verified');
   assert.equal(edge.periods.previous.start, edge.requested.start);
+});
+
+test('objeto metadata sin campo propio produce first_incomplete_date_absent', () => {
+  for (const metadata of [{}, Object.create({ first_incomplete_date: '2026-08-25' })]) {
+    const coverage = assessDateCoverage(new Date('2026-08-27T10:00:00Z'), { metadata });
+    assert.equal(coverage.status, 'unverified');
+    assert.equal(coverage.reason, 'first_incomplete_date_absent');
+    assert.equal(coverage.firstIncompleteDate, null);
+    assert.equal(coverage.periods, null);
+  }
+});
+
+test('reintento idéntico distingue las dos ausencias y conserva evidencia del segundo intento', async () => {
+  const now = new Date('2026-09-28T02:40:00Z');
+  for (const first of [{}, { metadata: {} }]) {
+    const requests = [], diagnostics = [];
+    const coverage = await discoverDateCoverage(async (request) => {
+      requests.push(request);
+      return requests.length === 1 ? first : { rows: [], metadata: { first_incomplete_date: '2026-09-25' } };
+    }, now, (diagnostic) => diagnostics.push(diagnostic));
+    assert.equal(requests.length, 2);
+    assert.deepEqual(requests[0], requests[1]);
+    assert.equal(coverage.successfulAttempt, 2);
+    assert.equal(coverage.status, 'verified');
+    assert.deepEqual(coverage.requested, coverage.attempts[1].coverage.requested);
+    assert.equal(diagnostics[0].reason, first.metadata ? 'first_incomplete_date_absent' : 'metadata_object_absent');
+    assert.equal(diagnostics[1].responseRowCount, 0);
+    assert.equal(diagnostics[1].firstReturnedDate, null);
+    assert.equal(diagnostics[1].lastReturnedDate, null);
+    const reports = emptyReports();
+    const snapshot = buildSeoSnapshot({ generatedAt: now.toISOString(), periods: coverage.periods,
+      dateCoverage: coverage, reports, reportRuns: reportRuns(reports) });
+    assert.equal(validateSeoSnapshot(snapshot), true);
+  }
+});
+
+test('dos ausencias siguen sin verificar aunque las filas parezcan finalizadas', async () => {
+  const diagnostics = [];
+  let calls = 0;
+  const coverage = await discoverDateCoverage(async () => {
+    calls++;
+    return calls === 1 ? { rows: dateRows('2026-09-01', 10) } : { rows: [], metadata: {} };
+  }, new Date('2026-09-28T02:40:00Z'), (diagnostic) => diagnostics.push(diagnostic));
+  assert.equal(calls, 2);
+  assert.equal(coverage.status, 'unverified');
+  assert.equal(coverage.firstIncompleteDate, null);
+  assert.equal(coverage.periods, null);
+  assert.equal(coverage.successfulAttempt, null);
+  assert.equal(diagnostics[0].lastReturnedDate, '2026-09-10');
+  assert.equal(diagnostics[0].metadataObjectPresent, false);
+  assert.equal(diagnostics[1].metadataObjectPresent, true);
+});
+
+test('respuestas inválidas no consumen un reintento y no filtran valores arbitrarios', async () => {
+  for (const [response, reason] of [
+    ...[null, 'PRIVATE_TOKEN', 123, [], true].map((metadata) => [{ metadata }, 'malformed_metadata']),
+    ...[null, true, 123, {}, [], 'bad', '2026-02-30', '2026-13-01', '2026-09-28', '2026-08-30']
+      .map((first_incomplete_date) => [{ metadata: { first_incomplete_date } }, 'invalid_first_incomplete_date']),
+    [null, 'invalid_response'], [[], 'invalid_response'], [{ rows: {} }, 'invalid_response'],
+  ]) {
+    let calls = 0;
+    const diagnostics = [];
+    const coverage = await discoverDateCoverage(async () => { calls++; return response; },
+      new Date('2026-09-28T02:40:00Z'), (diagnostic) => diagnostics.push(diagnostic));
+    assert.equal(calls, 1);
+    assert.equal(coverage.reason, reason);
+    assert.equal(coverage.status, 'unavailable');
+    assert.doesNotMatch(JSON.stringify({ coverage, diagnostics }), /PRIVATE_TOKEN/);
+  }
+});
+
+test('ampliación exacta usa solo el nuevo corte y el rango del segundo intento', async () => {
+  const now = new Date('2026-09-28T02:40:00Z');
+  const requests = [];
+  const coverage = await discoverDateCoverage(async (request) => {
+    requests.push(request);
+    return { metadata: { first_incomplete_date: requests.length === 1 ? '2026-08-31' : '2026-09-01' } };
+  }, now);
+  assert.deepEqual(requests[1], {
+    startDate: '2026-08-17', endDate: '2026-09-27', dimensions: ['date'], dataState: 'all', type: 'web', rowLimit: 43,
+  });
+  assert.equal(coverage.firstIncompleteDate, '2026-09-01');
+  assert.equal(coverage.successfulAttempt, 2);
+  assert.deepEqual(coverage.periods, {
+    previous: { start: '2026-08-18', end: '2026-08-24' },
+    current: { start: '2026-08-25', end: '2026-08-31' },
+  });
+  const reports = emptyReports();
+  const snapshot = buildSeoSnapshot({ generatedAt: now.toISOString(), periods: coverage.periods,
+    dateCoverage: coverage, reports, reportRuns: reportRuns(reports) });
+  assert.equal(validateSeoSnapshot(snapshot), true);
+  const reordered = structuredClone(snapshot);
+  const retryRequest = reordered.dataQuality.dateCoverage.attempts[1].request;
+  reordered.dataQuality.dateCoverage.attempts[1].request = Object.fromEntries(Object.entries(retryRequest).reverse());
+  assert.equal(validateSeoSnapshot(reordered), true);
+  for (const corrupt of [
+    (s) => { s.dataQuality.dateCoverage.firstIncompleteDate = '2026-08-31'; },
+    (s) => { s.dataQuality.dateCoverage.requested.start = '2026-08-31'; },
+    (s) => { s.dataQuality.dateCoverage.requested.end = '2026-09-26'; },
+    (s) => { s.dataQuality.dateCoverage.successfulAttempt = 1; },
+    (s) => { s.dataQuality.dateCoverage.attempts[1].request.startDate = '2026-08-16'; },
+    (s) => { s.dataQuality.dateCoverage.attempts[1].coverage = s.dataQuality.dateCoverage.attempts[0].coverage; },
+    (s) => { s.periods.previous.start = '2026-08-16'; },
+    (s) => { s.dataQuality.dateCoverage.attempts[0].coverage.reason = 'request_failed'; },
+    (s) => { delete s.dataQuality.dateCoverage.attempts; },
+    (s) => { s.dataQuality.dateCoverage.attempts[0].coverage.requested.start = '2026-08-30'; },
+    (s) => { s.dataQuality.dateCoverage.attempts[1] = null; },
+  ]) {
+    const invalid = structuredClone(snapshot);
+    corrupt(invalid);
+    assert.throws(() => validateSeoSnapshot(invalid), /Snapshot SEO inválido/);
+  }
+});
+
+test('un segundo corte aún insuficiente o ausente termina sin extrapolar ni tercer intento', async () => {
+  for (const second of [{ metadata: { first_incomplete_date: '2026-08-20' } }, {}]) {
+    let calls = 0;
+    const coverage = await discoverDateCoverage(async () => {
+      calls++;
+      return calls === 1 ? { metadata: { first_incomplete_date: '2026-08-31' } } : second;
+    }, new Date('2026-09-28T02:40:00Z'));
+    assert.equal(calls, 2);
+    assert.equal(coverage.status, 'unverified');
+    assert.equal(coverage.periods, null);
+  }
 });
 
 test('fallos globales current, previous o ambos conservan null y no fabrican porcentajes', () => {
