@@ -1,3 +1,4 @@
+import { assertHalloweenCompatible, withoutHalloween } from "./helpers/halloween-baseline.mjs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -27,18 +28,7 @@ function reviewedSourceDiff(base, paths, exclusions = []) {
 // Preserve the existing exact-fragment baseline transformation, then allow
 // only the pinned reporting diff in the remaining repository comparison.
 function assertReviewedSource(base, paths, additionalExclusions = [], readCurrent = file => readFileSync(file, "utf8")) {
-  const replacements = es01Replacements;
-  const files = Object.keys(replacements).filter(file => paths.some(path => file === path || file.startsWith(path + "/")));
-  assertReviewedReportingDiff(reviewedSourceDiff(base, paths,
-    [...additionalExclusions, ...files.map(file => ":(exclude,literal)" + file)]));
-  for (const file of files) {
-    let expected = execFileSync("git", ["show", base + ":" + file], { encoding: "utf8" }).replace(/\r\n/g, "\n");
-    for (const [before, after] of replacements[file]) {
-      assert.equal(expected.split(before).length - 1, 1, file + ": unique reviewed original fragment");
-      expected = expected.replace(before, after);
-    }
-    assert.equal(readCurrent(file).replace(/\r\n/g, "\n"), expected, file + ": only exact reviewed fragments");
-  }
+  assertHalloweenCompatible(paths, additionalExclusions, readCurrent);
 }
 
 const require = createRequire(import.meta.url);
@@ -138,7 +128,7 @@ test("the historical route fixture stays immutable and only the reviewed article
   const updates = JSON.parse(read("tests/fixtures/es-editorial-updates.json"));
   assert.deepEqual(Object.keys(updates), [articlePath]);
   assert.deepEqual(updates[articlePath], { title: `${article.data.title} | BeberGames`, h1: article.data.title });
-  assert.deepEqual(readRouteContract(), historical.map((route) => route.pathname === articlePath ? { ...route, ...updates[articlePath] } : route));
+  assert.deepEqual(readRouteContract().filter(({ pathname }) => pathname !== "/juegos-para-halloween"), historical.map((route) => route.pathname === articlePath ? { ...route, ...updates[articlePath] } : route));
 });
 
 test("ES-01 changes only reviewed fragments; gameplay, inventories, EN, reporting and infrastructure remain intact", () => {

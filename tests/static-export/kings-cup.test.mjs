@@ -69,10 +69,10 @@ test("home and registry-driven hub link both published English games", () => {
   assert.equal(home.getElementById("en-home-truth-or-dare").getAttribute("href"), "/en/games/truth-or-dare");
 });
 
-test("King's Cup is in the 80-URL union once, with no false ES or Ring of Fire hreflang", () => {
+test("King's Cup is in the 82-URL union once, with no false ES or Ring of Fire hreflang", () => {
   const audit = auditStaticExport();
   assert.deepEqual(validateStaticExportAudit(audit), []);
-  assert.equal(audit.sitemap.urls.length, 80);
+  assert.equal(audit.sitemap.urls.length, 82);
   assert.equal(audit.sitemap.urls.filter((entry) => entry === url).length, 1);
   for (const path of ["/en/games/kings-cup", "/juegos/rey-de-la-copa", "/juegos/rey-de-la-copa/reglas", "/juegos/ring-of-fire", "/juegos/ring-of-fire/reglas"]) {
     assert.deepEqual(audit.pages.find((page) => page.pathname === path).languages, [], path);

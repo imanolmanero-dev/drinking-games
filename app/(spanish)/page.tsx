@@ -396,6 +396,11 @@ export default function Home() {
         </div>
       </section>
 
+      {/* HALLOWEEN DISCOVERY START — removable seasonal link, after the main games */}
+      <aside className="mx-auto w-full max-w-5xl px-4 pt-8 sm:px-6" aria-label="Especial Halloween">
+        <p className="rounded-2xl border border-border bg-surface p-5 text-sm">🎃 <strong>Especial Halloween:</strong> <Link id="home-halloween" href="/juegos-para-halloween" className="text-accent underline">Juegos para Halloween con amigos</Link>, con ideas para preparar la fiesta y jugar con o sin alcohol.</p>
+      </aside>
+      {/* HALLOWEEN DISCOVERY END */}
       {/* Latest Blog Posts */}
       <section className="bg-background w-full py-16 pb-24">
         <div className="mx-auto w-full max-w-5xl px-4 sm:px-6">

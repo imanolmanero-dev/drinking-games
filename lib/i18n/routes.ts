@@ -3,7 +3,7 @@ import { absoluteUrl, type Locale } from "./locales";
 export type RouteId =
   | "home" | "games-hub" | "about" | "contact" | "privacy" | "cookies"
   | "terms" | "legal-notice" | "kings-cup" | "truth-or-dare"
-  | "drinking-games-for-two" | "drinking-games-without-cards";
+  | "drinking-games-for-two" | "drinking-games-without-cards" | "halloween";
 
 type LocalizedRoute = { pathname: string; label: string };
 type RouteEntry = {
@@ -17,6 +17,8 @@ type RouteEntry = {
 
 // Identity is editorial, never a translated slug. A reserved path is not a link.
 export const routeRegistry: readonly RouteEntry[] = [
+  // Seasonal equivalents share party activities; playable recommendations follow each locale's inventory.
+  { id: "halloween", kind: "guide", routes: { es: { pathname: "/juegos-para-halloween", label: "Juegos para Halloween" }, "en-US": { pathname: "/en/halloween-drinking-games", label: "Halloween drinking games" } }, published: { es: true, "en-US": true }, equivalence: "equivalent" },
   { id: "home", kind: "page", routes: { es: { pathname: "/", label: "Inicio" }, "en-US": { pathname: "/en", label: "Home" } }, published: { es: true, "en-US": true }, equivalence: "equivalent" },
   { id: "games-hub", kind: "page", routes: { es: { pathname: "/juegos", label: "Juegos" }, "en-US": { pathname: "/en/games", label: "Games" } }, published: { es: true, "en-US": true }, equivalence: "equivalent" },
   { id: "about", kind: "page", routes: { es: { pathname: "/sobre-nosotros", label: "Sobre nosotros" }, "en-US": { pathname: "/en/about", label: "About" } }, published: { es: true, "en-US": true }, equivalence: "equivalent" },

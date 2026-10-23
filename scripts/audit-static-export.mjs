@@ -13,6 +13,7 @@ export const GENERAL_PATHS = [
   "/blog",
   "/contacto",
   "/juegos",
+  "/juegos-para-halloween",
   "/legal/aviso-legal",
   "/legal/cookies",
   "/legal/privacidad",
@@ -215,7 +216,8 @@ export function readRouteContract(projectRoot = process.cwd()) {
       throw new Error(`Invalid editorial contract: ${pathname}`);
     }
   }
-  return historical.map((route) => ({ ...route, ...updates[route.pathname] }));
+  const additional = JSON.parse(readFileSync(join(projectRoot, "tests", "fixtures", "es-additional-routes.json"), "utf8"));
+  return [...historical.map((route) => ({ ...route, ...updates[route.pathname] })), ...additional].sort((a, b) => a.pathname.localeCompare(b.pathname, "en"));
 }
 
 export function readEnglishRouteContract(projectRoot = process.cwd()) {
@@ -348,14 +350,14 @@ export function validateStaticExportAudit(audit, projectRoot = process.cwd()) {
     audit.pages.map((page) => [page.pathname, page]),
   );
 
-  if (routeContract.length !== 70 || new Set(spanishPathnames).size !== 70) {
-    violations.push("El contrato no contiene 70 rutas únicas.");
+  if (routeContract.length !== 71 || new Set(spanishPathnames).size !== 71) {
+    violations.push("El contrato no contiene 71 rutas únicas.");
   }
   if (!arraysEqual(spanishPathnames, sorted(spanishPathnames)) || !arraysEqual(englishPathnames, sorted(englishPathnames))) {
     violations.push("El contrato de rutas no está ordenado.");
   }
-  if (englishContract.length !== 10 || new Set(englishPathnames).size !== 10 || englishPathnames.some((path) => !/^\/en(?:\/|$)/.test(path))) {
-    violations.push("El contrato inglés no contiene exactamente 10 rutas /en únicas.");
+  if (englishContract.length !== 11 || new Set(englishPathnames).size !== 11 || englishPathnames.some((path) => !/^\/en(?:\/|$)/.test(path))) {
+    violations.push("El contrato inglés no contiene exactamente 11 rutas /en únicas.");
   }
   if (audit.technicalDocuments.length !== 0) {
     violations.push("El export contiene documentos adicionales fuera del contrato, aunque tengan noindex.");

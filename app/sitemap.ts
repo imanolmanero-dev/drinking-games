@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllPosts } from "@/lib/blog";
 import { publishedRoutes } from "@/lib/i18n/routes";
 import { absoluteUrl } from "@/lib/i18n/locales";
+import { HALLOWEEN_DATE } from "@/lib/data/halloween";
 
 export const dynamic = "force-static";
 
@@ -30,7 +31,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return [
     // English publication is explicit; no artificial modification dates.
-    ...publishedRoutes("en-US").map(({ pathname }) => ({ url: absoluteUrl(pathname) })),
+    ...publishedRoutes("en-US").map(({ id, pathname }) => ({ url: absoluteUrl(pathname), ...(id === "halloween" ? { lastModified: HALLOWEEN_DATE } : {}) })),
+    ...publishedRoutes("es").filter(({ id }) => id === "halloween").map(({ pathname }) => ({ url: absoluteUrl(pathname), lastModified: HALLOWEEN_DATE })),
     {
       url: baseUrl,
       lastModified: new Date(),

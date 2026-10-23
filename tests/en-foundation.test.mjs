@@ -20,9 +20,9 @@ const fixture = JSON.parse(read("tests/fixtures/en-routes.json"));
 const sorted = (items) => [...items].sort();
 const render = (component, props) => parse(renderToStaticMarkup(createElement(component, props)));
 
-test("English registry publication matches the independent ten-route fixture", () => {
-  assert.equal(fixture.length, 10);
-  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 10);
+test("English registry publication matches the independent eleven-route fixture", () => {
+  assert.equal(fixture.length, 11);
+  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 11);
   assert.deepEqual(fixture.map((route) => route.pathname), sorted(fixture.map((route) => route.pathname)));
   assert.deepEqual(sorted(publishedRoutes("en-US").map((route) => route.pathname)), fixture.map((route) => route.pathname));
   assert.equal(new Set(routeRegistry.map((route) => route.id)).size, routeRegistry.length);
@@ -125,7 +125,7 @@ test("DELIBERATE SEO ADDITION is the only change to the six Spanish page sources
   for (const route of ["", "juegos/", "sobre-nosotros/", "contacto/", "legal/privacidad/", "legal/cookies/"]) {
     const file = `app/(spanish)/${route}page.tsx`;
     const original = execFileSync("git", ["show", `${baseline}:${file}`], { encoding: "utf8" });
-    const withoutAddition = read(file).replace(/\r\n/g, "\n")
+    const withoutAddition = read(file).replace(/      \{\/\* HALLOWEEN DISCOVERY START[^]*?      \{\/\* HALLOWEEN DISCOVERY END \*\/\}\r?\n/, "").replace(/\r\n/g, "\n")
       .replace('import { languageAlternates } from "@/lib/i18n/routes";\n', "")
       .replace(/    \/\/ DELIBERATE SEO ADDITION: reciprocal published language equivalents\.\n    languages: languageAlternates\("[a-z-]+"\),\n/, "");
     assert.equal(withoutAddition, original, file);

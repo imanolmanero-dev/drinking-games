@@ -13,6 +13,9 @@
 # testing
 /coverage
 
+# Local Halloween export baselines, screenshots and validation logs
+/output/halloween/
+
 # next.js
 /.next/
 /out/

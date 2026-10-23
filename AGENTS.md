@@ -181,6 +181,9 @@ lib/
 
 ### Contrato visual compartido de juegos EN
 
+- Landings Halloween 2026: `/juegos-para-halloween` y `/en/halloween-drinking-games` son Server Components con contenido en `lib/data/halloween.ts`. Inventario: 71 ES + 11 EN = 82 URLs; séptima pareja hreflang `es`/`en-US`, sin `x-default`. El contrato ES histórico permanece intacto; nuevas rutas ES en `tests/fixtures/es-additional-routes.json`.
+- Las variantes Halloween se juegan en la mesa: no prometer packs temáticos ni personalización de ruleta inexistentes. EN solo enlaza sus juegos publicados. Los enlaces estacionales de ambas homes son discretos y retirables; no modificar su metadata/H1. La fecha editorial del sitemap es fija.
+
 - Las páginas de juegos EN deben seguir [docs/en-game-design-system.md](docs/en-game-design-system.md), única especificación visual detallada.
 - Artwork, acentos y mecánicas mantienen la identidad de cada juego; setup, jerarquía de acciones y responsive siguen los patrones compartidos.
 - Reutilizar los patrones existentes antes de introducir nuevos shells o componentes. Documentar las excepciones justificadas en el documento de fase.

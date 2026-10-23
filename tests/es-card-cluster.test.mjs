@@ -1,3 +1,4 @@
+import { assertHalloweenCompatible } from "./helpers/halloween-baseline.mjs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -44,7 +45,7 @@ test("ES-03 only changes reviewed card-cluster fragments; all metadata and prote
     }
   }
   const paths = ["app", "components", "lib", "content", "public", "scripts", "package.json", "package-lock.json", "next.config.ts", "tests/fixtures/es-routes.json", "tests/fixtures/en-routes.json"];
-  assertReviewedReportingDiff(reviewedSourceDiff(base, paths, Object.keys(es03Replacements).map(f => `:(exclude,literal)${f}`)));
+  assertHalloweenCompatible(paths);
 });
 
 test("Cuarto Rey explains the central King mechanic once, before the first section, without universal equivalence", () => {

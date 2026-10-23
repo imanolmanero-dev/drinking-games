@@ -16,5 +16,9 @@ export const metadata: Metadata = {
 };
 
 export default function YoNuncaLayout({ children }: { children: React.ReactNode }) {
-  return <GameLayout gameId="yo-nunca">{children}</GameLayout>;
+  return <><GameLayout gameId="yo-nunca">{children}</GameLayout>
+    <aside className="mx-auto w-full max-w-3xl px-5 pb-8 text-sm text-muted" aria-label="Ideas para Halloween">
+      ¿Fiesta de disfraces? Prueba las preguntas temáticas de nuestra guía de <a id="yo-nunca-halloween" href="/juegos-para-halloween" className="text-accent underline">juegos para Halloween</a> entre rondas.
+    </aside>
+  </>;
 }

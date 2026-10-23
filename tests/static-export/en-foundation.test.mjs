@@ -14,9 +14,9 @@ const absolute = (path) => path === "/" ? SITE_ORIGIN : `${SITE_ORIGIN}${path}`;
 const documentFor = (path) => parse(readFileSync(join("out", path === "/" ? "index.html" : `${path.slice(1)}.html`), "utf8"));
 const english = fixture.map((route) => ({ ...route, document: documentFor(route.pathname), page: audit.pages.find((page) => page.pathname === route.pathname) }));
 
-test("ten English documents are indexable, self-canonical, en-US, and have unique titles/descriptions and one H1", () => {
-  assert.equal(english.length, 10);
-  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 10);
+test("eleven English documents are indexable, self-canonical, en-US, and have unique titles/descriptions and one H1", () => {
+  assert.equal(english.length, 11);
+  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 11);
   const descriptions = [];
   for (const { pathname, title, h1, document, page } of english) {
     assert.ok(page, pathname);
@@ -37,8 +37,8 @@ test("ten English documents are indexable, self-canonical, en-US, and have uniqu
     descriptions.push(description[0].getAttribute("content"));
     assert.ok(document.querySelectorAll('link[rel="stylesheet"]').length > 0);
   }
-  assert.equal(new Set(descriptions).size, 10);
-  assert.equal(new Set(english.map((route) => route.page.title)).size, 10);
+  assert.equal(new Set(descriptions).size, 11);
+  assert.equal(new Set(english.map((route) => route.page.title)).size, 11);
 });
 
 test("English output has no ads, PWA, analytics, forms or consent instrumentation", () => {
@@ -55,9 +55,9 @@ test("English output has no ads, PWA, analytics, forms or consent instrumentatio
   }
 });
 
-test("hreflang is reciprocal, absolute, self-referencing and limited to six real pairs", () => {
+test("hreflang is reciprocal, absolute, self-referencing and limited to seven real pairs", () => {
   const pairs = fixture.filter((route) => route.equivalentEs !== null);
-  assert.equal(pairs.length, 6);
+  assert.equal(pairs.length, 7);
   for (const page of audit.pages) {
     const pair = pairs.find((route) => route.pathname === page.pathname || route.equivalentEs === page.pathname);
     const expected = pair ? { es: absolute(pair.equivalentEs), "en-US": absolute(pair.pathname) } : {};
@@ -118,7 +118,7 @@ test("English social metadata uses en_US and a real English static image, never 
       const schema = JSON.parse(script.textContent);
       const expectedTypes = pathname === "/en/games/kings-cup" ? ["WebApplication", "FAQPage"]
         : pathname === "/en/games/truth-or-dare" ? ["WebApplication"]
-        : pathname === "/en/blog/drinking-games-for-2" ? ["BlogPosting", "BreadcrumbList", "FAQPage"] : ["WebSite"];
+        : pathname === "/en/blog/drinking-games-for-2" ? ["BlogPosting", "BreadcrumbList", "FAQPage"] : pathname === "/en/halloween-drinking-games" ? ["BreadcrumbList", "FAQPage"] : ["WebSite"];
       assert.ok(expectedTypes.includes(schema["@type"]));
       if (!["FAQPage", "BreadcrumbList"].includes(schema["@type"])) assert.equal(schema.inLanguage, "en-US");
     }
@@ -128,8 +128,12 @@ test("English social metadata uses en_US and a real English static image, never 
 test("English sitemap entries have no artificial lastModified and no unexpected assets or pages", () => {
   const sitemap = parse(readFileSync("out/sitemap.xml", "utf8"));
   const entries = sitemap.querySelectorAll("url").filter((entry) => /^https:\/\/bebergames\.com\/en(?:\/|$)/.test(entry.querySelector("loc").textContent));
-  assert.equal(entries.length, 10);
-  for (const entry of entries) assert.equal(entry.querySelectorAll("lastmod").length, 0);
+  assert.equal(entries.length, 11);
+  for (const entry of entries) {
+    const halloween = entry.querySelector("loc").textContent.endsWith("/halloween-drinking-games");
+    assert.equal(entry.querySelectorAll("lastmod").length, halloween ? 1 : 0);
+    if (halloween) assert.equal(entry.querySelector("lastmod").textContent, "2026-10-23");
+  }
   assert.deepEqual(entries.map((entry) => entry.querySelector("loc").textContent).sort(), fixture.map((route) => absolute(route.pathname)).sort());
 });
 

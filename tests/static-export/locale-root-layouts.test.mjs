@@ -13,8 +13,8 @@ const documents = [...audit.pages.filter((page) => page.lang === "es"), ...audit
   document: parse(readFileSync(join("out", page.htmlFile), "utf8")),
 }));
 
-test("los 72 documentos conservan un solo html/body, CSS, fuentes, AdSense y manifest españoles", () => {
-  assert.equal(documents.length, 72);
+test("los 73 documentos conservan un solo html/body, CSS, fuentes, AdSense y manifest españoles", () => {
+  assert.equal(documents.length, 73);
   for (const { document, pathname } of documents) {
     assert.equal(document.querySelectorAll("html").length, 1, pathname);
     assert.equal(document.querySelectorAll("body").length, 1, pathname);
@@ -51,7 +51,7 @@ test("la metadata social global mantiene su herencia española sin URLs localhos
     const usesRootOpenGraph = document.querySelector('meta[property="og:title"]')?.getAttribute("content") === "BeberGames — Juegos para beber con amigos";
     for (const selector of ['meta[property="og:image"]', 'meta[name="twitter:image"]']) {
       const images = document.querySelectorAll(selector);
-      assert.equal(images.length, usesRootOpenGraph ? 1 : 0, `${pathname}: ${selector}`);
+      assert.equal(images.length, usesRootOpenGraph || pathname === "/juegos-para-halloween" ? 1 : 0, `${pathname}: ${selector}`);
       for (const image of images) {
         const url = new URL(image.getAttribute("content"));
         assert.equal(url.origin, "https://bebergames.com", pathname);

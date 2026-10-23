@@ -28,6 +28,9 @@ export default function EnglishHome() {
       <aside className="en-guide-discovery" aria-label="Two-player guide">
         <p><strong>Just the two of you?</strong> <EnglishLink id="en-home-two-guide" routeId="drinking-games-for-two">Try our drinking games for two guide</EnglishLink>, with or without cards, dice, or alcohol.</p>
       </aside>
+      <aside className="en-guide-discovery" aria-label="Halloween special">
+        <p>🎃 <strong>Planning a Halloween party?</strong> <EnglishLink id="en-home-halloween" routeId="halloween">Explore Halloween drinking games and party ideas</EnglishLink>, with costumes, quick challenges and alcohol-free options.</p>
+      </aside>
       <section className="en-section en-value">
         <h2>Everyone gets a say</h2>
         <p>You can play without alcohol. Choose a non-alcoholic drink, use points, or leave drinks out entirely. Agree on what feels comfortable before starting, and let anyone skip a question or stop without explaining why.</p>

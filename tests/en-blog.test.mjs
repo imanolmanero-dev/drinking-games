@@ -1,3 +1,4 @@
+import { assertHalloweenCompatible, withoutHalloween } from "./helpers/halloween-baseline.mjs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -25,18 +26,7 @@ function reviewedSourceDiff(base, paths, exclusions = []) {
 // Preserve the existing exact-fragment baseline transformation, then allow
 // only the pinned reporting diff in the remaining repository comparison.
 function assertReviewedSource(base, paths, additionalExclusions = [], readCurrent = file => readFileSync(file, "utf8")) {
-  const replacements = es01Replacements;
-  const files = Object.keys(replacements).filter(file => paths.some(path => file === path || file.startsWith(path + "/")));
-  assertReviewedReportingDiff(reviewedSourceDiff(base, paths,
-    [...additionalExclusions, ...files.map(file => ":(exclude,literal)" + file)]));
-  for (const file of files) {
-    let expected = execFileSync("git", ["show", base + ":" + file], { encoding: "utf8" }).replace(/\r\n/g, "\n");
-    for (const [before, after] of replacements[file]) {
-      assert.equal(expected.split(before).length - 1, 1, file + ": unique reviewed original fragment");
-      expected = expected.replace(before, after);
-    }
-    assert.equal(readCurrent(file).replace(/\r\n/g, "\n"), expected, file + ": only exact reviewed fragments");
-  }
+  assertHalloweenCompatible(paths, additionalExclusions, readCurrent);
 }
 
 const require = createRequire(import.meta.url);
@@ -64,7 +54,7 @@ test("two-person guide publishes the existing concept as an unpaired guide only"
   assert.equal(entry.equivalence, "unpaired");
   assert.equal(entry.published["en-US"], true);
   assert.equal(entry.routes["en-US"].pathname, "/en/blog/drinking-games-for-2");
-  assert.deepEqual(publishedRoutes("en-US", "guide").map(({ id }) => id), [entry.id]);
+  assert.deepEqual(publishedRoutes("en-US", "guide").map(({ id }) => id), ["halloween", entry.id]);
   assert.equal(publishedRoutes("en-US", "game").some(({ id }) => id === entry.id), false);
   assert.equal(languageAlternates(entry.id), undefined);
   assert.deepEqual(languageSwitch(entry.id, "en-US"), { pathname: "/", label: "Spanish home", locale: "es", fallback: true });
@@ -72,7 +62,7 @@ test("two-person guide publishes the existing concept as an unpaired guide only"
   const previous = JSON.parse(execFileSync("git", ["show", "e707c88:tests/fixtures/en-routes.json"], { encoding: "utf8" }));
   // Existing King's Cup metadata was deliberately updated after Phase 5.
   // Keep every other field in this historical route comparison intact.
-  assert.deepEqual(fixture.filter((route) => ![entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => {
+  assert.deepEqual(fixture.filter((route) => !["/en/halloween-drinking-games", entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => {
     if (route.pathname === "/en") return { ...route, h1: "Good company. Your pace." };
     if (route.pathname === "/en/games/kings-cup") return { ...route, title: previous.find(({ pathname }) => pathname === route.pathname).title };
     return route;
@@ -220,13 +210,13 @@ test("article sources contain no client behavior, remote media or Spanish editor
 test("Phase 5 leaves Spanish files, fixtures, navigation, sitemap and dependencies unchanged", () => {
   const base = "e707c88f313a97f2a9861940a1362cfb87033425";
   const paths = ["app/(spanish)", "content/blog", "lib/blog.ts", "app/globals.css", "tests/fixtures/es-routes.json", "tests/fixtures/es-redirects.json", "components/layout/english/EnglishNav.tsx", "components/layout/english/EnglishFooter.tsx", "app/sitemap.ts", "package.json", "package-lock.json"];
-  assertEs01Compatible(base, paths);
+  assertHalloweenCompatible(paths);
   const originalRegistry = execFileSync("git", ["show", `${base}:lib/i18n/routes.ts`], { encoding: "utf8" });
   const oldModule = require("typescript").transpileModule(originalRegistry.replace('import { absoluteUrl, type Locale } from "./locales";', 'const absoluteUrl = (path: string) => path; type Locale = "es" | "en-US";'), { compilerOptions: { module: 1 } }).outputText;
   const loaded = { exports: {} };
   new Function("module", "exports", oldModule)(loaded, loaded.exports);
   const es = (entries) => entries.map(({ id, routes, published, equivalence }) => ({ id, route: routes.es, published: published.es, equivalence }));
-  assert.deepEqual(es(routeRegistry), es(loaded.exports.routeRegistry));
+  assert.deepEqual(es(routeRegistry.filter(({ id }) => id !== "halloween")), es(loaded.exports.routeRegistry));
 });
 
 test("historical guard rejects an extra reporting edit beyond the reviewed coverage patch", () => {
@@ -251,7 +241,7 @@ function assertIncomingGuideSource(file, id, before, after, source) {
   assert.equal(matches.length, 1, file);
   assert.equal(matches[0][2], before, file);
   // Git normalizes CRLF; every source character besides this anchor must match.
-  assert.equal(source.replace(/\r\n/g, "\n"), baseline.replace(anchor, `$1${after}$3`).replace(/\r\n/g, "\n"), file);
+  assert.equal(withoutHalloween(file, source), baseline.replace(anchor, `$1${after}$3`).replace(/\r\n/g, "\n"), file);
 }
 
 test("historical EN guard rejects unexpected English copy beyond the approved anchor", () => {

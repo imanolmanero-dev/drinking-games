@@ -44,9 +44,9 @@ function hasLocalePrefix(value) {
   return /^\/es(?:\/|$)/.test(pathname);
 }
 
-test("el fixture fija 70 rutas españolas únicas, explícitas y ordenadas", () => {
-  assert.equal(routeContract.length, 70);
-  assert.equal(new Set(contractPathnames).size, 70);
+test("el fixture fija 71 rutas españolas únicas, explícitas y ordenadas", () => {
+  assert.equal(routeContract.length, 71);
+  assert.equal(new Set(contractPathnames).size, 71);
   assert.deepEqual(contractPathnames, sorted(contractPathnames));
   assert.ok(routeContract.every(({ pathname, title, h1 }) =>
     pathname.startsWith("/")
@@ -60,10 +60,10 @@ test("el inventario fuente coincide con el contrato versionado", () => {
   assert.deepEqual(audit.sourceInventory, unionPathnames);
 });
 
-test("el export contiene la unión exacta de 70 ES y 10 EN", () => {
+test("el export contiene la unión exacta de 71 ES y 11 EN", () => {
   assert.deepEqual(audit.exportedInventory, unionPathnames);
-  assert.equal(audit.pages.length, 80);
-  assert.equal(spanishPages.length, 70);
+  assert.equal(audit.pages.length, 82);
+  assert.equal(spanishPages.length, 71);
   assert.equal(audit.technicalDocuments.length, 0);
 
   for (const document of audit.technicalDocuments) {
@@ -82,7 +82,7 @@ test("el export contiene la unión exacta de 70 ES y 10 EN", () => {
   }
 });
 
-test("las 70 páginas declaran lang es y son indexables", () => {
+test("las 71 páginas declaran lang es y son indexables", () => {
   for (const page of spanishPages) {
     assert.equal(page.lang, "es", page.pathname);
     assert.deepEqual(page.robots, ["index, follow"], page.pathname);
@@ -105,7 +105,7 @@ test("cada página tiene un canonical propio, absoluto y único", () => {
     canonicals.push(page.canonical);
   }
 
-  assert.equal(new Set(canonicals).size, 80);
+  assert.equal(new Set(canonicals).size, 82);
   assert.equal(audit.pages[0].canonical, "https://bebergames.com");
 });
 
@@ -136,8 +136,8 @@ test("cada página mantiene un único H1 con el texto normalizado de baseline", 
 });
 
 test("el sitemap contiene exactamente la unión ES + EN sin duplicados", () => {
-  assert.equal(audit.sitemap.urls.length, 80);
-  assert.equal(new Set(audit.sitemap.urls).size, 80);
+  assert.equal(audit.sitemap.urls.length, 82);
+  assert.equal(new Set(audit.sitemap.urls).size, 82);
   assert.deepEqual(sorted(audit.sitemap.pathnames), unionPathnames);
 
   for (const url of audit.sitemap.urls) {
