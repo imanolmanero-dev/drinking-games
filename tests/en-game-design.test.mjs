@@ -26,16 +26,16 @@ test("game-detail width is opt-in and preserves every existing page default and 
 
 test("setup reuses the exact decorative artwork and retains native configuration and primary action", () => {
   const doc = parse(renderToStaticMarkup(createElement(TruthOrDareGame)));
-  const artwork = doc.querySelector(".en-tod-setup-art .en-tod-art");
+  const artwork = doc.querySelector(".en-setup-art .en-tod-art");
   assert.equal(artwork.toString(), renderToStaticMarkup(createElement(TruthOrDareArtwork)));
   assert.equal(artwork.getAttribute("aria-hidden"), "true");
   assert.equal(artwork.querySelectorAll("button, a, input, select, [tabindex], img, script").length, 0);
   assert.equal(doc.querySelectorAll("h2").length, 1);
   assert.equal(doc.querySelector('label[for="tod-player-count"]').textContent, "Players");
-  const setup = doc.querySelector(".en-tod-setup");
+  const setup = doc.querySelector(".en-setup-panel");
   assert.equal(setup.querySelector("#tod-player-count").tagName, "SELECT");
   assert.equal(setup.querySelectorAll("#tod-player-count option").length, 11);
-  assert.equal(setup.querySelectorAll(".en-tod-stepper button").length, 2);
+  assert.equal(setup.querySelectorAll(".en-tod-stepper button").length, 0);
   assert.ok(setup.querySelector("#tod-start.en-button-primary.en-button-wide"));
-  assert.match(setup.querySelector(".en-tod-note").textContent, /pass without a penalty.*end the game whenever you want.*Alcohol is optional/);
+  assert.match(setup.querySelector(".en-setup-note").textContent, /pass without a penalty.*end the game whenever you want.*Alcohol is optional/);
 });

@@ -376,3 +376,10 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-10-04 | Auto Ads insertaba nodos antes de hidratar el blog español y provocaba React #418 | Root español y tests de carga/export | Carga única con `lazyOnload`; regresión con publicidad inmediata y Next retrasado, sin cambiar ajustes de AdSense |
 | 2026-10-05 | La FAQ de Yo Nunca exigía una consecuencia que el artículo marcaba como opcional | Artículo, FAQ y copy de Yo Nunca | Regla del creador opcional coherente, explicación sin alcohol y tests de semántica compartida |
 | 2026-10-05 | La revisión ES-02 detectó consumo y relatos obligatorios fuera del bloque del creador | Copy de juego/reglas/artículo y tests Yo Nunca | Correcciones puntuales y validación de superficies completas con casos negativos de coerción |
+
+### Shared EN setup
+- Al consolidar setup, conservar la regla de gameplay de Truth or Dare para todos los estados fuera de setup: máximo 752 px, centrado y fondo sólido. Verificar elección, Truth, Dare y final además del formulario.
+- Los dos juegos EN usan `components/games/english/GameSetup.tsx` para composición y Players nativo 2–12. No restaurar steppers ni el valor de 44 px. Los campos opcionales pertenecen al juego; conservar reducers, foco y artwork propios. Este contrato sustituye las excepciones históricas de setup del documento visual.
+
+### Historical report guards
+- Generated SEO snapshots evolve through automated commits. Historical source guards must keep production sources pinned while explicitly checking the two report artifacts against a reviewed preflight commit. Never restore older reports or exclude their paths to satisfy a guard. Add negative mutation tests when updating this pin.

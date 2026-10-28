@@ -27,19 +27,19 @@ test("each hub game keeps its artwork and Truth or Dare places the same decorati
   assert.match(truth.querySelector(".en-tod-art-truth").textContent, /TRUTH\?/);
   assert.match(truth.querySelector(".en-tod-art-dare").textContent, /DARE!/);
   assert.ok(doc.querySelector("article.en-page-wide"));
-  assert.equal(doc.querySelector(".en-tod-setup-art .en-tod-art").toString(), truth.querySelector(".en-tod-art").toString());
+  assert.equal(doc.querySelector(".en-setup-art .en-tod-art").toString(), truth.querySelector(".en-tod-art").toString());
   assert.equal(doc.querySelector(".en-header-decoration"), null);
   assert.equal(home.querySelector(".en-header-decoration"), null);
   assert.equal(hub.querySelector(".en-header-decoration"), null);
   assert.equal(guide.querySelector(".en-header-decoration"), null);
 });
 
-test("setup exports a labelled native selector, stepper and separate game facts", () => {
+test("setup exports a labelled native selector and separate game facts", () => {
   const select = doc.getElementById("tod-player-count");
   assert.equal(select.getAttribute("aria-describedby"), "tod-player-range");
   assert.equal(select.querySelector("option[selected]").getAttribute("value"), "4");
   assert.equal(doc.getElementById("tod-player-range").textContent, "2–12 players");
-  assert.deepEqual(doc.querySelectorAll(".en-tod-facts li").map((item) => item.textContent), [`${TOTAL_PROMPTS} prompts`, "No materials", "One shared screen"]);
+  assert.deepEqual(doc.querySelectorAll(".en-setup-facts li").map((item) => item.textContent), [`${TOTAL_PROMPTS} prompts`, "No materials", "One shared screen"]);
   const category = doc.getElementById("tod-category");
   assert.equal(doc.querySelector('label[for="tod-category"]').textContent, "Category");
   assert.equal(category.tagName, "SELECT");
@@ -47,12 +47,8 @@ test("setup exports a labelled native selector, stepper and separate game facts"
   assert.equal(category.querySelector("option[selected]").getAttribute("value"), "classic");
   assert.deepEqual(category.querySelectorAll("option").map((option) => [option.getAttribute("value"), option.textContent]), [["classic", "Classic"], ["party", "Party"], ["both", "Both"]]);
   assert.match(doc.getElementById("tod-category-help").textContent, new RegExp(`${PROMPT_POOLS.classic.truths.length + PROMPT_POOLS.classic.dares.length} prompts`));
-  for (const [id, label] of [["tod-player-decrease", "Decrease player count"], ["tod-player-increase", "Increase player count"]]) {
-    const button = doc.getElementById(id);
-    assert.equal(button.tagName, "BUTTON");
-    assert.equal(button.getAttribute("type"), "button");
-    assert.equal(button.getAttribute("aria-label"), label);
-  }
+  assert.equal(doc.getElementById("tod-player-decrease"), null);
+  assert.equal(doc.getElementById("tod-player-increase"), null);
 });
 
 test("Truth or Dare exports a self-canonical English game with useful static content", () => {

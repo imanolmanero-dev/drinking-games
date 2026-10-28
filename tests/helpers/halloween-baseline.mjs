@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -6,9 +7,19 @@ import { readFileSync } from "node:fs";
 // source baseline and project exact reviewed additions, never exclude a page.
 export const halloweenBaseline = "677b1b063dc8c4bcd7e45b9928ff7cff7c3e1f9e";
 const fragments = JSON.parse(readFileSync(new URL("../fixtures/halloween-source-fragments.json", import.meta.url), "utf8"));
+// Automated report refresh 6daba04 changes only these two artifacts. Pin the
+// reviewed preflight snapshot independently of the older editorial baseline.
+export const reportBaseline = "6daba04c3283437f36eb7e3eb5e948a5225e2011";
+const reportFiles = new Set(["SEO_DATA.md", "seo-data.json"]);
+const setupFragments = JSON.parse(readFileSync(new URL("../fixtures/en-setup-source.json", import.meta.url), "utf8"));
 const git = args => execFileSync("git", args, { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
 export function withoutHalloween(file, source) {
   let value = source.replace(/\r\n/g, "\n");
+  const setup = setupFragments[file];
+  if (setup) {
+    assert.equal(createHash("sha256").update(value).digest("hex"), setup, `${file}: only exact reviewed shared setup changes`);
+    value = git(["show", `6daba04c3283437f36eb7e3eb5e948a5225e2011:${file}`]).replace(/\r\n/g, "\n");
+  }
   const patch = fragments[file];
   if (patch) {
     assert.equal(value.split(patch.after).length - 1, 1, `${file}: unique reviewed Halloween fragment`);
@@ -21,6 +32,7 @@ export function assertHalloweenCompatible(paths, exclusions = [], readCurrent = 
   const files = git(["ls-tree", "-r", "--name-only", halloweenBaseline, "--", ...paths]).trim().split("\n").filter(Boolean);
   for (const file of files) {
     if (excluded.includes(file)) continue;
-    assert.equal(withoutHalloween(file, readCurrent(file)), git(["show", `${halloweenBaseline}:${file}`]).replace(/\r\n/g, "\n"), `${file}: preflight plus exact reviewed Halloween addition only`);
+    const expectedRevision = reportFiles.has(file) ? reportBaseline : halloweenBaseline;
+    assert.equal(withoutHalloween(file, readCurrent(file)), git(["show", `${expectedRevision}:${file}`]).replace(/\r\n/g, "\n"), `${file}: pinned preflight report or exact reviewed Halloween addition only`);
   }
 }

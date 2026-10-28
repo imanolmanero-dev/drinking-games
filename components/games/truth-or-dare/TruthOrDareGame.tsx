@@ -1,5 +1,6 @@
 "use client";
 
+import { GameSetup, PlayerCountField } from "@/components/games/english/GameSetup";
 import { useEffect, useRef, useState } from "react";
 import { TruthOrDareArtwork, TruthOrDareMark } from "@/components/layout/english/EnglishArtwork";
 import { PROMPT_POOLS, TOTAL_PROMPTS, type PromptCategory } from "@/lib/data/truth-or-dare-prompts";
@@ -43,33 +44,21 @@ export default function TruthOrDareGame() {
   const lastPrompt = game ? truthLeft === 0 && dareLeft === 0 : false;
 
   return (
-    <section id="truth-or-dare-game" aria-labelledby="tod-game-heading" className={`en-game en-tod-game not-prose${!game ? " en-setup en-tod-setting-up" : ""}${phase === "finished" ? " en-tod-finished" : ""}`}>
+    <section id="truth-or-dare-game" aria-labelledby="tod-game-heading" className={`en-game en-tod-game not-prose${!game ? " en-setup en-shared-setting-up en-tod-setting-up" : ""}${phase === "finished" ? " en-tod-finished" : ""}`}>
       {phase === "finished" && <TruthOrDareMark />}
       <h2 id="tod-game-heading" ref={heading} tabIndex={-1}>
         {!game ? "Set up your game" : phase === "finished" ? "Game finished" : `Player ${player}'s turn`}
       </h2>
-      {!game && <div className="en-tod-setup-art"><TruthOrDareArtwork /></div>}
 
       {!game ? (
-        <div className="en-tod-panel en-tod-setup">
-          <p>Share one screen and sit in player order. Choose your player count and category; no names or accounts are needed.</p>
-          <ul className="en-tod-facts" aria-label="Game setup">
-            <li><strong>{TOTAL_PROMPTS}</strong> prompts</li>
-            <li>No materials</li>
-            <li>One shared screen</li>
-          </ul>
-          <div className="en-tod-players">
-            <label htmlFor="tod-player-count">Players</label>
-            <div className="en-tod-stepper">
-              <button id="tod-player-decrease" type="button" aria-label="Decrease player count" aria-controls="tod-player-count" disabled={playerCount === 2} onClick={() => setPlayerCount((count) => Math.max(2, count - 1))} className="en-button">−</button>
-              <select id="tod-player-count" aria-describedby="tod-player-range" value={playerCount} onChange={(event) => setPlayerCount(Number(event.target.value))}>
-                {Array.from({ length: 11 }, (_, index) => index + 2).map((count) => <option key={count} value={count}>{count}</option>)}
-              </select>
-              <button id="tod-player-increase" type="button" aria-label="Increase player count" aria-controls="tod-player-count" disabled={playerCount === 12} onClick={() => setPlayerCount((count) => Math.min(12, count + 1))} className="en-button">+</button>
-            </div>
-            <span id="tod-player-range">2–12 players</span>
-          </div>
-          <div className="en-tod-players">
+        <GameSetup artwork={<TruthOrDareArtwork />}
+          intro="Share one screen and sit in player order. Choose your player count and category; no names or accounts are needed."
+          facts={[`${TOTAL_PROMPTS} prompts`, "No materials", "One shared screen"]}
+          startId="tod-start" onStart={start}
+          note="Choose Truth or Dare on your turn. You can pass without a penalty or end the game whenever you want. Alcohol is optional."
+          fallback="Enable JavaScript to use the on-screen prompts. The rules below still explain how to play together.">
+          <PlayerCountField id="tod-player-count" value={playerCount} onChange={setPlayerCount} />
+          <div className="en-setup-field">
             <label htmlFor="tod-category">Category</label>
             <select id="tod-category" className="en-button" aria-describedby="tod-category-help" value={category} onChange={(event) => setCategory(event.target.value as PromptCategory)}>
               <option value="classic">Classic</option>
@@ -78,10 +67,7 @@ export default function TruthOrDareGame() {
             </select>
             <span id="tod-category-help">{category === "classic" ? "Easygoing questions and light challenges." : category === "party" ? "Funny stories and playful group challenges." : "Classic + Party in one shuffled pool."} {selectedTotal} prompts. Changing setup starts fresh pools.</span>
           </div>
-          <button id="tod-start" type="button" onClick={start} className="en-button en-button-wide en-button-primary">Start game</button>
-          <p className="en-tod-note">Choose Truth or Dare on your turn. You can pass without a penalty or end the game whenever you want. Alcohol is optional.</p>
-          <noscript><p>Enable JavaScript to use the on-screen prompts. The rules below still explain how to play together.</p></noscript>
-        </div>
+        </GameSetup>
       ) : phase === "finished" ? (
         <div className="en-tod-panel en-finished">
           <p role="status">{categoryLabel} · {used === total ? `All ${total} prompts were used.` : `You ended the game after ${used} ${used === 1 ? "prompt" : "prompts"}.`} Thanks for playing!</p>

@@ -1,5 +1,6 @@
 "use client";
 
+import { GameSetup, PlayerCountField } from "@/components/games/english/GameSetup";
 import { useEffect, useRef, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { CARD_RULES, FOURTH_KING, SUIT_SYMBOLS, currentPlayerNumber, kingsCupReducer, startKingsCup, type GameAction, type GameState } from "@/lib/games/kings-cup";
@@ -37,27 +38,19 @@ export default function KingsCupGame() {
   const fourthKing = card?.rank === "K" && game?.kings === 4;
 
   return (
-    <section id="kings-cup-game" aria-labelledby="kc-game-heading" className="en-game not-prose">
+    <section id="kings-cup-game" aria-labelledby="kc-game-heading" className={`en-game not-prose${!game ? " en-setup en-shared-setting-up" : ""}`}>
       <h2 id="kc-game-heading" ref={heading} tabIndex={-1}>
         {!game ? "Set up your game" : game.phase === "finished" ? "Game finished" : game.paused ? "Game paused" : `Player ${currentPlayerNumber(game)}'s turn`}
       </h2>
       {!game ? (
-        <div className="en-setup">
-          <CardArtwork />
-          <div className="en-setup-copy">
-            <p className="text-sm leading-relaxed text-zinc-300">Share one screen, take seats in order, and put a physical King&apos;s Cup in the middle. Agree on what goes into it. Players use numbers, so there are no names to enter or save.</p>
-            <div className="en-players">
-              <label htmlFor="kc-player-count" className="font-semibold">Players</label>
-              <select id="kc-player-count" value={playerCount} onChange={(event) => setPlayerCount(Number(event.target.value))} className={`${button} bg-background`}>
-                {Array.from({ length: 11 }, (_, index) => index + 2).map((count) => <option key={count} value={count}>{count}</option>)}
-              </select>
-              <span className="text-sm text-zinc-300">2–12 players · 52 cards</span>
-            </div>
-            <p className="text-sm text-zinc-300">Use water, soda, or no drinks. Every action is optional. You can skip a card, pause, or end the game whenever you want.</p>
-            <button id="kc-start" type="button" onClick={start} className={`${button} en-button-wide en-button-primary`}>Start game</button>
-            <noscript><p className="mt-3">Turn on JavaScript to use the online deck, or play with physical cards using the rules below.</p></noscript>
-          </div>
-        </div>
+        <GameSetup artwork={<CardArtwork />}
+          intro="Share one screen, take seats in order, and put a physical King's Cup in the middle. Agree on what goes into it. Players use numbers, so there are no names to enter or save."
+          facts={["52 cards", "Physical King's Cup", "One shared screen"]}
+          startId="kc-start" onStart={start}
+          note="Use water, soda, or no drinks. Every action is optional. You can skip a card, pause, or end the game whenever you want."
+          fallback="Turn on JavaScript to use the online deck, or play with physical cards using the rules below.">
+          <PlayerCountField id="kc-player-count" value={playerCount} onChange={setPlayerCount} />
+        </GameSetup>
       ) : game.phase === "finished" ? (
         <div className="en-finished space-y-5">
           <div className="en-state-mark" aria-hidden="true">✓</div>

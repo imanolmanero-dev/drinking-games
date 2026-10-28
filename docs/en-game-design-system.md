@@ -22,7 +22,7 @@ Use one setup heading followed by a cohesive setup body. A divider may separate 
 
 Reuse `.en-setup` when artwork and configuration fit alongside one another. Its starting proportion is approximately `1 / 1.6`, with a 32 px gap. The artwork column should balance the configuration, not become an empty oversized panel. Keep controls at their usable size rather than stretching them to fill a column.
 
-Truth or Dare uses this grid with a full-width setup heading, artwork on the left and configuration on the right. Its desktop illustration uses the existing artwork at its natural size on tablet and a modest scale increase on larger screens. The configuration remains readable at 768 px; narrower screens use the compact treatment below.
+Truth or Dare uses this grid with a full-width setup heading, artwork on the left and configuration on the right. Its desktop illustration uses the existing artwork at its natural size. The configuration remains readable at 768 px; narrower screens use the compact treatment below.
 
 ## Artwork
 
@@ -40,7 +40,7 @@ Keep facts compact and secondary, with natural wrapping. Separate facts such as 
 
 ## Controls
 
-Use native buttons and selects where appropriate, explicit labels, unique IDs, accessible names, and visible limits. Preserve actual disabled behavior at bounds. A select and a stepper can coexist across different games; do not standardize mechanics merely for appearance. Truth or Dare keeps its native select, 48 px decrement/increment buttons, and existing number scale.
+Use native buttons and selects where appropriate, explicit labels, unique IDs, accessible names, and visible limits. Preserve actual disabled behavior at bounds. Both games use PlayerCountField: a labelled native 2–12 select, at least 48 px high, with 18 px values and associated range help. The former oversized value and stepper are superseded.
 
 ## CTA and action hierarchy
 
@@ -58,7 +58,7 @@ Gameplay width follows its content. Truth or Dare intentionally retains its prev
 
 Use two setup columns only while artwork and configuration fit without squeezing text or controls. The current starting breakpoint is 768 px; validate content around it rather than treating it as a device classification.
 
-Below that width, configuration is one column. Truth or Dare places compact artwork beside its heading in the header area, then a full-width introduction, metadata, centered player selector, full-width CTA and supporting copy. This header pairing is not a two-column mobile form. The artwork wrapper is compact, not a separate 250–300 px block. Allow the heading and metadata to wrap at 320 px.
+Below that width, configuration is one column. Both games place compact artwork beside its heading in the header area, then a full-width introduction, metadata, labelled player selector, full-width CTA and supporting copy. This header pairing is not a two-column mobile form. The artwork wrapper is compact, not a separate 250–300 px block. Allow the heading and metadata to wrap at 320 px.
 
 Keep heights intrinsic for text and controls. An artwork-only box can reserve space. Do not introduce page overflow, clipped focus rings or overlapping controls. Compare access to Start with the previous mobile version so decoration does not add a large scroll burden.
 
@@ -76,7 +76,7 @@ No new dependencies, services, remote images or unnecessary functional JavaScrip
 
 Start with `EnglishPage`, `.en-game`, `.en-setup`, existing buttons and artwork. Extract a component only when repeated structure creates real divergence; do not centralize game state or mechanics to share a surface.
 
-King's Cup remains visually unchanged: its existing configuration order and larger mobile artwork are retained as a legacy reference, not mandatory patterns for new mobile setups. Truth or Dare's compact gameplay frame and smaller mobile artwork are intentional adaptations. Record future exceptions in the relevant phase document and link to the affected contract section.
+Shared setup consolidation supersedes the legacy setup exceptions: both games use GameSetup and PlayerCountField. Gameplay layouts remain distinct.
 
 ## Acceptance checklist
 
@@ -92,3 +92,7 @@ King's Cup remains visually unchanged: its existing configuration order and larg
 - [ ] Run required unit/type/lint/build/export/audit gates and compare with a baseline.
 - [ ] Check client boundaries and loaded scripts; document relevant size changes.
 - [ ] Record evidence and exceptions in the phase document; complete independent audit before integration.
+
+## Shared setup implementation
+
+GameSetup composes artwork, introduction, secondary facts, fields, Start game and supporting note. The parent section owns the single heading and focus ref. Fields use 10 px internal gaps; setup groups use 20 px desktop / 16 px mobile gaps. Start uses a full-width 56 px minimum gradient button with 16 px text. Safety notes follow Start in 14 px text without a separate box. Both games retain compact 72 px mobile artwork beside the heading; desktop artwork remains beside configuration. Optional children contain real game-specific controls only. No provider or new client entry is introduced.

@@ -31,6 +31,7 @@ function gameUI() {
   new Function("require", "module", "exports", outputText)(load, loaded, loaded.exports);
   function nodes(node) {
     if (!node || typeof node !== "object") return [];
+    if (typeof node.type === "function") return nodes(node.type(node.props));
     return [node, ...[node.props?.children].flat(Infinity).flatMap(nodes)];
   }
   function render() { cursor = 0; return loaded.exports.default(); }
@@ -42,6 +43,7 @@ function gameUI() {
   function text(node) {
     if (node == null || typeof node === "boolean") return "";
     if (typeof node !== "object") return String(node);
+    if (typeof node.type === "function") return text(node.type(node.props));
     return [node.props?.children].flat(Infinity).map(text).join("");
   }
   return {
@@ -53,28 +55,11 @@ function gameUI() {
   };
 }
 
-test("player stepper and native select share state, one-step changes and real bounds", () => {
+test("native player select covers 2-12 and updates setup", () => {
   const ui = gameUI();
-  assert.equal(ui.find("tod-player-count").type, "select");
   assert.equal(ui.find("tod-player-count").props.value, 4);
   assert.equal(ui.find("tod-player-count").props["aria-describedby"], "tod-player-range");
-  assert.equal(ui.find("tod-player-decrease").props["aria-label"], "Decrease player count");
-  assert.equal(ui.find("tod-player-increase").props["aria-label"], "Increase player count");
-  ui.click("tod-player-decrease");
-  assert.equal(ui.find("tod-player-count").props.value, 3);
-  ui.click("tod-player-increase");
-  assert.equal(ui.find("tod-player-count").props.value, 4);
-  ui.select(2);
-  assert.equal(ui.find("tod-player-decrease").props.disabled, true);
-  ui.find("tod-player-decrease").props.onClick();
-  assert.equal(ui.find("tod-player-count").props.value, 2);
-  ui.select(12);
-  assert.equal(ui.find("tod-player-increase").props.disabled, true);
-  ui.find("tod-player-increase").props.onClick();
-  assert.equal(ui.find("tod-player-count").props.value, 12);
-  ui.click("tod-player-decrease");
-  assert.equal(ui.find("tod-player-count").props.value, 11);
-  assert.equal(ui.find("tod-player-increase").props.disabled, false);
+  for (const value of [2, 7, 12]) { ui.select(value); assert.equal(ui.find("tod-player-count").props.value, value); }
 });
 
 test("category setup is labelled, defaults to Classic and updates the active session", () => {

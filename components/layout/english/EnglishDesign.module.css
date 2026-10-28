@@ -251,26 +251,9 @@
 .root :global(.en-tod-game) { margin-top: 24px; }
 .root :global(.en-tod-game:not(.en-tod-setting-up)) { max-width: 752px; margin-inline: auto; background: var(--surface); }
 .root :global(.en-tod-game h2) { max-width: 640px; margin: 0 auto 20px; padding: 0; border: 0; }
-.root :global(.en-tod-game.en-tod-setting-up) { gap: 24px 32px; }
-.root :global(.en-tod-setting-up > h2) { grid-column: 1 / -1; width: 100%; max-width: none; margin: 0; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
-.root :global(.en-tod-setup-art) { position: relative; min-width: 0; height: 280px; }
-.root :global(.en-tod-setup-art > .en-tod-art) { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
-.root :global(.en-tod-setting-up > .en-tod-panel) { width: 100%; max-width: none; min-width: 0; margin: 0; }
 .root :global(.en-tod-panel) { display: grid; gap: 20px; max-width: 640px; margin-inline: auto; }
 .root :global(.en-tod-panel p) { line-height: 1.7; color: var(--en-copy); }
-.root :global(.en-tod-setup > p:first-child) { font-size: 15px; }
 .root :global(.en-tod-panel .en-tod-note) { font-size: 14px; line-height: 1.6; color: var(--en-soft); }
-.root :global(.en-tod-facts) { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; color: var(--en-copy); font-size: 13px; }
-.root :global(.en-tod-facts li) { margin: 0; padding: 0; }
-.root :global(.en-tod-facts strong) { font-weight: 800; color: var(--foreground); }
-.root :global(.en-tod-players) { display: grid; justify-items: start; gap: 10px; padding: 8px 0; }
-.root :global(.en-tod-players label) { font-size: 16px; font-weight: 700; }
-.root :global(.en-tod-players > span) { font-size: 13px; color: var(--en-soft); }
-.root :global(.en-tod-stepper) { display: flex; align-items: center; gap: 16px; }
-.root :global(.en-tod-stepper .en-button) { width: 48px; height: 48px; padding: 0; border-radius: 14px; font-size: 26px; font-weight: 500; }
-.root :global(.en-tod-stepper select) { width: 96px; min-height: 72px; padding: 4px 8px; border: 1px solid var(--accent-glow); border-radius: 16px; background: var(--background); color: var(--foreground); font: inherit; font-size: 44px; font-weight: 800; line-height: 1.2; cursor: pointer; }
-.root :global(.en-tod-stepper option) { font-size: 18px; }
-.root :global(.en-tod-setup > .en-button-primary) { width: 100%; min-height: 56px; font-size: 16px; }
 .root :global(.en-tod-progress) { display: grid; gap: 10px; }
 .root :global(.en-tod-progress p) { font-size: 13px; color: var(--en-soft); }
 .root :global(.en-tod-actions) { display: flex; flex-wrap: wrap; gap: 12px; }
@@ -298,10 +281,6 @@
 .root :global(.en-tod-finished .en-finished) { padding: 0; gap: 28px; }
 .root :global(.en-tod-finished .en-tod-actions) { max-width: 460px; width: 100%; margin-inline: auto; }
 .root :global(.en-setup) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.6fr); align-items: center; gap: 32px; }
-.root :global(.en-setup-copy) { display: grid; gap: 24px; }
-.root :global(.en-setup-copy p) { font-size: 14px; line-height: 1.8; color: var(--en-copy); }
-.root :global(.en-players) { display: flex; flex-wrap: wrap; align-items: center; gap: 14px; padding: 16px 0; border-block: 1px solid var(--border-color); }
-.root :global(.en-players select) { min-width: 76px; border-radius: 12px; background: var(--background); color: var(--foreground); }
 .root :global(.en-game-progress) { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; color: var(--en-copy); font-size: 14px; }
 .root :global(.en-game-progress span) { padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 10px; background: var(--background); }
 .root :global(.en-progress) { display: block; width: 100%; height: 6px; accent-color: var(--accent); border: 0; border-radius: 99px; overflow: hidden; background: var(--background); }
@@ -355,15 +334,8 @@
 .root :global(.en-guide-discovery) { margin-block: 28px; font-size: 15px; line-height: 1.8; }
 
 @media (min-width: 1024px) {
-  .root :global(.en-tod-setup-art > .en-tod-art) { transform: translate(-50%, -50%) scale(1.15); }
 }
 @media (max-width: 767px) {
-  .root :global(.en-tod-game.en-tod-setting-up) { grid-template-columns: minmax(0, 1fr) 88px; gap: 18px 12px; }
-  .root :global(.en-tod-setting-up > h2) { grid-column: 1; padding: 0; border: 0; line-height: 1.25; }
-  .root :global(.en-tod-setup-art) { height: 72px; }
-  .root :global(.en-tod-setup-art > .en-tod-art) { transform: translate(-50%, -50%) scale(.36); }
-  .root :global(.en-tod-setting-up > .en-tod-panel) { grid-column: 1 / -1; gap: 16px; }
-  .root :global(.en-tod-players) { justify-items: center; }
   .root :global(.en-nav-inner) { grid-template-columns: 1fr; }
   .root :global(.en-nav-links) { grid-column: 1 / -1; grid-row: 2; width: 100%; justify-content: space-between; }
   .root :global(.en-nav-link) { flex: 1 1 auto; padding-inline: 8px; }
@@ -393,7 +365,6 @@
   .root :global(.en-tod-choice) { min-height: 152px; padding: 18px 8px; border-radius: 16px; }
   .root :global(.en-tod-symbol) { font-size: 44px; }
   .root :global(.en-tod-choice-label) { font-size: 20px; }
-  .root :global(.en-tod-facts) { column-gap: 14px; }
   .root :global(.en-card-stage) { padding: 24px 16px; }
   .root :global(.en-copy table) { font-size: 12px; }
   .root :global(.en-copy th), .root :global(.en-copy td) { padding: 12px 8px; }
@@ -405,4 +376,28 @@
 }
 @media (prefers-reduced-motion: reduce) {
   .root :global(*), .root :global(*::before), .root :global(*::after) { transition: none !important; animation: none !important; scroll-behavior: auto !important; }
+}
+
+/* Shared setup presentation, scoped to the two EN client islands. */
+.root :global(.en-shared-setting-up) { gap: 24px 32px; }
+.root :global(.en-shared-setting-up > h2) { grid-column: 1 / -1; max-width: none; width: 100%; margin: 0; padding-bottom: 20px; border-bottom: 1px solid var(--border-color); }
+.root :global(.en-setup-art) { position: relative; height: 280px; min-width: 0; }
+.root :global(.en-setup-art > *) { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+.root :global(.en-setup-panel) { display: grid; gap: 20px; min-width: 0; }
+.root :global(.en-setup-panel > p) { font-size: 15px; line-height: 1.7; color: var(--en-copy); }
+.root :global(.en-setup-facts) { display: flex; flex-wrap: wrap; gap: 6px 18px; margin: 0; padding: 0; list-style: none; font-size: 13px; color: var(--en-copy); }
+.root :global(.en-setup-facts li) { margin: 0; padding: 0; }
+.root :global(.en-setup-field) { display: grid; justify-items: start; gap: 10px; }
+.root :global(.en-setup-field label) { font-size: 16px; font-weight: 700; }
+.root :global(.en-setup-field select) { min-height: 48px; min-width: 96px; padding: 8px 14px; border: 1px solid var(--accent-glow); border-radius: 12px; background: var(--background); color: var(--foreground); font: inherit; font-size: 18px; cursor: pointer; }
+.root :global(.en-setup-field > span) { font-size: 13px; line-height: 1.6; color: var(--en-soft); }
+.root :global(.en-setup-start) { width: 100%; min-height: 56px; font-size: 16px; }
+.root :global(.en-setup-panel > .en-setup-note) { font-size: 14px; line-height: 1.6; color: var(--en-soft); }
+@media (max-width: 767px) {
+  .root :global(.en-shared-setting-up.en-setup) { grid-template-columns: minmax(0, 1fr) 88px; gap: 18px 12px; }
+  .root :global(.en-shared-setting-up > h2) { grid-column: 1; padding: 0; border: 0; line-height: 1.25; }
+  .root :global(.en-setup-art) { height: 72px; }
+  .root :global(.en-setup-art > *) { transform: translate(-50%, -50%) scale(.28); }
+  .root :global(.en-setup-art > .en-tod-art) { transform: translate(-50%, -50%) scale(.36); }
+  .root :global(.en-setup-panel) { grid-column: 1 / -1; gap: 16px; }
 }
