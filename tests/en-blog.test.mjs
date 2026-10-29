@@ -54,7 +54,7 @@ test("two-person guide publishes the existing concept as an unpaired guide only"
   assert.equal(entry.equivalence, "unpaired");
   assert.equal(entry.published["en-US"], true);
   assert.equal(entry.routes["en-US"].pathname, "/en/blog/drinking-games-for-2");
-  assert.deepEqual(publishedRoutes("en-US", "guide").map(({ id }) => id), ["halloween", entry.id]);
+  assert.deepEqual(publishedRoutes("en-US", "guide").map(({ id }) => id), ["halloween", entry.id, "drinking-games-without-cards"]);
   assert.equal(publishedRoutes("en-US", "game").some(({ id }) => id === entry.id), false);
   assert.equal(languageAlternates(entry.id), undefined);
   assert.deepEqual(languageSwitch(entry.id, "en-US"), { pathname: "/", label: "Spanish home", locale: "es", fallback: true });
@@ -62,7 +62,7 @@ test("two-person guide publishes the existing concept as an unpaired guide only"
   const previous = JSON.parse(execFileSync("git", ["show", "e707c88:tests/fixtures/en-routes.json"], { encoding: "utf8" }));
   // Existing King's Cup metadata was deliberately updated after Phase 5.
   // Keep every other field in this historical route comparison intact.
-  assert.deepEqual(fixture.filter((route) => !["/en/halloween-drinking-games", entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => {
+  assert.deepEqual(fixture.filter((route) => !["/en/blog/drinking-games-without-cards", "/en/halloween-drinking-games", entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => {
     if (route.pathname === "/en") return { ...route, h1: "Good company. Your pace." };
     if (route.pathname === "/en/games/kings-cup") return { ...route, title: previous.find(({ pathname }) => pathname === route.pathname).title };
     return route;

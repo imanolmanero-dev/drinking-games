@@ -94,6 +94,8 @@ export default function DrinkingGamesForTwo() {
         <p>Keep this guide open and read a game aloud. The contents links jump to the rules. Put the phone between you or pass it over when you swap roles. This article provides instructions rather than an interactive game or prompt generator.</p>
         <p>For an on-screen card game, <EnglishLink id="two-kings-cup" routeId="kings-cup">King&apos;s Cup</EnglishLink> is usually a group game, but the BeberGames English version supports two players on one screen. Its rules differ from the short games above. You can also browse the <EnglishLink id="two-games" routeId="games-hub">English games hub</EnglishLink>.</p>
 
+      <p data-no-cards-discovery>Have more people joining and no deck? <EnglishLink id="two-no-cards" routeId="drinking-games-without-cards">Explore games without cards</EnglishLink> for small and medium groups.</p>
+
         <h2 id="partner-or-friend">Playing with a partner or a friend</h2>
         <p>Choose based on your mood, not your relationship. Wordplay keeps things light; conversation gives you space to swap stories. Knowing someone well never means they owe you an answer. Change a topic that falls flat, and keep a non-alcoholic option within reach. A short round you both enjoy is enough.</p>
 

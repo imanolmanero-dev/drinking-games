@@ -97,7 +97,7 @@ test("incoming links remain editorial, and all forbidden future routes lack expo
     assert.equal(page.querySelectorAll(`.en-catalog a[href="${path}"]`).length, 0);
     assert.equal(page.querySelectorAll(`.en-nav a[href="${path}"], .en-footer a[href="${path}"]`).length, 0);
   }
-  for (const absent of ["/en/blog", "/en/blog/drinking-games-for-two", "/en/blog/drinking-games-without-cards", "/en/blog/drinking-card-games"]) {
+  for (const absent of ["/en/blog", "/en/blog/drinking-games-for-two", "/en/blog/drinking-card-games"]) {
     assert.equal(existsSync(`out${absent}.html`), false, absent);
     assert.equal(existsSync(`out${absent}/index.html`), false, absent);
     assert.equal(doc.querySelectorAll(`a[href="${absent}"]`).length, 0);

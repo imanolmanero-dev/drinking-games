@@ -32,7 +32,7 @@ export const routeRegistry: readonly RouteEntry[] = [
   // Phase 6: EN allows 2–12 players and penalty-free passing; ES has different core rules.
   { id: "truth-or-dare", kind: "game", routes: { es: { pathname: "/juegos/verdad-o-reto", label: "Verdad o Reto" }, "en-US": { pathname: "/en/games/truth-or-dare", label: "Truth or Dare" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
   { id: "drinking-games-for-two", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-dos-personas", label: "Juegos para beber de dos personas" }, "en-US": { pathname: "/en/blog/drinking-games-for-2", label: "Drinking games for 2" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
-  { id: "drinking-games-without-cards", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-sin-cartas", label: "Juegos para beber sin cartas" } }, published: { es: true, "en-US": false }, equivalence: "unpaired" },
+  { id: "drinking-games-without-cards", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-sin-cartas", label: "Juegos para beber sin cartas" }, "en-US": { pathname: "/en/blog/drinking-games-without-cards", label: "Drinking games without cards" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
 ];
 
 export function getPublishedRoute(id: RouteId, locale: Locale): LocalizedRoute | undefined {

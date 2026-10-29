@@ -32,6 +32,8 @@ export default function EnglishHome() {
         <p>🎃 <strong>Planning a Halloween party?</strong> <EnglishLink id="en-home-halloween" routeId="halloween">Explore Halloween drinking games and party ideas</EnglishLink>, with costumes, quick challenges and alcohol-free options.</p>
       </aside>
       <section className="en-section en-value">
+        <p data-no-cards-discovery>No deck to hand? <EnglishLink id="en-home-no-cards" routeId="drinking-games-without-cards">Explore games without cards</EnglishLink> for small and medium groups.</p>
+
         <h2>Everyone gets a say</h2>
         <p>You can play without alcohol. Choose a non-alcoholic drink, use points, or leave drinks out entirely. Agree on what feels comfortable before starting, and let anyone skip a question or stop without explaining why.</p>
         <p>If you choose to drink alcohol, only do so if you are of legal drinking age where you are. Keep the focus on conversation and having a good time together.</p>

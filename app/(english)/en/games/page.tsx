@@ -36,6 +36,8 @@ export default function EnglishGames() {
       <aside className="en-guide-discovery" aria-label="Two-player guide">
         <p><strong>Playing with two people?</strong> <EnglishLink id="en-games-two-guide" routeId="drinking-games-for-two">Read our drinking games for two guide</EnglishLink> for simple rules you can follow together.</p>
       </aside>
+      <p data-no-cards-discovery>Prefer a game played around the table? <EnglishLink id="en-games-no-cards" routeId="drinking-games-without-cards">Explore games without cards</EnglishLink> for small and medium groups.</p>
+
       <h2>Set up a game night that works for everyone</h2>
       <p>Start by checking how much time you have and what your friends feel like doing. Some groups want a quiet conversation starter. Others want a short activity between other plans. Pick something everyone understands, and explain the rules before taking the first turn.</p>
       <p>If you share a phone, put it where everyone can see the screen. Take turns reading aloud and give people time to answer. You do not need to rush a round to keep it fun.</p>

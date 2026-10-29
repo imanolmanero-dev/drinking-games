@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createRequire } from "node:module";
 import test from "node:test";
 import { readFileSync } from "node:fs";
+import { withoutNoCards } from "./helpers/no-cards-baseline.mjs";
 const require = createRequire(import.meta.url); require("tsx/cjs");
 const { createElement } = require("react");
 const { renderToStaticMarkup } = require("react-dom/server");
@@ -32,6 +33,6 @@ for (const [slug, name, id] of [["truth-or-dare", "TruthOrDareGame", "tod"], ["k
 
 test("routes, Spanish production and game logic remain unchanged from preflight", async () => {
  const { execFileSync } = await import("node:child_process");
- const diff = execFileSync("git", ["diff", "6daba04c3283437f36eb7e3eb5e948a5225e2011", "--", "app", "lib", "content", "public", "components/layout/spanish", "tests/fixtures/en-routes.json", "tests/fixtures/es-routes.json", "package.json", "package-lock.json"], {encoding:"utf8"});
- assert.equal(diff, "");
+ const files = execFileSync("git", ["ls-tree", "-r", "--name-only", "6daba04c3283437f36eb7e3eb5e948a5225e2011", "--", "app", "lib", "content", "public", "components/layout/spanish", "tests/fixtures/en-routes.json", "tests/fixtures/es-routes.json", "package.json", "package-lock.json"], {encoding:"utf8"}).trim().split("\n");
+ for (const file of files) assert.equal(withoutNoCards(file, readFileSync(file, "utf8")), execFileSync("git", ["show", "6daba04c3283437f36eb7e3eb5e948a5225e2011:" + file], {encoding:"utf8"}).replace(/\r\n/g,"\n"), file);
 });

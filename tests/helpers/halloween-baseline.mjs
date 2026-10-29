@@ -2,6 +2,7 @@ import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
+import { withoutNoCards } from "./no-cards-baseline.mjs";
 
 // The latest preflight includes automatic SEO data updates. Freeze that full
 // source baseline and project exact reviewed additions, never exclude a page.
@@ -14,7 +15,7 @@ const reportFiles = new Set(["SEO_DATA.md", "seo-data.json"]);
 const setupFragments = JSON.parse(readFileSync(new URL("../fixtures/en-setup-source.json", import.meta.url), "utf8"));
 const git = args => execFileSync("git", args, { encoding: "utf8", maxBuffer: 32 * 1024 * 1024 });
 export function withoutHalloween(file, source) {
-  let value = source.replace(/\r\n/g, "\n");
+  let value = withoutNoCards(file, source);
   const setup = setupFragments[file];
   if (setup) {
     assert.equal(createHash("sha256").update(value).digest("hex"), setup, `${file}: only exact reviewed shared setup changes`);
