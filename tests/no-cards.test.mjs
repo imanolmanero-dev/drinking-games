@@ -9,8 +9,8 @@ const { withoutCardsGames: games, withoutCardsEditorial: editorial } = require('
 const { publishedRoutes, languageAlternates } = require('../lib/i18n/routes.ts');
 const read = f => readFileSync(f,'utf8').replace(/\r\n/g,'\n');
 test('no-cards adds one unpaired editorial route and eight complete manual games', () => {
- assert.equal(publishedRoutes('en-US').length,12);
- assert.equal(publishedRoutes('en-US','game').length,2);
+ assert.equal(publishedRoutes('en-US').length,13);
+ assert.equal(publishedRoutes('en-US','game').length,3);
  assert.equal(languageAlternates('drinking-games-without-cards'),undefined);
  assert.deepEqual(games.map(g=>g.name),['Never Have I Ever','Truth or Dare','Most Likely To','Two Truths and a Lie','Categories','Rhyme Round','Memory Chain','Medusa']);
  for(const game of games) for(const key of ['players','materials','setup','play','ending','sip']) assert.ok(game[key].length,game.id+key);

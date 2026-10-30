@@ -94,6 +94,7 @@ test("el grafo inglés no alcanza publicidad ni PWA y los anuncios solo pertenec
     if (!file.endsWith(".css")) assert.doesNotMatch(read(file), /@vercel\/analytics|next\/headers|next\/script|localStorage\.(?:getItem|setItem)|sessionStorage\.|navigator\.serviceWorker/);
   }
   assert.deepEqual([...englishDependencies].filter((file) => /["']use client["']/.test(read(file))).sort(), [
+    resolve("components/games/never-have-i-ever/NeverHaveIEverGame.tsx"),
     resolve("components/games/kings-cup/KingsCupGame.tsx"),
     resolve("components/games/truth-or-dare/TruthOrDareGame.tsx"),
   ].sort());

@@ -20,13 +20,14 @@ const fixture = JSON.parse(read("tests/fixtures/en-routes.json"));
 const sorted = (items) => [...items].sort();
 const render = (component, props) => parse(renderToStaticMarkup(createElement(component, props)));
 
-test("English registry publication matches the independent twelve-route fixture", () => {
-  assert.equal(fixture.length, 12);
-  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 12);
+test("English registry publication matches the independent thirteen-route fixture", () => {
+  assert.equal(fixture.length, 13);
+  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 13);
   assert.deepEqual(fixture.map((route) => route.pathname), sorted(fixture.map((route) => route.pathname)));
   assert.deepEqual(sorted(publishedRoutes("en-US").map((route) => route.pathname)), fixture.map((route) => route.pathname));
   assert.equal(new Set(routeRegistry.map((route) => route.id)).size, routeRegistry.length);
   assert.deepEqual(publishedRoutes("en-US", "game"), [
+    { id: "never-have-i-ever", pathname: "/en/games/never-have-i-ever", label: "Never Have I Ever" },
     { id: "kings-cup", pathname: "/en/games/kings-cup", label: "King's Cup" },
     { id: "truth-or-dare", pathname: "/en/games/truth-or-dare", label: "Truth or Dare" },
   ]);

@@ -96,7 +96,7 @@ test("one WebApplication matches the route, copy and free EN offer", () => {
 test("the two games and the two-person guide have contextual, resolving links", () => {
   assert.equal(home.getElementById("en-home-truth-or-dare").getAttribute("href"), pathname);
   assert.equal(hub.getElementById("en-catalog-truth-or-dare").getAttribute("href"), pathname);
-  assert.equal(hub.querySelectorAll(".en-catalog-card").length, 2);
+  assert.equal(hub.querySelectorAll(".en-catalog-card").length, 3);
   for (const card of hub.querySelectorAll(".en-catalog-card")) {
     assert.match(card.textContent, /2–12 players/);
     assert.match(card.textContent, /One shared screen/);
@@ -113,11 +113,11 @@ test("the two games and the two-person guide have contextual, resolving links", 
   assert.equal(doc.getElementById("tod-start").getAttribute("type"), "button");
 });
 
-test("the published page appears once in the 83-URL union and no variants are exported", () => {
+test("the published page appears once in the 84-URL union and no variants are exported", () => {
   const audit = auditStaticExport();
   assert.deepEqual(validateStaticExportAudit(audit), []);
-  assert.equal(audit.pages.length, 83);
-  assert.equal(audit.sitemap.urls.length, 83);
+  assert.equal(audit.pages.length, 84);
+  assert.equal(audit.sitemap.urls.length, 84);
   assert.equal(audit.sitemap.urls.filter((entry) => entry === url).length, 1);
   assert.deepEqual(audit.pages.find((page) => page.pathname === pathname).languages, []);
   assert.deepEqual(audit.pages.find((page) => page.pathname === "/juegos/verdad-o-reto").languages, []);

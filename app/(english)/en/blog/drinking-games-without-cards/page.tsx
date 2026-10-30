@@ -42,6 +42,7 @@ export default function DrinkingGamesWithoutCards() {
         <p><strong>Start:</strong> {game.setup}</p>
         <p><strong>Play:</strong> {game.play}</p>
         <p><strong>Round end:</strong> {game.ending}</p>
+        {game.id === "never-have-i-ever" && <p data-nhie-link>Want supplied statements? <EnglishLink id="nc-nhie-online" routeId="never-have-i-ever">Play Never Have I Ever online</EnglishLink> together in a 20-statement session. The manual version here keeps its own round ending.</p>}
         <p data-sip-rule><strong>Optional sip:</strong> {game.sip}</p>
       </section>)}
       <h2 id="one-phone">One phone or just two players?</h2>

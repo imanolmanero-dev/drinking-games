@@ -401,3 +401,18 @@
   .root :global(.en-setup-art > .en-tod-art) { transform: translate(-50%, -50%) scale(.36); }
   .root :global(.en-setup-panel) { grid-column: 1 / -1; gap: 16px; }
 }
+
+/* NHIE responds as a group: no player selector. */
+.root :global(.en-nhie-game:not(.en-setup)) { max-width: 752px; margin-inline: auto; background: var(--surface); }
+.root :global(.en-nhie-panel) { display: grid; gap: 18px; max-width: 640px; margin: 20px auto 0; }
+.root :global(.en-nhie-panel p) { margin: 0; color: var(--en-copy); line-height: 1.6; }
+.root :global(#nhie-statement) { font-size: clamp(24px, 4vw, 32px); line-height: 1.35; margin: 0; overflow-wrap: anywhere; color: #f0fdfa; }
+.root :global(.en-nhie-actions) { display: flex; flex-wrap: wrap; gap: 12px; }
+.root :global(.en-nhie-actions .en-button) { flex: 1 1 180px; min-height: 48px; }
+.root :global(.en-nhie-session) { border-top: 1px solid var(--border-color); padding-top: 18px; }
+.root :global(.en-nhie-panel .en-nhie-note), .root :global(#nhie-progress) { font-size: 14px; color: var(--en-soft); }
+@media (max-width: 767px) {
+ .root :global(.en-setup-art > .en-nhie-art) { transform: translate(-50%, -50%) scale(.33); }
+ .root :global(.en-nhie-actions) { flex-direction: column; }
+ .root :global(.en-nhie-actions .en-button) { flex: auto; width: 100%; }
+}

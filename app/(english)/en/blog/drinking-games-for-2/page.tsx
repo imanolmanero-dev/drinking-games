@@ -82,6 +82,7 @@ export default function DrinkingGamesForTwo() {
                 <h3 id={game.id}>{games.indexOf(game) + 1}. {game.name}</h3>
                 <p><strong>What you need:</strong> {game.equipment}</p>
                 <p><strong>Play:</strong> {game.play}</p>
+        {game.id === "never-have-i-ever" && <p data-nhie-link>Want supplied statements? <EnglishLink id="two-nhie-online" routeId="never-have-i-ever">Play Never Have I Ever online</EnglishLink> together in a 20-statement session. The manual version here keeps its own round ending.</p>}
                 {game.id === "truth-or-dare" && <p>Want prompts on screen? <EnglishLink id="two-truth-or-dare-game" routeId="truth-or-dare">Play our online Truth or Dare</EnglishLink> together. It supports two players and free skipping. The optional round-end toast stays a table rule.</p>}
                 <p data-sip-rule><strong>When to sip:</strong> {game.sip}</p>
                 <p><strong>Round end:</strong> {game.ending}</p>

@@ -12,7 +12,7 @@ const { default: sitemap } = require("../app/sitemap.ts");
 test("Halloween publishes exactly the reviewed pair and preserves real playable inventory", () => {
   assert.deepEqual(languageAlternates("halloween"), { es: `https://bebergames.com${es.path}`, "en-US": `https://bebergames.com${en.path}` });
   assert.deepEqual(en.sections.filter(s => s.href).map(s => s.href), ["/en/games/truth-or-dare", "/en/games/kings-cup"]);
-  assert.equal(publishedRoutes("en-US", "game").length, 2);
+  assert.equal(publishedRoutes("en-US", "game").length, 3);
   for (const content of [es, en]) {
     assert.equal(content.sections.length, 8);
     assert.equal(content.faqs.length, 4);

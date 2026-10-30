@@ -24,7 +24,7 @@ test('no-cards export has exact metadata, complete rules, native fragments and s
  assert.equal(doc.querySelectorAll('[data-guide-faq]').length,faqs.length);
  for(const path of ['/en/games/truth-or-dare','/en/blog/drinking-games-for-2','/en/games','/en/about#responsible-play'])assert.ok(doc.querySelector(`a[href="${path}"]`));
  for(const a of doc.querySelectorAll('a[href^="/en"]'))assert.ok(existsSync('out'+a.getAttribute('href').split('#')[0]+'.html'));
- for(const path of ['/en/guides','/en/blog','/en/games/never-have-i-ever','/en/games/higher-or-lower'])assert.equal(existsSync('out'+path+'.html'),false);
+ for(const path of ['/en/guides','/en/blog','/en/games/higher-or-lower'])assert.equal(existsSync('out'+path+'.html'),false);
  const scripts=d=>d.querySelectorAll('script[src]').map(n=>n.getAttribute('src')).sort();assert.deepEqual(scripts(doc),scripts(parse(readFileSync('out/en/about.html','utf8'))));
  assert.equal(doc.querySelectorAll('button,input,iframe,canvas,link[rel="manifest"],ins.adsbygoogle').length,0);
 });

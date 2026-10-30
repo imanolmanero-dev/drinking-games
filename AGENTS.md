@@ -388,3 +388,9 @@ Si la respuesta es sí → actualiza este archivo.
 
 ### Historical report guards
 - Generated SEO snapshots evolve through automated commits. Historical source guards must keep production sources pinned while explicitly checking the two report artifacts against a reviewed preflight commit. Never restore older reports or exclude their paths to satisfy a guard. Add negative mutation tests when updating this pin.
+
+### Never Have I Ever EN
+- /en/games/never-have-i-ever: unpaired; 71 ES + 13 EN = 84 URLs.
+- GameSetup sin PlayerCountField: 2–12 es orientación estática. Classic/Party: 60 declaraciones cada una; sesiones de 20, todos responden juntos.
+- Filtrar antes de shuffle; reducer sin azar y avances con ID esperado. Skip cambia la declaración del grupo; pasar personalmente no requiere botón.
+- Sin respuestas digitales, identidades, consumo registrado ni persistencia. No repetir dentro de sesión; se permiten repeticiones entre sesiones. Conservar variantes manuales en guías.
