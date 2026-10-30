@@ -36,6 +36,7 @@ export default function EnglishGames() {
           </div>
         </li>)}</ul>
       ) : <p>There are no playable games in the English selection yet. You can still use the ideas below to plan your game night and agree on how you want to play.</p>}
+      <p data-choice-discovery>Not sure what suits your group? <EnglishLink id="en-games-choice-guide" routeId="choose-drinking-game">Choose a game by participation style</EnglishLink>.</p>
       <aside className="en-guide-discovery" aria-label="Two-player guide">
         <p><strong>Playing with two people?</strong> <EnglishLink id="en-games-two-guide" routeId="drinking-games-for-two">Read our drinking games for two guide</EnglishLink> for simple rules you can follow together.</p>
       </aside>

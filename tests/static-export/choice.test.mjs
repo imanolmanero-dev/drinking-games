@@ -1,0 +1,26 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { readFileSync, existsSync } from "node:fs";
+import { createRequire } from "node:module";
+const require = createRequire(import.meta.url);
+const { parse } = require("next/dist/compiled/node-html-parser");
+const route = "/en/blog/how-to-choose-a-drinking-game";
+const read = path => parse(readFileSync(`out${path}.html`, "utf8"));
+test("decision guide exports exact metadata, editorial schema and contextual links", () => {
+  const doc = read(route);
+  assert.equal(doc.querySelector("title").textContent, "How to Choose a Drinking Game \u2014 Find Your Group\u2019s Fit | BeberGames");
+  assert.equal(doc.querySelectorAll("h1").length, 1);
+  assert.equal(doc.querySelector("h1").textContent, "How to Choose a Drinking Game for Your Group");
+  assert.equal(doc.querySelector('meta[name="description"]').getAttribute("content"), "Choose a game format by personal comfort, shared or individual turns, room setup and time. Compare the tradeoffs and know when to switch.");
+  assert.equal(doc.querySelector('link[rel="canonical"]').getAttribute("href"), "https://bebergames.com" + route);
+  assert.equal(doc.querySelectorAll("link[hreflang]").length, 0);
+  const schemas = doc.querySelectorAll('script[type="application/ld+json"]').map(x => JSON.parse(x.textContent));
+  assert.deepEqual(schemas.map(x => x["@type"]).sort(), ["BlogPosting", "BreadcrumbList"]);
+  assert.equal(schemas.find(x => x["@type"] === "BlogPosting").datePublished, "2026-10-30");
+  assert.equal(doc.querySelector("time").getAttribute("dateTime"), "2026-10-30");
+  assert.equal(doc.querySelector('meta[property="article:published_time"]').getAttribute("content"), "2026-10-30");
+  for (const target of ["/en/games/never-have-i-ever", "/en/games/truth-or-dare", "/en/games/kings-cup", "/en/blog/drinking-games-for-2", "/en/blog/drinking-games-without-cards#categories", "/en/blog/drinking-games-without-cards#rhyme-round"]) assert.ok(doc.querySelector(`a[href="${target}"]`), target);
+  for (const path of ["/en", "/en/games"]) assert.equal(read(path).querySelectorAll(`a[href="${route}"]`).length, 1);
+  assert.equal(existsSync("out/en/guides.html"), false);
+  assert.equal(existsSync("out/en/games/higher-or-lower.html"), false);
+});

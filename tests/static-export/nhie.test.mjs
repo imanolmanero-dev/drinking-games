@@ -13,7 +13,7 @@ test("NHIE static route, schema, canonical, setup and discovery are coherent",()
  assert.equal(doc.querySelector("title").textContent,"Never Have I Ever — Play Online | BeberGames");
  assert.equal(doc.querySelector('link[rel="canonical"]').getAttribute("href"),"https://bebergames.com"+route);
  assert.equal(languageAlternates("never-have-i-ever"),undefined);
- assert.equal(publishedRoutes("en-US").length,13);
+ assert.equal(publishedRoutes("en-US").length,14);
  assert.equal(doc.querySelectorAll('link[hreflang]').length,0);
  const schemas=doc.querySelectorAll('script[type="application/ld+json"]').map(n=>JSON.parse(n.textContent));
  const game=schemas.find(s=>s["@type"]==="WebApplication");

@@ -394,3 +394,8 @@ Si la respuesta es sí → actualiza este archivo.
 - GameSetup sin PlayerCountField: 2–12 es orientación estática. Classic/Party: 60 declaraciones cada una; sesiones de 20, todos responden juntos.
 - Filtrar antes de shuffle; reducer sin azar y avances con ID esperado. Skip cambia la declaración del grupo; pasar personalmente no requiere botón.
 - Sin respuestas digitales, identidades, consumo registrado ni persistencia. No repetir dentro de sesión; se permiten repeticiones entre sesiones. Conservar variantes manuales en guías.
+
+### EN participation decision guide
+- `/en/blog/how-to-choose-a-drinking-game` añade una guía Server Component, `unpaired`: 71 ES + 14 EN = 85 URLs. Resuelve participación y encaje social, sin duplicar reglas ni crear `/en/guides` o navegación nueva.
+- Solo home EN y hub EN reciben un párrafo de descubrimiento. Los guards revierten exclusivamente los snapshots completos de `tests/fixtures/choice-source.json` antes de los guards históricos y rechazan mutaciones adicionales.
+- `decisionEditorial.datePublished` permanece null durante revisión local. Fijar la fecha real al integrar, sin backdating ni `dateModified` de build. BlogPosting y OG omiten la fecha hasta entonces.

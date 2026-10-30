@@ -34,6 +34,7 @@ export default function EnglishHome() {
       <section className="en-section en-value">
         <p data-no-cards-discovery>No deck to hand? <EnglishLink id="en-home-no-cards" routeId="drinking-games-without-cards">Explore games without cards</EnglishLink> for small and medium groups.</p>
 
+      <p data-choice-discovery>Not sure what suits your group? <EnglishLink id="en-home-choice-guide" routeId="choose-drinking-game">Choose a game by participation style</EnglishLink>.</p>
         <h2>Everyone gets a say</h2>
         <p>You can play without alcohol. Choose a non-alcoholic drink, use points, or leave drinks out entirely. Agree on what feels comfortable before starting, and let anyone skip a question or stop without explaining why.</p>
         <p>If you choose to drink alcohol, only do so if you are of legal drinking age where you are. Keep the focus on conversation and having a good time together.</p>

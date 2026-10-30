@@ -15,8 +15,8 @@ const documentFor = (path) => parse(readFileSync(join("out", path === "/" ? "ind
 const english = fixture.map((route) => ({ ...route, document: documentFor(route.pathname), page: audit.pages.find((page) => page.pathname === route.pathname) }));
 
 test("eleven English documents are indexable, self-canonical, en-US, and have unique titles/descriptions and one H1", () => {
-  assert.equal(english.length, 13);
-  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 13);
+  assert.equal(english.length, 14);
+  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 14);
   const descriptions = [];
   for (const { pathname, title, h1, document, page } of english) {
     assert.ok(page, pathname);
@@ -37,8 +37,8 @@ test("eleven English documents are indexable, self-canonical, en-US, and have un
     descriptions.push(description[0].getAttribute("content"));
     assert.ok(document.querySelectorAll('link[rel="stylesheet"]').length > 0);
   }
-  assert.equal(new Set(descriptions).size, 13);
-  assert.equal(new Set(english.map((route) => route.page.title)).size, 13);
+  assert.equal(new Set(descriptions).size, 14);
+  assert.equal(new Set(english.map((route) => route.page.title)).size, 14);
 });
 
 test("English output has no ads, PWA, analytics, forms or consent instrumentation", () => {
@@ -83,7 +83,7 @@ test("all English internal links and fragments resolve, with unique interactive 
       assert.equal(url.origin, SITE_ORIGIN, href);
       assert.ok(allPaths.has(url.pathname), `${pathname} -> ${href}`);
       assert.doesNotMatch(url.pathname, /^\/es(?:\/|$)|\(spanish\)|\(english\)/);
-      if (url.pathname.startsWith("/en/blog")) assert.ok(["/en/blog/drinking-games-for-2", "/en/blog/drinking-games-without-cards"].includes(url.pathname));
+      if (url.pathname.startsWith("/en/blog")) assert.ok(["/en/blog/how-to-choose-a-drinking-game", "/en/blog/drinking-games-for-2", "/en/blog/drinking-games-without-cards"].includes(url.pathname));
       if (url.hash) assert.ok(documentFor(url.pathname).getElementById(decodeURIComponent(url.hash.slice(1))), `${pathname} -> ${href}`);
       if (!/^\/en(?:\/|$)/.test(url.pathname)) assert.equal(link.getAttribute("id"), "language-switch");
     }
@@ -118,7 +118,7 @@ test("English social metadata uses en_US and a real English static image, never 
       const schema = JSON.parse(script.textContent);
       const expectedTypes = pathname === "/en/games/never-have-i-ever" ? ["WebApplication", "BreadcrumbList", "FAQPage"] : pathname === "/en/games/kings-cup" ? ["WebApplication", "FAQPage"]
         : pathname === "/en/games/truth-or-dare" ? ["WebApplication"]
-        : ["/en/blog/drinking-games-for-2", "/en/blog/drinking-games-without-cards"].includes(pathname) ? ["BlogPosting", "BreadcrumbList", "FAQPage"] : pathname === "/en/halloween-drinking-games" ? ["BreadcrumbList", "FAQPage"] : ["WebSite"];
+        : ["/en/blog/how-to-choose-a-drinking-game", "/en/blog/drinking-games-for-2", "/en/blog/drinking-games-without-cards"].includes(pathname) ? ["BlogPosting", "BreadcrumbList", "FAQPage"] : pathname === "/en/halloween-drinking-games" ? ["BreadcrumbList", "FAQPage"] : ["WebSite"];
       assert.ok(expectedTypes.includes(schema["@type"]));
       if (!["FAQPage", "BreadcrumbList"].includes(schema["@type"])) assert.equal(schema.inLanguage, "en-US");
     }
@@ -128,7 +128,7 @@ test("English social metadata uses en_US and a real English static image, never 
 test("English sitemap entries have no artificial lastModified and no unexpected assets or pages", () => {
   const sitemap = parse(readFileSync("out/sitemap.xml", "utf8"));
   const entries = sitemap.querySelectorAll("url").filter((entry) => /^https:\/\/bebergames\.com\/en(?:\/|$)/.test(entry.querySelector("loc").textContent));
-  assert.equal(entries.length, 13);
+  assert.equal(entries.length, 14);
   for (const entry of entries) {
     const halloween = entry.querySelector("loc").textContent.endsWith("/halloween-drinking-games");
     assert.equal(entry.querySelectorAll("lastmod").length, halloween ? 1 : 0);
