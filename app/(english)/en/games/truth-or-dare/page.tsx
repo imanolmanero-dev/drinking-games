@@ -43,7 +43,7 @@ export default function TruthOrDarePage() {
 
       <h2 id="more-games">Find another game</h2>
       <p>Hosting a costume party? Our <EnglishLink id="tod-halloween" routeId="halloween">Halloween party games guide</EnglishLink> has spooky questions and dares to read together between online rounds.</p>
-      <p>See both playable options in the <EnglishLink id="tod-games" routeId="games-hub">English games hub</EnglishLink>. If your group wants a digital deck, try <EnglishLink id="tod-kings-cup" routeId="kings-cup">King&apos;s Cup</EnglishLink>. For a quieter evening with one other person, the <EnglishLink id="tod-two-guide" routeId="drinking-games-for-two">drinking games for two guide</EnglishLink> includes a version of Truth or Dare you can play without a screen.</p>
+      <p>See the playable options in the <EnglishLink id="tod-games" routeId="games-hub">English games hub</EnglishLink>. If your group wants a digital deck, try <EnglishLink id="tod-kings-cup" routeId="kings-cup">King&apos;s Cup</EnglishLink>. For a quieter evening with one other person, the <EnglishLink id="tod-two-guide" routeId="drinking-games-for-two">drinking games for two guide</EnglishLink> includes a version of Truth or Dare you can play without a screen.</p>
     </EnglishPage>
   );
 }

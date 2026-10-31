@@ -16,6 +16,11 @@ const home = parse(read("out/en.html"));
 const hub = parse(read("out/en/games.html"));
 const guide = parse(read("out/en/blog/drinking-games-for-2.html"));
 
+test("related games copy remains count-neutral", () => {
+  assert.match(doc.textContent, /See the playable options in the English games hub/);
+  assert.doesNotMatch(doc.textContent, /both playable options/);
+});
+
 test("each hub game keeps its artwork and Truth or Dare places the same decoration inside its wide setup", () => {
   const cards = hub.querySelectorAll(".en-catalog-card");
   const kings = cards.find((card) => card.querySelector("#en-catalog-kings-cup"));

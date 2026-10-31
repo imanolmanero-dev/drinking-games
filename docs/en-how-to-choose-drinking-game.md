@@ -1,7 +1,9 @@
 # EN participation decision guide
 
 Base: `7f4e81037ec1f538beb77eb625d7dd01878c6d95`.
-Branch: `feat/en-how-to-choose-drinking-game`. Local, uncommitted implementation.
+Implementation branch: `feat/en-how-to-choose-drinking-game`.
+Integrated in `8faf430df4aa497979ed110e67f917f8ab6746ed`:
+`[AGENTS] feat: add EN drinking game chooser guide`.
 
 Adds only `/en/blog/how-to-choose-a-drinking-game`, an unpaired EN guide.
 Inventory: 71 ES + 14 EN = 85 public routes. The sitemap derives publication
@@ -19,9 +21,9 @@ suitable for strangers; Truth or Dare spotlight/waiting and King's Cup learning
 and physical setup are explicit. Drinking remains optional and separate from
 passing. No FAQ is needed. BlogPosting and BreadcrumbList use existing helpers.
 
-Publication date is null during local review: no invented publication history,
-dateModified or build-clock date. Set the actual date in the reviewed integration
-change, then revalidate visible date, OG and BlogPosting before publication.
+Publication date was null during local review. Integration set the explicit
+publication date to `2026-10-30`, verified in the visible date, OG and BlogPosting.
+No dateModified or build-clock date was introduced.
 
 Only Home and Games gain one discovery paragraph each. Full before/after
 snapshots reverse those changes and the registry/audit/EN fixture adjustments
@@ -44,7 +46,12 @@ Outbound destinations resolve. Both inbound links were focused and clicked;
 Home/Games sanity checks pass at 390 px. Sampled final console has no errors.
 Screenshots and logs are under ignored `build/choice/`.
 
-Minor follow-up only: Truth or Dare still says “both playable options”. It was
-not changed. No header, Guides index, game logic, ads, analytics, legal, Spanish,
-dependency, workflow or reporting changes. No staging, commit, push or deployment.
-Independent review and the actual integration date remain release gates.
+At the implementation checkpoint, Truth or Dare still said “both playable
+options”; that copy was outside this feature's scope. This feature made no
+header, Guides index, game logic, ads, analytics, legal, Spanish, dependency,
+workflow or reporting changes.
+
+Post-integration independent review: **POST-INTEGRATION VERIFIED**.
+Publication-date decision: **NO DATE FIX REQUIRED**.
+Production: HTTP 200 and verified at
+https://bebergames.com/en/blog/how-to-choose-a-drinking-game.
