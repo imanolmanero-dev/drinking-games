@@ -116,8 +116,8 @@ test("the two games and the two-person guide have contextual, resolving links", 
 test("the published page appears once in the 85-URL union and no variants are exported", () => {
   const audit = auditStaticExport();
   assert.deepEqual(validateStaticExportAudit(audit), []);
-  assert.equal(audit.pages.length, 85);
-  assert.equal(audit.sitemap.urls.length, 85);
+  assert.equal(audit.pages.length, 86);
+  assert.equal(audit.sitemap.urls.length, 86);
   assert.equal(audit.sitemap.urls.filter((entry) => entry === url).length, 1);
   assert.deepEqual(audit.pages.find((page) => page.pathname === pathname).languages, []);
   assert.deepEqual(audit.pages.find((page) => page.pathname === "/juegos/verdad-o-reto").languages, []);

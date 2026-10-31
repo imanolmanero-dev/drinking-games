@@ -21,6 +21,6 @@ test("decision guide exports exact metadata, editorial schema and contextual lin
   assert.equal(doc.querySelector('meta[property="article:published_time"]').getAttribute("content"), "2026-10-30");
   for (const target of ["/en/games/never-have-i-ever", "/en/games/truth-or-dare", "/en/games/kings-cup", "/en/blog/drinking-games-for-2", "/en/blog/drinking-games-without-cards#categories", "/en/blog/drinking-games-without-cards#rhyme-round"]) assert.ok(doc.querySelector(`a[href="${target}"]`), target);
   for (const path of ["/en", "/en/games"]) assert.equal(read(path).querySelectorAll(`a[href="${route}"]`).length, 1);
-  assert.equal(existsSync("out/en/guides.html"), false);
+  assert.equal(existsSync("out/en/guides.html"), true);
   assert.equal(existsSync("out/en/games/higher-or-lower.html"), false);
 });

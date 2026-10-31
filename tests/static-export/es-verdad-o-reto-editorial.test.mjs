@@ -25,9 +25,9 @@ test("ES-01 exports exact game counts, all three levels and a secondary working 
   assert.ok(game.querySelectorAll("button").some((node) => node.textContent.trim() === "Empezar a jugar"));
   assert.ok(readRouteContract().some((route) => route.pathname === `/blog/${slug}`));
   const audit = auditStaticExport();
-  assert.equal(audit.pages.length, 85);
+  assert.equal(audit.pages.length, 86);
   assert.equal(audit.pages.filter(({ lang }) => lang === "es").length, 71);
-  assert.equal(audit.pages.filter(({ lang }) => lang === "en-US").length, 14);
+  assert.equal(audit.pages.filter(({ lang }) => lang === "en-US").length, 15);
 });
 
 test("ES-01 article exports 50 questions/15 dares and propagates accurate metadata without changing publication date", () => {

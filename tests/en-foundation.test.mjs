@@ -21,8 +21,8 @@ const sorted = (items) => [...items].sort();
 const render = (component, props) => parse(renderToStaticMarkup(createElement(component, props)));
 
 test("English registry publication matches the independent thirteen-route fixture", () => {
-  assert.equal(fixture.length, 14);
-  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 14);
+  assert.equal(fixture.length, 15);
+  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 15);
   assert.deepEqual(fixture.map((route) => route.pathname), sorted(fixture.map((route) => route.pathname)));
   assert.deepEqual(sorted(publishedRoutes("en-US").map((route) => route.pathname)), fixture.map((route) => route.pathname));
   assert.equal(new Set(routeRegistry.map((route) => route.id)).size, routeRegistry.length);

@@ -399,3 +399,8 @@ Si la respuesta es sí → actualiza este archivo.
 - `/en/blog/how-to-choose-a-drinking-game` añade una guía Server Component, `unpaired`: 71 ES + 14 EN = 85 URLs. Resuelve participación y encaje social, sin duplicar reglas ni crear `/en/guides` o navegación nueva.
 - Solo home EN y hub EN reciben un párrafo de descubrimiento. Los guards revierten exclusivamente los snapshots completos de `tests/fixtures/choice-source.json` antes de los guards históricos y rechazan mutaciones adicionales.
 - `decisionEditorial.datePublished` permanece null durante revisión local. Fijar la fecha real al integrar, sin backdating ni `dateModified` de build. BlogPosting y OG omiten la fecha hasta entonces.
+
+### EN Guides directory
+- `/en/guides` es un índice estático `page`, EN y `unpaired`: 71 ES + 15 EN = 86 rutas. Agrega tres guías permanentes y Halloween sin migrar URLs ni reescribir artículos.
+- Header EN: Home, Games, Guides, About, Contact. Se conserva la ausencia actual de estado activo por ruta; no añadir una isla cliente solo para marcarlo. Los iconos decorativos se ocultan hasta 480 px para mantener las cinco etiquetas legibles.
+- `tests/fixtures/guides-source.json` autoriza snapshots completos exactos antes de los guards históricos. No ignorar headers completos: comparar las 85 páginas anteriores retirando exclusivamente el enlace Guides y validar el resto del header.

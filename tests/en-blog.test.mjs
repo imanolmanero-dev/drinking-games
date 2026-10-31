@@ -62,7 +62,7 @@ test("two-person guide publishes the existing concept as an unpaired guide only"
   const previous = JSON.parse(execFileSync("git", ["show", "e707c88:tests/fixtures/en-routes.json"], { encoding: "utf8" }));
   // Existing King's Cup metadata was deliberately updated after Phase 5.
   // Keep every other field in this historical route comparison intact.
-  assert.deepEqual(fixture.filter((route) => !["/en/blog/how-to-choose-a-drinking-game", "/en/games/never-have-i-ever", "/en/blog/drinking-games-without-cards", "/en/halloween-drinking-games", entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => {
+  assert.deepEqual(fixture.filter((route) => !["/en/guides", "/en/blog/how-to-choose-a-drinking-game", "/en/games/never-have-i-ever", "/en/blog/drinking-games-without-cards", "/en/halloween-drinking-games", entry.routes["en-US"].pathname, "/en/games/truth-or-dare"].includes(route.pathname)).map((route) => {
     if (route.pathname === "/en") return { ...route, h1: "Good company. Your pace." };
     if (route.pathname === "/en/games/kings-cup") return { ...route, title: previous.find(({ pathname }) => pathname === route.pathname).title };
     return route;
@@ -216,7 +216,7 @@ test("Phase 5 leaves Spanish files, fixtures, navigation, sitemap and dependenci
   const loaded = { exports: {} };
   new Function("module", "exports", oldModule)(loaded, loaded.exports);
   const es = (entries) => entries.map(({ id, routes, published, equivalence }) => ({ id, route: routes.es, published: published.es, equivalence }));
-  assert.deepEqual(es(routeRegistry.filter(({ id }) => id !== "choose-drinking-game" && id !== "halloween" && id !== "never-have-i-ever")), es(loaded.exports.routeRegistry));
+  assert.deepEqual(es(routeRegistry.filter(({ id }) => id !== "guides-hub" && id !== "choose-drinking-game" && id !== "halloween" && id !== "never-have-i-ever")), es(loaded.exports.routeRegistry));
 });
 
 test("historical guard rejects an extra reporting edit beyond the reviewed coverage patch", () => {

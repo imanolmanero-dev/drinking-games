@@ -7,6 +7,7 @@ type NavIconName = "home" | "games" | "about" | "contact";
 const navigation: { id: RouteId; label: string; icon: NavIconName }[] = [
   { id: "home", label: "Home", icon: "home" },
   { id: "games-hub", label: "Games", icon: "games" },
+  { id: "guides-hub", label: "Guides", icon: "games" },
   { id: "about", label: "About", icon: "about" },
   { id: "contact", label: "Contact", icon: "contact" },
 ];

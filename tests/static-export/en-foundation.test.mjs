@@ -15,8 +15,8 @@ const documentFor = (path) => parse(readFileSync(join("out", path === "/" ? "ind
 const english = fixture.map((route) => ({ ...route, document: documentFor(route.pathname), page: audit.pages.find((page) => page.pathname === route.pathname) }));
 
 test("eleven English documents are indexable, self-canonical, en-US, and have unique titles/descriptions and one H1", () => {
-  assert.equal(english.length, 14);
-  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 14);
+  assert.equal(english.length, 15);
+  assert.equal(audit.pages.filter((page) => /^\/en(?:\/|$)/.test(page.pathname)).length, 15);
   const descriptions = [];
   for (const { pathname, title, h1, document, page } of english) {
     assert.ok(page, pathname);
@@ -37,8 +37,8 @@ test("eleven English documents are indexable, self-canonical, en-US, and have un
     descriptions.push(description[0].getAttribute("content"));
     assert.ok(document.querySelectorAll('link[rel="stylesheet"]').length > 0);
   }
-  assert.equal(new Set(descriptions).size, 14);
-  assert.equal(new Set(english.map((route) => route.page.title)).size, 14);
+  assert.equal(new Set(descriptions).size, 15);
+  assert.equal(new Set(english.map((route) => route.page.title)).size, 15);
 });
 
 test("English output has no ads, PWA, analytics, forms or consent instrumentation", () => {
@@ -87,7 +87,7 @@ test("all English internal links and fragments resolve, with unique interactive 
       if (url.hash) assert.ok(documentFor(url.pathname).getElementById(decodeURIComponent(url.hash.slice(1))), `${pathname} -> ${href}`);
       if (!/^\/en(?:\/|$)/.test(url.pathname)) assert.equal(link.getAttribute("id"), "language-switch");
     }
-    assert.deepEqual(document.querySelectorAll('nav[aria-label="Main navigation"] a').map((link) => link.textContent), ["Home", "Games", "About", "Contact"]);
+    assert.deepEqual(document.querySelectorAll('nav[aria-label="Main navigation"] a').map((link) => link.textContent), ["Home", "Games", "Guides", "About", "Contact"]);
     assert.deepEqual(document.querySelectorAll('nav[aria-label="Footer navigation"] a').map((link) => link.textContent), ["About", "Contact", "Privacy", "Cookies", "Terms"]);
   }
 });
@@ -116,7 +116,7 @@ test("English social metadata uses en_US and a real English static image, never 
     }
     for (const script of document.querySelectorAll('script[type="application/ld+json"]')) {
       const schema = JSON.parse(script.textContent);
-      const expectedTypes = pathname === "/en/games/never-have-i-ever" ? ["WebApplication", "BreadcrumbList", "FAQPage"] : pathname === "/en/games/kings-cup" ? ["WebApplication", "FAQPage"]
+      const expectedTypes = pathname === "/en/guides" ? ["BreadcrumbList"] : pathname === "/en/games/never-have-i-ever" ? ["WebApplication", "BreadcrumbList", "FAQPage"] : pathname === "/en/games/kings-cup" ? ["WebApplication", "FAQPage"]
         : pathname === "/en/games/truth-or-dare" ? ["WebApplication"]
         : ["/en/blog/how-to-choose-a-drinking-game", "/en/blog/drinking-games-for-2", "/en/blog/drinking-games-without-cards"].includes(pathname) ? ["BlogPosting", "BreadcrumbList", "FAQPage"] : pathname === "/en/halloween-drinking-games" ? ["BreadcrumbList", "FAQPage"] : ["WebSite"];
       assert.ok(expectedTypes.includes(schema["@type"]));
@@ -128,7 +128,7 @@ test("English social metadata uses en_US and a real English static image, never 
 test("English sitemap entries have no artificial lastModified and no unexpected assets or pages", () => {
   const sitemap = parse(readFileSync("out/sitemap.xml", "utf8"));
   const entries = sitemap.querySelectorAll("url").filter((entry) => /^https:\/\/bebergames\.com\/en(?:\/|$)/.test(entry.querySelector("loc").textContent));
-  assert.equal(entries.length, 14);
+  assert.equal(entries.length, 15);
   for (const entry of entries) {
     const halloween = entry.querySelector("loc").textContent.endsWith("/halloween-drinking-games");
     assert.equal(entry.querySelectorAll("lastmod").length, halloween ? 1 : 0);

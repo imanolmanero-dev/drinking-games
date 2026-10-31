@@ -7,7 +7,7 @@ import { withoutChoice } from "./helpers/choice-baseline.mjs";
 const require = createRequire(import.meta.url); require("tsx/cjs");
 const { routeRegistry, publishedRoutes, languageAlternates } = require("../lib/i18n/routes.ts");
 test("decision guide is the sole new EN route and an unpaired editorial resource", () => {
-  assert.equal(publishedRoutes("en-US").length, 14);
+  assert.equal(publishedRoutes("en-US").length, 15);
   const entry = routeRegistry.find(r => r.id === "choose-drinking-game");
   assert.equal(entry.kind, "guide"); assert.equal(entry.equivalence, "unpaired");
   assert.equal(entry.published.es, false); assert.equal(languageAlternates(entry.id), undefined);

@@ -72,7 +72,7 @@ test("home and registry-driven hub link both published English games", () => {
 test("King's Cup is in the 85-URL union once, with no false ES or Ring of Fire hreflang", () => {
   const audit = auditStaticExport();
   assert.deepEqual(validateStaticExportAudit(audit), []);
-  assert.equal(audit.sitemap.urls.length, 85);
+  assert.equal(audit.sitemap.urls.length, 86);
   assert.equal(audit.sitemap.urls.filter((entry) => entry === url).length, 1);
   for (const path of ["/en/games/kings-cup", "/juegos/rey-de-la-copa", "/juegos/rey-de-la-copa/reglas", "/juegos/ring-of-fire", "/juegos/ring-of-fire/reglas"]) {
     assert.deepEqual(audit.pages.find((page) => page.pathname === path).languages, [], path);
