@@ -4,7 +4,7 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "Verdad o Reto — Juego para beber online",
   description:
-    "Juega a Verdad o Reto para beber con amigos. 80 verdades y 80 retos en español, en 3 niveles de intensidad. Si no cumples… ¡fondo blanco!",
+    "Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.",
   openGraph: {
     title: "Verdad o Reto — Juego para beber online",
     description:
