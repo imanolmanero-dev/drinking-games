@@ -404,3 +404,6 @@ Si la respuesta es sí → actualiza este archivo.
 - `/en/guides` es un índice estático `page`, EN y `unpaired`: 71 ES + 15 EN = 86 rutas. Agrega tres guías permanentes y Halloween sin migrar URLs ni reescribir artículos.
 - Header EN: Home, Games, Guides, About, Contact. Se conserva la ausencia actual de estado activo por ruta; no añadir una isla cliente solo para marcarlo. Los iconos decorativos se ocultan hasta 480 px para mantener las cinco etiquetas legibles.
 - `tests/fixtures/guides-source.json` autoriza snapshots completos exactos antes de los guards históricos. No ignorar headers completos: comparar las 85 páginas anteriores retirando exclusivamente el enlace Guides y validar el resto del header.
+
+### Navegación de artículos MDX
+- Usar clases CSS estáticas para el margen de scroll de las anclas y verificar el HTML exportado: las expresiones JSX pueden omitirse. El índice también cambia la lectura estimada de su tarjeta en /blog; validar ese efecto derivado sin modificar el cálculo compartido ni ampliar excepciones históricas.

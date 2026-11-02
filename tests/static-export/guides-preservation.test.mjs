@@ -14,6 +14,29 @@ test("85 existing pages preserve metadata, content, links and schema after exact
       assert.equal(description.getAttribute("content"), "Juega a Verdad o Reto para beber con amigos. 80 verdades y 80 retos en español, en 3 niveles de intensidad. Si no cumples… ¡fondo blanco!");
       description.setAttribute("content", "Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.");
     }
+    // Project only the approved navigation delta onto the historical baseline.
+    if (root === "out" && pathname === "/blog/juegos-para-beber-con-cartas") {
+      const expected = JSON.parse(readFileSync("tests/fixtures/card-games-navigation.json", "utf8"));
+      const navs = d.querySelectorAll('article nav');
+      assert.equal(navs.length, 1);
+      assert.equal(navs[0].outerHTML, expected.nav);
+      assert.equal(expected.targets.length, 12);
+      for (const [id, label] of expected.targets) {
+        const targets = d.querySelectorAll(`[id="${id}"]`);
+        assert.equal(targets.length, 1);
+        assert.equal(targets[0].tagName, "H2");
+        assert.equal(targets[0].textContent, label);
+        assert.equal(targets[0].getAttribute("class"), "scroll-mt-24");
+      }
+      navs[0].remove();
+    }
+    if (root === "out" && pathname === "/blog") {
+      const cards = d.querySelectorAll('a[href="/blog/juegos-para-beber-con-cartas"]');
+      assert.equal(cards.length, 1);
+      assert.equal(cards[0].querySelectorAll('span').filter(n => n.textContent === '8 min').length, 1);
+      const time = cards[0].querySelectorAll('span').find(n => n.textContent === '8 min');
+      time.set_content('7 min');
+    }
     if (root === "out" && pathname.startsWith("/en")) {
       const links = d.querySelectorAll('.en-nav-links a');
       assert.deepEqual(links.map(n => n.textContent.trim()), ["Home", "Games", "Guides", "About", "Contact"]);

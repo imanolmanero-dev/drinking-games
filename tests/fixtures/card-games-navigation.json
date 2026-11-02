@@ -1,0 +1,53 @@
+{
+  "nav": "<nav aria-label=\"Índice de juegos\" class=\"not-prose my-8 rounded-xl border border-border p-4 text-sm [&amp;_a]:flex [&amp;_a]:min-h-11 [&amp;_a]:items-center [&amp;_a]:py-2 [&amp;_a]:focus-visible:outline-2 [&amp;_a]:focus-visible:outline-offset-2\"><p class=\"mb-2 font-bold\">Elige un juego</p><ol class=\"grid list-none gap-x-6 text-amber-500 sm:grid-cols-2\"><li><a href=\"#ring-of-fire\">1. Ring of Fire (Anillo de Fuego)</a></li><li><a href=\"#piramide\">2. Pirámide</a></li><li><a href=\"#presidente\">3. Presidente (o Culo)</a></li><li><a href=\"#verdad-o-trago\">4. Verdad o Trago</a></li><li><a href=\"#blackjack-para-beber\">5. Blackjack para Beber</a></li><li><a href=\"#joder-al-vecino\">6. Joder al Vecino (Fuck the Dealer)</a></li><li><a href=\"#bus-driver\">7. Bus Driver (El Conductor del Autobús)</a></li><li><a href=\"#give-and-take\">8. Give and Take (Da y Recibe)</a></li><li><a href=\"#snap-para-beber\">9. Snap para Beber</a></li><li><a href=\"#caballo-de-carreras\">10. Caballo de Carreras (Horse Race)</a></li><li><a href=\"#poker-indio\">11. Poker Indio</a></li><li><a href=\"#alta-o-baja\">12. Alta o Baja</a></li></ol></nav>",
+  "targets": [
+    [
+      "ring-of-fire",
+      "1. Ring of Fire (Anillo de Fuego)"
+    ],
+    [
+      "piramide",
+      "2. Pirámide"
+    ],
+    [
+      "presidente",
+      "3. Presidente (o Culo)"
+    ],
+    [
+      "verdad-o-trago",
+      "4. Verdad o Trago"
+    ],
+    [
+      "blackjack-para-beber",
+      "5. Blackjack para Beber"
+    ],
+    [
+      "joder-al-vecino",
+      "6. Joder al Vecino (Fuck the Dealer)"
+    ],
+    [
+      "bus-driver",
+      "7. Bus Driver (El Conductor del Autobús)"
+    ],
+    [
+      "give-and-take",
+      "8. Give and Take (Da y Recibe)"
+    ],
+    [
+      "snap-para-beber",
+      "9. Snap para Beber"
+    ],
+    [
+      "caballo-de-carreras",
+      "10. Caballo de Carreras (Horse Race)"
+    ],
+    [
+      "poker-indio",
+      "11. Poker Indio"
+    ],
+    [
+      "alta-o-baja",
+      "12. Alta o Baja"
+    ]
+  ]
+}
