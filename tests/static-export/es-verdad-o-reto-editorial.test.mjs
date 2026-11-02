@@ -15,7 +15,8 @@ const game = parse(readFileSync("out/juegos/verdad-o-reto.html", "utf8"));
 const blog = parse(readFileSync(`out/blog/${slug}.html`, "utf8"));
 
 test("ES-01 exports exact game counts, all three levels and a secondary working article link", () => {
-  for (const text of [game.textContent, game.querySelector('meta[name="description"]').getAttribute("content"), game.querySelector('meta[property="og:description"]').getAttribute("content")]) {
+  assert.equal(game.querySelector('meta[name="description"]').getAttribute("content"), "Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.");
+  for (const text of [game.textContent, game.querySelector('meta[property="og:description"]').getAttribute("content")]) {
     assert.match(text, new RegExp(`${VERDADES.length} verdades y ${RETOS.length} retos`));
   }
   for (const level of ["Soft", "Normal", "Picante"]) assert.match(game.textContent, new RegExp(`Nivel ${level}`));

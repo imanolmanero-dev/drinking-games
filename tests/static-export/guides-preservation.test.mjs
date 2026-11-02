@@ -8,6 +8,12 @@ test("85 existing pages preserve metadata, content, links and schema after exact
   const routes = ["es-routes", "es-additional-routes", "en-routes"].flatMap(name => JSON.parse(readFileSync(`tests/fixtures/${name}.json`, "utf8"))).filter(r => r.pathname !== "/en/guides");
   function snapshot(root, pathname) {
     const d = parse(readFileSync(`${root}/${pathname === "/" ? "index" : pathname.slice(1)}.html`, "utf8"));
+    // The active experiment changed only the SEO description, not Open Graph.
+    if (root !== "out" && pathname === "/juegos/verdad-o-reto") {
+      const description = d.querySelector('meta[name="description"]');
+      assert.equal(description.getAttribute("content"), "Juega a Verdad o Reto para beber con amigos. 80 verdades y 80 retos en español, en 3 niveles de intensidad. Si no cumples… ¡fondo blanco!");
+      description.setAttribute("content", "Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.");
+    }
     if (root === "out" && pathname.startsWith("/en")) {
       const links = d.querySelectorAll('.en-nav-links a');
       assert.deepEqual(links.map(n => n.textContent.trim()), ["Home", "Games", "Guides", "About", "Contact"]);
