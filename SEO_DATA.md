@@ -1,8 +1,8 @@
 # Dashboard SEO de BeberGames
 
-> **Última actualización:** 2026-11-02T03:32:24.882Z
-> **Periodo actual:** 2026-10-19 a 2026-10-25 (7 días de calendario)
-> **Periodo anterior:** 2026-10-12 a 2026-10-18 (7 días de calendario)
+> **Última actualización:** 2026-11-09T03:46:02.052Z
+> **Periodo actual:** 2026-10-26 a 2026-11-01 (7 días de calendario)
+> **Periodo anterior:** 2026-10-19 a 2026-10-25 (7 días de calendario)
 
 *Generado automáticamente mediante GitHub Actions y la API de Google Search Console. No editar manualmente.*
 
@@ -20,10 +20,10 @@ Estado de los totales: actual `available`; anterior `available`. `valid_zero` es
 
 | Métrica | Actual | Anterior | Diferencia | Cambio relativo |
 |---|---:|---:|---:|---:|
-| Clics orgánicos | 1914 | 2026 | -112 | -5,5% |
-| Impresiones | 38790 | 37281 | 1509 | +4,0% |
-| CTR global | 4,9% | 5,4% | -0,5% | -9,2% |
-| Posición media global | 9,5 | 8,9 | +0,6 (empeora) | Empeora 6,6% |
+| Clics orgánicos | 2542 | 1914 | 628 | +32,8% |
+| Impresiones | 52718 | 38790 | 13928 | +35,9% |
+| CTR global | 4,8% | 4,9% | -0,1% | -2,3% |
+| Posición media global | 8,7 | 9,5 | -0,8 (mejora) | Mejora 8,2% |
 
 `N/D` indica que no existe una base porcentual o que falta un dato por fallo, respuesta vacía/inválida o truncamiento. No equivale a cero.
 
@@ -37,31 +37,31 @@ Page-filtered totals use page aggregation, not interchangeable with sitewide pro
 
 | Metric | Previous | Current | Difference | Change |
 |---|---:|---:|---:|---:|
-| Clicks | 14 | 43 | 29 | +207,1% |
-| Impressions | 259 | 723 | 464 | +179,2% |
-| CTR | 5,4% | 5,9% | 0,5 pp | — |
-| Average position | 11,8 | 12,0 | +0,2 (empeora) | — |
+| Clicks | 43 | 33 | -10 | -23,3% |
+| Impressions | 723 | 694 | -29 | -4,0% |
+| CTR | 5,9% | 4,8% | -1,2 pp | — |
+| Average position | 12,0 | 12,0 | 0,0 (mejora) | — |
 
 ### EN landing pages
 
 Previous → current. No minimum-impression threshold.
 
-current page source: `complete_from_api_response` (63/25000 rows); previous page source: `complete_from_api_response` (70/25000 rows).
+current page source: `complete_from_api_response` (73/25000 rows); previous page source: `complete_from_api_response` (63/25000 rows).
 
 | Page | Impressions | Δ imp. | Clicks | Δ clicks | CTR | Position | Status, previous → current |
 |---|---|---:|---|---:|---|---|---|
-| [/en/games](<https://bebergames.com/en/games>) | 160 → 597 | 437 | 10 → 38 | 28 | 6,3% → 6,4% | 14,0 → 12,6 | observed → observed |
-| [/en/games/truth-or-dare](<https://bebergames.com/en/games/truth-or-dare>) | 73 → 63 | -10 | 2 → 1 | -1 | 2,7% → 1,6% | 9,0 → 9,6 | observed → observed |
-| [/en/halloween-drinking-games](<https://bebergames.com/en/halloween-drinking-games>) | N/D → 33 | No disponible | N/D → 2 | No disponible | N/D → 6,1% | N/D → 11,9 | no_observation → observed |
-| [/en/games/kings-cup](<https://bebergames.com/en/games/kings-cup>) | 18 → 23 | 5 | 2 → 2 | 0 | 11,1% → 8,7% | 5,3 → 5,9 | observed → observed |
-| [/en](<https://bebergames.com/en>) | 3 → 4 | 1 | 0 → 0 | 0 | 0,0% → 0,0% | 3,3 → 3,8 | observed → observed |
-| [/en/blog/drinking-games-for-2](<https://bebergames.com/en/blog/drinking-games-for-2>) | 5 → 3 | -2 | 0 → 0 | 0 | 0,0% → 0,0% | 8,2 → 6,7 | observed → observed |
-| [/en/about](<https://bebergames.com/en/about>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
-| [/en/blog/drinking-games-without-cards](<https://bebergames.com/en/blog/drinking-games-without-cards>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
-| [/en/blog/how-to-choose-a-drinking-game](<https://bebergames.com/en/blog/how-to-choose-a-drinking-game>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
+| [/en/games](<https://bebergames.com/en/games>) | 597 → 471 | -126 | 38 → 20 | -18 | 6,4% → 4,2% | 12,6 → 13,4 | observed → observed |
+| [/en/halloween-drinking-games](<https://bebergames.com/en/halloween-drinking-games>) | 33 → 98 | 65 | 2 → 9 | 7 | 6,1% → 9,2% | 11,9 → 9,0 | observed → observed |
+| [/en/games/truth-or-dare](<https://bebergames.com/en/games/truth-or-dare>) | 63 → 97 | 34 | 1 → 2 | 1 | 1,6% → 2,1% | 9,6 → 8,5 | observed → observed |
+| [/en/games/kings-cup](<https://bebergames.com/en/games/kings-cup>) | 23 → 10 | -13 | 2 → 1 | -1 | 8,7% → 10,0% | 5,9 → 5,0 | observed → observed |
+| [/en/games/never-have-i-ever](<https://bebergames.com/en/games/never-have-i-ever>) | N/D → 4 | No disponible | N/D → 0 | No disponible | N/D → 0,0% | N/D → 14,0 | no_observation → observed |
+| [/en](<https://bebergames.com/en>) | 4 → 3 | -1 | 0 → 0 | 0 | 0,0% → 0,0% | 3,8 → 2,7 | observed → observed |
+| [/en/blog/drinking-games-for-2](<https://bebergames.com/en/blog/drinking-games-for-2>) | 3 → 3 | 0 | 0 → 0 | 0 | 0,0% → 0,0% | 6,7 → 5,7 | observed → observed |
+| [/en/blog/drinking-games-without-cards](<https://bebergames.com/en/blog/drinking-games-without-cards>) | N/D → 3 | No disponible | N/D → 0 | No disponible | N/D → 0,0% | N/D → 58,7 | no_observation → observed |
+| [/en/about](<https://bebergames.com/en/about>) | N/D → 2 | No disponible | N/D → 1 | No disponible | N/D → 50,0% | N/D → 7,0 | no_observation → observed |
+| [/en/blog/how-to-choose-a-drinking-game](<https://bebergames.com/en/blog/how-to-choose-a-drinking-game>) | N/D → 2 | No disponible | N/D → 0 | No disponible | N/D → 0,0% | N/D → 9,5 | no_observation → observed |
+| [/en/guides](<https://bebergames.com/en/guides>) | N/D → 1 | No disponible | N/D → 0 | No disponible | N/D → 0,0% | N/D → 1,0 | no_observation → observed |
 | [/en/contact](<https://bebergames.com/en/contact>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
-| [/en/games/never-have-i-ever](<https://bebergames.com/en/games/never-have-i-ever>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
-| [/en/guides](<https://bebergames.com/en/guides>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
 | [/en/legal/cookies](<https://bebergames.com/en/legal/cookies>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
 | [/en/legal/privacy](<https://bebergames.com/en/legal/privacy>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
 | [/en/legal/terms](<https://bebergames.com/en/legal/terms>) | N/D → N/D | No disponible | N/D → N/D | No disponible | N/D → N/D | N/D → N/D | no_observation → no_observation |
@@ -74,52 +74,79 @@ current query/page source: `complete_from_api_response`; previous query/page sou
 
 #### [/en/games](<https://bebergames.com/en/games>)
 
-Showing 5 of 52 retrieved combinations.
+Showing 5 of 73 retrieved combinations.
 
-Current query impression coverage: 79,1%. Coverage may be partial; undisclosed queries are not inferred.
+Current query impression coverage: 68,6%. Coverage may be partial; undisclosed queries are not inferred.
 
 | Query | Impressions, previous → current | Clicks, previous → current | CTR, previous → current | Position, previous → current |
 |---|---|---|---|---|
-| drinking games online | 55 → 220 | 1 → 19 | 1,8% → 8,6% | 9,6 → 10,2 |
-| online drinking games | 13 → 67 | 0 → 4 | 0,0% → 6,0% | 14,2 → 10,9 |
-| drinking game online | 20 → 59 | 4 → 5 | 20,0% → 8,5% | 9,2 → 10,7 |
-| online drinking game | 5 → 20 | 0 → 0 | 0,0% → 0,0% | 20,2 → 14,8 |
-| internet drinking games | 5 → 19 | 0 → 0 | 0,0% → 0,0% | 39,2 → 36,9 |
+| drinking games online | 220 → 95 | 19 → 5 | 8,6% → 5,3% | 10,2 → 10,3 |
+| online drinking games | 67 → 40 | 4 → 2 | 6,0% → 5,0% | 10,9 → 11,3 |
+| drinking game online | 59 → 56 | 5 → 4 | 8,5% → 7,1% | 10,7 → 9,8 |
+| internet drinking games | 19 → 20 | 0 → 0 | 0,0% → 0,0% | 36,9 → 28,4 |
+| online drinking game | 20 → 11 | 0 → 0 | 0,0% → 0,0% | 14,8 → 9,0 |
 
 #### [/en/halloween-drinking-games](<https://bebergames.com/en/halloween-drinking-games>)
 
-Showing 5 of 7 retrieved combinations.
+Showing 5 of 13 retrieved combinations.
 
-Current query impression coverage: 33,3%. Coverage may be partial; undisclosed queries are not inferred.
+Current query impression coverage: 32,7%. Coverage may be partial; undisclosed queries are not inferred.
 
 | Query | Impressions, previous → current | Clicks, previous → current | CTR, previous → current | Position, previous → current |
 |---|---|---|---|---|
-| halloween drinking games | N/D → 3 | N/D → 0 | N/D → 0,0% | N/D → 21,7 |
-| halloween roulette game | N/D → 2 | N/D → 0 | N/D → 0,0% | N/D → 11,0 |
-| scary drinking games | N/D → 2 | N/D → 0 | N/D → 0,0% | N/D → 20,5 |
-| halloween drinking roulette | N/D → 1 | N/D → 0 | N/D → 0,0% | N/D → 8,0 |
-| halloween drinking roulette game | N/D → 1 | N/D → 0 | N/D → 0,0% | N/D → 10,0 |
+| halloween drinking games online | N/D → 20 | N/D → 3 | N/D → 15,0% | N/D → 7,7 |
+| halloween drinking board game | N/D → 3 | N/D → 0 | N/D → 0,0% | N/D → 5,7 |
+| halloween drinking games | 3 → 1 | 0 → 0 | 0,0% → 0,0% | 21,7 → 8,0 |
+| drinking games halloween | N/D → 2 | N/D → 0 | N/D → 0,0% | N/D → 17,5 |
+| halloween roulette game | 2 → 2 | 0 → 0 | 0,0% → 0,0% | 11,0 → 11,5 |
 
-#### [/en](<https://bebergames.com/en>)
+#### [/en/games/truth-or-dare](<https://bebergames.com/en/games/truth-or-dare>)
+
+Showing 2 of 2 retrieved combinations.
+
+Current query impression coverage: 3,1%. Coverage may be partial; undisclosed queries are not inferred.
+
+| Query | Impressions, previous → current | Clicks, previous → current | CTR, previous → current | Position, previous → current |
+|---|---|---|---|---|
+| play truth or dare online with strangers | N/D → 2 | N/D → 0 | N/D → 0,0% | N/D → 6,0 |
+| dare games online | N/D → 1 | N/D → 0 | N/D → 0,0% | N/D → 6,0 |
+
+#### [/en/games/never-have-i-ever](<https://bebergames.com/en/games/never-have-i-ever>)
+
+Showing 2 of 2 retrieved combinations.
+
+Current query impression coverage: 75,0%. Coverage may be partial; undisclosed queries are not inferred.
+
+| Query | Impressions, previous → current | Clicks, previous → current | CTR, previous → current | Position, previous → current |
+|---|---|---|---|---|
+| ever game online | N/D → 2 | N/D → 0 | N/D → 0,0% | N/D → 10,0 |
+| never have i ever game online | N/D → 1 | N/D → 0 | N/D → 0,0% | N/D → 30,0 |
+
+#### [/en/blog/drinking-games-without-cards](<https://bebergames.com/en/blog/drinking-games-without-cards>)
 
 Showing 1 of 1 retrieved combinations.
 
-Current query impression coverage: 0,0%. Coverage may be partial; undisclosed queries are not inferred.
+Current query impression coverage: 100,0%. Coverage may be partial; undisclosed queries are not inferred.
 
 | Query | Impressions, previous → current | Clicks, previous → current | CTR, previous → current | Position, previous → current |
 |---|---|---|---|---|
-| the begger games.com | 1 → N/D | 0 → N/D | 0,0% → N/D | 1,0 → N/D |
+| drinking games without cards | N/D → 3 | N/D → 0 | N/D → 0,0% | N/D → 58,7 |
+
+#### [/en/guides](<https://bebergames.com/en/guides>)
+
+Showing 1 of 1 retrieved combinations.
+
+Current query impression coverage: 100,0%. Coverage may be partial; undisclosed queries are not inferred.
+
+| Query | Impressions, previous → current | Clicks, previous → current | CTR, previous → current | Position, previous → current |
+|---|---|---|---|---|
+| beber games | N/D → 1 | N/D → 0 | N/D → 0,0% | N/D → 1,0 |
 
 ### Published pages without current observations
 
 | Page | Current | Previous status |
 |---|---|---|
-| [/en/about](<https://bebergames.com/en/about>) | No observed Search Console data in this period. | no_observation |
-| [/en/blog/drinking-games-without-cards](<https://bebergames.com/en/blog/drinking-games-without-cards>) | No observed Search Console data in this period. | no_observation |
-| [/en/blog/how-to-choose-a-drinking-game](<https://bebergames.com/en/blog/how-to-choose-a-drinking-game>) | No observed Search Console data in this period. | no_observation |
 | [/en/contact](<https://bebergames.com/en/contact>) | No observed Search Console data in this period. | no_observation |
-| [/en/games/never-have-i-ever](<https://bebergames.com/en/games/never-have-i-ever>) | No observed Search Console data in this period. | no_observation |
-| [/en/guides](<https://bebergames.com/en/guides>) | No observed Search Console data in this period. | no_observation |
 | [/en/legal/cookies](<https://bebergames.com/en/legal/cookies>) | No observed Search Console data in this period. | no_observation |
 | [/en/legal/privacy](<https://bebergames.com/en/legal/privacy>) | No observed Search Console data in this period. | no_observation |
 | [/en/legal/terms](<https://bebergames.com/en/legal/terms>) | No observed Search Console data in this period. | no_observation |
@@ -130,111 +157,111 @@ No observation does not prove zero traffic or an indexing problem. Queries are l
 
 | Query | Clics | Clics ant. | Δ clics | Crec. | Impresiones | CTR | Posición |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| verdad o reto | 264 | 291 | -27 | -9,3% | 6001 | 4,4% | 6,9 |
-| juegos para tomar | 61 | 48 | 13 | +27,1% | 788 | 7,7% | 4,0 |
-| juegos para beber | 46 | 35 | 11 | +31,4% | 567 | 8,1% | 4,4 |
-| juegos para beber online | 46 | 50 | -4 | -8,0% | 133 | 34,6% | 17,8 |
-| verdad o reto online | 34 | 34 | 0 | 0,0% | 229 | 14,8% | 4,0 |
-| verdad o reto juego | 30 | 22 | 8 | +36,4% | 262 | 11,5% | 6,7 |
-| juegos para tomar online | 22 | 25 | -3 | -12,0% | 60 | 36,7% | 1,4 |
-| verdad o reto picante | 21 | 17 | 4 | +23,5% | 214 | 9,8% | 7,1 |
-| yo nunca | 19 | 2 | 17 | +850,0% | 717 | 2,6% | 6,9 |
-| drinking games online | 19 | 1 | 18 | +1800,0% | 225 | 8,4% | 10,9 |
-| juegos de beber | 16 | 11 | 5 | +45,5% | 228 | 7,0% | 4,1 |
-| ruleta para tomar | 15 | 7 | 8 | +114,3% | 28 | 53,6% | 1,3 |
-| juego de verdad o reto | 14 | 8 | 6 | +75,0% | 211 | 6,6% | 5,9 |
-| juego de beber online | 12 | 1 | 11 | +1100,0% | 33 | 36,4% | 8,2 |
-| juegos para tomar en pareja online | 12 | 11 | 1 | +9,1% | 32 | 37,5% | 1,4 |
-| beber games | 11 | 13 | -2 | -15,4% | 13 | 84,6% | 1,0 |
-| bebergames | 10 | 28 | -18 | -64,3% | 12 | 83,3% | 1,0 |
-| juegos para tomar con amigos | 9 | 13 | -4 | -30,8% | 232 | 3,9% | 3,9 |
-| juego verdad o reto | 8 | 9 | -1 | -11,1% | 176 | 4,5% | 6,9 |
-| cuarto rey reglas | 8 | 2 | 6 | +300,0% | 81 | 9,9% | 8,0 |
-| preguntas para beber | 7 | 1 | 6 | +600,0% | 58 | 12,1% | 6,1 |
-| juegos de ruleta para tomar | 7 | 6 | 1 | +16,7% | 13 | 53,8% | 1,2 |
-| juegos para tomar en linea | 7 | 4 | 3 | +75,0% | 9 | 77,8% | 1,2 |
-| verdad o reto +18 | 6 | 9 | -3 | -33,3% | 86 | 7,0% | 6,6 |
-| juegos para tomar en grupo | 6 | 8 | -2 | -25,0% | 72 | 8,3% | 3,4 |
-| verdad o reto web | 6 | 6 | 0 | 0,0% | 17 | 35,3% | 3,5 |
-| ruleta para beber online | 6 | 11 | -5 | -45,5% | 11 | 54,5% | 1,0 |
-| ¡verdad o reto! | 5 | 15 | -10 | -66,7% | 128 | 3,9% | 4,8 |
-| juegos para beber con amigos | 5 | 5 | 0 | 0,0% | 122 | 4,1% | 5,2 |
-| juego de beber | 5 | 9 | -4 | -44,4% | 110 | 4,5% | 4,1 |
-| drinking game online | 5 | 4 | 1 | +25,0% | 60 | 8,3% | 11,9 |
-| juego para beber | 5 | 2 | 3 | +150,0% | 58 | 8,6% | 7,1 |
-| verdad o reto online gratis | 5 | 4 | 1 | +25,0% | 16 | 31,3% | 4,3 |
-| verdad o reto picante online | 5 | 4 | 1 | +25,0% | 16 | 31,3% | 3,7 |
-| juegos de peda | 4 | 1 | 3 | +300,0% | 141 | 2,8% | 8,0 |
-| reto o verdad | 4 | 5 | -1 | -20,0% | 115 | 3,5% | 8,3 |
-| juegos de beber online | 4 | 7 | -3 | -42,9% | 77 | 5,2% | 34,1 |
-| online drinking games | 4 | 0 | 4 | N/D | 67 | 6,0% | 10,9 |
-| juegos de tomar | 4 | 4 | 0 | 0,0% | 60 | 6,7% | 4,9 |
-| triman | 4 | 6 | -2 | -33,3% | 47 | 8,5% | 3,0 |
-| reglas cuarto rey | 4 | 0 | 4 | N/D | 45 | 8,9% | 7,1 |
-| verdad o reto juego online | 4 | 13 | -9 | -69,2% | 43 | 9,3% | 3,4 |
-| juego beber | 4 | 6 | -2 | -33,3% | 29 | 13,8% | 10,6 |
-| verdad o reto juego picante | 4 | 0 | 4 | N/D | 24 | 16,7% | 6,1 |
-| ruleta de retos para tomar | 4 | 9 | -5 | -55,6% | 10 | 40,0% | 2,0 |
-| juegos de peda online | 4 | 11 | -7 | -63,6% | 4 | 100,0% | 1,0 |
-| juegos para tomar shots | 3 | 3 | 0 | 0,0% | 181 | 1,7% | 6,7 |
-| juegos de verdad o reto | 3 | 13 | -10 | -76,9% | 155 | 1,9% | 5,9 |
-| juego de la bomba | 3 | 3 | 0 | 0,0% | 133 | 2,3% | 6,6 |
-| juegos para borrachos | 3 | 6 | -3 | -50,0% | 108 | 2,8% | 7,5 |
+| verdad o reto | 255 | 264 | -9 | -3,4% | 9884 | 2,6% | 7,4 |
+| juegos para tomar | 87 | 61 | 26 | +42,6% | 1152 | 7,6% | 3,5 |
+| juegos para beber online | 60 | 46 | 14 | +30,4% | 160 | 37,5% | 6,8 |
+| juegos para beber | 38 | 46 | -8 | -17,4% | 717 | 5,3% | 4,0 |
+| juegos de beber | 37 | 16 | 21 | +131,3% | 441 | 8,4% | 4,2 |
+| juegos para tomar online | 34 | 22 | 12 | +54,5% | 62 | 54,8% | 1,1 |
+| yo nunca | 27 | 19 | 8 | +42,1% | 882 | 3,1% | 8,2 |
+| bebergames | 25 | 10 | 15 | +150,0% | 34 | 73,5% | 1,0 |
+| verdad o reto picante | 23 | 21 | 2 | +9,5% | 300 | 7,7% | 7,6 |
+| verdad o reto juego | 21 | 30 | -9 | -30,0% | 279 | 7,5% | 6,7 |
+| verdad o reto online | 19 | 34 | -15 | -44,1% | 193 | 9,8% | 4,5 |
+| beber games | 19 | 11 | 8 | +72,7% | 23 | 82,6% | 1,0 |
+| juego de beber | 18 | 5 | 13 | +260,0% | 139 | 12,9% | 2,9 |
+| juegos para tomar con amigos | 15 | 9 | 6 | +66,7% | 307 | 4,9% | 3,4 |
+| verdad o reto extremo | 14 | 2 | 12 | +600,0% | 143 | 9,8% | 7,8 |
+| ruleta de shots | 12 | 2 | 10 | +500,0% | 136 | 8,8% | 4,2 |
+| ruleta para tomar | 10 | 15 | -5 | -33,3% | 27 | 37,0% | 2,6 |
+| juegos online para tomar | 10 | 2 | 8 | +400,0% | 18 | 55,6% | 1,4 |
+| ruleta de shots online | 10 | 1 | 9 | +900,0% | 13 | 76,9% | 1,0 |
+| ruleta online | 9 | 0 | 9 | N/D | 1059 | 0,8% | 13,1 |
+| juegos para beber con amigos | 9 | 5 | 4 | +80,0% | 192 | 4,7% | 3,4 |
+| juego para tomar | 9 | 3 | 6 | +200,0% | 123 | 7,3% | 3,6 |
+| juego para beber | 9 | 5 | 4 | +80,0% | 87 | 10,3% | 4,8 |
+| juegos para tomar shots | 8 | 3 | 5 | +166,7% | 228 | 3,5% | 4,7 |
+| yo nunca nunca hot | 8 | 0 | 8 | N/D | 85 | 9,4% | 7,2 |
+| juegos de beber online | 8 | 4 | 4 | +100,0% | 60 | 13,3% | 14,8 |
+| verdad o reto - juego de beber | 8 | 3 | 5 | +166,7% | 27 | 29,6% | 2,8 |
+| juegos de peda online | 8 | 4 | 4 | +100,0% | 13 | 61,5% | 1,0 |
+| ruleta de retos para tomar | 8 | 4 | 4 | +100,0% | 13 | 61,5% | 1,1 |
+| juegos para tomar en pareja | 7 | 2 | 5 | +250,0% | 92 | 7,6% | 7,2 |
+| juegos de beber con amigos | 7 | 2 | 5 | +250,0% | 90 | 7,8% | 5,8 |
+| juegos para tomar en grupo | 7 | 6 | 1 | +16,7% | 88 | 8,0% | 2,7 |
+| juegos beber | 7 | 1 | 6 | +600,0% | 64 | 10,9% | 4,0 |
+| triman | 7 | 4 | 3 | +75,0% | 58 | 12,1% | 3,6 |
+| quien es mas probable que juego | 7 | 0 | 7 | N/D | 34 | 20,6% | 5,3 |
+| verdad o reto gratis | 7 | 1 | 6 | +600,0% | 30 | 23,3% | 3,9 |
+| ruleta para beber | 7 | 3 | 4 | +133,3% | 22 | 31,8% | 1,2 |
+| quien es mas probable juego | 7 | 3 | 4 | +133,3% | 16 | 43,8% | 5,9 |
+| juegos para tomar con amigos online | 7 | 3 | 4 | +133,3% | 13 | 53,8% | 1,5 |
+| juegos online para beber | 7 | 3 | 4 | +133,3% | 8 | 87,5% | 1,0 |
+| juego de verdad o reto | 6 | 14 | -8 | -57,1% | 207 | 2,9% | 7,0 |
+| juego verdad o reto | 6 | 8 | -2 | -25,0% | 191 | 3,1% | 7,2 |
+| verdad o reto +18 | 6 | 6 | 0 | 0,0% | 86 | 7,0% | 7,6 |
+| verdad o reto hot | 6 | 3 | 3 | +100,0% | 83 | 7,2% | 9,6 |
+| juegos verdad o reto | 6 | 2 | 4 | +200,0% | 57 | 10,5% | 6,9 |
+| verdad o reto preguntas online | 6 | 2 | 4 | +200,0% | 37 | 16,2% | 4,0 |
+| juego de beber online | 6 | 12 | -6 | -50,0% | 20 | 30,0% | 2,3 |
+| verdad o reto para tomar | 6 | 1 | 5 | +500,0% | 9 | 66,7% | 2,6 |
+| ruleta para tomar tragos | 6 | 1 | 5 | +500,0% | 7 | 85,7% | 1,6 |
+| juegos de peda | 5 | 4 | 1 | +25,0% | 274 | 1,8% | 7,9 |
 
 ## Top 50 pages
 
 | Página | Clics | Clics ant. | Δ clics | Crec. | Impresiones | CTR | Posición |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| [/juegos/verdad-o-reto](https://bebergames.com/juegos/verdad-o-reto) | 658 | 729 | -71 | -9,7% | 11807 | 5,6% | 6,9 |
-| [/](https://bebergames.com/) | 546 | 599 | -53 | -8,8% | 6461 | 8,5% | 7,9 |
-| [/juegos/la-ruleta](https://bebergames.com/juegos/la-ruleta) | 166 | 183 | -17 | -9,3% | 7291 | 2,3% | 18,1 |
-| [/juegos](https://bebergames.com/juegos) | 136 | 123 | 13 | +10,6% | 2959 | 4,6% | 7,7 |
-| [/blog/rey-de-la-copa-reglas](https://bebergames.com/blog/rey-de-la-copa-reglas) | 44 | 29 | 15 | +51,7% | 1155 | 3,8% | 7,0 |
-| [/juegos/yo-nunca](https://bebergames.com/juegos/yo-nunca) | 42 | 32 | 10 | +31,3% | 1224 | 3,4% | 6,7 |
-| [/juegos/categorias/preguntas](https://bebergames.com/juegos/categorias/preguntas) | 42 | 41 | 1 | +2,4% | 520 | 8,1% | 7,1 |
-| [/en/games](https://bebergames.com/en/games) | 38 | 10 | 28 | +280,0% | 597 | 6,4% | 12,6 |
-| [/juegos/quien-es-mas-probable](https://bebergames.com/juegos/quien-es-mas-probable) | 35 | 48 | -13 | -27,1% | 890 | 3,9% | 7,6 |
-| [/blog/juegos-para-beber-con-dados](https://bebergames.com/blog/juegos-para-beber-con-dados) | 31 | 45 | -14 | -31,1% | 443 | 7,0% | 6,2 |
-| [/juegos/la-bomba](https://bebergames.com/juegos/la-bomba) | 27 | 19 | 8 | +42,1% | 596 | 4,5% | 6,9 |
-| [/blog/preguntas-picantes-verdad-o-reto](https://bebergames.com/blog/preguntas-picantes-verdad-o-reto) | 23 | 32 | -9 | -28,1% | 892 | 2,6% | 11,4 |
-| [/blog/ring-of-fire-reglas-cartas](https://bebergames.com/blog/ring-of-fire-reglas-cartas) | 22 | 29 | -7 | -24,1% | 340 | 6,5% | 6,4 |
-| [/blog/juegos-para-beber-con-cartas](https://bebergames.com/blog/juegos-para-beber-con-cartas) | 20 | 18 | 2 | +11,1% | 1017 | 2,0% | 9,2 |
-| [/juegos/la-piramide](https://bebergames.com/juegos/la-piramide) | 15 | 24 | -9 | -37,5% | 385 | 3,9% | 8,6 |
-| [/blog/yo-prefiero-preguntas](https://bebergames.com/blog/yo-prefiero-preguntas) | 11 | 5 | 6 | +120,0% | 201 | 5,5% | 10,3 |
-| [/blog/juegos-para-beber-en-pareja](https://bebergames.com/blog/juegos-para-beber-en-pareja) | 10 | 11 | -1 | -9,1% | 407 | 2,5% | 8,6 |
-| [/juegos/triman](https://bebergames.com/juegos/triman) | 9 | 11 | -2 | -18,2% | 185 | 4,9% | 3,8 |
-| [/blog/retos-para-fiestas](https://bebergames.com/blog/retos-para-fiestas) | 8 | 12 | -4 | -33,3% | 347 | 2,3% | 8,3 |
-| [/blog/juegos-beber-baraja-espanola](https://bebergames.com/blog/juegos-beber-baraja-espanola) | 7 | 6 | 1 | +16,7% | 389 | 1,8% | 22,5 |
-| [/blog/juegos-para-beber-sin-cartas](https://bebergames.com/blog/juegos-para-beber-sin-cartas) | 7 | 5 | 2 | +40,0% | 166 | 4,2% | 14,4 |
-| [/blog/yo-nunca-preguntas-picantes-18](https://bebergames.com/blog/yo-nunca-preguntas-picantes-18) | 5 | 8 | -3 | -37,5% | 162 | 3,1% | 11,2 |
-| [/blog/reglas-del-yo-nunca](https://bebergames.com/blog/reglas-del-yo-nunca) | 3 | 2 | 1 | +50,0% | 612 | 0,5% | 5,6 |
-| [/blog/beer-pong-reglas-completas](https://bebergames.com/blog/beer-pong-reglas-completas) | 3 | 1 | 2 | +200,0% | 255 | 1,2% | 9,2 |
-| [/juegos/triman/reglas](https://bebergames.com/juegos/triman/reglas) | 3 | 3 | 0 | 0,0% | 115 | 2,6% | 5,2 |
-| [/blog/juegos-de-mesa-para-beber](https://bebergames.com/blog/juegos-de-mesa-para-beber) | 2 | 4 | -2 | -50,0% | 96 | 2,1% | 12,1 |
-| [/juegos/categorias/dados](https://bebergames.com/juegos/categorias/dados) | 2 | 6 | -4 | -66,7% | 59 | 3,4% | 9,1 |
-| [/juegos-para-halloween](https://bebergames.com/juegos-para-halloween) | 2 | 0 | 2 | N/D | 39 | 5,1% | 8,3 |
-| [/en/halloween-drinking-games](https://bebergames.com/en/halloween-drinking-games) | 2 | 0 | 2 | N/D | 33 | 6,1% | 11,9 |
-| [/en/games/kings-cup](https://bebergames.com/en/games/kings-cup) | 2 | 2 | 0 | 0,0% | 23 | 8,7% | 5,9 |
-| [/blog/juegos-para-botellon](https://bebergames.com/blog/juegos-para-botellon) | 2 | 0 | 2 | N/D | 15 | 13,3% | 7,7 |
-| [/juegos/verdad-o-reto/reglas](https://bebergames.com/juegos/verdad-o-reto/reglas) | 1 | 0 | 1 | N/D | 79 | 1,3% | 10,0 |
-| [/blog/juegos-para-beber-dos-personas](https://bebergames.com/blog/juegos-para-beber-dos-personas) | 1 | 0 | 1 | N/D | 64 | 1,6% | 8,1 |
-| [/en/games/truth-or-dare](https://bebergames.com/en/games/truth-or-dare) | 1 | 2 | -1 | -50,0% | 63 | 1,6% | 9,6 |
-| [/juegos/rey-de-la-copa](https://bebergames.com/juegos/rey-de-la-copa) | 1 | 0 | 1 | N/D | 48 | 2,1% | 11,9 |
-| [/juegos/rey-de-la-copa/reglas](https://bebergames.com/juegos/rey-de-la-copa/reglas) | 1 | 1 | 0 | 0,0% | 31 | 3,2% | 16,5 |
-| [/blog/juegos-para-previas](https://bebergames.com/blog/juegos-para-previas) | 1 | 0 | 1 | N/D | 29 | 3,4% | 10,1 |
-| [/juegos/tabu](https://bebergames.com/juegos/tabu) | 1 | 0 | 1 | N/D | 29 | 3,4% | 6,4 |
-| [/juegos/beer-pong](https://bebergames.com/juegos/beer-pong) | 1 | 1 | 0 | 0,0% | 28 | 3,6% | 43,1 |
-| [/juegos/la-piramide/reglas](https://bebergames.com/juegos/la-piramide/reglas) | 1 | 0 | 1 | N/D | 5 | 20,0% | 8,4 |
-| [/blog/los-20-mejores-juegos](https://bebergames.com/blog/los-20-mejores-juegos) | 0 | 0 | 0 | N/D | 122 | 0,0% | 30,3 |
-| [/juegos/medusa](https://bebergames.com/juegos/medusa) | 0 | 0 | 0 | N/D | 92 | 0,0% | 5,1 |
-| [/juegos/categorias/cartas](https://bebergames.com/juegos/categorias/cartas) | 0 | 1 | -1 | -100,0% | 86 | 0,0% | 44,1 |
-| [/juegos/ring-of-fire](https://bebergames.com/juegos/ring-of-fire) | 0 | 0 | 0 | N/D | 76 | 0,0% | 8,5 |
-| [/juegos/yo-nunca/reglas](https://bebergames.com/juegos/yo-nunca/reglas) | 0 | 1 | -1 | -100,0% | 70 | 0,0% | 14,1 |
-| [/blog/juegos-para-beber-sin-alcohol](https://bebergames.com/blog/juegos-para-beber-sin-alcohol) | 0 | 2 | -2 | -100,0% | 56 | 0,0% | 4,8 |
-| [/juegos/la-bomba/reglas](https://bebergames.com/juegos/la-bomba/reglas) | 0 | 0 | 0 | N/D | 48 | 0,0% | 7,0 |
-| [/juegos/yo-prefiero](https://bebergames.com/juegos/yo-prefiero) | 0 | 0 | 0 | N/D | 39 | 0,0% | 6,7 |
-| [/blog/juegos-para-cumpleanos-adultos](https://bebergames.com/blog/juegos-para-cumpleanos-adultos) | 0 | 0 | 0 | N/D | 38 | 0,0% | 36,0 |
-| [/juegos/ring-of-fire/reglas](https://bebergames.com/juegos/ring-of-fire/reglas) | 0 | 0 | 0 | N/D | 30 | 0,0% | 10,8 |
+| [/](https://bebergames.com/) | 822 | 546 | 276 | +50,5% | 9468 | 8,7% | 6,3 |
+| [/juegos/verdad-o-reto](https://bebergames.com/juegos/verdad-o-reto) | 675 | 658 | 17 | +2,6% | 16416 | 4,1% | 7,3 |
+| [/juegos/la-ruleta](https://bebergames.com/juegos/la-ruleta) | 235 | 166 | 69 | +41,6% | 9633 | 2,4% | 15,8 |
+| [/juegos](https://bebergames.com/juegos) | 169 | 136 | 33 | +24,3% | 3588 | 4,7% | 6,9 |
+| [/juegos/yo-nunca](https://bebergames.com/juegos/yo-nunca) | 75 | 42 | 33 | +78,6% | 1623 | 4,6% | 7,4 |
+| [/juegos/categorias/preguntas](https://bebergames.com/juegos/categorias/preguntas) | 68 | 42 | 26 | +61,9% | 763 | 8,9% | 5,8 |
+| [/juegos/quien-es-mas-probable](https://bebergames.com/juegos/quien-es-mas-probable) | 61 | 35 | 26 | +74,3% | 1081 | 5,6% | 7,1 |
+| [/blog/yo-nunca-preguntas-picantes-18](https://bebergames.com/blog/yo-nunca-preguntas-picantes-18) | 56 | 5 | 51 | +1020,0% | 1213 | 4,6% | 8,2 |
+| [/blog/rey-de-la-copa-reglas](https://bebergames.com/blog/rey-de-la-copa-reglas) | 51 | 44 | 7 | +15,9% | 1642 | 3,1% | 7,0 |
+| [/blog/ring-of-fire-reglas-cartas](https://bebergames.com/blog/ring-of-fire-reglas-cartas) | 47 | 22 | 25 | +113,6% | 503 | 9,3% | 6,2 |
+| [/blog/juegos-para-beber-con-cartas](https://bebergames.com/blog/juegos-para-beber-con-cartas) | 37 | 20 | 17 | +85,0% | 1387 | 2,7% | 10,3 |
+| [/blog/juegos-para-beber-con-dados](https://bebergames.com/blog/juegos-para-beber-con-dados) | 33 | 31 | 2 | +6,5% | 591 | 5,6% | 6,0 |
+| [/juegos/la-piramide](https://bebergames.com/juegos/la-piramide) | 33 | 15 | 18 | +120,0% | 518 | 6,4% | 6,1 |
+| [/juegos/la-bomba](https://bebergames.com/juegos/la-bomba) | 24 | 27 | -3 | -11,1% | 512 | 4,7% | 6,3 |
+| [/blog/preguntas-picantes-verdad-o-reto](https://bebergames.com/blog/preguntas-picantes-verdad-o-reto) | 22 | 23 | -1 | -4,3% | 813 | 2,7% | 10,4 |
+| [/en/games](https://bebergames.com/en/games) | 20 | 38 | -18 | -47,4% | 471 | 4,2% | 13,4 |
+| [/juegos/triman](https://bebergames.com/juegos/triman) | 17 | 9 | 8 | +88,9% | 223 | 7,6% | 3,9 |
+| [/blog/juegos-para-beber-en-pareja](https://bebergames.com/blog/juegos-para-beber-en-pareja) | 13 | 10 | 3 | +30,0% | 316 | 4,1% | 8,4 |
+| [/blog/retos-para-fiestas](https://bebergames.com/blog/retos-para-fiestas) | 13 | 8 | 5 | +62,5% | 314 | 4,1% | 8,2 |
+| [/juegos-para-halloween](https://bebergames.com/juegos-para-halloween) | 11 | 2 | 9 | +450,0% | 290 | 3,8% | 7,7 |
+| [/blog/yo-prefiero-preguntas](https://bebergames.com/blog/yo-prefiero-preguntas) | 10 | 11 | -1 | -9,1% | 209 | 4,8% | 10,2 |
+| [/en/halloween-drinking-games](https://bebergames.com/en/halloween-drinking-games) | 9 | 2 | 7 | +350,0% | 98 | 9,2% | 9,0 |
+| [/blog/juegos-beber-baraja-espanola](https://bebergames.com/blog/juegos-beber-baraja-espanola) | 8 | 7 | 1 | +14,3% | 452 | 1,8% | 22,2 |
+| [/blog/juegos-para-beber-sin-cartas](https://bebergames.com/blog/juegos-para-beber-sin-cartas) | 8 | 7 | 1 | +14,3% | 256 | 3,1% | 6,2 |
+| [/juegos/categorias/dados](https://bebergames.com/juegos/categorias/dados) | 7 | 2 | 5 | +250,0% | 65 | 10,8% | 5,0 |
+| [/juegos/triman/reglas](https://bebergames.com/juegos/triman/reglas) | 5 | 3 | 2 | +66,7% | 150 | 3,3% | 4,7 |
+| [/blog/beer-pong-reglas-completas](https://bebergames.com/blog/beer-pong-reglas-completas) | 4 | 3 | 1 | +33,3% | 325 | 1,2% | 7,3 |
+| [/juegos/ring-of-fire](https://bebergames.com/juegos/ring-of-fire) | 4 | 0 | 4 | N/D | 126 | 3,2% | 7,2 |
+| [/blog/juegos-para-beber-dos-personas](https://bebergames.com/blog/juegos-para-beber-dos-personas) | 3 | 1 | 2 | +200,0% | 89 | 3,4% | 8,3 |
+| [/juegos/ring-of-fire/reglas](https://bebergames.com/juegos/ring-of-fire/reglas) | 3 | 0 | 3 | N/D | 59 | 5,1% | 9,1 |
+| [/juegos/categorias/cartas](https://bebergames.com/juegos/categorias/cartas) | 2 | 0 | 2 | N/D | 217 | 0,9% | 38,7 |
+| [/blog/juegos-de-mesa-para-beber](https://bebergames.com/blog/juegos-de-mesa-para-beber) | 2 | 2 | 0 | 0,0% | 151 | 1,3% | 11,5 |
+| [/en/games/truth-or-dare](https://bebergames.com/en/games/truth-or-dare) | 2 | 1 | 1 | +100,0% | 97 | 2,1% | 8,5 |
+| [/juegos/medusa](https://bebergames.com/juegos/medusa) | 2 | 0 | 2 | N/D | 83 | 2,4% | 5,4 |
+| [/blog/juegos-para-beber-sin-alcohol](https://bebergames.com/blog/juegos-para-beber-sin-alcohol) | 2 | 0 | 2 | N/D | 65 | 3,1% | 4,3 |
+| [/blog/preguntas-yo-nunca-parejas](https://bebergames.com/blog/preguntas-yo-nunca-parejas) | 2 | 0 | 2 | N/D | 58 | 3,4% | 13,8 |
+| [/juegos/tabu](https://bebergames.com/juegos/tabu) | 2 | 1 | 1 | +100,0% | 34 | 5,9% | 5,6 |
+| [/blog/reglas-del-yo-nunca](https://bebergames.com/blog/reglas-del-yo-nunca) | 1 | 3 | -2 | -66,7% | 586 | 0,2% | 6,5 |
+| [/blog/los-20-mejores-juegos](https://bebergames.com/blog/los-20-mejores-juegos) | 1 | 0 | 1 | N/D | 148 | 0,7% | 15,6 |
+| [/juegos/categorias/sin-materiales](https://bebergames.com/juegos/categorias/sin-materiales) | 1 | 0 | 1 | N/D | 46 | 2,2% | 20,0 |
+| [/blog/drinking-games-reglas](https://bebergames.com/blog/drinking-games-reglas) | 1 | 0 | 1 | N/D | 36 | 2,8% | 7,6 |
+| [/juegos/rey-de-la-copa](https://bebergames.com/juegos/rey-de-la-copa) | 1 | 1 | 0 | 0,0% | 29 | 3,4% | 7,2 |
+| [/juegos/beer-pong](https://bebergames.com/juegos/beer-pong) | 1 | 1 | 0 | 0,0% | 19 | 5,3% | 16,4 |
+| [/blog/medusa-juego-beber](https://bebergames.com/blog/medusa-juego-beber) | 1 | 0 | 1 | N/D | 15 | 6,7% | 4,9 |
+| [/en/games/kings-cup](https://bebergames.com/en/games/kings-cup) | 1 | 2 | -1 | -50,0% | 10 | 10,0% | 5,0 |
+| [/en/about](https://bebergames.com/en/about) | 1 | 0 | 1 | N/D | 2 | 50,0% | 7,0 |
+| [/juegos/yo-nunca/reglas](https://bebergames.com/juegos/yo-nunca/reglas) | 0 | 0 | 0 | N/D | 101 | 0,0% | 12,0 |
+| [/juegos/la-bomba/reglas](https://bebergames.com/juegos/la-bomba/reglas) | 0 | 0 | 0 | N/D | 63 | 0,0% | 7,2 |
+| [/juegos/verdad-o-reto/reglas](https://bebergames.com/juegos/verdad-o-reto/reglas) | 0 | 1 | -1 | -100,0% | 61 | 0,0% | 12,4 |
+| [/blog/verdad-o-reto-preguntas-buenas](https://bebergames.com/blog/verdad-o-reto-preguntas-buenas) | 0 | 0 | 0 | N/D | 46 | 0,0% | 30,8 |
 
 ## Países
 
@@ -242,64 +269,64 @@ Los códigos de país son los devueltos por Search Console; no se infieren idiom
 
 | País | Clics | Clics ant. | Δ clics | Crec. | Impresiones | CTR | Posición |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| per | 463 | 451 | 12 | +2,7% | 4204 | 11,0% | 7,2 |
-| esp | 372 | 360 | 12 | +3,3% | 8782 | 4,2% | 12,1 |
-| mex | 200 | 257 | -57 | -22,2% | 5955 | 3,4% | 8,4 |
-| ecu | 141 | 146 | -5 | -3,4% | 2283 | 6,2% | 8,7 |
-| chl | 129 | 123 | 6 | +4,9% | 2759 | 4,7% | 8,3 |
-| col | 128 | 179 | -51 | -28,5% | 2721 | 4,7% | 7,6 |
-| bol | 100 | 117 | -17 | -14,5% | 1249 | 8,0% | 6,6 |
-| arg | 82 | 78 | 4 | +5,1% | 2410 | 3,4% | 9,4 |
-| usa | 53 | 55 | -2 | -3,6% | 1480 | 3,6% | 8,7 |
-| ven | 27 | 38 | -11 | -28,9% | 956 | 2,8% | 6,9 |
-| dom | 23 | 25 | -2 | -8,0% | 455 | 5,1% | 7,0 |
-| cri | 19 | 29 | -10 | -34,5% | 415 | 4,6% | 6,7 |
-| gtm | 16 | 25 | -9 | -36,0% | 575 | 2,8% | 10,5 |
-| ury | 15 | 12 | 3 | +25,0% | 274 | 5,5% | 6,8 |
-| slv | 14 | 30 | -16 | -53,3% | 303 | 4,6% | 6,3 |
-| pry | 13 | 15 | -2 | -13,3% | 301 | 4,3% | 7,7 |
-| hnd | 10 | 13 | -3 | -23,1% | 270 | 3,7% | 7,8 |
-| gbr | 9 | 6 | 3 | +50,0% | 224 | 4,0% | 13,9 |
-| pan | 9 | 8 | 1 | +12,5% | 201 | 4,5% | 6,9 |
-| nic | 7 | 4 | 3 | +75,0% | 511 | 1,4% | 14,2 |
-| can | 7 | 3 | 4 | +133,3% | 120 | 5,8% | 7,5 |
-| ita | 7 | 3 | 4 | +133,3% | 99 | 7,1% | 6,6 |
-| cub | 6 | 4 | 2 | +50,0% | 166 | 3,6% | 6,6 |
-| pol | 6 | 1 | 5 | +500,0% | 54 | 11,1% | 9,5 |
-| pri | 5 | 1 | 4 | +400,0% | 80 | 6,3% | 6,8 |
-| phl | 5 | 1 | 4 | +400,0% | 69 | 7,2% | 14,4 |
-| bra | 4 | 5 | -1 | -20,0% | 344 | 1,2% | 23,6 |
-| fra | 4 | 2 | 2 | +100,0% | 84 | 4,8% | 8,3 |
-| rou | 4 | 2 | 2 | +100,0% | 43 | 9,3% | 9,8 |
-| aut | 4 | 1 | 3 | +300,0% | 22 | 18,2% | 10,5 |
-| nld | 3 | 4 | -1 | -25,0% | 151 | 2,0% | 16,9 |
-| prt | 3 | 2 | 1 | +50,0% | 65 | 4,6% | 15,4 |
-| lva | 3 | 1 | 2 | +200,0% | 5 | 60,0% | 10,2 |
-| rus | 2 | 1 | 1 | +100,0% | 95 | 2,1% | 21,8 |
-| isr | 2 | 0 | 2 | N/D | 10 | 20,0% | 12,4 |
-| deu | 1 | 5 | -4 | -80,0% | 108 | 0,9% | 24,1 |
-| zaf | 1 | 1 | 0 | 0,0% | 46 | 2,2% | 17,7 |
-| aus | 1 | 3 | -2 | -66,7% | 45 | 2,2% | 9,2 |
-| bgd | 1 | 0 | 1 | N/D | 32 | 3,1% | 22,5 |
-| swe | 1 | 2 | -1 | -50,0% | 32 | 3,1% | 16,6 |
-| sgp | 1 | 0 | 1 | N/D | 28 | 3,6% | 9,8 |
-| irl | 1 | 0 | 1 | N/D | 24 | 4,2% | 10,5 |
-| nzl | 1 | 0 | 1 | N/D | 16 | 6,3% | 8,9 |
-| and | 1 | 1 | 0 | 0,0% | 15 | 6,7% | 7,2 |
-| ukr | 1 | 0 | 1 | N/D | 15 | 6,7% | 19,5 |
-| fin | 1 | 0 | 1 | N/D | 14 | 7,1% | 12,9 |
-| tur | 1 | 0 | 1 | N/D | 14 | 7,1% | 21,2 |
-| nor | 1 | 0 | 1 | N/D | 12 | 8,3% | 7,2 |
-| twn | 1 | 0 | 1 | N/D | 8 | 12,5% | 9,1 |
-| chn | 1 | 1 | 0 | 0,0% | 6 | 16,7% | 12,8 |
+| esp | 673 | 372 | 301 | +80,9% | 13675 | 4,9% | 10,5 |
+| per | 470 | 463 | 7 | +1,5% | 5362 | 8,8% | 7,3 |
+| mex | 292 | 200 | 92 | +46,0% | 8997 | 3,2% | 8,4 |
+| col | 196 | 128 | 68 | +53,1% | 3711 | 5,3% | 6,9 |
+| chl | 177 | 129 | 48 | +37,2% | 4038 | 4,4% | 7,8 |
+| ecu | 163 | 141 | 22 | +15,6% | 2608 | 6,3% | 7,4 |
+| arg | 139 | 82 | 57 | +69,5% | 3233 | 4,3% | 8,7 |
+| bol | 105 | 100 | 5 | +5,0% | 1515 | 6,9% | 6,0 |
+| usa | 53 | 53 | 0 | 0,0% | 1757 | 3,0% | 8,2 |
+| ven | 49 | 27 | 22 | +81,5% | 1145 | 4,3% | 6,4 |
+| ury | 30 | 15 | 15 | +100,0% | 437 | 6,9% | 6,6 |
+| gtm | 21 | 16 | 5 | +31,3% | 756 | 2,8% | 9,4 |
+| cri | 21 | 19 | 2 | +10,5% | 529 | 4,0% | 6,4 |
+| dom | 19 | 23 | -4 | -17,4% | 581 | 3,3% | 7,5 |
+| gbr | 15 | 9 | 6 | +66,7% | 189 | 7,9% | 11,1 |
+| slv | 14 | 14 | 0 | 0,0% | 392 | 3,6% | 7,0 |
+| pan | 13 | 9 | 4 | +44,4% | 292 | 4,5% | 7,4 |
+| can | 13 | 7 | 6 | +85,7% | 142 | 9,2% | 8,8 |
+| pry | 10 | 13 | -3 | -23,1% | 398 | 2,5% | 6,9 |
+| fra | 9 | 4 | 5 | +125,0% | 99 | 9,1% | 14,3 |
+| pri | 7 | 5 | 2 | +40,0% | 88 | 8,0% | 5,9 |
+| deu | 6 | 1 | 5 | +500,0% | 138 | 4,3% | 18,8 |
+| hnd | 5 | 10 | -5 | -50,0% | 251 | 2,0% | 7,7 |
+| nic | 4 | 7 | -3 | -42,9% | 532 | 0,8% | 13,5 |
+| rus | 3 | 2 | 1 | +50,0% | 89 | 3,4% | 18,1 |
+| aus | 3 | 1 | 2 | +200,0% | 74 | 4,1% | 7,4 |
+| nld | 3 | 3 | 0 | 0,0% | 66 | 4,5% | 13,9 |
+| prt | 3 | 3 | 0 | 0,0% | 65 | 4,6% | 13,1 |
+| pol | 3 | 6 | -3 | -50,0% | 32 | 9,4% | 6,3 |
+| ita | 2 | 7 | -5 | -71,4% | 141 | 1,4% | 6,7 |
+| rou | 2 | 4 | -2 | -50,0% | 36 | 5,6% | 20,1 |
+| sgp | 2 | 1 | 1 | +100,0% | 21 | 9,5% | 9,5 |
+| nor | 2 | 1 | 1 | +100,0% | 19 | 10,5% | 7,9 |
+| lka | 2 | 0 | 2 | N/D | 4 | 50,0% | 3,8 |
+| bra | 1 | 4 | -3 | -75,0% | 288 | 0,3% | 17,4 |
+| cub | 1 | 6 | -5 | -83,3% | 142 | 0,7% | 6,6 |
+| irl | 1 | 1 | 0 | 0,0% | 34 | 2,9% | 5,4 |
+| bel | 1 | 0 | 1 | N/D | 31 | 3,2% | 6,9 |
+| jpn | 1 | 0 | 1 | N/D | 17 | 5,9% | 6,7 |
+| nzl | 1 | 1 | 0 | 0,0% | 17 | 5,9% | 11,5 |
+| hun | 1 | 0 | 1 | N/D | 13 | 7,7% | 12,0 |
+| kor | 1 | 0 | 1 | N/D | 13 | 7,7% | 6,4 |
+| tur | 1 | 1 | 0 | 0,0% | 13 | 7,7% | 12,5 |
+| mys | 1 | 0 | 1 | N/D | 11 | 9,1% | 13,6 |
+| svn | 1 | 0 | 1 | N/D | 11 | 9,1% | 9,4 |
+| twn | 1 | 1 | 0 | 0,0% | 6 | 16,7% | 6,5 |
+| est | 1 | 1 | 0 | 0,0% | 4 | 25,0% | 5,8 |
+| ind | 0 | 0 | 0 | N/D | 79 | 0,0% | 14,8 |
+| zaf | 0 | 1 | -1 | -100,0% | 44 | 0,0% | 11,8 |
+| che | 0 | 0 | 0 | N/D | 39 | 0,0% | 12,7 |
 
 ## Dispositivos
 
 | Dispositivo | Clics | Clics ant. | Δ clics | Crec. | Impresiones | CTR | Posición |
 |---|---:|---:|---:|---:|---:|---:|---:|
-| MOBILE | 1535 | 1644 | -109 | -6,6% | 29076 | 5,3% | 8,1 |
-| DESKTOP | 357 | 355 | 2 | +0,6% | 9198 | 3,9% | 13,8 |
-| TABLET | 22 | 27 | -5 | -18,5% | 516 | 4,3% | 8,2 |
+| MOBILE | 2138 | 1535 | 603 | +39,3% | 41847 | 5,1% | 7,8 |
+| DESKTOP | 387 | 357 | 30 | +8,4% | 10216 | 3,8% | 12,5 |
+| TABLET | 17 | 22 | -5 | -22,7% | 655 | 2,6% | 8,7 |
 
 ## Oportunidades CTR
 
@@ -307,12 +334,9 @@ Queries en posiciones 1–10, con más de 50 impresiones y CTR inferior al 3%.
 
 | Query | Clics | Impresiones | CTR | Posición |
 |---|---:|---:|---:|---:|
-| yo nunca | 19 | 717 | 2,6% | 6,9 |
-| juegos de peda | 4 | 141 | 2,8% | 8,0 |
-| juegos para tomar shots | 3 | 181 | 1,7% | 6,7 |
-| juegos de verdad o reto | 3 | 155 | 1,9% | 5,9 |
-| juego de la bomba | 3 | 133 | 2,3% | 6,6 |
-| juegos para borrachos | 3 | 108 | 2,8% | 7,5 |
+| verdad o reto | 255 | 9884 | 2,6% | 7,4 |
+| juego de verdad o reto | 6 | 207 | 2,9% | 7,0 |
+| juegos de peda | 5 | 274 | 1,8% | 7,9 |
 
 ## Oportunidades de posición 4–15
 
@@ -320,85 +344,120 @@ Queries entre las posiciones 4 y 15 con al menos 50 impresiones.
 
 | Query | Clics | Impresiones | CTR | Posición |
 |---|---:|---:|---:|---:|
-| verdad o reto | 264 | 6001 | 4,4% | 6,9 |
-| juegos para tomar | 61 | 788 | 7,7% | 4,0 |
-| yo nunca | 19 | 717 | 2,6% | 6,9 |
-| juegos para beber | 46 | 567 | 8,1% | 4,4 |
-| verdad o reto juego | 30 | 262 | 11,5% | 6,7 |
-| verdad o reto online | 34 | 229 | 14,8% | 4,0 |
-| juegos de beber | 16 | 228 | 7,0% | 4,1 |
-| drinking games online | 19 | 225 | 8,4% | 10,9 |
-| verdad o reto picante | 21 | 214 | 9,8% | 7,1 |
-| juego de verdad o reto | 14 | 211 | 6,6% | 5,9 |
-| juegos para tomar shots | 3 | 181 | 1,7% | 6,7 |
-| juego verdad o reto | 8 | 176 | 4,5% | 6,9 |
-| juegos de verdad o reto | 3 | 155 | 1,9% | 5,9 |
-| juegos de peda | 4 | 141 | 2,8% | 8,0 |
-| juego de la bomba | 3 | 133 | 2,3% | 6,6 |
-| ¡verdad o reto! | 5 | 128 | 3,9% | 4,8 |
-| juegos para beber con amigos | 5 | 122 | 4,1% | 5,2 |
-| reto o verdad | 4 | 115 | 3,5% | 8,3 |
-| juego de beber | 5 | 110 | 4,5% | 4,1 |
-| juegos para borrachos | 3 | 108 | 2,8% | 7,5 |
-| verdad o reto +18 | 6 | 86 | 7,0% | 6,6 |
-| cuarto rey reglas | 8 | 81 | 9,9% | 8,0 |
-| online drinking games | 4 | 67 | 6,0% | 10,9 |
-| juegos de tomar | 4 | 60 | 6,7% | 4,9 |
-| drinking game online | 5 | 60 | 8,3% | 11,9 |
-| preguntas para beber | 7 | 58 | 12,1% | 6,1 |
-| juego para beber | 5 | 58 | 8,6% | 7,1 |
+| verdad o reto | 255 | 9884 | 2,6% | 7,4 |
+| ruleta online | 9 | 1059 | 0,8% | 13,1 |
+| yo nunca | 27 | 882 | 3,1% | 8,2 |
+| juegos de beber | 37 | 441 | 8,4% | 4,2 |
+| verdad o reto picante | 23 | 300 | 7,7% | 7,6 |
+| verdad o reto juego | 21 | 279 | 7,5% | 6,7 |
+| juegos de peda | 5 | 274 | 1,8% | 7,9 |
+| juegos para tomar shots | 8 | 228 | 3,5% | 4,7 |
+| juego de verdad o reto | 6 | 207 | 2,9% | 7,0 |
+| verdad o reto online | 19 | 193 | 9,8% | 4,5 |
+| juego verdad o reto | 6 | 191 | 3,1% | 7,2 |
+| juegos para beber online | 60 | 160 | 37,5% | 6,8 |
+| verdad o reto extremo | 14 | 143 | 9,8% | 7,8 |
+| ruleta de shots | 12 | 136 | 8,8% | 4,2 |
+| juegos para tomar en pareja | 7 | 92 | 7,6% | 7,2 |
+| juegos de beber con amigos | 7 | 90 | 7,8% | 5,8 |
+| juego para beber | 9 | 87 | 10,3% | 4,8 |
+| verdad o reto +18 | 6 | 86 | 7,0% | 7,6 |
+| yo nunca nunca hot | 8 | 85 | 9,4% | 7,2 |
+| verdad o reto hot | 6 | 83 | 7,2% | 9,6 |
+| juegos de beber online | 8 | 60 | 13,3% | 14,8 |
+| juegos verdad o reto | 6 | 57 | 10,5% | 6,9 |
 
 ## Canibalización
 
 - **beber games**
+  - /: 23 impresiones
+  - /juegos: 22 impresiones
+  - /juegos/categorias/cartas: 15 impresiones
+- **bebergames**
+  - /: 34 impresiones
+  - /juegos: 34 impresiones
+  - /juegos/categorias/cartas: 34 impresiones
+  - /juegos/la-ruleta: 34 impresiones
+  - /juegos/verdad-o-reto: 31 impresiones
+  - /sobre-nosotros: 31 impresiones
+  - /contacto: 17 impresiones
+- **como se juega yo nunca nunca con alcohol**
+  - /blog/reglas-del-yo-nunca: 20 impresiones
+  - /juegos/yo-nunca/reglas: 14 impresiones
+- **juego cartas beber baraja española**
+  - /blog/juegos-beber-baraja-espanola: 19 impresiones
+  - /blog/juegos-para-beber-con-cartas: 12 impresiones
+- **juego de beber online**
+  - /: 18 impresiones
+  - /juegos: 16 impresiones
+- **juego de cartas para beber baraja española**
+  - /blog/juegos-beber-baraja-espanola: 15 impresiones
+  - /blog/juegos-para-beber-con-cartas: 12 impresiones
+  - /: 11 impresiones
+- **juego del dado para tomar**
+  - /blog/juegos-para-beber-con-dados: 23 impresiones
+  - /juegos/triman: 11 impresiones
+- **juegos de beber en pareja**
+  - /: 17 impresiones
+  - /blog/juegos-para-beber-en-pareja: 14 impresiones
+- **juegos de beber online**
+  - /: 35 impresiones
+  - /juegos: 28 impresiones
+  - /juegos/categorias/cartas: 14 impresiones
+  - /juegos/categorias/preguntas: 12 impresiones
+  - /juegos/verdad-o-reto: 11 impresiones
+- **juegos de bebida**
+  - /juegos: 13 impresiones
+  - /: 12 impresiones
+- **juegos de bebidas**
+  - /juegos: 20 impresiones
+  - /: 15 impresiones
+- **juegos de peda online**
+  - /: 13 impresiones
+  - /juegos: 13 impresiones
+- **juegos online para tomar**
+  - /: 18 impresiones
+  - /juegos: 15 impresiones
+- **juegos para beber online**
+  - /: 135 impresiones
+  - /juegos: 122 impresiones
+  - /juegos/verdad-o-reto: 18 impresiones
+  - /juegos/categorias/cartas: 16 impresiones
+  - /juegos/la-ruleta: 14 impresiones
+  - /juegos/categorias/sin-materiales: 13 impresiones
+  - /juegos/categorias/preguntas: 12 impresiones
+  - /en/games: 11 impresiones
+- **juegos para borrachos**
+  - /: 133 impresiones
+  - /juegos: 40 impresiones
+- **juegos para jugar tomando**
   - /: 13 impresiones
   - /juegos: 12 impresiones
-- **juego cartas beber baraja española**
-  - /blog/juegos-beber-baraja-espanola: 26 impresiones
-  - /blog/juegos-para-beber-con-cartas: 24 impresiones
-- **juego de beber online**
-  - /: 28 impresiones
-  - /juegos: 25 impresiones
-- **juegos de beber online**
-  - /: 31 impresiones
-  - /juegos: 30 impresiones
-  - /juegos/la-ruleta: 14 impresiones
-  - /juegos/verdad-o-reto: 11 impresiones
-- **juegos para beber en pareja**
-  - /: 42 impresiones
-  - /blog/juegos-para-beber-en-pareja: 16 impresiones
-- **juegos para beber online**
-  - /: 93 impresiones
-  - /juegos: 92 impresiones
-  - /juegos/verdad-o-reto: 11 impresiones
-- **juegos para borrachos**
-  - /: 92 impresiones
-  - /juegos: 48 impresiones
-- **juegos para tomar con amigos online**
-  - /: 11 impresiones
-  - /juegos: 11 impresiones
-- **juegos para tomar en pareja**
-  - /blog/juegos-para-beber-en-pareja: 41 impresiones
+- **juegos para peda**
+  - /juegos: 52 impresiones
   - /: 22 impresiones
-- **juegos para tomar en pareja online**
-  - /: 32 impresiones
-  - /juegos: 28 impresiones
+- **juegos para tomar con amigos online**
+  - /: 13 impresiones
+  - /juegos: 11 impresiones
+- **juegos para tomar gratis**
+  - /: 13 impresiones
+  - /juegos: 13 impresiones
 - **juegos para tomar online**
-  - /: 60 impresiones
-  - /juegos: 51 impresiones
-- **ruleta para beber online**
-  - /: 11 impresiones
-  - /juegos/la-ruleta: 11 impresiones
+  - /: 62 impresiones
+  - /juegos: 58 impresiones
+- **ruleta de shots online**
+  - /: 13 impresiones
+  - /juegos/la-ruleta: 13 impresiones
 - **triman juego**
   - /juegos/triman: 16 impresiones
-  - /juegos/triman/reglas: 15 impresiones
+  - /juegos/triman/reglas: 16 impresiones
 
 ## Dataset query + page para análisis
 
-- Filas current recuperadas: 2287.
-- Filas previous recuperadas: 2155.
-- Filas almacenadas en la unión current + previous: 2975.
-- URLs con resumen de cobertura: 63.
+- Filas current recuperadas: 2569.
+- Filas previous recuperadas: 2287.
+- Filas almacenadas en la unión current + previous: 3304.
+- URLs con resumen de cobertura: 73.
 - Estado current: complete_from_api_response.
 - Estado previous: complete_from_api_response.
 
