@@ -191,6 +191,8 @@ lib/
 
 ### Reglas de código:
 
+- **Foco tras cambios de estado:** `focus({ preventScroll: true })` no garantiza visibilidad tras cambiar la altura del contenido. En King's Cup EN, comprobar la geometría del encabezado enfocado y ajustar el scroll solo si queda recortado o fuera del viewport, sin animación ni temporizadores adicionales. Probar inicio, revelación, salto, pausa/reanudación, final, repetición y vuelta al setup.
+
 - **Scripts que modifican el DOM:** AdSense tiene un único propietario en el root español: `next/script`, ID `spanish-adsense`, estrategia `lazyOnload`. No volver a emitir su script nativo `async` ni cargarlo desde slots manuales: Auto Ads puede insertar nodos antes de hidratar y provocar React #418. `afterInteractive` no garantiza la hidratación completa. Al cambiar esta secuencia, ejecutar mediante Playwright MCP `tests/browser/adsense-hydration.mjs` con Next retrasado y un mock publicitario inmediato; el control negativo debe reproducir #418 y los artículos corregidos deben hidratar antes de la inserción. Revalidar si se añaden nuevas fronteras Suspense o carga diferida en el shell/blog. Los slots manuales encolan `adsbygoogle.push` y EN permanece aislado.
 
 - **AudioContext:** Existe UN SOLO singleton en `lib/AppContext.tsx`. NUNCA crear instancias adicionales de AudioContext en otros componentes.

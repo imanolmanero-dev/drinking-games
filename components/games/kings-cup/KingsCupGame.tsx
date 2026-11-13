@@ -25,7 +25,15 @@ export default function KingsCupGame() {
   }, [phase, reducedMotion]);
 
   useEffect(() => {
-    if (hasStarted.current && phase !== "revealing") heading.current?.focus({ preventScroll: true });
+    if (!hasStarted.current || phase === "revealing" || !heading.current) return;
+    const target = heading.current;
+    target.focus({ preventScroll: true });
+    const { top, bottom } = target.getBoundingClientRect();
+    // State changes can leave the heading above the controls' scroll position.
+    // Keep visible context still; recover clipped context in one nonanimated move.
+    if (top < 0 || bottom > window.innerHeight) {
+      target.scrollIntoView({ block: "center", behavior: "instant" });
+    }
   }, [phase, paused]);
 
   function start() {
