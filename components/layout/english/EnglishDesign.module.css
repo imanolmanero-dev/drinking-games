@@ -191,6 +191,7 @@
 .root :global(.en-catalog-details h3) { margin: 0; font-size: 26px; }
 .root :global(.en-catalog-details p) { margin: 0; line-height: 1.6; }
 .root :global(.en-catalog-art) { position: relative; height: 240px; min-width: 0; }
+.root :global(.en-catalog-art > .en-nhie-art) { position: absolute; top: 50%; left: 50%; width: auto; height: auto; max-width: 100%; max-height: 100%; transform: translate(-50%, -50%); }
 .root :global(.en-catalog-art > :is(.en-card-art, .en-tod-art)) { position: absolute; top: 50%; left: 50%; margin: 0; transform: translate(-50%, -50%); }
 .root :global(.en-catalog-art > .en-card-art) { width: 280px; max-width: none; transform: translate(-50%, -50%) scale(.76); }
 .root :global(.en-catalog-facts) { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }

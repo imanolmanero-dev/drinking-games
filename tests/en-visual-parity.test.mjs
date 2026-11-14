@@ -2,6 +2,15 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import test from "node:test";
+import { withoutGuides } from "./helpers/guides-baseline.mjs";
+
+test("hub artwork guard allows only the exact bounded NHIE rule", () => {
+  const file = "components/layout/english/EnglishDesign.module.css";
+  const source = readFileSync(file, "utf8");
+  assert.doesNotThrow(() => withoutGuides(file, source));
+  assert.throws(() => withoutGuides(file, source.replace("max-height: 100%; transform", "max-height: 200%; transform")));
+  assert.throws(() => withoutGuides(file, source + "\n.root { color: red; }"));
+});
 
 const require = createRequire(import.meta.url);
 require("tsx/cjs");
