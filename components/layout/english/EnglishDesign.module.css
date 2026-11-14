@@ -342,10 +342,12 @@
   .root :global(.en-nav-link) { flex: 1 1 auto; padding-inline: 8px; }
   .root :global(.en-hero) { padding: 28px; grid-template-columns: minmax(0, 1fr); gap: 12px; }
   .root :global(.en-hero > .en-card-art) { height: 250px; }
-  .root :global(.en-catalog-card) { grid-template-columns: minmax(0, 1fr); gap: 16px; padding: 24px; }
-  .root :global(.en-catalog-art) { height: 170px; }
-  .root :global(.en-catalog-art > .en-card-art) { transform: translate(-50%, -50%) scale(.55); }
-  .root :global(.en-catalog-art > .en-tod-art) { transform: translate(-50%, -50%) scale(.8); }
+  .root :global(.en-copy > .en-catalog) { gap: 20px; }
+  .root :global(.en-catalog-card) { grid-template-columns: minmax(0, 1fr); gap: 12px; padding: 20px 24px; }
+  .root :global(.en-catalog-details) { gap: 12px; }
+  .root :global(.en-catalog-art) { height: 120px; }
+  .root :global(.en-catalog-art > .en-card-art) { transform: translate(-50%, -50%) scale(.4); }
+  .root :global(.en-catalog-art > .en-tod-art) { transform: translate(-50%, -50%) scale(.6); }
   .root :global(.en-setup) { grid-template-columns: minmax(0, 1fr); gap: 0; }
   .root :global(.en-setup > .en-card-art) { height: 250px; }
   .root :global(.en-drawn-card) { grid-template-columns: minmax(0, 1fr); gap: 24px; text-align: center; }
