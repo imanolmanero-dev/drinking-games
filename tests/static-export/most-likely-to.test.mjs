@@ -1,0 +1,20 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+import { createRequire } from "node:module";
+import { readFileSync } from "node:fs";
+const require=createRequire(import.meta.url);require('tsx/cjs');
+const {parse}=require('next/dist/compiled/node-html-parser');
+const {languageAlternates,publishedRoutes}=require('../../lib/i18n/routes.ts');
+test('Most Likely To exports an isolated playable page and exact fourth card',()=>{
+ const route='/en/games/most-likely-to',doc=parse(readFileSync('out'+route+'.html','utf8'));
+ assert.equal(doc.querySelectorAll('h1').length,1);assert.equal(doc.querySelector('h1').textContent,'Most Likely To Online');
+ assert.equal(doc.querySelector('link[rel="canonical"]').getAttribute('href'),'https://bebergames.com'+route);
+ assert.equal(languageAlternates('most-likely-to'),undefined);assert.equal(doc.querySelectorAll('link[hreflang]').length,0);
+ assert.equal(doc.querySelectorAll('select,input').length,0);assert.ok(doc.querySelector('#mlt-start'));
+ const ids=doc.querySelectorAll('[id]').map(n=>n.id);assert.equal(new Set(ids).size,ids.length);
+ const schemas=doc.querySelectorAll('script[type="application/ld+json"]').map(n=>JSON.parse(n.textContent));assert.deepEqual(schemas.map(s=>s['@type']),['WebApplication','BreadcrumbList']);assert.equal(schemas[0].inLanguage,'en-US');assert.equal(schemas[0].offers.priceCurrency,'USD');
+ for(const s of ['one small sip or pass','each tied participant','Never count sips per vote','60 curated English prompts'])assert.ok(doc.textContent.includes(s));
+ const hub=parse(readFileSync('out/en/games.html','utf8'));assert.equal(hub.querySelectorAll('.en-catalog-card').length,4);
+ assert.deepEqual(publishedRoutes('en-US','game').map(r=>r.id),['never-have-i-ever','kings-cup','truth-or-dare','most-likely-to']);
+ assert.equal(hub.querySelectorAll(`a[href="${route}"]`).length,1);
+});

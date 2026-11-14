@@ -21,8 +21,8 @@ const sorted = (items) => [...items].sort();
 const render = (component, props) => parse(renderToStaticMarkup(createElement(component, props)));
 
 test("English registry publication matches the independent thirteen-route fixture", () => {
-  assert.equal(fixture.length, 15);
-  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 15);
+  assert.equal(fixture.length, 16);
+  assert.equal(new Set(fixture.map((route) => route.pathname)).size, 16);
   assert.deepEqual(fixture.map((route) => route.pathname), sorted(fixture.map((route) => route.pathname)));
   assert.deepEqual(sorted(publishedRoutes("en-US").map((route) => route.pathname)), fixture.map((route) => route.pathname));
   assert.equal(new Set(routeRegistry.map((route) => route.id)).size, routeRegistry.length);
@@ -30,6 +30,7 @@ test("English registry publication matches the independent thirteen-route fixtur
     { id: "never-have-i-ever", pathname: "/en/games/never-have-i-ever", label: "Never Have I Ever" },
     { id: "kings-cup", pathname: "/en/games/kings-cup", label: "King's Cup" },
     { id: "truth-or-dare", pathname: "/en/games/truth-or-dare", label: "Truth or Dare" },
+    { id: "most-likely-to", pathname: "/en/games/most-likely-to", label: "Most Likely To" },
   ]);
   for (const entry of routeRegistry) {
     for (const locale of ["es", "en-US"]) {

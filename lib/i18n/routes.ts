@@ -1,6 +1,7 @@
 import { absoluteUrl, type Locale } from "./locales";
 
 export type RouteId =
+  | "most-likely-to"
   | "guides-hub" | "home" | "games-hub" | "about" | "contact" | "privacy" | "cookies"
   | "never-have-i-ever" | "terms" | "legal-notice" | "kings-cup" | "truth-or-dare"
   | "choose-drinking-game" | "drinking-games-for-two" | "drinking-games-without-cards" | "halloween";
@@ -36,6 +37,7 @@ export const routeRegistry: readonly RouteEntry[] = [
   { id: "truth-or-dare", kind: "game", routes: { es: { pathname: "/juegos/verdad-o-reto", label: "Verdad o Reto" }, "en-US": { pathname: "/en/games/truth-or-dare", label: "Truth or Dare" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
   { id: "drinking-games-for-two", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-dos-personas", label: "Juegos para beber de dos personas" }, "en-US": { pathname: "/en/blog/drinking-games-for-2", label: "Drinking games for 2" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
   { id: "drinking-games-without-cards", kind: "guide", routes: { es: { pathname: "/blog/juegos-para-beber-sin-cartas", label: "Juegos para beber sin cartas" }, "en-US": { pathname: "/en/blog/drinking-games-without-cards", label: "Drinking games without cards" } }, published: { es: true, "en-US": true }, equivalence: "unpaired" },
+  { id: "most-likely-to", kind: "game", routes: { "en-US": { pathname: "/en/games/most-likely-to", label: "Most Likely To" } }, published: { es: false, "en-US": true }, equivalence: "unpaired" },
 ];
 
 export function getPublishedRoute(id: RouteId, locale: Locale): LocalizedRoute | undefined {

@@ -5,9 +5,15 @@ import { createRequire } from "node:module";
 const require = createRequire(import.meta.url);
 const { parse } = require("next/dist/compiled/node-html-parser");
 test("85 existing pages preserve metadata, content, links and schema after exact header addition", { skip: !existsSync("build/guides/baseline/en.html") }, () => {
-  const routes = ["es-routes", "es-additional-routes", "en-routes"].flatMap(name => JSON.parse(readFileSync(`tests/fixtures/${name}.json`, "utf8"))).filter(r => r.pathname !== "/en/guides");
+  const routes = ["es-routes", "es-additional-routes", "en-routes"].flatMap(name => JSON.parse(readFileSync(`tests/fixtures/${name}.json`, "utf8"))).filter(r => !["/en/guides", "/en/games/most-likely-to"].includes(r.pathname));
   function snapshot(root, pathname) {
     const d = parse(readFileSync(`${root}/${pathname === "/" ? "index" : pathname.slice(1)}.html`, "utf8"));
+    if (root === "out" && pathname === "/en/games") {
+      const added = d.querySelectorAll('.en-catalog-card').filter(card => card.querySelector('a[href="/en/games/most-likely-to"]'));
+      assert.equal(added.length, 1);
+      assert.equal(added[0].querySelector('h3').textContent, "Most Likely To");
+      added[0].parentNode.remove();
+    }
     // The active experiment changed only the SEO description, not Open Graph.
     if (root !== "out" && pathname === "/juegos/verdad-o-reto") {
       const description = d.querySelector('meta[name="description"]');

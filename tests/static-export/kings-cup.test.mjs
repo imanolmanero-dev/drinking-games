@@ -61,7 +61,7 @@ test("exported rules match the playable deck and physical central-cup instructio
 test("home and registry-driven hub link both published English games", () => {
   const hub = parse(read("out/en/games.html"));
   const links = hub.querySelectorAll('a[href^="/en/games/"]');
-  assert.deepEqual(links.map((link) => link.getAttribute("href")), ["/en/games/never-have-i-ever", "/en/games/kings-cup", "/en/games/truth-or-dare"]);
+  assert.deepEqual(links.map((link) => link.getAttribute("href")), ["/en/games/never-have-i-ever", "/en/games/kings-cup", "/en/games/truth-or-dare", "/en/games/most-likely-to"]);
   assert.equal(hub.getElementById("en-catalog-kings-cup").textContent, "Play King's Cup");
   assert.doesNotMatch(hub.textContent, /no playable games/i);
   const home = parse(read("out/en.html"));
@@ -72,7 +72,7 @@ test("home and registry-driven hub link both published English games", () => {
 test("King's Cup is in the 85-URL union once, with no false ES or Ring of Fire hreflang", () => {
   const audit = auditStaticExport();
   assert.deepEqual(validateStaticExportAudit(audit), []);
-  assert.equal(audit.sitemap.urls.length, 86);
+  assert.equal(audit.sitemap.urls.length, 87);
   assert.equal(audit.sitemap.urls.filter((entry) => entry === url).length, 1);
   for (const path of ["/en/games/kings-cup", "/juegos/rey-de-la-copa", "/juegos/rey-de-la-copa/reglas", "/juegos/ring-of-fire", "/juegos/ring-of-fire/reglas"]) {
     assert.deepEqual(audit.pages.find((page) => page.pathname === path).languages, [], path);

@@ -18,7 +18,7 @@ async function run(page) {
         focusable: art.querySelectorAll('a, button, [tabindex]').length,
         cta: card.querySelector('a').textContent };
     }));
-    if (cards.length !== 3) throw new Error('Expected three hub cards');
+    if (cards.length !== 4) throw new Error('Expected four hub cards');
     for (const card of cards) {
       const { art: a, area: b, heading: h } = card;
       const fail = message => { throw new Error(`${width}/${card.title}: ${message}`); };

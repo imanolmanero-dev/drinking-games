@@ -7,8 +7,10 @@ import { CardArtwork, TruthOrDareArtwork } from "@/components/layout/english/Eng
 export const generateMetadata = englishPageMetadata("games-hub", "Online Drinking Games — The Games Hub", "Check the English game selection at BeberGames and plan a relaxed game night with friends. Alcohol is optional, and everyone can play at their own pace.");
 
 import NhieArtwork from "@/components/games/never-have-i-ever/NhieArtwork";
+import MostLikelyArtwork from "@/components/games/most-likely-to/MostLikelyArtwork";
 
 const gameDetails: Partial<Record<RouteId, { description: string; setup: string }>> = {
+  "most-likely-to": { description: "Count to three and point together through 20 playful prompts.", setup: "Group voting" },
   "never-have-i-ever": { description: "React together to 20 statements, with no recorded answers.", setup: "Classic or Party" },
   "kings-cup": { description: "Draw a card and try its group prompt at your own pace.", setup: "Digital deck" },
   "truth-or-dare": { description: "Choose a question or a light challenge on each turn.", setup: "No materials" },
@@ -22,12 +24,12 @@ export default function EnglishGames() {
       {games.length > 0 ? (
         <ul className="en-catalog">{games.map((game) => <li key={game.id}>
           <div className="en-catalog-card">
-            <div className="en-catalog-art">{game.id === "never-have-i-ever" ? <NhieArtwork /> : game.id === "truth-or-dare" ? <TruthOrDareArtwork /> : <CardArtwork />}</div>
+            <div className="en-catalog-art">{game.id === "most-likely-to" ? <MostLikelyArtwork /> : game.id === "never-have-i-ever" ? <NhieArtwork /> : game.id === "truth-or-dare" ? <TruthOrDareArtwork /> : <CardArtwork />}</div>
             <div className="en-catalog-details">
               <h3>{game.label}</h3>
               <p>{gameDetails[game.id]?.description}</p>
               <ul aria-label={`${game.label} setup`} className="en-catalog-facts">
-                <li>2–12 players</li>
+                <li>{game.id === "most-likely-to" ? "3–12 recommended players" : "2–12 players"}</li>
                 <li>{gameDetails[game.id]?.setup}</li>
                 <li>One shared screen</li>
               </ul>
