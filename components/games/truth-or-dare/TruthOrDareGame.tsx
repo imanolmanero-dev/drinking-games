@@ -74,6 +74,7 @@ export default function TruthOrDareGame() {
           <div className="en-tod-actions">
             <button id="tod-restart" type="button" onClick={start} className="en-button en-button-primary">Play again</button>
             <button id="tod-change-players" type="button" onClick={() => setGame(null)} className="en-button">Change setup</button>
+            <a id="tod-choose-game" href="/en/games" className="en-button">Choose another game</a>
           </div>
         </div>
       ) : (

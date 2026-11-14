@@ -38,7 +38,8 @@ export default function NeverHaveIEverGame() {
     </GameSetup> : phase === "finished" ? <div className="en-nhie-panel">
       <p>{game.index + 1} {game.index === 0 ? "statement" : "statements"} shown. No answers were recorded.</p>
       <div className="en-nhie-actions"><button id="nhie-replay" className="en-button en-button-primary" onClick={start}>Play again</button>
-        <button id="nhie-setup" className="en-button" onClick={() => setGame(null)}>Change setup</button></div>
+        <button id="nhie-setup" className="en-button" onClick={() => setGame(null)}>Change setup</button>
+        <a id="nhie-choose-game" href="/en/games" className="en-button">Choose another game</a></div>
       <p>Play again keeps your category and reshuffles. Statements may repeat across sessions.</p>
     </div> : prompt ? <div className="en-nhie-panel">
       <p id="nhie-progress">{game.category === "classic" ? "Classic" : "Party"} · Statement {game.index + 1} of {game.deck.length}</p>

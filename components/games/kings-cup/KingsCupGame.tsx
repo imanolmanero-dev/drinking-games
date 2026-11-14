@@ -66,6 +66,7 @@ export default function KingsCupGame() {
           <div className="flex flex-wrap gap-3">
             <button id="kc-play-again" type="button" onClick={start} className={`${button} en-button-primary`}>Play again</button>
             <button id="kc-change-players" type="button" onClick={() => setGame(null)} className={button}>Change players</button>
+            <a id="kc-choose-game" href="/en/games" className="en-button">Choose another game</a>
           </div>
         </div>
       ) : (
