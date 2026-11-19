@@ -264,3 +264,9 @@ No declarar ?xito por clics, impresiones o ranking solos. Si Google no usa la de
 Rollback inmediato ante promesa falsa o metadata rota. Rendimiento: dos semanas maduras consecutivas con deterioro consistente del CTR del cluster (orientativamente >=15% relativo), posici?n y query mix comparables. No reaccionar a d?as aislados. Restaurar exclusivamente description anterior.
 
 No tocar t?tulo, H1, Open Graph, contenido visible, gameplay, schema, canonical, enlaces, ads, fechas, ES restantes ni EN. No hay tooling nuevo.
+
+## Corrección de las reglas de participación (19 de noviembre de 2026)
+
+La preparación, las tarjetas y las reglas enlazadas permiten pasar sin beber ni dar explicaciones. Dos retos de consumo se sustituyen por retos sociales. La descripción Open Graph del juego, la descripción WebApplication específica y la meta description de las reglas se ajustan a la mecánica real. La descripción de Twitter conserva el texto general del sitio.
+
+La meta description experimental del juego sigue siendo «Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.». Si se publica la corrección durante el POST (3–30 de noviembre), registrar la fecha, hora y zona del despliegue real. Desde entonces, los resultados de noviembre no permiten atribuir el cambio de CTR de forma aislada a la meta description. Despliegue pendiente.

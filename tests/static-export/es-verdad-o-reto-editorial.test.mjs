@@ -15,6 +15,9 @@ const game = parse(readFileSync("out/juegos/verdad-o-reto.html", "utf8"));
 const blog = parse(readFileSync(`out/blog/${slug}.html`, "utf8"));
 
 test("ES-01 exports exact game counts, all three levels and a secondary working article link", () => {
+  assert.equal(game.querySelector('meta[property="og:description"]').getAttribute("content"), "160 tarjetas (80 verdades y 80 retos) en 3 niveles: Soft, Normal y Picante. Puedes pasar cualquier tarjeta.");
+  const schemas = game.querySelectorAll('script[type="application/ld+json"]').map(node => JSON.parse(node.textContent));
+  assert.equal(schemas.find(s => s["@type"] === "WebApplication").description, "Elige entre responder una pregunta o probar un reto. Puedes pasar cualquier tarjeta sin penalización.");
   assert.equal(game.querySelector('meta[name="description"]').getAttribute("content"), "Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.");
   for (const text of [game.textContent, game.querySelector('meta[property="og:description"]').getAttribute("content")]) {
     assert.match(text, new RegExp(`${VERDADES.length} verdades y ${RETOS.length} retos`));

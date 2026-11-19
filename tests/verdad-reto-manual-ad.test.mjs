@@ -32,7 +32,7 @@ test("la unidad ocupa la posición editorial aprobada", () => {
   );
   const experiment = setupSource.indexOf("<VerdadRetoExperimentAd />");
   const nextEditorialSection = setupSource.indexOf(
-    "¿Cómo funciona la versión para beber?",
+    "¿Cómo funciona cada turno?",
   );
 
   assert.notEqual(secondIntroParagraph, -1);

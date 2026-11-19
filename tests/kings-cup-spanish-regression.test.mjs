@@ -54,7 +54,13 @@ test("ES characterization: shuffle matches original random-call order without mu
 test("ES game flow, rules, metadata and integrations stay identical beyond the exact ES-03 editorial link", () => {
   const files = execFileSync("git", ["ls-tree", "-r", "--name-only", base, "app/(spanish)/juegos/rey-de-la-copa", "app/(spanish)/juegos/ring-of-fire"], { encoding: "utf8" }).trim().split("\n");
   files.push("lib/data/ring-of-fire.ts", "lib/AppContext.tsx", "components/layout/GameLayout.tsx", "components/ui/Confetti.tsx", "components/ui/AlcoholDisclaimer.tsx");
-  for (const file of files) assert.equal(readFileSync(file, "utf8").replace(/\r\n/g, "\n"), projectEs03(file, original(file)), file);
+  for (const file of files) {
+    let expected = projectEs03(file, original(file));
+    if (file === "components/layout/GameLayout.tsx") {
+      expected = expected.replace('"verdad-o-reto": "Elige entre responder una verdad comprometida o cumplir un reto. Si no cumples, bebes."', '"verdad-o-reto": "Elige entre responder una pregunta o probar un reto. Puedes pasar cualquier tarjeta sin penalización."');
+    }
+    assert.equal(readFileSync(file, "utf8").replace(/\r\n/g, "\n"), expected, file);
+  }
 });
 
 test("all existing JSON-LD defaults preserve Phase 2 output", () => {

@@ -1,13 +1,13 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { Sparkles, ChevronRight, Users, Zap, ShieldCheck, Gamepad2, AlertTriangle } from 'lucide-react';
+import { Sparkles, ChevronRight, Users, Zap, ShieldCheck } from 'lucide-react';
 
 export const metadata: Metadata = {
   alternates: {
     canonical: "https://bebergames.com/juegos/verdad-o-reto/reglas",
   },
   title: 'Reglas de Verdad o Reto — Cómo Jugar Extremo para Fiestas',
-  description: 'Descubre las reglas para jugar a Verdad o Reto con amigos. Retos divertidos, preguntas incómodas y mucho alcohol. Conoce las variantes y sube de nivel.',
+  description: 'Aprende a jugar a Verdad o Reto con amigos. Elige la intensidad, descubre cómo se reparten los turnos y pasa cualquier tarjeta sin penalización.',
 };
 
 export default function VerdadORetoReglasPage() {
@@ -30,7 +30,7 @@ export default function VerdadORetoReglasPage() {
               Cómo Jugar a Verdad o Reto
             </h1>
             <p className="text-muted text-lg leading-relaxed">
-              El clásico juego de campamentos, llevado al límite para las fiestas de adultos. Respuestas incómodas, confesiones ridículas y castigos muy severos si alguien decide acobardarse.
+              En cada turno, alguien elige entre contar algo sobre sí mismo o probar un reto delante del grupo.
             </p>
           </div>
         </header>
@@ -45,7 +45,6 @@ export default function VerdadORetoReglasPage() {
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>Jugadores:</strong> Aunque a partir de 3 personas sirve, los grupos mixtos de 5 o 6 son el número sagrado.</li>
               <li>✅ <strong>Mente abierta:</strong> Especialmente si elegís el modo Picante/Hot, se os realizarán preguntas y peticiones íntimas.</li>
-              <li>✅ <strong>Algo para beber:</strong> Actuará como moneda de cambio y penalización para aquellos jugadores cobardes.</li>
               <li>✅ <strong>El árbitro virtual (nuestra App):</strong> Generará preguntas aleatorias asegurando que a nadie le falte imaginación.</li>
             </ul>
           </section>
@@ -59,23 +58,23 @@ export default function VerdadORetoReglasPage() {
               {[
                 {
                   paso: "1",
-                  titulo: "Elegir turno y castigo base",
-                  desc: "Sentáos todos en círculo. Podéis añadir los nombres a la App para que ella misma os elija de forma rotatoria, o jugar libremente. Acordad al principio cuánto se debe beber por negarse a cumplir una prueba (generalmente, medio vaso o un trago largo).",
+                  titulo: "Preparar la partida",
+                  desc: "Añadid al menos tres nombres, elegid uno o varios niveles (Soft, Normal o Picante) y pulsad Empezar a jugar. La app sigue el orden de la lista.",
                 },
                 {
                   paso: "2",
                   titulo: "La decisión en voz alta",
-                  desc: "Cuando sea el turno de alguien, esa persona debe decir en voz alta (¡antes de ver qué le toca!) si desea 'Verdad' o 'Reto'. No se vale cambiar una vez elegida la opción.",
+                  desc: "Cuando veas tu nombre, elige Verdad o Reto para descubrir tu tarjeta.",
                 },
                 {
                   paso: "3",
                   titulo: "Opción: Verdad",
-                  desc: "Pulsad sobre la carta de Verdad. El jugador debe contestar a la pregunta de manera honesta, rápida y mirando al resto, idealmente dando contexto.",
+                  desc: "Lee la pregunta y decide qué quieres contar. Si prefieres guardártelo, puedes pasar.",
                 },
                 {
                   paso: "4",
                   titulo: "Opción: Reto",
-                  desc: "Pulsad sobre el botón de Reto. El jugador debe levantarse y ejecutar la acción. Dependiendo del grupo y el reto, algunos pueden necesitar la colaboración indirecta de otros.",
+                  desc: "Lee la propuesta y decide si te apetece probarla. Si participa otra persona, pregúntale primero.",
                 },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
@@ -91,47 +90,13 @@ export default function VerdadORetoReglasPage() {
             </div>
           </section>
 
-          {/* Castigos y Cobardía */}
-          <section className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4">
-            <h2 className="flex items-center gap-2 text-lg font-bold">
-              <AlertTriangle className="h-5 w-5 text-amber-500" /> El Sistema de Castigos (Regla de Oro)
-            </h2>
-            <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
-              <p>Aquí nadie está obligado a hacer algo con lo que se sienta verdaderamente incómodo o violentado. Ahora bien, el coste de rendirse debe ser muy alto para mantener la emoción del juego.</p>
-              
-              <div className="rounded-lg bg-surface-hover p-4 border border-border">
-                <p className="font-bold text-foreground mb-1 text-base">🤫 Negarse a confesar una Verdad</p>
-                <p>Si alguien prefiere guardar su secreto en lugar de responder, el equipo debe penalizarle de forma rápida y concisa. La regla estándar en España y México suele ser <strong>beber una copa entera de un trago o dar un mínimo de 5 tragos largos</strong> contados en voz alta por el grupo.</p>
-              </div>
-              <div className="rounded-lg bg-surface-hover p-4 border border-border">
-                <p className="font-bold text-foreground mb-1 text-base">🚫 Rajarse ante un Reto físico</p>
-                <p>Los retos requieren valor y descaro frente a los demás. Si un jugador abandona su reto, el grupo suele imponerle un castigo severo, como <strong>beber el doble que una Verdad</strong>, o invitarse a la primera ronda de la discoteca si salís de fiesta luego.</p>
-              </div>
-            </div>
-          </section>
-
-          {/* Reglas Caseras (Hardcore) */}
-          <section className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4">
-            <h2 className="flex items-center gap-2 text-lg font-bold">
-              <Gamepad2 className="h-5 w-5 text-amber-500" /> Opciones Avanzadas
-            </h2>
-            <div className="flex flex-col gap-3 text-sm text-muted leading-relaxed">
-              <p>
-                <strong className="text-foreground">Regla del Tope de Dos:</strong> Normalmente la gente suele elegir "Verdad" al principio porque resulta más cómodo hablar que ponerse en evidencia. Recomendamos tajantemente la regla del tope: No puedes elegir "Verdad" más de 2 turnos consecutivos. ¡A la tercera elegirás acción sí o sí!
-              </p>
-              <p>
-                <strong className="text-foreground">Derecho de Veto:</strong> Cada jugador dispone de "1 Veto" en todo el juego. Permite descartar una ÚNICA carta de pregunta o reto en toda la noche sin penalización y sacar una nueva opción del mismo tipo. Usadlo con extrema sabiduría.
-              </p>
-            </div>
-          </section>
-
           {/* Aviso */}
           <section className="rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6 flex flex-col gap-3">
             <h2 className="flex items-center gap-2 text-lg font-bold">
-              <ShieldCheck className="h-5 w-5 text-amber-500" /> Bebe con responsabilidad
+              <ShieldCheck className="h-5 w-5 text-amber-500" /> Cómo pasar una tarjeta
             </h2>
             <p className="text-sm text-muted leading-relaxed">
-              Aunque la penalización suele ser alcohólica, el Verdad o Reto ha arruinado amistades sin necesidad de bebidas. Usa el sentido común; no obliguéis a las personas a sobrepasar completamente su límite psicológico y fomentad un ambiente seguro. Jugar con refrescos sigue siendo ridículamente divertido.
+              Puedes pasar cualquier tarjeta sin beber, sin penalización y sin dar explicaciones. Tanto si has participado como si has pasado, pulsa «Siguiente jugador» y entrega el móvil a quien le toque.
             </p>
           </section>
 

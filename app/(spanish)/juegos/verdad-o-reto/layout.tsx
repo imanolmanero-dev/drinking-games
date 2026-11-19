@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Verdad o Reto — Juego para beber online",
     description:
-      "160 tarjetas (80 verdades y 80 retos) en 3 niveles: Soft, Normal y Picante. ¡Si no cumples, fondo blanco!",
+      "160 tarjetas (80 verdades y 80 retos) en 3 niveles: Soft, Normal y Picante. Puedes pasar cualquier tarjeta.",
   },
   alternates: {
     canonical: "https://bebergames.com/juegos/verdad-o-reto",

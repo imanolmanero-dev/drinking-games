@@ -299,18 +299,17 @@ export default function VerdadORetoPage() {
 
             <VerdadRetoExperimentAd />
 
-            <h3>¿Cómo funciona la versión para beber?</h3>
+            <h3>¿Cómo funciona cada turno?</h3>
             <p>
-              En cada turno, el jugador activo elige entre <strong>Verdad</strong> o <strong>Reto</strong>. Si elige Verdad, debe responder honestamente una pregunta comprometida. Si elige Reto, tiene que cumplir una acción.
+              En tu turno, elige <strong>Verdad</strong> para responder una pregunta o <strong>Reto</strong> para probar una acción.
             </p>
             <p>
-              La regla de beber es clara: el que se acobarda y no quiere responder ni cumplir el reto, bebe. Fondo blanco sin excusas. Esto mantiene la tensión alta durante toda la partida y garantiza que nadie se quede mirando sin participar.
+              Si una tarjeta no te apetece, puedes pasar sin beber ni dar explicaciones. Después le toca al siguiente jugador.
             </p>
             <ul>
               <li><strong>Nivel Soft (suave):</strong> Preguntas para romper el hielo y retos de imitación, baile o canciones.</li>
               <li><strong>Nivel Normal:</strong> Preguntas divertidas y retos sociales para cualquier grupo.</li>
               <li><strong>Nivel Picante (+18):</strong> Preguntas más íntimas y retos atrevidos. Solo para grupos de confianza.</li>
-              <li><strong>Prohibido acampar en Verdad:</strong> Estableced la regla de máximo 2 verdades seguidas para que nadie se escaquee de los retos.</li>
             </ul>
 
             <p>Si buscas más ideas para el nivel Picante, consulta nuestras <Link href="/blog/preguntas-picantes-verdad-o-reto" className="text-amber-500 underline">50 preguntas picantes y 15 retos</Link> para Verdad o Reto.</p>
@@ -326,7 +325,7 @@ export default function VerdadORetoPage() {
               <li><Link href="/juegos/quien-es-mas-probable" className="text-amber-500 underline">Quién Es Más Probable</Link> — El grupo señala y el más votado bebe.</li>
               <li><Link href="/juegos/yo-prefiero" className="text-amber-500 underline">Yo Prefiero</Link> — Dilemas A o B donde la minoría carga con el castigo.</li>
             </ul>
-            <p>Consulta también las <Link href="/juegos/verdad-o-reto/reglas" className="text-amber-500 underline">reglas completas del Verdad o Reto</Link> con estrategias y variantes avanzadas.</p>
+            <p>Consulta también las <Link href="/juegos/verdad-o-reto/reglas" className="text-amber-500 underline">reglas completas del Verdad o Reto</Link>.</p>
           </div>
         </div>
       </div>
@@ -560,9 +559,7 @@ export default function VerdadORetoPage() {
 
               {/* Hint */}
               <p className="text-xs text-muted">
-                {isVerdad
-                  ? "Si no contestas… ¡fondo blanco! 🍷"
-                  : "Si no lo cumples… ¡doble shot! 🔥"}
+                Puedes pasar esta tarjeta sin dar explicaciones.
               </p>
             </div>
           </motion.div>
@@ -593,7 +590,7 @@ export default function VerdadORetoPage() {
         className="w-full max-w-md flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-amber-500 to-orange-500 px-6 py-4 text-sm font-semibold text-white shadow-lg shadow-amber-500/20 transition-all hover:scale-[1.02] hover:shadow-xl"
       >
         <Check className="h-4 w-4" />
-        Cumplido — Siguiente jugador
+        Siguiente jugador
       </button>
     </div>
   );

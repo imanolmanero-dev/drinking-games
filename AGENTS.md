@@ -410,3 +410,6 @@ Si la respuesta es sí → actualiza este archivo.
 
 ### Navegación de artículos MDX
 - Usar clases CSS estáticas para el margen de scroll de las anclas y verificar el HTML exportado: las expresiones JSX pueden omitirse. El índice también cambia la lectura estimada de su tarjeta en /blog; validar ese efecto derivado sin modificar el cálculo compartido ni ampliar excepciones históricas.
+
+### Verdad o Reto ES
+- Pasar cualquier tarjeta avanza al siguiente jugador sin beber, justificar la decisión ni confirmar cumplimiento. Comprobar preparación, revelación, retos, reglas enlazadas y descripciones públicas específicas cuando cambie esta mecánica.

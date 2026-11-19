@@ -80,7 +80,8 @@ test("ES game inventory remains 80 truths and 80 dares with the actual three lev
 });
 
 test("visible game copy and metadata counts match the data rather than vague larger quantities", () => {
-  for (const copy of [doc.textContent, Layout.metadata.description, Layout.metadata.openGraph.description]) {
+  assert.equal(Layout.metadata.description, "Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.");
+  for (const copy of [doc.textContent, Layout.metadata.openGraph.description]) {
     const claim = copy.match(/(\d+) verdades y (\d+) retos/);
     assert.ok(claim);
     assert.equal(Number(claim[1]), VERDADES.length);
@@ -92,6 +93,21 @@ test("visible game copy and metadata counts match the data rather than vague lar
   assert.equal(Layout.metadata.title, "Verdad o Reto — Juego para beber online");
   assert.equal(Layout.metadata.alternates.canonical, "https://bebergames.com/juegos/verdad-o-reto");
   assert.equal(doc.querySelector("h1").textContent.trim(), "Verdad o Reto");
+});
+
+test("se puede pasar cualquier verdad o reto y avanzar sin confirmar que se ha cumplido", () => {
+  const route = "app/(spanish)/juegos/verdad-o-reto";
+  const game = read(route + "/page.tsx");
+  const rules = read(route + "/reglas/page.tsx");
+  assert.ok(doc.textContent.includes("puedes pasar sin beber ni dar explicaciones"));
+  assert.ok(game.includes("Puedes pasar esta tarjeta sin dar explicaciones."));
+  assert.match(game, /onClick=\{nextTurn\}[^>]*>[\s\S]*?\/>\s*Siguiente jugador\s*<\/button>/);
+  assert.ok(rules.includes("Puedes pasar cualquier tarjeta sin beber, sin penalización y sin dar explicaciones."));
+  assert.doesNotMatch([game, rules, ...RETOS.map(r => r.texto)].join("\n"), /fondo blanco|doble shot|body shots|bebe un shot|cumplido —|tragos largos|beber el doble|1 veto|cobard|acampar en verdad/i);
+  for (const [nivel, texto] of [
+    ["normal", "Inventa un brindis de diez segundos para celebrar algo absurdo que elija el grupo."],
+    ["picante", "Inventa una frase de ligue tan mala que haga reír al grupo."],
+  ]) assert.equal(RETOS.filter(r => r.nivel === nivel && r.texto === texto).length, 1);
 });
 
 test("article contains 50 numbered questions and 15 numbered dares with truthful editorial promises", () => {
