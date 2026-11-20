@@ -24,22 +24,22 @@ import {
 
 // ───── Castigos de la ruleta ─────
 const CASTIGOS = [
-  { texto: "Bebe 2 tragos", emoji: "🍺", color: "#a855f7" },
+  { texto: "Inventa un lema para el grupo", emoji: "🍺", color: "#a855f7" },
   { texto: "Imita a alguien del grupo", emoji: "🎭", color: "#ec4899" },
-  { texto: "Todos beben", emoji: "🍻", color: "#f43f5e" },
-  { texto: "Bebe 1 trago", emoji: "🥃", color: "#f97316" },
+  { texto: "Aplaudid a la vez", emoji: "🍻", color: "#f43f5e" },
+  { texto: "Un sorbo pequeño, si te apetece", emoji: "🥃", color: "#f97316" },
   { texto: "Cuenta un secreto", emoji: "🤫", color: "#eab308" },
-  { texto: "Bebe 3 tragos", emoji: "🍷", color: "#84cc16" },
+  { texto: "Tararea una sintonía", emoji: "🍷", color: "#84cc16" },
   { texto: "Haz 10 flexiones", emoji: "💪", color: "#22c55e" },
   { texto: "Canta una canción", emoji: "🎤", color: "#14b8a6" },
-  { texto: "Fondo blanco", emoji: "🥂", color: "#06b6d4" },
-  { texto: "Elige quién bebe", emoji: "🫵", color: "#3b82f6" },
+  { texto: "Brindis de grupo", emoji: "🥂", color: "#06b6d4" },
+  { texto: "Elige quién propone la próxima canción", emoji: "🫵", color: "#3b82f6" },
   { texto: "Baila 15 segundos", emoji: "💃", color: "#6366f1" },
   { texto: "Te salvas esta vez", emoji: "😇", color: "#8b5cf6" },
-  { texto: "Bebe sin manos", emoji: "🙌", color: "#d946ef" },
+  { texto: "Saluda sin usar las manos", emoji: "🙌", color: "#d946ef" },
   { texto: "Di un piropo al de tu derecha", emoji: "😘", color: "#f43f5e" },
-  { texto: "Waterfall: todos beben en cadena", emoji: "🌊", color: "#0ea5e9" },
-  { texto: "Verdad o bebe 3", emoji: "🤔", color: "#10b981" },
+  { texto: "Haced la ola en cadena", emoji: "🌊", color: "#0ea5e9" },
+  { texto: "Verdad o pasa", emoji: "🤔", color: "#10b981" },
 ];
 
 // ───── SVG Roulette Wheel ─────
@@ -310,7 +310,7 @@ export default function LaRuletaPage() {
                 La Ruleta
               </h1>
               <p className="text-sm text-muted max-w-xs">
-                Gira la ruleta y cumple el castigo que te toque. Sin excusas. 🎡
+                Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno. 🎡
               </p>
               <Link href="/juegos/la-ruleta/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -342,7 +342,7 @@ export default function LaRuletaPage() {
             {/* Preview of some castigos */}
             <div className="rounded-xl border border-border bg-surface p-4">
               <h3 className="text-xs font-semibold uppercase tracking-wider text-rose-400 mb-3">
-                Algunos castigos posibles
+                Algunas casillas
               </h3>
               <div className="flex flex-wrap gap-2">
                 {CASTIGOS.slice(0, 8).map((c, i) => (
@@ -434,35 +434,35 @@ export default function LaRuletaPage() {
         {/* SEO Static Content Block for crawlers */}
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>La Ruleta: Gira el Disco y Cumple el Castigo</h2>
+            <h2>La Ruleta: Gira el Disco y Descubre tu Reto</h2>
             <p>
-              <strong>La Ruleta</strong> es la versión para fiestas del clásico juego de azar. Gira el disco virtual, espera a que se detenga y cumple el castigo que te toque. Sin negociación, sin excusas. El algoritmo decide tu destino.
+              <strong>La Ruleta</strong> es la versión para fiestas del clásico juego de azar. Gira el disco virtual, espera a que se detenga y mira qué casilla señala la flecha. Tú decides si te apetece probarla.
             </p>
             <p>
-              La app incluye 16 castigos diferentes que van desde tragos simples hasta retos físicos y sociales. Cada giro es completamente aleatorio, así que nadie puede predecir qué le va a tocar. La animación hipnótica del disco añade tensión extra mientras el puntero se acerca al resultado.
+              La app incluye 16 casillas con retos físicos, música y propuestas para el grupo. Cada giro es completamente aleatorio, así que nadie puede predecir qué le va a tocar. La animación hipnótica del disco añade tensión extra mientras el puntero se acerca al resultado.
             </p>
 
-            <h3>Tipos de castigos</h3>
+            <h3>Algunas casillas de la ruleta</h3>
             <ul>
-              <li><strong>Tragos básicos:</strong> Bebe 1, 2 o 3 tragos. El clásico que nunca falla.</li>
-              <li><strong>Fondo blanco:</strong> Vacía la copa entera. El castigo máximo de la ruleta.</li>
-              <li><strong>Cascada (Waterfall):</strong> Todos beben en cadena. Nadie puede parar hasta que pare el de su izquierda.</li>
-              <li><strong>Elige quién bebe:</strong> El poder de señalar. Tú decides quién paga.</li>
-              <li><strong>Retos físicos:</strong> 10 flexiones, bailar 15 segundos o cantar una canción. El que se niegue, bebe el doble.</li>
+              <li><strong>Sorbo opcional:</strong> Si te apetece, da un sorbo pequeño de tu bebida, también sin alcohol.</li>
+              <li><strong>Brindis de grupo:</strong> Dedica unas palabras al grupo. Basta con decir «¡por nosotros!».</li>
+              <li><strong>La ola:</strong> Levantad los brazos por turnos hasta que la ola dé la vuelta a la mesa.</li>
+              <li><strong>Verdad o pasa:</strong> Puedes responder a la pregunta del grupo o pasar sin dar explicaciones.</li>
+              <li><strong>Retos físicos:</strong> 10 flexiones, bailar 15 segundos o cantar una canción.</li>
               <li><strong>Sociales:</strong> Imitar a alguien del grupo, contar un secreto o piropear al de tu derecha.</li>
               <li><strong>Te salvas:</strong> A veces la ruleta es generosa. Disfrútalo, no durará.</li>
             </ul>
 
             <h3>Preguntas frecuentes</h3>
-            <p><strong>¿Cuántos jugadores hacen falta?</strong> Con 2 ya se puede jugar, pero con 4 o más es mucho más divertido porque los castigos sociales tienen más sentido.</p>
-            <p><strong>¿Se puede personalizar la ruleta?</strong> De momento los 16 castigos están predefinidos. La variedad es suficiente para horas de juego sin repetirse.</p>
-            <p><strong>¿Qué pasa si alguien no quiere cumplir el castigo?</strong> Bebe el doble. Nadie se escapa de la ruleta impunemente.</p>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Con 2 ya se puede jugar, pero con 4 o más es mucho más divertido porque los retos sociales tienen más sentido.</p>
+            <p><strong>¿Se puede personalizar la ruleta?</strong> De momento las 16 casillas están predefinidas. El azar puede repetir una casilla.</p>
+            <p><strong>¿Y si prefiero pasar?</strong> Pulsa «Siguiente jugador». Puedes pasar cualquier casilla sin beber ni recibir una penalización.</p>
 
             <h3>Más juegos de azar que te gustarán</h3>
             <ul>
-              <li><Link href="/juegos/triman" className="text-rose-500 underline">Triman</Link> — Un dado decide quién bebe. El Señor del 3 no tiene escapatoria.</li>
+              <li><Link href="/juegos/triman" className="text-rose-500 underline">Triman</Link> — Tira el dado y descubre quién es el Señor del 3.</li>
               <li><Link href="/juegos/la-bomba" className="text-rose-500 underline">La Bomba</Link> — Pasa el móvil antes de que explote. Tensión en estado puro.</li>
-              <li><Link href="/juegos/ring-of-fire" className="text-rose-500 underline">Ring of Fire</Link> — Cada carta de la baraja tiene una regla diferente. El 4º Rey lo paga todo.</li>
+              <li><Link href="/juegos/ring-of-fire" className="text-rose-500 underline">Ring of Fire</Link> — Cada carta de la baraja tiene una regla diferente. Cuenta los reyes que van saliendo.</li>
             </ul>
             <p>Consulta todas las reglas y consejos en la <Link href="/juegos/la-ruleta/reglas" className="text-rose-500 underline">guía completa de La Ruleta</Link>.</p>
           </div>
@@ -509,7 +509,7 @@ export default function LaRuletaPage() {
               <span className="text-5xl">{selectedCastigo.emoji}</span>
               <div>
                 <p className="text-sm text-muted mb-1">
-                  {currentPlayer} tiene que…
+                  Propuesta para {currentPlayer}
                 </p>
                 <p className="text-xl font-bold">{selectedCastigo.texto}</p>
               </div>
@@ -518,7 +518,7 @@ export default function LaRuletaPage() {
                 style={{ background: selectedCastigo.color }}
               >
                 <Beer className="h-3.5 w-3.5" />
-                ¡Sin excusas!
+                Puedes pasar sin penalización.
               </div>
             </div>
           </motion.div>

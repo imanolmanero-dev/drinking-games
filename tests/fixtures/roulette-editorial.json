@@ -1,0 +1,141 @@
+{
+  "/": {
+    "hashes": [
+      "4a65572434d06628d58655feaaa76d50ba2e7a6cb8233ff43510d24af75414b2",
+      "b0928f0f5c68b692202317a86858c9bb85db23f9fef69adabf748c84b6a1b3ce"
+    ],
+    "cards": [
+      [
+        "/juegos/yo-nunca",
+        "Di algo que nunca hayas hecho. Los que sí lo hayan hecho… ¡beben!",
+        "Di algo que nunca hayas hecho. Quien sí lo haya hecho puede bajar un dedo."
+      ],
+      [
+        "/juegos/verdad-o-reto",
+        "Elige verdad o reto. Si no cumples… ¡fondo blanco!",
+        "Elige verdad o reto. Puedes pasar cualquier tarjeta sin penalización."
+      ],
+      [
+        "/juegos/la-ruleta",
+        "Gira la ruleta y cumple el castigo que te toque. Sin excusas.",
+        "Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno."
+      ],
+      [
+        "/juegos/quien-es-mas-probable",
+        "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¡El más votado bebe!",
+        "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¿En quién habéis coincidido?"
+      ],
+      [
+        "/juegos/ring-of-fire",
+        "Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!",
+        "Roba una carta del círculo y descubre su regla. Lleva la cuenta de los reyes."
+      ],
+      [
+        "/juegos/yo-prefiero",
+        "A o B, sin excusas. El grupo elige su opción y la minoría bebe. ¡Más de 60 dilemas!",
+        "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!"
+      ],
+      [
+        "/juegos/medusa",
+        "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",
+        "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA!"
+      ],
+      [
+        "/juegos/rey-de-la-copa",
+        "Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la copa entera. ¡El clásico!",
+        "Cada carta tiene su regla. ¿Quién sacará el cuarto rey de la baraja?"
+      ],
+      [
+        "/juegos/la-bomba",
+        "Temporizador secreto. Pasa el móvil antes de que explote. ¡El que la tenga cuando explote bebe!",
+        "Temporizador secreto. Pasa el móvil antes de que explote. ¿En manos de quién sonará la alarma?"
+      ],
+      [
+        "/juegos/tabu",
+        "Describe la palabra sin decir las prohibidas. Si dices una tabú… ¡todo tu equipo bebe!",
+        "Describe la palabra sin decir las prohibidas. ¿Adivinará tu equipo la palabra a tiempo?"
+      ],
+      [
+        "/juegos/la-piramide",
+        "Memoriza tus cartas, farolea y asigna tragos. ¡Cada fila sube la apuesta!",
+        "Memoriza tus cartas y farolea mientras se descubren las filas de la pirámide."
+      ]
+    ]
+  },
+  "/juegos/categorias/preguntas": {
+    "hashes": [
+      "36de70cc14986a2c241c6671d742fd4f9c9d6a29a5abea3b4037f7c7a6c3433d",
+      "1592ddf1d922ec449bf4bfa3f90857063b44602bb6bae836951ccd81458c5d61"
+    ],
+    "cards": [
+      [
+        "/juegos/yo-nunca",
+        "Di algo que nunca hayas hecho. Los que sí lo hayan hecho… ¡beben!",
+        "Di algo que nunca hayas hecho. Quien sí lo haya hecho puede bajar un dedo."
+      ],
+      [
+        "/juegos/verdad-o-reto",
+        "Elige verdad o reto. Si no cumples… ¡fondo blanco!",
+        "Elige verdad o reto. Puedes pasar cualquier tarjeta sin penalización."
+      ],
+      [
+        "/juegos/quien-es-mas-probable",
+        "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¡El más votado bebe!",
+        "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¿En quién habéis coincidido?"
+      ],
+      [
+        "/juegos/yo-prefiero",
+        "A o B, sin excusas. El grupo elige y la minoría bebe. ¡Más de 60 dilemas!",
+        "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!"
+      ]
+    ]
+  },
+  "/juegos/la-ruleta": {
+    "hashes": [
+      "c2a3604bb5472ae44091710c5c482d47ec5a6c8587c947dceda69cb67d876690",
+      "5c571ca9a9a0d3228e2f0855589f0dd3454dedfdd500805dfcb5aaeae7a03d28"
+    ],
+    "headings": [
+      [
+        "Algunos castigos posibles",
+        "Algunas casillas"
+      ],
+      [
+        "La Ruleta: Gira el Disco y Cumple el Castigo",
+        "La Ruleta: Gira el Disco y Descubre tu Reto"
+      ],
+      [
+        "Tipos de castigos",
+        "Algunas casillas de la ruleta"
+      ]
+    ],
+    "metadata": [
+      [
+        "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos para tu grupo. ¡Sin excusas!",
+        "Gira la ruleta con tu grupo y descubre uno de los 16 retos. En cada turno puedes jugar o pasar."
+      ],
+      [
+        "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos. ¡Sin excusas!",
+        "Gira la ruleta y descubre uno de los 16 retos. Puedes pasar en cualquier turno."
+      ]
+    ]
+  },
+  "/juegos/la-ruleta/reglas": {
+    "hashes": [
+      "7d87e86b08465299636c2dc00dfa15fe7ccd168b1d82a468d7f36c9ba0cf58de",
+      "26fdf45b7957770e98a41b6e458ea2e524582c42a752e301c7e9fedcdc54e6ac"
+    ],
+    "headings": [
+      [
+        " Regla de Oro: La Ruleta Manda",
+        " Qué puede salir en la ruleta"
+      ]
+    ],
+    "metadata": [
+      [
+        "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos. ¡Sin excusas!",
+        "Gira la ruleta y descubre uno de los 16 retos. Puedes pasar en cualquier turno."
+      ]
+    ]
+  }
+}

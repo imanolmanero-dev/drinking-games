@@ -378,6 +378,7 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-10-04 | Auto Ads insertaba nodos antes de hidratar el blog español y provocaba React #418 | Root español y tests de carga/export | Carga única con `lazyOnload`; regresión con publicidad inmediata y Next retrasado, sin cambiar ajustes de AdSense |
 | 2026-10-05 | La FAQ de Yo Nunca exigía una consecuencia que el artículo marcaba como opcional | Artículo, FAQ y copy de Yo Nunca | Regla del creador opcional coherente, explicación sin alcohol y tests de semántica compartida |
 | 2026-10-05 | La revisión ES-02 detectó consumo y relatos obligatorios fuera del bloque del creador | Copy de juego/reglas/artículo y tests Yo Nunca | Correcciones puntuales y validación de superficies completas con casos negativos de coerción |
+| 2026-11-20 | Las tarjetas de portada y categoría anunciaban penalizaciones y la ruleta exigía beber al pasar | Portada, categoría de preguntas, ruleta y reglas ES | Revisados los enlaces de entrada y sus descripciones estructuradas junto con las casillas, el resultado, la FAQ y las reglas del juego. |
 
 ### English guide without cards
 - `/en/blog/drinking-games-without-cards` añade solo una guía Server Component con ocho juegos manuales y enlaces desde home, hub y guía para dos. Inventario: 71 ES + 12 EN = 83. Sin índice, navegación nueva ni juegos nuevos; concepto `unpaired`.

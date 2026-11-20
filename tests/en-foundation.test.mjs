@@ -130,6 +130,14 @@ test("DELIBERATE SEO ADDITION is the only change to the six Spanish page sources
     const withoutAddition = read(file).replace(/      \{\/\* HALLOWEEN DISCOVERY START[^]*?      \{\/\* HALLOWEEN DISCOVERY END \*\/\}\r?\n/, "").replace(/\r\n/g, "\n")
       .replace('import { languageAlternates } from "@/lib/i18n/routes";\n', "")
       .replace(/    \/\/ DELIBERATE SEO ADDITION: reciprocal published language equivalents\.\n    languages: languageAlternates\("[a-z-]+"\),\n/, "");
-    assert.equal(withoutAddition, original, file);
+    let expected = original;
+    if (route === "") {
+      const { cards } = JSON.parse(read("tests/fixtures/roulette-editorial.json"))["/"];
+      for (const [, before, after] of cards) {
+        assert.ok(expected.includes(before), before);
+        expected = expected.replace(before, after);
+      }
+    }
+    assert.equal(withoutAddition, expected, file);
   }
 });

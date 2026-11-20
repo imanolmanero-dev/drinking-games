@@ -1,3 +1,4 @@
+import { projectRouletteExport } from "../helpers/roulette-export.mjs";
 import assert from 'node:assert/strict';
 import { compareTruthOrDareExport } from '../helpers/truth-or-dare-export.mjs';
 import test from 'node:test';
@@ -19,5 +20,10 @@ test('all 86 preflight pages preserve metadata, text, headings, links and JSON-L
   d.querySelectorAll('script,style,link').forEach(n=>n.remove());
   return {metadata,headings,links,schema,text:d.textContent.replace(/\s+/g,' ').trim()};
  };
- for(const p of paths)compareTruthOrDareExport(p,snapshot('out',p),snapshot('build/mlt/mlt-baseline/out',p));
+  for (const pathname of paths) {
+    const current = snapshot("out", pathname);
+    const previous = snapshot("build/mlt/mlt-baseline/out", pathname);
+    projectRouletteExport(pathname, previous, current);
+    compareTruthOrDareExport(pathname, current, previous);
+  }
 });

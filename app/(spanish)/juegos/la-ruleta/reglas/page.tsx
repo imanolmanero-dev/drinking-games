@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { PartyPopper, ChevronRight, Users, Zap, ShieldCheck, Dices, RotateCw } from 'lucide-react';
+import { PartyPopper, ChevronRight, Users, ShieldCheck, Dices, RotateCw } from 'lucide-react';
 
 export const metadata: Metadata = {
   alternates: {
@@ -45,7 +45,7 @@ export default function LaRuletaReglasPage() {
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>Jugadores:</strong> Desde 2 personas (para un uno contra uno muy tenso) hasta todos los que queráis.</li>
               <li>✅ <strong>Dispositivo:</strong> Un teléfono móvil o una tablet colocada estratégicamente en el centro de la mesa con la app de BeberGames abierta.</li>
-              <li>✅ <strong>Bebestibles:</strong> Tened vuestras copas llenas y a mano. En este juego, beber no es una opción, es una probabilidad estadística.</li>
+              <li>✅ <strong>Bebida opcional:</strong> Podéis jugar con agua, con un refresco o sin vaso.</li>
             </ul>
           </section>
 
@@ -64,7 +64,7 @@ export default function LaRuletaReglasPage() {
                 {
                   paso: "2",
                   titulo: "El Elegido",
-                  desc: "Por defecto, la ruleta digital seleccionará a un jugador al azar como el primero en desafiar a su destino.",
+                  desc: "Empieza la primera persona de la lista y los turnos siguen ese orden.",
                 },
                 {
                   paso: "3",
@@ -73,8 +73,8 @@ export default function LaRuletaReglasPage() {
                 },
                 {
                   paso: "4",
-                  titulo: "La Sentencia",
-                  desc: "Espera a que se detenga por completo y lee en voz alta la sentencia que te ha tocado. Cúmplela sin protestar y pasa el turno. Si la ruleta dice que bebas 3 tragos, bebes 3. Si dice que tú te salvas y obligas a beber al resto, ¡celebra tu enorme suerte!",
+                  titulo: "El resultado",
+                  desc: "Cuando se pare el disco, lee la propuesta. Tanto si la haces como si prefieres pasar, pulsa «Siguiente jugador» y entrega el móvil.",
                 },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
@@ -93,16 +93,16 @@ export default function LaRuletaReglasPage() {
           {/* Reglas de Oro */}
           <section className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4">
             <h2 className="flex items-center gap-2 text-lg font-bold">
-              <Dices className="h-5 w-5 text-rose-400" /> Regla de Oro: La Ruleta Manda
+              <Dices className="h-5 w-5 text-rose-400" /> Qué puede salir en la ruleta
             </h2>
             <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
               <p>
-                Nuestra ruleta virtual incluye decenas de muescas con una variada y malévola gama de retos. A veces caerás en "casillas salvavidas" (como mandar beber a otros) y otras veces en "trampas mortales" donde te tocará beber el doble.
+                Las 16 casillas tienen la misma probabilidad en cada giro. En «Brindis de grupo» puedes dedicar unas palabras sin beber. En «Haced la ola en cadena» levantáis los brazos por turnos.
               </p>
               <div className="rounded-lg bg-surface-hover p-4 border-l-4 border-rose-500">
-                <p className="font-bold text-foreground mb-1 text-base">Penalización por Cobardía</p>
+                <p className="font-bold text-foreground mb-1 text-base">¿Y si prefiero pasar?</p>
                 <p>
-                  La regla fundamental e inquebrantable de este juego es que <strong>la ruleta es la ley</strong>. No te lo tomes como algo personal. Si algún jugador se niega rotundamente a cumplir el dictamen que le ha tocado, el castigo automático a pagar al grupo es hacer "fondo blanco" (beberse la copa entera del tirón, o al menos 8 tragos largos).
+                  Puedes pasar cualquier casilla sin penalización. En «Verdad o pasa» tú decides qué contar. Si pasas, el turno sigue igual.
                 </p>
               </div>
             </div>
@@ -113,10 +113,10 @@ export default function LaRuletaReglasPage() {
             <h2 className="text-lg font-bold">⚡ Variantes de Juego</h2>
             <div className="flex flex-col gap-3 text-sm text-muted leading-relaxed">
               <p>
-                <strong className="text-foreground">Modo Sobreviviente:</strong> Inicia la partida determinando un número máximo de tiradas fallidas por jugador. Quien acumule tres reglas que le obliguen a beber personalmente, queda "eliminado" del juego, hasta que solo quede un campeón invicto.
+                <strong className="text-foreground">Partida corta:</strong> Acordad cuántas vueltas a la mesa queréis jugar antes de empezar.
               </p>
               <p>
-                 <strong className="text-foreground">Doble Suerte:</strong> Si alguien cae en una casilla que no le gusta, puede pedir el "Tiro Doble". Sin embargo, si al tirar de nuevo vuelve a salir un castigo para beber, debe cumplir AMBOS simultáneamente.
+                 <strong className="text-foreground">Brindis temático:</strong> Si sale «Brindis de grupo», dedicádselo a una anécdota que recordéis con cariño.
               </p>
             </div>
           </section>
@@ -127,7 +127,7 @@ export default function LaRuletaReglasPage() {
               <ShieldCheck className="h-5 w-5 text-rose-500" /> Bebe con precaución
             </h2>
             <p className="text-sm text-muted leading-relaxed">
-              Los juegos de puro azar como La Ruleta pueden provocar que una misma persona tenga muy mala suerte sostenida y se vea obligada a beber demasiadas veces seguidas de forma injusta. El grupo debe poner freno si observa que alguien no lo está pasando bien. Sustituir los castigos alcohólicos por sorbos de refresco o repeticiones de algún ejercicio (flexiones/sentadillas) es siempre una variante fantástica.
+              La casilla «Un sorbo pequeño, si te apetece» también se puede pasar. Si vuelve a salir, los sorbos no se acumulan.
             </p>
           </section>
 

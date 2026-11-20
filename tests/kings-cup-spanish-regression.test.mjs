@@ -57,6 +57,7 @@ test("ES game flow, rules, metadata and integrations stay identical beyond the e
   for (const file of files) {
     let expected = projectEs03(file, original(file));
     if (file === "components/layout/GameLayout.tsx") {
+      expected = expected.replace('"la-ruleta": "Gira la ruleta y cumple el castigo que te toque. Sin excusas."', '"la-ruleta": "Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno."');
       expected = expected.replace('"verdad-o-reto": "Elige entre responder una verdad comprometida o cumplir un reto. Si no cumples, bebes."', '"verdad-o-reto": "Elige entre responder una pregunta o probar un reto. Puedes pasar cualquier tarjeta sin penalización."');
     }
     assert.equal(readFileSync(file, "utf8").replace(/\r\n/g, "\n"), expected, file);

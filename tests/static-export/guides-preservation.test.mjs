@@ -1,3 +1,4 @@
+import { projectRouletteExport } from "../helpers/roulette-export.mjs";
 import assert from "node:assert/strict";
 import { compareTruthOrDareExport } from "../helpers/truth-or-dare-export.mjs";
 import test from "node:test";
@@ -61,5 +62,10 @@ test("85 existing pages preserve metadata, content, links and schema after exact
     return { metadata, schema, header, headings, links, text };
   }
   assert.equal(routes.length, 85);
-  for (const { pathname } of routes) compareTruthOrDareExport(pathname, snapshot("out", pathname), snapshot("build/guides/baseline", pathname));
+  for (const { pathname } of routes) {
+    const current = snapshot("out", pathname);
+    const previous = snapshot("build/guides/baseline", pathname);
+    projectRouletteExport(pathname, previous, current);
+    compareTruthOrDareExport(pathname, current, previous);
+  }
 });

@@ -38,7 +38,7 @@ const juegos = [
     id: "yo-nunca",
     nombre: "Yo Nunca",
     descripcion:
-      "Di algo que nunca hayas hecho. Los que sí lo hayan hecho… ¡beben!",
+      "Di algo que nunca hayas hecho. Quien sí lo haya hecho puede bajar un dedo.",
     icono: Wine,
     color: "from-purple-500 to-pink-500",
     shadowColor: "shadow-purple-500/20",
@@ -49,7 +49,7 @@ const juegos = [
     id: "verdad-o-reto",
     nombre: "Verdad o Reto",
     descripcion:
-      "Elige verdad o reto. Si no cumples… ¡fondo blanco!",
+      "Elige verdad o reto. Puedes pasar cualquier tarjeta sin penalización.",
     icono: Sparkles,
     color: "from-amber-500 to-orange-500",
     shadowColor: "shadow-amber-500/20",
@@ -71,7 +71,7 @@ const juegos = [
     id: "la-ruleta",
     nombre: "La Ruleta",
     descripcion:
-      "Gira la ruleta y cumple el castigo que te toque. Sin excusas.",
+      "Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno.",
     icono: PartyPopper,
     color: "from-rose-500 to-pink-500",
     shadowColor: "shadow-rose-500/20",
@@ -82,7 +82,7 @@ const juegos = [
     id: "quien-es-mas-probable",
     nombre: "Quién Es Más Probable",
     descripcion:
-      "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¡El más votado bebe!",
+      "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¿En quién habéis coincidido?",
     icono: Hand,
     color: "from-cyan-500 to-blue-500",
     shadowColor: "shadow-cyan-500/20",
@@ -93,7 +93,7 @@ const juegos = [
     id: "ring-of-fire",
     nombre: "Ring of Fire",
     descripcion:
-      "Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!",
+      "Roba una carta del círculo y descubre su regla. Lleva la cuenta de los reyes.",
     icono: Flame,
     color: "from-red-500 to-rose-600",
     shadowColor: "shadow-red-500/20",
@@ -104,7 +104,7 @@ const juegos = [
     id: "yo-prefiero",
     nombre: "Yo Prefiero",
     descripcion:
-      "A o B, sin excusas. El grupo elige su opción y la minoría bebe. ¡Más de 60 dilemas!",
+      "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!",
     icono: Scale,
     color: "from-violet-500 to-fuchsia-500",
     shadowColor: "shadow-violet-500/20",
@@ -115,7 +115,7 @@ const juegos = [
     id: "medusa",
     nombre: "Medusa",
     descripcion:
-      "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",
+      "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA!",
     icono: Eye,
     color: "from-lime-500 to-green-600",
     shadowColor: "shadow-lime-500/20",
@@ -126,7 +126,7 @@ const juegos = [
     id: "rey-de-la-copa",
     nombre: "El Rey de la Copa",
     descripcion:
-      "Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la copa entera. ¡El clásico!",
+      "Cada carta tiene su regla. ¿Quién sacará el cuarto rey de la baraja?",
     icono: Crown,
     color: "from-amber-400 to-yellow-500",
     shadowColor: "shadow-amber-400/20",
@@ -137,7 +137,7 @@ const juegos = [
     id: "la-bomba",
     nombre: "La Bomba",
     descripcion:
-      "Temporizador secreto. Pasa el móvil antes de que explote. ¡El que la tenga cuando explote bebe!",
+      "Temporizador secreto. Pasa el móvil antes de que explote. ¿En manos de quién sonará la alarma?",
     icono: Zap,
     color: "from-orange-500 to-red-500",
     shadowColor: "shadow-orange-500/20",
@@ -148,7 +148,7 @@ const juegos = [
     id: "tabu",
     nombre: "Tabú Borracho",
     descripcion:
-      "Describe la palabra sin decir las prohibidas. Si dices una tabú… ¡todo tu equipo bebe!",
+      "Describe la palabra sin decir las prohibidas. ¿Adivinará tu equipo la palabra a tiempo?",
     icono: MessageSquare,
     color: "from-violet-500 to-purple-600",
     shadowColor: "shadow-violet-500/20",
@@ -170,7 +170,7 @@ const juegos = [
     id: "la-piramide",
     nombre: "La Pirámide",
     descripcion:
-      "Memoriza tus cartas, farolea y asigna tragos. ¡Cada fila sube la apuesta!",
+      "Memoriza tus cartas y farolea mientras se descubren las filas de la pirámide.",
     icono: Triangle,
     color: "from-indigo-500 to-purple-600",
     shadowColor: "shadow-indigo-500/20",

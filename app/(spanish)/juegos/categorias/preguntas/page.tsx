@@ -16,7 +16,7 @@ const juegos = [
   {
     id: "yo-nunca",
     nombre: "Yo Nunca",
-    descripcion: "Di algo que nunca hayas hecho. Los que sí lo hayan hecho… ¡beben!",
+    descripcion: "Di algo que nunca hayas hecho. Quien sí lo haya hecho puede bajar un dedo.",
     icono: Wine,
     color: "from-purple-500 to-pink-500",
     shadowColor: "shadow-purple-500/20",
@@ -25,7 +25,7 @@ const juegos = [
   {
     id: "verdad-o-reto",
     nombre: "Verdad o Reto",
-    descripcion: "Elige verdad o reto. Si no cumples… ¡fondo blanco!",
+    descripcion: "Elige verdad o reto. Puedes pasar cualquier tarjeta sin penalización.",
     icono: Sparkles,
     color: "from-amber-500 to-orange-500",
     shadowColor: "shadow-amber-500/20",
@@ -34,7 +34,7 @@ const juegos = [
   {
     id: "quien-es-mas-probable",
     nombre: "Quién Es Más Probable",
-    descripcion: "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¡El más votado bebe!",
+    descripcion: "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¿En quién habéis coincidido?",
     icono: Hand,
     color: "from-cyan-500 to-blue-500",
     shadowColor: "shadow-cyan-500/20",
@@ -43,7 +43,7 @@ const juegos = [
   {
     id: "yo-prefiero",
     nombre: "Yo Prefiero",
-    descripcion: "A o B, sin excusas. El grupo elige y la minoría bebe. ¡Más de 60 dilemas!",
+    descripcion: "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!",
     icono: Scale,
     color: "from-violet-500 to-fuchsia-500",
     shadowColor: "shadow-violet-500/20",
@@ -107,10 +107,10 @@ export default function PreguntasCategoryPage() {
           </h2>
           <div className="text-sm text-muted space-y-3 leading-relaxed">
             <p>
-              Los juegos de preguntas son el alma de cualquier previa porque van directos al grano: obligan a confesar, a debatir y a señalar al culpable del grupo. No necesitas cartas, dados ni ningún material físico — solo un móvil con BeberGames y ganas de descubrir los secretos de tus amigos.
+              Los juegos de preguntas son el alma de cualquier previa porque van directos al grano: invitan a contar anécdotas, a debatir y a señalar al culpable del grupo. No necesitas cartas, dados ni ningún material físico — solo un móvil con BeberGames y ganas de descubrir los secretos de tus amigos.
             </p>
             <p>
-              <Link href="/juegos/yo-nunca" className="text-accent hover:underline">Yo Nunca</Link> es el clásico de las confesiones: lees una frase y los que la hayan hecho beben. <Link href="/juegos/verdad-o-reto" className="text-accent hover:underline">Verdad o Reto</Link> sube la apuesta con preguntas comprometidas y retos físicos. <Link href="/juegos/quien-es-mas-probable" className="text-accent hover:underline">Quién Es Más Probable</Link> convierte al grupo en un jurado: todos señalan a la vez y el más votado bebe. Y <Link href="/juegos/yo-prefiero" className="text-accent hover:underline">Yo Prefiero</Link> plantea dilemas imposibles donde la minoría siempre pierde.
+              <Link href="/juegos/yo-nunca" className="text-accent hover:underline">Yo Nunca</Link> es el clásico de las confesiones: lees una frase y quien la haya hecho puede bajar un dedo. <Link href="/juegos/verdad-o-reto" className="text-accent hover:underline">Verdad o Reto</Link> sube la apuesta con preguntas comprometidas y retos físicos. <Link href="/juegos/quien-es-mas-probable" className="text-accent hover:underline">Quién Es Más Probable</Link> convierte al grupo en un jurado: todos señalan a la vez y comparan sus votos. Y <Link href="/juegos/yo-prefiero" className="text-accent hover:underline">Yo Prefiero</Link> plantea dilemas imposibles donde la minoría siempre pierde.
             </p>
             <p>
               Todos tienen niveles de intensidad (suave, normal y picante), así que puedes adaptarlos al momento de la noche. Ideal para romper el hielo al principio con modo suave y subir a picante cuando la fiesta ya esté caliente. Consulta nuestras <Link href="/blog/100-preguntas-yo-nunca" className="text-accent hover:underline">100 preguntas de Yo Nunca</Link> o las <Link href="/blog/preguntas-picantes-verdad-o-reto" className="text-accent hover:underline">preguntas picantes de Verdad o Reto</Link> para ver ejemplos.

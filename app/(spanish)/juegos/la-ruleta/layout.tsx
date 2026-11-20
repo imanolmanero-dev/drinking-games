@@ -4,11 +4,11 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "La Ruleta — Juego para beber online",
   description:
-    "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos para tu grupo. ¡Sin excusas!",
+    "Gira la ruleta con tu grupo y descubre uno de los 16 retos. En cada turno puedes jugar o pasar.",
   openGraph: {
     title: "La Ruleta — Juego para beber online",
     description:
-      "Gira la ruleta y cumple el castigo que te toque. 16 castigos divertidos. ¡Sin excusas!",
+      "Gira la ruleta y descubre uno de los 16 retos. Puedes pasar en cualquier turno.",
   },
   alternates: {
     canonical: "https://bebergames.com/juegos/la-ruleta",
