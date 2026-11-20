@@ -269,4 +269,12 @@ No tocar t?tulo, H1, Open Graph, contenido visible, gameplay, schema, canonical,
 
 La preparación, las tarjetas y las reglas enlazadas permiten pasar sin beber ni dar explicaciones. Dos retos de consumo se sustituyen por retos sociales. La descripción Open Graph del juego, la descripción WebApplication específica y la meta description de las reglas se ajustan a la mecánica real. La descripción de Twitter conserva el texto general del sitio.
 
-La meta description experimental del juego sigue siendo «Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.». Si se publica la corrección durante el POST (3–30 de noviembre), registrar la fecha, hora y zona del despliegue real. Desde entonces, los resultados de noviembre no permiten atribuir el cambio de CTR de forma aislada a la meta description. Despliegue pendiente.
+## POST del 3 al 30 de noviembre de 2026 — CONFOUNDED
+
+El despliegue de producción del commit `da93ea0ee2e38d9417847f2df4f646934ec0266c` finalizó el 20 de noviembre de 2026 a las 16:00:42 UTC (17:00:42 CET, Madrid). La hora procede del estado `success` del despliegue [7946230785](https://api.github.com/repos/imanolmanero-dev/drinking-games/deployments/7946230785/statuses).
+
+En bebergames.com se verificaron la preparación, ambas revelaciones y el avance con «Siguiente jugador» al pasar. El JavaScript publicado contiene los dos retos sociales de sustitución. También se verificaron las reglas de participación de la página enlazada, su meta description y las descripciones Open Graph y WebApplication del juego.
+
+La meta description experimental del juego se conservó exactamente: «Juega a Verdad o Reto online con amigos desde el navegador. Elige la intensidad y descubre preguntas y retos al azar en cada turno.»
+
+Desde ese despliegue coinciden la descripción experimental y los cambios de contenido. El resultado agregado del POST del 3 al 30 de noviembre queda confundido y no permite atribuir una variación de CTR exclusivamente a la meta description.
