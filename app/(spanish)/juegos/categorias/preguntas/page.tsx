@@ -43,7 +43,7 @@ const juegos = [
   {
     id: "yo-prefiero",
     nombre: "Yo Prefiero",
-    descripcion: "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!",
+    descripcion: "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. Hay 60 dilemas repartidos por intensidad.",
     icono: Scale,
     color: "from-violet-500 to-fuchsia-500",
     shadowColor: "shadow-violet-500/20",

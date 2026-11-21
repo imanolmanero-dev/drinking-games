@@ -93,7 +93,7 @@ const juegos = [
     id: "ring-of-fire",
     nombre: "Ring of Fire",
     descripcion:
-      "Roba una carta del círculo y descubre su regla. Lleva la cuenta de los reyes.",
+      "Roba una carta del mazo y descubre su regla. Lleva la cuenta de los reyes.",
     icono: Flame,
     color: "from-red-500 to-rose-600",
     shadowColor: "shadow-red-500/20",
@@ -104,7 +104,7 @@ const juegos = [
     id: "yo-prefiero",
     nombre: "Yo Prefiero",
     descripcion:
-      "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!",
+      "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. Hay 60 dilemas repartidos por intensidad.",
     icono: Scale,
     color: "from-violet-500 to-fuchsia-500",
     shadowColor: "shadow-violet-500/20",

@@ -2,7 +2,7 @@
   "/": {
     "hashes": [
       "4a65572434d06628d58655feaaa76d50ba2e7a6cb8233ff43510d24af75414b2",
-      "b0928f0f5c68b692202317a86858c9bb85db23f9fef69adabf748c84b6a1b3ce"
+      "bb9d47e1386b3c3deeeae031165adb3341c029711173ed793952e92953a47c7a"
     ],
     "cards": [
       [
@@ -28,12 +28,12 @@
       [
         "/juegos/ring-of-fire",
         "Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!",
-        "Roba una carta del círculo y descubre su regla. Lleva la cuenta de los reyes."
+        "Roba una carta del mazo y descubre su regla. Lleva la cuenta de los reyes."
       ],
       [
         "/juegos/yo-prefiero",
         "A o B, sin excusas. El grupo elige su opción y la minoría bebe. ¡Más de 60 dilemas!",
-        "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!"
+        "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. Hay 60 dilemas repartidos por intensidad."
       ],
       [
         "/juegos/medusa",
@@ -65,7 +65,7 @@
   "/juegos/categorias/preguntas": {
     "hashes": [
       "36de70cc14986a2c241c6671d742fd4f9c9d6a29a5abea3b4037f7c7a6c3433d",
-      "1592ddf1d922ec449bf4bfa3f90857063b44602bb6bae836951ccd81458c5d61"
+      "681269c316c0b04c33632f08d26bfcdad55ee339f47b3d221f3c49de5c4f5bb3"
     ],
     "cards": [
       [
@@ -86,14 +86,14 @@
       [
         "/juegos/yo-prefiero",
         "A o B, sin excusas. El grupo elige y la minoría bebe. ¡Más de 60 dilemas!",
-        "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. ¡Más de 60 dilemas!"
+        "¿A o B? Elegid vuestra opción y descubrid quién está en minoría. Hay 60 dilemas repartidos por intensidad."
       ]
     ]
   },
   "/juegos/la-ruleta": {
     "hashes": [
       "c2a3604bb5472ae44091710c5c482d47ec5a6c8587c947dceda69cb67d876690",
-      "5c571ca9a9a0d3228e2f0855589f0dd3454dedfdd500805dfcb5aaeae7a03d28"
+      "80bd0546076e9bb9e700a1d07b5a9878f288724e24f6acda81217999f45e1e3b"
     ],
     "headings": [
       [

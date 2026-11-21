@@ -24,12 +24,12 @@ import {
 
 // ───── Castigos de la ruleta ─────
 const CASTIGOS = [
-  { texto: "Inventa un lema para el grupo", emoji: "🍺", color: "#a855f7" },
+  { texto: "Inventa un lema para el grupo", emoji: "💬", color: "#a855f7" },
   { texto: "Imita a alguien del grupo", emoji: "🎭", color: "#ec4899" },
-  { texto: "Aplaudid a la vez", emoji: "🍻", color: "#f43f5e" },
+  { texto: "Aplaudid a la vez", emoji: "👏", color: "#f43f5e" },
   { texto: "Un sorbo pequeño, si te apetece", emoji: "🥃", color: "#f97316" },
   { texto: "Cuenta un secreto", emoji: "🤫", color: "#eab308" },
-  { texto: "Tararea una sintonía", emoji: "🍷", color: "#84cc16" },
+  { texto: "Tararea una sintonía", emoji: "🎵", color: "#84cc16" },
   { texto: "Haz 10 flexiones", emoji: "💪", color: "#22c55e" },
   { texto: "Canta una canción", emoji: "🎤", color: "#14b8a6" },
   { texto: "Brindis de grupo", emoji: "🥂", color: "#06b6d4" },
