@@ -4,11 +4,11 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "La Bomba — Juego de Beber con Countdown",
   description:
-    "Juega a La Bomba online. Pasa el móvil antes de que explote el temporizador secreto. El que tenga la bomba cuando explote... ¡bebe! El juego de beber más tenso.",
+    "Juega a La Bomba online. Pasa el móvil mientras corre un temporizador secreto y descubre quién abrirá la siguiente ronda.",
   openGraph: {
     title: "La Bomba — Juego de Beber",
     description:
-      "Pasa el móvil antes de que explote. El que tenga la bomba cuando explote bebe. ¡Tensión pura!",
+      "Enciende la mecha y pasa el móvil. La alarma decide quién abre la siguiente ronda.",
   },
   alternates: {
     canonical: "https://bebergames.com/juegos/la-bomba",

@@ -181,7 +181,7 @@ const juegos = [
   {
     id: "la-bomba",
     nombre: "La Bomba",
-    descripcion: "Temporizador secreto. Pásala antes de que explote. ¡El que la tenga bebe!",
+    descripcion: "Temporizador secreto. Pásala antes de que explote. Quien la tenga abre la siguiente ronda.",
     detalle: "El móvil es la bomba. Nadie sabe cuándo explota. Pasadla de mano en mano hasta que el tiempo llegue a cero. Tensión pura en cada ronda.",
     icono: Zap,
     color: "from-orange-500 to-red-500",

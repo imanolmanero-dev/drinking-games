@@ -76,7 +76,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cómo se juega a La Bomba?",
-      a: "En La Bomba, el móvil actúa como una bomba con un temporizador secreto. Los jugadores se pasan el móvil de mano en mano. Cuando el temporizador llega a cero, el jugador que tenga el móvil en ese momento bebe. Cada ronda tiene un tiempo diferente entre 12 y 40 segundos.",
+      a: "En La Bomba, el móvil actúa como una bomba con un temporizador secreto. Los jugadores se pasan el móvil de mano en mano. Cuando el temporizador llega a cero, quien tenga el móvil abre la siguiente ronda. Cada ronda tiene un tiempo diferente entre 12 y 40 segundos.",
     },
   ],
 
@@ -298,7 +298,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "la-bomba-juego-beber": [
     {
       q: "¿Cómo se juega a La Bomba?",
-      a: "En La Bomba el móvil actúa como una bomba con un temporizador secreto. Los jugadores se pasan el móvil de mano en mano lo más rápido posible. Cuando el temporizador llega a cero, el jugador que tenga el móvil en ese momento bebe. Cada ronda tiene un tiempo aleatorio entre 12 y 40 segundos.",
+      a: "El móvil pasa de mano en mano. Al sonar la alarma, quien lo tenga abre la siguiente ronda o cede el turno. Con nombres, la pantalla indica a quién le toca.",
     },
     {
       q: "¿Cuántas personas se necesitan para jugar a La Bomba?",
@@ -310,7 +310,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Se puede jugar a La Bomba sin alcohol?",
-      a: "Sí. La Bomba funciona perfectamente con cualquier penalización: el que pierde puede beber agua, hacer sentadillas, contar un secreto o asumir cualquier castigo que el grupo decida. BeberGames promueve el juego responsable y la diversión sin presión.",
+      a: "Sí. Solo hace falta el móvil. Puedes pasar el turno sin beber, explicar nada ni hacer un reto.",
     },
   ],
 

@@ -416,3 +416,5 @@ Si la respuesta es sí → actualiza este archivo.
 
 ### Verdad o Reto ES
 - Pasar cualquier tarjeta avanza al siguiente jugador sin beber, justificar la decisión ni confirmar cumplimiento. Comprobar preparación, revelación, retos, reglas enlazadas y descripciones públicas específicas cuando cambie esta mecánica.
+
+- La Bomba conserva un temporizador por ronda. Identificar al portador al detonar, también tras varios pases, y comprobar quién abre la ronda siguiente.

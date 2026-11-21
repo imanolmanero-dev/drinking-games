@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
   title: "Reglas de La Bomba — Cómo Jugar al Juego de la Bomba",
   description:
-    "Aprende a jugar a La Bomba, el juego de beber del temporizador secreto. Pasa el móvil antes de que explote. El que la tenga cuando explote bebe. Reglas y variaciones.",
+    "Pasa el móvil antes de que suene la alarma. Descubre cómo encender la mecha, llevar los turnos y jugar doce rondas con un temporizador secreto.",
 };
 
 export default function LaBombaReglasPage() {
@@ -32,7 +32,7 @@ export default function LaBombaReglasPage() {
             </h1>
             <p className="text-muted text-lg leading-relaxed mb-4">
               Un temporizador secreto. Un móvil que pasa de mano en mano. El
-              que tenga la bomba cuando explote bebe. Así de simple, así de
+              que tenga la bomba abre la ronda siguiente. Así de simple, así de
               tenso.
             </p>
             <p className="text-muted leading-relaxed">
@@ -49,7 +49,7 @@ export default function LaBombaReglasPage() {
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>3 o más jugadores</strong> (cuantos más, más tenso)</li>
               <li>✅ <strong>Un móvil</strong> con este juego</li>
-              <li>✅ <strong>Bebidas</strong> para todos</li>
+              <li>Un sitio cómodo para pasar el móvil de mano en mano</li>
               <li>✅ Reflejos rápidos y sangre fría 😅</li>
             </ul>
           </section>
@@ -77,8 +77,8 @@ export default function LaBombaReglasPage() {
                 },
                 {
                   paso: "4",
-                  titulo: "¡BOOM! — El que la tiene bebe",
-                  desc: "Cuando el temporizador llega a cero, la bomba explota. La persona que la tenga en ese momento bebe. Sin excusas.",
+                  titulo: "¡BOOM! — Cambio de ronda",
+                  desc: "Al sonar la alarma, quien tenga el móvil abre la ronda siguiente o cede el turno. Se puede pasar sin penalización.",
                 },
                 {
                   paso: "5",
@@ -104,19 +104,19 @@ export default function LaBombaReglasPage() {
             <div className="flex flex-col gap-4 text-sm text-muted">
               <div>
                 <strong className="text-foreground">La Bomba con Retos:</strong>{" "}
-                Antes de pasar la bomba, el jugador debe completar un reto rápido
-                (decir 3 capitales, cantar un estribillo, etc.). Si falla, bebe
-                aunque luego explote en otro.
+                Proponed un reto breve, como nombrar tres capitales.
+                Quien quiera puede pasar el móvil directamente.
+
               </div>
               <div>
                 <strong className="text-foreground">La Bomba Inversa:</strong>{" "}
-                La persona que tenga la bomba cuando explote decide quién del
-                grupo bebe — ¡no necesariamente ella misma!
+                Quien tenga la bomba al sonar la alarma propone la categoría
+                para la siguiente ronda.
               </div>
               <div>
                 <strong className="text-foreground">La Bomba Rápida:</strong>{" "}
-                Reduce el tiempo máximo a 20 segundos. La tensión se multiplica.
-                Solo apta para veteranos.
+                Para una variante de mesa con rondas de veinte segundos,
+                usad una alarma propia. La app sortea su propio tiempo.
               </div>
             </div>
           </section>

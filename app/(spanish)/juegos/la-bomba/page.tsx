@@ -33,7 +33,7 @@ export default function LaBombaPage() {
   const [ronda, setRonda] = useState(1);
   const [currentPlayerIdx, setCurrentPlayerIdx] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
-  const [loserName, setLoserName] = useState("");
+  const holderName = players[currentPlayerIdx] ?? "Quien tenga el móvil";
   const [pulse, setPulse] = useState(false);
 
   // Secret countdown — players don't see the timer
@@ -42,9 +42,7 @@ export default function LaBombaPage() {
     const duration =
       Math.floor(Math.random() * (MAX_MS - MIN_MS)) + MIN_MS;
     const timer = setTimeout(() => {
-      const loser =
-        players.length > 0 ? players[currentPlayerIdx] : "¡El que la tenga!";
-      setLoserName(loser);
+
       setPhase("exploded");
       playSound("drink");
       vibrateDevice("everyone");
@@ -106,27 +104,23 @@ export default function LaBombaPage() {
       playSound("success");
     } else {
       setRonda((r) => r + 1);
-      setCurrentPlayerIdx((prev) =>
-        players.length > 0 ? (prev + 1) % players.length : 0
-      );
+
       setPhase("holding");
       playSound("flip");
     }
-  }, [ronda, players.length, playSound]);
+  }, [ronda, playSound]);
 
   const restartGame = useCallback(() => {
     setPhase("setup");
     setRonda(1);
     setCurrentPlayerIdx(0);
     setShowConfetti(false);
-    setLoserName("");
   }, []);
 
   const playAgain = useCallback(() => {
     setRonda(1);
     setCurrentPlayerIdx(0);
     setShowConfetti(false);
-    setLoserName("");
     setPhase("holding");
     playSound("success");
   }, [playSound]);
@@ -151,7 +145,7 @@ export default function LaBombaPage() {
               </h1>
               <p className="text-sm text-muted max-w-xs">
                 La bomba tiene un temporizador secreto. Pásala antes de que
-                explote. ¡El que la tenga cuando explote bebe!
+                explote. Quien tenga el móvil abre la siguiente ronda. Puedes pasar sin penalización.
               </p>
               <Link
                 href="/juegos/la-bomba/reglas"
@@ -268,7 +262,7 @@ export default function LaBombaPage() {
             <h3>Preguntas frecuentes</h3>
             <p><strong>¿Cuántos jugadores hacen falta?</strong> Con 3 ya funciona, pero con 5 o más el caos se dispara. Cuanta más gente, más incertidumbre sobre quién va a tener la bomba cuando explote.</p>
             <p><strong>¿La bomba siempre explota en el mismo tiempo?</strong> No. Cada ronda tiene un tiempo diferente y completamente aleatorio entre 12 y 40 segundos. Nadie puede predecirlo.</p>
-            <p><strong>¿Qué pasa si la bomba explota en el traspaso?</strong> Si explota justo cuando la estás pasando, el que la envía bebe. En caso de duda, el que la tenía en la mano pierde.</p>
+            <p><strong>¿Y si suena durante un pase?</strong> Con nombres, empieza quien figure en pantalla. Sin nombres, quien tenga el móvil. Podéis ceder el turno.</p>
 
             <h3>Juegos de tensión que también te gustarán</h3>
             <ul>
@@ -302,8 +296,8 @@ export default function LaBombaPage() {
           </motion.div>
           <h2 className="text-4xl font-black text-orange-400">¡BOOM!</h2>
           <div className="rounded-2xl border border-orange-500/30 bg-orange-500/10 px-6 py-4">
-            <p className="text-lg font-bold">{loserName}</p>
-            <p className="text-sm text-muted mt-1">¡Fondo blanco! 🍺</p>
+            <p className="text-lg font-bold">{holderName}</p>
+            <p className="text-sm text-muted mt-1">{ronda === TOTAL_RONDAS ? "¡Última ronda completada!" : "Te toca abrir la siguiente ronda. Puedes ceder el turno."}</p>
           </div>
           <p className="text-xs text-muted">
             Ronda {ronda} de {TOTAL_RONDAS}
