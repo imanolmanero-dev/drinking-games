@@ -25,7 +25,7 @@ const juegos = [
   {
     id: "rey-de-la-copa",
     nombre: "El Rey de la Copa",
-    descripcion: "Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la copa entera. ¡El clásico!",
+    descripcion: "Roba cartas y descubre sus reglas. Al cuarto rey se aparta la copa. ¡El clásico!",
     icono: Crown,
     color: "from-amber-400 to-yellow-500",
     shadowColor: "shadow-amber-400/20",

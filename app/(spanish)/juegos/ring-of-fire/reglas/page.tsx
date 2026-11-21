@@ -31,7 +31,7 @@ export default function RingOfFireReglasPage() {
               Cómo Jugar a Ring of Fire
             </h1>
             <p className="text-muted text-lg leading-relaxed">
-              Conocido internacionalmente como King's Cup (La Copa del Rey) o Cascada. El rey indiscutible de los juegos de cartas universitarios, ahora sin necesidad de llevar una baraja sucia en el bolsillo.
+              Conocido internacionalmente como King&apos;s Cup (La Copa del Rey) o Cascada. El rey indiscutible de los juegos de cartas universitarios, ahora sin necesidad de llevar una baraja sucia en el bolsillo.
             </p>
           </div>
         </header>
@@ -98,7 +98,7 @@ export default function RingOfFireReglasPage() {
               <List className="h-5 w-5 text-red-500" /> Significado de la Baraja Clásica
             </h2>
             <div className="flex flex-col gap-3 text-sm text-muted leading-relaxed">
-              <p>Aunque nuestra app ya te dicta qué hacer en pantalla para que no tengas que memorizar aburridas tablas, aquí te dejamos las mecánicas populares en toda España y LATAM:</p>
+              <p>Estas son las propuestas que veréis al robar cada carta en la app:</p>
               
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 list-none p-0">
                 {CARTAS_ROF.map(carta => <li key={carta.valor} className="bg-surface-hover p-3 rounded-lg border border-border"><strong>{carta.valor} — {carta.nombre}:</strong> {carta.descripcion}</li>)}

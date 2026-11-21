@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   },
   title: "Reglas de El Rey de la Copa — Cómo Jugar",
   description:
-    "Aprende las reglas de El Rey de la Copa. Roba cartas, cumple sus reglas y el que saque el cuarto Rey bebe la copa entera. Guía completa con todas las reglas de cada carta.",
+    "Consulta las reglas de las 13 cartas del Rey de la Copa, cómo jugar la cascada y cómo cerrar la partida al cuarto rey.",
 };
 
 export default function ReyReglasPage() {
@@ -34,7 +34,7 @@ export default function ReyReglasPage() {
             </h1>
             <p className="text-muted text-lg leading-relaxed">
               El clásico juego de cartas para beber. Cada carta tiene una regla
-              diferente y el que saque el cuarto Rey bebe la copa entera.
+              diferente y el cuarto rey cierra la partida.
             </p>
           </div>
         </header>
@@ -46,7 +46,7 @@ export default function ReyReglasPage() {
             </h2>
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>3 o más jugadores</strong></li>
-              <li>✅ <strong>Bebidas</strong> para todos</li>
+              <li>Espacio para que todos vean la carta</li>
               <li>✅ <strong>Un vaso grande central</strong> — la Copa del Rey</li>
               <li>✅ Este juego — ¡la baraja es virtual!</li>
             </ul>
@@ -61,17 +61,17 @@ export default function ReyReglasPage() {
                 {
                   paso: "1",
                   titulo: "Poneros en círculo",
-                  desc: "El vaso grande (la Copa del Rey) va en el centro. Todos tienen su bebida a mano.",
+                  desc: "Colocad la copa en el centro. Puede quedarse vacía toda la partida.",
                 },
                 {
                   paso: "2",
                   titulo: "Robar cartas por turnos",
-                  desc: "En orden, cada jugador pulsa 'Robar carta'. La carta muestra su regla y hay que cumplirla inmediatamente.",
+                  desc: "En orden, cada jugador pulsa 'Robar carta'. La carta muestra su regla y puedes probarla o pasar sin penalización.",
                 },
                 {
                   paso: "3",
                   titulo: "Reglas especiales de los Reyes",
-                  desc: "Cada vez que alguien saca un Rey, debe echar parte de su bebida en la Copa del Rey. El que saque el 4º Rey bebe toda la copa. ¡Y lo que haya dentro!",
+                  desc: "Los tres primeros reyes permiten una aportación opcional. Al cuarto rey se retira la copa y termina la partida.",
                 },
                 {
                   paso: "4",
@@ -138,15 +138,15 @@ export default function ReyReglasPage() {
               {[
                 {
                   q: "¿Qué pasa si se rompe el círculo de cartas en la vida real?",
-                  a: "En la versión física del juego, las cartas suelen colocarse boca abajo alrededor del vaso formando un círculo continuo (el 'anillo de fuego'). Si alguien roba una carta y rompe la continuidad del círculo, esa persona debe beberse su vaso entero. Por suerte, jugando en BeberGames con la baraja digital, no tienes que preocuparte por romper ningún círculo de cartas ni de mancharlas con bebida.",
+                  a: "Volved a juntar las cartas y continuad. Romper el círculo no tiene penalización.",
                 },
                 {
                   q: "¿Se pueden cambiar las reglas de las cartas?",
-                  a: "¡Por supuesto! Esta es la belleza del Rey de la Copa. Las reglas que usamos en la aplicación son las más comunes y estandarizadas (las llamadas reglas internacionales), pero cada grupo de amigos tiene sus propias variaciones regionales. Si preferís que el 8 sea 'Mates' en lugar de 'Regla', simplemente poneos de acuerdo antes de empezar la partida.",
+                  a: "Sí. La pantalla muestra nuestra variante. Acordad cualquier cambio en la mesa antes de empezar y respetad a quien prefiera pasar.",
                 },
                 {
                   q: "¿Qué cantidad hay que echar en la Copa del Rey?",
-                  a: "Normalmente, cuando sale un Rey, el jugador echa un chorrito generoso de su propia bebida en el vaso central. No hay una medida exacta, pero suele ser un 20-30% de lo que le quede en su vaso. El problema viene cuando cada uno bebe cosas totalmente distintas (cerveza, vino, refrescos, ron...). La mezcla final que se tiene que beber el que saque el 4º Rey suele ser bastante... interesante.",
+                  a: "Puedes dejar la copa vacía o añadir una pequeña cantidad cuando salga uno de los tres primeros reyes. Al cuarto rey se aparta y se desecha el contenido.",
                 },
                 {
                   q: "¿Se puede jugar al Rey de la Copa con 2 personas?",
@@ -163,15 +163,15 @@ export default function ReyReglasPage() {
               faqs={[
                 {
                   q: "¿Qué pasa si se rompe el círculo de cartas en la vida real?",
-                  a: "En la versión física del juego, si alguien roba una carta y rompe la continuidad del círculo, esa persona debe beberse su vaso entero. En BeberGames usamos una baraja digital para evitar este problema.",
+                  a: "Volved a juntar las cartas y continuad. Romper el círculo no tiene penalización.",
                 },
                 {
                   q: "¿Se pueden cambiar las reglas de las cartas?",
-                  a: "¡Por supuesto! Las reglas que usamos en la aplicación son las más comunes y estandarizadas, pero cada grupo de amigos tiene sus propias variaciones regionales. Poneos de acuerdo antes de empezar.",
+                  a: "Sí. La pantalla muestra nuestra variante. Acordad cualquier cambio en la mesa antes de empezar y respetad a quien prefiera pasar.",
                 },
                 {
                   q: "¿Qué cantidad hay que echar en la Copa del Rey?",
-                  a: "Normalmente, cuando sale un Rey, el jugador echa un chorrito generoso de su propia bebida en el vaso central. No hay una medida exacta, suele ser un 20-30% de lo que le quede en su vaso.",
+                  a: "Puedes dejar la copa vacía o añadir una pequeña cantidad cuando salga uno de los tres primeros reyes. Al cuarto rey se aparta y se desecha el contenido.",
                 },
                 {
                   q: "¿Se puede jugar al Rey de la Copa con 2 personas?",

@@ -166,7 +166,7 @@ const juegos = [
   {
     id: "rey-de-la-copa",
     nombre: "El Rey de la Copa",
-    descripcion: "Roba cartas y cumple sus reglas. El 4º Rey bebe la copa entera.",
+    descripcion: "Roba cartas y descubre sus reglas. Al cuarto rey se aparta la copa.",
     detalle: "La variación española del Ring of Fire con sus propias reglas por carta. Baraja completa de 52 cartas en formato digital. Incluye reglas en español.",
     icono: Crown,
     color: "from-amber-400 to-yellow-500",

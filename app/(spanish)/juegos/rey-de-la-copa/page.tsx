@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useCallback, useMemo } from "react";
+import { useState, useCallback } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import {
@@ -10,7 +10,6 @@ import {
   Users,
   ChevronRight,
   RotateCcw,
-  Shuffle,
   Clock,
   BookOpen,
 } from "lucide-react";
@@ -18,6 +17,7 @@ import { useApp } from "@/lib/AppContext";
 import Confetti from "@/components/ui/Confetti";
 
 import {
+  reglasCartas,
   buildDeck,
   shuffleDeck,
   type Carta,
@@ -35,10 +35,8 @@ export default function ReyDeLaCopaPage() {
   const [inputValue, setInputValue] = useState("");
   const [deck, setDeck] = useState<Carta[]>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [kingsDrawn, setKingsDrawn] = useState(0);
+  const kingsDrawn = deck.slice(0, currentIndex + 1).filter(card => card.regla.esCopa).length;
   const [isFlipping, setIsFlipping] = useState(false);
-  const [showKingCup, setShowKingCup] = useState(false);
-  const [showConfetti, setShowConfetti] = useState(false);
 
   const addPlayer = useCallback(() => {
     const name = inputValue.trim();
@@ -68,7 +66,6 @@ export default function ReyDeLaCopaPage() {
     const newDeck = shuffleDeck(buildDeck());
     setDeck(newDeck);
     setCurrentIndex(0);
-    setKingsDrawn(0);
     setPhase("playing");
     savePlayersToRecent(players);
     playSound("success");
@@ -80,19 +77,12 @@ export default function ReyDeLaCopaPage() {
     playSound("flip");
     vibrateDevice("flip");
 
-    const carta = deck[currentIndex];
-    if (carta?.regla.esCopa) {
-      const newKings = kingsDrawn + 1;
-      setKingsDrawn(newKings);
-      if (newKings === 4) {
-        setShowKingCup(true);
-        playSound("drink");
+    setTimeout(() => {
+      if (deck[currentIndex + 1]?.regla.esCopa && kingsDrawn === 3) {
+        playSound("everyone");
         vibrateDevice("everyone");
       }
-    }
-
-    setTimeout(() => {
-      setCurrentIndex((prev) => prev + 1);
+      setCurrentIndex(currentIndex + 1);
       setIsFlipping(false);
     }, 300);
   }, [isFlipping, deck, currentIndex, kingsDrawn, playSound, vibrateDevice]);
@@ -101,21 +91,14 @@ export default function ReyDeLaCopaPage() {
     setPhase("setup");
     setPlayers([]);
     setCurrentIndex(0);
-    setKingsDrawn(0);
-    setShowKingCup(false);
-    setShowConfetti(false);
   }, []);
 
   const shuffleAndRestart = useCallback(() => {
     setDeck(shuffleDeck(buildDeck()));
     setCurrentIndex(0);
-    setKingsDrawn(0);
-    setShowKingCup(false);
-    setShowConfetti(false);
     playSound("success");
   }, [playSound]);
 
-  const isGameOver = currentIndex >= deck.length && deck.length > 0;
   const currentCard = deck[currentIndex];
   const progress = deck.length ? Math.round((currentIndex / deck.length) * 100) : 0;
   const isRed = currentCard ? RED_PALOS.includes(currentCard.palo) : false;
@@ -138,8 +121,8 @@ export default function ReyDeLaCopaPage() {
                 El Rey de la Copa
               </h1>
               <p className="text-sm text-muted max-w-xs">
-                Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la
-                copa entera. ¡Que empiece el reinado!
+                Roba cartas y descubre su regla. Puedes pasar cualquier carta.
+                El cuarto rey cierra la partida.
               </p>
               <Link
                 href="/juegos/rey-de-la-copa/reglas"
@@ -245,30 +228,18 @@ export default function ReyDeLaCopaPage() {
               El <strong>Rey de la Copa</strong> — también conocido como Kings Cup o Círculo de la Muerte — es el juego de beber con cartas más famoso del mundo. Nuestra versión digital genera la baraja y hace de árbitro para que podáis jugar en cualquier sitio sin necesidad de cartas físicas.
             </p>
             <p>
-              El concepto es simple: cada carta tiene una regla. Robar una carta activa esa regla al instante. El jugador que saque el cuarto Rey tiene que beberse la Copa del Rey entera, con todo lo que el grupo haya vertido en ella durante la partida.
+              Colocad la copa en el centro y robad por turnos. Cada rey cuenta, aunque la copa siga vacía. Al cuarto rey se aparta la copa.
             </p>
 
             <h3>Las cartas y sus reglas</h3>
             <ul>
-              <li><strong>As — Cascada:</strong> Todos beben a la vez. El jugador a tu derecha no puede parar hasta que tú pares, y así sucesivamente.</li>
-              <li><strong>2 — Dar:</strong> Das dos tragos a quien quieras.</li>
-              <li><strong>3 — Tomar:</strong> Bebes tú tres tragos.</li>
-              <li><strong>4 — Suelo:</strong> El último en tocar el suelo bebe.</li>
-              <li><strong>5 — Chicos:</strong> Todos los chicos beben.</li>
-              <li><strong>6 — Chicas:</strong> Todas las chicas beben.</li>
-              <li><strong>7 — Cielo:</strong> Último en señalar al techo bebe.</li>
-              <li><strong>8 — Pareja:</strong> Eliges a alguien. Cada vez que uno bebe, el otro también.</li>
-              <li><strong>9 — Rima:</strong> Dices una palabra y el grupo rima en cadena. El que falla, bebe.</li>
-              <li><strong>10 — Categorías:</strong> Eliges una categoría (marcas de coches, países...) y el grupo va nombrando. El que falla, bebe.</li>
-              <li><strong>J — Norma:</strong> Creas una regla que dura toda la partida. El que la incumple, bebe.</li>
-              <li><strong>Q — Pregunta:</strong> Solo puedes hablar en preguntas. El que afirme algo, bebe.</li>
-              <li><strong>K — Rey:</strong> Vierte parte de tu bebida en la Copa del Rey. El 4º Rey se la bebe entera.</li>
+              {reglasCartas.map(regla => <li key={regla.valor}><strong>{regla.valor} — {regla.titulo}:</strong> {regla.descripcion}</li>)}
             </ul>
 
             <h3>Preguntas frecuentes</h3>
-            <p><strong>¿Cuántos jugadores hacen falta?</strong> Funciona mejor con 4 a 8 personas. Con más gente, las normas del Jack se acumulan y el juego se vuelve caótico (en el buen sentido).</p>
-            <p><strong>¿Qué se pone en la Copa del Rey?</strong> Cada jugador que saca un Rey vierte un poco de lo que esté bebiendo. La mezcla resultante es generalmente horrible, lo que añade tensión extra al juego.</p>
-            <p><strong>¿Se puede jugar sin alcohol?</strong> Sí. La Copa del Rey puede ser de refresco, y los tragos pueden ser sorbos de cualquier bebida.</p>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Funciona bien con un grupo de cuatro a ocho.</p>
+            <p><strong>¿Qué se pone en la copa?</strong> Puedes dejarla vacía. Cualquier aportación es opcional.</p>
+            <p><strong>¿Se puede jugar sin alcohol?</strong> Sí. Puedes brindar con palabras o pasar cualquier carta.</p>
 
             <h3>Otros juegos de cartas que te gustarán</h3>
             <ul>
@@ -284,9 +255,10 @@ export default function ReyDeLaCopaPage() {
   }
 
   // 4th King screen
-  if (showKingCup) {
+  if (kingsDrawn === 4) {
     return (
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
+        <Confetti active />
         <motion.div
           initial={{ scale: 0.5, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
@@ -302,57 +274,20 @@ export default function ReyDeLaCopaPage() {
           <h2 className="text-3xl font-black text-amber-400">
             ¡4º REY!
           </h2>
-          <p className="text-xl font-bold">¡BEBE LA COPA ENTERA!</p>
+          <p className="text-xl font-bold">Apartad la copa del centro</p>
           <p className="text-muted text-sm max-w-xs">
-            El que ha sacado el cuarto Rey tiene que beberse todo lo que hay en
-            la copa del Rey. ¡Sin excusas!
+            El cuarto rey cierra la partida.
+            Si la copa contiene bebida, desechad lo que quede.
           </p>
           <button
-            onClick={() => setShowKingCup(false)}
+            onClick={shuffleAndRestart}
             className="mt-4 flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-[1.02]"
           >
-            Continuar jugando <ChevronRight className="h-4 w-4" />
+            Volver a barajar <ChevronRight className="h-4 w-4" />
           </button>
-        </motion.div>
-      </div>
-    );
-  }
-
-  // Game Over
-  if (isGameOver) {
-    if (!showConfetti) setShowConfetti(true);
-    return (
-      <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
-        <Confetti active={showConfetti} />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="flex flex-col items-center gap-6 text-center"
-        >
-          <div className="text-6xl">🎉</div>
-          <h2 className="text-2xl font-extrabold sm:text-3xl">
-            ¡Se acabó la baraja!
-          </h2>
-          <p className="text-muted max-w-xs text-sm">
-            Las {deck.length} cartas han sido robadas. ¿Otra partida?
-          </p>
-          <div className="flex gap-3">
-            <button
-              onClick={shuffleAndRestart}
-              className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-amber-400 to-yellow-500 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-amber-400/25 transition-all hover:scale-105"
-            >
-              <Shuffle className="h-4 w-4" />
-              Jugar otra vez
-            </button>
-            <button
-              onClick={restartGame}
-              className="flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-3 text-sm font-medium transition-all hover:bg-surface-hover"
-            >
-              <RotateCcw className="h-4 w-4" />
-              Cambiar jugadores
-            </button>
-          </div>
-
+          <button onClick={restartGame} className="flex items-center gap-2 rounded-xl border border-border px-5 py-3">
+            <RotateCcw className="h-4 w-4" /> Cambiar jugadores
+          </button>
         </motion.div>
       </div>
     );
@@ -439,10 +374,12 @@ export default function ReyDeLaCopaPage() {
                 </p>
               </div>
 
+              <p className="text-xs text-muted">Puedes pasar esta carta sin penalización.</p>
+
               {/* King indicator */}
               {currentCard?.regla.esCopa && (
                 <div className="rounded-full bg-amber-400/15 border border-amber-400/30 px-3 py-1 text-xs font-semibold text-amber-400">
-                  👑 Rey {kingsDrawn}/4 — ¡Llena la copa!
+                  👑 Rey a la vista — Puedes dejar la copa vacía.
                 </div>
               )}
             </div>

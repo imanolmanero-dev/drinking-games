@@ -1,3 +1,4 @@
+import { beforeCriticalGames } from "./helpers/critical-games-source.mjs";
 import { assertHalloweenCompatible } from "./helpers/halloween-baseline.mjs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
@@ -33,7 +34,7 @@ const read = file => readFileSync(file, "utf8").replace(/\r\n/g, "\n");
 const old = file => execFileSync("git", ["show", `${base}:${file}`], { encoding: "utf8" });
 
 function assertCardSource(file, source) {
-  assert.equal(source, projectEs03(file, old(file)), file);
+  assert.equal(beforeCriticalGames(file, source), projectEs03(file, old(file)), file);
 }
 
 test("ES-03 only changes reviewed card-cluster fragments; all metadata and protected sources stay intact", () => {

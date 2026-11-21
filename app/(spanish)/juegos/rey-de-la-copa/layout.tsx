@@ -4,11 +4,11 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "El Rey de la Copa — Juego de Cartas para Beber",
   description:
-    "Juega a El Rey de la Copa online. Roba cartas y cumple sus reglas. El cuarto Rey tiene que beberse la copa entera. ¡El juego de cartas más épico para beber!",
+    "Juega al Rey de la Copa online. Descubre las 13 reglas de la baraja, pasa cuando quieras y cuenta los reyes hasta el final de la partida.",
   openGraph: {
     title: "El Rey de la Copa — Juego de Cartas para Beber",
     description:
-      "Roba cartas y cumple sus reglas. El cuarto Rey bebe la copa. El clásico juego de cartas para beber.",
+      "Roba cartas, juega la cascada y aparta la copa al cuarto rey.",
   },
   alternates: {
     canonical: "https://bebergames.com/juegos/rey-de-la-copa",

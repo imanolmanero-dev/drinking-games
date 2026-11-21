@@ -29,7 +29,7 @@ const GAME_DESCRIPTIONS: Record<string, string> = {
   "ring-of-fire": "Roba cartas, pasa la ola y cuenta los reyes. El cuarto cierra la partida.",
   "yo-prefiero": "A o B, sin excusas. El grupo elige su opción y la minoría bebe. Más de 60 dilemas.",
   "medusa": "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",
-  "rey-de-la-copa": "Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la copa entera.",
+  "rey-de-la-copa": "Roba cartas y descubre sus reglas. Al cuarto rey se aparta la copa.",
   "la-bomba": "Temporizador secreto. Pasa el móvil antes de que explote. Quien la tenga abre la siguiente ronda.",
   "tabu": "Describe la palabra sin decir las prohibidas. Si dices una tabú, todo tu equipo bebe.",
   "beer-pong": "El árbitro digital para tu partida de Beer Pong. Marca vasos, gestiona turnos y reglas especiales.",

@@ -1,3 +1,4 @@
+import { beforeCriticalGames } from "./helpers/critical-games-source.mjs";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -127,7 +128,7 @@ test("DELIBERATE SEO ADDITION is the only change to the six Spanish page sources
   for (const route of ["", "juegos/", "sobre-nosotros/", "contacto/", "legal/privacidad/", "legal/cookies/"]) {
     const file = `app/(spanish)/${route}page.tsx`;
     const original = execFileSync("git", ["show", `${baseline}:${file}`], { encoding: "utf8" });
-    const withoutAddition = read(file).replace(/      \{\/\* HALLOWEEN DISCOVERY START[^]*?      \{\/\* HALLOWEEN DISCOVERY END \*\/\}\r?\n/, "").replace(/\r\n/g, "\n")
+    const withoutAddition = beforeCriticalGames(file, read(file)).replace(/      \{\/\* HALLOWEEN DISCOVERY START[^]*?      \{\/\* HALLOWEEN DISCOVERY END \*\/\}\r?\n/, "").replace(/\r\n/g, "\n")
       .replace('import { languageAlternates } from "@/lib/i18n/routes";\n', "")
       .replace(/    \/\/ DELIBERATE SEO ADDITION: reciprocal published language equivalents\.\n    languages: languageAlternates\("[a-z-]+"\),\n/, "");
     let expected = original;

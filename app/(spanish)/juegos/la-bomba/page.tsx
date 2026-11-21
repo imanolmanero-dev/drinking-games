@@ -256,7 +256,7 @@ export default function LaBombaPage() {
             <ul>
               <li><strong>Modo libre:</strong> Pasad el móvil físicamente de mano en mano. Sin botones, sin trampa. El pánico es real.</li>
               <li><strong>Modo con nombres:</strong> Introduce los jugadores y la app controla los turnos automáticamente. Pulsa el botón para pasar la bomba al siguiente.</li>
-              <li><strong>Categoría Explosiva:</strong> Antes de pasar, cada uno debe decir una palabra de una categoría elegida (ej. marcas de coches, países, nombres). Si te quedas en blanco, la bomba te explota en la cara.</li>
+              <li><strong>Categoría Explosiva:</strong> En la mesa podéis nombrar países antes de cada pase. Si no se te ocurre ninguno, entrega el móvil sin penalización.</li>
             </ul>
 
             <h3>Preguntas frecuentes</h3>
@@ -266,9 +266,9 @@ export default function LaBombaPage() {
 
             <h3>Juegos de tensión que también te gustarán</h3>
             <ul>
-              <li><Link href="/juegos/medusa" className="text-orange-500 underline">Medusa</Link> — Miradas cruzadas = beber. Sin temporizador, pero igual de tenso.</li>
+              <li><Link href="/juegos/medusa" className="text-orange-500 underline">Medusa</Link> — Cruzad miradas a la señal.</li>
               <li><Link href="/juegos/ring-of-fire" className="text-orange-500 underline">Ring of Fire</Link> — Roba cartas y cumple sus reglas. El 4º Rey paga el precio máximo.</li>
-              <li><Link href="/juegos/triman" className="text-orange-500 underline">Triman</Link> — El dado manda. El Señor del 3 reparte castigos sin piedad.</li>
+              <li><Link href="/juegos/triman" className="text-orange-500 underline">Triman</Link> — Tira el dado y sigue el turno del Señor del 3.</li>
             </ul>
             <p>Consulta el <Link href="/juegos/la-bomba/reglas" className="text-orange-500 underline">manual de La Bomba</Link> para todas las reglas y variantes avanzadas.</p>
           </div>
@@ -336,7 +336,7 @@ export default function LaBombaPage() {
             ¡{TOTAL_RONDAS} rondas completadas!
           </h2>
           <p className="text-muted max-w-xs text-sm">
-            La mecha se ha apagado. Esperemos que aún todos estéis de pie. 💣
+            La mecha se ha apagado. ¿Otra partida con el mismo grupo? 💣
           </p>
           <div className="flex gap-3">
             <button

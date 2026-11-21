@@ -14,87 +14,87 @@ export const reglasCartas: ReglaCartaRey[] = [
     emoji: "🌊",
     titulo: "Cascada",
     descripcion:
-      "Empieza a beber. El de tu derecha empieza cuando tú pares, y así en cascada. Nadie puede parar antes que la persona a su izquierda.",
+      "Inicia una cascada de brindis. Cada persona puede alzar su vaso, dar un sorbo pequeño opcional o pasar. Puedes parar inmediatamente, sin esperar a nadie.",
   },
   {
     valor: "2",
     emoji: "👆",
     titulo: "Tú eliges",
-    descripcion: "Señala a alguien del grupo. Esa persona bebe.",
+    descripcion: "Invita a alguien a dedicar un brindis al grupo. Puede pasar.",
   },
   {
     valor: "3",
     emoji: "🍺",
-    titulo: "Yo bebo",
-    descripcion: "Mala suerte. Tú eres quien bebe esta vez.",
+    titulo: "Mi brindis",
+    descripcion: "Dedica tú el brindis de esta carta, con palabras o un gesto.",
   },
   {
     valor: "4",
     emoji: "🌍",
     titulo: "Suelo",
     descripcion:
-      "¡Todos al suelo! El último en tocar el suelo con la mano bebe.",
+      "Toca la mesa para que el grupo copie el gesto.",
   },
   {
     valor: "5",
     emoji: "👦",
     titulo: "Los chicos",
-    descripcion: "Todos los chicos beben. Las chicas se salvan... por ahora.",
+    descripcion: "Los chicos que quieran pueden saludar al grupo.",
   },
   {
     valor: "6",
     emoji: "👧",
     titulo: "Las chicas",
-    descripcion: "Todas las chicas beben. Los chicos pasan.",
+    descripcion: "Las chicas que quieran pueden saludar al grupo.",
   },
   {
     valor: "7",
     emoji: "☁️",
     titulo: "Al cielo",
     descripcion:
-      "¡Todos señalen al cielo! El último en levantar el dedo bebe.",
+      "Señala al cielo. Quien quiera puede seguirte.",
   },
   {
     valor: "8",
     emoji: "🤝",
     titulo: "Amigo del alma",
     descripcion:
-      "Elige a alguien. A partir de ahora, cuando bebas tú bebe él/ella también (y viceversa). La regla dura hasta que salga otro 8.",
+      "Invita a alguien a compartir un saludo. Podéis repetirlo cuando salga otra carta o dejarlo ahí.",
   },
   {
     valor: "9",
     emoji: "🎵",
     titulo: "Rima",
     descripcion:
-      "Di una palabra. El grupo dice palabras que rimen. El primero que falle o se repita bebe.",
+      "Di una palabra y buscad rimas. La cadena termina cuando alguien pasa o repite.",
   },
   {
     valor: "10",
     emoji: "📋",
     titulo: "Categorías",
     descripcion:
-      "Elige una categoría (países, marcas de coches, etc.). El grupo nombra cosas de esa categoría. El que falle bebe.",
+      "Elige un tema y nombrad ejemplos por turnos. Al repetir o pasar, termina la cadena.",
   },
   {
     valor: "J",
     emoji: "📜",
     titulo: "Haz una norma",
     descripcion:
-      "Invéntate una regla que todo el grupo debe cumplir el resto de la partida. Quien la incumpla bebe.",
+      "Proponed una norma que todo el grupo acepte, como usar apodos. Podéis retirarla cuando queráis.",
   },
   {
     valor: "Q",
     emoji: "❓",
     titulo: "La pregunta",
     descripcion:
-      "Mira a alguien y hazle una pregunta. Debe responder con otra pregunta. El primero que responda de verdad o se quede en blanco bebe.",
+      "Haz una pregunta. Quien quiera sigue con otra pregunta; una respuesta o un pase cierra la cadena.",
   },
   {
     valor: "K",
     emoji: "👑",
     titulo: "Rey de la Copa",
     descripcion:
-      "Llena la Copa del Rey con parte de tu bebida. ¡El que saque el cuarto Rey debe beberse toda la copa!",
+      "En los tres primeros reyes puedes añadir un poco de tu bebida a la copa o dejarla vacía. Al cuarto rey se aparta la copa y se desecha el contenido.",
     esCopa: true,
   },
 ];

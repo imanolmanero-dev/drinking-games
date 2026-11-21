@@ -1,3 +1,4 @@
+import { beforeCriticalGames } from "./helpers/critical-games-source.mjs";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
@@ -20,8 +21,11 @@ const previous = baselineModule("lib/data/rey-de-la-copa.ts");
 const current = require("../lib/data/rey-de-la-copa.ts");
 
 test("ES characterization: deck order, suit/rank values, rules and King flags match Phase 2", () => {
-  assert.deepEqual(current.reglasCartas, previous.reglasCartas);
-  assert.deepEqual(current.buildDeck(), previous.buildDeck());
+  beforeCriticalGames("lib/data/rey-de-la-copa.ts", readFileSync("lib/data/rey-de-la-copa.ts", "utf8"));
+  const identity = ({ valor, emoji, esCopa }) => ({ valor, emoji, esCopa });
+  assert.deepEqual(current.reglasCartas.map(identity), previous.reglasCartas.map(identity));
+  const cardIdentity = ({ valor, palo, regla }) => ({ valor, palo, regla: identity(regla) });
+  assert.deepEqual(current.buildDeck().map(cardIdentity), previous.buildDeck().map(cardIdentity));
   const deck = current.buildDeck();
   assert.equal(deck.length, 52);
   assert.equal(new Set(deck.map((card) => card.valor + card.palo)).size, 52);
@@ -60,7 +64,7 @@ test("ES game flow, rules, metadata and integrations stay identical beyond the e
       expected = expected.replace('"la-ruleta": "Gira la ruleta y cumple el castigo que te toque. Sin excusas."', '"la-ruleta": "Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno."');
       expected = expected.replace('"verdad-o-reto": "Elige entre responder una verdad comprometida o cumplir un reto. Si no cumples, bebes."', '"verdad-o-reto": "Elige entre responder una pregunta o probar un reto. Puedes pasar cualquier tarjeta sin penalización."');
     }
-    assert.equal(readFileSync(file, "utf8").replace(/\r\n/g, "\n"), expected, file);
+    assert.equal(beforeCriticalGames(file, readFileSync(file, "utf8").replace(/\r\n/g, "\n")), expected, file);
   }
 });
 

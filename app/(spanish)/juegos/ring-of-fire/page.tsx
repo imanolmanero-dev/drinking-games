@@ -109,7 +109,7 @@ export default function RingOfFirePage() {
     vibrateDevice("flip");
     
     setTimeout(() => {
-      setCurrentIndex((prev) => prev + 1);
+      setCurrentIndex(currentIndex + 1);
       
       const newCard = deck[currentIndex];
       if (newCard.valor === "K" && kingsDrawn + 1 >= 4) {
@@ -288,8 +288,8 @@ export default function RingOfFirePage() {
             <h3>Otros juegos de cartas que te gustarán</h3>
             <ul>
               <li><Link href="/juegos/rey-de-la-copa" className="text-rose-500 underline">Rey de la Copa</Link> — La versión española con reglas ligeramente diferentes para cada número.</li>
-              <li><Link href="/juegos/la-piramide" className="text-rose-500 underline">La Pirámide</Link> — Apuesta, farolea y reparte tragos. Memoria y mentira al servicio del alcohol.</li>
-              <li><Link href="/juegos/triman" className="text-rose-500 underline">Triman</Link> — Un dado decide quién bebe. El que saque el 3 tiene un problema gordo.</li>
+              <li><Link href="/juegos/la-piramide" className="text-rose-500 underline">La Pirámide</Link> — Memoriza tus cartas y decide cuándo farolear.</li>
+              <li><Link href="/juegos/triman" className="text-rose-500 underline">Triman</Link> — Lanza el dado y descubre quién lleva el título de Triman.</li>
             </ul>
             <p>Consulta todas las equivalencias de cartas y variantes en el <Link href="/juegos/ring-of-fire/reglas" className="text-rose-500 underline">manual completo de Ring of Fire</Link>.</p>
           </div>
@@ -443,6 +443,7 @@ export default function RingOfFirePage() {
                 <p className="text-center text-sm text-muted">
                   {currentCard.descripcion}
                 </p>
+                <p className="text-xs text-muted">Puedes pasar esta carta sin penalización.</p>
               </div>
             </motion.div>
           ) : null}

@@ -1,0 +1,190 @@
+{
+  "/juegos/ring-of-fire": {
+    "metadata": [
+      "386a9d62c1400d058b051f4e24eccfef9f0a80935543f0ad9ca0071d10a253dc",
+      "926750557d62baf67e065842c3c18c598be38288f694d32e76d210464ef8a235"
+    ],
+    "schema": [
+      "ff485ae3a8db120afb25afa45cc4ae5e9559f697bc773644cca097a34b91cbb9",
+      "2fd259a979859c2b2cc2acfc3d2846bd3ee8c043d8d894e63a039aeb27f1801d"
+    ],
+    "text": [
+      "36198be163083267028f834ab094c89824c0748463d95e8b0cb43b86e5c6fbb6",
+      "97f5d2d13e50028c1e8d1c5bfe1e61f576ed436d2ca3deb6e40e65de37c68109"
+    ]
+  },
+  "/juegos/rey-de-la-copa": {
+    "metadata": [
+      "d3f54b60c121ced12fb883fb8cd9e67614cbc65cf46376fde33fd61172c01265",
+      "e5726ba27c272144cfc2e6a032b462634c5a8cc84b3d1c1bb6ffe6c88eceead1"
+    ],
+    "schema": [
+      "0f2e8c9595d32bfcd52ef06f2d18eb66fd1352e75622d6d65dd766063d1dd54a",
+      "f34fe5dc8f9e98f1a400fd9beedc082268651c46a08a18a0f2e9bdc15205bca6"
+    ],
+    "text": [
+      "8a1af94ecc7681187ef28ec8069a569503983ffb649991ebb16bef1bfa9b04ed",
+      "a357c7f205b60ae4e9634c31d6c864a123cf821c415bfaa5d09d1e27f2bb296f"
+    ]
+  },
+  "/juegos/la-bomba": {
+    "metadata": [
+      "fdad3bb40943dbce3af6a79fa7d23eb7a5caecbd49a77b7979485fbcee4325f9",
+      "e33509462566fc74db572f25f39f94a423d07783bd4560952839db835e520521"
+    ],
+    "schema": [
+      "6470bea32ddc3394b151e5a26aceaa5d8d8e058066f728c6d24632808ccccb68",
+      "0f2e83ca5668592a05fab09987db6f6e0f50cea2cde39e9bb177b37897480451"
+    ],
+    "text": [
+      "857267607b0a0a85fa8f4ce083ddd4002ae4d4a29d6bb49d8f272883fe65a5b6",
+      "5490f1347446f61bb19aaa5d3bdf1755b7856fd3a72f70154f444779d4d0c341"
+    ]
+  },
+  "/juegos/ring-of-fire/reglas": {
+    "schema": [
+      "ff485ae3a8db120afb25afa45cc4ae5e9559f697bc773644cca097a34b91cbb9",
+      "2fd259a979859c2b2cc2acfc3d2846bd3ee8c043d8d894e63a039aeb27f1801d"
+    ],
+    "text": [
+      "3bb2fe19a8d8fab6b949214ff5843d04828d0399b38bd83012fb6369d4c1bac1",
+      "ce7eb3f85bf523b6e4c4e0aa137267c181f339a7277e611d1426d0f2d1aed220"
+    ]
+  },
+  "/juegos/rey-de-la-copa/reglas": {
+    "metadata": [
+      "6b6627a05aba5d3ea1b318e77fc48e4dc7adea2d313f83a1926e672b562e1069",
+      "7f000085c34b67b856e18a4d2be648994a441aa0267cdf082eeab83eadc21970"
+    ],
+    "schema": [
+      "c9c626d3bb049485e3e68f4bb59c86fc74b99184bad8c7b678eef2d18ceb2d8b",
+      "f6014259623fb07f6eca93b8b60ddcecbb589104fce2d79ab7cc2fad1b7a4d3f"
+    ],
+    "text": [
+      "b70830ea2ebd93ea47942f09d468d4d27ee642981f2f535acdc953391c57c0e2",
+      "00dd0daa799efa4df2e2f619d5b33201c9f15edb0f1f1f5daf558a946023e8b7"
+    ]
+  },
+  "/juegos/la-bomba/reglas": {
+    "metadata": [
+      "cd77fafb818451560311cf80ae713ec183ef7cdb860b72b6f6ad26219a231c18",
+      "b58f422144dab65aee57d45e53d9393c24324561110d5b047a4ba4ff71fad3dc"
+    ],
+    "schema": [
+      "6470bea32ddc3394b151e5a26aceaa5d8d8e058066f728c6d24632808ccccb68",
+      "0f2e83ca5668592a05fab09987db6f6e0f50cea2cde39e9bb177b37897480451"
+    ],
+    "text": [
+      "f4dd754eb781e755968c8acd91e3611656100807dfb5faaa44ec22a81065ac76",
+      "44f6266db8148397ae5a2542c36fd27fbff98405125de278178b93ce933d429c"
+    ]
+  },
+  "/juegos/categorias/cartas": {
+    "links": [
+      "d6563b5cf3a7c66914c78c29cb1c5f8935619ab121899e905b02cdf77124e7fa",
+      "fd789f7d0dedbbeedc5e8bd2689eed1fedebd255fe90e4af49d70f38115d821c"
+    ],
+    "text": [
+      "1c61ffd1a017f30f5f71857e1c330706f47705ec9ca6d63662a9b776295c38e5",
+      "86c96c7aabefbf3f25b8ba644172c3982fcf05d5b6a4d0bb510f3ff9961d6441"
+    ]
+  },
+  "/juegos/categorias/sin-materiales": {
+    "links": [
+      "f74b424d0c6357c090420ba76548ebbd2385add905192de85dbaf90bc3dc2983",
+      "80d0e17630bc7b43d3c3806c1048e2358f942670de14341a23a4055c57c30ed3"
+    ],
+    "text": [
+      "b64b95aad103ff87e69b6de5696670b311a11ed713147074f97d55cb2e43e680",
+      "8984fe16369fb3a7cd3d82ac95037a8321090082a3597efa1477849a9ff508bf"
+    ]
+  },
+  "/blog/la-bomba-juego-beber": {
+    "metadata": [
+      "8057b777ec6650ac25628abc539e4a0033c927e041984e77437eada42a6e516c",
+      "0d302b5c1a1ac80dd540c2777a76f0cd90b6ee912399eecb030f834b9f0e13ff"
+    ],
+    "headings": [
+      "4bc84ec465616487a49bcd636cc8d83647a7138e88f55ac83a20876d4c6f9d4a",
+      "8eb3ec85ab276d7423cd5fc9b816f4ce25a9ccdcc7320015f78fe76f9246ee52"
+    ],
+    "schema": [
+      "2fd32192f1e4122811cf9396b8590899bb6314ed500ee02a6dfae9ee241e439d",
+      "95bb5b02d30821bdbca0fbe5916dae40b935957ea5e440abfd3f58b5e9873738"
+    ],
+    "text": [
+      "50c20a8353d695782d72f336e98fe09fddc2031ef884228ac33008db1baff198",
+      "a48faa0c0e87ed1f7eac6024ed18b496208cb8871393a911244903b634f56c2a"
+    ]
+  },
+  "/blog/los-20-mejores-juegos": {
+    "text": [
+      "04804710b1a1bd30d06b1452955b18eddf09447c79b6ceec5f8893218f9877b0",
+      "99e46b4cfaa0c3b94dc4cd2e9b31fb7261b427444d4b4c7cf18621acda6f9ba4"
+    ]
+  },
+  "/blog/rey-de-la-copa-reglas": {
+    "text": [
+      "c9d743acb7374dcab85ba9f7e5ec5957420f3b4c80a022d20d7893b0cfb9d72a",
+      "beaed10722704944484e082d1c3dc79aef3a60000c96e47768b5b0bf650a28e5"
+    ]
+  },
+  "/blog/juegos-para-beber-sin-alcohol": {
+    "text": [
+      "04902a5a2a1d51a678174d1aed92e224e85cab8a78213a8bd418588a833dda34",
+      "076207315e4fc1122bcfa3e4112173cf0e63e063effa5d5adc9472587e38b5e4"
+    ]
+  },
+  "/blog/juegos-para-cumpleanos-adultos": {
+    "text": [
+      "a3227755a9726cfcb9e52749bfb471bff50484d74e8f9d6cc221ba12f0f7b294",
+      "6ce94635dc6ec090ee9c4bcf4c6509cbf904826553668b824124a670be7ae243"
+    ]
+  },
+  "/blog/juegos-para-beber-rapidos": {
+    "schema": [
+      "7ae1c447877fe6731adebddf5974dfb9cafb1ad59c8cbd199fac30ff4fd8cd2d",
+      "fe1220f5b51910a1824b65d3b8a38ee9df13dc32180272582bf018aa7e6603e2"
+    ],
+    "text": [
+      "4384f881f7e4ef380c480082979af22fb258c6094bcf7fdf0dcd1fbee9af49a8",
+      "9f03a8174dad7246ca08f2235013d9b9fd0a66bae7c6ac503a78f48948c49143"
+    ]
+  },
+  "/blog/como-organizar-fiesta-juegos-beber": {
+    "text": [
+      "30e86dd55cc5159a9ae9c08a8d41948b63c54d8b590ec247f00c0eab656358c4",
+      "3d76f77364347f21bb44e07589ff1bdf463837d4084e99978428b26e44a2a2dd"
+    ]
+  },
+  "/blog/retos-para-fiestas": {
+    "text": [
+      "50ede8ac902ef0714517a850963fd26a16a7fb14963e901bc78e7aabf08606d8",
+      "435331d66d8e851b04b3239c7ff3a5404602893560bea691ac4f5aca9f75001a"
+    ]
+  },
+  "/blog/juegos-para-previas": {
+    "text": [
+      "68d1c684f92121598331af007f47a7da2a8a514bf69b32a669d22e361869181e",
+      "fd8084c7cf9ce62c214c5dfd22952b3235859ac8a2a4839cfc8dc24e58b1d03c"
+    ]
+  },
+  "/blog/juegos-para-beber-con-cartas": {
+    "text": [
+      "479f0f5a8879bbf787233c792650a6d7a3a15b99bd09d20b071bd5872fe1b59a",
+      "c192e358104b49a6455a7271e48b448a05594613587d44ca635eee8b663b5ddb"
+    ]
+  },
+  "/blog/juegos-para-beber-con-cartas#before-navigation": {
+    "text": [
+      "b3721833573ed2d4e2b32b6384c97be3f856fe27a25c45c2fb88f6035dfa08c7",
+      "7135a5eae058694b6e9d0de9503867f28fcafa133b970099b02c02bfafe998f9"
+    ]
+  },
+  "/juegos/beer-pong": {
+    "text": [
+      "4ed49550535649582f28ee9df3ca054cbe4cb374cef99ba1b1f9332d293d3dff",
+      "ac6bd84eb7886dad242ec2c7214ee5619afddd26db0deae36799cdbf9bc47339"
+    ]
+  }
+}

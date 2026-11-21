@@ -279,7 +279,7 @@ export default function BeerPongPage() {
 
             <h3>Otros juegos con material que te gustarán</h3>
             <ul>
-              <li><Link href="/juegos/rey-de-la-copa" className="text-amber-500 underline">Rey de la Copa</Link> — Baraja de cartas, una copa en el centro y reglas para cada número. El que saca el 4º Rey bebe todo.</li>
+              <li><Link href="/juegos/rey-de-la-copa" className="text-amber-500 underline">Rey de la Copa</Link> — Baraja de cartas, una copa en el centro y reglas para cada número. Al cuarto rey se retira la copa.</li>
               <li><Link href="/juegos/tabu" className="text-amber-500 underline">Tabú Borracho</Link> — Descríbela sin decir las palabras prohibidas. El equipo que falla, bebe.</li>
               <li><Link href="/juegos/triman" className="text-amber-500 underline">Triman</Link> — Dados y reglas caóticas. El que saque un 3 tiene el control de la mesa.</li>
             </ul>

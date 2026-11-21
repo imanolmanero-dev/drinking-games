@@ -1,0 +1,13 @@
+{
+  "app/(spanish)/juegos/page.tsx": "d2b79bc58b40a965fce78614cbc28df729993b53b96321220e57988a445fc786",
+  "lib/data/rey-de-la-copa.ts": "13eb9ee76a049f0aaffead637ecb0a092b0954990a623120ab5cfd2b0dde512b",
+  "lib/data/ring-of-fire.ts": "e1fa6c43f55c3a061441ef169cf2585b00168d0a62f4954d8884fae573954f09",
+  "components/layout/GameLayout.tsx": "2b1d280e008cb98c802a1a6ff6abfde0d062be799b8027b34891fc9ed44b26b8",
+  "content/blog/rey-de-la-copa-reglas.mdx": "aa48fbf512f047d13bcd4aacc3369589046af8e9ba10d67036650611b57909ba",
+  "app/(spanish)/juegos/ring-of-fire/layout.tsx": "8db09c6d7cc8db1848bf7436db8d605a2116b84d6d2dad7b88a6212532eb4fef",
+  "app/(spanish)/juegos/ring-of-fire/page.tsx": "58f5d0c45861132004208dc15052668ace2ee4bde9ed23bca12399d27860c83f",
+  "app/(spanish)/juegos/ring-of-fire/reglas/page.tsx": "785b5b72ba541891dea75efc00ea119489ee3a70959d2375a3ca30d83530574c",
+  "app/(spanish)/juegos/rey-de-la-copa/layout.tsx": "1b71b40c09e4a08b3b54aa0d95ce47134b65eda25044744b394956cac2fe3576",
+  "app/(spanish)/juegos/rey-de-la-copa/page.tsx": "1886a59c5cd8eb106c94fec3d973138800bca12d73b52f86f7ed414592738aed",
+  "app/(spanish)/juegos/rey-de-la-copa/reglas/page.tsx": "93e332649953b3f4510974e759c403b1bd70d0b51384c2ce8ec5d9c233bae7fe"
+}

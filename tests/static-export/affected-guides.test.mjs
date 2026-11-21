@@ -8,7 +8,7 @@ const { parse } = createRequire(import.meta.url)("next/dist/compiled/node-html-p
 const rules = {
   "ring-of-fire-reglas-cartas": {
     sections: 13, selector: "h3", start: "As —",
-    required: ["ola de brazos", "retira la copa", "Muestra otras reglas"],
+    required: ["ola de brazos", "retira la copa", "La cascada también se juega con gestos"],
     removed: /nadie puede dejar de beber|se bebe la copa del rey entera|obliga a quien lo saque/i,
   },
   "juegos-para-beber-sin-cartas": {
@@ -18,7 +18,7 @@ const rules = {
   },
   "drinking-games-reglas": {
     sections: 10, selector: "h2", start: "1.",
-    required: ["vaso vacío", "adivinar el título", "Pasa la pila", "otras reglas para el As"],
+    required: ["vaso vacío", "adivinar el título", "Pasa la pila", "El As propone una ola de brazos"],
     removed: /60 chupitos|acabaréis mareados|bebes doble|beberse toda la mezcla|death cup/i,
   },
 };
