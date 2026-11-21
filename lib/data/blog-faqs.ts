@@ -34,15 +34,15 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cómo se juega a Medusa?",
-      a: "En Medusa todos los jugadores miran hacia abajo. A la cuenta de 3 (con el móvil haciendo la cuenta atrás), todos miran fijamente a otro jugador. Si dos personas se cruzan la mirada, ambas gritan '¡MEDUSA!' y beben. El último en gritar bebe el doble.",
+      a: "A la de tres, levantad la cabeza y mirad a alguien del círculo. En nuestra variante de mesa, si dos miradas coinciden, esa pareja grita «¡Medusa!» y se queda de piedra un instante. Después empieza otra ronda.",
     },
     {
       q: "¿Cuál es el juego para beber más rápido?",
-      a: "Medusa es el juego para beber más rápido: cada ronda dura solo 3 segundos. La Bomba también es muy rápido ya que el temporizador dura entre 12 y 40 segundos. Ambos están disponibles gratis en BeberGames.",
+      a: "Medusa va bien si tenéis poco tiempo: basta con una cuenta de tres y una mirada para resolver cada ronda. En La Bomba podéis ajustar la duración de la partida de mesa con la alarma del móvil.",
     },
     {
       q: "¿Se puede jugar a juegos de beber sin alcohol?",
-      a: "Sí, todos los juegos de BeberGames se pueden jugar con cualquier bebida: agua, refrescos, zumos o bebidas sin alcohol. La dinámia del juego es la misma independientemente de lo que se beba. BeberGames promueve el juego responsable.",
+      a: "Sí. Para estas variantes bastan las voces, las manos y, en algunos juegos, un móvil. Podéis jugar sin vaso o brindar con la bebida que os apetezca. Pasar un turno no tiene penalización.",
     },
   ],
 
@@ -83,11 +83,11 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "ring-of-fire-reglas-cartas": [
     {
       q: "¿Qué es el Ring of Fire?",
-      a: "El Ring of Fire (también llamado Kings o Rey de la Copa) es un juego de cartas para beber donde se colocan las cartas boca abajo en círculo alrededor de un vaso central. Cada jugador roba una carta y ejecuta la regla de esa carta. El cuarto rey que aparece obliga a beber el vaso central.",
+      a: "El Ring of Fire, también llamado Kings, es un juego de cartas para beber con un círculo de cartas alrededor de una copa. En esta adaptación la copa se queda vacía. Al salir el cuarto rey, se retira y termina la ronda.",
     },
     {
       q: "¿Cuáles son las reglas del Ring of Fire?",
-      a: "En el Ring of Fire cada carta tiene una regla distinta: As (waterfall), 2 (tú), 3 (yo), 4 (suelo), 5 (chicos), 6 (chicas), 7 (cielo), 8 (amigo), 9 (rima), 10 (categoría), J (regla), Q (preguntas), K (añade al vaso central y el 4º bebe todo).",
+      a: "El As inicia una ola de brazos. El 2 invita a otra persona a dedicar un brindis y el 3 te da la palabra a ti. Del 4 al 8 hay gestos y parejas. El 9 propone rimas y el 10, categorías. La jota trae una norma, la dama juega con preguntas y el cuarto rey cierra la partida.",
     },
     {
       q: "¿Cuántas personas necesito para jugar al Ring of Fire?",
@@ -219,7 +219,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "drinking-games-reglas": [
     {
       q: "¿Cuáles son las reglas generales de los drinking games?",
-      a: "Las reglas comunes a casi todos los drinking games son: el que pierde o no cumple una condición bebe, se puede decir 'paso' pero entonces bebes doble, y todo lo que ocurre en el juego se queda en el juego. BeberGames explica las reglas concretas de cada juego en pantalla antes de empezar.",
+      a: "Acordad cómo empieza el turno, qué cuenta como acierto y cuándo acaba la ronda. En estas variantes puntúan los tiros, las respuestas o las cartas. Cualquiera puede pasar sin beber ni dar explicaciones.",
     },
     {
       q: "¿Cuáles son los drinking games más populares en España?",
@@ -227,7 +227,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cómo se dice 'Never Have I Ever' en español?",
-      a: "'Never Have I Ever' se llama 'Yo Nunca' en español. La mecánica es idéntica: dices algo que nunca hayas hecho y los que sí lo hayan hecho beben. Es uno de los juegos de presentación más populares del mundo y funciona en cualquier idioma.",
+      a: "En español se llama «Yo Nunca». Alguien dice algo que nunca ha hecho y quienes sí lo hayan hecho pueden levantar la mano o bajar un dedo. Cada persona decide si quiere contar su historia.",
     },
     {
       q: "¿Qué drinking game es más fácil de aprender?",

@@ -1,4 +1,5 @@
 import { projectRouletteExport } from "../helpers/roulette-export.mjs";
+import { applyGuideChanges } from "../helpers/affected-guides.mjs";
 import assert from "node:assert/strict";
 import { compareTruthOrDareExport } from "../helpers/truth-or-dare-export.mjs";
 import test from "node:test";
@@ -10,6 +11,7 @@ test("85 existing pages preserve metadata, content, links and schema after exact
   const routes = ["es-routes", "es-additional-routes", "en-routes"].flatMap(name => JSON.parse(readFileSync(`tests/fixtures/${name}.json`, "utf8"))).filter(r => !["/en/guides", "/en/games/most-likely-to"].includes(r.pathname));
   function snapshot(root, pathname) {
     const d = parse(readFileSync(`${root}/${pathname === "/" ? "index" : pathname.slice(1)}.html`, "utf8"));
+    if (root !== "out") applyGuideChanges(d, pathname);
     if (root === "out" && pathname === "/en/games") {
       const added = d.querySelectorAll('.en-catalog-card').filter(card => card.querySelector('a[href="/en/games/most-likely-to"]'));
       assert.equal(added.length, 1);
