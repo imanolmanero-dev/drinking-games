@@ -16,7 +16,7 @@ const juegos = [
   {
     id: "ring-of-fire",
     nombre: "Ring of Fire",
-    descripcion: "Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!",
+    descripcion: "Roba cartas, pasa la ola y cuenta los reyes. El cuarto cierra la partida.",
     icono: Flame,
     color: "from-red-500 to-rose-600",
     shadowColor: "shadow-red-500/20",

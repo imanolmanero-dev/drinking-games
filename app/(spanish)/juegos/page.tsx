@@ -106,7 +106,7 @@ const juegos = [
   {
     id: "ring-of-fire",
     nombre: "Ring of Fire",
-    descripcion: "Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey bebe la mezcla!",
+    descripcion: "Roba cartas, pasa la ola y cuenta los reyes. El cuarto cierra la partida.",
     detalle: "El clásico juego de cartas para beber, ahora en formato digital. Cada carta tiene una regla diferente. 52 cartas, 13 reglas, infinitas posibilidades.",
     icono: Flame,
     color: "from-red-500 to-rose-600",

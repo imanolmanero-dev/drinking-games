@@ -113,10 +113,10 @@ export default function RingOfFirePage() {
       
       const newCard = deck[currentIndex];
       if (newCard.valor === "K" && kingsDrawn + 1 >= 4) {
-        // This is the 4th king. The player has to drink the cup.
+        // The fourth king closes the round.
         playSound("everyone");
         vibrateDevice("everyone");
-        setTimeout(() => setPhase("gameover"), 3000);
+        setPhase("gameover");
       }
       
       setIsFlipping(false);
@@ -129,7 +129,7 @@ export default function RingOfFirePage() {
       setPhase("gameover");
       return;
     }
-    setTurnIdx((t) => t + 1);
+    setTurnIdx(currentIndex);
   }, [kingsDrawn, currentIndex, deck.length]);
 
   const restartGame = useCallback(() => {
@@ -163,7 +163,7 @@ export default function RingOfFirePage() {
                 Ring of Fire
               </h1>
               <p className="text-sm text-muted max-w-xs">
-                Roba cartas y cumple sus reglas. ¡El que saque el cuarto Rey se bebe la mezcla central!
+                Roba una carta, prueba su propuesta o pasa. El cuarto rey cierra la partida.
               </p>
               <Link href="/juegos/ring-of-fire/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-rose-400 transition-colors hover:bg-rose-500/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -272,22 +272,16 @@ export default function RingOfFirePage() {
               El <strong>Ring of Fire</strong> — también llamado Círculo de Fuego o Cascada — es el juego de beber con baraja más popular del mundo. Cada carta tiene una regla diferente. Nuestra versión digital simula la baraja completa de 52 cartas para que juguéis donde sea sin necesidad de naipes físicos.
             </p>
             <p>
-              La mecánica es simple: colocad una copa grande vacía en el centro (la Copa del Rey). Por turnos, cada jugador roba una carta virtual y cumple la regla asociada. El juego acaba cuando alguien saca el cuarto Rey — esa persona se bebe toda la Copa del Rey.
+              Colocad una copa vacía en el centro. Robad por turnos y mirad el contador de reyes. Cualquiera puede pasar sin penalización.
             </p>
 
             <h3>Las reglas por carta</h3>
             <ul>
-              <li><strong>As — Cascada:</strong> Todos beben en cadena. Nadie puede parar hasta que pare el jugador que tiene a su izquierda.</li>
-              <li><strong>2 a 4 — Dar/Tomar:</strong> Reparte tragos o bebe tú, según la carta.</li>
-              <li><strong>5 — Pulgar:</strong> El jugador pone el pulgar en la mesa cuando quiera. El último en hacerlo bebe.</li>
-              <li><strong>7 — Cielo:</strong> Último en levantar la mano al techo bebe.</li>
-              <li><strong>J — El Dictador:</strong> Crea una norma que dura toda la partida. El que la incumple, bebe.</li>
-              <li><strong>Q — Preguntas:</strong> Solo se habla en preguntas hasta que alguien falle.</li>
-              <li><strong>K — Rey:</strong> Vierte parte de tu bebida en la Copa del Rey. El 4º Rey se la bebe entera.</li>
+              {CARTAS_ROF.map(carta => <li key={carta.valor}><strong>{carta.valor} — {carta.nombre}:</strong> {carta.descripcion}</li>)}
             </ul>
 
             <h3>Preguntas frecuentes</h3>
-            <p><strong>¿Cuántos jugadores hacen falta?</strong> Mínimo 3, pero funciona mejor con 4-8 personas. Con más gente las normas del Jack se acumulan y el caos se dispara.</p>
+            <p><strong>¿Cuántos jugadores hacen falta?</strong> Podéis empezar con dos nombres y formar un círculo más grande si os apetece.</p>
             <p><strong>¿Por qué jugar con la app?</strong> Las cartas físicas acaban pegajosas, mojadas o incompletas. La app genera una baraja perfecta cada vez y muestra la regla en pantalla para que nadie tenga que memorizar nada.</p>
             <p><strong>¿Cuánto dura una partida?</strong> Depende de cuándo salga el cuarto Rey. Normalmente entre 20 y 40 minutos.</p>
 
@@ -326,7 +320,7 @@ export default function RingOfFirePage() {
             ¡FIN DEL JUEGO!
           </h2>
           <p className="text-muted max-w-xs text-sm">
-            {currentPlayer} se bebe la mezcla central. ¡Que aproveche!
+            {currentPlayer} ha sacado el cuarto rey. Apartad la copa y cerrad la partida.
           </p>
           <div className="flex gap-3 mt-4">
             <button

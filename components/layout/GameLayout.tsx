@@ -26,7 +26,7 @@ const GAME_DESCRIPTIONS: Record<string, string> = {
   "triman": "Tira el dado virtual y que el destino decida quién bebe y cuánto.",
   "la-ruleta": "Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno.",
   "quien-es-mas-probable": "Lee la tarjeta, cuenta hasta 3 y señalad a la vez al más probable. El más votado bebe.",
-  "ring-of-fire": "Roba cartas y cumple sus reglas. El que saque el cuarto Rey bebe la mezcla central.",
+  "ring-of-fire": "Roba cartas, pasa la ola y cuenta los reyes. El cuarto cierra la partida.",
   "yo-prefiero": "A o B, sin excusas. El grupo elige su opción y la minoría bebe. Más de 60 dilemas.",
   "medusa": "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",
   "rey-de-la-copa": "Roba cartas y cumple sus reglas. El que saque el 4º Rey bebe la copa entera.",

@@ -4,7 +4,7 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "Ring of Fire — Anillo de Fuego para Beber Online",
   description:
-    "El clásico juego de cartas Ring of Fire para beber. Roba una carta y cumple la regla. De 2 a Rey, ¿quién se beberá la Copa del Rey?",
+    "Juega al Ring of Fire con 52 cartas. Pasa la ola, enlaza rimas y cuenta los reyes hasta retirar la copa central.",
   openGraph: {
     title: "Ring of Fire — Anillo de Fuego para Beber",
     description: "Roba una carta de la baraja y cumple la regla. El clásico juego para previas.",

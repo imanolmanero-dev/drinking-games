@@ -1,3 +1,4 @@
+import { CARTAS_ROF } from "@/lib/data/ring-of-fire";
 import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Flame, ChevronRight, Users, Zap, ShieldCheck, GlassWater, List } from 'lucide-react';
@@ -44,9 +45,9 @@ export default function RingOfFireReglasPage() {
             </h2>
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>Jugadores:</strong> Lo ideal es a partir de 4 jugadores. En este juego, cuantos más seáis creando un gran círculo de sillas, mucho mejor será el caos.</li>
-              <li>✅ <strong>El Altar:</strong> Un vaso vacío y de un tamaño generosamente grande situado obligatoriamente en el centro de la mesa (La famosa "Copa del Centro").</li>
+              <li><strong>Copa central:</strong> Colocad una copa vacía para marcar el centro.</li>
               <li>✅ <strong>El mazo perfecto:</strong> La baraja virtual de BeberGames, porque aquí nunca faltará esa última carta que siempre se pierde debajo del sofá.</li>
-              <li>✅ <strong>Bebestibles:</strong> Tenéis que tener claro qué vais a beber, porque los vasos de cada uno acabarán probablemente mezclados en alguna fase del juego.</li>
+              <li>Dejad sitio para levantar las manos durante la cascada.</li>
             </ul>
           </section>
 
@@ -70,12 +71,12 @@ export default function RingOfFireReglasPage() {
                 {
                   paso: "3",
                   titulo: "Ejecución Inmediata",
-                  desc: "Mágicamente, la app ya indica qué debe hacer la carta que ha tocado, pero se debe acatar en ese precoso instante antes de avanzar el turno de la app.",
+                  desc: "Lee la propuesta o pasa directamente al siguiente jugador, sin penalización.",
                 },
                 {
                   paso: "4",
                   titulo: "El Cuarto Rey",
-                  desc: "Esta es la regla inamovible de oro: Quien robe el cuarto y último rey de la baraja termina la partida por la fuerza mayor, obligándole a algo muy severo.",
+                  desc: "Al cuarto rey se aparta la copa y termina la partida.",
                 },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
@@ -100,42 +101,7 @@ export default function RingOfFireReglasPage() {
               <p>Aunque nuestra app ya te dicta qué hacer en pantalla para que no tengas que memorizar aburridas tablas, aquí te dejamos las mecánicas populares en toda España y LATAM:</p>
               
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 list-none p-0">
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-red-400 mr-2">A:</span>"Cascada". El jugador empieza a tragar, y secuencialmente el de su derecha, y así sucesivamente. Nadie puede detener el vaso hasta que pare el jugador precedente.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-foreground mr-2">2:</span>Tú. Señalas con arrogancia al jugador de tu elección para que beba dos tragos.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-foreground mr-2">3:</span>Yo. Puras matemáticas. La culpa es tuya, toma tres sorbos rápidos de tu propia medicina.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                   <span className="font-bold text-foreground mr-2">4:</span>Chicas. Todas las mujeres presentes, sin excepción, levantan sus copas y beben.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-foreground mr-2">5:</span>Pulgar (Thumbmaster). El que saque el 5 es el maldito dueño del pulgar. Puede, secretamente, en cualquier momento poner su pulgar en la mesa. El último que lo ponga, bebe.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                   <span className="font-bold text-foreground mr-2">6:</span>Chicos. Un brindis forzoso por toda la población masculina de la habitación.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                   <span className="font-bold text-foreground mr-2">7:</span>Cielo (Heaven). El jugador que saque este 7 deberá, cuando vea oportuno, apuntar un dedo al techo. El último en imitarlo de todo el círculo, sufre un trago.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-foreground mr-2">8:</span>Compañero (Mate). Forma un enlace místico y espiritual. Escoge a alguien a tu lado. A partir de ahora, cada vez que él beba, tú bebes la misma cantidad, y viceversa.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-foreground mr-2">9:</span>Rimas. Abres un concurso de rimas. Dices una palabra, el siguiente debe rimar y se va haciendo cola circular. Si te trabas o quedas en blanco antes de 5 segundos, fallas.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-foreground mr-2">10:</span>Categorías. Muy parecido a los conocidos juegos de Scattegories. Ej: "Razas de Perro". En orden nombrais razas. Dudas, repites y beberás.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-blue-400 mr-2">J:</span>Dictadura. Implantas la ley universal de esa noche. Ej: "Hablar sólo sin cruzar las piernas" o "Tocar tu nariz tras beber". Multarás fuertemente al infractor.
-                </li>
-                <li className="bg-surface-hover p-3 rounded-lg border border-border">
-                  <span className="font-bold text-blue-400 mr-2">Q:</span>Preguntas (Questions). Le haces una pregunta a alguien. Esa persona no responde, sino que redirige una pregunta a otra persona. Es puramente reflejos psicológicos.
-                </li>
+                {CARTAS_ROF.map(carta => <li key={carta.valor} className="bg-surface-hover p-3 rounded-lg border border-border"><strong>{carta.valor} — {carta.nombre}:</strong> {carta.descripcion}</li>)}
               </ul>
             </div>
           </section>
@@ -147,10 +113,10 @@ export default function RingOfFireReglasPage() {
             </h2>
             <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
               <p>
-                Los <strong>tres primeros jugadores que saquen la K (El Rey)</strong>, sin protestar, deben verter un tercio de lo que haya en sus propios vasos privados dentro de "La Copa del Centro". Esto genera una repulsiva amalgama inter-bebidas, y si sois muchos y algunos beben ron y otros vino... el combo es temible.
+                Los tres primeros reyes quedan apuntados en el contador. La copa permanece vacía.
               </p>
               <p>
-                Pero no todo se queda ahí. <strong>¡El pobre desdichado que robe el Cuarto y Último Rey (K) lo pierde todo!</strong> Debe levantarse estoicamente en medio de la sala, agarrar la Copa del Centro, tragar de un solo fondo todo el líquido sin rechistar y finalizar para siempre esa partida.
+                Quien saque el cuarto rey aparta la copa del centro. Podéis barajar para empezar otra partida.
               </p>
             </div>
           </section>
@@ -161,7 +127,7 @@ export default function RingOfFireReglasPage() {
               <ShieldCheck className="h-5 w-5 text-rose-500" /> Beber con moderación y seguridad
             </h2>
             <p className="text-sm text-muted leading-relaxed">
-              La famosa Copa del Centro puede generar cócteles de alcohol muy peligrosos que irriten el estómago velozmente. Como app, recomendamos encarecidamente utilizar Ring of Fire mezclando únicamente zumos, agua o cerveza suave dentro de la Copa del Centro para mantener la compostura. ¡Las risas con agua sucia mezclada son las mismas y al día siguiente no hay ingresos en urgencias médicas!
+              Todas las cartas se pueden pasar sin beber ni dar explicaciones.
             </p>
           </section>
 
