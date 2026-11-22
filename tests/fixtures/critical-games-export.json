@@ -38,7 +38,7 @@
     ],
     "text": [
       "857267607b0a0a85fa8f4ce083ddd4002ae4d4a29d6bb49d8f272883fe65a5b6",
-      "5490f1347446f61bb19aaa5d3bdf1755b7856fd3a72f70154f444779d4d0c341"
+      "3a242cc7aa66253c115284c803e67f84e4ad6cf3f98ce93e74f9fe8a8fb809b2"
     ]
   },
   "/juegos/ring-of-fire/reglas": {
@@ -114,13 +114,13 @@
     ],
     "text": [
       "50c20a8353d695782d72f336e98fe09fddc2031ef884228ac33008db1baff198",
-      "a48faa0c0e87ed1f7eac6024ed18b496208cb8871393a911244903b634f56c2a"
+      "1bdfb9149827d6ab4b64b7d25e435d7835a6318f8893575125cee3bd92d990a5"
     ]
   },
   "/blog/los-20-mejores-juegos": {
     "text": [
       "04804710b1a1bd30d06b1452955b18eddf09447c79b6ceec5f8893218f9877b0",
-      "99e46b4cfaa0c3b94dc4cd2e9b31fb7261b427444d4b4c7cf18621acda6f9ba4"
+      "94eac954876081c8f8e2e78795d9fc31b0fb388495df5e6023cb5372d51a7bfe"
     ]
   },
   "/blog/rey-de-la-copa-reglas": {
@@ -132,7 +132,7 @@
   "/blog/juegos-para-beber-sin-alcohol": {
     "text": [
       "04902a5a2a1d51a678174d1aed92e224e85cab8a78213a8bd418588a833dda34",
-      "076207315e4fc1122bcfa3e4112173cf0e63e063effa5d5adc9472587e38b5e4"
+      "1250264a04d89f227534742d0a09a25f84f41568640033557c557b5f565dcd81"
     ]
   },
   "/blog/juegos-para-cumpleanos-adultos": {
@@ -160,31 +160,49 @@
   "/blog/retos-para-fiestas": {
     "text": [
       "50ede8ac902ef0714517a850963fd26a16a7fb14963e901bc78e7aabf08606d8",
-      "435331d66d8e851b04b3239c7ff3a5404602893560bea691ac4f5aca9f75001a"
+      "c1d9f1f4a31c0fb86171bfa7683edc956a1420e3f4b9740ef7c39e26f05eeca4"
+    ],
+    "schema": [
+      "09c291f0eef2c199212e66c352b4110c4f7896fdbc7ea3b4249a2093f587df3d",
+      "119319c4d9c4a2c4e97a08bc591da06344fbb6600ce1f7d29af20ad7688a5b0a"
     ]
   },
   "/blog/juegos-para-previas": {
     "text": [
       "68d1c684f92121598331af007f47a7da2a8a514bf69b32a669d22e361869181e",
-      "fd8084c7cf9ce62c214c5dfd22952b3235859ac8a2a4839cfc8dc24e58b1d03c"
+      "0ef7f7c3569db00a32296cbc750c6a6031595be994326070a6bdb916c9ce9c8d"
     ]
   },
   "/blog/juegos-para-beber-con-cartas": {
     "text": [
       "479f0f5a8879bbf787233c792650a6d7a3a15b99bd09d20b071bd5872fe1b59a",
-      "c192e358104b49a6455a7271e48b448a05594613587d44ca635eee8b663b5ddb"
+      "bed3e95f0cf3b37feeff11fe3e309aa69847370b4d96cd313514b6a51f45651d"
+    ],
+    "schema": [
+      "af19ce4d861b04ee2b53ad42667391686a2b88b6e2c4d700ab910d896ab013f7",
+      "cd5bc0dca77cbd8d0ec00dccbd4f0e28744751e799f5e10df391fb6823d8762d"
     ]
   },
   "/blog/juegos-para-beber-con-cartas#before-navigation": {
     "text": [
       "b3721833573ed2d4e2b32b6384c97be3f856fe27a25c45c2fb88f6035dfa08c7",
-      "7135a5eae058694b6e9d0de9503867f28fcafa133b970099b02c02bfafe998f9"
+      "4aae516f6243fcef26efa9d018d275b9f951676894257195297b061fbd06d0c0"
+    ],
+    "schema": [
+      "af19ce4d861b04ee2b53ad42667391686a2b88b6e2c4d700ab910d896ab013f7",
+      "cd5bc0dca77cbd8d0ec00dccbd4f0e28744751e799f5e10df391fb6823d8762d"
     ]
   },
   "/juegos/beer-pong": {
     "text": [
       "4ed49550535649582f28ee9df3ca054cbe4cb374cef99ba1b1f9332d293d3dff",
       "ac6bd84eb7886dad242ec2c7214ee5619afddd26db0deae36799cdbf9bc47339"
+    ]
+  },
+  "/juegos/tabu": {
+    "text": [
+      "9630785b3b7fca2513403bc20b84b6374e93dbc4a0a78dde9e73cc73853aca8e",
+      "3d171acbfcb807e016f6bba681122eafffc4b47c345c6a66f241dd4bd31def6f"
     ]
   }
 }

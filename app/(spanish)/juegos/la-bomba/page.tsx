@@ -267,7 +267,7 @@ export default function LaBombaPage() {
             <h3>Juegos de tensión que también te gustarán</h3>
             <ul>
               <li><Link href="/juegos/medusa" className="text-orange-500 underline">Medusa</Link> — Cruzad miradas a la señal.</li>
-              <li><Link href="/juegos/ring-of-fire" className="text-orange-500 underline">Ring of Fire</Link> — Roba cartas y cumple sus reglas. El 4º Rey paga el precio máximo.</li>
+              <li><Link href="/juegos/ring-of-fire" className="text-orange-500 underline">Ring of Fire</Link> — Roba cartas y descubre sus reglas. El cuarto rey marca el final de la partida.</li>
               <li><Link href="/juegos/triman" className="text-orange-500 underline">Triman</Link> — Tira el dado y sigue el turno del Señor del 3.</li>
             </ul>
             <p>Consulta el <Link href="/juegos/la-bomba/reglas" className="text-orange-500 underline">manual de La Bomba</Link> para todas las reglas y variantes avanzadas.</p>

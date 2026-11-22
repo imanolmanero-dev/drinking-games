@@ -331,7 +331,7 @@ export default function TabuPage() {
 
             <h3>Otros juegos por equipos que te gustarán</h3>
             <ul>
-              <li><Link href="/juegos/rey-de-la-copa" className="text-violet-500 underline">Rey de la Copa</Link> — Cartas con reglas para cada número. El 4º Rey paga el precio máximo.</li>
+              <li><Link href="/juegos/rey-de-la-copa" className="text-violet-500 underline">Rey de la Copa</Link> — Cartas con reglas para cada número. Al cuarto rey se aparta la copa.</li>
               <li><Link href="/juegos/beer-pong" className="text-violet-500 underline">Beer Pong</Link> — Dos equipos, diez vasos y una pelota de ping-pong. El clásico universitario.</li>
               <li><Link href="/juegos/triman" className="text-violet-500 underline">Triman</Link> — El dado manda. Simple, rápido y brutal para cualquier número de jugadores.</li>
             </ul>

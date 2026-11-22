@@ -110,7 +110,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cuánto dura una partida de Ring of Fire?",
-      a: "Una partida de Ring of Fire suele durar entre 20 y 45 minutos dependiendo del número de jugadores y la velocidad de las rondas. Con 4-6 jugadores suele durar unos 30 minutos. La versión digital de BeberGames gestiona el tiempo automáticamente.",
+      a: "La duración de Ring of Fire depende del ritmo de los turnos y de cuándo salga el cuarto rey. La versión digital cuenta los reyes y cierra la partida al revelar el cuarto.",
     },
   ],
 
@@ -132,7 +132,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "retos-para-fiestas": [
     {
       q: "¿Cuáles son los mejores retos para fiestas?",
-      a: "Los mejores retos para fiestas son los de Verdad o Reto (con niveles de intensidad), La Bomba (tensión del temporizador) y Yo Prefiero (dilemas del grupo). También funcionan muy bien los retos improvisados en Ring of Fire cuando sale la J (la carta de reglas).",
+      a: "Los mejores retos para fiestas son los de Verdad o Reto (con niveles de intensidad), La Bomba (tensión del temporizador) y Yo Prefiero (dilemas del grupo). En Ring of Fire, la jota invita al grupo a acordar una norma de gestos.",
     },
     {
       q: "¿Cómo se juega al Verdad o Reto?",

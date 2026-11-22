@@ -3,6 +3,7 @@ import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { withoutNoCards } from "./no-cards-baseline.mjs";
+import { beforeCriticalGameReferrals } from "./critical-games-source.mjs";
 
 // The latest preflight includes automatic SEO data updates. Freeze that full
 // source baseline and project exact reviewed additions, never exclude a page.
@@ -34,6 +35,7 @@ export function assertHalloweenCompatible(paths, exclusions = [], readCurrent = 
   for (const file of files) {
     if (excluded.includes(file)) continue;
     const expectedRevision = reportFiles.has(file) ? reportBaseline : halloweenBaseline;
-    assert.equal(withoutHalloween(file, readCurrent(file)), git(["show", `${expectedRevision}:${file}`]).replace(/\r\n/g, "\n"), `${file}: pinned preflight report or exact reviewed Halloween addition only`);
+    const current = beforeCriticalGameReferrals(file, readCurrent(file));
+    assert.equal(withoutHalloween(file, current), git(["show", `${expectedRevision}:${file}`]).replace(/\r\n/g, "\n"), `${file}: pinned preflight report or exact reviewed Halloween addition only`);
   }
 }

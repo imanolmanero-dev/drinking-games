@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import test from "node:test";
-import { beforeCriticalGames } from "./helpers/critical-games-source.mjs";
+import { beforeCriticalGameReferrals, beforeCriticalGames } from "./helpers/critical-games-source.mjs";
 
 const require = createRequire(import.meta.url);
 require("tsx/cjs");
@@ -28,4 +29,12 @@ test("La Bomba shows the current holder and clears both clocks on leaving a roun
   assert.match(source, /clearInterval\(pulseInterval\)/);
   assert.match(source, /Última ronda completada/);
   assert.doesNotMatch(source, /fondo blanco|sin excusas/i);
+});
+
+test("Beer Pong referral is the only reviewed change to that source and cannot revert", () => {
+  const file = "app/(spanish)/juegos/beer-pong/page.tsx";
+  const baseline = execFileSync("git", ["show", "9a06b8a:" + file], { encoding: "utf8" });
+  const current = readFileSync(file, "utf8").replaceAll("\r\n", "\n");
+  assert.equal(beforeCriticalGameReferrals(file, current), baseline);
+  assert.throws(() => beforeCriticalGameReferrals(file, baseline), /exact reviewed Rey de la Copa referral/);
 });
