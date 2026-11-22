@@ -323,7 +323,7 @@ export default function VerdadORetoPage() {
             <ul>
               <li><Link href="/juegos/yo-nunca" className="text-amber-500 underline">Yo Nunca</Link> — Confesiones grupales donde el que lo haya hecho bebe.</li>
               <li><Link href="/juegos/quien-es-mas-probable" className="text-amber-500 underline">Quién Es Más Probable</Link> — El grupo señala y el más votado bebe.</li>
-              <li><Link href="/juegos/yo-prefiero" className="text-amber-500 underline">Yo Prefiero</Link> — Dilemas A o B donde la minoría carga con el castigo.</li>
+              <li><Link href="/juegos/yo-prefiero" className="text-amber-500 underline">Yo Prefiero</Link> — Dilemas A o B para comparar preferencias.</li>
             </ul>
             <p>Consulta también las <Link href="/juegos/verdad-o-reto/reglas" className="text-amber-500 underline">reglas completas del Verdad o Reto</Link>.</p>
           </div>

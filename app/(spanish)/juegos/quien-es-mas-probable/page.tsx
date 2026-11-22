@@ -158,7 +158,7 @@ export default function QuienEsMasProbablePage() {
             <ul>
               <li><Link href="/juegos/yo-nunca" className="text-cyan-500 underline">Yo Nunca</Link> — Confiesa o bebe. Descubre los secretos del grupo.</li>
               <li><Link href="/juegos/verdad-o-reto" className="text-cyan-500 underline">Verdad o Reto</Link> — El clásico con cientos de preguntas y retos en varios niveles.</li>
-              <li><Link href="/juegos/yo-prefiero" className="text-cyan-500 underline">Yo Prefiero</Link> — A o B, sin excusas. La minoría bebe.</li>
+              <li><Link href="/juegos/yo-prefiero" className="text-cyan-500 underline">Yo Prefiero</Link> — Elegid A o B o pasad. Comparad los votos.</li>
             </ul>
             <p>Lee todas las mecánicas avanzadas en las <Link href="/juegos/quien-es-mas-probable/reglas" className="text-cyan-500 underline">reglas de Quién Es Más Probable</Link>.</p>
           </div>

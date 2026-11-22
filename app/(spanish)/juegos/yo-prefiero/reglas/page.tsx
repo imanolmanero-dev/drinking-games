@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   },
   title: "Cómo Jugar a Yo Prefiero — Reglas del Juego",
   description:
-    "Aprende las reglas de Yo Prefiero, el juego de beber de dilemas. A o B, el grupo elige y la minoría bebe. Variaciones, consejos y más de 60 preguntas.",
+    "Cómo jugar a Yo Prefiero: elegid A o B, contad los votos en la mesa y comentad el dilema. Hay 60 dilemas repartidos por intensidad.",
 };
 
 export default function YoPrefieroReglasPage() {
@@ -26,7 +26,7 @@ export default function YoPrefieroReglasPage() {
           </div>
           <div>
             <h1 className="text-3xl font-extrabold sm:text-4xl mb-3">Cómo jugar a Yo Prefiero</h1>
-            <p className="text-muted text-lg leading-relaxed">El juego de los dilemas imposibles. A o B — el grupo decide y la minoría paga con un trago.</p>
+            <p className="text-muted text-lg leading-relaxed">¿A o B? Comparad lo que elige cada persona y descubrid si alguien ha pensado como vosotros.</p>
           </div>
         </header>
 
@@ -38,7 +38,7 @@ export default function YoPrefieroReglasPage() {
             </h2>
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>3 o más jugadores</strong></li>
-              <li>✅ <strong>Bebidas</strong> para todos (lo que prefiráis 🍺🍷)</li>
+              <li>Un móvil para leer las dos opciones</li>
               <li>✅ Este juego — ¡nada más!</li>
             </ul>
           </section>
@@ -51,9 +51,9 @@ export default function YoPrefieroReglasPage() {
             <div className="flex flex-col gap-5">
               {[
                 { paso: "1", titulo: "Aparece un dilema", desc: "En la pantalla aparece un dilema con dos opciones: A y B. Por ejemplo: «¿Preferirías volar o ser invisible?»" },
-                { paso: "2", titulo: "Cada uno elige en silencio", desc: "Todos eligen mentalmente (o en voz baja) su opción. Sin revelarla todavía — ¡hay que ser honesto!" },
-                { paso: "3", titulo: "Revelar a la vez", desc: "A la cuenta de 3, todos levantan la mano o señalan: un dedo para la A, dos para la B." },
-                { paso: "4", titulo: "La minoría bebe", desc: "Los que estén en minoría dan un trago. Si hay empate, todos beben (o nadie — como prefiráis)." },
+                { paso: "2", titulo: "Piensa tu respuesta", desc: "Puedes elegir una opción o abstenerte." },
+                { paso: "3", titulo: "Revelar a la vez", desc: "A la de tres, un dedo para A, dos para B o la mano bajada para pasar." },
+                { paso: "4", titulo: "Contar las manos", desc: "Comparad los votos en la mesa. Puede haber empate, unanimidad o una mayoría clara. Si nadie vota, avanzad." },
                 { paso: "5", titulo: "Siguiente dilema", desc: "Se pasa a la siguiente pregunta. El juego continúa hasta terminar todas las preguntas." },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
@@ -71,10 +71,10 @@ export default function YoPrefieroReglasPage() {
           <section className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4">
             <h2 className="text-lg font-bold">⚡ Variaciones para subir el nivel</h2>
             <div className="flex flex-col gap-4 text-sm text-muted">
-              <div><strong className="text-foreground">Modo Confesión:</strong> Quien queda en minoría debe explicar por qué eligió esa opción. Si la razón convence al grupo... ¡se salva del trago!</div>
-              <div><strong className="text-foreground">Modo Debate:</strong> Antes de revelar, cada uno defiende su elección durante 30 segundos. Luego el grupo vota si fue convincente.</div>
-              <div><strong className="text-foreground">Modo Ultra Picante:</strong> Activa el nivel Picante y el que quede solo en su elección bebe doble.</div>
-              <div><strong className="text-foreground">Modo Parejas:</strong> Jugad en parejas. Si los dos miembros de la pareja no coinciden entre sí, ambos beben extra.</div>
+              <div><strong>Conversación:</strong> Quien quiera puede contar qué detalle le hizo decidirse.</div>
+              <div><strong>Debate:</strong> Inventad un argumento a favor de cualquiera de las dos opciones.</div>
+              <div><strong>Nivel picante:</strong> Podéis saltar un dilema en cuanto aparezca.</div>
+              <div><strong>En pareja:</strong> Antes de votar podéis intentar adivinar qué elegirá la otra persona.</div>
             </div>
           </section>
 
@@ -97,15 +97,15 @@ export default function YoPrefieroReglasPage() {
               {[
                 {
                   q: "¿Qué pasa si hay un empate exacto en los votos?",
-                  a: "En caso de un empate exacto (por ejemplo, en un grupo de 4 personas, 2 eligen A y 2 eligen B), el grupo puede decidir la penalización antes de empezar. La regla más común en BeberGames es que en caso de empate, todos beben. Otra alternativa popular es que nadie beba y se pase al siguiente dilema para mantener la tensión.",
+                  a: "Si empatan A y B, podéis comentar el resultado o pasar al siguiente dilema. Si todos coinciden, hay unanimidad.",
                 },
                 {
                   q: "¿Puede alguien negarse a votar?",
-                  a: "La regla de oro de 'Yo Prefiero' (Would you rather) es que la abstención está prohibida. Tienes que elegir una de las dos opciones, por muy terribles o asquerosas que sean ambas. Si un jugador se niega a votar a la cuenta de 3, debe recibir una penalización automática (normalmente beber el doble).",
+                  a: "Sí. Puedes abstenerte con la mano bajada y pasar sin dar explicaciones. Si nadie vota, avanzad al siguiente dilema.",
                 },
                 {
                   q: "¿Cuántas preguntas tiene la aplicación?",
-                  a: "La aplicación cuenta con una enorme base de datos de preguntas categorizadas por niveles (suave, normal y picante). Tenemos suficientes dilemas para que puedas jugar durante horas sin que se repitan las mismas situaciones incómodas.",
+                  a: "Hay 60 dilemas repartidos por intensidad. La partida usa los niveles que seleccionéis.",
                 },
                 {
                   q: "¿Es apto para jugar por videollamada?",
@@ -122,19 +122,19 @@ export default function YoPrefieroReglasPage() {
               faqs={[
                 {
                   q: "¿Qué pasa si hay un empate exacto en los votos?",
-                  a: "En caso de un empate exacto, el grupo decide. La regla más común es que todos beben, o bien que nadie beba y se pase al siguiente dilema.",
+                  a: "Si empatan A y B, podéis comentar el resultado o pasar al siguiente dilema. Si todos coinciden, hay unanimidad.",
                 },
                 {
                   q: "¿Puede alguien negarse a votar?",
-                  a: "No, la abstención está prohibida. Tienes que elegir una de las dos opciones. Si un jugador se niega a votar a la de 3, debe beber el doble como penalización.",
+                  a: "Sí. Puedes abstenerte con la mano bajada y pasar sin dar explicaciones. Si nadie vota, avanzad al siguiente dilema.",
                 },
                 {
                   q: "¿Cuántas preguntas tiene la aplicación?",
-                  a: "Tenemos cientos de preguntas categorizadas por niveles (suave, normal y picante) para asegurar horas de juego sin repeticiones.",
+                  a: "Hay 60 dilemas repartidos por intensidad. La partida usa los niveles que seleccionéis.",
                 },
                 {
                   q: "¿Es apto para jugar por videollamada?",
-                  a: "¡Totalmente! Una persona lee la pregunta y todos votan mostrando 1 o 2 dedos a la cámara al mismo tiempo.",
+                  a: "¡Totalmente! Es uno de los mejores juegos para videollamadas. Solo necesitas que una persona comparta pantalla o lea la pregunta en voz alta. Para votar, todos pueden mostrar 1 o 2 dedos a la cámara al mismo tiempo. Funciona perfecto en Zoom, Discord o WhatsApp.",
                 },
               ]}
             />

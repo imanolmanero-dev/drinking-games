@@ -4,11 +4,11 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "Yo Prefiero — Juego para beber online",
   description:
-    "Juega a Yo Prefiero con amigos. ¿A o B? El grupo elige y la minoría bebe. Más de 60 dilemas en 3 niveles de intensidad. ¡Sin excusas!",
+    "Juega a Yo Prefiero online. Hay 60 dilemas repartidos por intensidad. Elegid A o B, comparad los votos y pasad cuando queráis.",
   openGraph: {
     title: "Yo Prefiero — Juego para beber online",
     description:
-      "¿A o B? El grupo elige y la minoría bebe. Más de 60 dilemas para beber en grupo.",
+      "¿A o B? Comparad preferencias con 60 dilemas repartidos por intensidad.",
   },
   alternates: {
     canonical: "https://bebergames.com/juegos/yo-prefiero",

@@ -136,8 +136,8 @@ const juegos = [
   {
     id: "yo-prefiero",
     nombre: "Yo Prefiero",
-    descripcion: "A o B, sin excusas. El grupo vota y la minoría bebe. ¡60+ dilemas!",
-    detalle: "¿Preferirías vivir sin música o sin series? El grupo vota A o B simultáneamente. La minoría bebe. Los dilemas van de inocentes a imposibles.",
+    descripcion: "¿A o B? Comparad los votos en la mesa. Hay 60 dilemas repartidos por intensidad.",
+    detalle: "Elegid los niveles, leed las dos opciones y votad a mano alzada. Podéis absteneros o pasar al siguiente dilema.",
     icono: Scale,
     color: "from-violet-500 to-fuchsia-500",
     shadowColor: "shadow-violet-500/20",

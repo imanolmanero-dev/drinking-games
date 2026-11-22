@@ -434,19 +434,19 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "yo-prefiero-preguntas": [
     {
       q: "¿Cómo se juega al Yo Prefiero?",
-      a: "En el Yo Prefiero se presenta un dilema con dos opciones (A o B). Todos los jugadores votan simultáneamente levantando la mano. La minoría (los que votaron la opción menos popular) bebe un trago. Si hay empate, todos beben. Luego viene el debate de por qué cada uno eligió lo que eligió.",
+      a: "El móvil muestra A y B. A la de tres, mostrad uno o dos dedos o dejad la mano bajada. Contad los votos en la mesa. Si hay empate o unanimidad, podéis comentarlo o seguir.",
     },
     {
       q: "¿Cuántas preguntas tiene el Yo Prefiero de BeberGames?",
-      a: "BeberGames tiene más de 60 dilemas de Yo Prefiero organizados por intensidad. Incluyen dilemas cotidianos, preguntas incómodas y opciones absurdas que generan debate. Las preguntas se van renovando para que puedas jugar varias sesiones sin repetir.",
+      a: "Hay 60 dilemas repartidos por intensidad. La partida usa los niveles que seleccionéis.",
     },
     {
       q: "¿Cuál es la gracia del Yo Prefiero como juego de beber?",
-      a: "La gracia del Yo Prefiero es que fuerza a tomar decisiones en dilemas donde no hay respuesta correcta. Luego el debate sobre por qué cada uno eligió una opción genera conversaciones muy reveladoras sobre los valores, límites y personalidad de cada jugador. Es el rompe-hielos más efectivo que existe.",
+      a: "Los dilemas permiten descubrir qué prefiere cada persona. Quien quiera puede explicar su elección.",
     },
     {
       q: "¿Se puede jugar al Yo Prefiero sin beber?",
-      a: "Sí. Sin bebida el Yo Prefiero sigue siendo divertido: la penalización puede ser contar por qué elegiste esa opción, hacer un reto o simplemente 'el pringado de la ronda'. Con o sin alcohol, las revelaciones y el debate son igual de entretenidos.",
+      a: "Sí. Podéis votar o absteneros sin beber, hacer retos ni justificar la respuesta.",
     },
   ],
 

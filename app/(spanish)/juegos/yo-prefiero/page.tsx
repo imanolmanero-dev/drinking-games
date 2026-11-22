@@ -77,10 +77,10 @@ export default function YoPrefieroPage() {
     playSound("flip");
     vibrateDevice("flip");
     setTimeout(() => {
-      setCurrentIndex((prev) => prev + 1);
+      setCurrentIndex(currentIndex + 1);
       setIsFlipping(false);
     }, 300);
-  }, [isFlipping, playSound, vibrateDevice]);
+  }, [currentIndex, isFlipping, playSound, vibrateDevice]);
 
   const restartGame = useCallback(() => {
     setPhase("setup");
@@ -121,7 +121,7 @@ export default function YoPrefieroPage() {
               </div>
               <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Yo Prefiero</h1>
               <p className="text-sm text-muted max-w-xs">
-                A o B, sin excusas. El grupo elige y la minoría bebe.
+                ¿A o B? Votad a la vez o pasad. Hay 60 dilemas repartidos por intensidad.
               </p>
               <Link href="/juegos/yo-prefiero/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -212,7 +212,7 @@ export default function YoPrefieroPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>Yo Prefiero: Dilemas para Beber con Tus Amigos</h2>
             <p>
-              El <strong>Yo Prefiero</strong> — conocido en inglés como <em>Would You Rather</em> — es el juego de los dilemas imposibles. La pantalla muestra dos opciones igualmente locas o incómodas, y todo el mundo tiene que elegir. La minoría bebe. Sin excusas, sin votaciones secretas.
+              En <strong>Yo Prefiero</strong> (Would You Rather), la pantalla propone dos opciones. Levantad uno o dos dedos para elegir A o B. Quien prefiera abstenerse puede dejar la mano bajada.
             </p>
             <p>
               No hay respuestas correctas ni incorrectas. Lo que importa es lo que revela tu elección sobre cómo funciona tu cabeza. ¿Preferirías tener alas pero no poder usarlas en público, o ser invisible pero solo en espacios abiertos? Prepárate para conocer una versión nueva de tus amigos.
@@ -220,12 +220,12 @@ export default function YoPrefieroPage() {
 
             <h3>Cómo funciona la regla de la minoría</h3>
             <p>
-              La dinámica es simple. Cuando aparece la pregunta, todos votan a la vez — levantando la mano, señalando o gritando A o B. Una vez contados los votos:
+              Contad las manos en la mesa. La app muestra los dilemas y el grupo compara los votos:
             </p>
             <ul>
-              <li><strong>Minoría bebe:</strong> El grupo más pequeño toma tantos tragos como personas hay en la mayoría. En un grupo de 6, si solo 2 votan la opción A, esos 2 beben 4 tragos cada uno.</li>
-              <li><strong>Empate:</strong> Si hay empate exacto, todos beben. Nadie se salva cuando la democracia falla.</li>
-              <li><strong>Sin abstenciones:</strong> No se puede pasar. Hay que elegir sí o sí. La incertidumbre es parte del juego.</li>
+              <li><strong>Mayoría y minoría:</strong> ¿Qué opción ha sorprendido más? Puede comentar quien quiera.</li>
+              <li><strong>Empate o unanimidad:</strong> Compartid el resultado y avanzad cuando os apetezca.</li>
+              <li><strong>Abstención:</strong> Si nadie vota, pasad al siguiente dilema sin puntuar.</li>
             </ul>
 
             <h3>Niveles de intensidad</h3>
@@ -236,8 +236,8 @@ export default function YoPrefieroPage() {
 
             <h3>Preguntas frecuentes</h3>
             <p><strong>¿Cuántos jugadores se necesitan?</strong> Con 3 ya hay drama suficiente. Con más de 6 el juego es más entretenido porque las minorías son más notorias.</p>
-            <p><strong>¿Hay que beber obligatoriamente?</strong> No. Puedes jugar con cualquier castigo alternativo — hacer algo, pagar una prenda o simplemente pasar el mal rato de que todos te señalen.</p>
-            <p><strong>¿Qué pasa si alguien cambia el voto al ver el de los demás?</strong> No se puede. Los votos son simultáneos. Si alguien hace trampa, bebe el doble.</p>
+            <p><strong>¿Hay que beber?</strong> Solo hacen falta las dos opciones. Puedes votar o pasar sin penalización.</p>
+            <p><strong>¿Y si alguien se adelanta?</strong> Repetid la cuenta de tres si queréis votar a la vez.</p>
 
             <h3>Juegos de preguntas que también te gustarán</h3>
             <ul>
@@ -319,7 +319,7 @@ export default function YoPrefieroPage() {
                 </div>
               </div>
 
-              <p className="text-center text-xs text-muted">La minoría… ¡bebe! 🍺</p>
+              <p className="text-center text-xs text-muted">Un dedo para A, dos para B. Puedes abstenerte. Contad las manos y comentad solo si os apetece.</p>
             </div>
           </motion.div>
         </AnimatePresence>
