@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     canonical: "https://bebergames.com/juegos/la-piramide/reglas",
   },
   title: 'Reglas de La Pirámide — Cómo Jugar al Juego de Cartas',
-  description: 'Las reglas completas de La Pirámide explicadas paso a paso. Aprende a jugar, farolear y asignar tragos en este clásico juego de beber con cartas.',
+  description: 'Las reglas completas de La Pirámide explicadas paso a paso. Aprende a jugar, farolear y asignar puntos en este clásico juego de beber con cartas.',
 };
 
 export default function LaPiramideReglasPage() {
@@ -25,7 +25,7 @@ export default function LaPiramideReglasPage() {
           <div>
             <h1 className="text-3xl font-extrabold sm:text-4xl mb-3">Cómo Jugar a La Pirámide</h1>
             <p className="text-muted text-lg leading-relaxed">
-              El juego de cartas donde la memoria y el farol son tus mejores armas. Memoriza, miente y asigna tragos.
+              El juego de cartas donde la memoria y el farol son tus mejores armas. Memoriza, miente y asigna puntos.
             </p>
           </div>
         </header>
@@ -39,7 +39,7 @@ export default function LaPiramideReglasPage() {
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>Jugadores:</strong> Mínimo 2, ideal entre 4 y 8. Cuantos más, más faroles y más caos.</li>
               <li>✅ <strong>Baraja:</strong> La app de BeberGames se encarga. Sin cartas pegajosas ni perdidas.</li>
-              <li>✅ <strong>Bebidas:</strong> Cada jugador con su vaso lleno. Los tragos se acumulan rápido en las filas altas.</li>
+              <li>✅ <strong>Puntuación:</strong> Usad papel y lápiz para apuntar los puntos. Gana quien sume menos.</li>
               <li>✅ <strong>Memoria:</strong> Vas a necesitar recordar 4 cartas durante toda la partida. Solo tienes 10 segundos para memorizarlas.</li>
             </ul>
           </section>
@@ -53,9 +53,9 @@ export default function LaPiramideReglasPage() {
               {[
                 { paso: "1", titulo: "Se construye la pirámide", desc: "La app coloca 21 cartas boca abajo formando una pirámide: 6 en la base, 5, 4, 3, 2 y 1 en la cima." },
                 { paso: "2", titulo: "Se reparten las cartas", desc: "Cada jugador recibe 4 cartas. Tienes exactamente 10 segundos para memorizar los valores. Después se ocultan." },
-                { paso: "3", titulo: "Se revelan las cartas de la pirámide", desc: "De la base hacia la cima, se va destapando una carta por turno. Si coincide con una de tus cartas, puedes asignar tragos a otro jugador." },
-                { paso: "4", titulo: "¡El farol entra en juego!", desc: "No necesitas tener la carta de verdad. Puedes decir que la tienes y asignar tragos igualmente. Si el otro jugador te cree, bebe. Si te reta y no la tienes, bebes tú el doble." },
-                { paso: "5", titulo: "Los tragos suben por fila", desc: "La base vale 1 trago. La segunda fila 2. Y así hasta la cima, donde una sola carta vale 6 tragos. Los faroles se ponen muy arriesgados arriba." },
+                { paso: "3", titulo: "Se revelan las cartas de la pirámide", desc: "De la base hacia la cima, se va destapando una carta por turno. Si coincide con una de tus cartas, puedes asignar puntos a otro jugador." },
+                { paso: "4", titulo: "¡El farol entra en juego!", desc: "No necesitas tener la carta de verdad. Puedes decir que la tienes y asignar puntos igualmente. Si acepta, anota los puntos de la fila. Si te reta y no la tienes, te anotas el doble." },
+                { paso: "5", titulo: "Los puntos suben por fila", desc: "La base vale 1 punto. La segunda fila 2. Y así hasta la cima, donde una sola carta vale 6 puntos. Los faroles se ponen muy arriesgados arriba." },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 text-sm font-bold text-white">{paso}</div>
@@ -74,13 +74,13 @@ export default function LaPiramideReglasPage() {
               <Eye className="h-5 w-5 text-indigo-400" /> El Arte del Farol
             </h2>
             <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
-              <p>El farol es lo que convierte La Pirámide de un juego de suerte a un juego de estrategia. Cuando se revela una carta, <strong>cualquier jugador</strong> puede decir que la tiene y asignar tragos.</p>
-              <p>El jugador señalado puede aceptar los tragos o <strong>retar al farol</strong>:</p>
+              <p>El farol es lo que convierte La Pirámide de un juego de suerte a un juego de estrategia. Cuando se revela una carta, <strong>cualquier jugador</strong> puede decir que la tiene y asignar puntos.</p>
+              <p>Quien recibe el desafío puede aceptar los puntos, <strong>retar al farol</strong> o pasar sin puntuar.</p>
               <ul className="space-y-1 list-disc list-inside">
-                <li>Si retó y el otro <strong>sí tenía la carta</strong> → el retador bebe el <strong>doble</strong>.</li>
-                <li>Si retó y el otro <strong>no tenía la carta</strong> → el farolero bebe el <strong>doble</strong>.</li>
+                <li>Si retó y el otro <strong>sí tenía la carta</strong> → el retador se anota el <strong>doble</strong>.</li>
+                <li>Si retó y el otro <strong>no tenía la carta</strong> → el farolero se anota el <strong>doble</strong>.</li>
               </ul>
-              <p>En las filas altas (5-6 tragos), retar un farol puede significar beber 10-12 tragos. La tensión es brutal.</p>
+              <p>Un reto en la cima vale doce puntos. Anotadlos una sola vez a quien haya perdido el reto.</p>
             </div>
           </section>
 
@@ -90,7 +90,7 @@ export default function LaPiramideReglasPage() {
               <ShieldCheck className="h-5 w-5 text-amber-500" /> Beber con moderación
             </h2>
             <p className="text-sm text-muted leading-relaxed">
-              Los tragos se acumulan rápido en La Pirámide, especialmente si te pillan faroleando en las filas altas. Usad tragos pequeños, alternad con agua y recordad que la gracia está en el farol, no en la cantidad de alcohol. BeberGames promueve el juego responsable.
+              La pantalla muestra el valor de la fila. Llevad la cuenta en la mesa y comparad los totales al terminar. Si alguien quiere pasar, seguid con la siguiente carta.
             </p>
           </section>
 

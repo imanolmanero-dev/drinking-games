@@ -154,7 +154,7 @@ export default function LaPiramidePage() {
       return;
     }
     setCurrentPyramidIdx(nextIdx);
-    setActivePlayerIdx((prev) => (prev + 1) % players.length);
+    setActivePlayerIdx(nextIdx % players.length);
   }, [currentPyramidIdx, players.length, playSound, vibrateDevice]);
 
   const restartGame = useCallback(() => {
@@ -166,8 +166,8 @@ export default function LaPiramidePage() {
     startGame();
   }, [startGame]);
 
-  // Drinks for current row (1-indexed)
-  const drinksForRow = currentRow + 1;
+  // Points for current row (1-indexed)
+  const pointsForRow = currentRow + 1;
 
   // Build pyramid layout
   const buildPyramidLayout = () => {
@@ -205,7 +205,7 @@ export default function LaPiramidePage() {
                 <Triangle className="h-7 w-7 text-white" />
               </div>
               <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">La Pirámide</h1>
-              <p className="text-sm text-muted max-w-xs">Memoriza tus cartas, farolea y asigna tragos. ¡El farol es la clave!</p>
+              <p className="text-sm text-muted max-w-xs">Memoriza tus cartas, farolea y asigna puntos. Anotad los puntos en papel. Gana quien sume menos. Podéis pasar sin puntuar.</p>
               <Link href="/juegos/la-piramide/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-indigo-400 transition-colors hover:bg-indigo-500/10">
                 <BookOpen className="h-3.5 w-3.5" /> Ver cómo se juega
               </Link>
@@ -245,7 +245,7 @@ export default function LaPiramidePage() {
         </div>
         <div className="w-full bg-surface border-t border-border mt-auto py-12 px-4">
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
-            <h2>La Pirámide: Memoria, Farol y Tragos por Fila</h2>
+            <h2>La Pirámide: Memoria, Farol y Puntos por Fila</h2>
             <p>
               <strong>La Pirámide</strong> es uno de los juegos de cartas para beber más adictivos que existen. Combina tres habilidades que rara vez van juntas: memoria a corto plazo, cara de póker y la capacidad de mentir mirando a los ojos a tus amigos.
             </p>
@@ -257,14 +257,14 @@ export default function LaPiramidePage() {
             <ul>
               <li><strong>Fase de memoria:</strong> Se reparten 4 cartas a cada jugador, boca arriba. Tienes exactamente 10 segundos para memorizar sus valores. Luego se dan la vuelta.</li>
               <li><strong>Fase de juego:</strong> Se van revelando las cartas de la pirámide una por una, empezando por la base (fila 1).</li>
-              <li><strong>Asignar tragos:</strong> Si la carta revelada coincide con una de las tuyas, puedes asignar tragos a quien quieras. La fila determina cuántos: fila 1 = 1 trago, fila 2 = 2 tragos, y así hasta la cima (fila 6 = 6 tragos).</li>
-              <li><strong>El farol:</strong> Aquí está la magia. Puedes decir que tienes la carta <strong>aunque no la tengas</strong>. Si nadie te reta, el otro bebe. Si alguien te pilla, bebes tú el doble.</li>
-              <li><strong>Retar un farol:</strong> Si crees que alguien miente, dices &ldquo;¡Farol!&rdquo;. El acusado debe mostrar su carta. Si la tiene, el retador bebe el doble. Si no la tiene, el farolero bebe el doble.</li>
+              <li><strong>Asignar puntos:</strong> Si la carta revelada coincide con una de las tuyas, puedes asignar puntos a quien quieras. La fila determina cuántos: fila 1 = 1 punto, fila 2 = 2 puntos, y así hasta la cima (fila 6 = 6 puntos).</li>
+              <li><strong>El farol:</strong> Aquí está la magia. Puedes decir que tienes la carta <strong>aunque no la tengas</strong>. Si nadie te reta, el otro anota los puntos. Si alguien te pilla, te anotas el doble.</li>
+              <li><strong>Retar un farol:</strong> Si crees que alguien miente, dices &ldquo;¡Farol!&rdquo;. El acusado debe mostrar su carta. Si la tiene, el retador se anota el doble. Si no la tiene, el farolero se anota el doble.</li>
             </ul>
 
             <h3>Estructura de la pirámide</h3>
             <p>
-              La pirámide tiene 6 filas con esta distribución: 6 cartas en la base, 5 en la segunda, 4, 3, 2 y 1 en la cima. En total son 21 cartas. Las filas inferiores se revelan rápido y los tragos son suaves. A medida que subes, quedan menos cartas pero cada una vale más. La cima vale 6 tragos — y si farolean ahí arriba y les pillan, son 12.
+              La pirámide tiene 6 filas con esta distribución: 6 cartas en la base, 5 en la segunda, 4, 3, 2 y 1 en la cima. En total son 21 cartas. Las filas inferiores se revelan rápido y hay pocos puntos en juego. A medida que subes, quedan menos cartas pero cada una vale más. La cima vale 6 puntos — y si farolean ahí arriba y les pillan, son 12.
             </p>
 
             <h3>Preguntas frecuentes</h3>
@@ -330,7 +330,7 @@ export default function LaPiramidePage() {
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center gap-6 text-center">
           <div className="text-6xl">🔺</div>
           <h2 className="text-2xl font-extrabold sm:text-3xl text-indigo-400">¡PIRÁMIDE COMPLETADA!</h2>
-          <p className="text-muted max-w-xs text-sm">Todas las cartas han sido reveladas. ¿Quién faroleó más?</p>
+          <p className="text-muted max-w-xs text-sm">Comparad los puntos anotados en la mesa. Gana quien tenga menos y podéis compartir la victoria.</p>
           <div className="flex gap-3 mt-4">
             <button onClick={reshuffleAndRestart} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all hover:scale-105">
               <Shuffle className="h-4 w-4" /> Otra ronda
@@ -371,7 +371,7 @@ export default function LaPiramidePage() {
       <div className="w-full max-w-lg mb-4">
         <div className="flex items-center justify-between mb-2">
           <span className="text-xs font-medium text-muted">Carta: {currentPyramidIdx + 1} / {PYRAMID_TOTAL}</span>
-          <span className="text-xs font-semibold text-indigo-400">Fila {currentRow + 1} → {drinksForRow} {drinksForRow === 1 ? "trago" : "tragos"} 🍺</span>
+          <span className="text-xs font-semibold text-indigo-400">Fila {currentRow + 1} → {pointsForRow} {pointsForRow === 1 ? "punto" : "puntos"} 🎯</span>
         </div>
       </div>
 
@@ -407,11 +407,11 @@ export default function LaPiramidePage() {
               <MiniCard card={currentCard} faceUp={true} size="md" />
               <p className="text-lg font-bold">{currentCard.valor} {currentCard.palo}</p>
               <p className="text-sm text-muted text-center">
-                ¿Alguien tiene un <strong>{currentCard.valor}</strong>? Puede asignar <strong className="text-indigo-400">{drinksForRow} {drinksForRow === 1 ? "trago" : "tragos"}</strong> a otro jugador. ¡O farolear!
+                ¿Alguien tiene un <strong>{currentCard.valor}</strong>? Puede asignar <strong className="text-indigo-400">{pointsForRow} {pointsForRow === 1 ? "punto" : "puntos"}</strong> a otro jugador. ¡O farolear!
               </p>
               <div className="flex items-center gap-2 rounded-lg bg-amber-500/10 border border-amber-500/20 px-3 py-2 mt-1">
                 <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0" />
-                <p className="text-xs text-amber-300">Si te pillan faroleando, bebes el doble: {drinksForRow * 2} tragos</p>
+                <p className="text-xs text-amber-300">Reto: quien se equivoque anota {pointsForRow * 2} puntos en papel. Podéis pasar sin puntuar.</p>
               </div>
             </div>
           </motion.div>

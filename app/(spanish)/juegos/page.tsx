@@ -241,8 +241,8 @@ const juegos = [
   {
     id: "la-piramide",
     nombre: "La Pirámide",
-    descripcion: "Memoriza tus cartas, farolea y asigna tragos. ¡Cada fila sube la apuesta!",
-    detalle: "Construye una pirámide de 21 cartas, memoriza las tuyas en 10 segundos y asigna tragos cuando coincidan. ¿Lo mejor? Puedes farolear. Si te pillan, bebes el doble.",
+    descripcion: "Memoriza tus cartas, farolea y asigna puntos. ¡Cada fila sube la apuesta!",
+    detalle: "Construye una pirámide de 21 cartas, memoriza las tuyas en 10 segundos y asigna puntos cuando coincidan. ¿Lo mejor? Puedes farolear. Si te pillan, te anotas el doble.",
     icono: Triangle,
     color: "from-indigo-500 to-purple-600",
     shadowColor: "shadow-indigo-500/20",
