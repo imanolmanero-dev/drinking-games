@@ -15,7 +15,7 @@ import {
   Users,
   ChevronRight,
   RotateCcw,
-  Beer,
+  Hand,
   Crown,
   Clock,
   BookOpen,
@@ -97,38 +97,38 @@ function getRuleText(
     case 1:
       return {
         who: roller,
-        message: `${roller} bebe — ¡le tocó a quien lanzó!`,
-        emoji: "🍺",
+        message: `${roller} puede marcar un ritmo con las manos.`,
+        emoji: "👏",
       };
     case 2:
       return {
         who: players[rightIdx],
-        message: `Bebe ${players[rightIdx]} — a la derecha de ${roller}`,
+        message: `${players[rightIdx]} puede saludar a ${roller} desde la derecha.`,
         emoji: "👉",
       };
     case 3:
       return {
         who: trimanName,
-        message: `¡Bebe el Triman! ${trimanName} siempre bebe con el 3`,
+        message: `${trimanName}, te toca una reverencia de Triman.`,
         emoji: "👑",
       };
     case 4:
       return {
         who: players[leftIdx],
-        message: `Bebe ${players[leftIdx]} — a la izquierda de ${roller}`,
+        message: `${players[leftIdx]} puede guiñar un ojo desde la izquierda.`,
         emoji: "👈",
       };
     case 5:
       return {
         who: "",
-        message: `${roller} elige quién bebe del grupo`,
+        message: `${roller} puede invitar a alguien a inventar un gesto.`,
         emoji: "🫵",
       };
     case 6:
       return {
         who: "¡TODOS!",
-        message: "¡Beben TODOS! Nadie se salva",
-        emoji: "🍻",
+        message: "Haced una ola alrededor de la mesa.",
+        emoji: "🌊",
       };
     default:
       return { who: "", message: "", emoji: "" };
@@ -251,7 +251,7 @@ export default function TrimanPage() {
     const playerIdx = turnIdx % players.length;
 
     if (result === 5) {
-      // Player chooses who drinks
+      // Player chooses a participant
       setDiceValue(result);
       setPhase("choosing");
     } else {
@@ -261,12 +261,12 @@ export default function TrimanPage() {
     }
   }, [isRolling, rollDice, turnIdx, players, currentPlayer, trimanName]);
 
-  // ── Choose who drinks (for 5) ──
-  const chooseDrinker = useCallback(
+  // ── Choose a participant (for 5) ──
+  const choosePlayer = useCallback(
     (name: string) => {
       setRuleResult({
         who: name,
-        message: `${currentPlayer} ha elegido: ¡bebe ${name}!`,
+        message: `${name}, ¿te inventas un gesto para ${currentPlayer}?`,
         emoji: "🫵",
       });
       setPhase("result");
@@ -276,11 +276,11 @@ export default function TrimanPage() {
 
   // ── Next turn ──
   const nextTurn = useCallback(() => {
-    setTurnIdx((t) => t + 1);
+    setTurnIdx(turnIdx + 1);
     setDiceValue(null);
     setRuleResult(null);
     setPhase("playing");
-  }, []);
+  }, [turnIdx]);
 
   // ── Restart ──
   const restartGame = useCallback(() => {
@@ -324,8 +324,8 @@ export default function TrimanPage() {
                 El Señor del 3
               </p>
               <p className="text-sm text-muted max-w-xs mt-1">
-                Añade al menos 3 jugadores. Necesitaréis un dado (nosotros lo
-                tiramos por vosotros 🎲).
+                Añadid al menos tres nombres. El dado propone una acción por turno.
+                Cualquiera puede pasar sin dar explicaciones.
               </p>
               <Link href="/juegos/triman/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-emerald-400 transition-colors hover:bg-emerald-500/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -361,12 +361,12 @@ export default function TrimanPage() {
               </h3>
               <div className="grid grid-cols-2 gap-2 text-xs text-muted">
                 {[
-                  { n: 1, icon: Dice1, text: "Bebe quien lanzó" },
-                  { n: 2, icon: Dice2, text: "Bebe el de la derecha" },
-                  { n: 3, icon: Dice3, text: "Bebe el Triman 👑" },
-                  { n: 4, icon: Dice4, text: "Bebe el de la izquierda" },
-                  { n: 5, icon: Dice5, text: "Elige quién bebe" },
-                  { n: 6, icon: Dice6, text: "¡Beben TODOS!" },
+                  { n: 1, icon: Dice1, text: "Marca un ritmo con las manos" },
+                  { n: 2, icon: Dice2, text: "Tu vecino de la derecha saluda" },
+                  { n: 3, icon: Dice3, text: "El Triman hace una reverencia" },
+                  { n: 4, icon: Dice4, text: "Tu vecino de la izquierda guiña un ojo" },
+                  { n: 5, icon: Dice5, text: "Invita a alguien a inventar un gesto" },
+                  { n: 6, icon: Dice6, text: "Haced una ola" },
                 ].map(({ n, icon: Icon, text }) => (
                   <div key={n} className="flex items-center gap-2 rounded-lg bg-background/50 px-3 py-2">
                     <Icon className="h-4 w-4 text-emerald-400 shrink-0" />
@@ -453,30 +453,30 @@ export default function TrimanPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>Triman: El Juego de Dados con un Señor del 3</h2>
             <p>
-              <strong>Triman</strong> (también conocido como Three Man) es un juego de beber con dados donde un jugador desafortunado carga con el título de &ldquo;Señor del 3&rdquo;. Cada vez que alguien saca un 3 en el dado, el Triman bebe. Sin excusas, sin escapatoria.
+              En <strong>Triman</strong>, el primer tres corona al Señor del 3. Desde entonces el dado reparte gestos entre el grupo.
             </p>
             <p>
-              Nuestra app lanza el dado virtual con animaciones realistas y lleva la cuenta automáticamente de quién es el Triman, de quién tiene el turno y qué castigo corresponde a cada número. Sin discusiones.
+              La app muestra el turno, el resultado del dado y quién lleva la corona.
             </p>
 
             <h3>Las reglas del dado</h3>
             <ul>
-              <li><strong>1 — Bebe quien lanzó:</strong> Te tocó. Bebe un trago.</li>
-              <li><strong>2 — Derecha:</strong> Bebe el jugador a tu derecha.</li>
-              <li><strong>3 — El Triman bebe:</strong> Da igual quién haya tirado. El Señor del 3 siempre bebe cuando sale un 3.</li>
-              <li><strong>4 — Izquierda:</strong> Bebe el jugador a tu izquierda.</li>
-              <li><strong>5 — Elige:</strong> Tú decides quién bebe del grupo. Poder absoluto.</li>
-              <li><strong>6 — Todos beben:</strong> Nadie se salva. Brindad y bebed.</li>
+              <li><strong>1 — Ritmo:</strong> Quien tira propone un ritmo.</li>
+              <li><strong>2 — Derecha:</strong> Quien está a tu derecha te saluda.</li>
+              <li><strong>3 — Corona:</strong> El Triman puede hacer una reverencia.</li>
+              <li><strong>4 — Izquierda:</strong> Quien está a tu izquierda te guiña un ojo.</li>
+              <li><strong>5 — Invitación:</strong> Elige a alguien para inventar un gesto o pasa.</li>
+              <li><strong>6 — Ola:</strong> Empieza una ola. Cada persona puede participar o pasar.</li>
             </ul>
 
             <h3>Cómo se elige al Triman</h3>
             <p>
-              Al principio del juego, todos lanzan el dado por turnos. El primero en sacar un 3 se convierte en el Triman. A partir de ahí, el juego fluye con rondas normales. La única forma de dejar de ser Triman es sacar un 3 en tu propio turno — entonces eliges a quién le pasas la corona maldita.
+              El primer tres decide quién empieza con la corona. Para cambiar de titular, pulsad Nuevo Triman y volved a tirar por turnos hasta el siguiente tres.
             </p>
 
             <h3>Preguntas frecuentes</h3>
             <p><strong>¿Cuántos jugadores se necesitan?</strong> Mínimo 3. Con 5-7 es donde más brilla. Más de 8 puede hacer los turnos largos.</p>
-            <p><strong>¿El Triman siempre bebe cuando sale un 3?</strong> Sí, siempre. Da igual quién tire el dado. Si sale 3, el Triman bebe. Puede acabar bebiendo muchas veces seguidas si hay mala suerte.</p>
+            <p><strong>¿Qué pasa si se repite el tres?</strong> El Triman puede hacer una reverencia o pasar. Cada tirada se resuelve por separado.</p>
             <p><strong>¿Se puede jugar con dados físicos?</strong> Sí, pero la app es más cómoda porque lleva la cuenta del Triman actual, los turnos y las reglas automáticamente.</p>
 
             <h3>Más juegos de dados y azar</h3>
@@ -609,7 +609,7 @@ export default function TrimanPage() {
   }
 
   // ═══════════════════════════════════
-  // CHOOSING — player rolls 5, choose who drinks
+  // CHOOSING — player rolls 5, choose a participant
   // ═══════════════════════════════════
   if (phase === "choosing") {
     return (
@@ -627,7 +627,7 @@ export default function TrimanPage() {
               <span className="text-emerald-400">{currentPlayer}</span> elige
             </h2>
             <p className="text-sm text-muted mt-1">
-              ¿Quién bebe? 🫵
+              ¿A quién invitas a inventar un gesto?
             </p>
           </div>
 
@@ -638,7 +638,7 @@ export default function TrimanPage() {
               .map((name) => (
                 <button
                   key={name}
-                  onClick={() => chooseDrinker(name)}
+                  onClick={() => choosePlayer(name)}
                   className="flex items-center justify-between rounded-xl border border-border bg-surface px-5 py-4 text-sm font-medium transition-all hover:border-emerald-500/40 hover:bg-surface-hover hover:-translate-y-0.5 hover:shadow-lg hover:shadow-emerald-500/10"
                 >
                   <div className="flex items-center gap-3">
@@ -650,9 +650,10 @@ export default function TrimanPage() {
                       <span className="text-xs text-amber-400">👑 Triman</span>
                     )}
                   </div>
-                  <Beer className="h-4 w-4 text-muted" />
+                  <Hand className="h-4 w-4 text-muted" />
                 </button>
-              ))}
+               ))}
+            <button onClick={nextTurn} className="rounded-xl border border-border p-3">Pasar sin elegir</button>
           </div>
         </motion.div>
       </div>
@@ -660,10 +661,10 @@ export default function TrimanPage() {
   }
 
   // ═══════════════════════════════════
-  // RESULT — show who drinks
+  // RESULT — show a participant
   // ═══════════════════════════════════
   if (phase === "result" && ruleResult) {
-    const isBebe6 = diceValue === 6;
+    const isGroup = diceValue === 6;
 
     return (
       <div className="flex flex-1 flex-col items-center px-4 py-8 sm:py-12">
@@ -706,18 +707,18 @@ export default function TrimanPage() {
                   </p>
                 </div>
 
-                {/* The drinker */}
-                {!isBebe6 && ruleResult.who && (
+                {/* The invited player */}
+                {!isGroup && ruleResult.who && (
                   <div className="flex items-center gap-2 rounded-full border border-red-500/30 bg-red-500/10 px-5 py-2 text-sm font-semibold text-red-400">
-                    <Beer className="h-4 w-4" />
-                    ¡{ruleResult.who} bebe!
+                    <Hand className="h-4 w-4" />
+                    {ruleResult.who} puede pasar.
                   </div>
                 )}
 
-                {isBebe6 && (
+                {isGroup && (
                   <div className="flex items-center gap-2 rounded-full border border-amber-500/30 bg-amber-500/10 px-5 py-2 text-sm font-semibold text-amber-400">
-                    <Beer className="h-4 w-4" />
-                    ¡Todos beben!
+                    <Hand className="h-4 w-4" />
+                    Quien quiera se suma o deja pasar la ola.
                   </div>
                 )}
               </div>
@@ -729,14 +730,14 @@ export default function TrimanPage() {
         <div className="w-full max-w-md mb-6 overflow-x-auto">
           <div className="flex gap-2 justify-center flex-wrap">
             {players.map((name) => {
-              const isDrinker =
-                isBebe6 ||
+              const isInvited =
+                isGroup ||
                 name === ruleResult.who;
               return (
                 <span
                   key={name}
                   className={`rounded-full border px-3 py-1 text-xs font-medium transition-colors ${
-                    isDrinker
+                    isInvited
                       ? "border-red-500/50 bg-red-500/10 text-red-400"
                       : name === currentPlayer
                       ? "border-emerald-500/50 bg-emerald-500/10 text-emerald-400"
@@ -744,7 +745,7 @@ export default function TrimanPage() {
                   }`}
                 >
                   {name === trimanName && "👑 "}
-                  {isDrinker && "🍺 "}
+                  {isInvited && "👋 "}
                   {name}
                 </span>
               );

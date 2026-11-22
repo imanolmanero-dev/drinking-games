@@ -196,8 +196,8 @@ const juegos = [
   {
     id: "triman",
     nombre: "Triman",
-    descripcion: "Tira el dado y que el destino decida quién bebe y cuánto.",
-    detalle: "El dado virtual más divertido. Cada cara tiene una regla diferente. Simple, rápido y perfecto para cuando no queréis pensar demasiado.",
+    descripcion: "Tira el dado y descubre a quién le toca proponer un gesto.",
+    detalle: "El primer tres corona al Triman. Hay seis caras con gestos distintos, y cualquiera puede pasar.",
     icono: Dice3,
     color: "from-teal-500 to-cyan-600",
     shadowColor: "shadow-teal-500/20",

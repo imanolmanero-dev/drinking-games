@@ -30,7 +30,7 @@ export default function TrimanReglasPage() {
               Cómo Jugar a Triman
             </h1>
             <p className="text-muted text-lg leading-relaxed">
-              Triman (o "Three Man" en el mundo universitario anglosajón) es posiblemente el juego táctico de dados más destructivo y veloz que puedes llevar a una previa. Las reglas saltan a la velocidad de la luz y cualquiera puede verse envuelto en un castigo.
+              En la app jugáis con un dado. Para jugar en la mesa con dos dados, probad la variante de las sumas que aparece más abajo.
             </p>
           </div>
         </header>
@@ -45,7 +45,7 @@ export default function TrimanReglasPage() {
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>Jugadores:</strong> De 3 a 8 jugadores es la cifra óptima para aguantar el ritmo sin aburrirse esperando turno.</li>
               <li>✅ <strong>Los Dados:</strong> La aplicación oficial de BeberGames, porque estos dados virtuales nunca se caen debajo del sofá o rompen vasos de cristal.</li>
-              <li>✅ <strong>Bebida abundante:</strong> Tened cerca una botella de repuesto, porque los turnos pueden ser increíblemente ágiles.</li>
+              <li>✅ <strong>Espacio:</strong> Sentaos en círculo para distinguir derecha e izquierda.</li>
             </ul>
           </section>
 
@@ -56,10 +56,10 @@ export default function TrimanReglasPage() {
             </h2>
             <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
               <p>
-                Antes de comenzar el verdadero juego, es absolutamente prioritario elegir a la víctima principal de la noche: el <strong>Triman</strong> o "Señor del número 3".
+                Lanzad el dado por turnos. El primer tres corona al Triman.
               </p>
               <p>
-                En la app, la primera persona que tire los dados y obtenga una suma igual a 3 (un 2 y un 1) se convierte automáticamente en el Triman. A partir de ese momento fatídico, su maldición comienza: <strong>cada vez que CUALQUIER OTRA PERSONA saque un "3" físico en uno de los dados o la suma de ambos dados sea 3, el Triman debe dar un trago.</strong>
+                En la app, el uno invita a marcar un ritmo. Con el dos saluda la persona de la derecha y con el cuatro guiña un ojo la de la izquierda. El tres invita al Triman a hacer una reverencia, el cinco permite elegir a alguien para inventar un gesto y el seis inicia una ola. Podéis pasar siempre.
               </p>
             </div>
           </section>
@@ -70,20 +70,20 @@ export default function TrimanReglasPage() {
               <Target className="h-5 w-5 text-emerald-400" /> Todas las Reglas de Tirada
             </h2>
             <div className="flex flex-col gap-3 text-sm text-muted leading-relaxed">
-              <p>Una vez coronado el Triman, el jugador a su izquierda empieza a tirar. Cada tirada puede tener consecuencias terribles si se obtiene lo siguiente:</p>
+              Para la variante física, usad dos dados. Quien sume tres primero lleva la corona. Después aplicad una sola acción por tirada:
               
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 list-none p-0">
                 <li className="bg-surface-hover p-4 rounded-lg border border-border">
-                  <span className="font-bold text-emerald-400 block mb-1">🎲🎲 Suma 7</span>El jugador sentado INMEDIATAMENTE a TU DERECHA debe beber un trago.
+                  <strong>Suma 7.</strong> Saluda la persona de la derecha.
                 </li>
                 <li className="bg-surface-hover p-4 rounded-lg border border-border">
-                  <span className="font-bold text-foreground block mb-1">🎲🎲 Suma 9</span>El jugador colocado INMEDIATAMENTE a TU IZQUIERDA debe realizar un trago.
+                  <strong>Suma 9.</strong> La persona de la izquierda propone un ritmo.
                 </li>
                 <li className="bg-surface-hover p-4 rounded-lg border border-border">
-                  <span className="font-bold text-red-400 block mb-1">🎲🎲 Suma 11</span>¡Fuego cruzado! Típico "Fondo Blanco Social". Toda la mesa al completo tiene que parar de hablar y chocar sus copas para beber al unísono.
+                  <strong>Suma 11.</strong> Pasad una ola de brazos alrededor de la mesa.
                 </li>
                 <li className="bg-surface-hover p-4 rounded-lg border border-border">
-                  <span className="font-bold text-violet-400 block mb-1">🎲🎲 Dobles (2-2, 4-4...)</span>Adquieres poder absoluto. Esa suma es el número de tragos y tú los repartes como te dé la gana. Puedes mandarle 10 tragos a un solo individuo.
+                  <strong>Dobles.</strong> Invita a alguien a inventar un gesto o pasa.
                 </li>
               </ul>
             </div>
@@ -95,8 +95,8 @@ export default function TrimanReglasPage() {
               <Zap className="h-5 w-5 text-emerald-400" /> La Regla de "La Racha"
             </h2>
             <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
-              <p>A diferencia de la inmensa mayoría de los juegos de mesa tradicionales, aquí <strong>tu turno no termina después de tirar</strong>.</p>
-              <p>Te mantienes tirando los dados continuamente MIENTRAS saques resultados que produzcan alguna regla o penalización (ya sea castigar al de la izquierda, al Triman, sacar dobles, etc.). Solamente cuando saques una combinación "vacía" (por ejemplo un 4 y un 1, que suman 5 y no interactúan en nada) finaliza tu turno y pasas los dados al jugador de tu izquierda.</p>
+              La app avanza al pulsar Siguiente turno, sea cual sea el resultado.
+              En la mesa podéis acordar una tirada extra si sale una de las combinaciones anteriores. Después pasad los dados, incluso si alguien ha preferido saltarse el gesto.
             </div>
           </section>
 
@@ -105,10 +105,10 @@ export default function TrimanReglasPage() {
             <h2 className="text-lg font-bold">🏃‍♂️ ¿Cómo se libra el pobre Triman?</h2>
             <div className="flex flex-col gap-3 text-sm text-muted leading-relaxed">
               <p>
-                Tarde o temprano, el hígado del "Señor del Tres" empezará a pedir tregua. Para liberarse del título soberano, el Triman solo tiene una forma de pasar la maldición a otro.
+                En la app, Nuevo Triman abre otra búsqueda con los mismos jugadores.
               </p>
               <p>
-                Tiene que aguantar hasta que llegue formalmente su turno de lanzar los dados. Al tirar, <strong>debe sacar un número "3" en cualquiera de sus dados (o que sumen 3)</strong>. Si logra la hazaña, el embrujo se rompe al instante y puede designar explícitamente a cualquier otro jugador de la mesa como el nuevo y glorioso Triman.
+                En la variante de mesa, al sumar tres podéis ofrecer la corona a otra persona. Si prefiere pasar, seguid jugando.
               </p>
             </div>
           </section>
@@ -119,7 +119,7 @@ export default function TrimanReglasPage() {
               <ShieldCheck className="h-5 w-5 text-emerald-400" /> Seguridad ante todo
             </h2>
             <p className="text-sm text-muted leading-relaxed">
-              Ser el Triman en una mesa de más de 6 personas puede suponer tener que beber de manera muy continua y perjudicial. No presiones a ningún compañero; si alguien decide beber agua o un refresco mientras es Triman, felicitadle por su madurez. Todo grupo responsable debe velar por la hidratación de sus integrantes.
+              Cada gesto dura una sola tirada. Si se repite un número, podéis probar otro gesto o pasar directamente al turno siguiente.
             </p>
           </section>
 

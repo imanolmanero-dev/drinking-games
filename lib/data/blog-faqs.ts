@@ -268,11 +268,11 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "juegos-para-beber-con-dados": [
     {
       q: "¿Qué juegos de beber usan dados?",
-      a: "El juego de dados para beber más popular es Triman (el Señor del 3), donde el jugador que saca un 3 se convierte en esclavo y bebe en cada ronda hasta que otro saque un 3. También existe el 7-11-doubles, donde sacar ciertos números obliga a beber al dueño del vaso central.",
+      a: "Triman se juega con un dado. El primer tres elige al Señor del 3 y las seis caras proponen gestos distintos. También hay variantes de mesa con dos dados.",
     },
     {
       q: "¿Cómo se juega al Triman?",
-      a: "En Triman cada jugador lanza el dado por turnos. El primero en sacar un 3 se convierte en el Señor del 3: beberá un trago cada vez que salga un 3 durante el resto de la partida. Se libera cuando otro jugador saca un 3 y hereda la maldición. Disponible digitalmente en BeberGames.",
+      a: "Lanzad por turnos hasta que salga un tres. Esa persona lleva la corona. En los turnos siguientes el tres invita al Triman a hacer una reverencia o pasar. Nuevo Triman abre otra búsqueda.",
     },
     {
       q: "¿Cuántos dados necesito para jugar a juegos de beber?",

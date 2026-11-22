@@ -60,7 +60,7 @@ const juegos = [
     id: "triman",
     nombre: "Triman",
     descripcion:
-      "El Señor del 3. Lanza el dado y descubre quién bebe según las reglas.",
+      "El Señor del 3. Lanza el dado y descubre qué gesto te toca.",
     icono: Dice3,
     color: "from-emerald-500 to-teal-500",
     shadowColor: "shadow-emerald-500/20",

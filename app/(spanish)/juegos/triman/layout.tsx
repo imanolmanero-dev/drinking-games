@@ -4,11 +4,11 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "Triman — Juego de Dados para Beber Online",
   description:
-    "Juega al Triman, el juego del dado para beber. Lanza el dado, descubre quién bebe según las 6 reglas. ¡El Señor del 3 siempre bebe!",
+    "Juega al Triman con un dado virtual. Descubre quién lleva la corona y qué gesto propone cada una de las seis caras.",
   openGraph: {
     title: "Triman — Juego de Dados para Beber",
     description:
-      "El juego del dado para beber. Lanza el dado y descubre quién bebe según las reglas.",
+      "Tira el dado, pasa la corona y prueba los gestos del Triman con tu grupo.",
   },
   alternates: {
     canonical: "https://bebergames.com/juegos/triman",

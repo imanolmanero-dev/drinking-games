@@ -16,7 +16,7 @@ const juegos = [
   {
     id: "triman",
     nombre: "Triman (El Señor del 3)",
-    descripcion: "Lanza el dado y descubre quién bebe según las reglas. ¡El que saque 3 es el Triman!",
+    descripcion: "Lanza el dado y descubre qué gesto propone cada cara. ¡El que saque 3 es el Triman!",
     icono: Dice3,
     color: "from-emerald-500 to-teal-500",
     shadowColor: "shadow-emerald-500/20",
@@ -89,10 +89,10 @@ export default function DadosCategoryPage() {
           </h2>
           <div className="text-sm text-muted space-y-3 leading-relaxed">
             <p>
-              Los juegos de dados para beber llevan décadas siendo los favoritos de las fiestas universitarias y las previas en casa. La razón es simple: no hay que pensar demasiado, no hay que recordar reglas complejas y el dado siempre tiene la última palabra. Tiras, obedeces, bebes o te salvas.
+              Los juegos de dados para beber llevan décadas siendo los favoritos de las fiestas universitarias y las previas en casa. La razón es simple: no hay que pensar demasiado, no hay que recordar reglas complejas y el dado siempre tiene la última palabra. Cada cara propone una acción distinta.
             </p>
             <p>
-              El <Link href="/juegos/triman" className="text-accent hover:underline">Triman</Link> (también conocido como El Señor del 3) es el rey de los juegos de dados para beber. Su mecánica es adictiva: el jugador que saca un 3 se convierte en el Triman y queda maldito hasta que otro jugador lo libere sacando otro 3. Mientras tanto, cada ronda que pasa le toca beber.
+              El <Link href="/juegos/triman" className="text-accent hover:underline">Triman</Link> (también conocido como El Señor del 3) es el rey de los juegos de dados para beber. El primer tres corona al Triman. Cuando vuelva a salir un tres, puede hacer una reverencia o pasar.
             </p>
             <p>
               En BeberGames tienes el dado digital integrado: la app lanza el dado por ti, aplica las reglas automáticamente y lleva el control de quién es el Triman en cada momento. Sin dados físicos que se pierdan debajo del sofá ni discusiones sobre si el dado estaba torcido. Si quieres conocer todos los juegos de dados que existen, echa un vistazo a nuestra <Link href="/blog/juegos-para-beber-con-dados" className="text-accent hover:underline">guía completa de juegos de dados para beber</Link>.
