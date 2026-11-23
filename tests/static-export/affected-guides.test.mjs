@@ -54,3 +54,29 @@ for (const [slug, change] of Object.entries(guideChanges)) {
     assert.doesNotMatch(article.textContent, removed);
   });
 }
+
+test("the Beer Pong referral describes the water-cup variant and the FAQ uses its own games' outcomes", () => {
+  const doc = parse(readFileSync("out/blog/drinking-games-reglas.html", "utf8"));
+  const article = doc.querySelector("article");
+  const link = article.querySelector('.prose a[href="/blog/beer-pong-reglas-completas"]');
+  assert.match(link.textContent, /rerack/i);
+  assert.match(link.parentNode.textContent, /tres vasos con agua.*juntarlos en triángulo antes del siguiente tiro/);
+  const faq = article.querySelectorAll("h3").find(h => h.textContent === "¿Cuáles son las reglas generales de los drinking games?");
+  const answer = faq.parentNode.querySelector("p").textContent;
+  assert.match(answer, /Quarters, cada acierto vale un punto/);
+  assert.match(answer, /Power Hour.*reconocer las canciones.*último fragmento/);
+  assert.doesNotMatch(answer, /puntúan.*respuestas/i);
+});
+
+test("the questions category keeps its four playable destinations and their reviewed card descriptions", () => {
+  const doc = parse(readFileSync("out/juegos/categorias/preguntas.html", "utf8"));
+  const cards = doc.querySelectorAll("main a").filter(a => a.querySelector("h3"));
+  assert.deepEqual(cards.map(a => a.getAttribute("href")), [
+    "/juegos/yo-nunca", "/juegos/verdad-o-reto", "/juegos/quien-es-mas-probable", "/juegos/yo-prefiero",
+  ]);
+  const descriptions = cards.map(a => a.querySelector("p").textContent);
+  for (const [i, action] of [/puede bajar un dedo/, /pasar cualquier tarjeta sin penalización/, /señalad a la vez/, /60 dilemas/].entries()) {
+    assert.match(descriptions[i], action);
+    assert.doesNotMatch(descriptions[i], /bebe|tragos?|fondo blanco|siempre pierde/i);
+  }
+});

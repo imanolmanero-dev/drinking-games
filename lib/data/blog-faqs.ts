@@ -219,7 +219,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "drinking-games-reglas": [
     {
       q: "¿Cuáles son las reglas generales de los drinking games?",
-      a: "Acordad cómo empieza el turno, qué cuenta como acierto y cuándo acaba la ronda. En estas variantes puntúan los tiros, las respuestas o las cartas. Cualquiera puede pasar sin beber ni dar explicaciones.",
+      a: "Acordad cómo empieza el turno y cuándo acaba la ronda. En Quarters, cada acierto vale un punto. En Power Hour intentáis reconocer las canciones y la ronda acaba con el último fragmento. Cualquiera puede pasar sin beber ni dar explicaciones.",
     },
     {
       q: "¿Cuáles son los drinking games más populares en España?",

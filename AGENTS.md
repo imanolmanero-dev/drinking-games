@@ -381,6 +381,7 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-11-20 | Las tarjetas de portada y categoría anunciaban penalizaciones y la ruleta exigía beber al pasar | Portada, categoría de preguntas, ruleta y reglas ES | Revisados los enlaces de entrada y sus descripciones estructuradas junto con las casillas, el resultado, la FAQ y las reglas del juego. |
 | 2026-11-21 | Tres casillas de la ruleta conservaban el símbolo de su acción anterior | Ruleta ES | Cuando el disco muestra solo emojis, comprobar cada símbolo junto con el texto del resultado que representa. |
 | 2026-11-21 | Las guías de mesa y sus FAQ podían atribuir a una app reglas que solo se habían adaptado en el artículo | Guías ES con juegos enlazados | Verificar qué muestra la app, identificar la variante de mesa y contrastar sus reglas con la FAQ visible y estructurada. |
+| 2026-11-23 | La variante de Beer Pong con agua remitía a otras reglas como continuación de la partida | Guía de diez juegos ES y su FAQ | Al enlazar otra variante, indicar qué mecánica se toma de ella. Comprobar cada ejemplo de puntuación de la FAQ contra las reglas del artículo. |
 
 ### English guide without cards
 - `/en/blog/drinking-games-without-cards` añade solo una guía Server Component con ocho juegos manuales y enlaces desde home, hub y guía para dos. Inventario: 71 ES + 12 EN = 83. Sin índice, navegación nueva ni juegos nuevos; concepto `unpaired`.
