@@ -3,11 +3,19 @@ import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
 
 const changes = JSON.parse(readFileSync(new URL("../fixtures/critical-games-2b-export.json", import.meta.url)));
+const editorial = JSON.parse(readFileSync(new URL("../fixtures/questions-editorial-export.json", import.meta.url)));
 const hash = value => createHash("sha256").update(value).digest("hex");
 
 function fields(path, snapshot) {
   const navigation = path + "#before-navigation";
-  return Object.hasOwn(snapshot, "header") && changes[navigation] ? changes[navigation] : changes[path] ?? {};
+  const original = Object.hasOwn(snapshot, "header") && changes[navigation] ? changes[navigation] : changes[path] ?? {};
+  if (!editorial[path]) return original;
+  const combined = { ...original };
+  for (const [field, [before, after]] of Object.entries(editorial[path])) {
+    if (original[field]) assert.equal(original[field][1], before, path + " pre-editorial " + field);
+    combined[field] = [original[field]?.[0] ?? before, after, original[field]?.[2]];
+  }
+  return combined;
 }
 
 // Older guards compare different historical releases. Check the reviewed field

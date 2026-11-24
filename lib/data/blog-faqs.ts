@@ -185,11 +185,11 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "100-preguntas-yo-nunca": [
     {
       q: "¿Cuántas preguntas tiene el juego Yo Nunca de BeberGames?",
-      a: "BeberGames tiene más de 100 preguntas de Yo Nunca organizadas por niveles de intensidad: suave, normal y picante. Puedes elegir el nivel antes de empezar para adaptarlo a tu grupo.",
+      a: "La app de Yo Nunca tiene 150 frases repartidas entre Soft, Normal y Picante. Podéis elegir uno o varios niveles antes de empezar. Esta lista para jugar en la mesa reúne 100 frases.",
     },
     {
       q: "¿Cómo se juega al Yo Nunca?",
-      a: "En el Yo Nunca un jugador dice 'Yo nunca he...' seguido de algo que nunca haya hecho. Todos los que sí lo hayan hecho beben. Si nadie bebe, el que dijo la frase bebe por haberla elegido. El turno pasa hasta completar las rondas acordadas.",
+      a: "Una persona lee una frase. Quien haya hecho lo que dice puede bajar un dedo o levantar la mano. Si nadie responde, pasad a la siguiente. Puedes guardarte la anécdota y pasar cualquier turno sin penalización.",
     },
     {
       q: "¿Cuál es la mejor pregunta para empezar el Yo Nunca?",
@@ -197,7 +197,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Se puede jugar al Yo Nunca en pareja?",
-      a: "Sí, el Yo Nunca funciona muy bien en pareja. Adapta las reglas: si ambos lo habéis hecho, brindáis los dos; si ninguno, el que propuso la frase bebe. Es una forma divertida de conocerse mejor y descubrir experiencias pasadas.",
+      a: "Sí. Alternad quién lee. Cada persona decide si baja un dedo y si le apetece contar algo. Si los dos dejáis la mano quieta, probad otra frase.",
     },
   ],
 
@@ -336,15 +336,15 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "preguntas-picantes-verdad-o-reto": [
     {
       q: "¿Cuáles son las preguntas más picantes del Verdad o Reto?",
-      a: "Las preguntas picantes más populares del Verdad o Reto son del tipo: '¿Cuál ha sido tu experiencia más bochornosa en la cama?', '¿Has tenido un sueño subido de tono con alguien del grupo?', o '¿Cuál es tu fantasía que nunca te has atrevido a realizar?'. En BeberGames están organizadas por nivel de intensidad.",
+      a: "Las del tercer nivel entran en terreno íntimo. Por ejemplo, ¿cuál es la propuesta más picante que has aceptado? Puedes responder sin dar nombres o pasar la pregunta.",
     },
     {
       q: "¿Se puede jugar al Verdad o Reto picante en pareja?",
-      a: "Sí, el Verdad o Reto picante es ideal para parejas con confianza. En pareja las preguntas se vuelven más personales y directas, lo que puede generar conversaciones muy reveladoras. Recomendamos empezar siempre por preguntas más suaves antes de pasar al nivel +18.",
+      a: "Sí, podéis usar esta lista en pareja y alternar los turnos. Cada persona elige pregunta, reto o paso. Para jugar en la app hacen falta al menos tres jugadores.",
     },
     {
       q: "¿Cómo saber qué nivel de preguntas elegir en el Verdad o Reto?",
-      a: "La regla es leer al grupo: si es la primera vez que jugáis juntos o hay gente que no se conoce bien, empieza con el nivel verde (suave). Si todos se conocen de hace tiempo y están cómodos, podéis saltar directamente al nivel amarillo. El nivel rojo (+18) es solo para grupos de máxima confianza.",
+      a: "Probad una pregunta del nivel verde. Si os apetece algo más personal, elegid otra del amarillo o del rojo (+18). Podéis volver al verde en cualquier momento. En la app se eligen los niveles antes de empezar.",
     },
   ],
 

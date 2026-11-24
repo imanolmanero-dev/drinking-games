@@ -382,6 +382,7 @@ Si la respuesta es sí → actualiza este archivo.
 | 2026-11-21 | Tres casillas de la ruleta conservaban el símbolo de su acción anterior | Ruleta ES | Cuando el disco muestra solo emojis, comprobar cada símbolo junto con el texto del resultado que representa. |
 | 2026-11-21 | Las guías de mesa y sus FAQ podían atribuir a una app reglas que solo se habían adaptado en el artículo | Guías ES con juegos enlazados | Verificar qué muestra la app, identificar la variante de mesa y contrastar sus reglas con la FAQ visible y estructurada. |
 | 2026-11-23 | La variante de Beer Pong con agua remitía a otras reglas como continuación de la partida | Guía de diez juegos ES y su FAQ | Al enlazar otra variante, indicar qué mecánica se toma de ella. Comprobar cada ejemplo de puntuación de la FAQ contra las reglas del artículo. |
+| 2026-11-24 | Dos listas enlazadas desde Preguntas exigían beber, contar anécdotas o exponer contenido privado al pasar | Listas de Yo Nunca y Verdad o Reto y sus FAQ | Se revisaron las instrucciones, los retos y las FAQ visibles y estructuradas conservando los inventarios. |
 
 ### English guide without cards
 - `/en/blog/drinking-games-without-cards` añade solo una guía Server Component con ocho juegos manuales y enlaces desde home, hub y guía para dos. Inventario: 71 ES + 12 EN = 83. Sin índice, navegación nueva ni juegos nuevos; concepto `unpaired`.
@@ -419,5 +420,6 @@ Si la respuesta es sí → actualiza este archivo.
 - Pasar cualquier tarjeta avanza al siguiente jugador sin beber, justificar la decisión ni confirmar cumplimiento. Comprobar preparación, revelación, retos, reglas enlazadas y descripciones públicas específicas cuando cambie esta mecánica.
 
 - Al revisar recomendaciones de un juego, comprobar también sus enlaces de salida en el HTML exportado. Una tarjeta puede seguir exigiendo beber aunque el juego enlazado ya permita pasar.
+- En las listas de preguntas, revisar por separado las instrucciones de cada nivel, los retos y las FAQ. Pasar termina el turno sin exigir otra acción. Los retos se pueden jugar sin usar cuentas, conversaciones ni fotos privadas.
 - La Bomba conserva un temporizador por ronda. Identificar al portador al detonar, también tras varios pases, y comprobar quién abre la ronda siguiente.
 - Al retirar una consecuencia de un juego, buscar referencias a su desenlace también en otros juegos y en el blog. Para Rey de la Copa, probar con un rey como carta inicial y comprobar el contador al volver a barajar.

@@ -18,6 +18,11 @@ export function projectCriticalGames(path, previous, current) {
 // Reconstruct the earlier article card before applying older discovery-page guards.
 export function restoreBombaCard(doc, path) {
   if (path !== "/" && path !== "/blog") return;
+  if (path === "/blog") {
+    const description = doc.querySelector('a[href="/blog/100-preguntas-yo-nunca"] p');
+    assert.match(description.textContent, /^100 ideas de frases/);
+    description.set_content("Más de " + description.textContent);
+  }
   const card = doc.querySelector('a[href="/blog/la-bomba-juego-beber"]');
   const excerpt = card.querySelector("p");
   assert.equal(excerpt.textContent, "Cómo jugar a La Bomba con un temporizador secreto. Descubre quién empieza cada ronda y prueba las variantes de palabras y categorías.");
