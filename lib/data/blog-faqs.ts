@@ -453,7 +453,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "preguntas-quien-es-mas-probable": [
     {
       q: "¿Cómo se juega al Quién Es Más Probable?",
-      a: "Se lee una pregunta del tipo '¿Quién es más probable que acabe en la cárcel?'. A la cuenta de 3, todos señalan simultáneamente a alguien. El jugador con más dedos apuntándole bebe. En caso de empate, todos los empatados beben.",
+      a: "A la de tres, señalad a la vez o dejad la mano bajada. Contad las nominaciones en la mesa. Quien reciba más votos puede comentar la pregunta o pasar.",
     },
     {
       q: "¿Cuántas personas se necesitan para jugar al Quién Es Más Probable?",
@@ -465,14 +465,14 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Qué pasa si hay empate en el Quién Es Más Probable?",
-      a: "Cuando hay empate (dos o más personas con el mismo número de votos), todas las empatadas beben. En BeberGames la app gestiona los empates automáticamente y puede hacer una segunda votación de desempate si el grupo lo desea.",
+      a: "Compartid la nominación entre quienes empaten. La app no registra votos ni decide desempates. Si nadie vota, seguid con la siguiente tarjeta.",
     },
   ],
 
   "juegos-para-cumpleanos-adultos": [
     {
       q: "¿Cuáles son los mejores juegos para un cumpleaños de adultos?",
-      a: "Los mejores juegos para un cumpleaños de adultos son Quién Es Más Probable (personalizable con preguntas sobre el festejado), Verdad o Reto, Yo Nunca, Ring of Fire y Beer Pong. Todos están disponibles gratis en BeberGames sin necesidad de descargar nada.",
+      a: "Los mejores juegos para un cumpleaños de adultos son Quién Es Más Probable (podéis añadir preguntas de cumpleaños en la mesa), Verdad o Reto, Yo Nunca, Ring of Fire y Beer Pong. Todos están disponibles gratis en BeberGames sin necesidad de descargar nada.",
     },
     {
       q: "¿Cómo organizo los juegos en una fiesta de cumpleaños?",

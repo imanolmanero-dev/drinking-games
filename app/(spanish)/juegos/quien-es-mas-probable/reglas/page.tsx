@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     canonical: "https://bebergames.com/juegos/quien-es-mas-probable/reglas",
   },
   title: 'Reglas de Quién Es Más Probable — Cómo Jugar',
-  description: 'El juego perfecto para descubrir qué piensan tus amigos de ti. Aprende las reglas de Quién Es Más Probable, el sistema de votaciones, castigos y variantes.',
+  description: "Aprende a jugar a Quién Es Más Probable. Descubre cómo señalar a la vez, contar nominaciones y compartir un empate.",
 };
 
 export default function QuienEsMasProbableReglasPage() {
@@ -44,9 +44,9 @@ export default function QuienEsMasProbableReglasPage() {
             </h2>
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>Jugadores:</strong> Recomendamos encarecidamente un mínimo de 4 personas. Con 3 es aburrido, con más de 10 es un descontrol muy divertido.</li>
-              <li>✅ <strong>Mentalidad abierta:</strong> Hay que estar listo para aguantar acusaciones injustas y no tomarse los juicios de valor a pecho.</li>
-              <li>✅ <strong>Vasos llenos:</strong> Tener la bebida siempre en la mano para tragar rápido cada vez que te señalen.</li>
-              <li>✅ <strong>Nuestra App:</strong> Te servirá para tener un flujo interminable de preguntas aleatorias curadas por expertos.</li>
+              <li><strong>Grupo:</strong> Cualquiera puede saltarse una pregunta o pedir que no le nominen.</li>
+              <li><strong>Espacio:</strong> Colocaos donde se vean las manos.</li>
+              <li><strong>Un móvil:</strong> La app propone 60 preguntas repartidas por intensidad.</li>
             </ul>
           </section>
 
@@ -75,7 +75,7 @@ export default function QuienEsMasProbableReglasPage() {
                 {
                   paso: "4",
                   titulo: "El Disparo",
-                  desc: "A la cuenta de «¡Un, dos, tres!» TODO EL MUNDO levanta la mano y señala firmemente con el dedo índice a su elegido sin dudar.",
+                  desc: "A la de tres, quien quiera señala a una persona. Si prefieres abstenerte, deja la mano bajada.",
                 },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
@@ -94,18 +94,18 @@ export default function QuienEsMasProbableReglasPage() {
           {/* Castigos y Votaciones */}
           <section className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4">
             <h2 className="flex items-center gap-2 text-lg font-bold">
-              <Scale className="h-5 w-5 text-cyan-400" /> Sistema de Votaciones y Castigos
+              <Scale className="h-5 w-5 text-cyan-400" /> Cómo contar las nominaciones
             </h2>
             <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
-              <p>Este es el único juego donde el castigo que recibes es directamente proporcional a lo que tu grupo piense de ti. Aquí se cuentan votos literales:</p>
+              <p>Contad los dedos en la mesa. La app muestra las preguntas y vosotros lleváis la votación.</p>
               
               <div className="rounded-lg bg-surface-hover p-4 border-l-4 border-cyan-500">
-                <p className="font-bold text-foreground mb-1 text-base">👉 Cada dedo apuntándote = 1 Trago</p>
-                <p>Es una matemática despiadada. Haz el recuento visual: Si tienes cinco manos (cinco dedos índice) apuntándote cruelmente desde el otro lado de la mesa, no te queda otra que realizar CINCO tragos largos de tu copa.</p>
+                <p className="font-bold text-foreground mb-1 text-base">👉 Un dedo, una nominación</p>
+                <p>Si cinco personas te señalan, tienes cinco votos en esa ronda. Puedes comentar si te ves en ese papel o pedir la siguiente tarjeta.</p>
               </div>
               <div className="rounded-lg bg-surface-hover p-4 border-l-4 border-emerald-500">
                 <p className="font-bold text-foreground mb-1 text-base">🗣️ El Derecho a Defensa</p>
-                <p>Es una ley no estricta: Si resultaste ser "La Víctima" (la persona más votada por aplastante mayoría en esa ronda), tienes derecho a indignarte, protestar encarecidamente y exigir una justificación. ¡Las horribles excusas de tus amigos valen oro!</p>
+                <p>Quien quiera puede explicar su voto. A veces basta con una mirada para que toda la mesa recuerde la misma anécdota.</p>
               </div>
             </div>
           </section>
@@ -117,7 +117,7 @@ export default function QuienEsMasProbableReglasPage() {
             </h2>
             <div className="flex flex-col gap-3 text-sm text-muted leading-relaxed">
               <p>
-                <strong className="text-foreground">Castigo por Voto Dividido:</strong> En los grupos grandes suele ocurrir que todos señalan a personas distintas. Si se da el raro caso de que TODO el grupo señale a distintas personas y ninguna se lleve más de un dedo, significa que no tenéis mentalidad colmena. ¡Brindis de todo el grupo y castigo conjunto!
+                <strong className="text-foreground">Voto dividido:</strong> Si varias personas empatan, compartid la nominación. Si nadie vota, avanzad sin elegir a nadie.
               </p>
             </div>
           </section>
@@ -128,7 +128,7 @@ export default function QuienEsMasProbableReglasPage() {
               <ShieldCheck className="h-5 w-5 text-cyan-400" /> Juega de manera inclusiva
             </h2>
             <p className="text-sm text-muted leading-relaxed">
-              Cuando juegues al modo Picante, puede desencadenar revelaciones crudas y prejuicios graciosos. Nunca sobrepases la confianza del individuo. Como con todos nuestros productos, no requerimos en absoluto la ingesta de alcohol. Se pueden contabilizar castigos como gominolas, gajos de limón o pequeños ejercicios físicos para mantener la diversión sin riesgos para la salud.
+              Si una tarjeta incomoda a alguien, saltadla. No hace falta dar un motivo ni contar historias personales.
             </p>
           </section>
 

@@ -72,7 +72,7 @@ export default function QuienEsMasProbablePage() {
     playSound("flip");
     vibrateDevice("flip");
     setTimeout(() => {
-      setCurrentIndex((prev) => prev + 1);
+      setCurrentIndex(currentIndex + 1);
       setIsFlipping(false);
     }, 300);
   }, [isFlipping, currentIndex, questions.length, playSound, vibrateDevice]);
@@ -108,7 +108,7 @@ export default function QuienEsMasProbablePage() {
                 Quién Es Más Probable
               </h1>
               <p className="text-sm text-muted max-w-xs">
-                Lee la tarjeta, cuenta hasta 3 y señalad todos a la vez. ¡El que tenga más dedos apuntándole, bebe!
+                A la de tres, señalad a la vez o dejad la mano bajada. Contad las nominaciones en la mesa.
               </p>
               <Link href="/juegos/quien-es-mas-probable/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-cyan-400 transition-colors hover:bg-cyan-500/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -135,29 +135,29 @@ export default function QuienEsMasProbablePage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>Quién Es Más Probable: El Juego del Señalamiento</h2>
             <p>
-              También conocido como <em>Most Likely To</em> en inglés, el juego de <strong>Quién Es Más Probable</strong> tiene un objetivo claro y perverso: descubrir exactamente qué piensa el grupo de cada persona. Sin filtros, sin diplomacia, con el dedo apuntando directamente.
+              En <strong>Quién Es Más Probable</strong>, también conocido como <em>Most Likely To</em>, el grupo imagina quién protagonizaría la escena de cada tarjeta.
             </p>
             <p>
-              La app muestra una pregunta del tipo &ldquo;¿Quién es más probable que acabe viviendo en otro país?&rdquo; o &ldquo;¿Quién es más probable que llore en una película de acción?&rdquo;. A la cuenta de tres, todos señalan a la vez. El más votado bebe tantos tragos como dedos le apunten.
+              La app propone la pregunta. ¿Quién acabaría viviendo en otro país? Contad hasta tres en voz alta y señalad a la vez. Cada dedo cuenta como una nominación.
             </p>
 
             <h3>Las reglas básicas</h3>
             <ul>
-              <li><strong>Votación simultánea:</strong> Nadie puede copiar el voto del otro. Cuando alguien diga &ldquo;¡Uno, dos, tres!&rdquo;, todos señalan al mismo tiempo sin mirar a los lados.</li>
-              <li><strong>Tragos por dedo:</strong> Cada dedo que te apunte = un trago. En un grupo de 8 personas, si 7 te señalan, tienes trabajo por delante.</li>
-              <li><strong>Empate:</strong> Si hay empate entre dos personas, las dos beben. La democracia es justa.</li>
+              <li><strong>Votación simultánea:</strong> Señalad a la de tres. También podéis absteneros.</li>
+              <li><strong>Nominaciones:</strong> Comparad los votos a simple vista. Quien reciba más puede comentar, reírse o pasar.</li>
+              <li><strong>Empate:</strong> Compartid la nominación y seguid. Si nadie vota, saltad la tarjeta.</li>
               <li><strong>Auto-señalamiento:</strong> Sí, puedes señalarte a ti mismo. No tiene por qué ser vergonzoso. A veces es estratégico.</li>
             </ul>
 
             <h3>Preguntas frecuentes</h3>
             <p><strong>¿Cuántos jugadores hacen falta?</strong> Mínimo 3, pero con 5 o más es mucho mejor. Con más gente, los señalamientos son más reveladores y las reacciones más divertidas.</p>
             <p><strong>¿Las preguntas son siempre comprometidas?</strong> Tenemos varios niveles de intensidad. El modo Normal tiene preguntas divertidas sin drama. El modo Picante puede ponerse más personal.</p>
-            <p><strong>¿Se puede jugar sin beber?</strong> Claro. El castigo puede ser cualquier cosa: hacer una tarea, pagar una prenda, o simplemente pasar el mal rato de que todos te señalen.</p>
+            <p><strong>¿Se puede jugar sin beber?</strong> Sí. Las nominaciones solo sirven para comparar a quién imagináis en la escena.</p>
 
             <h3>Otros juegos de preguntas</h3>
             <ul>
-              <li><Link href="/juegos/yo-nunca" className="text-cyan-500 underline">Yo Nunca</Link> — Confiesa o bebe. Descubre los secretos del grupo.</li>
-              <li><Link href="/juegos/verdad-o-reto" className="text-cyan-500 underline">Verdad o Reto</Link> — El clásico con cientos de preguntas y retos en varios niveles.</li>
+              <li><Link href="/juegos/yo-nunca" className="text-cyan-500 underline">Yo Nunca</Link> — Lee la frase. Quien la haya hecho puede bajar un dedo.</li>
+              <li><Link href="/juegos/verdad-o-reto" className="text-cyan-500 underline">Verdad o Reto</Link> — Elige una pregunta o un reto del nivel que prefieras.</li>
               <li><Link href="/juegos/yo-prefiero" className="text-cyan-500 underline">Yo Prefiero</Link> — Elegid A o B o pasad. Comparad los votos.</li>
             </ul>
             <p>Lee todas las mecánicas avanzadas en las <Link href="/juegos/quien-es-mas-probable/reglas" className="text-cyan-500 underline">reglas de Quién Es Más Probable</Link>.</p>
@@ -184,12 +184,12 @@ export default function QuienEsMasProbablePage() {
           animate={{ opacity: 1, scale: 1 }}
           className="flex flex-col items-center gap-6 text-center"
         >
-          <div className="text-6xl">🤕</div>
+          <div className="text-6xl">🎉</div>
           <h2 className="text-2xl font-extrabold sm:text-3xl">
             ¡Se acabaron las preguntas!
           </h2>
           <p className="text-muted max-w-xs text-sm">
-            Creo que ya ha quedado claro qué opina el grupo de cada uno.
+            ¿Qué nominación os sorprendió más?
           </p>
           <button
             onClick={restartGame}
@@ -255,7 +255,7 @@ export default function QuienEsMasProbablePage() {
                 </h2>
 
                 <p className="text-sm text-muted">
-                  El más votado bebe 🍻
+                  Compartid la nominación si hay empate. Puedes pasar sin explicarte.
                 </p>
               </div>
             </motion.div>
