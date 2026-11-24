@@ -91,7 +91,7 @@ const juegos = [
   {
     id: "quien-es-mas-probable",
     nombre: "Quién Es Más Probable",
-    descripcion: "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¡El más votado bebe!",
+    descripcion: "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. Comparad las nominaciones.",
     detalle: "Saca a la luz lo que todo el grupo piensa pero nadie dice. '¿Quién es más probable que acabe bailando en la mesa?' A la de 3, todos señalan.",
     icono: Hand,
     color: "from-cyan-500 to-blue-500",

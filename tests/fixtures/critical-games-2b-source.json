@@ -1,0 +1,10 @@
+{
+  "app/(spanish)/page.tsx": "b15e8aee899eeda69e71c2c3cc9e4e31cf493ca3274169fd10675e70a808fdb7",
+  "app/(spanish)/juegos/page.tsx": "31ca76140a548a26327376a2cd849cb1173fd16b82a1f45583a389da8e28219e",
+  "app/(spanish)/juegos/categorias/cartas/page.tsx": "0ff17c4e6c3afe8b16ca85debb258ee703aa3ea982d216ff5621e5f4966a5b48",
+  "app/(spanish)/juegos/categorias/preguntas/page.tsx": "e4bc0aa0435786d03e51b761e7b7442cc4253a44077b9ee94f5aa8c520dd36d5",
+  "components/layout/GameLayout.tsx": "995c8ba0ab85780054e1731f5ed7fc2e0b0a316af0e218123a955c338d737470",
+  "content/blog/rey-de-la-copa-reglas.mdx": "e953ada8cac53f0fc24750643d50b50977e89b191a4da4b0dfd4e595caa2642c",
+  "content/blog/juegos-para-beber-con-cartas.mdx": "512e8a08432a9459fa623003b36a1ad9a9547cf8039af9994f83cd4dc354b8b1",
+  "app/(spanish)/juegos/categorias/dados/page.tsx": "dfb458d112cd251c799319450876026f4039c22aac19a690e7207c7d79133337"
+}

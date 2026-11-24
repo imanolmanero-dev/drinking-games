@@ -241,9 +241,9 @@ export default function YoPrefieroPage() {
 
             <h3>Juegos de preguntas que también te gustarán</h3>
             <ul>
-              <li><Link href="/juegos/quien-es-mas-probable" className="text-violet-500 underline">Quién Es Más Probable</Link> — El grupo señala a alguien. El más votado bebe tantos tragos como dedos le apunten.</li>
-              <li><Link href="/juegos/verdad-o-reto" className="text-violet-500 underline">Verdad o Reto</Link> — Elige entre confesar o cumplir. El cobarde que no quiera hacer ninguna de las dos, bebe.</li>
-              <li><Link href="/juegos/yo-nunca" className="text-violet-500 underline">Yo Nunca</Link> — Confiesa lo que has hecho. El que lo haya hecho, bebe.</li>
+              <li><Link href="/juegos/quien-es-mas-probable" className="text-violet-500 underline">Quién Es Más Probable</Link> — El grupo señala a alguien. Cada dedo cuenta como una nominación.</li>
+              <li><Link href="/juegos/verdad-o-reto" className="text-violet-500 underline">Verdad o Reto</Link> — Elige una pregunta o un reto. Puedes pasar cualquier tarjeta.</li>
+              <li><Link href="/juegos/yo-nunca" className="text-violet-500 underline">Yo Nunca</Link> — Quien haya hecho lo que dice la frase puede bajar un dedo.</li>
             </ul>
             <p>Consulta las <Link href="/juegos/yo-prefiero/reglas" className="text-violet-500 underline">reglas completas del Yo Prefiero</Link> con estrategias para maximizar el caos en cada partida.</p>
           </div>

@@ -221,7 +221,7 @@ export default function TrimanPage() {
 
   // ── Find Triman: roll for current search player ──
   const rollForTriman = useCallback(async () => {
-    if (isRolling) return;
+    if (isRolling || searchDice !== null) return;
     const result = await rollDice();
     if (result === 3) {
       // Found the Triman!
@@ -241,7 +241,7 @@ export default function TrimanPage() {
         setSearchDice(null);
       }, 1200);
     }
-  }, [isRolling, rollDice, searchPlayer]);
+  }, [isRolling, rollDice, searchPlayer, searchDice]);
 
   // ── Playing: roll the dice ──
   const rollGameDice = useCallback(async () => {
@@ -482,10 +482,10 @@ export default function TrimanPage() {
             <h3>Más juegos de dados y azar</h3>
             <ul>
               <li><Link href="/juegos/la-bomba" className="text-emerald-500 underline">La Bomba</Link> — Pasa el móvil antes de que explote el temporizador secreto.</li>
-              <li><Link href="/juegos/la-ruleta" className="text-emerald-500 underline">La Ruleta</Link> — Gira la ruleta y cumple el castigo que te toque.</li>
+              <li><Link href="/juegos/la-ruleta" className="text-emerald-500 underline">La Ruleta</Link> — Gira la ruleta para descubrir la siguiente propuesta.</li>
               <li><Link href="/juegos/ring-of-fire" className="text-emerald-500 underline">Ring of Fire</Link> — Cada carta de la baraja tiene una regla diferente.</li>
             </ul>
-            <p>Consulta todas las variantes y la regla secreta del 5 en la <Link href="/juegos/triman/reglas" className="text-emerald-500 underline">guía completa de Triman</Link>.</p>
+            <p>Consulta las seis caras del dado y cómo cambiar de Triman en la <Link href="/juegos/triman/reglas" className="text-emerald-500 underline">guía completa de Triman</Link>.</p>
           </div>
         </div>
       </div>
@@ -496,7 +496,7 @@ export default function TrimanPage() {
   // FIND TRIMAN — roll until someone gets 3
   // ═══════════════════════════════════
   if (phase === "findTriman") {
-    const foundTriman = searchDice === 3;
+    const foundTriman = !isRolling && searchDice === 3;
 
     return (
       <div className="flex flex-1 flex-col items-center justify-center px-4 py-12">
@@ -563,7 +563,7 @@ export default function TrimanPage() {
           {!foundTriman && (
             <button
               onClick={rollForTriman}
-              disabled={isRolling}
+              disabled={isRolling || searchDice !== null}
               className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 px-8 py-4 text-sm font-semibold text-white shadow-lg shadow-emerald-500/20 transition-all hover:scale-[1.02] hover:shadow-xl disabled:opacity-60"
             >
               {isRolling ? (
@@ -697,7 +697,7 @@ export default function TrimanPage() {
                 {/* Emoji */}
                 <span className="text-4xl">{ruleResult.emoji}</span>
 
-                {/* Who drinks */}
+                {/* Acción del turno */}
                 <div className="text-center">
                   <p className="text-sm text-muted mb-1">
                     {currentPlayer} ha lanzado
@@ -780,11 +780,13 @@ export default function TrimanPage() {
           <div className="flex gap-2">
             <button
               onClick={newTriman}
+              disabled={isRolling}
               className="rounded-full border border-border bg-surface px-3 py-1.5 text-xs text-muted transition-colors hover:bg-surface-hover"
             >
               <RotateCcw className="h-3 w-3 inline mr-1" />
               Nuevo Triman
             </button>
+            <button onClick={restartGame} disabled={isRolling} className="rounded-full border border-border px-3 py-1.5 text-xs">Terminar</button>
           </div>
         </div>
       </div>

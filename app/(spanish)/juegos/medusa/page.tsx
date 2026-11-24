@@ -231,7 +231,7 @@ export default function MedusaPage() {
             <ul>
               <li><Link href="/juegos/yo-nunca" className="text-lime-500 underline">Yo Nunca</Link> — Confiesa o bebe. Perfecto para conocer los secretos del grupo.</li>
               <li><Link href="/juegos/la-bomba" className="text-lime-500 underline">La Bomba</Link> — Pasa el móvil antes de que explote el temporizador secreto.</li>
-              <li><Link href="/juegos/quien-es-mas-probable" className="text-lime-500 underline">Quién Es Más Probable</Link> — El grupo señala y la mayoría decide quién bebe.</li>
+              <li><Link href="/juegos/quien-es-mas-probable" className="text-lime-500 underline">Quién Es Más Probable</Link> — El grupo señala y compara las nominaciones.</li>
             </ul>
             <p>Consulta todas las reglas y variantes en el <Link href="/juegos/medusa/reglas" className="text-lime-500 underline">manual oficial de Medusa</Link>.</p>
           </div>

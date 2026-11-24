@@ -25,7 +25,7 @@ const GAME_DESCRIPTIONS: Record<string, string> = {
   "verdad-o-reto": "Elige entre responder una pregunta o probar un reto. Puedes pasar cualquier tarjeta sin penalización.",
   "triman": "Tira el dado virtual y descubre a quién le toca proponer un gesto.",
   "la-ruleta": "Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno.",
-  "quien-es-mas-probable": "Lee la tarjeta, cuenta hasta 3 y señalad a la vez al más probable. El más votado bebe.",
+  "quien-es-mas-probable": "Lee la tarjeta, cuenta hasta 3 y señalad a la vez al más probable. Quien reciba más votos puede comentar o pasar.",
   "ring-of-fire": "Roba cartas, pasa la ola y cuenta los reyes. El cuarto cierra la partida.",
   "yo-prefiero": "¿A o B? Comparad los votos en la mesa. Hay 60 dilemas repartidos por intensidad.",
   "medusa": "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",

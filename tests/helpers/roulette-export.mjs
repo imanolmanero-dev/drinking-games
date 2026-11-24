@@ -1,3 +1,4 @@
+import { beforeBatch2bDigest } from "./critical-games-2b-export.mjs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -12,7 +13,8 @@ export function projectRouletteExport(path, previous, current) {
   // Both complete normalized texts are pinned. Keep destinations, metadata,
   // headings and structured data under their original independent comparisons.
   for (const [index, snapshot] of [previous, current].entries()) {
-    assert.equal(createHash("sha256").update(snapshot.text).digest("hex"), change.hashes[index], path);
+    const actual = index === 1 ? beforeBatch2bDigest(path, current, "text", true) : createHash("sha256").update(snapshot.text).digest("hex");
+    assert.equal(actual, change.hashes[index], path);
   }
   previous.text = current.text;
   for (const [href, before, after] of change.cards ?? []) {

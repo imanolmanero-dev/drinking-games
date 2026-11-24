@@ -278,7 +278,7 @@ export default function YoNuncaPage() {
             <p>Si el Yo Nunca os ha gustado, prueba también:</p>
             <ul>
               <li><Link href="/juegos/verdad-o-reto" className="text-accent underline">Verdad o Reto</Link> — Preguntas y retos para seguir la conversación.</li>
-              <li><Link href="/juegos/quien-es-mas-probable" className="text-accent underline">Quién Es Más Probable</Link> — El grupo vota quién es más probable que haya hecho algo. La mayoría señala y el más votado bebe.</li>
+              <li><Link href="/juegos/quien-es-mas-probable" className="text-accent underline">Quién Es Más Probable</Link> — El grupo vota quién es más probable que haya hecho algo. La mayoría señala y la persona más votada puede comentar o pasar.</li>
               <li><Link href="/juegos/yo-prefiero" className="text-accent underline">Yo Prefiero</Link> — Dilemas A o B que podéis debatir en la mesa.</li>
             </ul>
             <p>Consulta también las <Link href="/blog/reglas-del-yo-nunca" className="text-accent underline">reglas completas de Yo Nunca</Link> con variantes y una explicación de cómo jugar sin alcohol.</p>

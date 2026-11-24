@@ -47,7 +47,7 @@ const juegos = [
     id: "quien-es-mas-probable",
     nombre: "Quién Es Más Probable",
     descripcion:
-      "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. ¡El más votado bebe!",
+      "Lee la tarjeta, cuenta hasta 3 y señalad a la vez. Comparad las nominaciones.",
     icono: Hand,
     color: "from-cyan-500 to-blue-500",
     shadowColor: "shadow-cyan-500/20",

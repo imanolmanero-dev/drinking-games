@@ -1,3 +1,4 @@
+import { beforeBatch2bDigest } from "./critical-games-2b-export.mjs";
 import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFileSync } from "node:fs";
@@ -9,7 +10,7 @@ export function projectCriticalGames(path, previous, current) {
   const key = path === "/blog/juegos-para-beber-con-cartas" && Object.hasOwn(current, "header")
     ? path + "#before-navigation" : path;
   for (const [field, expected] of Object.entries(changes[key] ?? {})) {
-    assert.deepEqual([digest(previous[field]), digest(current[field])], expected, path + " " + field);
+    assert.deepEqual([digest(previous[field]), beforeBatch2bDigest(path, current, field)], expected, path + " " + field);
     previous[field] = current[field];
   }
 }

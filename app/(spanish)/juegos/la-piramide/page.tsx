@@ -54,7 +54,7 @@ export default function LaPiramidePage() {
   const [currentPyramidIdx, setCurrentPyramidIdx] = useState(0);
   const [memorizeTimer, setMemorizeTimer] = useState(MEMORIZE_SECONDS);
   const [showHands, setShowHands] = useState(true);
-  const [currentRow, setCurrentRow] = useState(0);
+  const [claimant, setClaimant] = useState<string | null>(null);
   const [showConfetti, setShowConfetti] = useState(false);
   const [activePlayerIdx, setActivePlayerIdx] = useState(0);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -95,7 +95,7 @@ export default function LaPiramidePage() {
     setPlayerHands(hands);
     setRevealedPyramid(new Array(PYRAMID_TOTAL).fill(false));
     setCurrentPyramidIdx(0);
-    setCurrentRow(0);
+    setClaimant(null);
     setMemorizeTimer(MEMORIZE_SECONDS);
     setShowHands(true);
     setShowConfetti(false);
@@ -140,7 +140,7 @@ export default function LaPiramidePage() {
     const newRevealed = [...revealedPyramid];
     newRevealed[currentPyramidIdx] = true;
     setRevealedPyramid(newRevealed);
-    setCurrentRow(getRowForIndex(currentPyramidIdx));
+
     playSound("flip");
     vibrateDevice("flip");
   }, [currentPyramidIdx, revealedPyramid, playSound, vibrateDevice]);
@@ -153,6 +153,7 @@ export default function LaPiramidePage() {
       vibrateDevice("everyone");
       return;
     }
+    setClaimant(null);
     setCurrentPyramidIdx(nextIdx);
     setActivePlayerIdx(nextIdx % players.length);
   }, [currentPyramidIdx, players.length, playSound, vibrateDevice]);
@@ -167,6 +168,7 @@ export default function LaPiramidePage() {
   }, [startGame]);
 
   // Points for current row (1-indexed)
+  const currentRow = getRowForIndex(currentPyramidIdx);
   const pointsForRow = currentRow + 1;
 
   // Build pyramid layout
@@ -275,9 +277,9 @@ export default function LaPiramidePage() {
 
             <h3>Otros juegos de cartas</h3>
             <ul>
-              <li><Link href="/juegos/ring-of-fire" className="text-indigo-400 underline">Ring of Fire</Link> — Cada carta de la baraja tiene una regla diferente. El 4º Rey lo paga todo.</li>
+              <li><Link href="/juegos/ring-of-fire" className="text-indigo-400 underline">Ring of Fire</Link> — Cada carta de la baraja tiene una regla diferente. El cuarto rey cierra la partida.</li>
               <li><Link href="/juegos/rey-de-la-copa" className="text-indigo-400 underline">Rey de la Copa</Link> — La versión española del Ring of Fire con reglas propias.</li>
-              <li><Link href="/juegos/medusa" className="text-indigo-400 underline">Medusa</Link> — Miradas que matan. Si cruzas la mirada con alguien, los dos bebéis.</li>
+              <li><Link href="/juegos/medusa" className="text-indigo-400 underline">Medusa</Link> — Levantad la vista a la vez con la cuenta atrás del móvil.</li>
             </ul>
             <p>Consulta todas las estrategias de farol y variantes avanzadas en la <Link href="/juegos/la-piramide/reglas" className="text-indigo-400 underline">guía completa de La Pirámide</Link>.</p>
           </div>
@@ -413,6 +415,21 @@ export default function LaPiramidePage() {
                 <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0" />
                 <p className="text-xs text-amber-300">Reto: quien se equivoque anota {pointsForRow * 2} puntos en papel. Podéis pasar sin puntuar.</p>
               </div>
+              <p className="text-xs text-muted">Si hay reto, elegid a quien dice tener la carta para comprobar su mano.</p>
+              <div className="flex flex-wrap justify-center gap-2">
+                {players.map(name => (
+                  <button key={name} onClick={() => setClaimant(name)} className="rounded-xl border border-border px-3 py-2">
+                    Comprobar a {name}
+                  </button>
+                ))}
+              </div>
+              {claimant && (
+                <p role="status" className="text-sm font-semibold">
+                  {playerHands[claimant].some(card => card.valor === currentCard.valor)
+                    ? `${claimant} tiene la carta. El retador anota ${pointsForRow * 2} puntos.`
+                    : `Era un farol. ${claimant} anota ${pointsForRow * 2} puntos.`}
+                </p>
+              )}
             </div>
           </motion.div>
         )}

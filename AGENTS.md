@@ -418,5 +418,6 @@ Si la respuesta es sí → actualiza este archivo.
 ### Verdad o Reto ES
 - Pasar cualquier tarjeta avanza al siguiente jugador sin beber, justificar la decisión ni confirmar cumplimiento. Comprobar preparación, revelación, retos, reglas enlazadas y descripciones públicas específicas cuando cambie esta mecánica.
 
+- Al revisar recomendaciones de un juego, comprobar también sus enlaces de salida en el HTML exportado. Una tarjeta puede seguir exigiendo beber aunque el juego enlazado ya permita pasar.
 - La Bomba conserva un temporizador por ronda. Identificar al portador al detonar, también tras varios pases, y comprobar quién abre la ronda siguiente.
 - Al retirar una consecuencia de un juego, buscar referencias a su desenlace también en otros juegos y en el blog. Para Rey de la Copa, probar con un rey como carta inicial y comprobar el contador al volver a barajar.
