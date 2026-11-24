@@ -19,6 +19,9 @@ export function projectCriticalGames(path, previous, current) {
 export function restoreBombaCard(doc, path) {
   if (path !== "/" && path !== "/blog") return;
   if (path === "/blog") {
+    const adultExcerpt = doc.querySelector('a[href="/blog/yo-nunca-preguntas-picantes-18"] p');
+    assert.equal(adultExcerpt.textContent, "60 frases de Yo Nunca para adultos sobre ligues, citas y experiencias íntimas. Elegid el bloque que os apetezca y pasad cualquier pregunta sin dar explicaciones.");
+    adultExcerpt.set_content("Las mejores 60 preguntas de Yo Nunca picantes para adultos. Frases subidas de tono que harán que todos beban y confiesen sus secretos más íntimos.");
     const description = doc.querySelector('a[href="/blog/100-preguntas-yo-nunca"] p');
     assert.match(description.textContent, /^100 ideas de frases/);
     description.set_content("Más de " + description.textContent);

@@ -423,3 +423,5 @@ Si la respuesta es sí → actualiza este archivo.
 - En las listas de preguntas, revisar por separado las instrucciones de cada nivel, los retos y las FAQ. Pasar termina el turno sin exigir otra acción. Los retos se pueden jugar sin usar cuentas, conversaciones ni fotos privadas.
 - La Bomba conserva un temporizador por ronda. Identificar al portador al detonar, también tras varios pases, y comprobar quién abre la ronda siguiente.
 - Al retirar una consecuencia de un juego, buscar referencias a su desenlace también en otros juegos y en el blog. Para Rey de la Copa, probar con un rey como carta inicial y comprobar el contador al volver a barajar.
+
+- En el índice del blog, contrastar cada extracto MDX con las instrucciones del artículo. Una promesa de consumo o de revelar secretos aparece también en la tarjeta y en los metadatos derivados.
