@@ -16,7 +16,7 @@ type Phase = "setup" | "turn-start" | "playing" | "turn-end" | "gameover";
 interface TeamScore {
   name: string;
   points: number;
-  drinks: number;
+  faults: number;
 }
 
 export default function TabuPage() {
@@ -28,15 +28,15 @@ export default function TabuPage() {
   const [teams, setTeams] = useState<[string[], string[]]>([[], []]);
   const [currentTeam, setCurrentTeam] = useState(0); // 0 or 1
   const [scores, setScores] = useState<[TeamScore, TeamScore]>([
-    { name: "Equipo 1", points: 0, drinks: 0 },
-    { name: "Equipo 2", points: 0, drinks: 0 },
+    { name: "Equipo 1", points: 0, faults: 0 },
+    { name: "Equipo 2", points: 0, faults: 0 },
   ]);
   const [deck, setDeck] = useState<TabuCard[]>([]);
   const [currentCard, setCurrentCard] = useState<TabuCard | null>(null);
   const [cardIndex, setCardIndex] = useState(0);
   const [timeLeft, setTimeLeft] = useState(ROUND_TIME);
   const [roundPoints, setRoundPoints] = useState(0);
-  const [roundDrinks, setRoundDrinks] = useState(0);
+  const [roundFaults, setRoundFaults] = useState(0);
   const [roundsPlayed, setRoundsPlayed] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false);
   const timerRef = useRef<ReturnType<typeof setInterval> | null>(null);
@@ -96,8 +96,8 @@ export default function TabuPage() {
     const t2 = shuffledPlayers.slice(half);
     setTeams([t1, t2]);
     setScores([
-      { name: "Equipo 1", points: 0, drinks: 0 },
-      { name: "Equipo 2", points: 0, drinks: 0 },
+      { name: "Equipo 1", points: 0, faults: 0 },
+      { name: "Equipo 2", points: 0, faults: 0 },
     ]);
     setDeck(shuffleCards(tabuCards));
     setCardIndex(0);
@@ -110,7 +110,7 @@ export default function TabuPage() {
   const startTurn = useCallback(() => {
     setTimeLeft(ROUND_TIME);
     setRoundPoints(0);
-    setRoundDrinks(0);
+    setRoundFaults(0);
     setCurrentCard(deck[cardIndex] || deck[0]);
     setPhase("playing");
     playSound("flip");
@@ -125,7 +125,7 @@ export default function TabuPage() {
   }, [cardIndex, deck, playSound]);
 
   const handleTabu = useCallback(() => {
-    setRoundDrinks((d) => d + 1);
+    setRoundFaults((d) => d + 1);
     const nextIdx = cardIndex + 1 >= deck.length ? 0 : cardIndex + 1;
     setCardIndex(nextIdx);
     setCurrentCard(deck[nextIdx]);
@@ -146,7 +146,7 @@ export default function TabuPage() {
       updated[currentTeam] = {
         ...updated[currentTeam],
         points: updated[currentTeam].points + roundPoints,
-        drinks: updated[currentTeam].drinks + roundDrinks,
+        faults: updated[currentTeam].faults + roundFaults,
       };
       return updated;
     });
@@ -163,7 +163,7 @@ export default function TabuPage() {
       setPhase("turn-start");
       playSound("click");
     }
-  }, [currentTeam, roundPoints, roundDrinks, roundsPlayed, playSound]);
+  }, [currentTeam, roundPoints, roundFaults, roundsPlayed, playSound]);
 
   const restartGame = useCallback(() => {
     setPhase("setup");
@@ -176,8 +176,8 @@ export default function TabuPage() {
     setCardIndex(0);
     setCurrentTeam(0);
     setScores([
-      { name: "Equipo 1", points: 0, drinks: 0 },
-      { name: "Equipo 2", points: 0, drinks: 0 },
+      { name: "Equipo 1", points: 0, faults: 0 },
+      { name: "Equipo 2", points: 0, faults: 0 },
     ]);
     setRoundsPlayed(0);
     setPhase("turn-start");
@@ -208,7 +208,7 @@ export default function TabuPage() {
               </div>
               <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Tabú Borracho</h1>
               <p className="text-sm text-muted max-w-xs">
-                Describe la palabra sin decir las prohibidas. Si dices una palabra tabú… ¡tu equipo bebe!
+                Describe la palabra sin decir las prohibidas. Cada acierto suma un punto.
               </p>
               <Link href="/juegos/tabu/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -298,10 +298,10 @@ export default function TabuPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>Tabú Borracho: Describe la Palabra sin Decirlo</h2>
             <p>
-              El <strong>Tabú Borracho</strong> toma el clásico juego de mesa y le añade el mejor incentivo para pensar rápido: si dices una palabra prohibida, tu equipo bebe. La presión del temporizador, el rival vigilándote el hombro y tus compañeros mirándote sin entender nada... es la caos perfecto para una noche de previas.
+              En <strong>Tabú Borracho</strong>, tu equipo ve tu cara y el rival ve tu tarjeta. Da pistas para que tus compañeros encuentren la palabra antes de que termine el minuto.
             </p>
             <p>
-              Necesitáis al menos 4 personas para formar dos equipos. Cuanta más gente, mejor: los equipos más grandes generan más tensión, más errores y más tragos. Con 8 personas es donde el juego alcanza su nivel máximo de locura.
+              Necesitáis al menos cuatro personas. Introducid los nombres y la app repartirá a los jugadores en dos equipos.
             </p>
 
             <h3>Cómo funciona cada turno</h3>
@@ -309,25 +309,25 @@ export default function TabuPage() {
               En cada turno, un jugador actúa como <strong>Descriptor</strong>. La pantalla muestra una palabra principal grande arriba, y debajo, una lista de palabras tabú que están completamente prohibidas. El Descriptor tiene 60 segundos para conseguir que su equipo diga la palabra principal.
             </p>
             <ul>
-              <li><strong>El truco:</strong> El equipo contrario vigila la pantalla. Si el Descriptor dice cualquier palabra prohibida — o un derivado, sinónimo, o traducción — el árbitro rival pulsa el botón de ¡Tabú! y todo el equipo del Descriptor bebe.</li>
+              <li><strong>El rival vigila:</strong> Si oye una palabra prohibida, pulsa ¡Tabú! La tarjeta se descarta y el reloj sigue corriendo.</li>
               <li><strong>Acierto:</strong> Cada palabra adivinada suma un punto al equipo. Se pasa automáticamente a la siguiente tarjeta.</li>
               <li><strong>Pasar:</strong> Si la palabra es imposible, el Descriptor puede pasar. No se penaliza, pero tampoco suma puntos.</li>
               <li><strong>Sin gestos:</strong> El Descriptor solo puede hablar. Nada de mímica, nada de señalar objetos, nada de deletrear.</li>
             </ul>
 
-            <h3>Sistema de puntuación y bebida</h3>
+            <h3>Sistema de puntuación</h3>
             <p>
-              Cada partida se juega en <strong>6 rondas</strong> (3 por equipo). Al final, gana el equipo con más puntos. El equipo perdedor bebe el doble en la ronda de honor. Si hay empate, se juega una ronda de muerte súbita: una sola tarjeta decide el resultado.
+              Jugáis <strong>seis turnos</strong>, tres por equipo. Gana quien sume más aciertos. Si acabáis igualados, compartís el empate.
             </p>
             <ul>
-              <li><strong>Infracción Tabú:</strong> El Descriptor y todo su equipo beben un trago al instante.</li>
-              <li><strong>Ronda perfecta (sin infracciones):</strong> El equipo contrario bebe un trago de penalti por no haber pillado nada.</li>
+              <li><strong>Infracción:</strong> Cuenta como tarjeta descartada. Conserváis los puntos que ya teníais.</li>
+              <li><strong>Pase:</strong> Podéis cambiar de tarjeta sin sumar una infracción.</li>
             </ul>
 
             <h3>Preguntas frecuentes sobre Tabú Borracho</h3>
             <p><strong>¿Cuántos jugadores se necesitan?</strong> Mínimo 4 (2 por equipo). El máximo recomendado es 10 personas. Con más gente puede ser difícil escuchar al Descriptor.</p>
             <p><strong>¿Pueden usar idiomas diferentes?</strong> No. Todo en el mismo idioma que aparece en la tarjeta. Traducir una palabra tabú para evitarla sigue contando como infracción.</p>
-            <p><strong>¿Y si nadie conoce la palabra?</strong> El Descriptor puede pedir "pase" sin penalización. No hay puntos, pero tampoco tragos para nadie.</p>
+            <p><strong>¿Y si nadie conoce la palabra?</strong> Pulsad Pasar y probad con la siguiente.</p>
 
             <h3>Otros juegos por equipos que te gustarán</h3>
             <ul>
@@ -360,7 +360,7 @@ export default function TabuPage() {
                 <p className={`text-xs font-bold uppercase tracking-wider ${teamColors[i].text}`}>Equipo {i + 1}</p>
                 <p className="text-3xl font-black">{s.points}</p>
                 <p className="text-xs text-muted">puntos</p>
-                <p className="text-xs text-muted">🍺 {s.drinks} tragos bebidos</p>
+                <p className="text-xs text-muted">{s.faults} infracciones</p>
                 <div className="flex flex-wrap gap-1 mt-1">
                   {teams[i].map((name) => (
                     <span key={name} className="rounded-full border border-border bg-surface px-2 py-0.5 text-[10px] font-medium text-muted">{name}</span>
@@ -425,7 +425,7 @@ export default function TabuPage() {
           <div className="rounded-xl border border-amber-500/20 bg-amber-500/5 p-4 text-xs text-muted text-left w-full space-y-1">
             <p><strong className="text-amber-400">⚠️ Recuerda:</strong></p>
             <p>• Pasa el móvil al equipo contrario para que vigile las palabras tabú</p>
-            <p>• Si el descriptor dice una palabra prohibida → ¡el equipo bebe!</p>
+            <p>• Una pista prohibida descarta la tarjeta sin sumar puntos.</p>
             <p>• El descriptor NO puede hacer gestos</p>
           </div>
 
@@ -460,8 +460,8 @@ export default function TabuPage() {
               <p className="text-xs text-muted mt-1">palabras acertadas</p>
             </div>
             <div className="rounded-xl border border-red-500/20 bg-red-500/5 p-4 text-center">
-              <p className="text-3xl font-black text-red-400">{roundDrinks}</p>
-              <p className="text-xs text-muted mt-1">tragos por tabú</p>
+              <p className="text-3xl font-black text-red-400">{roundFaults}</p>
+              <p className="text-xs text-muted mt-1">infracciones</p>
             </div>
           </div>
 
@@ -505,7 +505,7 @@ export default function TabuPage() {
             <span className="text-[10px] text-muted ml-1">aciertos</span>
           </div>
           <div className="flex-1 rounded-lg bg-red-500/10 border border-red-500/20 py-1.5">
-            <span className="text-sm font-bold text-red-400">{roundDrinks}</span>
+            <span className="text-sm font-bold text-red-400">{roundFaults}</span>
             <span className="text-[10px] text-muted ml-1">tabús</span>
           </div>
         </div>

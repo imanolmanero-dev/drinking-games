@@ -4,11 +4,11 @@ import GameLayout from "@/components/layout/GameLayout";
 export const metadata: Metadata = {
   title: "Tabú Borracho — Juego de Palabras para Beber",
   description:
-    "Juega al Tabú Borracho con amigos. Describe la palabra sin decir las prohibidas. Si usas una palabra tabú… ¡bebes! Más de 65 tarjetas para fiestas y previas.",
+    "Juega al Tabú Borracho con amigos. Describe la palabra sin usar las pistas prohibidas y suma aciertos en turnos de un minuto.",
   openGraph: {
     title: "Tabú Borracho — Juego de Palabras para Beber",
     description:
-      "Describe la palabra sin decir las prohibidas. Si fallas… ¡bebes! El juego perfecto para fiestas.",
+      "Dos equipos, seis turnos y un minuto para dar pistas. Cada palabra acertada suma un punto.",
   },
   alternates: {
     canonical: "https://bebergames.com/juegos/tabu",

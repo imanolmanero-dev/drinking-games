@@ -147,7 +147,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "tabu-juego-beber": [
     {
       q: "¿Cómo se juega al Tabú Borracho?",
-      a: "En el Tabú Borracho se forman 2 equipos. Un jugador por turno debe describir una palabra sin decir las 4 palabras prohibidas que aparecen en pantalla. Si las dice, su equipo bebe. El equipo con más palabras acertadas en 60 segundos suma un punto. Gana el equipo con más puntos tras 3 turnos por equipo.",
+      a: "Formad dos equipos. En cada turno tenéis 60 segundos para adivinar palabras sin usar las cuatro pistas prohibidas. Cada acierto suma un punto. Tras tres turnos por equipo, gana quien tenga más puntos o hay empate.",
     },
     {
       q: "¿Cuántas personas se necesitan para jugar al Tabú Borracho?",
@@ -155,7 +155,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Qué pasa si dices una palabra tabú?",
-      a: "Si el descriptor dice una de las palabras prohibidas, el equipo contrario pulsa el botón de '¡Tabú!' y todo el equipo del descriptor bebe un trago. Además, se pierde esa carta y se pasa a la siguiente sin sumar punto.",
+      a: "Pulsad ¡Tabú! para descartar la tarjeta y registrar la infracción. El equipo conserva sus puntos y puede seguir dando pistas hasta el final del minuto.",
     },
     {
       q: "¿Cuántas tarjetas tiene el Tabú Borracho de BeberGames?",
