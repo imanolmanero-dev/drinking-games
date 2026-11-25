@@ -8,6 +8,11 @@ const pins = JSON.parse(readFileSync(new URL("../fixtures/critical-games-source.
 const batch2bPins = JSON.parse(readFileSync(new URL("../fixtures/critical-games-2b-source.json", import.meta.url)));
 function beforeBatch2b(file, source) {
   if (!Object.hasOwn(batch2bPins, file)) return source;
+  if (file === "components/layout/GameLayout.tsx") {
+    const reviewed = "Di algo que nunca hayas hecho. Quien quiera responder puede bajar un dedo. También podéis pasar sin dar explicaciones.";
+    assert.equal(source.split(reviewed).length, 2, file);
+    source = source.replace(reviewed, "Juego de confesiones en grupo. Di algo que nunca hayas hecho y los que sí lo hayan hecho beben.");
+  }
   assert.equal(createHash("sha256").update(source.replaceAll("\r\n", "\n")).digest("hex"), batch2bPins[file], file);
   return execFileSync("git", ["show", "b7fc2d7:" + file], { encoding: "utf8" });
 }

@@ -8,6 +8,18 @@ const require = createRequire(import.meta.url);
 const { parse } = require("next/dist/compiled/node-html-parser");
 const matter = require("gray-matter");
 const base = "1cd29647ef6e58a5c6974c34ae44267da5d7e644";
+test("Yo Nunca structured descriptions and the Truth or Dare referral agree with the voluntary game", () => {
+  for (const path of ["yo-nunca", "yo-nunca/reglas"]) {
+    const doc = parse(readFileSync("out/juegos/" + path + ".html", "utf8"));
+    const game = doc.querySelectorAll('script[type="application/ld+json"]')
+      .map(node => JSON.parse(node.textContent)).find(schema => schema["@type"] === "WebApplication");
+    assert.equal(game.description, "Di algo que nunca hayas hecho. Quien quiera responder puede bajar un dedo. También podéis pasar sin dar explicaciones.");
+  }
+  const truth = parse(readFileSync("out/juegos/verdad-o-reto.html", "utf8"));
+  assert.equal(truth.querySelector('main li a[href="/juegos/yo-nunca"]').parentNode.textContent,
+    "Yo Nunca — Leed una frase por turno. Quien quiera responder puede bajar un dedo.");
+});
+
 for (const [slug, counts] of [
   ["100-preguntas-yo-nunca", [15, 15, 12, 12, 11, 12, 12, 11]],
   ["preguntas-picantes-verdad-o-reto", [15, 15, 10, 10, 15]],

@@ -425,3 +425,4 @@ Si la respuesta es sí → actualiza este archivo.
 - Al retirar una consecuencia de un juego, buscar referencias a su desenlace también en otros juegos y en el blog. Para Rey de la Copa, probar con un rey como carta inicial y comprobar el contador al volver a barajar.
 
 - En el índice del blog, contrastar cada extracto MDX con las instrucciones del artículo. Una promesa de consumo o de revelar secretos aparece también en la tarjeta y en los metadatos derivados.
+- Al verificar los destinos de Preguntas, leer también la descripción de `WebApplication` en el juego y en sus reglas. Revisar los enlaces a otros juegos que se muestran junto al anuncio manual.

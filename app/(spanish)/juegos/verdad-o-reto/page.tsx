@@ -321,7 +321,7 @@ export default function VerdadORetoPage() {
 
             <h3>Otros juegos de preguntas que te encantarán</h3>
             <ul>
-              <li><Link href="/juegos/yo-nunca" className="text-amber-500 underline">Yo Nunca</Link> — Confesiones grupales donde el que lo haya hecho bebe.</li>
+              <li><Link href="/juegos/yo-nunca" className="text-amber-500 underline">Yo Nunca</Link> — Leed una frase por turno. Quien quiera responder puede bajar un dedo.</li>
               <li><Link href="/juegos/quien-es-mas-probable" className="text-amber-500 underline">Quién Es Más Probable</Link> — El grupo señala y la persona más votada puede comentar o pasar.</li>
               <li><Link href="/juegos/yo-prefiero" className="text-amber-500 underline">Yo Prefiero</Link> — Dilemas A o B para comparar preferencias.</li>
             </ul>

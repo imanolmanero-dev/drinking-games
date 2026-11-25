@@ -427,7 +427,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cómo se lleva bien el ambiente en el Yo Nunca picante?",
-      a: "La clave es escalar gradualmente: empezar siempre por preguntas del Bloque 1 (ligues y pasiones) antes de pasar a los bloques más intensos. Si notas que alguien está incómodo, baja el nivel o cambia de juego. La diversión tiene que ser mutua para que funcione.",
+      a: "Elegid juntos un tema que os apetezca. Podéis quedaros en ese bloque, saltar una frase o dejar la partida en cualquier momento. Si alguien pasa, leed otra frase sin preguntarle por qué.",
     },
   ],
 

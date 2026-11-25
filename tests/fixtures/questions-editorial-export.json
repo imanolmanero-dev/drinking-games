@@ -34,11 +34,29 @@
     ],
     "schema": [
       "d0047bbc3887b920cb72d2595a233ca692e37496e13e13d3170e342577e8ba75",
-      "616f0ec1fd608f71072850e14c071027e2a0b7fc11365c575135ceb62bdf998f"
+      "0c3c973d65210821422ba4437a98d4476999f269000d130b2c9de942d09e8d82"
     ],
     "text": [
       "e931d125f442472123597b837a35a052e94799bb4c7147a7dff34c9913d2face",
-      "aa5cdc452f1b0d416130d093aa0b40bf767792a12ff59219d1e2ce2fec51e735"
+      "c8e1a948d101849b82eb15fb00133f19e5ed8f77990ccd09e998355ebdcbf23b"
+    ]
+  },
+  "/juegos/yo-nunca": {
+    "schema": [
+      "dc6d8651426a08912776f8fcec1c025f091c134903e50aa10532e77d1ead00fe",
+      "ac6f424212af5aaa6b170a6764df7cb46bacd67cf26686b6c0fd18b0de4a9d41"
+    ]
+  },
+  "/juegos/yo-nunca/reglas": {
+    "schema": [
+      "dc6d8651426a08912776f8fcec1c025f091c134903e50aa10532e77d1ead00fe",
+      "ac6f424212af5aaa6b170a6764df7cb46bacd67cf26686b6c0fd18b0de4a9d41"
+    ]
+  },
+  "/juegos/verdad-o-reto": {
+    "text": [
+      "f0a45a754aaacf99f074b4d4b089b134a960da5c881a2a3db6d5ea504a0cef45",
+      "f92adc94c0f66b4a5ecf85224b10befe10bdd1f391f64ee00427087fd2f8c81c"
     ]
   }
 }

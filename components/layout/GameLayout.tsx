@@ -21,7 +21,7 @@ const GAME_NAMES: Record<string, string> = {
 };
 
 const GAME_DESCRIPTIONS: Record<string, string> = {
-  "yo-nunca": "Juego de confesiones en grupo. Di algo que nunca hayas hecho y los que sí lo hayan hecho beben.",
+  "yo-nunca": "Di algo que nunca hayas hecho. Quien quiera responder puede bajar un dedo. También podéis pasar sin dar explicaciones.",
   "verdad-o-reto": "Elige entre responder una pregunta o probar un reto. Puedes pasar cualquier tarjeta sin penalización.",
   "triman": "Tira el dado virtual y descubre a quién le toca proponer un gesto.",
   "la-ruleta": "Gira la ruleta y descubre tu reto. Puedes pasar en cualquier turno.",
