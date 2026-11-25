@@ -10,6 +10,14 @@ The candidate addresses the three remaining game mechanics in the 13-game review
 
 Of the 28 outstanding editorial P0 URLs in the revised inventory at local commit 190a826, eleven have candidate fixes (three games, three rules, three articles, hub and category). Treat these as future restoration candidates only after release, live verification and owner review. Preserve all account exclusions, including permanent game exclusions. The other seventeen articles retain independent findings, even where a reference to one of the three games was corrected. For example, the birthday article still assigns drinking in its birthday Yo Nunca variant.
 
+### Local validation
+
+The production build, TypeScript and export audit passed. All 77 export tests ran, including both historical preservation comparisons. The unit suite passed 297 tests and reproduced the same 14 historical failure names and assertion payloads as the release baseline. Changed-file lint reported four pre-existing warnings and zero errors.
+
+Playwright MCP exercised the three games at 320×844, 390×844, 768×1024 and 1440×900 with third-party requests intercepted. The test accelerated only the clocks in its isolated browser contexts. Beer Pong covered both board sizes, cup removal, re-rack, the challenge dialog, turn changes, victory and rematch. Medusa completed all fifteen rounds, then tested replay or changing players. Tabú covered correct answers, forbidden clues, skips, all six timed turns, a win, a tie and replay or reset. Repeated clicks on round confirmations preserved the next round and score. The game flows, rules and companion articles passed the tested layout and exception checks.
+
+All 87 public routes retained their link destinations, titles, H1s, canonical links, heading IDs and language alternates compared with the content release. The other ten Spanish game pairs retained their rendered content and structured rules. The Truth or Dare experimental description and the previously published Beer Pong rerack paragraph remain intact. Browser QA used the local export. Production verification belongs to a separately authorized release.
+
 ### Next editorial batches in priority order
 
 **1 · Timed, cumulative or full-glass rules**
