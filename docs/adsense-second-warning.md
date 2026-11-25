@@ -1,8 +1,44 @@
-﻿# Second AdSense warning · owner decision record
+# Second AdSense warning · owner decision record
 
 Incident date 24 November 2026. Production HTML inspected 25 November against the published 1cd2964 export. Counts refer to URLs, not traffic or income. Only the owner’s three Policy Center entries establish an active restriction. Editorial priorities below are our assessment.
 
-## Decision
+## Batch 2C · Local release candidate, November 25
+
+Production remains at 6dba763. The owner's November 25 snapshot supersedes the historical figures below. The three restricted pages are https://bebergames.com/juegos/categorias/preguntas (33 requests), https://bebergames.com/blog/yo-nunca-preguntas-picantes-18 (2) and https://bebergames.com/blog (1). The previously restricted https://bebergames.com/blog/drinking-games-reglas remains a temporary exclusion. The site-wide warning is unresolved. Current account settings have not been independently verified.
+
+The candidate addresses the three remaining game mechanics in the 13-game review. The targets are water cups, a freeze pose on eye contact, and discarding a word card on an invalid clue. Each game and its rules share the existing canonical route structure. Reviewed companion articles are https://bebergames.com/blog/beer-pong-reglas-completas, https://bebergames.com/blog/medusa-juego-beber and https://bebergames.com/blog/tabu-juego-beber. The Games catalogue and the Sin Materiales category now describe the revised outcomes. The catalogue also carried stale Yo Nunca, Verdad o Reto and Ruleta instructions, corrected here. No new hub or category P0 remains from these referrals. The Questions restriction stays open independently.
+
+Of the 28 outstanding editorial P0 URLs in the revised inventory at local commit 190a826, eleven have candidate fixes (three games, three rules, three articles, hub and category). Treat these as future restoration candidates only after release, live verification and owner review. Preserve all account exclusions, including permanent game exclusions. The other seventeen articles retain independent findings, even where a reference to one of the three games was corrected. For example, the birthday article still assigns drinking in its birthday Yo Nunca variant.
+
+### Next editorial batches in priority order
+
+**1 · Timed, cumulative or full-glass rules**
+
+- https://bebergames.com/blog/los-20-mejores-juegos
+- https://bebergames.com/blog/juegos-para-beber-rapidos
+- https://bebergames.com/blog/juegos-de-mesa-para-beber
+- https://bebergames.com/blog/juegos-para-beber-con-dados
+- https://bebergames.com/blog/juegos-para-beber-con-cartas
+- https://bebergames.com/blog/juegos-beber-baraja-espanola
+
+**2 · Refusal and disclosure penalties**
+
+- https://bebergames.com/blog/retos-para-fiestas
+- https://bebergames.com/blog/juegos-para-beber-dos-personas
+- https://bebergames.com/blog/juegos-para-beber-en-pareja
+- https://bebergames.com/blog/verdad-o-reto-preguntas-buenas
+- https://bebergames.com/blog/preguntas-yo-nunca-parejas
+- https://bebergames.com/blog/juegos-para-beber-sin-alcohol
+
+**3 · Group and party instructions**
+
+- https://bebergames.com/blog/juegos-para-botellon
+- https://bebergames.com/blog/como-organizar-fiesta-juegos-beber
+- https://bebergames.com/blog/juegos-para-cumpleanos-adultos
+- https://bebergames.com/blog/juegos-para-previas
+- https://bebergames.com/blog/juegos-para-beber-por-videollamada
+
+## Historical decision
 
 The owner reports 38 restricted requests for Questions, three for Drinking Games and one for the blog index. The second warning and continuing examples on other pages warrant containment. The account snapshot reports zero formal violations, zero regulatory issues and 0% disabled serving. The 42 requests describe a seven-day window. The cause of the new classification, any deadline beyond the email and the effect of future corrections are unknown.
 

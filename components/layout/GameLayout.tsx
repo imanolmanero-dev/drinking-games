@@ -28,10 +28,10 @@ const GAME_DESCRIPTIONS: Record<string, string> = {
   "quien-es-mas-probable": "Lee la tarjeta, cuenta hasta 3 y señalad a la vez al más probable. Quien reciba más votos puede comentar o pasar.",
   "ring-of-fire": "Roba cartas, pasa la ola y cuenta los reyes. El cuarto cierra la partida.",
   "yo-prefiero": "¿A o B? Comparad los votos en la mesa. Hay 60 dilemas repartidos por intensidad.",
-  "medusa": "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",
+  "medusa": "A la señal, levantad la vista. Si dos miradas coinciden, decid ¡Medusa! y quedaos de piedra.",
   "rey-de-la-copa": "Roba cartas y descubre sus reglas. Al cuarto rey se aparta la copa.",
   "la-bomba": "Temporizador secreto. Pasa el móvil antes de que explote. Quien la tenga abre la siguiente ronda.",
-  "tabu": "Describe la palabra sin decir las prohibidas. Si dices una tabú, todo tu equipo bebe.",
+  "tabu": "Da pistas a tu equipo durante un minuto. Cada acierto suma un punto y una palabra prohibida descarta la tarjeta.",
   "beer-pong": "El árbitro digital para tu partida de Beer Pong. Marca vasos, gestiona turnos y reglas especiales.",
   "la-piramide": "Memoriza tus cartas, farolea y asigna puntos. El juego de cartas para beber donde el farol es la clave.",
 };

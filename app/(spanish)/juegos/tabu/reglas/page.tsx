@@ -39,7 +39,7 @@ export default function TabuReglasPage() {
               <li>✅ <strong>4 o más jugadores</strong> (para hacer 2 equipos)</li>
               <li>✅ Un sitio donde el rival pueda ver la tarjeta</li>
               <li>✅ <strong>Un móvil</strong> con BeberGames abierto</li>
-              <li>✅ Nada más — ¡el juego tiene más de 65 tarjetas!</li>
+              <li>✅ 65 tarjetas incluidas en la app</li>
             </ul>
           </section>
 

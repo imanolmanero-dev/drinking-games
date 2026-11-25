@@ -61,8 +61,8 @@ const juegos = [
   {
     id: "yo-nunca",
     nombre: "Yo Nunca",
-    descripcion: "Di algo que nunca hayas hecho. Los que sí lo hayan hecho… ¡beben!",
-    detalle: "El juego perfecto para conocerse mejor y sacar los trapos sucios del grupo. Funciona con 2 o más personas y tiene cientos de frases en 3 niveles de intensidad.",
+    descripcion: "Lee una frase. Quien quiera responder puede bajar un dedo.",
+    detalle: "Elegid uno o varios de los tres niveles. Hay 150 frases y cualquiera puede pasar sin dar explicaciones.",
     icono: Wine,
     color: "from-purple-500 to-pink-500",
     shadowColor: "shadow-purple-500/20",
@@ -76,7 +76,7 @@ const juegos = [
   {
     id: "verdad-o-reto",
     nombre: "Verdad o Reto",
-    descripcion: "Elige verdad o reto. Si no cumples… ¡fondo blanco!",
+    descripcion: "Elige verdad o reto. Puedes pasar cualquier tarjeta.",
     detalle: "Preguntas comprometidas y retos atrevidos generados automáticamente. Elige el nivel de intensidad antes de empezar y la app lleva el control.",
     icono: Sparkles,
     color: "from-amber-500 to-orange-500",
@@ -121,8 +121,8 @@ const juegos = [
   {
     id: "la-ruleta",
     nombre: "La Ruleta",
-    descripcion: "Gira la ruleta y cumple el castigo que te toque. Sin excusas.",
-    detalle: "Gira y obedece. La ruleta decide tu destino: bebe, cumple un reto o reta a otro jugador. Cada giro es una sorpresa.",
+    descripcion: "Gira la ruleta y descubre la siguiente casilla.",
+    detalle: "Compartid el móvil y turnaos para girar. Podéis pasar cualquier propuesta.",
     icono: PartyPopper,
     color: "from-rose-500 to-pink-500",
     shadowColor: "shadow-rose-500/20",
@@ -211,8 +211,8 @@ const juegos = [
   {
     id: "tabu",
     nombre: "Tabú Borracho",
-    descripcion: "Describe la palabra sin decir las prohibidas. Si fallas, tu equipo bebe.",
-    detalle: "El juego de palabras por equipos más divertido. 65+ tarjetas, 2 equipos, 60 segundos por turno. Si dices una palabra tabú, todo tu equipo bebe.",
+    descripcion: "Describe la palabra sin decir las prohibidas. Cada acierto suma un punto.",
+    detalle: "Dos equipos, 65 tarjetas y un minuto por turno. Si se escapa una palabra tabú, descartad la tarjeta y seguid con la siguiente.",
     icono: MessageSquare,
     color: "from-violet-500 to-purple-600",
     shadowColor: "shadow-violet-500/20",
@@ -305,7 +305,7 @@ const faqs = [
   },
   {
     q: "¿Cuáles son los mejores juegos para beber sin materiales?",
-    a: "Los mejores juegos para beber sin materiales son Medusa, La Bomba, Yo Prefiero, Yo Nunca, Verdad o Reto y Quién Es Más Probable. Solo necesitáis un móvil y bebidas. Todos disponibles gratis en BeberGames.",
+    a: "Medusa, Yo Nunca, La Bomba, Yo Prefiero y Quién Es Más Probable se pueden jugar en grupo con un móvil.",
   },
   {
     q: "¿Cuántas personas se necesitan para jugar a juegos de beber?",
@@ -479,14 +479,14 @@ export default function JuegosPage() {
                 <Link href="/juegos/medusa" className="text-accent hover:underline">
                   Medusa
                 </Link>{" "}
-                (contacto visual = beber).
+                (quedaos de piedra si dos miradas coinciden).
               </p>
               <p>
                 Para los que prefieren juegos en equipo,{" "}
                 <Link href="/juegos/tabu" className="text-accent hover:underline">
                   Tabú Borracho
                 </Link>{" "}
-                trae más de 65 tarjetas con palabras y tabús, y{" "}
+                trae 65 tarjetas con palabras y tabús, y{" "}
                 <Link href="/juegos/beer-pong" className="text-accent hover:underline">
                   Beer Pong Virtual
                 </Link>{" "}
@@ -507,7 +507,7 @@ export default function JuegosPage() {
                 { titulo: "Para grupos de 10+", juego: "Medusa", href: "/juegos/medusa", desc: "Todos juegan simultáneamente, sin turnos ni esperas" },
                 { titulo: "Para más tensión", juego: "La Bomba", href: "/juegos/la-bomba", desc: "Nadie sabe cuándo explota. Tensión máxima en cada ronda" },
                 { titulo: "Para amantes de cartas", juego: "Ring of Fire", href: "/juegos/ring-of-fire", desc: "El clásico de baraja en formato digital completo" },
-                { titulo: "Para jugar en equipos", juego: "Tabú Borracho", href: "/juegos/tabu", desc: "Competición, risas y tragos por equipos" },
+                { titulo: "Para jugar en equipos", juego: "Tabú Borracho", href: "/juegos/tabu", desc: "Pistas contrarreloj por equipos" },
               ].map(({ titulo, juego, href, desc }) => (
                 <Link
                   key={href}

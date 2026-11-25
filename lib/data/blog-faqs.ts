@@ -15,7 +15,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Qué juegos para beber no necesitan materiales?",
-      a: "Los juegos para beber sin materiales son Medusa, Yo Nunca, Yo Prefiero, Quién Es Más Probable y La Bomba. Solo necesitáis un móvil con BeberGames abierto y bebidas para todos.",
+      a: "Medusa, Yo Nunca, Quién Es Más Probable, Yo Prefiero y La Bomba se pueden jugar en grupo con un móvil.",
     },
     {
       q: "¿Cuántas personas se necesitan para jugar a juegos de beber?",
@@ -159,7 +159,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cuántas tarjetas tiene el Tabú Borracho de BeberGames?",
-      a: "El Tabú Borracho de BeberGames incluye más de 65 tarjetas organizadas en categorías: comida y bebida, cultura pop, famosos, lugares, objetos cotidianos, deportes y situaciones divertidas. Las tarjetas se mezclan aleatoriamente en cada partida.",
+      a: "La app incluye 65 tarjetas con cuatro palabras prohibidas cada una. Al empezar una partida se barajan. Cuando llegáis al final del mazo, volvéis al principio.",
     },
   ],
 

@@ -249,7 +249,7 @@ export default function MedusaPage() {
         <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} className="flex flex-col items-center gap-6 text-center">
           <div className="text-6xl">👁️</div>
           <h2 className="text-2xl font-extrabold sm:text-3xl">¡{TOTAL_ROUNDS} rondas completadas!</h2>
-          <p className="text-muted max-w-xs text-sm">Medusa os ha sometido. Esperemos que todos estéis de pie todavía. 🍺</p>
+          <p className="text-muted max-w-xs text-sm">¡Quince rondas! ¿Quién reconoció antes la última mirada?</p>
           <div className="flex gap-3">
             <button onClick={playAgain} className="flex items-center gap-2 rounded-xl bg-gradient-to-r from-lime-500 to-green-600 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-lime-500/25 transition-all hover:scale-105">
               <Eye className="h-4 w-4" />Jugar otra vez
@@ -358,7 +358,7 @@ export default function MedusaPage() {
             className="flex flex-col items-center gap-8 text-center w-full max-w-md"
           >
             <div className="flex flex-col items-center gap-3">
-              <div className="text-5xl">🍺</div>
+              <div className="text-5xl">🗿</div>
               <h2 className="text-2xl font-extrabold">¿Quién se ha mirado?</h2>
               <p className="text-sm text-muted max-w-xs">
                 Si dos miradas coinciden, decid <strong className="text-lime-400">¡Medusa!</strong><br />

@@ -17,7 +17,7 @@ const juegos = [
     id: "medusa",
     nombre: "Medusa",
     descripcion:
-      "Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.",
+      "A la señal levantáis la vista. Si dos miradas coinciden, decid ¡Medusa! y quedaos de piedra.",
     icono: Eye,
     color: "from-lime-500 to-green-600",
     shadowColor: "shadow-lime-500/20",
