@@ -3,7 +3,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import test from "node:test";
-import { beforeBatch3a } from "../helpers/critical-games-2c-source.mjs";
+import { beforeBatch3a, beforeBatch3b } from "../helpers/critical-games-2c-source.mjs";
 
 const require = createRequire(import.meta.url);
 const { parse } = require("next/dist/compiled/node-html-parser");
@@ -66,7 +66,7 @@ for (const [slug, count, revised, removed] of contracts) {
 
 test("FAQ source history preserves every unrelated entry and the release freezes", () => {
   const file = "lib/data/blog-faqs.ts";
-  const candidate = readFileSync(file, "utf8");
+  const candidate = beforeBatch3b(file, readFileSync(file, "utf8"));
   const old = execFileSync("git", ["show", `${base}:${file}`], { encoding: "utf8" });
   const removeReviewed = source => contracts.reduce((text, [slug]) =>
     text.replace(new RegExp(`^  "${slug}": \\[\\n[\\s\\S]*?^  \\],\\n`, "m"), ""), source.replaceAll("\r\n", "\n"));

@@ -132,15 +132,15 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "retos-para-fiestas": [
     {
       q: "¿Cuáles son los mejores retos para fiestas?",
-      a: "Los mejores retos para fiestas son los de Verdad o Reto (con niveles de intensidad), La Bomba (tensión del temporizador) y Yo Prefiero (dilemas del grupo). En Ring of Fire, la jota invita al grupo a acordar una norma de gestos.",
+      a: "Prueba mímica, doblaje improvisado y juegos de ritmo. La guía reúne 55 retos en tres niveles. Podéis pasar cualquier prueba y seguir con la siguiente persona.",
     },
     {
       q: "¿Cómo se juega al Verdad o Reto?",
-      a: "En Verdad o Reto, cada jugador elige entre responder una pregunta comprometida (Verdad) o cumplir un reto. Si no quiere hacer ninguna de las dos, bebe. La app de BeberGames genera automáticamente preguntas y retos en 3 niveles de intensidad.",
+      a: "En tu turno eliges Verdad o Reto. Cuando ves la tarjeta, puedes intentar la propuesta o pasar sin explicación ni consecuencia. La app ofrece tres intensidades y funciona a partir de tres jugadores.",
     },
     {
       q: "¿Hay juegos de retos para grupos mixtos?",
-      a: "Sí. Yo Prefiero y Verdad o Reto tienen contenido adaptable a cualquier grupo. Ambos tienen niveles de intensidad (normal, picante) para que el grupo elija cuán atrevidos quieren ser. En BeberGames puedes filtrar por nivel antes de empezar.",
+      a: "Sí. Elegid un nivel y probad retos que no requieran contacto ni acceso a móviles o cuentas. En Verdad o Reto se puede pasar cada propuesta. En Yo Prefiero podéis votar, comentar o pasar.",
     },
   ],
 
@@ -283,15 +283,15 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "juegos-para-beber-en-pareja": [
     {
       q: "¿Cuáles son los mejores juegos para beber en pareja?",
-      a: "Los mejores juegos para beber en pareja son Yo Nunca (para conocerse mejor), Verdad o Reto (para subir la tensión) y Yo Prefiero (para descubrir los límites del otro). BeberGames los tiene todos disponibles con versión para 2 jugadores.",
+      a: "Para una pareja van bien Yo Nunca, Mayor o Menor y Verdad o Reto de mesa. Podéis jugar a Yo Nunca con dos en la app. Para Verdad o Reto, la app requiere tres personas, así que en pareja podéis alternar las propuestas a mano.",
     },
     {
       q: "¿Es el Yo Nunca un buen juego para una primera cita?",
-      a: "Sí, el Yo Nunca en su versión suave es perfecto para una primera cita: genera conversación de forma natural, añade un punto de complicidad y permite conocerse sin presión. Empieza siempre por preguntas inocentes antes de subir el nivel.",
+      a: "Sí. Empezad con frases suaves sobre canciones, primeras citas o gustos. Podéis responder con un gesto, hablar del recuerdo si os apetece o pasar.",
     },
     {
       q: "¿Cómo se adaptan las reglas del Verdad o Reto para dos personas?",
-      a: "En pareja, el Verdad o Reto funciona igual pero la dinámica cambia: cada pregunta se vuelve más personal y directa. Si el otro no quiere responder o cumplir el reto, bebe. Recomendamos turnarse para proponer preguntas en lugar de usar solo la app para mayor personalización.",
+      a: "Turnaos para proponer una pregunta o un reto de mesa. Quien recibe la propuesta puede responder, probar el reto o pasar sin dar explicaciones. La app requiere al menos tres jugadores.",
     },
   ],
 
@@ -351,15 +351,15 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "preguntas-yo-nunca-parejas": [
     {
       q: "¿Cuáles son las mejores preguntas de Yo Nunca para parejas?",
-      a: "Las mejores preguntas de Yo Nunca para parejas combinan romanticismo y complicidad: desde 'Yo nunca he pensado en ti nada más despertarme' hasta confesiones más íntimas como 'Yo nunca he fingido placer para no herir tus sentimientos'. La clave es ir escalando gradualmente de suave a picante.",
+      a: "Elegid según el momento. La lista reúne 50 frases sobre recuerdos románticos, tensiones, intimidad y futuro. Podéis quedaros en un bloque o pasar al siguiente.",
     },
     {
       q: "¿Cómo se juega al Yo Nunca solo dos personas?",
-      a: "En pareja las reglas cambian ligeramente: si ambos lo habéis hecho, brindáis y bebéis los dos; si ninguno lo ha hecho, quien propuso la frase bebe como castigo. El bonus más divertido es obligar al otro a contar la historia completa detrás de cada trago.",
+      a: "Alternad quién lee cada frase. Si os reconocéis, podéis bajar un dedo o asentir. Si ninguno responde, leed la siguiente. Podéis dejar pasar cualquier frase y contar la historia solo si os apetece.",
     },
     {
       q: "¿El Yo Nunca ayuda a conocerse mejor en pareja?",
-      a: "Sí, es una de las herramientas más efectivas para conocerse mejor de forma divertida. Las confesiones surgen de forma natural sin la presión de una conversación directa. Especialmente valioso para parejas nuevas que quieren hablar de su pasado sin que resulte forzado.",
+      a: "Puede abrir conversación sobre recuerdos o planes si ambos queréis. Un gesto basta para jugar, y podéis cambiar de tema en cualquier turno.",
     },
   ],
 
@@ -403,16 +403,16 @@ export const blogFAQs: Record<string, FAQ[]> = {
 
   "verdad-o-reto-preguntas-buenas": [
     {
-      q: "¿Cuántas preguntas tiene el Verdad o Reto de BeberGames?",
-      a: "El Verdad o Reto de BeberGames incluye más de 80 preguntas y retos organizados en 3 niveles de intensidad: verde (suave), amarillo (normal) y rojo (picante +18). La app las genera automáticamente según el nivel que elijas.",
+      q: "¿Cuántas preguntas y retos incluye esta lista?",
+      a: "Este artículo reúne 45 preguntas y 35 retos, divididos en tres niveles. La app tiene su propio repertorio por intensidad y se juega con un mínimo de tres personas.",
     },
     {
       q: "¿Es mejor elegir Verdad o Reto?",
-      a: "Depende del jugador y el momento. La Verdad es mejor cuando quieres descubrir algo real sobre alguien. El Reto es mejor cuando el ambiente ya está animado y el grupo busca acción. Los jugadores más valientes suelen preferir Verdad porque las preguntas buenas son más comprometidas que cualquier reto.",
+      a: "Depende de lo que te apetezca en ese turno. Una pregunta da pie a conversar y un reto suele ser una prueba breve de mímica o improvisación. Puedes cambiar de opción en otro turno o pasar.",
     },
     {
       q: "¿Se puede jugar al Verdad o Reto sin reglas de beber?",
-      a: "Sí. El Verdad o Reto funciona perfectamente sin alcohol: el que no quiere responder o cumplir el reto puede asumir cualquier penalización que el grupo acuerde (hacer 10 sentadillas, contar un secreto, etc.). La diversión está en las revelaciones, no en la bebida.",
+      a: "Sí. Puedes decir «paso» a cualquier pregunta o reto. El turno avanza sin pedir explicaciones, pruebas ni otra acción.",
     },
   ],
 

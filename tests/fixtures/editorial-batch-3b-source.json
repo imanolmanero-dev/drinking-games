@@ -1,0 +1,10 @@
+{
+  "content/blog/retos-para-fiestas.mdx": "5341ae8d8117f7480b8e977052c701a8c3d71eca36c34a7c695e1c135c9f4465",
+  "content/blog/juegos-para-beber-dos-personas.mdx": "e7d4ff76d11395a821bd3847cc5f0673aeded1f6d7e7c9871a32965266f24d77",
+  "content/blog/juegos-para-beber-en-pareja.mdx": "fa662e689a6ea88a7ba69088e8602aaa3ec4889b91fd2eaaa6973f89a635fd80",
+  "content/blog/verdad-o-reto-preguntas-buenas.mdx": "fcbd46b28fe1014a6cc9c717029bd658f5c3161b69c6b13f210ecdfafbd5194c",
+  "content/blog/preguntas-yo-nunca-parejas.mdx": "c5771d0e4e58e81ac3c61cd1b103d4bf420867e9be08189148176e5887ffa240",
+  "content/blog/juegos-para-beber-sin-alcohol.mdx": "159e0b247a299be990739d96866fce49059dbca2edc998c3f3933c8dd57ca8cf",
+  "lib/data/blog-faqs.ts": "0f4a3063ec56545f72142092be3d7edc40a686cec9983a590d5c8fa6790bf399",
+  "tests/fixtures/es-editorial-updates.json": "e634258f4a08873a9e13e4728e3b5047caa43cd800fae972d06eec863f736d33"
+}

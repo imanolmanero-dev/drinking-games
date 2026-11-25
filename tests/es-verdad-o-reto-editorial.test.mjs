@@ -139,12 +139,15 @@ test("one contextual Picante link follows the unchanged primary game action and 
   assert.equal((article.content.match(/\]\(\/juegos\/verdad-o-reto\)/g) ?? []).length, 2);
 });
 
-test("the historical route fixture stays immutable and only the reviewed article title/H1 change", () => {
+test("the historical route fixture stays immutable and only the reviewed article titles/H1s change", () => {
   const historical = JSON.parse(read("tests/fixtures/es-routes.json"));
   const updates = JSON.parse(read("tests/fixtures/es-editorial-updates.json"));
-  assert.deepEqual(Object.keys(updates), [articlePath]);
-  assert.deepEqual(updates[articlePath], { title: `${article.data.title} | BeberGames`, h1: article.data.title });
-  assert.deepEqual(readRouteContract().filter(({ pathname }) => pathname !== "/juegos-para-halloween"), historical.map((route) => route.pathname === articlePath ? { ...route, ...updates[articlePath] } : route));
+  const retos = "Retos para Fiestas: 55 Desafíos Divertidos por Nivel";
+  assert.deepEqual(updates, {
+    [articlePath]: { title: `${article.data.title} | BeberGames`, h1: article.data.title },
+    "/blog/retos-para-fiestas": { title: `${retos} | BeberGames`, h1: retos },
+  });
+  assert.deepEqual(readRouteContract().filter(({ pathname }) => pathname !== "/juegos-para-halloween"), historical.map((route) => ({ ...route, ...updates[route.pathname] })));
 });
 
 test("ES-01 changes only reviewed fragments; gameplay, inventories, EN, reporting and infrastructure remain intact", () => {

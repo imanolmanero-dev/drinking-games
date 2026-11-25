@@ -2,7 +2,42 @@
 
 Incident date 24 November 2026. Production HTML inspected 25 November against the published 1cd2964 export. Counts refer to URLs, not traffic or income. Only the owner’s three Policy Center entries establish an active restriction. Editorial priorities below are our assessment.
 
-## Batch 3A · Timed, cumulative and full-glass rules
+## Batch 3B · Refusal, disclosure and couple games
+
+Batch 3A went live at `d3816ed54d2499ebd8002c14033d22d8c7c8489e` on November 25 at 22:55:46 UTC. Batch 3B covers the six articles below. All 13 Spanish games, their rules, earlier editorial remediations and the English product stay in place.
+
+| Corrected URL | Finding addressed and outcome | Inventory |
+|---|---|---|
+| https://bebergames.com/blog/retos-para-fiestas | Refusal and failure assigned drinks or a full glass. Several dares required private messages, account access, physical contact or food consumption. The revised challenges use voluntary in-room performance, wordplay and fictional scenarios. | 55 dares in the original three levels and numbering. |
+| https://bebergames.com/blog/juegos-para-beber-dos-personas | Refusing Truth or Dare doubled the drinks. Coin, card, trivia and music rounds also assigned drinking. They use points, alternate turns or a free pass. The two-player Truth or Dare variant is played at the table. | 10 games. |
+| https://bebergames.com/blog/juegos-para-beber-en-pareja | Wrong guesses, ties and forbidden words assigned drinks. Yo Nunca required drinking and invited full stories. Guessing uses points and a fixed turn count. Stories, gestures and activities from the wheel are optional. | 7 games. |
+| https://bebergames.com/blog/verdad-o-reto-preguntas-buenas | A disbelief vote doubled drinks, passes were limited and some dares accessed private accounts or contacted outsiders. Anyone can pass any card, leave a reply unchecked and use fictional prompts. | 45 questions and 35 dares across three levels. The old excerpt incorrectly said 40 and 40. |
+| https://bebergames.com/blog/preguntas-yo-nunca-parejas | An empty response penalized the reader and the instructions pressured players to disclose a full story. Players can respond with an optional gesture, share voluntarily or move on. | All 50 numbered statements verbatim across four blocks. |
+| https://bebergames.com/blog/juegos-para-beber-sin-alcohol | Refusing could require hot sauce or another penalty, and mixed-group rules assigned alcoholic drinks. Turns and outcomes now work independently of anyone's food or drink choices. | 10 games. |
+
+### Reviewed title and prompt differences
+
+The party-challenge title and H1 changed from “Retos para Fiestas: 55 Desafíos Épicos que Nadie Rechazará” to “Retos para Fiestas: 55 Desafíos Divertidos por Nivel”. The previous promise contradicted free refusal. The route, canonical, date and numbering remain the same. The public title keeps the `| BeberGames` suffix. All other article titles and H1s are preserved.
+
+The [reviewed inventory](../tests/fixtures/editorial-batch-3b-inventory.json) records the exact old and new text for 48 changed party dares, 39 changed Truth or Dare prompts and eight revised section headings. The replacements address drinking consequences, exposing private material, involving third parties, unwanted contact or unsafe tasks. Section depth, order and heading IDs are preserved. Revised FAQ answers share one source with their structured data. The two articles without an existing FAQ continue without one.
+
+### Batch 3B validation
+
+All 91 static export tests passed, including seven Batch 3B checks and both historical preservation comparisons. The complete unit suite passed 297 tests and reproduced all 14 historical failures with identical names and assertion payloads. TypeScript, the production build, static audit and whitespace checks passed. Changed-file ESLint reported zero errors and two existing unused-import warnings.
+
+Playwright passed all fourteen article and index checks at 390×844 and 1440×900 with third-party requests blocked. The export comparison against Batch 3A found changes only on the six article routes and the blog index. All 87 route destinations, the sitemap, editorial dates, canonicals, heading IDs and language alternates were preserved. The party-challenge title and H1 are the sole reviewed title change.
+
+### Remaining independent P0 articles · Batch 3C
+
+- https://bebergames.com/blog/juegos-para-botellon — refusal costs a drink and the guide includes a drinking race.
+- https://bebergames.com/blog/como-organizar-fiesta-juegos-beber — saying a forbidden word triggers drinking throughout the night.
+- https://bebergames.com/blog/juegos-para-cumpleanos-adultos — birthday Yo Nunca assigns drinks to the celebrant or the person who proposed the statement.
+- https://bebergames.com/blog/juegos-para-previas — Yo Nunca makes everyone who has done the named activity drink.
+- https://bebergames.com/blog/juegos-para-beber-por-videollamada — incorrect guesses can make individuals or the whole group drink.
+
+Retain existing exclusions. The six corrected Batch 3B URLs are future restoration candidates after live verification and owner review. The owner reports applying some temporary Auto Ads exclusions. The full account list and current classification remain unverified, and the site-wide warning remains open. Technical containment remains paused because of its CMP dependency.
+
+## Batch 3A · Historical release record
 
 Batch 2C went live at `75c305389cc8a560b62e6d0ef5d81af17efacf67` on November 25 at 22:31:38 UTC. All 13 Spanish games and their companion rules were verified in production. The account warning and the status of temporary exclusions are separate from these editorial releases.
 
@@ -23,7 +58,7 @@ The production build, TypeScript, changed-file ESLint, static export audit and w
 
 Playwright checked the six articles and blog index at 390×844 and 1440×900 with third-party requests blocked. All fourteen combinations passed, with visible FAQs matching their schema, no uncaught JavaScript exceptions and no horizontal overflow. A comparison against the Batch 2C export preserved all 87 routes, titles, H1s, published dates, canonical links, heading IDs, language alternates and existing destinations. The selection on the home page and index cards reflect the new excerpts and derived reading times. The Top 20 article also links to the existing music variant in the Drinking Games guide.
 
-### Remaining independent P0 articles
+### Independent P0 articles recorded after Batch 3A
 
 Keep the existing B/C temporary exclusion recommendation for all eleven URLs until editorial fixes are live and reviewed by the owner. These are recommendations, not verified account entries.
 
