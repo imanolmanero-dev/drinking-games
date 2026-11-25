@@ -5,6 +5,7 @@ import { readFileSync } from "node:fs";
 const changes = JSON.parse(readFileSync(new URL("../fixtures/critical-games-2b-export.json", import.meta.url)));
 const editorial = JSON.parse(readFileSync(new URL("../fixtures/questions-editorial-export.json", import.meta.url)));
 const batch2c = JSON.parse(readFileSync(new URL("../fixtures/critical-games-2c-export.json", import.meta.url)));
+const batch3a = JSON.parse(readFileSync(new URL("../fixtures/editorial-batch-3a-export.json", import.meta.url)));
 const hash = value => createHash("sha256").update(value).digest("hex");
 
 function fields(path, snapshot) {
@@ -16,10 +17,12 @@ function fields(path, snapshot) {
     if (original[field]) assert.equal(original[field][1], before, path + " pre-editorial " + field);
     combined[field] = [original[field]?.[0] ?? before, after, original[field]?.[2]];
   }
-  for (const [field, [before, after, rawBefore]] of Object.entries(latest ?? {})) {
-    const previous = combined[field];
-    if (previous) assert.equal(previous[1], before, path + " pre-2C " + field);
-    combined[field] = [previous?.[0] ?? before, after, previous?.[2] ?? rawBefore];
+  for (const release of [latest, (Object.hasOwn(snapshot, "header") && batch3a[navigation]) || batch3a[path]]) {
+    for (const [field, [before, after, rawBefore]] of Object.entries(release ?? {})) {
+      const previous = combined[field];
+      if (previous) assert.equal(previous[1], before, path + " historical chain " + field);
+      combined[field] = [previous?.[0] ?? before, after, previous?.[2] ?? rawBefore];
+    }
   }
   return combined;
 }

@@ -23,7 +23,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Dónde puedo jugar a juegos para beber online gratis?",
-      a: "En BeberGames.com tienes 12 juegos para beber completamente gratis, sin registro y sin descargar nada. Solo abre la web en el móvil y empieza a jugar. Incluye Yo Nunca, Verdad o Reto, Medusa, La Bomba, Ring of Fire y más.",
+      a: "En BeberGames.com tienes 13 juegos de fiesta gratuitos, sin registro ni descargas. Solo abre la web en el móvil y empieza a jugar. Incluye Yo Nunca, Verdad o Reto, Medusa, La Bomba, Ring of Fire y más.",
     },
   ],
 
@@ -68,7 +68,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "juegos-para-beber-rapidos": [
     {
       q: "¿Cuáles son los juegos para beber más rápidos?",
-      a: "Los juegos para beber más rápidos son Medusa (3 segundos por ronda), La Bomba (12-40 segundos), Verdad o Reto y Yo Prefiero. Son perfectos para cuando no queréis explicar reglas complicadas y queréis empezar ya.",
+      a: "Medusa, Bizz Buzz y La Moneda se explican en pocos segundos. En Medusa la cuenta empieza en tres. En Bizz Buzz tenéis tres segundos por respuesta y en La Moneda podéis jugar hasta cinco puntos.",
     },
     {
       q: "¿Qué juego para beber es mejor para pocas personas?",
@@ -102,7 +102,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "juegos-para-beber-con-cartas": [
     {
       q: "¿Qué juegos de beber se pueden jugar con una baraja de cartas?",
-      a: "Los principales juegos de beber con cartas son Ring of Fire, El Rey de la Copa, Asno (President), Escoba Borracha y Guerra de Cartas. Ring of Fire y El Rey de la Copa son los más populares y tienen versión digital gratuita en BeberGames.",
+      a: "Con baraja francesa podéis jugar a Ring of Fire, Pirámide, Presidente, Blackjack o Alta o Baja. BeberGames tiene versiones digitales de Ring of Fire, Rey de la Copa y La Pirámide.",
     },
     {
       q: "¿Puedo jugar al Ring of Fire sin una baraja física?",
@@ -238,30 +238,30 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "juegos-beber-baraja-espanola": [
     {
       q: "¿Qué juegos de beber se pueden hacer con una baraja española?",
-      a: "Con una baraja española puedes jugar a la variante española de Ring of Fire, al Escoba Borracha, a la Guerra (el que saca carta más baja bebe) y a múltiples variantes de reparto de tragos según el palo o el número. Son clásicos perfectos para cuando no tienes el móvil a mano.",
+      a: "Con una baraja española de 40 cartas podéis jugar a Siete y Medio, la Mona, el Burro, Guerra y Escoba. En Guerra, la carta más alta recoge el montón. En Escoba, capturáis cartas que sumen quince con una de vuestra mano.",
     },
     {
       q: "¿Se puede jugar al Ring of Fire con baraja española?",
-      a: "Sí, el Ring of Fire se puede jugar con baraja española adaptando las reglas a los 4 palos: oros, copas, espadas y bastos. Cada palo puede tener una regla diferente. En BeberGames tienes la versión digital que no require baraja física.",
+      a: "El Ring of Fire digital no requiere baraja física. Si queréis hacer una variante de mesa con la española, acordad qué hará cada número o figura antes de repartir. Podéis conservar el final con el cuarto rey y pasar cualquier acción.",
     },
     {
       q: "¿Cuántas cartas tiene una baraja española?",
-      a: "La baraja española completa tiene 48 cartas: 12 numéricas (del 1 al 12) en 4 palos (oros, copas, espadas, bastos). La baraja corta que se usa habitualmente tiene 40 cartas (del 1 al 7 y del 10 al 12). Ambas sirven para jugar a juegos de beber.",
+      a: "La baraja española larga tiene 48 cartas repartidas en oros, copas, espadas y bastos. La corta tiene 40: del uno al siete, sota, caballo y rey en cada palo. Si tenéis la larga, retirad los ochos y nueves para jugar a estas variantes.",
     },
   ],
 
   "juegos-de-mesa-para-beber": [
     {
       q: "¿Cuáles son los mejores juegos de mesa para convertir en juegos de beber?",
-      a: "Los juegos de mesa que mejor se adaptan para beber son el Jenga (el que hace caer la torre bebe), el UNO (por cada carta que coges bebes un trago), el Parchís (al comer una ficha, el comido bebe) y cualquier juego de trivia donde el equipo perdedor bebe.",
+      a: "Jenga, UNO, Parchís y Trivial funcionan bien en una previa. Contad bloques colocados en Jenga, jugad a quedaros sin cartas en UNO, llevad fichas a la meta en Parchís o competid por tres quesitos en una partida corta de Trivial.",
     },
     {
       q: "¿Se puede añadir una regla de beber a cualquier juego de mesa?",
-      a: "Sí. La regla más universal es: el jugador que pierde la ronda o comete un error bebe. También puedes añadir reglas a eventos específicos del juego (sacar un 6 en los dados, robar una carta negra en UNO, etc.). Lo importante es que todos acuerden las reglas antes de empezar.",
+      a: "Podéis acordar variantes de mesa antes de empezar. Elegid objetivos que encajen con el tablero, como jugar a dos fichas en Parchís o contar territorios tras un número fijo de rondas en Risk. Las bebidas personales quedan aparte de la puntuación.",
     },
     {
       q: "¿Necesito comprar juegos especiales para jugar a juegos de mesa de beber?",
-      a: "No. Cualquier juego de mesa que ya tengas en casa se puede convertir en juego de beber añadiendo reglas simples. Para juegos completamente digitales sin necesidad de material físico, BeberGames ofrece 12 juegos gratuitos que funcionan desde cualquier móvil.",
+      a: "No. Usad las piezas del juego que tengáis en casa y acordad la duración y el objetivo antes de empezar. Si no tenéis tablero, BeberGames ofrece 13 juegos gratuitos que funcionan en el móvil.",
     },
   ],
 
@@ -276,7 +276,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cuántos dados necesito para jugar a juegos de beber?",
-      a: "Con un solo dado ya puedes jugar a Triman y a la mayoría de juegos de dados para beber. Algunos juegos usan 2 dados para generar más combinaciones. En BeberGames el dado es digital: la app lo lanza automáticamente y gestiona todas las reglas.",
+      a: "Triman y El 21 usan un dado. Mexicano, 7-11-D y Par o Nones usan dos. Barco Capitán usa cinco, Chingón seis y Dudo cinco por persona. Triman online incluye su propio dado.",
     },
   ],
 

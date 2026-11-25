@@ -2,7 +2,49 @@
 
 Incident date 24 November 2026. Production HTML inspected 25 November against the published 1cd2964 export. Counts refer to URLs, not traffic or income. Only the owner’s three Policy Center entries establish an active restriction. Editorial priorities below are our assessment.
 
-## Batch 2C · Local release candidate, November 25
+## Batch 3A · Timed, cumulative and full-glass rules
+
+Batch 2C went live at `75c305389cc8a560b62e6d0ef5d81af17efacf67` on November 25 at 22:31:38 UTC. All 13 Spanish games and their companion rules were verified in production. The account warning and the status of temporary exclusions are separate from these editorial releases.
+
+| Corrected URL | Finding addressed | Revised outcome |
+|---|---|---|
+| https://bebergames.com/blog/los-20-mejores-juegos | Power Hour scheduled a drink each minute. Other games tied drinking to finishing, losing or learning a private question. | Recognize songs as the playlist advances. The other games use empty cups, water, points, turn changes or voluntary responses. All 20 remain. |
+| https://bebergames.com/blog/juegos-para-beber-rapidos | Coin guesses assigned accumulated or doubled drinks. Timed games and referrals also required drinking. | Players bank points or provisional tokens. Timers apply to answers, gestures and round length. All eight remain. |
+| https://bebergames.com/blog/juegos-de-mesa-para-beber | Defeats, board spaces and mistakes could require finishing glasses. | Preserve each board game's pieces and core mechanics, with shorter goals or scores where appropriate. All 12 remain. |
+| https://bebergames.com/blog/juegos-para-beber-con-dados | Six matching dice assigned drinks. Other outcomes assigned double or prolonged drinking. | Combinations score points, rachas earn tokens and losing a Dudo challenge costs a die. Dice counts and Triman's digital rules are preserved. All eight remain. |
+| https://bebergames.com/blog/juegos-para-beber-con-cartas | The lowest card owed the whole drinking stake, and other rounds punished failure or passing. | Stakes use tokens. Players can pass questions or challenges freely. Preserve the French deck, twelve game sections and all twelve navigation anchors. |
+| https://bebergames.com/blog/juegos-beber-baraja-espanola | Failed matches cost drinks and a banker's exact score made the whole table drink. | Keep the 40-card deck, pair discards, original ranks, dealing and capture rules. The banker's result settles the card hand. All five remain. |
+
+These six URLs are future exclusion restoration candidates after live verification and owner review. Maintain any existing exclusions. The current account exclusions and any change in Google classification remain unverified. The site-wide warning remains unresolved. Technical containment remains paused because of its CMP dependency.
+
+### Batch 3A validation
+
+The production build, TypeScript, changed-file ESLint, static export audit and whitespace check passed. All 84 static export tests passed, including the two historical preservation comparisons and seven Batch 3A checks. The full unit run passed 297 tests. All 14 failures matched Batch 2C by name and assertion payload. The existing failure on the French card article counts Markdown headings even though its twelve preserved anchors are HTML headings. The new exported inventory test checks all twelve actual sections.
+
+Playwright checked the six articles and blog index at 390×844 and 1440×900 with third-party requests blocked. All fourteen combinations passed, with visible FAQs matching their schema, no uncaught JavaScript exceptions and no horizontal overflow. A comparison against the Batch 2C export preserved all 87 routes, titles, H1s, published dates, canonical links, heading IDs, language alternates and existing destinations. The selection on the home page and index cards reflect the new excerpts and derived reading times. The Top 20 article also links to the existing music variant in the Drinking Games guide.
+
+### Remaining independent P0 articles
+
+Keep the existing B/C temporary exclusion recommendation for all eleven URLs until editorial fixes are live and reviewed by the owner. These are recommendations, not verified account entries.
+
+**Batch 3B · Refusal and disclosure penalties**
+
+- https://bebergames.com/blog/retos-para-fiestas — refusal and failed challenges cost drinks.
+- https://bebergames.com/blog/juegos-para-beber-dos-personas — declining a truth or dare doubles the drinks.
+- https://bebergames.com/blog/juegos-para-beber-en-pareja — failed guesses and forbidden words assign drinks.
+- https://bebergames.com/blog/verdad-o-reto-preguntas-buenas — group disbelief doubles drinks.
+- https://bebergames.com/blog/preguntas-yo-nunca-parejas — the speaker drinks when nobody shares the experience.
+- https://bebergames.com/blog/juegos-para-beber-sin-alcohol — refusal can require hot sauce and mixed groups are instructed to consume two drinks.
+
+**Batch 3C · Group and party instructions**
+
+- https://bebergames.com/blog/juegos-para-botellon — refusal costs a drink and the guide includes a drinking race.
+- https://bebergames.com/blog/como-organizar-fiesta-juegos-beber — saying a forbidden word triggers drinking throughout the night.
+- https://bebergames.com/blog/juegos-para-cumpleanos-adultos — birthday Yo Nunca assigns drinks to the celebrant or the person who proposed the statement.
+- https://bebergames.com/blog/juegos-para-previas — Yo Nunca makes everyone who has done the named activity drink.
+- https://bebergames.com/blog/juegos-para-beber-por-videollamada — incorrect guesses can make individuals or the whole group drink.
+
+## Batch 2C · Historical local release candidate, November 25
 
 Production remains at 6dba763. The owner's November 25 snapshot supersedes the historical figures below. The three restricted pages are https://bebergames.com/juegos/categorias/preguntas (33 requests), https://bebergames.com/blog/yo-nunca-preguntas-picantes-18 (2) and https://bebergames.com/blog (1). The previously restricted https://bebergames.com/blog/drinking-games-reglas remains a temporary exclusion. The site-wide warning is unresolved. Current account settings have not been independently verified.
 
