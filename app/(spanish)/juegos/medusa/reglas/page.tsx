@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   },
   title: "Cómo Jugar a Medusa — Reglas del Juego de Beber",
   description:
-    "Aprende las reglas de Medusa, el juego de beber de contacto visual. Todos miran abajo, a la de 3 todos miran a alguien. Si dos se cruzan la mirada… ¡MEDUSA! A beber.",
+    "Aprende a jugar a Medusa en círculo. Levantad la vista a la señal y quedaos de piedra si dos miradas coinciden.",
 };
 
 export default function MedusaReglasPage() {
@@ -37,7 +37,7 @@ export default function MedusaReglasPage() {
             </h2>
             <ul className="text-sm text-muted space-y-2 leading-relaxed">
               <li>✅ <strong>4 o más jugadores</strong> (cuantos más, más caos)</li>
-              <li>✅ <strong>Bebidas</strong> para todos</li>
+              <li>✅ Espacio para verse las caras en círculo</li>
               <li>✅ Nada más — ¡ningún material adicional!</li>
             </ul>
           </section>
@@ -52,8 +52,8 @@ export default function MedusaReglasPage() {
                 { paso: "1", titulo: "Todos miran hacia abajo", desc: "Al inicio de cada ronda, todos los jugadores bajan la vista al suelo o a la mesa. Nadie puede mirar a los demás todavía." },
                 { paso: "2", titulo: "La cuenta atrás", desc: "El jugador con el móvil pulsa el botón. El juego hace la cuenta atrás: 3… 2… 1… ¡MEDUSA!" },
                 { paso: "3", titulo: "¡Mirad!", desc: "En cuanto aparece '¡MEDUSA!', todos levantan la vista y miran directamente a otro jugador del grupo. ¡Instintivo y rápido!" },
-                { paso: "4", titulo: "Contacto visual = beber", desc: "Si dos jugadores se miran directamente a los ojos en ese momento, ambos gritan '¡MEDUSA!' y deben beber." },
-                { paso: "5", titulo: "El último en gritar bebe doble", desc: "De los dos que se miraron, el que tarde más en gritar '¡MEDUSA!' bebe el doble. ¡Hay que estar alerta!" },
+                { paso: "4", titulo: "Dos miradas coinciden", desc: "Si os estáis mirando, decid ¡Medusa! y quedaos de piedra un instante." },
+                { paso: "5", titulo: "Reaccionad a la vez", desc: "Intentad reconocer el cruce al mismo tiempo. Si alguien prefiere pasar, puede volver en la siguiente ronda." },
                 { paso: "6", titulo: "Siguiente ronda", desc: "Todos vuelven a mirar abajo y empieza la siguiente ronda. ¡15 rondas de tensión pura!" },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
@@ -81,8 +81,8 @@ export default function MedusaReglasPage() {
           <section className="rounded-2xl border border-border bg-surface p-6 flex flex-col gap-4">
             <h2 className="text-lg font-bold">⚡ Variaciones</h2>
             <div className="flex flex-col gap-4 text-sm text-muted">
-              <div><strong className="text-foreground">Medusa Encadenada:</strong> Si en una ronda nadie se mira, el que lleve más rondas salvadas bebe igualmente.</div>
-              <div><strong className="text-foreground">Medusa con reto:</strong> El que pierda además de beber tiene que hacer un reto que el grupo elija.</div>
+              <div><strong className="text-foreground">Medusa encadenada:</strong> Si nadie coincide, repetid la señal con una persona distinta al mando.</div>
+              <div><strong className="text-foreground">Medusa con pose:</strong> Una persona propone una postura para quienes crucen la mirada. Cada pareja puede improvisar la suya.</div>
               <div><strong className="text-foreground">Medusa Oscura:</strong> Jugad con poca luz. La tensión se multiplica.</div>
             </div>
           </section>

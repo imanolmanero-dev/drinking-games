@@ -118,7 +118,7 @@ export default function MedusaPage() {
               </div>
               <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Medusa</h1>
               <p className="text-sm text-muted max-w-xs">
-                Todos miran abajo. A la de 3, mira a alguien. Si os cruzáis la mirada… ¡MEDUSA! A beber.
+                Mirad abajo. A la señal, buscad otra mirada. Si coincidís, decid ¡Medusa! y quedaos de piedra.
               </p>
               <Link href="/juegos/medusa/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -205,10 +205,10 @@ export default function MedusaPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>Medusa: El Juego de Beber de las Miradas Asesinas</h2>
             <p>
-              Inspirado en la mitología griega, el juego de beber <strong>Medusa</strong> convierte una mirada inocente en un castigo instantáneo. Sin cartas, sin dados, sin aplicaciones complicadas. Solo necesitas ojos y nervios de acero.
+              La mirada de <strong>Medusa</strong> convierte en piedra a quien se cruza con ella. Sentaos en círculo para ver bien las caras.
             </p>
             <p>
-              La mecánica es tan sencilla que se puede explicar en 10 segundos: todos miran hacia abajo, se cuenta hasta tres y, al levantar la cabeza, quien se cruce la mirada con alguien grita &ldquo;¡MEDUSA!&rdquo; y ambos beben. Es uno de esos juegos que genera tensión pura antes de que empiece la diversión.
+              Elegid a quién mirar antes de que acabe la cuenta. Si esa persona también os mira, a ver quién dice primero ¡Medusa! Los dos os quedáis quietos un instante.
             </p>
 
             <h3>Cómo funciona la cuenta atrás</h3>
@@ -216,20 +216,20 @@ export default function MedusaPage() {
               Nuestra app hace de árbitro imparcial. Pulsa el botón, todos miran abajo, y la cuenta atrás comienza. A la señal, todos levantan la cabeza al mismo tiempo y miran fijamente a otro jugador.
             </p>
             <ul>
-              <li><strong>Sin contacto visual:</strong> Si la persona a la que miras está mirando a otra persona, te salvas. Sigues seco.</li>
-              <li><strong>Contacto Medusa:</strong> Si la persona que has elegido también te está mirando a ti... los dos gritáis ¡MEDUSA! y bebéis.</li>
-              <li><strong>Último en gritar:</strong> Añade la regla del &ldquo;grito tardío&rdquo; — el que grite Medusa después que el otro bebe el doble.</li>
+              <li><strong>Sin cruce:</strong> Si la otra persona mira a alguien más, esperad a la siguiente ronda.</li>
+              <li><strong>Contacto Medusa:</strong> Decid ¡Medusa! y quedaos de piedra un instante.</li>
+              <li><strong>Reflejos:</strong> Intentad reconocer el cruce a la vez. Podéis pasar cualquier ronda.</li>
             </ul>
 
             <h3>Preguntas frecuentes sobre Medusa</h3>
             <p><strong>¿Cuántos jugadores hacen falta?</strong> Mínimo 4 para que tenga gracia. Con más de 6 personas la probabilidad de cruzar miradas sube mucho y el juego se vuelve mucho más caótico.</p>
             <p><strong>¿Se puede jugar de pie?</strong> Sí, perfectamente. El juego funciona igual sentados en un sofá, alrededor de una mesa o de pie en una fiesta. Solo necesitáis que todos puedan verse entre sí.</p>
-            <p><strong>¿Qué pasa si hay empate?</strong> Si tres personas se miran al mismo tiempo en un triángulo, las tres beben. No hay escapatoria del triángulo maldito.</p>
+            <p><strong>¿Qué pasa si hay empate?</strong> Si dos parejas cruzan las miradas, ambas hacen su pose. La siguiente señal reúne de nuevo a todo el círculo.</p>
 
             <h3>Juegos sin materiales que también te gustarán</h3>
             <p>Medusa forma parte de nuestra colección de <Link href="/juegos/categorias/sin-materiales" className="text-lime-500 underline">juegos sin materiales</Link>. Si te ha gustado, prueba también:</p>
             <ul>
-              <li><Link href="/juegos/yo-nunca" className="text-lime-500 underline">Yo Nunca</Link> — Confiesa o bebe. Perfecto para conocer los secretos del grupo.</li>
+              <li><Link href="/juegos/yo-nunca" className="text-lime-500 underline">Yo Nunca</Link> — Baja un dedo si te apetece responder.</li>
               <li><Link href="/juegos/la-bomba" className="text-lime-500 underline">La Bomba</Link> — Pasa el móvil antes de que explote el temporizador secreto.</li>
               <li><Link href="/juegos/quien-es-mas-probable" className="text-lime-500 underline">Quién Es Más Probable</Link> — El grupo señala y compara las nominaciones.</li>
             </ul>
@@ -361,8 +361,8 @@ export default function MedusaPage() {
               <div className="text-5xl">🍺</div>
               <h2 className="text-2xl font-extrabold">¿Quién se ha mirado?</h2>
               <p className="text-sm text-muted max-w-xs">
-                Si alguien ha hecho contacto visual… <strong className="text-lime-400">¡bebe!</strong><br />
-                El último en gritar &quot;¡MEDUSA!&quot; bebe el doble 👀
+                Si dos miradas coinciden, decid <strong className="text-lime-400">¡Medusa!</strong><br />
+                Quedaos de piedra un instante. Si nadie coincide, pasad a la siguiente ronda.
               </p>
             </div>
 

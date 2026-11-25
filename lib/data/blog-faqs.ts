@@ -317,11 +317,11 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "medusa-juego-beber": [
     {
       q: "¿Cómo se juega al Medusa?",
-      a: "En Medusa todos los jugadores miran hacia abajo con los ojos cerrados. El móvil hace la cuenta atrás. A la señal, todos levantan la cabeza y miran fijamente a otro jugador. Si dos personas se cruzan la mirada, ambas gritan '¡MEDUSA!' y beben. El último en gritar bebe el doble.",
+      a: "Mirad abajo durante la cuenta atrás. A la señal, cada persona mira a otra. Si os miráis mutuamente, decid ¡Medusa! y quedaos de piedra un instante. Podéis pasar cualquier ronda.",
     },
     {
       q: "¿Por qué se llama Medusa este juego?",
-      a: "El nombre viene del mito griego de Medusa, el monstruo cuya mirada convertía a las personas en piedra. En el juego, cruzar la mirada con otro jugador tiene consecuencias: ambos quedan 'petrificados' y tienen que beber.",
+      a: "En el mito griego, la mirada de Medusa convertía en piedra. Aquí, la pareja que cruza la mirada imita durante un instante la postura de una estatua.",
     },
     {
       q: "¿Cuántas personas se necesitan para jugar al Medusa?",
@@ -329,7 +329,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cuánto dura una partida de Medusa?",
-      a: "Cada ronda de Medusa dura solo 3 segundos: la cuenta atrás y el momento del cruce de miradas. Una partida completa de 10 rondas no llega a los 5 minutos. Es el juego perfecto para romper el hielo al principio de la noche o entre partidas más largas.",
+      a: "El móvil marca quince rondas. Cada cuenta empieza en tres y el grupo decide cuándo iniciar la siguiente. Podéis hacer una pausa entre señales.",
     },
   ],
 
