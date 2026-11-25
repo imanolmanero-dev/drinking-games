@@ -93,11 +93,11 @@ export default function BeerPongPage() {
   }, [teams, cupMode, currentTurn, lastShotMade, playSound, vibrateDevice]);
 
   const endTurn = useCallback(() => {
-    setCurrentTurn((t) => (t === 0 ? 1 : 0));
+    setCurrentTurn(currentTurn === 0 ? 1 : 0);
     setHeatingUp(false);
     setLastShotMade(false);
     playSound("click");
-  }, [playSound]);
+  }, [currentTurn, playSound]);
 
   const handleRerack = useCallback((teamIndex: number) => {
     if (rerackUsed[teamIndex]) return;

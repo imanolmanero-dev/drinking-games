@@ -81,7 +81,7 @@ export default function MedusaPage() {
       setShowConfetti(true);
       playSound("success");
     } else {
-      setRound((r) => r + 1);
+      setRound(round + 1);
       setPhase("waiting");
       playSound("click");
     }

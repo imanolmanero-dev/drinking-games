@@ -117,21 +117,21 @@ export default function TabuPage() {
   }, [deck, cardIndex, playSound]);
 
   const handleCorrect = useCallback(() => {
-    setRoundPoints((p) => p + 1);
+    setRoundPoints(roundPoints + 1);
     const nextIdx = cardIndex + 1 >= deck.length ? 0 : cardIndex + 1;
     setCardIndex(nextIdx);
     setCurrentCard(deck[nextIdx]);
     playSound("success");
-  }, [cardIndex, deck, playSound]);
+  }, [cardIndex, deck, roundPoints, playSound]);
 
   const handleTabu = useCallback(() => {
-    setRoundFaults((d) => d + 1);
+    setRoundFaults(roundFaults + 1);
     const nextIdx = cardIndex + 1 >= deck.length ? 0 : cardIndex + 1;
     setCardIndex(nextIdx);
     setCurrentCard(deck[nextIdx]);
     playSound("drink");
     vibrateDevice("turn");
-  }, [cardIndex, deck, playSound, vibrateDevice]);
+  }, [cardIndex, deck, roundFaults, playSound, vibrateDevice]);
 
   const handleSkip = useCallback(() => {
     const nextIdx = cardIndex + 1 >= deck.length ? 0 : cardIndex + 1;
@@ -141,15 +141,13 @@ export default function TabuPage() {
   }, [cardIndex, deck, playSound]);
 
   const confirmTurnEnd = useCallback(() => {
-    setScores((prev) => {
-      const updated = [...prev] as [TeamScore, TeamScore];
-      updated[currentTeam] = {
-        ...updated[currentTeam],
-        points: updated[currentTeam].points + roundPoints,
-        faults: updated[currentTeam].faults + roundFaults,
-      };
-      return updated;
-    });
+    const updated: [TeamScore, TeamScore] = [...scores];
+    updated[currentTeam] = {
+      ...scores[currentTeam],
+      points: scores[currentTeam].points + roundPoints,
+      faults: scores[currentTeam].faults + roundFaults,
+    };
+    setScores(updated);
     const nextRounds = roundsPlayed + 1;
     setRoundsPlayed(nextRounds);
 
@@ -163,7 +161,7 @@ export default function TabuPage() {
       setPhase("turn-start");
       playSound("click");
     }
-  }, [currentTeam, roundPoints, roundFaults, roundsPlayed, playSound]);
+  }, [scores, currentTeam, roundPoints, roundFaults, roundsPlayed, playSound]);
 
   const restartGame = useCallback(() => {
     setPhase("setup");
