@@ -166,19 +166,19 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "beer-pong-reglas-completas": [
     {
       q: "¿Cuáles son las reglas básicas del Beer Pong?",
-      a: "En el Beer Pong, dos equipos se colocan en extremos opuestos de una mesa con 10 vasos en triángulo en cada lado. Por turnos, cada equipo lanza una pelota de ping-pong intentando meterla en los vasos del rival. El rival bebe y retira el vaso. Gana el equipo que hunde todos los vasos del rival.",
+      a: "Preparad dos triángulos con vasos de agua. Por turnos, lanzad hacia el lado rival y retirad cada vaso en el que entre la pelota. Gana quien retire el último vaso del otro lado.",
     },
     {
       q: "¿Qué materiales necesito para jugar al Beer Pong?",
-      a: "Necesitas 20 vasos de plástico (10 por equipo), 2 pelotas de ping-pong, una mesa de al menos 2 metros y bebida. También puedes usar el árbitro virtual de BeberGames en el móvil para gestionar el marcador, los re-racks y las reglas especiales.",
+      a: "Necesitáis vasos con agua, una mesa y una pelota de ping-pong. El árbitro virtual permite elegir seis o diez vasos por equipo. Las bebidas personales se dejan aparte.",
     },
     {
       q: "¿Qué es el Re-rack en el Beer Pong?",
-      a: "El Re-rack es una regla que permite a cada equipo reorganizar sus vasos restantes en una formación diferente una vez por partida. Se suele pedir cuando quedan 6, 4, 3 o 2 vasos para mejorar la disposición defensiva o crear una formación más difícil de encestar.",
+      a: "Consiste en juntar los vasos que quedan para formar un nuevo grupo. En el árbitro digital podéis marcarlo una vez por lado cuando quedan cuatro vasos o menos.",
     },
     {
       q: "¿Qué significa 'Heating Up' o 'On Fire' en el Beer Pong?",
-      a: "Si un jugador encesta 2 tiros consecutivos, puede declarar 'Heating Up'. Si encesta un tercero seguido, está 'On Fire' y puede seguir lanzando hasta que falle. El árbitro virtual de BeberGames detecta esto automáticamente.",
+      a: "En la variante de mesa, dos aciertos del mismo jugador son Heating Up y el tercero es On Fire. El móvil muestra On Fire al marcar dos vasos en el mismo turno. Vosotros decidís cuándo cambiar de equipo.",
     },
   ],
 

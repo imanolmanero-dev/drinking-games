@@ -190,7 +190,7 @@ export default function BeerPongPage() {
               </div>
               <h1 className="text-2xl font-extrabold tracking-tight sm:text-3xl">Beer Pong Virtual</h1>
               <p className="text-sm text-muted max-w-xs">
-                El árbitro digital para tu partida. Gestiona vasos, turnos y reglas especiales desde el móvil.
+                Colocad los vasos con agua. Tocad en pantalla cada vaso que retiréis de la mesa.
               </p>
               <Link href="/juegos/beer-pong/reglas" className="mt-2 inline-flex items-center gap-1.5 rounded-full bg-surface-hover px-3 py-1 text-xs font-semibold text-accent transition-colors hover:bg-accent/10">
                 <BookOpen className="h-3.5 w-3.5" />
@@ -257,7 +257,7 @@ export default function BeerPongPage() {
           <div className="mx-auto max-w-3xl prose prose-invert prose-p:text-muted max-w-none">
             <h2>Beer Pong: El Rey de las Fiestas, Ahora con Árbitro Digital</h2>
             <p>
-              El <strong>Beer Pong</strong> es el juego de fiesta más icónico del mundo. Dos equipos, diez vasos cada uno en formación triangular, una pelota de ping-pong y un objetivo claro: meter la pelota en los vasos del rival. El equipo que se quede sin vasos, bebe lo que queda en la copa del perdedor.
+              En <strong>Beer Pong</strong> cada equipo apunta al triángulo rival. Poned agua en los vasos de juego y dejad aparte cualquier bebida personal. Elegid seis o diez vasos por lado.
             </p>
             <p>
               Nuestra app no reemplaza la experiencia física — la mejora. Funciona como árbitro digital en medio de la mesa mientras jugáis con vasos y pelota reales. Nada de discutir sobre turnos, re-racks o el contador de &ldquo;On Fire&rdquo;.
@@ -266,9 +266,9 @@ export default function BeerPongPage() {
             <h3>Qué hace la app por vosotros</h3>
             <ul>
               <li><strong>Rastreador de vasos:</strong> Marca en pantalla qué vasos han caído. Todo el mundo ve el estado real de la partida sin confusiones.</li>
-              <li><strong>Gestión de turnos:</strong> La app controla automáticamente de quién es el turno. Sin debates, sin trampas.</li>
+              <li><strong>Gestión de turnos:</strong> Pulsad Fin de turno cuando le toque lanzar al otro equipo.</li>
               <li><strong>Re-rack controlado:</strong> Solo se puede pedir reorganización de vasos una vez por equipo y en momentos concretos. La app lo gestiona.</li>
-              <li><strong>On Fire:</strong> Dos aciertos seguidos = tercer tiro de regalo. La app lo detecta y lo anuncia. El jugador en racha lo merece todo.</li>
+              <li><strong>On Fire:</strong> El aviso aparece al marcar dos vasos en el mismo turno. Al cambiar de equipo se reinicia la racha.</li>
               <li><strong>Modos 10 y 6 vasos:</strong> Elige el formato clásico de torneo (10 vasos) o el modo rápido de 6 vasos para partidas más cortas.</li>
             </ul>
 
@@ -302,7 +302,7 @@ export default function BeerPongPage() {
             ¡Gana {teams[winner].name}!
           </h2>
           <p className="text-sm text-muted">
-            {teams[loser].name} bebe los vasos restantes y brinda por los campeones 🍺
+            {teams[winner].name} ha retirado el último vaso de {teams[loser].name}. ¿Otra partida?
           </p>
 
           <div className="grid grid-cols-2 gap-4 w-full">
@@ -318,7 +318,7 @@ export default function BeerPongPage() {
                 <p className={`text-xs font-bold uppercase tracking-wider ${tc[ti].text}`}>
                   {ti === winner ? "🥇 " : "🥈 "}{teams[ti].name}
                 </p>
-                <p className="text-2xl font-black mt-1">{teams[ti].score}</p>
+                <p className="text-2xl font-black mt-1">{teams[1 - ti].score}</p>
                 <p className="text-xs text-muted">vasos hundidos</p>
               </div>
             ))}
@@ -437,7 +437,7 @@ export default function BeerPongPage() {
         {teams.map((t, i) => (
           <div key={i} className={`rounded-xl border p-3 text-center ${tc[i].bg} ${tc[i].border}`}>
             <p className={`text-[10px] font-bold uppercase ${tc[i].text}`}>{t.name}</p>
-            <p className={`text-xl font-black ${tc[i].text}`}>{t.score}</p>
+            <p className={`text-xl font-black ${tc[i].text}`}>{teams[1 - i].score}</p>
             <p className="text-[10px] text-muted">hundidos</p>
           </div>
         ))}

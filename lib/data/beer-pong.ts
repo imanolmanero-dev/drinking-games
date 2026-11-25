@@ -7,10 +7,10 @@ export interface BeerPongConfig {
 
 // Challenge cards shown when rules say so (bounces, etc.)
 export const challenges = [
-  "Si encesta de espaldas, el rival bebe 2 vasos",
+  "Tiro de espaldas: si entra, retira dos vasos de los que queden",
   "Tiro con la mano no dominante",
   "Tiro desde 1 metro más lejos de lo normal",
-  "Si fallas 3 seguidos, tu equipo bebe 1 extra",
+  "Tras tres fallos seguidos, cambia de lanzador",
   "Tiro con los ojos cerrados — si encesta, vale el doble",
   "Ambos jugadores tiran a la vez",
   "El rival puede intentar desviar la pelota con la mano",
@@ -18,7 +18,7 @@ export const challenges = [
   "El que no lanza canta un estribillo antes del tiro",
   "Tiro sentado en el suelo",
   "El lanzador no puede hablar hasta que la pelota aterrice",
-  "Si encesta en el vaso central, los rivales beben 3",
+  "Si encestas en el vaso central, elige quién lanza el siguiente tiro",
   "Ronda de 'heating up': si encestas, vuelves a tirar",
   "El equipo contrario puede hacer ruido para distraerte",
   "Tiro libre: lanza desde donde quieras de tu lado",

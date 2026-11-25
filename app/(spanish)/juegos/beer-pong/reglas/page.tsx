@@ -40,7 +40,7 @@ export default function BeerPongReglasPage() {
               <li>✅ <strong>20 vasos de plástico</strong> (10 por equipo)</li>
               <li>✅ <strong>2 pelotas de ping-pong</strong></li>
               <li>✅ <strong>Una mesa larga</strong> (al menos 2 metros)</li>
-              <li>✅ <strong>Cerveza o bebida</strong> para llenar los vasos</li>
+              <li>✅ <strong>Agua</strong> para los vasos de puntería</li>
               <li>✅ <strong>BeberGames</strong> como árbitro digital (opcional pero recomendado)</li>
             </ul>
           </section>
@@ -59,7 +59,7 @@ export default function BeerPongReglasPage() {
                 <p>●</p>
                 <p className="text-muted mt-2 font-sans normal-case">Formación de 10 vasos (vista desde arriba)</p>
               </div>
-              <p>Llena cada vaso con <strong>un tercio de cerveza</strong> (o la bebida que prefiráis). No hace falta llenarlo del todo.</p>
+              <p>Pon agua en el fondo de cada vaso para darle estabilidad. Dejad las bebidas personales fuera de la zona de tiro.</p>
             </div>
           </section>
 
@@ -71,9 +71,9 @@ export default function BeerPongReglasPage() {
             <div className="flex flex-col gap-5">
               {[
                 { paso: "1", titulo: "Por turnos, cada equipo lanza", desc: "El equipo atacante lanza una pelota intentando que caiga dentro de un vaso del equipo rival. Cada jugador del equipo lanza una vez por turno." },
-                { paso: "2", titulo: "Vaso encestado = vaso bebido", desc: "Si la pelota cae dentro de un vaso, el equipo defensor BEBE ese vaso y lo retira de la mesa. El árbitro virtual marca el vaso como hundido." },
-                { paso: "3", titulo: "Si rebota en la mesa y entra", desc: "Vale doble: el rival bebe ese vaso y retira uno adicional a su elección. Pero OJO: el defensor puede intentar apartar la pelota con la mano si bota." },
-                { paso: "4", titulo: "El equipo sin vasos pierde", desc: "El primer equipo que se queda sin vasos pierde. Debe beberse los vasos que le queden al equipo ganador, más el vaso de derrota." },
+                { paso: "2", titulo: "Retirad el vaso", desc: "Cuando entre la pelota, retira ese vaso y tócalo en la pantalla del árbitro." },
+                { paso: "3", titulo: "Si rebota en la mesa y entra", desc: "La defensa puede desviar la pelota después del bote. Si entra, retirad ese vaso y otro que quede en pie. Marcad los dos en el móvil." },
+                { paso: "4", titulo: "Victoria", desc: "El árbitro da la victoria a quien retire el último vaso rival. Podéis volver a preparar los triángulos para la revancha." },
               ].map(({ paso, titulo, desc }) => (
                 <div key={paso} className="flex gap-4">
                   <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-orange-500 text-sm font-bold text-white">{paso}</div>
@@ -92,7 +92,7 @@ export default function BeerPongReglasPage() {
             <div className="flex flex-col gap-4 text-sm text-muted leading-relaxed">
               <div className="rounded-lg bg-surface-hover p-3">
                 <p className="font-semibold text-foreground mb-1">🔄 Re-rack (Reorganización)</p>
-                <p>Cada equipo puede pedir <strong>reorganizar sus vasos</strong> en una formación diferente una vez por partida. Se puede pedir cuando quedan 6, 4, 3 o 2 vasos. Útil para mejorar la posición defensiva.</p>
+                <p>Con cuatro vasos o menos en el lado defensor podéis juntarlos en la mesa. Marcad el re-rack en el móvil. Cada lado dispone de uno por partida.</p>
               </div>
               <div className="rounded-lg bg-surface-hover p-3">
                 <p className="font-semibold text-foreground mb-1">🔥 Heating Up (On Fire)</p>
@@ -100,7 +100,7 @@ export default function BeerPongReglasPage() {
               </div>
               <div className="rounded-lg bg-surface-hover p-3">
                 <p className="font-semibold text-foreground mb-1">🎯 Redemption (Salvación)</p>
-                <p>Cuando el último vaso del equipo defensor cae, sus jugadores tienen <strong>una oportunidad más</strong> de encesta para alargar la partida. Si todos los jugadores encestan, la partida sigue con 3 vasos cada uno.</p>
+                <p>Si pactáis redención, resolvedla en la mesa tras el resultado del árbitro. El rival lanza hasta fallar. Si retira todos los vasos, preparad tres por equipo para la prórroga.</p>
               </div>
               <div className="rounded-lg bg-surface-hover p-3">
                 <p className="font-semibold text-foreground mb-1">💧 Vaso de agua</p>
@@ -130,7 +130,7 @@ export default function BeerPongReglasPage() {
               <ShieldCheck className="h-5 w-5 text-amber-400" /> Bebe con responsabilidad
             </h2>
             <p className="text-sm text-muted leading-relaxed">
-              El Beer Pong es un juego para mayores de 18 años. Puedes usar agua o refrescos en los vasos. BeberGames promueve el consumo responsable. Nunca bebas y conduzcas.
+              Usad agua en los vasos de juego. Cada persona decide si quiere tomar algo de su propia bebida, aparte de la partida.
             </p>
           </section>
 
