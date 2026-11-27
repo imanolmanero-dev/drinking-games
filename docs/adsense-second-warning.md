@@ -2,6 +2,89 @@
 
 Incident date 24 November 2026. Production HTML inspected 25 November against the published 1cd2964 export. Counts refer to URLs, not traffic or income. Only the owner’s three Policy Center entries establish an active restriction. Editorial priorities below are our assessment.
 
+## Batch 3C · Group parties, hosting and video calls
+
+The preflight matched local and remote main to `6d184424c2c242b996b2c3bda2362d76b721c6c3`. Cloudflare Pages reported a successful production check for that SHA. The editorial correction is `e736d2f8d73e6f87d231fde8021dfc31cf5f76b7`.
+
+| Article | Findings addressed and playable outcomes | Preserved inventory |
+|---|---|---|
+| [/blog/juegos-para-botellon](https://bebergames.com/blog/juegos-para-botellon) | Removed refusal and guessing drinks, the Flunkyball consumption race, and drinking from Flip Cup and the forbidden-word game. The outdoor target earns points, the relay flips empty cups, and word rounds use records, turns or points. | All 15 games and numbering, including both outdoor team games. |
+| [/blog/como-organizar-fiesta-juegos-beber](https://bebergames.com/blog/como-organizar-fiesta-juegos-beber) | Replaced all-night forbidden-word drinking with three tokens in a ten-minute round. Removed per-person beer quantities, escalating wheel penalties, karaoke and story penalties. The schedule keeps distinct arrival, group, tournament and closing games, with water targets and drinks kept separate. | All 16 distinct activity ideas across the same four stages, plus all 12 digital kit entries. |
+| [/blog/juegos-para-cumpleanos-adultos](https://bebergames.com/blog/juegos-para-cumpleanos-adultos) | Replaced drinking assigned to the celebrant or speaker with optional finger responses and anecdotes. The paper draw and wheel of wishes are voluntary tabletop variants. Linked digital games use their current mechanics. | All 12 ideas and numbering, including the three birthday adaptations. |
+| [/blog/juegos-para-previas](https://bebergames.com/blog/juegos-para-previas) | Replaced compulsory Yo Nunca drinking with an optional finger response, removed drink quotas, and corrected Rey de la Copa and Verdad o Reto descriptions. Game selection follows group size and time available. | Nine games across the three phases, plus all 13 digital links. The old intro claimed 12 for the existing 13-item list. |
+| [/blog/juegos-para-beber-por-videollamada](https://bebergames.com/blog/juegos-para-beber-por-videollamada) | Replaced individual and group drinking for errors or film cues with predictions, scoring and turn changes. Removed the private screenshot and drinking challenge. Camera use is optional, and the host runs the shared game from one browser. | All eight games and numbering, the remote setup advice and platform section. |
+
+Four heading labels changed while retaining their positions, levels and existing ID attributes. “Juegos Sin Materiales (Solo hablar y beber)” became “Juegos Sin Materiales”, “9. La Ruleta del Castigo” became “9. La Ruleta”, “13. La Carrera de Tragos” became “13. La Carrera de Vasos”, and “11. El Reto del Shot de Cumpleaños” became “11. El Reto Sorpresa de Cumpleaños”. Two inline party-plan labels now describe optional anecdotes and a fresh closing round. All five titles, H1s, canonicals, dates, language alternates and internal link destinations are preserved. The five excerpts feed the index, metadata, Open Graph and Article schema. The four existing FAQ sections still contain 13 questions total and use the same answers as FAQPage. The video-call guide continues without a FAQ.
+
+### Release validation
+
+The production build, TypeScript, changed-file ESLint and export audit passed. All 97 export tests passed with zero skips, including six Batch 3C tests and both historical preservation comparisons. The full unit run passed 297 tests and reproduced all 14 prior failures with the same names, messages, expected and actual payloads, and assertion operators. The 87-route export comparison identified changes on the five articles and index only. The sitemap, the 13 game and rules pairs, earlier article releases, Questions, the Beer Pong re-rack paragraph, Quarters and Power Hour FAQ, and the exact experimental Truth or Dare meta description are preserved.
+
+Playwright MCP passed 12 article and index viewport checks at 390×844 and 1440×900 with third-party requests blocked. The five index cards opened the intended articles. The tested pages had zero horizontal overflow and uncaught exceptions, and FAQ answers matched the visible text. The release closes the five previously identified independent P0 content findings once the exact SHA and HTML are verified in production. The previous releases below record Batch 3A, 3B, 2C and the question-guide corrections. Batch 2B shipped at `1cd2964` after the earlier Verdad o Reto, Ruleta, La Bomba, Ring of Fire, Rey de la Copa and guide corrections.
+
+### Content inventory and account status
+
+- **Identified P0 findings.** Batch 3C completes the editorial corrections in the recorded current inventory. This is limited to the identified findings.
+- **Google restrictions.** The latest supplied account snapshot lists Questions (33 restricted requests), the adult Yo Nunca guide (2) and the blog index (1). The previously restricted Drinking Games guide remains a reported temporary exclusion. The second site-wide warning is still open. Current classifications and the complete account exclusion list require an owner snapshot.
+- **Advertiser sensitivity.** Alcohol-related game names and queries, adult prompts and older category and rules wording can warrant advertiser review. The historical P1 notes below remain unverified as current findings. Technical containment stays paused due to the Google CMP dependency.
+- **Independent audit.** Still pending. Review the current Policy Center snapshot, all live ES and EN content and gameplay, visible rules, FAQ and schema, card and cross-link copy, age-sensitive prompts and placement eligibility before any restoration decision. Keep ad architecture and account settings frozen during this release.
+
+### Consolidated exclusion-restoration register
+
+These 45 exact paths on https://bebergames.com cover the 37 recommended B paths and eight additional paths affected only by the optional C blog-section proposal. Options A, B and C are historical proposals. The owner reports applying some temporary exclusions, and the exact account entries require reconciliation. The register lists restoration candidates and holds, independent of serving status.
+
+Every row marked **R** requires the exact production deployment and URL checks to pass, independent editorial and placement review, a dated owner snapshot to confirm the entry is incident-only, and explicit owner authorization. **Policy Center** adds verification of the URL’s current classification. **Permanent review** requires distinguishing any incident-only entry from an established game exclusion. **Section** requires reconciling the entire blog prefix with the owner before considering changes. No exclusion is changed as part of this batch.
+
+Production evidence codes are **E** for the earlier published guide in the incident capture, **Q** for the published question-guide release and recorded checks, **2C**, **3A** and **3B** for the verified prior batches, **S** for the historical incident scan without independent outstanding P0, and **3C** for local verification at the release gate. Exact-SHA release evidence and per-URL checks for Batch 3C are captured separately after deployment.
+
+| Exact path | Historical scope | Original finding | Remediation commit(s) | Production evidence | Prerequisites | Permanent exclusion |
+|---|---|---|---|---|---|---|
+| /blog | A, B, C | One of 32 excerpts promises universal drinking and intimate disclosures. | be778c9 | Q | R + Policy Center | None documented. Verify with owner. |
+| /blog/drinking-games-reglas | A, B, C | Earlier drinking outcomes already corrected at incident capture. Quarters and Power Hour FAQ later aligned. | 9a06b8a + 4eef174 | E | R + Policy Center | None documented. Verify with owner. |
+| /juegos/categorias/preguntas | A, B, C | Four corrected game cards. Two linked articles still have the old instructions in production. | b974a27 + ccc65fc + 59150eb | Q | R + Policy Center | None documented. Verify with owner. |
+| /juegos/verdad-o-reto | B, C | The game permits passing. The related Yo Nunca link still states “el que lo haya hecho bebe” (page.tsx, line 324). | 8428252 | Q | R + permanent review | Retain any pre-existing permanent game exclusion. |
+| /blog/100-preguntas-yo-nunca | B, C | Production requires the lone respondent to tell the story. | 59150eb | Q | R | None documented. Verify with owner. |
+| /blog/beer-pong-reglas-completas | B, C | Losing team drinks the winner’s remaining cups. | a6942c4 | 2C | R | None documented. Verify with owner. |
+| /blog/como-organizar-fiesta-juegos-beber | B, C | A forbidden word accumulates penalties throughout the night. | e736d2f | 3C | R | None documented. Verify with owner. |
+| /blog/juegos-beber-baraja-espanola | B, C | Failed matches cost drinks and a dealer result makes the table drink. | d3816ed | 3A | R | None documented. Verify with owner. |
+| /blog/juegos-de-mesa-para-beber | B, C | Losing territory or landing on a square requires finishing a glass. | d3816ed | 3A | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-con-cartas | B, C | Lowest card drinks the entire stake. | d3816ed | 3A | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-con-dados | B, C | Six matching dice assign six drinks to other players. | d3816ed | 3A | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-dos-personas | B, C | Declining a truth or dare doubles the drinks. | 6d18442 | 3B | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-en-pareja | B, C | A failed guess assigns two drinks, a forbidden word assigns another. | 6d18442 | 3B | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-por-videollamada | B, C | Wrong guesses require drinking, sometimes for the whole group. | e736d2f | 3C | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-rapidos | B, C | Offers shots for matched gazes and makes the loser drink. | d3816ed | 3A | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-sin-alcohol | B, C | Mixed-group instructions assign two alcoholic drinks, refusal can require hot sauce. | 6d18442 | 3B | R | None documented. Verify with owner. |
+| /blog/juegos-para-botellon | B, C | Verdad o Reto refusal assigned drinking. Flunkyball and the Flip Cup relay rewarded finishing a drink. | e736d2f | 3C | R | None documented. Verify with owner. |
+| /blog/juegos-para-cumpleanos-adultos | B, C | Medusa eye-contact penalty was already fixed. Birthday Yo Nunca still assigned a drink to the celebrant or speaker. | 9ca459c + e736d2f | 3C | R | None documented. Verify with owner. |
+| /blog/juegos-para-previas | B, C | Players who have done the named activity drink. | e736d2f | 3C | R | None documented. Verify with owner. |
+| /blog/los-20-mejores-juegos | B, C | Power Hour prescribes a shot every minute for 60 minutes. | d3816ed | 3A | R | None documented. Verify with owner. |
+| /blog/medusa-juego-beber | B, C | Blinking costs a full glass and a late shout doubles drinks. | 9ca459c + 7a14075 | 2C | R | None documented. Verify with owner. |
+| /blog/preguntas-picantes-verdad-o-reto | B, C | Production imposes a fondo blanco for refusal and compulsory dares. | 59150eb | Q | R | None documented. Verify with owner. |
+| /blog/preguntas-yo-nunca-parejas | B, C | No shared experience penalizes the speaker with a drink. | 6d18442 | 3B | R | None documented. Verify with owner. |
+| /blog/retos-para-fiestas | B, C | Refusal costs three drinks and one failed dare costs a full glass. | 6d18442 | 3B | R | None documented. Verify with owner. |
+| /blog/tabu-juego-beber | B, C | A forbidden word makes the team drink. | fc932c4 + 7a14075 | 2C | R | None documented. Verify with owner. |
+| /blog/verdad-o-reto-preguntas-buenas | B, C | Group disbelief doubles the speaker’s drinks. | 6d18442 | 3B | R | None documented. Verify with owner. |
+| /blog/yo-nunca-preguntas-picantes-18 | B, C | Promises heavy drinking and makes all affirmative respondents drink. | be778c9 + 8428252 | Q | R + Policy Center | None documented. Verify with owner. |
+| /juegos | B, C | The catalogue tells the whole Tabú team to drink. | 7a14075 | 2C | R | None documented. Verify with owner. |
+| /juegos/beer-pong | B, C | Loss requires drinking remaining cups. | a6942c4 + 912e3a6 | 2C | R + permanent review | Retain any pre-existing permanent game exclusion. |
+| /juegos/beer-pong/reglas | B, C | Loss requires drinking remaining cups. | a6942c4 | 2C | R | None documented. Verify with owner. |
+| /juegos/medusa | B, C | Reaction speed determines a double drink. | 9ca459c + 912e3a6 | 2C | R + permanent review | Retain any pre-existing permanent game exclusion. |
+| /juegos/medusa/reglas | B, C | Reaction speed determines a double drink. | 9ca459c | 2C | R | None documented. Verify with owner. |
+| /juegos/tabu | B, C | A forbidden word assigns drinks to the team. | fc932c4 + 912e3a6 | 2C | R + permanent review | Retain any pre-existing permanent game exclusion. |
+| /juegos/tabu/reglas | B, C | A forbidden word assigns drinks to the team. | fc932c4 + 7a14075 | 2C | R | None documented. Verify with owner. |
+| /juegos/categorias/sin-materiales | B, C | The Medusa card says “Si os cruzáis la mirada… ¡MEDUSA! A beber.” (category page.tsx, line 20). | 7a14075 | 2C | R | None documented. Verify with owner. |
+| /juegos/yo-nunca | B, C | Visible play permits passing. WebApplication says affirmative respondents drink (components/layout/GameLayout.tsx, line 24). | 8428252 | Q | R + permanent review | Retain any pre-existing permanent game exclusion. |
+| /juegos/yo-nunca/reglas | B, C | The rules inherit the same compulsory WebApplication description from GameLayout.tsx, line 24. | 8428252 | Q | R | None documented. Verify with owner. |
+| /blog/juegos-para-beber-sin-cartas | C | No independent finding recorded after earlier guide corrections. | 9a06b8a | S | R + section | None documented. Verify with owner. |
+| /blog/la-bomba-juego-beber | C | Earlier timed-loss drinking rule corrected. No independent P0 at the incident review. | 3619f45 + b7fc2d7 | S | R + section | None documented. Verify with owner. |
+| /blog/la-piramide-juego-beber | C | Earlier card claims assigned drinking. No independent P0 at the incident review. | d70f95f | S | R + section | None documented. Verify with owner. |
+| /blog/preguntas-quien-es-mas-probable | C | Earlier votes assigned drinking per nomination. No independent P0 at the incident review. | 13cae56 | S | R + section | None documented. Verify with owner. |
+| /blog/reglas-del-yo-nunca | C | No affirmative misuse instruction identified in the incident review. | — | S | R + section | None documented. Verify with owner. |
+| /blog/rey-de-la-copa-reglas | C | Earlier central cup and cross-link rules were corrected. No independent P0 at the incident review. | 961fc9b + d70f95f | S | R + section | None documented. Verify with owner. |
+| /blog/ring-of-fire-reglas-cartas | C | Earlier card actions and cup outcomes were corrected. No independent P0 at the incident review. | cb2f158 | S | R + section | None documented. Verify with owner. |
+| /blog/yo-prefiero-preguntas | C | Earlier minority-vote drinking outcome corrected. No independent P0 at the incident review. | ccc65fc | S | R + section | None documented. Verify with owner. |
+
 ## Batch 3B · Refusal, disclosure and couple games
 
 Batch 3A went live at `d3816ed54d2499ebd8002c14033d22d8c7c8489e` on November 25 at 22:55:46 UTC. Batch 3B covers the six articles below. All 13 Spanish games, their rules, earlier editorial remediations and the English product stay in place.
@@ -27,15 +110,7 @@ All 91 static export tests passed, including seven Batch 3B checks and both hist
 
 Playwright passed all fourteen article and index checks at 390×844 and 1440×900 with third-party requests blocked. The export comparison against Batch 3A found changes only on the six article routes and the blog index. All 87 route destinations, the sitemap, editorial dates, canonicals, heading IDs and language alternates were preserved. The party-challenge title and H1 are the sole reviewed title change.
 
-### Remaining independent P0 articles · Batch 3C
-
-- https://bebergames.com/blog/juegos-para-botellon — refusal costs a drink and the guide includes a drinking race.
-- https://bebergames.com/blog/como-organizar-fiesta-juegos-beber — saying a forbidden word triggers drinking throughout the night.
-- https://bebergames.com/blog/juegos-para-cumpleanos-adultos — birthday Yo Nunca assigns drinks to the celebrant or the person who proposed the statement.
-- https://bebergames.com/blog/juegos-para-previas — Yo Nunca makes everyone who has done the named activity drink.
-- https://bebergames.com/blog/juegos-para-beber-por-videollamada — incorrect guesses can make individuals or the whole group drink.
-
-Retain existing exclusions. The six corrected Batch 3B URLs are future restoration candidates after live verification and owner review. The owner reports applying some temporary Auto Ads exclusions. The full account list and current classification remain unverified, and the site-wide warning remains open. Technical containment remains paused because of its CMP dependency.
+The current Batch 3C record above tracks the five independent P0 articles that remained after this release.
 
 ## Batch 3A · Historical release record
 
