@@ -7,6 +7,7 @@ const editorial = JSON.parse(readFileSync(new URL("../fixtures/questions-editori
 const batch2c = JSON.parse(readFileSync(new URL("../fixtures/critical-games-2c-export.json", import.meta.url)));
 const batch3a = JSON.parse(readFileSync(new URL("../fixtures/editorial-batch-3a-export.json", import.meta.url)));
 const batch3b = JSON.parse(readFileSync(new URL("../fixtures/editorial-batch-3b-export.json", import.meta.url)));
+const batch3c = JSON.parse(readFileSync(new URL("../fixtures/editorial-batch-3c-export.json", import.meta.url)));
 const hash = value => createHash("sha256").update(value).digest("hex");
 
 function fields(path, snapshot) {
@@ -18,7 +19,7 @@ function fields(path, snapshot) {
     if (original[field]) assert.equal(original[field][1], before, path + " pre-editorial " + field);
     combined[field] = [original[field]?.[0] ?? before, after, original[field]?.[2]];
   }
-  for (const release of [batch2c, batch3a, batch3b]) {
+  for (const release of [batch2c, batch3a, batch3b, batch3c]) {
     for (const [field, [before, after, rawBefore]] of Object.entries(forSnapshot(release) ?? {})) {
       const previous = combined[field];
       if (previous) assert.equal(previous[1], before, path + " historical chain " + field);

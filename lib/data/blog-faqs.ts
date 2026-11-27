@@ -49,19 +49,19 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "juegos-para-previas": [
     {
       q: "¿Cuáles son los mejores juegos para una previa?",
-      a: "Los mejores juegos para previas son los que no requieren mucho espacio ni materiales: Yo Nunca, Yo Prefiero, Medusa, La Bomba y Verdad o Reto. Para previas con más espacio, Ring of Fire y Beer Pong son perfectos. Todos disponibles en BeberGames.",
+      a: "Empezad con una ronda corta de Yo Nunca, Yo Prefiero, Medusa, La Bomba o Verdad o Reto. Si tenéis más tiempo para una partida, probad Ring of Fire o Beer Pong. Para Beer Pong necesitáis una mesa, una pelota y vasos con agua como blancos.",
     },
     {
       q: "¿Cuánto dura una previa normal?",
-      a: "Una previa suele durar entre 1 y 2 horas. Te recomendamos tener preparados al menos 3 juegos diferentes para rotar cada 30-40 minutos y mantener la energía alta. Empieza con juegos suaves como Yo Prefiero y escala hacia juegos más intensos como Verdad o Reto.",
+      a: "Una previa suele durar entre una y dos horas. Tened tres juegos a mano y probad rondas de cinco a quince minutos si vais a salir pronto. Podéis repetir si el grupo quiere seguir.",
     },
     {
       q: "¿Qué juego es mejor para romper el hielo en una previa?",
-      a: "Para romper el hielo en una previa, Yo Prefiero y Yo Nunca son los mejores: generan conversación de forma natural, sin la presión de los retos. Medusa también funciona muy bien porque no requiere hablar y crea momentos cómicos inmediatos.",
+      a: "Yo Prefiero abre conversación con dos opciones. En Yo Nunca, quienes hayan vivido la experiencia pueden bajar un dedo, contar una anécdota o pasar. Si preferís empezar sin hablar, probad Medusa.",
     },
     {
       q: "¿Cuántas personas son ideales para una previa con juegos de beber?",
-      a: "Lo ideal son grupos de 5 a 12 personas. Con menos de 4 algunos juegos pierden gracia. Con más de 15 es difícil gestionar los turnos. Para grupos grandes, Medusa, Quién Es Más Probable y La Bomba funcionan mejor porque todos participan a la vez.",
+      a: "De cinco a doce personas dan para un círculo en el que se oigan las preguntas. Con un grupo grande, leed en voz alta o haced dos círculos. En Medusa y Quién Es Más Probable podéis jugar a la vez. En La Bomba, el móvil pasa de mano en mano.",
     },
   ],
 
@@ -117,15 +117,15 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "juegos-para-botellon": [
     {
       q: "¿Qué juegos son mejores para un botellón?",
-      a: "Para un botellón los mejores juegos son los que no necesitan mesa: Medusa, Yo Nunca, La Bomba, Yo Prefiero y Verdad o Reto. Si tenéis una superficie disponible, Beer Pong y Ring of Fire son también perfectos. Todos gratis en BeberGames.",
+      a: "Si no tenéis mesa, probad Medusa, Yo Nunca, La Bomba, Yo Prefiero o Verdad o Reto. Podéis pasar cualquier pregunta o reto. Si hay una superficie firme, también podéis montar el relevo de Flip Cup con vasos vacíos.",
     },
     {
       q: "¿Cómo organizar un botellón con juegos de beber?",
-      a: "Para organizarlo bien: empieza con Medusa o Yo Prefiero para calentar, pasa a Yo Nunca o Verdad o Reto cuando el grupo esté más suelto, y reserva Beer Pong o Ring of Fire para la parte central. Rota juegos cada 30-40 minutos para mantener la energía.",
+      a: "Empezad con una ronda de Medusa o Yo Prefiero y cambiad de juego cuando apetezca al grupo. Para el Flunkyball, buscad una zona llana sin gente de paso, una botella vacía y una pelota blanda. El equipo que derriba la botella gana un punto.",
     },
     {
       q: "¿Qué juegos de beber funcionan para grupos muy grandes?",
-      a: "Para grupos de más de 10 personas funcionan mejor Medusa (todos juegan a la vez), La Bomba (se pasa el móvil entre todos), Yo Prefiero (el grupo vota) y Beer Pong (por parejas con espectadores). Todos disponibles en BeberGames.",
+      a: "Si sois más de diez, probad Medusa en círculo, Yo Prefiero con votos a la vez o La Bomba pasándoos el móvil. Si preferís jugar por equipos, haced relevos con vasos vacíos en una mesa estable.",
     },
   ],
 
@@ -204,15 +204,15 @@ export const blogFAQs: Record<string, FAQ[]> = {
   "como-organizar-fiesta-juegos-beber": [
     {
       q: "¿Qué juegos de beber son mejores para organizar una fiesta en casa?",
-      a: "Para una fiesta en casa los mejores son Yo Nunca (para romper el hielo), Verdad o Reto (cuando el grupo ya tiene confianza) y Beer Pong o Ring of Fire si tenéis espacio y mesa disponible. Con BeberGames los tienes todos desde el móvil sin descargar nada.",
+      a: "Podéis empezar con Yo Nunca o Medusa en poco espacio. Si tenéis mesa, montad Beer Pong con vasos de agua como blancos o usad la baraja de Ring of Fire. Elegid Verdad o Reto cuando os apetezca una ronda de preguntas y propuestas que cualquiera pueda pasar.",
     },
     {
       q: "¿En qué orden debo poner los juegos en una fiesta?",
-      a: "El orden ideal es: empezar con Yo Prefiero o Medusa (fáciles y sin presión), pasar a Yo Nunca cuando el grupo esté suelto, y cerrar con Verdad o Reto o Ring of Fire en la parte más animada. Cambiar de juego cada 30-40 minutos mantiene la energía alta.",
+      a: "Para la llegada, probad Dos Verdades o Medusa. Cuando el grupo esté reunido, sacad las cartas o haced un torneo corto. Al final podéis volver a un juego de conversación, como La Historia Encadenada.",
     },
     {
       q: "¿Cuántos juegos necesito preparar para una fiesta con juegos de beber?",
-      a: "Con 3 juegos bien escogidos tienes suficiente para una fiesta de 2-3 horas. Tener 5-6 de reserva está bien por si alguno no engancha. En BeberGames tienes 12 juegos disponibles para rotar sin necesidad de preparar nada con antelación.",
+      a: "Con tres juegos preparados suele bastar. Elegid uno que admita incorporaciones, otro para el grupo completo y uno de reserva. El kit de la guía reúne doce enlaces para elegir desde el móvil.",
     },
   ],
 
@@ -476,7 +476,7 @@ export const blogFAQs: Record<string, FAQ[]> = {
     },
     {
       q: "¿Cómo organizo los juegos en una fiesta de cumpleaños?",
-      a: "El orden ideal es: empezar con un rompehielos (Medusa o La Bomba), pasar a juegos de grupo cuando todos hayan llegado (Yo Prefiero o Quién Es Más Probable), y cerrar con los juegos más intensos cuando la noche ya está lanzada (Ring of Fire o Beer Pong).",
+      a: "Empezad con Medusa o La Bomba. Cuando llegue el resto, probad Yo Prefiero o Quién Es Más Probable. Para el cierre, elegid Ring of Fire, Beer Pong o una ronda de deseos que la persona que cumple años pueda aceptar o pasar.",
     },
     {
       q: "¿Qué juego de cumpleaños funciona mejor para grupos grandes?",

@@ -9,8 +9,17 @@ const git = (...args) => execFileSync("git", args, { encoding: "utf8" });
 const changed = new Set(git("diff", "--name-only", base, reviewed, "--", "app", "lib", "components", "content").trim().split("\n"));
 const batch3a = JSON.parse(readFileSync(new URL("../fixtures/editorial-batch-3a-source.json", import.meta.url)));
 const batch3b = JSON.parse(readFileSync(new URL("../fixtures/editorial-batch-3b-source.json", import.meta.url)));
+const batch3c = JSON.parse(readFileSync(new URL("../fixtures/editorial-batch-3c-source.json", import.meta.url)));
+
+export function beforeBatch3c(file, source) {
+  if (!Object.hasOwn(batch3c, file)) return source;
+  const digest = createHash("sha256").update(source.replaceAll("\r\n", "\n")).digest("hex");
+  assert.equal(digest, batch3c[file], file + " · reviewed Batch 3C source");
+  return git("show", "6d184424c2c242b996b2c3bda2362d76b721c6c3:" + file);
+}
 
 export function beforeBatch3b(file, source) {
+  source = beforeBatch3c(file, source);
   if (!Object.hasOwn(batch3b, file)) return source;
   const digest = createHash("sha256").update(source.replaceAll("\r\n", "\n")).digest("hex");
   assert.equal(digest, batch3b[file], file + " · reviewed Batch 3B source");

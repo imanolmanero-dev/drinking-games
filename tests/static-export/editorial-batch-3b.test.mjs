@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import { createRequire } from "node:module";
 import test from "node:test";
-import { beforeBatch3b } from "../helpers/critical-games-2c-source.mjs";
+import { beforeBatch3b, beforeBatch3c } from "../helpers/critical-games-2c-source.mjs";
 
 const require = createRequire(import.meta.url);
 const { parse } = require("next/dist/compiled/node-html-parser");
@@ -92,8 +92,9 @@ for (const [slug, { headings, headingChanges, lists, links, promptChanges }] of 
 
 test("FAQ edits preserve every answer outside Batch 3B", () => {
   const file = "lib/data/blog-faqs.ts";
-  const current = readFileSync(file, "utf8").replaceAll("\r\n", "\n");
-  const previous = beforeBatch3b(file, current);
+  const source = readFileSync(file, "utf8");
+  const current = beforeBatch3c(file, source).replaceAll("\r\n", "\n");
+  const previous = beforeBatch3b(file, source);
   const untouched = source => Object.entries(contracts).filter(([, [count]]) => count > 0).reduce((text, [slug]) =>
     text.replace(new RegExp(`^  "${slug}": \\[\\n[\\s\\S]*?^  \\],\\n`, "m"), ""), source);
   assert.equal(untouched(current), untouched(previous));

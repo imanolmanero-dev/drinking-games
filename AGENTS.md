@@ -426,6 +426,7 @@ Si la respuesta es sí → actualiza este archivo.
 - En las listas de preguntas, revisar por separado las instrucciones de cada nivel, los retos y las FAQ. Pasar termina el turno sin exigir otra acción. Los retos se pueden jugar sin usar cuentas, conversaciones ni fotos privadas.
 - La Bomba conserva un temporizador por ronda. Identificar al portador al detonar, también tras varios pases, y comprobar quién abre la ronda siguiente.
 - Al retirar una consecuencia de un juego, buscar referencias a su desenlace también en otros juegos y en el blog. Para Rey de la Copa, probar con un rey como carta inicial y comprobar el contador al volver a barajar.
+- En guías de fiesta, revisar también la compra, el horario de cierre y las variantes que siguen entre partidas. Las puntuaciones y temporizadores deben terminar dentro de una ronda. Para una videollamada, indicar cómo jugar por voz o chat con la cámara apagada y cómo se controla la app desde un solo navegador.
 
 - En el índice del blog, contrastar cada extracto MDX con las instrucciones del artículo. Una promesa de consumo o de revelar secretos aparece también en la tarjeta y en los metadatos derivados.
 - Al verificar los destinos de Preguntas, leer también la descripción de `WebApplication` en el juego y en sus reglas. Revisar los enlaces a otros juegos que se muestran junto al anuncio manual.
