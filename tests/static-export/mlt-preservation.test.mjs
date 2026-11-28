@@ -1,4 +1,5 @@
 import { projectCriticalGames, restoreBombaCard } from "../helpers/critical-games-export.mjs";
+import { restoreAlcoholCloseoutCopy } from "../helpers/alcohol-closeout.mjs";
 import { projectRouletteExport } from "../helpers/roulette-export.mjs";
 import { applyGuideChanges } from "../helpers/affected-guides.mjs";
 import assert from 'node:assert/strict';
@@ -14,6 +15,7 @@ test('all 86 preflight pages preserve metadata, text, headings, links and JSON-L
   const d=parse(readFileSync(`${root}/${p==='/'?'index':p.slice(1)}.html`,'utf8'));
   if (root !== "out") applyGuideChanges(d, p);
     if (root === "out") restoreBombaCard(d, p);
+    if (root === "out") restoreAlcoholCloseoutCopy(d, p);
   if(root==='out'&&p==='/en/games'){
    const added=d.querySelectorAll('.en-catalog-card').filter(c=>c.querySelector('#en-catalog-most-likely-to'));assert.equal(added.length,1);added[0].parentNode.remove();
   }

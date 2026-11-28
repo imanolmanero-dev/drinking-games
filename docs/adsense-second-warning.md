@@ -2,6 +2,37 @@
 
 Incident date 24 November 2026. Production HTML inspected 25 November against the published 1cd2964 export. Counts refer to URLs, not traffic or income. Only the owner’s three Policy Center entries establish an active restriction. Editorial priorities below are our assessment.
 
+## Alcohol remediation closeout · 28 November 2026
+
+All identified P0 alcohol-misuse findings have been addressed. The independent audit reported zero remaining P0 alcohol-misuse findings. The closeout aligns visible copy on `/juegos/categorias/cartas`, `/juegos/categorias/dados` and `/juegos/la-ruleta/reglas` with the current games. The owner scoped this release to visible copy and preserved all SEO metadata, including the legacy meta description on the roulette rules page.
+
+All reported Google restrictions concerned alcohol sale or misuse. The latest owner-supplied Policy Center screenshot shows “No hay problemas”. Explicit withdrawal of the earlier site-wide warning remains unconfirmed. The native blocking-controls experiment supports both Alcohol and Gambling. Audience suitability remains unverified.
+
+### Independent findings pending owner review
+
+| Finding area | Status |
+|---|---|
+| Privacy | Open for owner review. |
+| Consent | Open for owner review. |
+| Product safety | Open for owner review. |
+| Sexual content | Open for owner review. |
+
+The closeout brief identifies these categories. Item-level evidence from the independent audit is still needed for the owner review. The earlier broad P1 prompt-remediation proposal was declined for this release.
+
+### Prioritized restoration candidates
+
+Restore only incident-specific entries confirmed in a dated account snapshot, after verifying the live correction and placement suitability for each URL and obtaining explicit owner authorization. This is the order for review. The historical register below records proposed scope and prerequisites. It does not establish which entries exist in the account.
+
+1. **First review:** `/blog/drinking-games-reglas`, `/blog` and `/juegos/categorias/preguntas`. Recheck current Policy Center classifications and the linked or surfaced content as part of placement review.
+2. **Next review:** `/juegos`, `/juegos/categorias/sin-materiales`, the four rules pages under `/juegos/{beer-pong,medusa,tabu,yo-nunca}/reglas`, and the remediated non-adult guides in the B register. Apply the same eligibility checks if incident-only entries are confirmed for Cartas, Dados or the La Ruleta rules page after this release is live.
+3. **Hold for separate owner review:** sensitive prompt and adult guides, including `/blog/yo-nunca-preguntas-picantes-18`, and any other placements implicated by the open findings. Reconcile any broad blog-section exclusion separately. Preserve pre-existing interactive game exclusions.
+
+The historical status and register below reflect earlier snapshots. No account exclusions or advertiser categories were changed during closeout.
+
+### Closeout verification
+
+The build, TypeScript check, roulette gameplay tests and all 97 static-export tests passed. Comparison against the `8c2c1f1` export confirmed only four visible copy substitutions across 89 HTML documents and preserved the sitemap apart from generated timestamps. Two historical card-guide unit assertions also fail on the preflight source with the same results.
+
 ## Batch 3C · Group parties, hosting and video calls
 
 The preflight matched local and remote main to `6d184424c2c242b996b2c3bda2362d76b721c6c3`. Cloudflare Pages reported a successful production check for that SHA. The editorial correction is `e736d2f8d73e6f87d231fde8021dfc31cf5f76b7`.

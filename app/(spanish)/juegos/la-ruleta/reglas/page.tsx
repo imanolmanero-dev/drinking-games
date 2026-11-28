@@ -30,7 +30,7 @@ export default function LaRuletaReglasPage() {
               Cómo Jugar a La Ruleta
             </h1>
             <p className="text-muted text-lg leading-relaxed">
-              El clásico juego de casino, reconvertido en la máquina de generar castigos aleatorios perfecta para cualquier fiesta. Aquí no hay estrategia que valga; todo depende del puro azar y del destino.
+              Girad por turnos. Cada giro elige una de las 16 propuestas al azar. Puedes hacer la que salga o pasar sin penalización.
             </p>
           </div>
         </header>

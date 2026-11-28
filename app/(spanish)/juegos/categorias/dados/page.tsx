@@ -25,7 +25,7 @@ const juegos = [
   {
     id: "la-ruleta",
     nombre: "La Ruleta (Azar)",
-    descripcion: "Gira la ruleta y deja que la suerte decida tu castigo. ¡Una alternativa perfecta y rápida a los dados!",
+    descripcion: "Gira la ruleta, descubre la propuesta y decide si la haces o pasas. Después juega la siguiente persona.",
     icono: PartyPopper,
     color: "from-rose-500 to-pink-500",
     shadowColor: "shadow-rose-500/20",
